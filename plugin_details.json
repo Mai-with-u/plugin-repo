@@ -4969,5 +4969,59 @@
       },
       "id": "Alvter.repeat_content_plugin"
     }
+  },
+  {
+    "id": "XXXxx7258.Mai_Only_You",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "麦麦，只对你 | Mai_Only_You",
+      "version": "0.1.0",
+      "description": "仅对 QQ 私聊好友主动发消息，基于静默时间、上下文与记忆检索。",
+      "author": {
+        "name": "晴空",
+        "url": "https://github.com/XXXxx7258"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.10.0"
+      },
+      "homepage_url": "https://github.com/XXXxx7258/Mai_Only_You",
+      "repository_url": "https://github.com/XXXxx7258/Mai_Only_You",
+      "keywords": [
+        "private",
+        "chat",
+        "qq",
+        "proactive",
+        "memory",
+        "context"
+      ],
+      "categories": [
+        "Chat",
+        "Automation"
+      ],
+      "default_locale": "zh-CN",
+      "locales_path": "_locales",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "chat",
+        "components": [
+          {
+            "type": "command",
+            "name": "mai_only_you_test",
+            "description": "手动触发私聊主动聊天",
+            "pattern": "/mai_only_you_test 或 /mai_only_you_test <QQ号>"
+          }
+        ],
+        "features": [
+          "QQ 私聊主动消息",
+          "静默触发",
+          "定时触发",
+          "记忆检索与上下文生成",
+          "未回复不再触发",
+          "禁止时段控制"
+        ]
+      },
+      "id": "晴空.Mai_Only_You"
+    }
   }
 ]
