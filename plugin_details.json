@@ -437,7 +437,7 @@
         "Accessibility"
       ],
       "host_application": {
-        "min_version": "0.11.0"
+        "min_version": "0.12.0"
       },
       "default_locale": "zh-CN",
       "plugin_info": {
@@ -1802,7 +1802,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "麦麦发B站视频",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "description": "让麦麦解析b站视频链接并发送，群聊私聊都可用",
       "author": {
         "name": "XinxInxiN0",
@@ -1814,7 +1814,6 @@
       },
       "homepage_url": "https://github.com/XinxInxiN0/bilibili_video_sender_plugin",
       "repository_url": "https://github.com/XinxInxiN0/bilibili_video_sender_plugin",
-      "config_file_name": "config.toml",
       "keywords": [
         "bilibili",
         "video",
@@ -2831,7 +2830,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "Gemini 绘图",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。",
       "author": {
         "name": "sakura桜花",
@@ -4382,7 +4381,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "印象和好感度系统插件",
-      "version": "2.3.3",
+      "version": "2.3.5",
       "description": "为麦麦添加动态印象和好感度系统，LLM生成自然语言印象和动态好感度更新，使用独立的impression_affection_data.db数据库",
       "author": {
         "name": "heitiehu-beep",
@@ -5010,7 +5009,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "PgVector 记忆插件",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "一个使用 PostgreSQL & PgVector Plugin 数据库存储和检索记忆的插件。",
       "author": {
         "name": "rand0mdevel0per",
@@ -5059,14 +5058,14 @@
       "description": "自动在指定时间对所有非黑名单群聊执行打卡操作的MaiCore插件",
       "author": {
         "name": "WaterInk",
-        "url": "https://github.com/WaterInk0101/groupsign/tree/main"
+        "url": "https://github.com/WaterInk0101"
       },
       "license": "MIT License",
       "host_application": {
-        "min_version": "1.11.6"
+        "min_version": "0.11.6"
       },
-      "homepage_url": "",
-      "repository_url": "",
+      "homepage_url": "https://github.com/WaterInk0101/groupsign",
+      "repository_url": "https://github.com/WaterInk0101/groupsign",
       "keywords": [
         "auto-sign",
         "group",
