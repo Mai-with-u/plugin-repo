@@ -6682,5 +6682,106 @@
       "default_locale": "zh-CN",
       "id": "orxiain.a1ctf_plugin"
     }
+  },
+  {
+    "id": "CharTyr.Mai-Soul-Engine",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "Mai-Soul-Engine",
+      "version": "1.3.2",
+      "description": "Mai-Soul-Engine - 通过问卷初始化意识形态光谱，根据聊天内容动态演化，影响MaiBot的回复风格",
+      "author": {
+        "name": "CharTyr ",
+        "url": "https://github.com/CharTyr/Mai-Soul-Engine"
+      },
+      "host_application": {
+        "min_version": "0.12.0"
+      },
+      "license": "GPL-3.0-or-later",
+      "plugin_info": {
+        "components": [
+          {
+            "type": "command",
+            "name": "soul_setup",
+            "description": "初始化灵魂光谱问卷（管理员私聊）"
+          },
+          {
+            "type": "command",
+            "name": "soul_answer",
+            "description": "问卷答题：/soul_answer <1-5>（仅在问卷会话中生效）"
+          },
+          {
+            "type": "command",
+            "name": "soul_status",
+            "description": "查看当前意识形态光谱状态"
+          },
+          {
+            "type": "command",
+            "name": "soul_reset",
+            "description": "重置意识形态光谱"
+          },
+          {
+            "type": "command",
+            "name": "soul_seeds",
+            "description": "查看待审核的思维种子（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_approve",
+            "description": "批准思维种子内化（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_reject",
+            "description": "拒绝并删除思维种子（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_traits",
+            "description": "查看已固化的 traits（管理员，可按群过滤）"
+          },
+          {
+            "type": "command",
+            "name": "soul_trait_set_tags",
+            "description": "设置指定 trait 的 tags（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_trait_merge",
+            "description": "合并两个 trait（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_trait_disable",
+            "description": "禁用指定 trait（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_trait_enable",
+            "description": "启用指定 trait（管理员）"
+          },
+          {
+            "type": "command",
+            "name": "soul_trait_delete",
+            "description": "删除指定 trait（管理员，软删除）"
+          },
+          {
+            "type": "event_handler",
+            "name": "ideology_injector",
+            "description": "POST_LLM 事件处理器：把意识形态提示词注入到 prompt"
+          },
+          {
+            "type": "event_handler",
+            "name": "evolution_task",
+            "description": "周期性演化任务，分析聊天内容更新光谱"
+          },
+          {
+            "type": "event_handler",
+            "name": "notion_frontend_sync",
+            "description": "可选：同步 traits 与意识形态光谱到 Notion 数据库（公共展示前端）"
+          }
+        ]
+      }
+    }
   }
 ]
