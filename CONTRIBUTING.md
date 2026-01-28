@@ -16,20 +16,27 @@
 
 ### _manifest.json 规范
 
+以下是一个标准的 `_manifest.json` 示例（注释请自行移除）：
+
+
 ```json
 {
-  "manifest_version": "1.0.0",
-  "name": "插件名称",
-  "version": "1.0.0",
-  "description": "插件功能描述",
-  "author": {
-    "name": "作者名",
-    "url": "https://github.com/your-username"
+  "manifest_version": 1, # 说明文件版本（目前只有1）
+  "name": "示例插件", # 插件名称
+  "version": "1.0.0", # 插件版本
+  "description": "这是一个示例插件", # 插件介绍
+  "author": { # 插件作者信息
+    "name": "MaiBot 团队", # 插件作者名称
+    "url": "https://github.com/MaiM-with-u", # 插件作者主页
   },
-  "license": "MIT",
+  "license": "MIT", # 插件许可版本
   "host_application": {
-    "min_version": "1.0.0"
-  }
+    "min_version": "0.7.0", # 插件适配麦麦最低版本
+    "max_version": "0.8.0" # 插件适配麦麦最高版本
+  },
+  "homepage_url": "https://github.com/MaiM-with-u", # 插件主页
+  "repository_url": "https://github.com/MaiM-with-u/plugin-repo", # 插件仓库地址
+  "categories": ["Developer Tools"], # 插件分类。具体项目请看下面链接中的介绍
 }
 ```
 
