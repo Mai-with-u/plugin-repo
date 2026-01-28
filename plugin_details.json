@@ -6783,5 +6783,34 @@
         ]
       }
     }
+  },
+  {
+    "id": "WaterInk0101.coc_dice_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "TRPG骰娘插件",
+      "version": "1.0.0",
+      "description": "来场紧张刺激的TRPG吧！",
+      "author": {
+        "name": "WaterInk",
+        "url": "https://github.com/WaterInk0101"
+      },
+      "license": "MIT License",
+      "host_application": {
+        "min_version": "0.11.6"
+      },
+      "homepage_url": "https://github.com/WaterInk0101/coc_dice_plugin",
+      "repository_url": "https://github.com/WaterInk0101/coc_dice_plugin",
+      "keywords": [
+        "跑团",
+        "娱乐",
+        "社交"
+      ],
+      "default_locale": "zh-CN",
+      "locales_path": "_locales",
+      "categories": [
+        "Entertainment & Interaction"
+      ]
+    }
   }
 ]
