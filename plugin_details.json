@@ -1773,13 +1773,12 @@
         "UP主"
       ],
       "categories": [
-        "automation",
-        "entertainment",
-        "utility"
+        "Utility Tools"
       ],
       "default_locale": "zh-CN",
       "plugin_info": {
         "is_built_in": false,
+        "plugin_type": "utility",
         "components": [
           {
             "type": "command",
@@ -1799,9 +1798,9 @@
     "id": "XinxInxiN0.bilibili_video_sender_plugin",
     "manifest": {
       "manifest_version": 1,
-      "name": "麦麦发B站视频",
-      "version": "1.3.1",
-      "description": "让麦麦解析b站视频链接并发送，群聊私聊都可用",
+      "name": "麦麦发 B 站视频",
+      "version": "1.3.2",
+      "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
         "name": "XinxInxiN0",
         "url": "https://github.com/XinxInxiN0"
@@ -1827,9 +1826,9 @@
         "plugin_type": "utility",
         "components": [],
         "features": [
-          "自动识别B站链接",
+          "自动识别 B 站链接",
           "发送视频文件",
-          "支持b23.tv短链"
+          "支持 b23.tv 短链"
         ]
       },
       "id": "XinxInxiN0.bilibili_video_sender_plugin"
@@ -6481,7 +6480,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "麦麦贴表情插件",
-      "version": "1.0.0",
+      "version": "1.1.1",
       "description": "让麦麦能在群聊中贴表情",
       "author": {
         "name": "鲨鱼",
