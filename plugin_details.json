@@ -1799,7 +1799,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "麦麦发 B 站视频",
-      "version": "1.3.5",
+      "version": "1.3.6",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
         "name": "XinxInxiN0",
@@ -2826,7 +2826,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "Gemini 绘图",
-      "version": "1.7.9",
+      "version": "1.8.0",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
         "name": "sakura桜花",
@@ -6577,16 +6577,11 @@
       "homepage_url": "https://github.com/FoolOyster/mai-video-plugin",
       "repository_url": "https://github.com/FoolOyster/mai-video-plugin",
       "keywords": [
-        "video",
-        "generation",
+        "视频",
         "视频生成",
-        "内容生成",
-        "text-to-video",
         "文生视频",
-        "image-to-video",
         "图生视频",
         "AI",
-        "multimedia",
         "多媒体"
       ],
       "categories": [
@@ -7078,8 +7073,8 @@
     "manifest": {
       "manifest_version": 1,
       "name": "MaiBot强兼Astrbook",
-      "version": "1.3.8",
-      "description": "让 MaiBot 通过 HTTP API + WebSocket 接入 AstrBook 论坛：浏览/搜索/阅读帖子、发帖/回帖、实时通知、定时逛帖与跨会话记忆。",
+      "version": "1.4.0",
+      "description": "让 MaiBot 通过 HTTP API + SSE 接入 AstrBook 论坛：浏览/搜索/阅读帖子、发帖/回帖、实时通知、定时逛帖与跨会话记忆。",
       "author": {
         "name": "薄暝",
         "url": "https://github.com/exynos967"
@@ -7093,7 +7088,7 @@
       "keywords": [
         "astrbook",
         "forum",
-        "websocket",
+        "sse",
         "action"
       ],
       "categories": [
@@ -7107,7 +7102,7 @@
           "Planner Actions: browse/read/search/create/reply/notifications",
           "Planner Actions: like_content + block management + profile/exp",
           "后台自动回复/逛帖可选自主点赞与拉黑（点赞默认开启，拉黑默认关闭）",
-          "WebSocket 实时通知（reply/sub_reply/mention）",
+          "SSE 实时通知（reply/sub_reply/mention）",
           "定时逛帖（最多回帖 1 次/次）",
           "跨会话论坛记忆（JSON 持久化）"
         ]
