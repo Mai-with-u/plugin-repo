@@ -218,7 +218,9 @@ jobs:
               core.setOutput('existing_repo_url', existingPlugin.repositoryUrl);
             }
             
+            let effectiveRepoUrl = repoUrl;
             if (requestType === 'modify') {
+              effectiveRepoUrl = repoUrl || existingPlugin.repositoryUrl;
               const hasIdChange = currentPluginId !== pluginId;
               const hasRepoChange = Boolean(repoUrl && repoUrl !== existingPlugin.repositoryUrl);
               
@@ -311,7 +313,7 @@ jobs:
             
             let manifestResult;
             try {
-              manifestResult = await fetchManifest(repoUrl);
+              manifestResult = await fetchManifest(effectiveRepoUrl);
             } catch (error) {
               core.setOutput('status', 'error');
               core.setOutput('message', `**无法获取 \`_manifest.json\` 文件**\n\n${error.message}`);
