@@ -1,0 +1,34 @@
+name: "Remove Plugin / 移除插件"
+description: "Request to remove an existing plugin from the registry / 申请移除已存在插件"
+title: "[Plugin Remove] "
+labels: ["plugin-removal", "pending-validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 移除插件 / Remove Plugin
+        
+        请填写以下信息，CI 将自动验证插件是否存在。
+        验证通过后，维护者会审核并批准移除请求。
+        
+        ---
+
+  - type: input
+    id: plugin-id
+    attributes:
+      label: 插件 ID / Plugin ID
+      description: |
+        必须是已存在的插件 ID（格式：作者名.插件名）
+        Must be an existing plugin ID (format: author.plugin)
+      placeholder: "例如: username.my-plugin"
+    validations:
+      required: true
+
+  - type: textarea
+    id: removal-reason
+    attributes:
+      label: 移除原因 / Removal Reason
+      description: "请说明移除原因 / Please provide the reason for removal"
+      placeholder: "例如：仓库已弃用或迁移..."
+    validations:
+      required: true

@@ -13,10 +13,19 @@ jobs:
     # 2. Issue 编辑/添加标签且有 plugin-submission 标签
     # 3. 评论包含 /recheck 命令且有 plugin-submission 标签
     if: >-
-      (github.event_name == 'issues' && github.event.action == 'opened' && startsWith(github.event.issue.title, '[Plugin]')) ||
-      (github.event_name == 'issues' && github.event.action != 'opened' && contains(github.event.issue.labels.*.name, 'plugin-submission')) ||
-      (github.event_name == 'issue_comment' && 
-       contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+      (github.event_name == 'issues' && github.event.action == 'opened' &&
+        (startsWith(github.event.issue.title, '[Plugin]') ||
+         contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+         contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
+      (github.event_name == 'issues' && github.event.action != 'opened' &&
+        (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+         contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
+      (github.event_name == 'issue_comment' &&
+       (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+        contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+        contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
        contains(github.event.comment.body, '/recheck'))
     runs-on: ubuntu-latest
     permissions:
@@ -84,29 +93,68 @@ jobs:
             // ========== 解析 Issue 内容 ==========
             const body = context.payload.issue.body;
             console.log('Issue body:', body);
+            const labels = context.payload.issue.labels.map(label => label.name);
+            const requestType = labels.includes('plugin-modification')
+              ? 'modify'
+              : labels.includes('plugin-removal')
+                ? 'remove'
+                : 'add';
             
             const pluginIdMatch = body.match(/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/);
-            const repoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
+            const currentPluginIdMatch = body.match(/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/);
+            const newPluginIdMatch = body.match(/### 新插件 ID \/ New Plugin ID\s*\n\s*\n(.+)/);
+            const addRepoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
+            const modifyRepoUrlMatch = body.match(/### 新的仓库地址 \/ New Repository URL\s*\n\s*\n(.+)/);
             
-            if (!pluginIdMatch || !repoUrlMatch) {
+            if (requestType === 'modify') {
+              if (!currentPluginIdMatch || !newPluginIdMatch) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了「当前插件 ID」和「新插件 ID」字段。');
+                return;
+              }
+            } else if (!pluginIdMatch) {
               core.setOutput('status', 'error');
-              core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了「插件 ID」和「仓库地址」字段。');
+              core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了「插件 ID」字段。');
               return;
             }
             
-            const pluginId = pluginIdMatch[1].trim();
-            const repoUrl = repoUrlMatch[1].trim();
+            const pluginId = requestType === 'modify'
+              ? newPluginIdMatch[1].trim()
+              : pluginIdMatch[1].trim();
+            const currentPluginId = requestType === 'modify'
+              ? currentPluginIdMatch[1].trim()
+              : pluginId;
+            const repoUrl = requestType === 'modify'
+              ? modifyRepoUrlMatch && modifyRepoUrlMatch[1].trim()
+              : addRepoUrlMatch && addRepoUrlMatch[1].trim();
             
             console.log(`Plugin ID: ${pluginId}`);
-            console.log(`Repository URL: ${repoUrl}`);
+            if (requestType === 'modify') {
+              console.log(`Current Plugin ID: ${currentPluginId}`);
+            }
+            if (repoUrl) {
+              console.log(`Repository URL: ${repoUrl}`);
+            }
             
             // 保存解析结果供后续使用
             core.setOutput('plugin_id', pluginId);
-            core.setOutput('repo_url', repoUrl);
+            if (requestType === 'modify') {
+              core.setOutput('current_plugin_id', currentPluginId);
+            }
+            if (repoUrl) {
+              core.setOutput('repo_url', repoUrl);
+            }
+            core.setOutput('request_type', requestType);
+            
+            if (requestType === 'add' && !repoUrl) {
+              core.setOutput('status', 'error');
+              core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了仓库地址字段。');
+              return;
+            }
             
             // ========== 验证 URL 格式 ==========
             const urlPattern = /^https:\/\/github\.com\/[\w-]+\/[\w.-]+$/;
-            if (!urlPattern.test(repoUrl)) {
+            if (repoUrl && !urlPattern.test(repoUrl)) {
               core.setOutput('status', 'error');
               core.setOutput('message', `**无效的仓库 URL 格式**\n\n提供的 URL: \`${repoUrl}\`\n\n要求格式: \`https://github.com/username/repo-name\`\n\n❌ 不要包含 \`.git\` 后缀\n❌ 不要使用 SSH 地址`);
               return;
@@ -119,82 +167,156 @@ jobs:
               core.setOutput('message', `**无效的插件 ID 格式**\n\n提供的 ID: \`${pluginId}\`\n\n只允许：字母、数字、下划线 \`_\`、点 \`.\` 和连字符 \`-\``);
               return;
             }
+            if (requestType === 'modify' && !idPattern.test(currentPluginId)) {
+              core.setOutput('status', 'error');
+              core.setOutput('message', `**无效的当前插件 ID 格式**\n\n提供的 ID: \`${currentPluginId}\`\n\n只允许：字母、数字、下划线 \`_\`、点 \`.\` 和连字符 \`-\``);
+              return;
+            }
+            
+            if (requestType === 'modify') {
+              const currentPrefix = currentPluginId.split('.')[0];
+              const newPrefix = pluginId.split('.')[0];
+              if (currentPrefix !== newPrefix) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**作者部分不允许修改**\n\n当前插件 ID: \`${currentPluginId}\`\n新插件 ID: \`${pluginId}\`\n\n请保持作者名前缀一致。`);
+                return;
+              }
+            }
             
             // ========== 检查重复 ==========
             const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
             
-            const duplicateId = plugins.find(p => p.id === pluginId);
-            if (duplicateId) {
-              core.setOutput('status', 'error');
-              core.setOutput('message', `**插件 ID 已存在**\n\n\`${pluginId}\` 已被注册。\n\n请使用不同的 ID，建议格式：\`您的用户名.插件名\``);
-              return;
+            const existingPlugin = requestType === 'modify'
+              ? plugins.find(p => p.id === currentPluginId)
+              : plugins.find(p => p.id === pluginId);
+            
+            if (requestType === 'add') {
+              const duplicateId = plugins.find(p => p.id === pluginId);
+              if (duplicateId) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**插件 ID 已存在**\n\n\`${pluginId}\` 已被注册。\n\n请使用不同的 ID，建议格式：\`您的用户名.插件名\``);
+                return;
+              }
+              
+              const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl);
+              if (duplicateUrl) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**仓库 URL 已存在**\n\n${repoUrl}\n\n该仓库已被注册为插件 \`${duplicateUrl.id}\``);
+                return;
+              }
             }
             
-            const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl);
-            if (duplicateUrl) {
-              core.setOutput('status', 'error');
-              core.setOutput('message', `**仓库 URL 已存在**\n\n${repoUrl}\n\n该仓库已被注册为插件 \`${duplicateUrl.id}\``);
+            if (requestType !== 'add') {
+              if (!existingPlugin) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**插件 ID 不存在**\n\n\`${requestType === 'modify' ? currentPluginId : pluginId}\` 未在插件中心登记。\n\n请确认插件 ID 是否正确。`);
+                return;
+              }
+              core.setOutput('existing_repo_url', existingPlugin.repositoryUrl);
+            }
+            
+            if (requestType === 'modify') {
+              const hasIdChange = currentPluginId !== pluginId;
+              const hasRepoChange = Boolean(repoUrl && repoUrl !== existingPlugin.repositoryUrl);
+              
+              if (!hasIdChange && !hasRepoChange) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**未检测到修改内容**\n\n当前插件 ID: \`${currentPluginId}\`\n当前仓库地址: \`${existingPlugin.repositoryUrl}\`\n\n请至少修改插件 ID 或仓库地址。`);
+                return;
+              }
+              
+              if (hasIdChange) {
+                const duplicateId = plugins.find(p => p.id === pluginId);
+                if (duplicateId) {
+                  core.setOutput('status', 'error');
+                  core.setOutput('message', `**新插件 ID 已存在**\n\n\`${pluginId}\` 已被注册。\n\n请使用不同的插件 ID。`);
+                  return;
+                }
+              }
+              
+              if (repoUrl) {
+                const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl && p.id !== currentPluginId);
+                if (duplicateUrl) {
+                  core.setOutput('status', 'error');
+                  core.setOutput('message', `**仓库 URL 已被占用**\n\n${repoUrl}\n\n该仓库已被注册为插件 \`${duplicateUrl.id}\``);
+                  return;
+                }
+              }
+            }
+            
+            if (requestType === 'remove') {
+              const successMessage = `**移除请求验证通过**\n\n| 字段 | 值 |\n|------|----|\n| 插件 ID | ${pluginId} |\n| 当前仓库地址 | ${existingPlugin.repositoryUrl} |\n\n---\n\n**维护者操作:**\n- \`/approve\` - 批准并移除此插件\n- \`/reject 原因\` - 拒绝此请求`;
+              core.setOutput('status', 'success');
+              core.setOutput('message', successMessage);
               return;
             }
             
             // ========== 获取 Manifest ==========
             const branches = ['main', 'master', 'dev', 'develop'];
-            let manifest = null;
-            let successBranch = null;
-            const fetchErrors = [];
             
-            async function fetchFromBranch(branch) {
-              const rawUrl = repoUrl.replace('github.com', 'raw.githubusercontent.com') + `/refs/heads/${branch}/_manifest.json`;
-              console.log(`尝试从 ${branch} 分支获取: ${rawUrl}`);
+            async function fetchManifest(repo) {
+              const fetchErrors = [];
               
-              return new Promise((resolve, reject) => {
-                const timeout = setTimeout(() => {
-                  reject(new Error('请求超时 (10秒)'));
-                }, 10000);
+              async function fetchFromBranch(branch) {
+                const rawUrl = repo.replace('github.com', 'raw.githubusercontent.com') + `/refs/heads/${branch}/_manifest.json`;
+                console.log(`尝试从 ${branch} 分支获取: ${rawUrl}`);
                 
-                const req = https.get(rawUrl, res => {
-                  clearTimeout(timeout);
+                return new Promise((resolve, reject) => {
+                  const timeout = setTimeout(() => {
+                    reject(new Error('请求超时 (10秒)'));
+                  }, 10000);
                   
-                  if (res.statusCode !== 200) {
-                    reject(new Error(`HTTP ${res.statusCode}`));
-                    return;
-                  }
-                  
-                  let data = '';
-                  res.on('data', chunk => data += chunk);
-                  res.on('end', () => {
-                    try {
-                      resolve(JSON.parse(data));
-                    } catch (e) {
-                      reject(new Error('JSON 解析失败 - 请检查文件格式'));
+                  const req = https.get(rawUrl, res => {
+                    clearTimeout(timeout);
+                    
+                    if (res.statusCode !== 200) {
+                      reject(new Error(`HTTP ${res.statusCode}`));
+                      return;
                     }
+                    
+                    let data = '';
+                    res.on('data', chunk => data += chunk);
+                    res.on('end', () => {
+                      try {
+                        resolve(JSON.parse(data));
+                      } catch (e) {
+                        reject(new Error('JSON 解析失败 - 请检查文件格式'));
+                      }
+                    });
+                  });
+                  
+                  req.on('error', err => {
+                    clearTimeout(timeout);
+                    reject(new Error(`网络错误: ${err.message}`));
                   });
                 });
-                
-                req.on('error', err => {
-                  clearTimeout(timeout);
-                  reject(new Error(`网络错误: ${err.message}`));
-                });
-              });
-            }
-            
-            for (const branch of branches) {
-              try {
-                manifest = await fetchFromBranch(branch);
-                successBranch = branch;
-                console.log(`✅ 成功从 ${branch} 分支获取到清单文件`);
-                break;
-              } catch (e) {
-                fetchErrors.push(`- \`${branch}\`: ${e.message}`);
-                console.log(`❌ ${branch} 分支获取失败: ${e.message}`);
               }
+              
+              for (const branch of branches) {
+                try {
+                  const manifest = await fetchFromBranch(branch);
+                  console.log(`✅ 成功从 ${branch} 分支获取到清单文件`);
+                  return { manifest, branch };
+                } catch (e) {
+                  fetchErrors.push(`- \`${branch}\`: ${e.message}`);
+                  console.log(`❌ ${branch} 分支获取失败: ${e.message}`);
+                }
+              }
+              
+              throw new Error(`无法从任何分支获取 _manifest.json 文件。\n尝试的分支:\n${fetchErrors.join('\n')}\n\n请检查：\n1. 文件名是否为 \`_manifest.json\`（注意下划线）\n2. 仓库是否为**公开**仓库\n3. 文件是否在上述分支的根目录中`);
             }
             
-            if (!manifest) {
+            let manifestResult;
+            try {
+              manifestResult = await fetchManifest(repoUrl);
+            } catch (error) {
               core.setOutput('status', 'error');
-              core.setOutput('message', `**无法获取 \`_manifest.json\` 文件**\n\n尝试的分支:\n${fetchErrors.join('\n')}\n\n**请检查:**\n1. 文件名是否为 \`_manifest.json\`（注意下划线）\n2. 仓库是否为**公开**仓库\n3. 文件是否在上述分支的根目录中`);
+              core.setOutput('message', `**无法获取 \`_manifest.json\` 文件**\n\n${error.message}`);
               return;
             }
+            
+            const manifest = manifestResult.manifest;
+            const successBranch = manifestResult.branch;
             
             // ========== 验证 Manifest 结构 ==========
             const warnings = [];
@@ -238,14 +360,61 @@ jobs:
               warnings.push(`版本号 \`${manifest.version}\` 不符合语义化版本格式 (如 \`1.0.0\`)`);
             }
             
+            if (requestType === 'modify') {
+              if (manifest.name !== pluginId) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**插件名称不匹配**\n\n\`_manifest.json\` 中的 name 为 \`${manifest.name}\`，但新插件 ID 为 \`${pluginId}\`。\n\n请保持插件 ID 与清单名称一致。`);
+                return;
+              }
+              
+              let existingManifestResult;
+              try {
+                existingManifestResult = await fetchManifest(existingPlugin.repositoryUrl);
+              } catch (error) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**无法获取现有插件的 \`_manifest.json\` 文件**\n\n${error.message}`);
+                return;
+              }
+              
+              const existingManifest = existingManifestResult.manifest;
+              if (!existingManifest || typeof existingManifest !== 'object') {
+                core.setOutput('status', 'error');
+                core.setOutput('message', '**现有插件的 _manifest.json 格式无效**');
+                return;
+              }
+              
+              if (typeof existingManifest.author !== 'object' || !existingManifest.author.name || !existingManifest.author.url) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', '**现有插件的 `author` 字段格式错误，无法验证作者一致性**');
+                return;
+              }
+              
+              if (existingManifest.author.name !== manifest.author.name || existingManifest.author.url !== manifest.author.url) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**作者信息不允许修改**\n\n当前作者: \`${existingManifest.author.name}\` (${existingManifest.author.url})\n新作者: \`${manifest.author.name}\` (${manifest.author.url})`);
+                return;
+              }
+            }
+            
             // ========== 验证成功 ==========
-            let successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 分支 | ${successBranch} |`;
+            let successMessage = '';
+            if (requestType === 'add') {
+              successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 分支 | ${successBranch} |`;
+            } else {
+              successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 分支 | ${successBranch} |`;
+            }
             
             if (warnings.length > 0) {
               successMessage += `\n\n**⚠️ 警告 (不影响提交):**\n${warnings.map(w => '- ' + w).join('\n')}`;
             }
             
-            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` - 批准并添加此插件\n- \`/reject 原因\` - 拒绝此插件\n\n**提交者操作:**\n- 如果修改了 manifest，可以评论 \`/recheck\` 重新验证`;
+            const approveAction = requestType === 'add'
+              ? '批准并添加此插件'
+              : requestType === 'modify'
+                ? '批准并更新插件仓库信息'
+                : '批准并移除此插件';
+            
+            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` - ${approveAction}\n- \`/reject 原因\` - 拒绝此请求\n\n**提交者操作:**\n- 如果修改了 manifest，可以评论 \`/recheck\` 重新验证`;
             
             core.setOutput('status', 'success');
             core.setOutput('message', successMessage);

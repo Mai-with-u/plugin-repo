@@ -1,0 +1,71 @@
+name: "Modify Plugin / 修改插件"
+description: "Request to update repository information for an existing plugin / 修改已存在插件的仓库信息"
+title: "[Plugin Modify] "
+labels: ["plugin-modification", "pending-validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 修改插件 / Modify Plugin
+        
+        请填写以下信息，CI 将自动验证并检查作者是否一致。
+        验证通过后，维护者会审核并批准您的修改请求。
+        
+        ---
+
+  - type: input
+    id: current-plugin-id
+    attributes:
+      label: 当前插件 ID / Current Plugin ID
+      description: |
+        必须是已存在的插件 ID（格式：作者名.插件名）
+        Must be an existing plugin ID (format: author.plugin)
+      placeholder: "例如: username.my-plugin"
+    validations:
+      required: true
+
+  - type: input
+    id: new-plugin-id
+    attributes:
+      label: 新插件 ID / New Plugin ID
+      description: |
+        仅允许修改插件名部分，作者名必须保持一致
+        Only plugin suffix can change; author prefix must stay the same
+      placeholder: "例如: username.my-renamed-plugin"
+    validations:
+      required: true
+
+  - type: input
+    id: new-repository-url
+    attributes:
+      label: 新的仓库地址（可选） / New Repository URL (Optional)
+      description: |
+        若不修改仓库地址可留空；填写时必须是公开的 GitHub HTTPS 地址
+        Leave blank to keep current repository URL
+      placeholder: "https://github.com/username/new-plugin-repo"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 确认清单 / Checklist
+      description: 请确认以下所有事项 / Please confirm all items below
+      options:
+        - label: 若修改仓库地址，新仓库为公开仓库 / If changing repo URL, new repository is public
+          required: true
+        - label: 若修改仓库地址，新仓库根目录包含 `_manifest.json` / If changing repo URL, new repository contains `_manifest.json` in root
+          required: true
+        - label: "`author` 信息未变更 / `author` information is unchanged"
+          required: true
+        - label: 插件 ID 与 manifest.name 保持一致 / Plugin ID matches manifest.name
+          required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 补充说明 / Additional Information
+      description: "可选: 修改原因或其他说明 / Optional: Reason for update or other details"
+      placeholder: "例如：仓库迁移到新组织..."
+    validations:
+      required: false

@@ -7,7 +7,9 @@ on:
 jobs:
   approve:
     if: >-
-      contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+      (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+       contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+       contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
       contains(github.event.issue.labels.*.name, 'validated') &&
       contains(github.event.comment.body, '/approve')
     runs-on: ubuntu-latest
@@ -55,46 +57,129 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const labels = context.payload.issue.labels.map(label => label.name);
+            const requestType = labels.includes('plugin-modification')
+              ? 'modify'
+              : labels.includes('plugin-removal')
+                ? 'remove'
+                : 'add';
             
             const body = context.payload.issue.body;
             const pluginIdMatch = body.match(/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/);
-            const repoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
+            const currentPluginIdMatch = body.match(/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/);
+            const newPluginIdMatch = body.match(/### 新插件 ID \/ New Plugin ID\s*\n\s*\n(.+)/);
+            const addRepoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
+            const modifyRepoUrlMatch = body.match(/### 新的仓库地址 \/ New Repository URL\s*\n\s*\n(.+)/);
             
-            if (!pluginIdMatch || !repoUrlMatch) {
-              core.setFailed('无法解析 Issue 内容');
+            if (requestType === 'modify') {
+              if (!currentPluginIdMatch || !newPluginIdMatch) {
+                core.setFailed('无法解析 Issue 内容：缺少当前/新插件 ID');
+                return;
+              }
+            } else if (!pluginIdMatch) {
+              core.setFailed('无法解析 Issue 内容：缺少插件 ID');
               return;
             }
             
-            const pluginId = pluginIdMatch[1].trim();
-            const repoUrl = repoUrlMatch[1].trim();
+            const pluginId = requestType === 'modify'
+              ? newPluginIdMatch[1].trim()
+              : pluginIdMatch[1].trim();
+            const currentPluginId = requestType === 'modify'
+              ? currentPluginIdMatch[1].trim()
+              : pluginId;
+            const repoUrl = requestType === 'modify'
+              ? modifyRepoUrlMatch && modifyRepoUrlMatch[1].trim()
+              : addRepoUrlMatch && addRepoUrlMatch[1].trim();
             
             const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
+            const existingPluginIndex = requestType === 'modify'
+              ? plugins.findIndex(p => p.id === currentPluginId)
+              : plugins.findIndex(p => p.id === pluginId);
             
-            if (plugins.some(p => p.id === pluginId)) {
-              core.setFailed(`插件 ID 已存在: ${pluginId}`);
-              return;
-            }
-            if (plugins.some(p => p.repositoryUrl === repoUrl)) {
-              core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
-              return;
+            if (requestType === 'add') {
+              if (plugins.some(p => p.id === pluginId)) {
+                core.setFailed(`插件 ID 已存在: ${pluginId}`);
+                return;
+              }
+              if (plugins.some(p => p.repositoryUrl === repoUrl)) {
+                core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
+                return;
+              }
+              if (!repoUrl) {
+                core.setFailed('无法解析 Issue 内容：缺少仓库地址');
+                return;
+              }
+              
+              plugins.push({
+                id: pluginId,
+                repositoryUrl: repoUrl
+              });
             }
             
-            plugins.push({
-              id: pluginId,
-              repositoryUrl: repoUrl
-            });
+            if (requestType === 'modify') {
+              if (existingPluginIndex === -1) {
+                core.setFailed(`插件 ID 不存在: ${currentPluginId}`);
+                return;
+              }
+              const hasRepoChange = Boolean(repoUrl && repoUrl !== plugins[existingPluginIndex].repositoryUrl);
+              const hasIdChange = currentPluginId !== pluginId;
+              
+              if (!hasRepoChange && !hasIdChange) {
+                core.setFailed('未检测到修改内容');
+                return;
+              }
+              
+              if (hasIdChange) {
+                if (plugins.some(p => p.id === pluginId)) {
+                  core.setFailed(`新插件 ID 已存在: ${pluginId}`);
+                  return;
+                }
+              }
+              
+              if (repoUrl) {
+                const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl && p.id !== currentPluginId);
+                if (duplicateUrl) {
+                  core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
+                  return;
+                }
+              }
+              
+              plugins[existingPluginIndex] = {
+                ...plugins[existingPluginIndex],
+                id: hasIdChange ? pluginId : plugins[existingPluginIndex].id,
+                repositoryUrl: hasRepoChange ? repoUrl : plugins[existingPluginIndex].repositoryUrl
+              };
+            }
+            
+            if (requestType === 'remove') {
+              if (existingPluginIndex === -1) {
+                core.setFailed(`插件 ID 不存在: ${pluginId}`);
+                return;
+              }
+              plugins.splice(existingPluginIndex, 1);
+            }
             
             fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
             
             core.setOutput('plugin_id', pluginId);
-            core.setOutput('repo_url', repoUrl);
+            if (requestType === 'modify') {
+              core.setOutput('current_plugin_id', currentPluginId);
+            }
+            core.setOutput('repo_url', repoUrl || '');
+            core.setOutput('request_type', requestType);
 
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add plugins.json
-          git commit -m "feat: Add ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+          if [ "${{ steps.add-plugin.outputs.request_type }}" = "modify" ]; then
+            git commit -m "chore: Update ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+          elif [ "${{ steps.add-plugin.outputs.request_type }}" = "remove" ]; then
+            git commit -m "chore: Remove ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+          else
+            git commit -m "feat: Add ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+          fi
           git push
 
       - name: Close issue with success
@@ -103,12 +188,26 @@ jobs:
           script: |
             const pluginId = '${{ steps.add-plugin.outputs.plugin_id }}';
             const approvedBy = '${{ steps.check-permission.outputs.approved_by }}';
+            const requestType = '${{ steps.add-plugin.outputs.request_type }}';
+            
+            const titleMap = {
+              add: '插件已添加 / Plugin Added',
+              modify: '插件已更新 / Plugin Updated',
+              remove: '插件已移除 / Plugin Removed'
+            };
+            const actionMap = {
+              add: '已成功添加到插件中心',
+              modify: '已成功更新仓库信息',
+              remove: '已从插件中心移除'
+            };
+            const title = titleMap[requestType] || titleMap.add;
+            const actionText = actionMap[requestType] || actionMap.add;
             
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## 🎉 插件已添加 / Plugin Added\n\n插件 \`${pluginId}\` 已成功添加到插件中心！\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugins.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
+              body: `## 🎉 ${title}\n\n插件 \`${pluginId}\` ${actionText}！\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugins.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
             });
             
             await github.rest.issues.addLabels({
@@ -139,7 +238,9 @@ jobs:
 
   reject:
     if: >-
-      contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+      (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+       contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+       contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
       startsWith(github.event.comment.body, '/reject')
     runs-on: ubuntu-latest
     permissions:
