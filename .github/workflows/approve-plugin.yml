@@ -66,21 +66,35 @@ jobs:
             
             const body = context.payload.issue.body;
             const pluginIdMatch = body.match(/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/);
+            const currentPluginIdMatch = body.match(/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/);
+            const newPluginIdMatch = body.match(/### 新插件 ID \/ New Plugin ID\s*\n\s*\n(.+)/);
             const addRepoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
             const modifyRepoUrlMatch = body.match(/### 新的仓库地址 \/ New Repository URL\s*\n\s*\n(.+)/);
             
-            if (!pluginIdMatch) {
+            if (requestType === 'modify') {
+              if (!currentPluginIdMatch || !newPluginIdMatch) {
+                core.setFailed('无法解析 Issue 内容：缺少当前/新插件 ID');
+                return;
+              }
+            } else if (!pluginIdMatch) {
               core.setFailed('无法解析 Issue 内容：缺少插件 ID');
               return;
             }
             
-            const pluginId = pluginIdMatch[1].trim();
+            const pluginId = requestType === 'modify'
+              ? newPluginIdMatch[1].trim()
+              : pluginIdMatch[1].trim();
+            const currentPluginId = requestType === 'modify'
+              ? currentPluginIdMatch[1].trim()
+              : pluginId;
             const repoUrl = requestType === 'modify'
               ? modifyRepoUrlMatch && modifyRepoUrlMatch[1].trim()
               : addRepoUrlMatch && addRepoUrlMatch[1].trim();
             
             const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
-            const existingPluginIndex = plugins.findIndex(p => p.id === pluginId);
+            const existingPluginIndex = requestType === 'modify'
+              ? plugins.findIndex(p => p.id === currentPluginId)
+              : plugins.findIndex(p => p.id === pluginId);
             
             if (requestType === 'add') {
               if (plugins.some(p => p.id === pluginId)) {
@@ -104,21 +118,36 @@ jobs:
             
             if (requestType === 'modify') {
               if (existingPluginIndex === -1) {
-                core.setFailed(`插件 ID 不存在: ${pluginId}`);
+                core.setFailed(`插件 ID 不存在: ${currentPluginId}`);
                 return;
               }
-              if (!repoUrl) {
-                core.setFailed('无法解析 Issue 内容：缺少新的仓库地址');
+              const hasRepoChange = Boolean(repoUrl && repoUrl !== plugins[existingPluginIndex].repositoryUrl);
+              const hasIdChange = currentPluginId !== pluginId;
+              
+              if (!hasRepoChange && !hasIdChange) {
+                core.setFailed('未检测到修改内容');
                 return;
               }
-              const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl && p.id !== pluginId);
-              if (duplicateUrl) {
-                core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
-                return;
+              
+              if (hasIdChange) {
+                if (plugins.some(p => p.id === pluginId)) {
+                  core.setFailed(`新插件 ID 已存在: ${pluginId}`);
+                  return;
+                }
               }
+              
+              if (repoUrl) {
+                const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl && p.id !== currentPluginId);
+                if (duplicateUrl) {
+                  core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
+                  return;
+                }
+              }
+              
               plugins[existingPluginIndex] = {
                 ...plugins[existingPluginIndex],
-                repositoryUrl: repoUrl
+                id: hasIdChange ? pluginId : plugins[existingPluginIndex].id,
+                repositoryUrl: hasRepoChange ? repoUrl : plugins[existingPluginIndex].repositoryUrl
               };
             }
             
@@ -133,6 +162,9 @@ jobs:
             fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
             
             core.setOutput('plugin_id', pluginId);
+            if (requestType === 'modify') {
+              core.setOutput('current_plugin_id', currentPluginId);
+            }
             core.setOutput('repo_url', repoUrl || '');
             core.setOutput('request_type', requestType);
 
