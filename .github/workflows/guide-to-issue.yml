@@ -1,0 +1,60 @@
+name: Guide PR to Issue Submission
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+    branches:
+      - main
+    paths:
+      - 'plugins.json'
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Guide user to Issue submission
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prAuthor = context.payload.pull_request.user.login;
+
+            const message = `## 📢 推荐使用 Issue 提交插件 / Please Use Issue Submission
+
+            @${prAuthor} 您好！
+
+            我们已经推出了更简单的 **Issue 提交方式**，无需 Fork 和创建 PR。
+
+            ### 🚀 推荐流程
+
+            1. 关闭此 PR
+            2. 点击 [创建 Issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/new/choose)
+            3. 选择 **"Add Plugin / 添加插件"** 模板
+            4. 填写插件 ID 和仓库地址
+            5. CI 自动验证，维护者批准后自动添加
+
+            ### ✨ Issue 方式的优势
+
+            | 特性 | PR 方式 | Issue 方式 |
+            |------|---------|------------|
+            | 需要 Fork | ✅ 需要 | ❌ 不需要 |
+            | 需要本地 Git | ✅ 需要 | ❌ 不需要 |
+            | 合并冲突 | 可能发生 | 不会发生 |
+            | 操作复杂度 | 较高 | 非常简单 |
+
+            ---
+
+            > ⚠️ **PR 提交方式已弃用**，后续可能会移除支持。
+            >
+            > 如果您仍希望使用 PR 方式，此 PR 仍会进行验证，但建议改用 Issue。
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: message
+            });
