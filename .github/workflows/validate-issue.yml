@@ -13,12 +13,12 @@ jobs:
     # 2. Issue 编辑/添加标签且有 plugin-submission 标签
     # 3. 评论包含 /recheck 命令且有 plugin-submission 标签
     if: >-
-      (github.event_name == 'issues' && github.event.action == 'opened' &&
+      (github.event_name == 'issues' && github.event.action == 'opened' && github.actor != 'github-actions[bot]' &&
         (startsWith(github.event.issue.title, '[Plugin') ||
          contains(github.event.issue.labels.*.name, 'plugin-submission') ||
          contains(github.event.issue.labels.*.name, 'plugin-modification') ||
          contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
-      (github.event_name == 'issues' && github.event.action != 'opened' &&
+      (github.event_name == 'issues' && github.event.action != 'opened' && github.actor != 'github-actions[bot]' &&
         (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
          contains(github.event.issue.labels.*.name, 'plugin-modification') ||
          contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
@@ -366,12 +366,6 @@ jobs:
             }
             
             if (requestType === 'modify') {
-              if (manifest.name !== pluginId) {
-                core.setOutput('status', 'error');
-                core.setOutput('message', `**插件名称不匹配**\n\n\`_manifest.json\` 中的 name 为 \`${manifest.name}\`，但新插件 ID 为 \`${pluginId}\`。\n\n请保持插件 ID 与清单名称一致。`);
-                return;
-              }
-              
               let existingManifestResult;
               try {
                 existingManifestResult = await fetchManifest(existingPlugin.repositoryUrl);
