@@ -1665,7 +1665,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "麦麦发 B 站视频",
-      "version": "1.3.7",
+      "version": "1.4.0",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
         "name": "XinxInxiN0",
@@ -6018,8 +6018,8 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Memorix",
-      "version": "0.4.0",
-      "description": "轻量级知识库插件 - 基于双路检索的完全独立的记忆增强系统，优化低资源环境下的知识存储与检索",
+      "version": "0.5.0",
+      "description": "轻量级知识库插件 - 基于双路检索与人物画像的独立记忆增强系统，优化低资源环境下的知识存储与检索",
       "author": {
         "name": "A_Dawn"
       },
@@ -6446,6 +6446,48 @@
             "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
+        "person_profile": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "人物画像模块总开关"
+          },
+          "opt_in_required": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否要求显式开启画像注入"
+          },
+          "default_injection_enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "无开关记录时的默认注入状态"
+          },
+          "profile_ttl_minutes": {
+            "type": "number",
+            "default": 360,
+            "description": "人物画像快照 TTL（分钟）"
+          },
+          "refresh_interval_minutes": {
+            "type": "integer",
+            "default": 30,
+            "description": "人物画像定时刷新周期（分钟）"
+          },
+          "active_window_hours": {
+            "type": "number",
+            "default": 72,
+            "description": "活跃人物窗口（小时）"
+          },
+          "max_refresh_per_cycle": {
+            "type": "integer",
+            "default": 50,
+            "description": "每轮最多刷新的人物数量"
+          },
+          "top_k_evidence": {
+            "type": "integer",
+            "default": 12,
+            "description": "构建画像时的证据数量上限"
+          }
+        },
         "memory": {
           "half_life_hours": {
             "type": "number",
@@ -6551,7 +6593,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "规则怪谈插件",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "description": "生成规则怪谈并进行互动游戏，支持LLM生成、提示、推理和多种结局判定",
       "author": {
         "name": "岚影鸿夜",
@@ -7407,6 +7449,96 @@
       ],
       "default_locale": "zh-CN",
       "id": "putaojuju.MaiShangHao"
+    }
+  },
+  {
+    "id": "A-Dawn.call_me",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "Call Me",
+      "version": "0.1.0",
+      "description": "基于 FastAPI 的实时语音通话插件，支持 SoVITS TTS、VAD、ASR 及立绘驱动。",
+      "author": {
+        "name": "A-Dawn",
+        "url": "https://github.com/A-Dawn"
+      },
+      "host_application": {
+        "min_version": "0.11.0"
+      },
+      "license": "AGPL-3.0",
+      "keywords": [
+        "fastapi",
+        "websocket",
+        "tts",
+        "sovits",
+        "vad",
+        "realtime",
+        "call"
+      ],
+      "categories": [
+        "communication",
+        "audio"
+      ],
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": []
+      },
+      "repository_url": "https://github.com/A-Dawn/call_me",
+      "id": "A-Dawn.call_me"
+    }
+  },
+  {
+    "id": "putaojuju.maiplug_message_react-remake",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "maiplug_message_react - 麦麦贴表情 (重制版)",
+      "version": "1.1.0",
+      "description": "通过 Napcat API 赋予麦麦对消息贴表情的能力 - 重制版，修复了若干问题",
+      "author": {
+        "name": "putaojuju",
+        "url": "https://github.com/putaojuju"
+      },
+      "contributors": [
+        {
+          "name": "Ghost_chu",
+          "url": "https://github.com/Ghost-chu",
+          "role": "original_author"
+        }
+      ],
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.10.1"
+      },
+      "homepage_url": "https://github.com/putaojuju/maiplug_message_react-remake",
+      "repository_url": "https://github.com/putaojuju/maiplug_message_react-remake",
+      "original_repository": "https://github.com/Ghost-chu/maiplug_message_react",
+      "keywords": [
+        "reaction",
+        "group",
+        "interactive"
+      ],
+      "categories": [
+        "Entertainment & Interaction",
+        "Group Management"
+      ],
+      "default_locale": "zh-CN",
+      "locales_path": "_locales",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": [
+          {
+            "type": "action",
+            "name": "msg_react",
+            "description": "向指定群聊消息添加(贴)反应表情"
+          }
+        ],
+        "features": [
+          "消息反应表情功能"
+        ]
+      },
+      "id": "putaojuju.maiplug_message_react-remake"
     }
   }
 ]
