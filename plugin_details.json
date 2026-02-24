@@ -2692,7 +2692,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "Gemini 绘图",
-      "version": "1.8.0",
+      "version": "1.8.1",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
         "name": "sakura桜花",
@@ -7367,7 +7367,7 @@
       "manifest_version": 1,
       "id": "Eric.llm_message_guard_plugin",
       "name": "LLM结构化消息守卫插件(试验性)",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "description": "试验新的LLM消息发送方式，观察结构化messages发送在实际聊天中的效果是否更好。",
       "author": {
         "name": "Eric-Terminal",
@@ -7539,6 +7539,62 @@
         ]
       },
       "id": "putaojuju.maiplug_message_react-remake"
+    }
+  },
+  {
+    "id": "A_Dawn.A_model_router",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "A_model_router",
+      "version": "0.1.0",
+      "description": "一款通过插件运行时补丁，实现聊天会话级的细粒度函数-模型路由，支持特定群聊/私聊使用指定模型",
+      "author": {
+        "name": "A_Dawn",
+        "url": "https://github.com/A-Dawn"
+      },
+      "license": "AGPL-3.0",
+      "homepage_url": "https://github.com/A-Dawn/A_model_router/",
+      "repository_url": "https://github.com/A-Dawn/A_model_router/",
+      "host_application": {
+        "min_version": "0.12.1",
+        "max_version": "0.12.2"
+      },
+      "keywords": [
+        "model-router",
+        "llm-routing",
+        "chat-groups",
+        "ordered-fallback",
+        "群聊",
+        "私聊",
+        "模型",
+        "路由",
+        "配置"
+      ],
+      "categories": [
+        "Utility Tools"
+      ],
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": [
+          {
+            "type": "event_handler",
+            "name": "a_model_router_start_handler",
+            "description": "启动时安装 A_model_router 运行时补丁"
+          },
+          {
+            "type": "event_handler",
+            "name": "a_model_router_stop_handler",
+            "description": "停止时卸载 A_model_router 运行时补丁"
+          },
+          {
+            "type": "command",
+            "name": "model_router",
+            "description": "查看模型路由状态与规则"
+          }
+        ]
+      },
+      "id": "A_Dawn.A_model_router"
     }
   }
 ]
