@@ -2692,7 +2692,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "Gemini 绘图",
-      "version": "1.8.1",
+      "version": "1.9.0",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
         "name": "sakura桜花",
@@ -5837,8 +5837,8 @@
     "manifest": {
       "manifest_version": 1,
       "name": "DG-Lab 郊狼控制插件 (DGLab Coyote Plugin)",
-      "version": "1.1.0",
-      "description": "通过 DG-Lab WebSocket 接口连接郊狼设备，并提供 LLM Action 调用控制强度与波形的能力",
+      "version": "1.4.0",
+      "description": "通过 DG-Lab WebSocket 接口连接郊狼设备，并提供 Command 指令控制连接与通道输出的能力",
       "author": {
         "name": "薄暝",
         "url": "https://github.com/exynos967"
@@ -5866,35 +5866,33 @@
         "plugin_type": "integration",
         "components": [
           {
-            "type": "action",
+            "type": "command",
             "name": "coyote_connect",
-            "description": "连接 DG-Lab WebSocket 服务端并获取扫码二维码的 Action"
+            "description": "通过指令连接 DG-Lab 设备并获取二维码",
+            "pattern": "/coyote_connect [bind_timeout]"
           },
           {
-            "type": "action",
-            "name": "coyote_set_strength",
-            "description": "控制郊狼设备 A/B 通道强度的 Action"
+            "type": "command",
+            "name": "coyote_disconnect",
+            "description": "通过指令断开 DG-Lab 设备并关闭本地 WS 服务端",
+            "pattern": "/coyote_disconnect"
           },
           {
-            "type": "action",
-            "name": "coyote_add_waveform",
-            "description": "向郊狼设备追加波形数据的 Action"
+            "type": "command",
+            "name": "coyote_channel_on",
+            "description": "通过指令开启通道输出（支持通道、预设、强度）",
+            "pattern": "/coyote_channel_on <A|B> [preset] [strength]"
           },
           {
-            "type": "action",
-            "name": "coyote_clear_waveform",
-            "description": "清空郊狼设备某个通道波形队列的 Action"
-          },
-          {
-            "type": "action",
-            "name": "coyote_play_preset",
-            "description": "在指定通道播放内置或 .pulse 预设波形（循环模式）的 Action"
+            "type": "command",
+            "name": "coyote_channel_off",
+            "description": "通过指令关闭通道输出（强度归零并清空波形）",
+            "pattern": "/coyote_channel_off <A|B>"
           }
         ],
         "features": [
           "通过 WebSocket 连接 DG-Lab 郊狼设备",
-          "提供 LLM 可调用的强度控制 Action",
-          "提供 LLM 可调用的波形控制与清空 Action",
+          "提供连接/断连设备与开启/关闭通道输出的 Command 指令",
           "通过配置文件控制连接参数与安全上限"
         ]
       }
