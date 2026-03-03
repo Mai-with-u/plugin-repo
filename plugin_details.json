@@ -6016,7 +6016,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Memorix",
-      "version": "0.5.1",
+      "version": "0.6.1",
       "description": "轻量级知识库插件 - 基于双路检索与人物画像的独立记忆增强系统，优化低资源环境下的知识存储与检索",
       "author": {
         "name": "A_Dawn"
@@ -6347,6 +6347,56 @@
             "type": "string",
             "default": "0.0.0.0",
             "description": "服务器绑定地址"
+          },
+          "import": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": true
+              },
+              "max_queue_size": {
+                "type": "integer",
+                "default": 20
+              },
+              "max_files_per_task": {
+                "type": "integer",
+                "default": 200
+              },
+              "max_file_size_mb": {
+                "type": "integer",
+                "default": 20
+              },
+              "max_paste_chars": {
+                "type": "integer",
+                "default": 200000
+              },
+              "default_file_concurrency": {
+                "type": "integer",
+                "default": 2
+              },
+              "default_chunk_concurrency": {
+                "type": "integer",
+                "default": 4
+              },
+              "max_file_concurrency": {
+                "type": "integer",
+                "default": 6
+              },
+              "max_chunk_concurrency": {
+                "type": "integer",
+                "default": 12
+              },
+              "poll_interval_ms": {
+                "type": "integer",
+                "default": 1000
+              },
+              "token": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            "description": "Web 导入中心配置（队列、并发、大小限制、鉴权）"
           }
         },
         "advanced": {
@@ -6575,11 +6625,15 @@
         "required": [
           "numpy>=1.20.0",
           "scipy>=1.7.0",
+          "networkx>=3.0.0",
+          "pyarrow>=10.0.0",
+          "pandas>=1.5.0",
           "nest-asyncio>=1.5.0",
           "faiss-cpu>=1.7.0",
           "fastapi>=0.100.0",
           "uvicorn>=0.20.0",
-          "pydantic>=2.0.0"
+          "pydantic>=2.0.0",
+          "python-multipart>=0.0.9"
         ],
         "optional": []
       },
