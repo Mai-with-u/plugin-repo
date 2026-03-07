@@ -1619,7 +1619,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "B站动态推送",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "description": "适用于MaiBot的B站动态订阅插件",
       "author": {
         "name": "白狐",
@@ -6014,7 +6014,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Memorix",
-      "version": "0.6.1",
+      "version": "1.0.0",
       "description": "轻量级知识库插件 - 基于双路检索与人物画像的独立记忆增强系统，优化低资源环境下的知识存储与检索",
       "author": {
         "name": "A_Dawn"
@@ -6105,6 +6105,11 @@
             "default": 20,
             "description": "段落检索返回数量"
           },
+          "top_k_final": {
+            "type": "integer",
+            "default": 10,
+            "description": "最终融合后返回数量"
+          },
           "alpha": {
             "type": "number",
             "default": 0.5,
@@ -6165,6 +6170,92 @@
               }
             },
             "description": "时序检索配置"
+          },
+          "search": {
+            "type": "object",
+            "properties": {
+              "smart_fallback": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "threshold": {
+                    "type": "number",
+                    "default": 0.6
+                  }
+                }
+              },
+              "safe_content_dedup": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "default": true
+                  }
+                }
+              },
+              "graph_recall": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "candidate_k": {
+                    "type": "integer",
+                    "default": 24
+                  },
+                  "max_hop": {
+                    "type": "integer",
+                    "default": 1
+                  },
+                  "allow_two_hop_pair": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "max_paths": {
+                    "type": "integer",
+                    "default": 4
+                  }
+                }
+              },
+              "relation_intent": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "alpha_override": {
+                    "type": "number",
+                    "default": 0.35
+                  },
+                  "relation_candidate_multiplier": {
+                    "type": "integer",
+                    "default": 4
+                  },
+                  "preserve_top_relations": {
+                    "type": "integer",
+                    "default": 3
+                  },
+                  "force_relation_sparse": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "pair_predicate_rerank_enabled": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "pair_predicate_limit": {
+                    "type": "integer",
+                    "default": 3
+                  }
+                }
+              }
+            },
+            "description": "统一检索后处理配置（smart fallback / safe dedup / graph recall）"
           },
           "sparse": {
             "type": "object",
@@ -6395,6 +6486,75 @@
               }
             },
             "description": "Web 导入中心配置（队列、并发、大小限制、鉴权）"
+          },
+          "tuning": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": true
+              },
+              "poll_interval_ms": {
+                "type": "integer",
+                "default": 1200
+              },
+              "max_queue_size": {
+                "type": "integer",
+                "default": 8
+              },
+              "default_objective": {
+                "type": "string",
+                "default": "precision_priority",
+                "enum": [
+                  "precision_priority",
+                  "balanced",
+                  "recall_priority"
+                ]
+              },
+              "default_intensity": {
+                "type": "string",
+                "default": "standard",
+                "enum": [
+                  "quick",
+                  "standard",
+                  "deep"
+                ]
+              },
+              "default_top_k_eval": {
+                "type": "integer",
+                "default": 20
+              },
+              "default_sample_size": {
+                "type": "integer",
+                "default": 24
+              },
+              "eval_query_timeout_seconds": {
+                "type": "number",
+                "default": 10
+              },
+              "llm_retry": {
+                "type": "object",
+                "properties": {
+                  "max_attempts": {
+                    "type": "integer",
+                    "default": 3
+                  },
+                  "min_wait_seconds": {
+                    "type": "integer",
+                    "default": 2
+                  },
+                  "max_wait_seconds": {
+                    "type": "integer",
+                    "default": 20
+                  },
+                  "backoff_multiplier": {
+                    "type": "number",
+                    "default": 2
+                  }
+                }
+              }
+            },
+            "description": "Web 检索调优中心配置（任务轮询、队列与默认调参策略）"
           }
         },
         "advanced": {
@@ -6446,7 +6606,9 @@
             "enum": [
               "narrative",
               "factual",
-              "structured"
+              "quote",
+              "structured",
+              "mixed"
             ],
             "description": "总结导入时的默认知识类型"
           }
