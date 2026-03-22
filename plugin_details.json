@@ -8041,5 +8041,268 @@
       "default_locale": "zh-CN",
       "id": "higekibaka.recall_response_plugin"
     }
+  },
+  {
+    "id": "XXXxx7258.moegirl_wiki_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "萌娘百科插件",
+      "version": "1.0.0",
+      "description": "为麦麦提供萌娘百科知识补充",
+      "author": {
+        "name": "晴空",
+        "url": "https://github.com/XXXxx7258"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.12.0"
+      },
+      "homepage_url": "https://github.com/XXXxx7258/moegirl_wiki_plugin",
+      "repository_url": "https://github.com/XXXxx7258/moegirl_wiki_plugin",
+      "keywords": [
+        "moegirl",
+        "萌娘百科",
+        "MaiBot",
+        "tool",
+        "知识补充",
+        "百科",
+        "搜索"
+      ],
+      "categories": [
+        "Search",
+        "Utilities",
+        "Knowledge"
+      ],
+      "default_locale": "zh-CN",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "tool",
+        "components": [
+          {
+            "type": "tool",
+            "name": "moegirl_lookup",
+            "description": "查询萌娘百科词条、主词条信息和相关语境"
+          }
+        ],
+        "features": [
+          "萌娘百科词条知识补充",
+          "问句归一化",
+          "主词条详细结果与相关语境补充",
+          "generator=search 与 opensearch 双路径回退"
+        ]
+      },
+      "id": "XXXxx7258.moegirl_wiki_plugin"
+    }
+  },
+  {
+    "id": "grok-search-plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "Grok Search Plugin",
+      "version": "1.0.2",
+      "description": "为 MaiBot 提供基于高时效性模型的联网检索、图片增强搜索与事实归纳能力，优先面向 Grok 场景设计。",
+      "author": {
+        "name": "Anderwer",
+        "url": "https://github.com/Anderwer"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.12.1"
+      },
+      "repository_url": "https://github.com/Anderwer/grok-search-plugin",
+      "categories": [
+        "External Integration"
+      ],
+      "keywords": [
+        "grok",
+        "search",
+        "internet",
+        "llm",
+        "tool",
+        "image",
+        "vision",
+        "emoji"
+      ],
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": [
+          {
+            "type": "tool",
+            "name": "grounded_search",
+            "description": "联网检索与事实归纳工具"
+          },
+          {
+            "type": "tool",
+            "name": "recent_image_search",
+            "description": "图片增强搜索工具，可自动处理当前或最近图片、表情包并结合视觉分析进行搜索"
+          },
+          {
+            "type": "command",
+            "name": "grok_search",
+            "description": "手动联网搜索命令"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "NymphSong.MaiHoYoGetCos_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "MaiHoYoGetCos_plugin",
+      "version": "1.0.0",
+      "description": "支持发送米游社cos图片的Maibot插件，也许以后会整合cookie相关功能",
+      "author": {
+        "name": "NymphSong",
+        "url": "https://github.com/NymphSong"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.10.0",
+        "max_version": "4.0.0"
+      },
+      "homepage_url": "",
+      "repository_url": "https://github.com/NymphSong/MaiHoYoGetCos_plugin",
+      "keywords": [
+        "米游社",
+        "cos",
+        "图片"
+      ],
+      "categories": [
+        "Entertainment & Interaction"
+      ],
+      "default_locale": "zh-CN",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": [
+          {
+            "type": "command",
+            "name": "hot_cos",
+            "description": "获取热门COS图片"
+          },
+          {
+            "type": "command",
+            "name": "rank_cos",
+            "description": "获取排行榜COS图片"
+          },
+          {
+            "type": "command",
+            "name": "search_cos",
+            "description": "搜索指定角色的COS图片"
+          },
+          {
+            "type": "command",
+            "name": "download_cos",
+            "description": "下载COS图片到本地"
+          },
+          {
+            "type": "command",
+            "name": "MaiHoYo_help",
+            "description": "显示插件帮助信息"
+          },
+          {
+            "type": "action",
+            "name": "send_cos",
+            "description": "根据用户请求发送COS图片"
+          }
+        ]
+      },
+      "id": "NymphSong.MaiHoYoGetCos_plugin"
+    }
+  },
+  {
+    "id": "maibot_music_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "点歌插件",
+      "version": "2.1.0",
+      "description": "轻量化的点歌插件，支持多音源、卡片播放、语音播放、热评、歌词、无需VIP",
+      "author": {
+        "name": "氢",
+        "url": "https://github.com/hydrogen-francium"
+      },
+      "license": "MIT",
+      "homepage_url": "https://github.com/hydrogen-francium/maibot_music_plugin",
+      "repository_url": "https://github.com/hydrogen-francium/maibot_music_plugin",
+      "keywords": [
+        "音乐",
+        "点歌",
+        "网易云",
+        "QQ音乐"
+      ],
+      "categories": [
+        "娱乐",
+        "音乐"
+      ],
+      "host_application": {
+        "min_version": "0.10.0"
+      },
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "general",
+        "components": [
+          {
+            "type": "command",
+            "name": "music",
+            "description": "点歌命令"
+          },
+          {
+            "type": "command",
+            "name": "lyrics",
+            "description": "查歌词命令"
+          }
+        ]
+      },
+      "id": "maibot_music_plugin"
+    }
+  },
+  {
+    "id": "custom_knowledge_base_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "LLM知识库插件 (Knowledge Base Plugin)",
+      "version": "1.0.0",
+      "description": "为MaiBot提供自定义知识库功能，支持从txt文件加载知识并供LLM检索调用",
+      "author": {
+        "name": "MaiBot用户",
+        "url": "https://github.com/MaiM-with-u"
+      },
+      "license": "GPL-v3.0-or-later",
+      "host_application": {
+        "min_version": "0.8.0"
+      },
+      "homepage_url": "https://github.com/MaiM-with-u/maibot",
+      "repository_url": "https://github.com/MaiM-with-u/maibot",
+      "keywords": [
+        "knowledge",
+        "rag",
+        "embedding",
+        "llm"
+      ],
+      "categories": [
+        "Knowledge",
+        "LLM"
+      ],
+      "default_locale": "zh-CN",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "tool",
+        "components": [
+          {
+            "type": "tool",
+            "name": "search_knowledge",
+            "description": "从自定义知识库中搜索相关信息"
+          }
+        ],
+        "features": [
+          "支持txt格式知识文件",
+          "向量嵌入存储",
+          "相似度检索"
+        ]
+      },
+      "id": "maibot.knowledge_base_plugin"
+    }
   }
 ]
