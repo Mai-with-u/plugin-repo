@@ -5988,35 +5988,6 @@
     }
   },
   {
-    "id": "poncianopadolcg658-byte.maibot-video-generation",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "doubao_video_generator",
-      "version": "1.0.0",
-      "description": "使用豆包API生成视频，支持多种视频参数配置",
-      "author": {
-        "name": "帕朵",
-        "url": "https://github.com/poncianopadolcg658-byte"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.11.6"
-      },
-      "homepage_url": "https://github.com/poncianopadolcg658-byte/maimaidoubao",
-      "repository_url": "https://github.com/poncianopadolcg658-byte/maimaidoubao",
-      "keywords": [
-        "视频生成",
-        "豆包"
-      ],
-      "categories": [
-        "Content Generation",
-        "Multimedia"
-      ],
-      "default_locale": "CN",
-      "locales_path": "_locales"
-    }
-  },
-  {
     "id": "A-Dawn.A_memorix",
     "manifest": {
       "manifest_version": 1,
@@ -6658,7 +6629,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID ���表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
