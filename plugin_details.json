@@ -3788,7 +3788,7 @@
           "⚡ 并发优化：超时任务主动取消，生成速度提升50%",
           "🎨 自定义Prompt：支持配置自定义提示词影响日程生成",
           "🤖 基于Bot人设智能生成每日日程（8-15个活动）",
-          "⏰ 定时自动生成���默认每天00:30）",
+          "⏰ 定时自动生成（默认每天00:30）",
           "💬 对话中自然提到当前活动（如\"这会儿正吃午饭呢\"）",
           "📊 支持文字和图片两种日程展示格式",
           "🔄 多轮生成机制，可选启用提升质量",
@@ -3831,7 +3831,7 @@
         },
         {
           "type": "command",
-          "description": "查看日程（文字格式）",
+          "description": "���看日程（文字格式）",
           "example": "/plan status"
         },
         {
@@ -6656,7 +6656,7 @@
           "refresh_interval_minutes": {
             "type": "integer",
             "default": 30,
-            "description": "人物画像定时刷新周期（分钟）"
+            "description": "人物画像定时刷��周期（分钟）"
           },
           "active_window_hours": {
             "type": "number",
@@ -6945,8 +6945,8 @@
     "manifest": {
       "manifest_version": 1,
       "name": "视频生成插件",
-      "version": "1.0.0",
-      "description": "支持多服务商的AI视频生成插件，提供文生视频、图生视频、首尾帧控制等功能，支持火山引擎、阿里云、智谱等服务商",
+      "version": "2.1.2",
+      "description": "支持多服务商的AI视频生成插件，提供文生视频、图生视频、首尾帧控制等功能，支持火山引擎、阿里云、可灵、智谱等服务商",
       "author": {
         "name": "三花",
         "url": "https://github.com/yueshenqiu"
@@ -6958,17 +6958,18 @@
       "homepage_url": "https://github.com/yueshenqiu/video_generator_plugin",
       "repository_url": "https://github.com/yueshenqiu/video_generator_plugin",
       "keywords": [
-        "video",
-        "generation",
-        "text-to-video",
-        "image-to-video",
-        "AI",
         "视频生成",
         "文生视频",
         "图生视频",
         "豆包",
         "通义万相",
-        "CogVideoX"
+        "CogVideoX",
+        "可灵kling",
+        "video",
+        "generation",
+        "text-to-video",
+        "image-to-video",
+        "AI"
       ],
       "categories": [
         "Content Generation",
