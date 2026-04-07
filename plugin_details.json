@@ -514,7 +514,7 @@
             "endpoint": "ModelScope Gradio API",
             "authentication": "无需认证（公开Gradio接口）",
             "limitations": "依赖ModelScope服务可用性",
-            "features": "3秒声音克隆���17种方言支持、情感语速控制、自然语言指令"
+            "features": "3秒声音克隆、17种方言支持、情感语速控制、自然语言指令"
           }
         }
       },
@@ -6629,7 +6629,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID ��表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
