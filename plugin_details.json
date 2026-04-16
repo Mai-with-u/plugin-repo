@@ -2826,7 +2826,8 @@
       },
       "license": "MIT",
       "host_application": {
-        "min_version": "0.10.2"
+        "min_version": "0.10.2",
+        "max_version": "0.12.2"
       },
       "homepage_url": "https://github.com/TAIY2020/custom_commands_plugin",
       "repository_url": "https://github.com/TAIY2020/custom_commands_plugin",
@@ -3011,7 +3012,8 @@
       },
       "license": "AGPL-3.0",
       "host_application": {
-        "min_version": "0.11.0"
+        "min_version": "0.11.0",
+        "max_version": "0.12.2"
       },
       "homepage_url": "https://github.com/TAIY2020/group_muter_plugin",
       "repository_url": "https://github.com/TAIY2020/group_muter_plugin",
@@ -6656,7 +6658,7 @@
           "refresh_interval_minutes": {
             "type": "integer",
             "default": 30,
-            "description": "人物画像定时刷新周期（分钟）"
+            "description": "人物画像定时��新周期（分钟）"
           },
           "active_window_hours": {
             "type": "number",
