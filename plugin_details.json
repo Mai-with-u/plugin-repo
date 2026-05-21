@@ -2914,7 +2914,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.5",
+      "version": "2.4.2",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -3108,7 +3108,7 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.1.0",
+      "version": "2.2.1",
       "name": "群聊静音插件 | GroupMuter Plugin",
       "description": "一个允许管理员通过聊天命令，让麦麦在指定群聊中临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
@@ -8150,7 +8150,7 @@
       "license": "MIT",
       "host_application": {
         "min_version": "0.10.0",
-        "max_version": "4.0.0"
+        "max_version": "0.12.2"
       },
       "homepage_url": "",
       "repository_url": "https://github.com/NymphSong/MaiHoYoGetCos_plugin",
@@ -8743,7 +8743,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.0",
+      "version": "0.4.0",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "适用于SnowLuma的Maibot适配器/（开发版）/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -9117,7 +9117,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.5.0",
+      "version": "1.6.0",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -9621,7 +9621,7 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.0",
+      "version": "1.5.1",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
       "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 的账号余额，支持 HTML 卡片可视化输出，仅依赖 Python 标准库。",
       "author": {
@@ -9896,6 +9896,75 @@
         ]
       },
       "id": "a-dawn.oaimage"
+    }
+  },
+  {
+    "id": "NymphSong.Pighub_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "今日猪猪 (Pighub)",
+      "version": "1.0.0",
+      "description": "每日随机抽取一只猪猪图片并发送，支持 @群友为别人抽取，群名片互动玩法。",
+      "author": {
+        "name": "NymphSong",
+        "url": "https://github.com/NymphSong"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.10.0",
+        "max_version": "0.12.2"
+      },
+      "homepage_url": "",
+      "repository_url": "https://github.com/NymphSong/Pighub_plugin",
+      "keywords": [
+        "pighub",
+        "今日猪猪",
+        "娱乐"
+      ],
+      "categories": [
+        "Entertainment & Interaction"
+      ],
+      "default_locale": "zh-CN",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "entertainment",
+        "components": [
+          {
+            "type": "command",
+            "name": "今日猪猪",
+            "description": "随机抽取一张猪猪图片和对应的文字，每人每天首次抽取会缓存结果",
+            "pattern": "/今日猪猪",
+            "usage": "/今日猪猪 [@某人]",
+            "examples": [
+              "/今日猪猪 - 为自己抽取今日猪猪",
+              "@张三 /今日猪猪 - 为张三抽取今日猪猪"
+            ]
+          },
+          {
+            "type": "command",
+            "name": "刷新今日猪猪",
+            "description": "清除缓存并重新抽取今日猪猪",
+            "pattern": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
+            "examples": [
+              "/刷新今日猪猪 - 清除今日缓存并重新抽取",
+              "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
+            ]
+          }
+        ],
+        "features": [
+          "每日随机抽取猪猪图片",
+          "配套对应猪猪的描述",
+          "每人每日缓存，避免重复",
+          "支持@群友为他人抽取",
+          "支持调用 NapCat HTTP API 发送图片"
+        ],
+        "config": {
+          "config_file": "config.toml",
+          "has_default_config": true
+        }
+      },
+      "id": "NymphSong.Pighub_plugin"
     }
   }
 ]
