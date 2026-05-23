@@ -4233,56 +4233,79 @@
   {
     "id": "Rabbit-Jia-Er.mai_clinic_plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "麦诊所游戏插件（mai_clinic_plugin）",
-      "version": "2.0.1",
-      "description": "MaiBot 看病游戏插件。你当医生，麦麦当病人，通过问诊找出病因。支持体格检查、辅助检查、成就系统。",
+      "manifest_version": 2,
+      "id": "Rabbit-Jia-Er.MaiTrace",
+      "version": "3.0.0",
+      "name": "MaiTrace（麦时迹）",
+      "description": "让麦麦发QQ空间、读说说、自动评论点赞、回复评论、写日记，支持日程驱动。",
       "author": {
         "name": "Rabbit-Jia-Er",
-        "url": "https://github.com/Rabbit-Jia-Er/mai_clinic_plugin"
+        "url": "https://github.com/Rabbit-Jia-Er"
       },
-      "license": "GPL-v3.0-or-later",
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Rabbit-Jia-Er/MaiTrace",
+        "homepage": "https://github.com/Rabbit-Jia-Er/MaiTrace",
+        "issues": "https://github.com/Rabbit-Jia-Er/MaiTrace/issues"
+      },
       "host_application": {
-        "min_version": "0.11.6"
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
       },
-      "homepage_url": "https://github.com/Rabbit-Jia-Er/mai_clinic_plugin",
-      "repository_url": "https://github.com/Rabbit-Jia-Er/mai_clinic_plugin",
-      "keywords": [
-        "game",
-        "medical",
-        "diagnosis",
-        "clinic",
-        "doctor"
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "bs4",
+          "version_spec": ">=0.0.1"
+        },
+        {
+          "type": "python_package",
+          "name": "json5",
+          "version_spec": ">=0.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "openai",
+          "version_spec": ">=1.0.0"
+        }
       ],
-      "categories": [
-        "game",
-        "entertainment"
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.command",
+        "config.get",
+        "config.get_plugin",
+        "llm.generate",
+        "llm.get_available_models",
+        "message.get_by_time",
+        "message.get_by_time_in_chat",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "emoji.get_by_description",
+        "emoji.get_random",
+        "database.get",
+        "api.call"
       ],
-      "default_locale": "zh-CN",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "game",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "clinic_event_handler",
-            "description": "麦诊所游戏处理器"
-          },
-          {
-            "type": "command",
-            "name": "clinic_admin",
-            "description": "麦诊所管理命令 /zs"
-          }
-        ],
-        "features": [
-          "动态病情生成",
-          "体格检查",
-          "辅助检查",
-          "成就系统",
-          "数据持久化"
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
         ]
-      },
-      "id": "Rabbit-Jia-Er.mai_clinic_plugin"
+      }
     }
   },
   {
@@ -8275,7 +8298,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.0",
+      "version": "0.5.0",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "适用于SnowLuma的Maibot适配器/（开发版）/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8298,7 +8321,12 @@
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "capabilities": [],
+      "capabilities": [
+        "chat.open_session",
+        "component.disable",
+        "component.enable",
+        "message.get_by_id"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -9537,6 +9565,93 @@
       ],
       "i18n": {
         "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "sengokucola.deepseek-thinking-marker",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "DeepSeek 思考模式 Marker",
+      "description": "在 Maisaka planner 和 replyer 请求的第一条 user message 位置注入 DeepSeek V4 思考模式 marker，支持角色沉浸、纯分析和自定义模式。",
+      "author": {
+        "name": "SengokuCola",
+        "url": "https://github.com/SengokuCola"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/SengokuCola/deepseek_thinking_marker",
+        "homepage": "https://github.com/SengokuCola/deepseek_thinking_marker",
+        "documentation": "https://github.com/SengokuCola/deepseek_thinking_marker",
+        "issues": "https://github.com/SengokuCola/deepseek_thinking_marker/issues"
+      },
+      "homepage_url": "https://github.com/SengokuCola/deepseek_thinking_marker",
+      "repository_url": "https://github.com/SengokuCola/deepseek_thinking_marker",
+      "categories": [
+        "LLM Tools"
+      ],
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "sengokucola.deepseek-thinking-marker"
+    }
+  },
+  {
+    "id": "LowValueTarget.maibot-web-retriever",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "LowValueTarget.maibot-web-retriever",
+      "version": "0.1.0",
+      "name": "maibot-web-retriever",
+      "description": "基于 SearXNG + Crawl4AI 的网页检索插件，为 MaiBot 提供网页搜索与内容抓取能力。搜索-决策-抓取：AI 自主选择感兴趣的网页并抓取全文 Markdown。",
+      "author": {
+        "name": "LowValueTarget",
+        "url": "https://github.com/LowValueTarget777"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LowValueTarget777/maibot-web-retriever",
+        "homepage": "https://github.com/LowValueTarget777/maibot-web-retriever",
+        "issues": "https://github.com/LowValueTarget777/maibot-web-retriever/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   }
