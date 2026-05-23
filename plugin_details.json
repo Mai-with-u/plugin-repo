@@ -1454,7 +1454,7 @@
     "id": "whitefox20011120.bilibili_dynamic_push_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.0",
+      "version": "2.5.0",
       "name": "B站动态推送",
       "description": "适用于MaiSaka的B站动态订阅与直播状态自动推送插件（旧版请去仓库分支）",
       "author": {
@@ -5373,318 +5373,39 @@
   {
     "id": "SkonJIYHD.LifeSimulationPlugin",
     "manifest": {
-      "manifest_version": 1,
-      "id": "maibot.life_simulation_plugin",
-      "name": "Life Simulation Plugin (AI-Driven)",
-      "name_zh-CN": "事件及人体模拟插件（AI驱动）",
-      "version": "1.7.0",
-      "description": "AI-driven life simulation: schedule, events, habits, holidays, and emotion judgment for human-like behavior",
-      "description_zh-CN": "AI驱动的生活模拟：日程、事件、习惯、节日和情绪判断，实现拟人化行为",
+      "manifest_version": 2,
+      "id": "com.lifesim.life-simulation",
+      "version": "2.0.0",
+      "name": "Life Simulation",
+      "description": "Maibot life simulation plugin",
       "author": {
-        "name": "GLM4.5 and Skon",
-        "url": "https://github.com/SkonJIYHD/LifeSimulationPlugin"
+        "name": "SkonJIYHD",
+        "url": "https://github.com/SkonJIYHD"
       },
-      "license": "AGPL-3.0-or-later",
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/SkonJIYHD/LifeSimulationPlugin"
+      },
       "host_application": {
-        "min_version": "0.12.0",
-        "max_version": ""
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
-      "homepage_url": "https://github.com/SkonJIYHD/LifeSimulationPlugin",
-      "repository_url": "https://github.com/SkonJIYHD/LifeSimulationPlugin",
-      "keywords": [
-        "life",
-        "simulation",
-        "AI-driven",
-        "schedule",
-        "events",
-        "habits",
-        "holidays",
-        "emotion",
-        "拟人",
-        "生活",
-        "模拟",
-        "AI驱动",
-        "日程",
-        "事件",
-        "习惯",
-        "节日",
-        "情绪"
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send_message"
       ],
-      "categories": [
-        "Simulation",
-        "Social",
-        "Utility"
-      ],
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "simulation",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "life_simulation_startup",
-            "description": "Start life simulation scheduler"
-          },
-          {
-            "type": "event_handler",
-            "name": "life_simulation_stop",
-            "description": "Stop life simulation scheduler"
-          },
-          {
-            "type": "event_handler",
-            "name": "life_simulation_state_update",
-            "description": "Update states periodically"
-          },
-          {
-            "type": "event_handler",
-            "name": "life_simulation_message",
-            "description": "Process message events"
-          },
-          {
-            "type": "event_handler",
-            "name": "life_simulation_social_network",
-            "description": "Process social network interactions and update intimacy"
-          },
-          {
-            "type": "event_handler",
-            "name": "life_simulation_sleep",
-            "description": "Handle sleep state and block messages during sleep"
-          },
-          {
-            "type": "action",
-            "name": "perform_activity",
-            "description": "Perform scheduled activity (AI-driven)"
-          },
-          {
-            "type": "action",
-            "name": "handle_event",
-            "description": "Handle random event (AI-driven)"
-          },
-          {
-            "type": "tool",
-            "name": "get_life_simulation_habits",
-            "description": "Get personal habits information (speaking, behavior, interests, preferences)"
-          },
-          {
-            "type": "tool",
-            "name": "get_social_network_info",
-            "description": "Get social network information, including user relationships and intimacy"
-          },
-          {
-            "type": "tool",
-            "name": "set_user_relationship",
-            "description": "Set user relationship type (stranger, acquaintance, friend, close_friend, best_friend, family, partner, enemy, blocked)"
-          },
-          {
-            "type": "tool",
-            "name": "get_life_simulation_schedule",
-            "description": "Get schedule information, including current activity and all scheduled activities"
-          },
-          {
-            "type": "tool",
-            "name": "get_life_simulation_status",
-            "description": "Get current status including physiological states, current activity, and holiday information"
-          },
-          {
-            "type": "command",
-            "name": "life_status",
-            "description": "Query current status",
-            "pattern": "/life_status"
-          },
-          {
-            "type": "command",
-            "name": "life_schedule",
-            "description": "Query AI-generated schedule",
-            "pattern": "/life_schedule"
-          },
-          {
-            "type": "command",
-            "name": "life_social",
-            "description": "Query social network information",
-            "pattern": "/life_social [list|detail] [user_id]"
-          }
-        ],
-        "features": [
-          "AI-driven schedule generation (work, leisure, meals, daily routine)",
-          "AI-driven random event generation",
-          "Health status determined by random events and schedule",
-          "Habits from config or AI-generated based on personality",
-          "Holiday API integration for dynamic holiday detection",
-          "AI-driven emotion judgment based on multiple factors",
-          "Illness system: AI judges illness based on multiple factors",
-          "Auto-regenerate schedule based on health status",
-          "All prompts in config file (fully customizable)",
-          "AI-generated dialogue (no fixed messages)",
-          "Read-only physiological state data (cannot be modified by commands)",
-          "Configurable AI models (tool_use, planner, replyer, utils, vlm, voice, embedding, lpmm_entity_extract, lpmm_rdf_build)",
-          "Customizable time/date API",
-          "Prompts loaded from config file (not hardcoded)",
-          "User-friendly configuration file",
-          "Tool component for LLM to access habits information",
-          "Social network system for managing user relationships",
-          "Intimacy system with growth and decay mechanisms",
-          "AI-driven intimacy judgment based on interaction content",
-          "Tool component for LLM to set user relationship type (including enemy and blocked)",
-          "Tool component for LLM to get schedule information and current activity",
-          "Tool component for LLM to get current status information (fatigue, hunger, health, emotion, sleep state etc.)",
-          "Complete sleep system with 6 sleep states and automatic transitions",
-          "Sleep-schedule integration: automatically enters/wakes up based on schedule activities",
-          "AI-driven auto-reply during sleep: intelligently judges whether to reply",
-          "Disturbance wake-up: can be woken by frequent messages, important senders, or urgent keywords"
-        ],
-        "configuration": {
-          "auto_generate_config": true,
-          "config_file": "config.toml"
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiosqlite",
+          "version_spec": ">=0.20.0"
         }
-      },
-      "changelog": {
-        "1.7.0": [
-          "Added feature toggle configuration section [features] to config file",
-          "All major plugin features can now be individually enabled/disabled via config",
-          "Added startup_enabled toggle for startup handler",
-          "Added stop_enabled toggle for stop handler",
-          "Added state_update_enabled toggle for state update handler",
-          "Added message_event_enabled toggle for message event handler",
-          "Added social_network_enabled toggle for social network feature",
-          "Added sleep_system_enabled toggle for sleep system",
-          "Added activity_execution_enabled toggle for activity execution feature",
-          "Added event_handling_enabled toggle for random event handling feature",
-          "Added commands_enabled toggle for command feature",
-          "Added tools_enabled toggle for tool feature",
-          "Enhanced get_life_simulation_status tool to display date information",
-          "Now shows yesterday, today, tomorrow, and day after tomorrow dates",
-          "Date display format: '昨天 | 1月17日 星期六'",
-          "Improved time display clarity and user experience",
-          "Added _generate_with_retry method for robust LLM JSON parsing with automatic retry",
-          "Enhanced _generate_with_retry method with robust JSON parsing: regex extraction for handling AI-wrapped JSON responses",
-          "Added Chinese punctuation replacement in JSON cleaning (，：；！？（）【】｛｝等 → ,:;!?()[]{}etc.) to handle LLM output with Chinese punctuation",
-          "Added dynamic max_tokens calculation for schedule generation to prevent JSON truncation (auto-adjusts to 3500 tokens for 15 activities)",
-          "Fixed SocialNetworkDB initialization: now ensures parent directory exists before creating database file",
-          "Replaced manual JSON parsing logic in _judge_intimacy_increase with new retry mechanism",
-          "Enhanced GetSocialNetworkTool to support user_name lookup in addition to user_id",
-          "Enhanced SetRelationshipTool to support user_name lookup in addition to user_id",
-          "Fixed missing Union type import in typing imports",
-          "Fixed MessageSleepEventHandler bot_id detection: now uses message.message_base_info.get('self_id')",
-          "Fixed MessageSleepEventHandler schedule sync: now bidirectionally syncs with schedule (enters sleep when schedule is sleep, wakes up when schedule is not sleep)",
-          "Sleep handler now properly wakes up when current activity changes from sleep to non-sleep activities",
-          "Fixed cross-day time range handling in schedule system",
-          "Updated schedule_generation prompt to allow cross-day sleep schedules",
-          "Cleaned up duplicate requirements in schedule_generation prompt",
-          "Fixed numbering in default config prompt's 'Notes' section (1-10 sequential)"
-        ],
-        "1.6.0": [
-          "Fixed tool parameter format for GetSocialNetworkTool and SetRelationshipTool",
-          "Changed parameters from dictionary format to tuple format to comply with BaseTool requirements",
-          "Tools now properly pass parameter validation and can be called by LLM",
-          "Registered SocialNetworkEventHandler for automatic social network interaction tracking",
-          "Registered SocialNetworkCommand for manual social network queries (/life_social)",
-          "Registered MessageSleepEventHandler for sleep state management and message blocking",
-          "Updated _manifest.json to include all 16 components (6 event handlers, 2 actions, 5 tools, 3 commands)",
-          "Social network system now fully functional with automatic interaction recording",
-          "Plugin now fully compliant with MaiBot standard plugin format",
-          "Implemented complete sleep system with 6 sleep states (awake, sleepy, falling_asleep, light_sleep, deep_sleep, waking_up)",
-          "Sleep state automatically transitions based on time and conditions",
-          "Sleep system integrates with schedule: automatically enters sleep when current activity is sleep type",
-          "Sleep system integrates with schedule: automatically wakes up when activity changes from sleep",
-          "AI-driven auto-reply during sleep: AI judges whether to reply and what to say based on sleep state, message content, and relationship",
-          "Disturbance wake-up mechanism: can be woken up by frequent messages, important messages, or urgent keywords",
-          "Light sleep has higher wake-up probability, deep sleep has lower wake-up probability",
-          "Fatigue gradually recovers during sleep (0.5-1 per minute)",
-          "Health gradually recovers during sleep (0.1-0.2 per minute)",
-          "Configurable sleep duration limits (minimum 4 hours, maximum 10 hours)",
-          "Configurable auto-reply message during sleep",
-          "Supports manual wake-up functionality",
-          "Added sleep_reply_judgment AI prompt for judging whether to reply during sleep",
-          "Removed AI-driven auto-reply during sleep system",
-          "Removed sleep_reply_judgment AI prompt",
-          "Simplified sleep reply to use fixed message from config file",
-          "Removed ai_reply_enabled, ai_model, and ai_reply_probability configuration options",
-          "Sleep system now uses configured sleep_reply message directly",
-          "Disturbance wake-up mechanism remains functional",
-          "Fixed sleep state logic: awake and sleepy states allow normal processing, other sleep states (falling_asleep, light_sleep, deep_sleep, waking_up) block messages without reply",
-          "Removed duplicate disturbance wake-up check code",
-          "Fixed missing prompts in default config: added social_network_analysis and intimacy_judgment prompts to _get_default_config_content method",
-          "Fixed config file generation check: updated _ensure_config_with_prompts and _write_default_config_with_prompts to check all 6 prompts including social_network_analysis and intimacy_judgment",
-          "Added fallback mechanism in _get_prompt: if prompt not found in config file, automatically load from default config to prevent 'empty prompt' errors",
-          "Fixed TOML parsing issue in plugin_base.py: updated to use tomllib (Python 3.11+ builtin) instead of toml library to fix multi-line string parsing bug that caused only 3 prompts to be loaded",
-          "Enhanced habit_generation prompt: added explicit rules and examples to prevent LLM from using quotes inside JSON strings, which caused JSON parsing failures",
-          "Optimized intimacy judgment: added ai_judgment_probability configuration to control how often AI is called for intimacy increase (default: 30%)",
-          "Added logging configuration: logging.level and logging.verbose settings to control debug log output",
-          "Production version does not include debug commands (only in debug version)",
-          "Fixed social network interaction during sleep: added sleep state check in SocialNetworkEventHandler to skip interaction recording during sleep states (falling_asleep, light_sleep, deep_sleep, waking_up), preventing inappropriate intimacy increases while sleeping",
-          "Added notice message filtering: SocialNetworkEventHandler now skips notice messages (e.g., group_recall) to prevent inappropriate interaction recording for system notifications",
-          "Fixed waking_up state transition: added handling for WAKING_UP state in schedule change logic to properly transition to AWAKE state, preventing WAKING_UP state from getting stuck",
-          "Fixed random event generation in debug command: added check_probability parameter to _generate_random_event method, allowing debug commands to force trigger events without probability checks, preventing false 'event generation failed' messages when events are generated but fail probability check",
-          "Fixed intimacy judgment prompt formatting: escaped curly braces in JSON examples (changed {} to {{}}) to prevent KeyError during prompt.format() when formatting prompts with JSON format examples",
-          "Added recent event tracking: added recent_event and recent_event_time fields to state to track recently handled random events, allowing GetScheduleTool to display recent events (within last 5 minutes) when user asks 'what are you doing', providing more natural and contextual responses about recent activities",
-          "Fixed event-schedule conflict: when a random event occurs, current activity is temporarily changed to 'handling_event' during event processing, then restored to the previous schedule activity after event is handled, preventing logical conflicts between scheduled activities and random events",
-          "Fixed event persistence: added state save after handling random events in _handle_event method, ensuring recent_event information is persisted to file and can be retrieved by GetScheduleTool, preventing 'no recent event found' issue when user asks 'what are you doing'",
-          "Enhanced schedule description: updated schedule_generation prompt to require detailed activity descriptions (e.g., '在图书馆写论文' instead of just '写论文'), helping AI better understand what the robot is doing",
-          "Added time information to GetScheduleTool: now returns current activity time and current time (HH:MM and date) in the response, allowing the main reply system to know the current time and provide more contextual responses",
-          "Enhanced get_life_simulation_status tool: now retrieves detailed activity description from schedule array instead of using brief current_activity_description field, and adds current activity time and current time (HH:MM and date) to status output, providing more comprehensive and detailed status information for AI to understand current context",
-          "Fixed social network interaction recording: SocialNetworkEventHandler now only records interactions and judges intimacy when the message is directed to bot (private messages, or group messages where bot is mentioned or @ed), preventing inappropriate intimacy increases for messages not directed to bot"
-        ],
-        "1.5.0": [
-          "Added SetRelationshipTool for LLM to set user relationship type",
-          "AI can now set users as enemy or blocked",
-          "Added relationship change reason tracking",
-          "Updated GetSocialNetworkTool to be available for LLM",
-          "Improved social network system documentation"
-        ],
-        "1.4.0": [
-          "Implemented intimacy AI judgment growth method",
-          "Implemented intimacy probability growth method",
-          "Added intimacy_growth_method configuration (ai/probability/fixed)",
-          "Added intimacy judgment AI prompts",
-          "Intimacy growth based on message content with AI judgment",
-          "Support for probability growth (default 70% probability)",
-          "Support for fixed growth (fixed amount per interaction)",
-          "Updated documentation for intimacy growth mechanism"
-        ],
-        "1.3.0": [
-          "Implemented social network features",
-          "Added user relationship management (9 relationship types)",
-          "Implemented intimacy system (growth and decay)",
-          "Automatic user interaction history recording",
-          "Added SocialNetworkEventHandler",
-          "Added GetSocialNetworkTool",
-          "Added SocialNetworkCommand",
-          "Added social network configuration",
-          "Added social network AI prompts",
-          "Updated documentation for social network features"
-        ],
-        "1.2.0": [
-          "Optimized message state update mechanism to probability-based",
-          "Added message_state_update_probability configuration",
-          "Default 70% probability update for fatigue and hunger",
-          "Prevents excessive message causing rapid state growth",
-          "Updated documentation for probability update mechanism"
-        ],
-        "1.1.0": [
-          "Removed i18n system (user feedback)",
-          "Prompts moved from hardcoded to config file",
-          "Added configurable AI models (tool_use, planner, replyer)",
-          "Added customizable time/date API",
-          "Optimized configuration file structure for better readability",
-          "All user-facing text now in Chinese (simplified)",
-          "Added detailed Chinese comments in config file"
-        ],
-        "1.0.0": [
-          "Initial release - AI-driven version",
-          "Implemented AI-driven schedule generation system",
-          "Implemented AI-driven random event generation",
-          "Implemented health status determined by events and schedule",
-          "Implemented habits system (config + AI generation)",
-          "Implemented holiday API integration",
-          "Implemented AI-driven emotion judgment",
-          "Implemented editable AI prompts with well-designed defaults",
-          "Implemented state management and persistence",
-          "Added i18n support (zh-CN, en)",
-          "Added detailed bilingual configuration comments",
-          "Removed fixed schedule configuration (now AI-generated)",
-          "Removed timed events (replaced by AI-driven schedule)",
-          "All dialogue is AI-generated, not fixed",
-          "Physiological state data is read-only (cannot be modified by commands)"
-        ]
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
       }
     }
   },
@@ -6480,7 +6201,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列��。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -8928,7 +8649,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.6.1",
+      "version": "1.6.3",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -8960,7 +8681,8 @@
         "emoji.get_emotions",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
-        "message.get_recent"
+        "message.get_recent",
+        "maisaka.context.append"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -9432,7 +9154,7 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.5.2",
+      "version": "1.5.3",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
       "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 的账号余额，支持 HTML 卡片可视化输出，仅依赖 Python 标准库。",
       "author": {
