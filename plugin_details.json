@@ -847,7 +847,7 @@
     "id": "1021143806.mais_art_journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.0.0",
+      "version": "4.1.0",
       "name": "麦麦绘卷（Claude MAInet）",
       "description": "基于 MaiBot 的多模型智能绘图插件。兼容 OpenAI、OpenAI-Chat、豆包（火山方舟）、Gemini、魔搭、硅基流动、砂糖云、梦羽、智谱 GLM、阿里百炼 DashScope（通义千问/万相/Z-Image/可灵）、ComfyUI 等多种 API 格式。提供命令式风格转换、自拍模式、自动自拍发说说、日程感知、模型配置管理、运行时聊天流隔离状态、对外 @API 生图接口等功能。",
       "author": {
@@ -8356,9 +8356,9 @@
     "id": "emoji-text-selection",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.2",
+      "version": "2.0.0",
       "name": "Emoji Text Selector",
-      "description": "纯文本情绪标签匹配的表情包选择工具。LLM 根据上下文从情绪标签列表中选出最合适的标签，插件按标签精确匹配并发送表情包。",
+      "description": "表情包选择工具。支持 embedding 语义向量匹配和文本 LLM 选择",
       "author": {
         "name": "hsd221",
         "url": "https://github.com/hsd221"
@@ -8383,6 +8383,7 @@
         "send.emoji",
         "emoji.get_emotions",
         "emoji.get_by_description",
+        "llm.embed",
         "llm.generate",
         "message.get_recent"
       ],
@@ -8553,7 +8554,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.4.1",
+      "version": "1.5.2",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -9812,6 +9813,143 @@
         "llm_hook",
         "command",
         "storage"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "Emilia-awa.maibot-moepix",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "Emilia-awa.maibot-moepix",
+      "version": "1.0.0",
+      "name": "二次元图片插件",
+      "description": "基于 Lolicon API 的二次元图片获取插件，支持 AI 智能调用和命令直接调用，内容级别采用白名单控制",
+      "author": {
+        "name": "MaiBot",
+        "url": "https://github.com/Emilia-awa/maibot-moepix"
+      },
+      "license": "WTFPL",
+      "urls": {
+        "repository": "https://github.com/Emilia-awa/maibot-moepix",
+        "homepage": "https://github.com/Emilia-awa/maibot-moepix"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get",
+        "config.get_plugin",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "whitefox.wife-picker",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "今日老婆",
+      "description": "随机抽取今日老婆",
+      "author": {
+        "name": "白狐",
+        "url": "https://github.com/whitefox20011120"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/whitefox20011120/wife_picker"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "whitefox.wife-picker"
+    }
+  },
+  {
+    "id": "octmicy.pixiv-crawler",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.claw.pixiv-crawler",
+      "version": "3.0.0",
+      "name": "麦麦!来点二次元图片!",
+      "description": "基于 Lolicon API 的二次元随机图片插件。支持多标签组合搜索、定时/手动爬取、年龄分级、AI排除、@触发。无需 Pixiv 账号。",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/pixiv-crawler",
+        "homepage": "https://github.com/octmicy/pixiv-crawler",
+        "documentation": "https://github.com/octmicy/pixiv-crawler",
+        "issues": "https://github.com/octmicy/pixiv-crawler/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.image",
+        "send.text"
       ],
       "i18n": {
         "default_locale": "zh-CN",
