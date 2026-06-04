@@ -2559,7 +2559,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.8",
+      "version": "1.9.10",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -6145,7 +6145,7 @@
           "reinforce_buffer_max_size": {
             "type": "integer",
             "default": 1000,
-            "description": "���化缓冲区最大大小"
+            "description": "强化缓冲区最大大小"
           },
           "reinforce_cooldown_hours": {
             "type": "number",
@@ -10077,7 +10077,7 @@
     "id": "whitefox.dynamic-nickname",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.1.0",
       "name": "动态群名片",
       "description": "周期性自动更换群名片后缀",
       "author": {
@@ -10450,6 +10450,318 @@
       ],
       "i18n": {
         "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "onelxzy.partner-game",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.1",
+      "name": "今日老婆 Pro",
+      "description": "基于随机抽签演化的群聊伴侣互动游戏系统（支持抽、娶、抢、甩等互动玩法）",
+      "author": {
+        "name": "onelxzy",
+        "url": "https://github.com/onelxzy"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/onelxzy/partner-game"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "onelxzy.partner-game"
+    }
+  },
+  {
+    "id": "apcrote.context-miner",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "apcrote.context-miner",
+      "version": "1.0.0",
+      "name": "上下文挖掘器",
+      "description": "从当前会话聊天历史中按主题提取相关信息，可供 Planner 作为 Tool 调用或用户手动使用 /ctx 命令查询。支持调用内置 LLM 或自定义 API。",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/apcrote.context-miner",
+        "homepage": "https://github.com/clfr41/apcrote.context-miner",
+        "documentation": "https://github.com/clfr41/apcrote.context-miner",
+        "issues": "https://github.com/clfr41/apcrote.context-miner/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "message.get_by_time_in_chat",
+        "config.get",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "always-reply-private",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "always-reply-private",
+      "version": "1.0.0",
+      "name": "私聊必回复",
+      "description": "允许私聊情况下跳过时机模型，直接进行决策和回复，可设置白名单用户。",
+      "author": {
+        "name": "YanRuo630",
+        "url": "https://github.com/YanRuo630"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/YanRuo630/always-reply-private",
+        "homepage": "https://github.com/YanRuo630/always-reply-private",
+        "documentation": "https://github.com/YanRuo630/always-reply-private/blob/main/README.md",
+        "issues": "https://github.com/YanRuo630/always-reply-private/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "wrench"
+        }
+      },
+      "capabilities": [
+        "send_message"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "tackyeel.maibot-model-budget-router",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "tackyeel.maibot-model-budget-router",
+      "name": "Model Budget Router",
+      "version": "1.0.4",
+      "description": "Route MaiBot LLM requests by task, relay budget, balance, latency, and failures. Useful for classifying and managing many free or low-cost relay providers.",
+      "author": {
+        "name": "tackyeel",
+        "url": "https://github.com/tackyeel"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tackyeel/maibot-model-budget-router",
+        "homepage": "https://github.com/tackyeel/maibot-model-budget-router",
+        "documentation": "https://github.com/tackyeel/maibot-model-budget-router#readme",
+        "issues": "https://github.com/tackyeel/maibot-model-budget-router/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        }
+      ],
+      "llm_providers": [
+        {
+          "client_type": "budget_router",
+          "name": "Model Budget Router",
+          "description": "Budget, latency, and failover router for OpenAI-compatible relay providers.",
+          "version": "1.0.4"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "provider"
+    }
+  },
+  {
+    "id": "apcrotedev.hyw",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "apcrotedev.hyw",
+      "version": "1.0.0",
+      "name": "何意味",
+      "description": "/hyw 命令返回自定义文本",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/apcrotedev.hyw",
+        "homepage": "https://github.com/clfr41/apcrotedev.hyw",
+        "documentation": "https://github.com/clfr41/apcrotedev.hyw",
+        "issues": "https://github.com/clfr41/apcrotedev.hyw/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.random-image-api-for-maibot",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+      "description": "基于 Random-image-api 的随机 Pixiv 图片插件，支持 / 指令前缀、R18 黑白名单、标签筛选、多图获取（1-10张）、AI 过滤、画师/尺寸/收藏数筛选、合并转发、智能压缩、全局冷却、URL 安全校验",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/nguspring_random-image-api-for-maibot",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/nguspring_random-image-api-for-maibot"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.random-image-api-for-maibot"
+    }
+  },
+  {
+    "id": "maibot.knowledge-query",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.knowledge-query",
+      "version": "0.1.0",
+      "name": "知识库查询",
+      "description": "基于 LM 的知识库文件检索和内容提取工具",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/maibot.knowledge-query",
+        "homepage": "https://github.com/clfr41/maibot.knowledge-query",
+        "documentation": "https://github.com/clfr41/maibot.knowledge-query",
+        "issues": "https://github.com/clfr41/maibot.knowledge-query/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.9.9"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
         "supported_locales": [
           "zh-CN"
         ]
