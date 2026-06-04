@@ -2763,6 +2763,9 @@
         }
       },
       "id": "TAIY2020.custom-commands-plugin"
+    },
+    "assets": {
+      "icon_64": "icons/TAIY2020.custom_commands_plugin.webp"
     }
   },
   {
@@ -2961,6 +2964,9 @@
         }
       },
       "id": "TAIY2020.group-muter-plugin"
+    },
+    "assets": {
+      "icon_64": "icons/TAIY2020.group_muter_plugin.webp"
     }
   },
   {
@@ -7944,6 +7950,9 @@
         ]
       },
       "id": "SengokuCola.maimai-birdwatching-plugin"
+    },
+    "assets": {
+      "icon_64": "icons/SengokuCola.maimai-birdwatching-plugin.webp"
     }
   },
   {
@@ -8197,6 +8206,9 @@
         ]
       },
       "id": "maibot-team.snowluma-adapter"
+    },
+    "assets": {
+      "icon_64": "icons/maibot-team.snowluma-adapter.webp"
     }
   },
   {
@@ -8606,6 +8618,9 @@
         }
       },
       "id": "TAIY2020.smart_poke_plugin"
+    },
+    "assets": {
+      "icon_64": "icons/TAIY2020.smart_poke_plugin.webp"
     }
   },
   {
@@ -9112,6 +9127,9 @@
         }
       },
       "id": "TAIY2020.llm-balance-plugin"
+    },
+    "assets": {
+      "icon_64": "icons/TAIY2020.llm-balance-plugin.webp"
     }
   },
   {
@@ -9506,6 +9524,9 @@
         ]
       },
       "id": "sengokucola.deepseek-thinking-marker"
+    },
+    "assets": {
+      "icon_64": "icons/sengokucola.deepseek-thinking-marker.webp"
     }
   },
   {
@@ -10595,7 +10616,7 @@
       "manifest_version": 2,
       "id": "tackyeel.maibot-model-budget-router",
       "name": "Model Budget Router",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "description": "Route MaiBot LLM requests by task, relay budget, balance, latency, and failures. Useful for classifying and managing many free or low-cost relay providers.",
       "author": {
         "name": "tackyeel",
@@ -10628,7 +10649,7 @@
           "client_type": "budget_router",
           "name": "Model Budget Router",
           "description": "Budget, latency, and failover router for OpenAI-compatible relay providers.",
-          "version": "1.0.4"
+          "version": "1.0.5"
         }
       ],
       "capabilities": [],
@@ -10766,6 +10787,51 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "whitefox.friend-request-handler",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "好友申请处理",
+      "description": "监听加好友申请，向管理员推送申请人 QQ 资料，并支持通过 /同意 命令一键通过验证并发送欢迎语",
+      "author": {
+        "name": "白狐",
+        "url": "https://github.com/whitefox20011120"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/whitefox20011120/friend-request-handler"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "whitefox.friend-request-handler"
     }
   }
 ]
