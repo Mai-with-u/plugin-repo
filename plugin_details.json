@@ -2720,7 +2720,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.5",
+      "version": "2.5.0",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -2761,7 +2761,7 @@
       "display": {
         "icon": {
           "type": "local",
-          "value": "./command.svg"
+          "value": "./assets/icon.svg"
         }
       },
       "id": "TAIY2020.custom-commands-plugin"
@@ -7709,19 +7709,20 @@
     "id": "sengokucola.self-identity-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.3.0",
       "name": "自我信息插件 (Self Identity Plugin)",
-      "description": "为 Bot 提供基于人设图片的自我识别与自我信息检索能力",
+      "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
       "author": {
         "name": "SengokuCola",
         "url": "https://github.com/SengokuCola"
       },
       "license": "MIT",
+      "plugin_type": "chat",
       "urls": {
-        "repository": "https://github.com/SengokuCola/self_identity_plugin",
-        "homepage": "https://github.com/SengokuCola/self_identity_plugin",
+        "repository": "https://github.com/SengokuCola/MaiBot-rdev",
+        "homepage": "https://github.com/SengokuCola/MaiBot-rdev",
         "documentation": "https://github.com/Mai-with-u/maibot-plugin-sdk/blob/main/docs/guide.md",
-        "issues": "https://github.com/SengokuCola/self_identity_plugin/issues"
+        "issues": "https://github.com/SengokuCola/MaiBot-rdev/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
@@ -7733,10 +7734,18 @@
       },
       "dependencies": [],
       "capabilities": [
+        "config.get",
         "llm.generate",
         "llm.get_available_models",
         "message.get_by_id"
       ],
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🪞",
+          "background": "#E8F0F7"
+        }
+      },
       "i18n": {
         "default_locale": "zh-CN",
         "locales_path": "_locales",
@@ -10011,7 +10020,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.claw.pixiv-crawler",
-      "version": "3.2.1",
+      "version": "3.2.2",
       "name": "麦麦!来点二次元图片!",
       "description": "基于 Lolicon API 的二次元随机图片插件。支持多标签组合搜索、定时/手动爬取、年龄分级、AI排除、@触发。无需 Pixiv 账号。",
       "author": {
@@ -10146,7 +10155,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -10570,7 +10579,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "always-reply-private",
-      "version": "1.0.0",
+      "version": "1.5.0",
       "name": "私聊必回复",
       "description": "允许私聊情况下跳过时机模型，直接进行决策和回复，可设置白名单用户。",
       "author": {
@@ -10834,6 +10843,280 @@
         ]
       },
       "id": "whitefox.friend-request-handler"
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.system-info-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "deepseek-v4-pro.system-info-plugin",
+      "version": "1.0.0",
+      "name": "运行信息查询",
+      "description": "通过指令查询系统运行信息和平台配置，支持白名单，返回转发消息格式",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/system_info_plugin",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/system_info_plugin",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/system_info_plugin",
+        "issues": "https://github.com/DeepSeek-V4-Pro/system_info_plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.forward",
+        "config.get",
+        "chat.get_all_streams",
+        "chat.get_group_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.semantic-loopback",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "神经语义闭环反馈与信息回响引擎",
+      "description": "基于分布式语义拓扑映射的高保真信息回溯系统，采用零延迟文本镜像算法实现输入信号与输出回响之间的语义一致性精确复现",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/semantic_loopback_engine",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/semantic_loopback_engine",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/semantic_loopback_engine",
+        "issues": "https://github.com/DeepSeek-V4-Pro/semantic_loopback_engine/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "99.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.semantic-loopback"
+    }
+  },
+  {
+    "id": "whitefox.group-request-handler",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "加群申请处理",
+      "description": "监听加群申请，向管理员推送申请人资料到指定群聊，群管理员可通过命令一键通过入群申请",
+      "author": {
+        "name": "白狐",
+        "url": "https://github.com/whitefox20011120"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/whitefox20011120/group-request-handler"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "whitefox.group-request-handler"
+    }
+  },
+  {
+    "id": "maimai-mcstatus-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "Minecraft 服务器状态查询",
+      "description": "查询 Minecraft 服务器状态，支持 MOTD、在线人数、延迟等，并生成精美的卡片图片",
+      "author": {
+        "name": "清蒸云鸭",
+        "url": "https://github.com/WhiteCloudOL"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/WhiteCloudOL/maimai-mcstatus-plugin",
+        "homepage": "https://github.com/WhiteCloudOL/maimai-mcstatus-plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "mcstatus",
+          "version_spec": ">=12.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "id": "maimai-mcstatus-plugin"
+    }
+  },
+  {
+    "id": "github.sengokucola.statistics-chart-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "Statistics Chart Plugin",
+      "description": "只读取本机 MaiBot 数据库，绘制消息、token、模型、工具、在线时长、交互消息和 Prompt Cache 命中等统计图。",
+      "author": {
+        "name": "SengokuCola",
+        "url": "https://github.com/SengokuCola"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/SengokuCola/statistics-chart-plugin",
+        "homepage": "https://github.com/SengokuCola/statistics-chart-plugin",
+        "documentation": "https://github.com/SengokuCola/statistics-chart-plugin/blob/master/README.md",
+        "issues": "https://github.com/SengokuCola/statistics-chart-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=11.3.0"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.54.0"
+        }
+      ],
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bar-chart-3"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.sengokucola.statistics-chart-plugin"
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.prp-prober",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "Paradigm: Reboot 查分器",
+      "description": "连接 PRP (Paradigm: Reboot Prober) 查分器，支持账号注册/绑定、B50 查询、曲目搜索、成绩查询与上传",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/prp_prober",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/prp_prober",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/prp_prober",
+        "issues": "https://github.com/DeepSeek-V4-Pro/prp_prober/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "send.image",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.prp-prober"
     }
   }
 ]
