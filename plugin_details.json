@@ -929,7 +929,7 @@
       "id": "internetsb.maizone",
       "version": "3.0.1",
       "name": "Maizone（麦麦空间）",
-      "description": "让麦麦阅读、评论、点赞、发送QQ空间",
+      "description": "让麦麦阅读、评论、点赞、发送QQ空间。为插件提供发送说说接口",
       "author": {
         "name": "internetsb",
         "url": "https://github.com/internetsb"
@@ -2559,7 +2559,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.10",
+      "version": "1.9.11",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -2609,7 +2609,9 @@
         "api.call",
         "config.get",
         "llm.generate",
-        "database.get"
+        "llm.get_available_models",
+        "database.get",
+        "message.get_by_time_in_chat"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -10616,7 +10618,7 @@
       "manifest_version": 2,
       "id": "tackyeel.maibot-model-budget-router",
       "name": "Model Budget Router",
-      "version": "1.0.5",
+      "version": "1.1.2",
       "description": "Route MaiBot LLM requests by task, relay budget, balance, latency, and failures. Useful for classifying and managing many free or low-cost relay providers.",
       "author": {
         "name": "tackyeel",
@@ -10649,7 +10651,7 @@
           "client_type": "budget_router",
           "name": "Model Budget Router",
           "description": "Budget, latency, and failover router for OpenAI-compatible relay providers.",
-          "version": "1.0.5"
+          "version": "1.1.2"
         }
       ],
       "capabilities": [],
@@ -10793,7 +10795,7 @@
     "id": "whitefox.friend-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.1",
       "name": "好友申请处理",
       "description": "监听加好友申请，向管理员推送申请人 QQ 资料，并支持通过 /同意 命令一键通过验证并发送欢迎语",
       "author": {
