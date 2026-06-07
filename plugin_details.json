@@ -3602,45 +3602,62 @@
   {
     "id": "Shiroha135.GPT-SoVITS-v2-TTS-Plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "GPT-SoVITS-V2 TTS插件",
-      "version": "1.8.15",
-      "description": "基于 GPT-SoVITS-V2 的文本转语音插件，支持多语言转换，可以通过关键词，指令启动",
+      "manifest_version": 2,
+      "version": "3.2.0",
+      "name": "GPT-SoVITS V2 TTS",
+      "description": "基于本地 GPT-SoVITS V2 API 的文本转语音插件，支持 /vits 命令和关键词语音触发。",
       "author": {
         "name": "HatsuYukiAya初雪绫",
         "url": "https://github.com/Shiroha135"
       },
       "license": "MIT",
-      "host_application": {
-        "min_version": "0.9.0",
-        "max_version": "0.11.2"
+      "urls": {
+        "repository": "https://github.com/Shiroha135/GPT-SoVITS-v2-TTS-Plugin",
+        "homepage": "https://github.com/Shiroha135/GPT-SoVITS-v2-TTS-Plugin",
+        "documentation": "https://github.com/Shiroha135/GPT-SoVITS-v2-TTS-Plugin",
+        "issues": "https://github.com/Shiroha135/GPT-SoVITS-v2-TTS-Plugin/issues"
       },
-      "homepage_url": "https://github.com/Shiroha135",
-      "repository_url": "https://github.com/Shiroha135/GPT-SoVITS-v2-TTS-Plugin",
-      "keywords": [
-        "TTS",
-        "语音合成",
-        "GPT-SoVITS-V2",
-        "指令开关",
-        "多语言"
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiofiles",
+          "version_spec": ">=23.0.0"
+        }
       ],
-      "categories": [
-        "语音",
-        "聊天增强"
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "llm.generate"
       ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "action",
-            "name": "tts_voice_action",
-            "description": "将文本内容转换为语音并发送，/vitsmode on启用全局TTS模式"
-          }
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": null,
+        "supported_locales": [
+          "zh-CN"
         ]
-      }
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "volume-2",
+          "background": "#3B82F6"
+        }
+      },
+      "id": "hatsuyukiaya.gpt-sovits-v2-tts"
     }
   },
   {
@@ -6079,7 +6096,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -6720,53 +6737,46 @@
   {
     "id": "Mettafy.bilibili_video_parser",
     "manifest": {
-      "manifest_version": 1,
-      "name": "B站视频解析插件",
-      "version": "1.0.0",
-      "description": "解析B站视频内容并生成AI总结，支持视频抽帧、字幕获取、ASR识别，让麦麦能像人类一样理解视频",
+      "manifest_version": 2,
+      "version": "4.1.0",
+      "name": "B站视频插件 Maisaka 版",
+      "description": "让麦麦像人类一样看视频，支持自动检测、命令模式、视觉分析、字幕与 ASR。",
       "author": {
-        "name": "约瑟夫.k && 白泽",
+        "name": "白泽",
         "url": "https://github.com/Mettafy"
       },
       "license": "AGPL-3.0-or-later",
-      "keywords": [
-        "bilibili",
-        "B站",
-        "视频解析",
-        "视频总结",
-        "AI总结",
-        "VLM",
-        "字幕",
-        "ASR"
-      ],
-      "categories": [
-        "media",
-        "ai",
-        "utility"
-      ],
-      "host_application": {
-        "min_version": "0.11.0"
+      "urls": {
+        "repository": "https://github.com/Mettafy/bilibili_video_parser",
+        "homepage": "https://github.com/Mettafy/bilibili_video_parser",
+        "documentation": "https://github.com/Mettafy/bilibili_video_parser",
+        "issues": "https://github.com/Mettafy/bilibili_video_parser/issues"
       },
-      "homepage_url": "https://github.com/Mettafy/bilibili_video_parser",
-      "repository_url": "https://github.com/Mettafy/bilibili_video_parser",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "event_handler",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "bilibili_auto_detect",
-            "description": "自动检测并解析B站视频链接"
-          },
-          {
-            "type": "command",
-            "name": "bili",
-            "description": "手动触发B站视频解析",
-            "pattern": "/bili"
-          }
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "config.get",
+        "database.get",
+        "llm.generate",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
         ]
       },
-      "id": "MaiBot.bilibili_video_parser"
+      "id": "mettafy.bilibili-video-parser-maisaka"
     }
   },
   {
@@ -8172,7 +8182,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.1",
+      "version": "0.6.0",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8201,7 +8211,13 @@
         "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "silk-python",
+          "version_spec": ">=0.2.8"
+        }
+      ],
       "capabilities": [
         "chat.open_session",
         "component.disable",
@@ -8970,9 +8986,15 @@
           "type": "python_package",
           "name": "pypdf",
           "version_spec": ">=5.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "PyYAML",
+          "version_spec": ">=6.0.0"
         }
       ],
       "capabilities": [
+        "send.text",
         "llm.generate",
         "llm.generate_with_tools",
         "llm.get_available_models",
