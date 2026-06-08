@@ -6096,7 +6096,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -8593,7 +8593,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.6.6",
+      "version": "1.7.3",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -8625,8 +8625,11 @@
         "emoji.get_emotions",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
+        "chat.open_session",
         "message.get_recent",
-        "maisaka.context.append"
+        "maisaka.context.append",
+        "llm.generate",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -10512,7 +10515,7 @@
     "id": "onelxzy.partner-game",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.1",
+      "version": "2.0.2",
       "name": "今日老婆 Pro",
       "description": "基于随机抽签演化的群聊伴侣互动游戏系统（支持抽、娶、抢、甩等互动玩法）",
       "author": {
@@ -10824,7 +10827,7 @@
     "id": "whitefox.friend-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.1",
+      "version": "1.1.2",
       "name": "好友申请处理",
       "description": "监听加好友申请，向管理员推送申请人 QQ 资料，并支持通过 /同意 命令一键通过验证并发送欢迎语",
       "author": {
@@ -10951,7 +10954,7 @@
     "id": "whitefox.group-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "加群申请处理",
       "description": "监听加群申请，向管理员推送申请人资料到指定群聊，群管理员可通过命令一键通过入群申请",
       "author": {
@@ -11137,6 +11140,98 @@
         ]
       },
       "id": "deepseek-v4-pro.prp-prober"
+    }
+  },
+  {
+    "id": "github.A-Dawn.mute-report-murmur",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "禁言报告(碎碎念)",
+      "description": "监听 NapCat 群禁言通知，在机器人被禁言时生成小报告，并阻止禁言群后续消息触发回复链。",
+      "author": {
+        "name": "A-Dawn",
+        "url": "https://github.com/A-Dawn"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/A-Dawn/mute_report_murmur",
+        "homepage": "https://github.com/A-Dawn/mute_report_murmur",
+        "documentation": "https://github.com/A-Dawn/mute_report_murmur/blob/main/README.md",
+        "issues": "https://github.com/A-Dawn/mute_report_murmur/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "send.text",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.A-Dawn.mute-report-murmur"
+    }
+  },
+  {
+    "id": "taskmemz.wemai-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "taskmemz.wemai-adapter",
+      "version": "1.0.0",
+      "name": "WeMai 微信适配器",
+      "description": "接收 pyweixin 客户端的 WebSocket 连接，将微信消息桥接到 MaiBot。",
+      "author": {
+        "name": "MaiBot Team",
+        "url": "https://github.com/Mai-with-u"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Mai-with-u/wemai-adapter",
+        "homepage": "https://github.com/Mai-with-u/wemai-adapter",
+        "documentation": "https://github.com/Mai-with-u/wemai-adapter",
+        "issues": "https://github.com/Mai-with-u/wemai-adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "platform:wechat",
+        "gateway:duplex",
+        "message:text",
+        "message:emoji",
+        "message:image",
+        "friend:request",
+        "moment:read",
+        "moment:post"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
     }
   }
 ]
