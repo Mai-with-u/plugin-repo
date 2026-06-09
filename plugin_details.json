@@ -411,7 +411,7 @@
       "manifest_version": 2,
       "version": "3.3.0",
       "name": "统一TTS语音合成插件 (Unified TTS Voice Plugin)",
-      "description": "统一TTS语音合成插件，整合 AI Voice、GSV2P、GPT-SoVITS、豆包语音、CosyVoice、小米 MiMo 六种后端引擎，提供灵活的语音合成能力。",
+      "description": "统一TTS语音合成插件，整合 AI Voice、GSV2P、GPT-SoVITS、豆包语音、CosyVoice、小米 MiMo、minimax 七种后端引擎，提供灵活的语音合成能力。",
       "author": {
         "name": "靓仔",
         "url": "https://github.com/xuqian13"
@@ -3197,44 +3197,35 @@
   {
     "id": "xuqian13.context_clear_plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "context_clear_plugin",
-      "display_name": "麦麦失忆插件 (上下文清除插件升级版)",
-      "version": "1.5.0",
-      "description": "让麦麦选择性失忆,忘记之前的对话~ 支持忘记全部/最近/指定时间前的记忆,新增完全失忆模式和状态机确认机制 (改进自上下文清除插件)",
+      "manifest_version": 2,
+      "id": "xuqian13.amnesia_plugin",
+      "version": "1.6.0",
+      "name": "麦麦失忆插件",
+      "description": "让麦麦选择性失忆,忘记之前的对话~ 支持忘记全部/最近/指定时间前的记忆,完全失忆模式支持配置保留个人印象/黑话/统计数据",
       "author": {
         "name": "靓仔",
         "url": "https://github.com/xuqian13"
       },
       "license": "AGPL-v3.0",
+      "urls": {
+        "repository": "https://github.com/xuqian13/context_clear_plugin"
+      },
       "host_application": {
         "min_version": "0.11.0",
         "max_version": "1.0.0"
       },
-      "keywords": [
-        "失忆",
-        "amnesia",
-        "forget",
-        "记忆",
-        "断片",
-        "clear",
-        "context",
-        "上下文",
-        "清除",
-        "total",
-        "确认",
-        "状态机"
-      ],
-      "categories": [
-        "Utility",
-        "Fun",
-        "Management"
-      ],
-      "repository_url": "https://github.com/xuqian13/context_clear_plugin",
-      "dependencies": [],
-      "python_dependencies": [],
-      "config_file": "config.toml",
-      "enabled": true,
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "3.0.0"
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
       "components": {
         "commands": [
           {
@@ -5259,7 +5250,7 @@
           "三种自拍模式(standard/mirror/photo)",
           "SSE流式响应支持",
           "智能参考搜索(内置Bing搜图)",
-          "独���生图接口(generate_image_standalone)"
+          "独立生图接口(generate_image_standalone)"
         ]
       },
       "id": "selfie_painter"
@@ -6867,7 +6858,7 @@
     "manifest": {
       "manifest_version": 2,
       "name": "桌游搜索插件 (bgg_search_plugin)",
-      "version": "0.0.6",
+      "version": "0.0.7",
       "description": "利用集石、DDGS 和 LLM 查询桌游英文名，然后从 BGG 网站获取游戏的相关基本信息",
       "author": {
         "name": "山上的小丘",
@@ -7610,7 +7601,7 @@
           {
             "type": "command",
             "name": "MaiHoYo_help",
-            "description": "显示插件帮助信息"
+            "description": "显示插件帮助信��"
           },
           {
             "type": "action",
@@ -10178,7 +10169,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -10210,7 +10201,16 @@
         "supported_locales": [
           "zh-CN"
         ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "./poleposition.png"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/chi8wah.f1-info-plugin.webp"
     }
   },
   {
