@@ -3591,7 +3591,7 @@
     }
   },
   {
-    "id": "Shiroha135.GPT-SoVITS-v2-TTS-Plugin",
+    "id": "hatsuyukiaya.gpt-sovits-v2-tts",
     "manifest": {
       "manifest_version": 2,
       "version": "3.2.0",
@@ -5250,7 +5250,7 @@
           "三种自拍模式(standard/mirror/photo)",
           "SSE流式响应支持",
           "智能参考搜索(内置Bing搜图)",
-          "独立生图接口(generate_image_standalone)"
+          "独���生图接口(generate_image_standalone)"
         ]
       },
       "id": "selfie_painter"
@@ -6087,7 +6087,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID ��表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -7601,7 +7601,7 @@
           {
             "type": "command",
             "name": "MaiHoYo_help",
-            "description": "显示插件帮助信��"
+            "description": "显示插件帮助信息"
           },
           {
             "type": "action",
@@ -11232,6 +11232,317 @@
           "en-US"
         ]
       }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.maimaidx-prober",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "MaiMai DX 双源查分器",
+      "description": "连接 diving-fish 与 lxns 双查分器 API，支持 B50 查询（图片）、曲目搜索（含别称）、猜歌游戏、谱面统计、热力图、Rating趋势、收藏品、年度回顾与个人成绩查询",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+        "issues": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.40"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "send.image",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.maimaidx-prober"
+    }
+  },
+  {
+    "id": "whitefox.weather-forecast",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "天气播报插件",
+      "description": "定时获取指定地区天气并推送到群聊，支持手动查询指定地点天气",
+      "author": {
+        "name": "白狐",
+        "url": "https://github.com/whitefox20011120"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/whitefox20011120/weather-forecast"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "chat.get_stream_by_group_id",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "whitefox.weather-forecast"
+    }
+  },
+  {
+    "id": "github.pan-ice.plugins-uumessage",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.pan-ice.plugins-uumessage",
+      "version": "1.0.0",
+      "name": "群友语录",
+      "description": "群聊图片投稿与随机语录，支持群组数据隔离。回复图片发送 /投稿 即可投稿，发送 /群友语录 随机获取一条语录。",
+      "author": {
+        "name": "pan-ice",
+        "url": "https://github.com/pan-ice"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/pan-ice/plugins-uumessage",
+        "homepage": "https://github.com/pan-ice/plugins-uumessage",
+        "documentation": "https://github.com/pan-ice/plugins-uumessage/blob/main/README.md",
+        "issues": "https://github.com/pan-ice/plugins-uumessage/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.zfgy.deer-pipe-table",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.zfgy.deer-pipe-table",
+      "version": "1.4.0",
+      "name": "鹿管记录插件",
+      "description": "记录群成员鹿管次数，生成月度图表和排行榜",
+      "author": {
+        "name": "追风观影",
+        "url": "https://github.com/zfgy-ma"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin",
+        "homepage": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin",
+        "documentation": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin/blob/main/README.md",
+        "issues": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "render.html2png",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "LowValueTarget.deepseek-anthropic-provider",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "LowValueTarget.deepseek-anthropic-provider",
+      "version": "0.2.0",
+      "name": "DeepSeek Anthropic Provider",
+      "description": "将 DeepSeek Anthropic API 包装为 MaiBot Tool，让 Bot 可以按需调用联网搜索、网页读取和深度推理能力。",
+      "author": {
+        "name": "LowValueTarget",
+        "url": "https://github.com/LowValueTarget777"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LowValueTarget777/deepseek-anthropic-provider",
+        "homepage": "https://github.com/LowValueTarget777/deepseek-anthropic-provider",
+        "documentation": "https://github.com/LowValueTarget777/deepseek-anthropic-provider/blob/main/USAGE.md",
+        "issues": "https://github.com/LowValueTarget777/deepseek-anthropic-provider/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "anthropic",
+          "version_spec": ">=0.104.0,<1.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "maibot-plugin-sdk",
+          "version_spec": ">=2.0.0"
+        }
+      ],
+      "capabilities": [
+        "tool",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.0-hz.plastic-memory",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.plastic-memory",
+      "version": "0.1.2",
+      "name": "塑料内存条 (Plastic Memory)",
+      "description": "为麦麦提供一张可自行管理的便利贴笔记（my_memory.md），并在每次 planner / 时机判断 / replyer 请求的系统提示词之后注入笔记内容与剩余空间，供麦麦随时给自己留言备忘。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+        "homepage": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+        "documentation": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "xxxxx7258.idle-proactive-chat",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.5",
+      "name": "静默主动发言",
+      "description": "当白名单聊天流长时间没有新入站消息时，通过 Maisaka 主动任务自然发起聊天。",
+      "author": {
+        "name": "晴空",
+        "url": "https://github.com/XXXxx7258"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/XXXxx7258/idle_proactive_chat",
+        "homepage": "https://github.com/XXXxx7258/idle_proactive_chat",
+        "documentation": "https://github.com/XXXxx7258/idle_proactive_chat#readme",
+        "issues": "https://github.com/XXXxx7258/idle_proactive_chat/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "message.get_by_time_in_chat",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "xxxxx7258.idle-proactive-chat"
     }
   }
 ]
