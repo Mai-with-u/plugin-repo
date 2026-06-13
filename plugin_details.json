@@ -1415,7 +1415,7 @@
     "id": "whitefox20011120.bilibili_dynamic_push_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.6.0",
+      "version": "2.6.1",
       "name": "B站动态推送",
       "description": "适用于MaiSaka的B站动态订阅与直播状态自动推送插件（旧版请去仓库分支）",
       "author": {
@@ -1457,7 +1457,19 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.bilibili-dynamic-push"
+      "id": "whitefox.bilibili-dynamic-push",
+      "plugin_type": "media",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/bilibili.png",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/whitefox20011120.bilibili_dynamic_push_plugin.webp"
     }
   },
   {
@@ -1593,7 +1605,9 @@
         "config.get",
         "send.text",
         "send.image",
-        "send.forward"
+        "send.forward",
+        "component.enable",
+        "component.disable"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -1766,57 +1780,42 @@
   {
     "id": "khIqwq.owner_auth_plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "主人身份验证插件 (Owner Authentication Plugin)",
-      "version": "1.3.0",
-      "description": "为麦麦机器人提供用户身份验证功能，支持多用户独立配置，自定义提示词模板，补丁代码分离，兼容MaiBot 0.12.0+",
+      "manifest_version": 2,
+      "id": "khiqwq.owner_auth_plugin",
+      "version": "2.1.0",
+      "name": "用户身份验证插件",
+      "description": "通过 QQ 号精确验证发言者身份，在麦麦回复前注入用户/非用户身份提示词。用「用户数量控制」数字生成 N 个用户槽位，每个用户独立 QQ/昵称/限制群聊/多行模板，基于官方回复钩子实现，无 monkey-patch、无全局缓存，兼容 Windows 与 Linux 部署。",
       "author": {
         "name": "风花叶",
         "url": "https://github.com/khiqwq"
       },
-      "license": "GPL-v3.0-or-later",
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/khiqwq/owner_auth_plugin",
+        "homepage": "https://github.com/khiqwq/owner_auth_plugin",
+        "issues": "https://github.com/khiqwq/owner_auth_plugin/issues"
+      },
       "host_application": {
-        "min_version": "0.12.0"
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
-      "homepage_url": "https://github.com/khiqwq",
-      "repository_url": "https://github.com/khiqwq/owner_auth_plugin",
-      "keywords": [
-        "authentication",
-        "user",
-        "security",
-        "identity",
-        "multi-user",
-        "prompt-injection"
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "message.get_by_id",
+        "config.get",
+        "send.text"
       ],
-      "categories": [
-        "Other"
-      ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "security",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "owner_auth_handler",
-            "description": "用户身份验证事件处理器",
-            "event_type": "on_message",
-            "weight": 1000,
-            "intercept_message": false
-          }
-        ],
-        "features": [
-          "用户身份验证",
-          "多用户独立配置",
-          "自定义提示词模板",
-          "User数量控制",
-          "高优先级事件处理",
-          "补丁自动管理",
-          "Debug模式控制"
+      "plugin_type": "extension",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
         ]
-      },
-      "id": "khIqwq.owner_auth_plugin"
+      }
     }
   },
   {
@@ -2504,7 +2503,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.13",
+      "version": "1.9.14",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -2556,7 +2555,8 @@
         "llm.generate",
         "llm.get_available_models",
         "database.get",
-        "message.get_by_time_in_chat"
+        "message.get_by_time_in_chat",
+        "message.get_by_id"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -2869,7 +2869,7 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.4",
+      "version": "2.2.6",
       "name": "群聊静音插件 | GroupMuter Plugin",
       "description": "一个允许管理员通过聊天命令，让麦麦在指定群聊中临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
@@ -2893,8 +2893,7 @@
       },
       "dependencies": [],
       "capabilities": [
-        "send.text",
-        "config.get"
+        "send.text"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8347,44 +8346,37 @@
   {
     "id": "CSSQY.RunTime_Tracker_Plugin",
     "manifest": {
-      "manifest_version": 1,
+      "manifest_version": 2,
+      "id": "CSSQY.RunTime_Tracker_Plugin",
       "name": "Run Time Tracker Plugin",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "一个对接时间跟踪应用程序的插件，用于麦麦监控您的设备使用时间。",
       "author": {
         "name": "CSSQY",
         "url": "https://github.com/CSSQY/"
       },
       "license": "MIT",
-      "homepage_url": "https://github.com/CSSQY/RunTime_Tracker_Plugin/",
-      "repository_url": "https://github.com/CSSQY/RunTime_Tracker_Plugin/",
-      "host_application": {
-        "min_version": "0.8.0"
+      "urls": {
+        "repository": "https://github.com/CSSQY/RunTime_Tracker_Plugin/"
       },
-      "keywords": [
-        "full",
-        "command",
-        "tool"
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "llm_providers": [],
+      "capabilities": [
+        "config.get_plugin",
+        "send.text"
       ],
-      "categories": [
-        "Other",
-        "Utility Tools",
-        "External Integration"
-      ],
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "Run_Time_Tracker_plugin_command",
-            "description": "查询设备使用时间统计"
-          },
-          {
-            "type": "tool",
-            "name": "Run_Time_Tracker_plugin_tool",
-            "description": "LLM 可调用的设备查询工具"
-          }
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
         ]
       }
     }
@@ -8604,7 +8596,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -8626,7 +8618,23 @@
         "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "google-genai",
+          "version_spec": ">=1.58.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
       "capabilities": [
         "send.text",
         "send.image",
@@ -8643,10 +8651,20 @@
         "default_locale": "zh-CN",
         "locales_path": "i18n",
         "supported_locales": [
-          "zh-CN",
-          "en-US"
+          "zh-CN"
         ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "database",
+          "background": "#eff6fe"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/maimai-drawpic-plugin.webp"
     }
   },
   {
@@ -9972,11 +9990,11 @@
     "id": "whitefox.wife-picker",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "name": "今日老婆",
       "description": "随机抽取今日老婆",
       "author": {
-        "name": "白狐",
+        "name": "whitefox",
         "url": "https://github.com/whitefox20011120"
       },
       "license": "MIT",
@@ -10009,7 +10027,19 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.wife-picker"
+      "id": "whitefox.wife-picker",
+      "plugin_type": "entertainment",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/wife.png",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/whitefox.wife-picker.webp"
     }
   },
   {
@@ -10017,7 +10047,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.claw.pixiv-crawler",
-      "version": "3.2.2",
+      "version": "3.2.3",
       "name": "麦麦!来点二次元图片!",
       "description": "基于 Lolicon API 的二次元随机图片插件。支持多标签组合搜索、定时/手动爬取、年龄分级、AI排除、@触发。无需 Pixiv 账号。",
       "author": {
@@ -10106,7 +10136,7 @@
     "id": "whitefox.dynamic-nickname",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.1.0",
+      "version": "2.1.1",
       "name": "动态群名片",
       "description": "周期性自动更换群名片后缀",
       "author": {
@@ -10144,7 +10174,8 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.dynamic-nickname"
+      "id": "whitefox.dynamic-nickname",
+      "plugin_type": "automation"
     }
   },
   {
@@ -10152,7 +10183,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -10810,7 +10841,7 @@
     "id": "whitefox.friend-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.2",
+      "version": "1.1.3",
       "name": "好友申请处理",
       "description": "监听加好友申请，向管理员推送申请人 QQ 资料，并支持通过 /同意 命令一键通过验证并发送欢迎语",
       "author": {
@@ -10848,7 +10879,19 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.friend-request-handler"
+      "id": "whitefox.friend-request-handler",
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/whitefox.friend-request-handler.webp"
     }
   },
   {
@@ -10937,7 +10980,7 @@
     "id": "whitefox.group-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "加群申请处理",
       "description": "监听加群申请，向管理员推送申请人资料到指定群聊，群管理员可通过命令一键通过入群申请",
       "author": {
@@ -10975,7 +11018,19 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.group-request-handler"
+      "id": "whitefox.group-request-handler",
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/whitefox.group-request-handler.webp"
     }
   },
   {
@@ -11274,8 +11329,8 @@
     "id": "whitefox.weather-forecast",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
-      "name": "天气播报插件",
+      "version": "2.0.1",
+      "name": "天气预报插件",
       "description": "定时获取指定地区天气并推送到群聊，支持手动查询指定地点天气",
       "author": {
         "name": "白狐",
@@ -11307,7 +11362,8 @@
           "zh-CN"
         ]
       },
-      "id": "whitefox.weather-forecast"
+      "id": "whitefox.weather-forecast",
+      "plugin_type": "service"
     }
   },
   {
@@ -11526,6 +11582,252 @@
         ]
       },
       "id": "xxxxx7258.idle-proactive-chat"
+    }
+  },
+  {
+    "id": "DeepSeek-V4-pro.eku-egg-protocol",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "EKU猫耳魔法少女の免费鸡蛋",
+      "description": "免费鸡蛋自动应答插件——聊天中提及鸡蛋关键词时，EKU猫耳魔法少女随机派发经典抢鸡蛋台词",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/free_egg_distribution",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/free_egg_distribution",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/free_egg_distribution",
+        "issues": "https://github.com/DeepSeek-V4-Pro/free_egg_distribution/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "99.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "DeepSeek-V4-pro.eku-egg-protocol"
+    }
+  },
+  {
+    "id": "NothingButSeaweedSoup.LonelyMai",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.0",
+      "name": "怕寂寞的麦麦 (LonelyMai)",
+      "description": "让 AI 在群里冷场时主动找话题聊天，基于历史、知识库或预置话题，支持白名单与概率控制",
+      "author": {
+        "name": "海菜汤 & RIEZ-ON",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/lonely-mai-sdkv2",
+        "homepage": "https://github.com/clfr41/lonely-mai-sdkv2",
+        "issues": "https://github.com/clfr41/lonely-mai-sdkv2/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_by_time_in_chat",
+        "config.get",
+        "llm.generate",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "NothingButSeaweedSoup.LonelyMai"
+    }
+  },
+  {
+    "id": "com.0-hz.fetch-url",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.fetch-url",
+      "version": "0.1.0",
+      "name": "Fetch URL",
+      "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify 兜底）转为 Markdown，图片自动转码压缩后直接回传给麦麦观察。支持分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+        "homepage": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+        "documentation": "https://github.com/yufei-pan/maibot-fetch-url-plugin/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-fetch-url-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.26.0"
+        },
+        {
+          "type": "python_package",
+          "name": "markdownify",
+          "version_spec": ">=0.11.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.phigros-b30",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "Phigros B30 查分器",
+      "description": "连接 Phigros 云存档与 phib19.top 社区 API，支持 B30（b30） 成绩查询（图片输出）、RKS 全球排名、曲目搜索（含模糊匹配）、推分建议、谱面标签、社区评论与本地曲绘缓存",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
+        "issues": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.40"
+        },
+        {
+          "type": "python_package",
+          "name": "pycryptodome",
+          "version_spec": ">=3.20"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=7.4"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get",
+        "api.call",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.phigros-b30"
+    }
+  },
+  {
+    "id": "local.part.think",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.part.think",
+      "version": "0.1.0",
+      "name": "麦麦全局记录器",
+      "description": "让麦麦记住、回忆、搜索、修改或遗忘你交代的事情，支持本地存储和灵活的遗忘机制,比长期记忆更为灵活",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/local.part.think",
+        "homepage": "https://github.com/clfr41/local.part.think",
+        "documentation": "https://github.com/clfr41/local.part.think",
+        "issues": "https://github.com/clfr41/local.part.think/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
