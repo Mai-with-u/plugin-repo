@@ -11811,5 +11811,164 @@
         ]
       }
     }
+  },
+  {
+    "id": "com.0-hz.image-recompress",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.image-recompress",
+      "version": "0.2.0",
+      "name": "智能入站图片重压缩",
+      "description": "在入站消息进入处理流程前，把图片组件重压缩为更高效的 WebP（可配置 JPEG/PNG）。支持动图转动态 WebP、仅压缩超大图、目标大小循环压缩等模式，用于替代主程序内置的 JPEG 压缩（需关闭 visual.handle_oversized_images）。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-image-recompress",
+        "homepage": "https://github.com/yufei-pan/maibot-image-recompress",
+        "documentation": "https://github.com/yufei-pan/maibot-image-recompress/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-image-recompress/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "com.0-hz.maibot-corpus-callosum",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.maibot-corpus-callosum",
+      "version": "1.2.0",
+      "name": "神经闭环反馈",
+      "description": "给 replyer 一条内部再审通道：当回复器认为规划器的回复请求与聊天流严重不符时，可驳回发送并要求规划器重新思考，再审理由经内部上下文注入回规划器思考循环，全程聊天对象不可见。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-corpus-callosum",
+        "homepage": "https://github.com/yufei-pan/maibot-corpus-callosum",
+        "documentation": "https://github.com/yufei-pan/maibot-corpus-callosum/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-corpus-callosum/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "brain"
+        }
+      },
+      "capabilities": [
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.A-Dawn.a-chatter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "进阶闲谈家",
+      "description": "面向 MaiBot 的日程、提醒、联网检索与主动发言编排插件。",
+      "author": {
+        "name": "A-Dawn",
+        "url": "https://github.com/A-Dawn"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/A-Dawn/A_chatter",
+        "homepage": "https://github.com/A-Dawn/A_chatter",
+        "documentation": "https://github.com/A-Dawn/A_chatter/blob/main/README.md",
+        "issues": "https://github.com/A-Dawn/A_chatter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.5.3",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "croniter",
+          "version_spec": ">=2.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "chat.get_all_streams",
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_recent",
+        "message.get_by_time_in_chat",
+        "message.count_new",
+        "message.build_readable",
+        "knowledge.search",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "messages-square",
+          "background": "#2563EB"
+        }
+      },
+      "id": "github.A-Dawn.a-chatter"
+    }
   }
 ]
