@@ -1,0 +1,88 @@
+name: Mai Review Plugin Issue
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  mai-review:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+      contains(github.event.issue.labels.*.name, 'validated') &&
+      contains(github.event.comment.body, '/mai_review')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    outputs:
+      final_message: ${{ steps.run_codex.outputs.final-message }}
+
+    steps:
+      - name: Check reviewer permission
+        id: check-permission
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commenter = context.payload.comment.user.login;
+
+            const { data: permission } = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: commenter,
+            });
+
+            const allowedPermissions = ['admin', 'write'];
+            if (!allowedPermissions.includes(permission.permission)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 \`/mai_review\` 命令。`,
+              });
+              core.setFailed(`用户 @${commenter} 没有权限使用 /mai_review`);
+              return;
+            }
+
+            core.setOutput('commenter', commenter);
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build review context
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: node .github/scripts/build_mai_review_context.js
+
+      - name: Run Codex review
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          model: gpt-5.5
+          sandbox: read-only
+          prompt-file: .github/codex/prompts/plugin-issue-review.md
+          output-file: codex-output.md
+
+      - name: Post review comment
+        if: steps.run_codex.outputs.final-message != ''
+        uses: actions/github-script@v7
+        env:
+          CODEX_FINAL_MESSAGE: ${{ steps.run_codex.outputs.final-message }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `<!-- codex-mai-review -->\n${process.env.CODEX_FINAL_MESSAGE}`,
+            });
