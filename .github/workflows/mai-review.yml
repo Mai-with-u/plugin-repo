@@ -14,9 +14,6 @@ jobs:
     permissions:
       contents: read
       issues: write
-    outputs:
-      final_message: ${{ steps.run_codex.outputs.final-message }}
-
     steps:
       - name: Check reviewer permission
         id: check-permission
@@ -55,6 +52,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Validate Ark credentials
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+        run: |
+          if [ -z "$ARK_API_KEY" ]; then
+            echo "缺少 ARK_API_KEY secret" >&2
+            exit 1
+          fi
+
       - name: Build review context
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -62,27 +68,56 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: node .github/scripts/build_mai_review_context.js
 
+      - name: Install Codex CLI
+        run: npm install -g @openai/codex
+
+      - name: Write Codex config
+        env:
+          ARK_BASE_URL: https://ark.cn-beijing.volces.com/api/plan/v3
+          ARK_MODEL: ${{ vars.MAI_REVIEW_MODEL }}
+        run: |
+          mkdir -p "$HOME/.codex"
+          MODEL_NAME="${ARK_MODEL:-ark-code-latest}"
+          cat > "$HOME/.codex/config.toml" <<EOF
+          model = "${MODEL_NAME}"
+          model_provider = "ark"
+          model_reasoning_summary = "none"
+          model_supports_reasoning_summaries = false
+
+          [model_providers.ark]
+          name = "Volcengine Ark Agent Plan"
+          base_url = "${ARK_BASE_URL}"
+          env_key = "ARK_API_KEY"
+          wire_api = "responses"
+          request_max_retries = 4
+          stream_max_retries = 5
+          stream_idle_timeout_ms = 300000
+          EOF
+
       - name: Run Codex review
-        id: run_codex
-        uses: openai/codex-action@v1
-        with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          model: gpt-5.5
-          sandbox: read-only
-          prompt-file: .github/codex/prompts/plugin-issue-review.md
-          output-file: codex-output.md
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+        run: |
+          codex exec \
+            --sandbox read-only \
+            --output-last-message codex-output.md \
+            - < .github/codex/prompts/plugin-issue-review.md
 
       - name: Post review comment
-        if: steps.run_codex.outputs.final-message != ''
+        if: success()
         uses: actions/github-script@v7
-        env:
-          CODEX_FINAL_MESSAGE: ${{ steps.run_codex.outputs.final-message }}
         with:
           github-token: ${{ github.token }}
           script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('codex-output.md', 'utf8').trim();
+            if (!body) {
+              core.setFailed('codex-output.md 为空，无法发表评论');
+              return;
+            }
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `<!-- codex-mai-review -->\n${process.env.CODEX_FINAL_MESSAGE}`,
+              body: `<!-- codex-mai-review -->\n${body}`,
             });
