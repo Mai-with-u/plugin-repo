@@ -10246,12 +10246,12 @@
         {
           "type": "python_package",
           "name": "tomli",
-          "version": ">=2.0.0"
+          "version_spec": ">=2.0.0"
         },
         {
           "type": "python_package",
           "name": "tomli_w",
-          "version": ">=1.0.0"
+          "version_spec": ">=1.0.0"
         }
       ],
       "i18n": {
@@ -11655,7 +11655,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "name": "Fetch URL",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
       "author": {
@@ -11817,7 +11817,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.image-recompress",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "name": "智能入站图片重压缩",
       "description": "在入站消息进入处理流程前，把图片组件重压缩为更高效的 WebP（可配置 JPEG/PNG）。支持动图转动态 WebP、仅压缩超大图、目标大小循环压缩等模式，用于替代主程序内置的 JPEG 压缩（需关闭 visual.handle_oversized_images）。",
       "author": {
@@ -11969,6 +11969,51 @@
         }
       },
       "id": "github.A-Dawn.a-chatter"
+    }
+  },
+  {
+    "id": "com.0-hz.rss-reader",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.rss-reader",
+      "version": "0.4.0",
+      "name": "麦麦 RSS 阅读器",
+      "description": "订阅 RSS 源，将新内容注入 Maisaka 上下文并触发主动处理；提供 Tool 与 /rss 命令供麦麦与用户查阅订阅。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/MaiBot-rss-reader",
+        "homepage": "https://github.com/yufei-pan/MaiBot-rss-reader",
+        "documentation": "https://github.com/yufei-pan/MaiBot-rss-reader/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/MaiBot-rss-reader/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "feedparser",
+          "version_spec": ">=6.0.0"
+        }
+      ],
+      "capabilities": [
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "send.text",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
     }
   }
 ]
