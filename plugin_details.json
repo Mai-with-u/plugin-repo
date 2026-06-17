@@ -6031,7 +6031,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -12172,7 +12172,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -12231,7 +12231,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "1m.nightmare",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "name": "喊你睡觉",
       "description": "一个无处不在的催睡插件,超过时间后无论你在哪里发言都会被催睡觉",
       "author": {
@@ -12244,17 +12244,18 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.1"
+        "max_version": "1.11.1"
       },
       "sdk": {
         "min_version": "1.0.0",
         "max_version": "2.99.99"
       },
-      "plugin_type": "management",
+      "plugin_type": "extension",
       "display": {
         "icon": {
-          "type": "emoji",
-          "value": "👾"
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "package"
         }
       },
       "capabilities": [
@@ -12278,6 +12279,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/1m.nightmare.webp"
     }
   }
 ]
