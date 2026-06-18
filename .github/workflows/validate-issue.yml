@@ -314,8 +314,6 @@ jobs:
             const successBranch = manifestResult.branch;
 
             // ========== 验证 Manifest 结构 ==========
-            const warnings = [];
-
             // 检查空或无效
             if (!manifest || typeof manifest !== 'object') {
               core.setOutput('status', 'error');
@@ -420,9 +418,11 @@ jobs:
               return;
             }
 
-            // ========== 警告检查（不阻止提交）==========
+            // ========== 一致性检查 ==========
             if (pluginId !== manifest.id) {
-              warnings.push(`Issue 中填写的插件 ID \`${pluginId}\` 与 manifest.id \`${manifest.id}\` 不一致，建议保持一致。`);
+              core.setOutput('status', 'error');
+              core.setOutput('message', `**插件 ID 与 manifest.id 不一致**\n\nIssue 中填写的插件 ID: \`${pluginId}\`\n_manifest.json 中的 manifest.id: \`${manifest.id}\`\n\n请确保两者完全一致后再提交。`);
+              return;
             }
 
             if (requestType === 'modify') {
@@ -461,10 +461,6 @@ jobs:
               successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| Manifest ID | ${manifest.id} |\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 分支 | ${successBranch} |`;
             } else {
               successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 分支 | ${successBranch} |`;
-            }
-
-            if (warnings.length > 0) {
-              successMessage += `\n\n**⚠️ 警告 (不影响提交):**\n${warnings.map(w => '- ' + w).join('\n')}`;
             }
 
             const approveAction = requestType === 'add'
