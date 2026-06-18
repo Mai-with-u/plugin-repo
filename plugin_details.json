@@ -8578,7 +8578,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.6.3",
+      "version": "1.7.2",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -8729,7 +8729,7 @@
     "id": "exynos967.telegram-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "Telegram_Adapter",
       "description": "Telegram Bot API adapter plugin for MaiBot",
       "author": {
@@ -10264,9 +10264,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chinokou.maidock",
-      "version": "1.0.3",
+      "version": "1.0.9",
       "name": "MaiDock",
-      "description": "为 MaiBot 提供额外的 OpenAI Responses API 与 Anthropic Messages API 端点支持。",
+      "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope、硅基流动 与 火山方舟 Responses 等端点支持与高级参数控制功能。",
       "author": {
         "name": "ChinoKou",
         "url": "https://github.com/ChinoKou"
@@ -10289,13 +10289,8 @@
       "dependencies": [
         {
           "type": "python_package",
-          "name": "openai",
-          "version_spec": ">=1.95.0"
-        },
-        {
-          "type": "python_package",
-          "name": "anthropic",
-          "version_spec": ">=0.105.2"
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
         },
         {
           "type": "python_package",
@@ -10325,6 +10320,30 @@
           "name": "MaiDock Anthropic Messages",
           "description": "基于 Anthropic Messages API 的 LLM Provider。",
           "version": "1.0.0"
+        },
+        {
+          "client_type": "maidock-dashscope",
+          "name": "MaiDock 阿里云百炼 DashScope",
+          "description": "基于阿里云百炼 DashScope API 的 LLM Provider。",
+          "version": "1.0.0"
+        },
+        {
+          "client_type": "maidock-siliconflow",
+          "name": "MaiDock SiliconFlow",
+          "description": "基于硅基流动 SiliconFlow API 的 LLM Provider。",
+          "version": "1.0.0"
+        },
+        {
+          "client_type": "maidock-volcengine-ark-responses",
+          "name": "MaiDock Volcengine Ark Responses",
+          "description": "基于火山方舟 Responses API 的 LLM Provider。",
+          "version": "1.0.0"
+        },
+        {
+          "client_type": "maidock-xiaomi-mimo",
+          "name": "MaiDock Xiaomi Mimo",
+          "description": "基于小米 Mimo Chat Completions API 的 LLM Provider。",
+          "version": "1.0.0"
         }
       ],
       "capabilities": [],
@@ -10334,14 +10353,7 @@
           "zh-CN"
         ]
       },
-      "plugin_type": "provider",
-      "display": {
-        "icon": {
-          "type": "lucide",
-          "value": "dock",
-          "fallback": "plug"
-        }
-      }
+      "plugin_type": "provider"
     }
   },
   {
@@ -10823,9 +10835,9 @@
     "id": "whitefox.friend-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.3",
+      "version": "1.3.0",
       "name": "好友申请处理",
-      "description": "监听加好友申请，向管理员推送申请人 QQ 资料，并支持通过 /同意 命令一键通过验证并发送欢迎语",
+      "description": "监听加好友申请，支持手动审批、LLM 智能审核、无条件自动通过三种策略",
       "author": {
         "name": "白狐",
         "url": "https://github.com/whitefox20011120"
@@ -10852,7 +10864,8 @@
       "capabilities": [
         "send.text",
         "config.get",
-        "api.call"
+        "api.call",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -10962,7 +10975,7 @@
     "id": "whitefox.group-request-handler",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "加群申请处理",
       "description": "监听加群申请，向管理员推送申请人资料到指定群聊，群管理员可通过命令一键通过入群申请",
       "author": {
@@ -11655,9 +11668,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.2.4",
-      "name": "Fetch URL",
-      "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
+      "version": "0.2.5",
+      "name": "网页抓取 (Fetch URL)",
+      "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
       "author": {
         "name": "kes",
         "url": "https://github.com/yufei-pan"
@@ -11697,6 +11710,11 @@
           "type": "python_package",
           "name": "pillow",
           "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pypdf",
+          "version_spec": ">=4.0.0"
         }
       ],
       "capabilities": [
@@ -12014,6 +12032,256 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "DeepSeek-V4-pro.life-behavior-reference",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "生活行为参考",
+      "description": "提供基础生活行为的标准化参考指南，帮助用户了解和规范日常行为动作，适合有融入人类社会需求的用户。涵盖进食、休眠、位移、社交等核心生活场景。",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/life_behavior_reference",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/life_behavior_reference",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/life_behavior_reference",
+        "issues": "https://github.com/DeepSeek-V4-Pro/life_behavior_reference/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "99.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "DeepSeek-V4-pro.life-behavior-reference"
+    }
+  },
+  {
+    "id": "sanchess.MONITOR",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "sanchess.MONITOR",
+      "version": "0.1.0",
+      "name": "MONITOR",
+      "description": "截取当前活动屏幕并进行高斯模糊处理后发送，仅支持 Windows 平台。",
+      "author": {
+        "name": "Raya Friandion",
+        "url": "https://github.com/rayafriandion"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/rayafriandion/sanchess.MONITOR",
+        "homepage": "https://github.com/rayafriandion/sanchess.MONITOR",
+        "documentation": "https://github.com/rayafriandion/sanchess.MONITOR/blob/main/README.md",
+        "issues": "https://github.com/rayafriandion/sanchess.MONITOR/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.1.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "relay-message-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.0.1",
+      "name": "麦麦传话",
+      "description": "让麦麦帮你带话！私信麦麦指定群聊+@某人+内容（或某人+内容），麦麦会主动在群聊 @某人 或私聊某人发送消息。自动模糊匹配群名和人名。支持插件级用户白名单。",
+      "author": {
+        "name": "Tsxiaoyao",
+        "url": "https://github.com/Tsxiaoyao/relay-message-plugin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Tsxiaoyao/relay-message-plugin",
+        "homepage": "https://github.com/Tsxiaoyao/relay-message-plugin",
+        "documentation": "https://github.com/Tsxiaoyao/relay-message-plugin",
+        "issues": "https://github.com/Tsxiaoyao/relay-message-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "api.call",
+        "message.get_recent",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "relay-message-plugin"
+    }
+  },
+  {
+    "id": "com.0-hz.impression-card",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.impression-card",
+      "version": "0.2.2",
+      "name": "印象卡片 (Impression Card)",
+      "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+        "homepage": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+        "documentation": "https://github.com/yufei-pan/maibot-impression-card-plugin/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-impression-card-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.26.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "database.get",
+        "knowledge.search",
+        "person.get_id",
+        "person.get_id_by_name",
+        "person.get_value",
+        "message.build_readable",
+        "render.html2png",
+        "send.text",
+        "send.image",
+        "send.emoji",
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "1m.nightmare",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "1m.nightmare",
+      "version": "1.0.2",
+      "name": "喊你睡觉",
+      "description": "一个无处不在的催睡插件,超过时间后无论你在哪里发言都会被催睡觉",
+      "author": {
+        "name": "1m",
+        "url": "https://github.com/Emaginations"
+      },
+      "license": "Apache License 2.0",
+      "urls": {
+        "repository": "https://github.com/Emaginations/Nightmare"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.11.1"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "package"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "message.get_recent",
+        "person.get_id",
+        "person.get_value",
+        "chat.get_stream_by_group_id"
+      ],
+      "llm_providers": [
+        {
+          "client_type": "1m.nightmare.provider",
+          "name": "Nightmare LLM Provider",
+          "description": "喊你睡觉插件自带的 OpenAI 兼容 LLM 提供商，可用于生成催睡内容或供其他插件调用",
+          "version": "1.0.0"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/1m.nightmare.webp"
     }
   }
 ]
