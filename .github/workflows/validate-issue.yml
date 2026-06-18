@@ -2,23 +2,22 @@ name: Validate Plugin Issue
 
 on:
   issues:
-    types: [opened, edited, labeled]
+    types: [edited, labeled]
   issue_comment:
     types: [created]
 
 jobs:
   validate:
     # 触发条件：
-    # 1. Issue 创建且标题以 [Plugin] 开头（模板自动添加）
-    # 2. Issue 编辑/添加标签且有 plugin-submission 标签
-    # 3. 评论包含 /recheck 命令且有 plugin-submission 标签
+    # 1. Issue 添加插件提交/修改/移除类型标签
+    # 2. Issue 编辑且已有插件提交/修改/移除类型标签
+    # 3. 评论包含 /recheck 命令且 Issue 有插件相关或验证状态标签
     if: >-
-      (github.event_name == 'issues' && github.event.action == 'opened' && github.actor != 'github-actions[bot]' &&
-        (startsWith(github.event.issue.title, '[Plugin') ||
-         contains(github.event.issue.labels.*.name, 'plugin-submission') ||
-         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
-         contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
-      (github.event_name == 'issues' && github.event.action != 'opened' && github.actor != 'github-actions[bot]' &&
+      (github.event_name == 'issues' && github.event.action == 'labeled' && github.actor != 'github-actions[bot]' &&
+        (github.event.label.name == 'plugin-submission' ||
+         github.event.label.name == 'plugin-modification' ||
+         github.event.label.name == 'plugin-removal')) ||
+      (github.event_name == 'issues' && github.event.action == 'edited' && github.actor != 'github-actions[bot]' &&
         (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
          contains(github.event.issue.labels.*.name, 'plugin-modification') ||
          contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
@@ -31,6 +30,9 @@ jobs:
         contains(github.event.issue.labels.*.name, 'pending-validation')) &&
        contains(github.event.comment.body, '/recheck'))
     runs-on: ubuntu-latest
+    concurrency:
+      group: validate-plugin-issue-${{ github.event.issue.number }}
+      cancel-in-progress: true
     permissions:
       issues: write
 
@@ -500,7 +502,40 @@ jobs:
               }
             }
 
-      - name: Add status label and comment
+      - name: Create GitHub App token for validated label
+        id: validation-label-token
+        if: steps.validate.outputs.status == 'success'
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
+          private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
+
+      - name: Add validated label
+        if: steps.validate.outputs.status == 'success'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.validation-label-token.outputs.token }}
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['validated']
+            });
+
+      - name: Add validation failed label
+        if: steps.validate.outputs.status != 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['validation-failed']
+            });
+
+      - name: Add validation comment
         uses: actions/github-script@v7
         env:
           VALIDATION_STATUS: ${{ steps.validate.outputs.status }}
@@ -511,15 +546,6 @@ jobs:
             const status = process.env.VALIDATION_STATUS;
             const message = process.env.VALIDATION_MESSAGE;
             const isRecheck = process.env.EVENT_NAME === 'issue_comment';
-
-            // 确定标签
-            const label = status === 'success' ? 'validated' : 'validation-failed';
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              labels: [label]
-            });
 
             // 构建评论
             const emoji = status === 'success' ? '✅' : '❌';
