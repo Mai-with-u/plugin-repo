@@ -8515,7 +8515,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.7.5",
+      "version": "1.7.6",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -8578,7 +8578,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.7.2",
+      "version": "1.8.1",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -9976,7 +9976,7 @@
       "name": "今日老婆",
       "description": "随机抽取今日老婆",
       "author": {
-        "name": "whitefox",
+        "name": "白狐",
         "url": "https://github.com/whitefox20011120"
       },
       "license": "MIT",
@@ -11625,7 +11625,7 @@
     "manifest": {
       "manifest_version": 2,
       "version": "1.2.0",
-      "name": "怕寂寞的麦麦 (LonelyMai)",
+      "name": "怕寂寞的麦麦 (LonelyMai) sdkv2",
       "description": "让 AI 在群里冷场时主动找话题聊天，基于历史、知识库或预置话题，支持白名单与概率控制",
       "author": {
         "name": "海菜汤 & RIEZ-ON",
@@ -11660,7 +11660,7 @@
           "zh-CN"
         ]
       },
-      "id": "NothingButSeaweedSoup.LonelyMai"
+      "id": "NothingButSeaweedSoup.LonelyMai-sdkv2"
     }
   },
   {
@@ -12282,6 +12282,196 @@
     },
     "assets": {
       "icon_64": "icons/1m.nightmare.webp"
+    }
+  },
+  {
+    "id": "github.kuuri-krtt.mai_tarots",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.kuuri-krtt.mai_tarots",
+      "version": "1.0.2",
+      "name": "麦麦塔罗",
+      "description": "提供本地塔罗占卜功能，支持多种牌阵、牌面图片发送、AI 解读和语境化延伸评论。",
+      "author": {
+        "name": "kuuri-krtt",
+        "url": "https://github.com/kuuri-krtt"
+      },
+      "license": "AGPL-v3.0",
+      "urls": {
+        "repository": "https://github.com/kuuri-krtt/Mai_tarots/",
+        "homepage": "https://github.com/kuuri-krtt/",
+        "documentation": "https://github.com/kuuri-krtt/Mai_tarots/#readme",
+        "issues": "https://github.com/kuuri-krtt/Mai_tarots/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.5",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "./icon.png",
+          "fallback": "puzzle"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.kuuri-krtt.mai_tarots.webp"
+    }
+  },
+  {
+    "id": "arcczr.remote-codex-agent",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.5.0",
+      "name": "Codex CLI QQ 调度器",
+      "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Codex CLI，并可通过 NapCat Adapter API 将产物文件直传回当前聊天流；也保留远程 HTTP Agent 模式。",
+      "author": {
+        "name": "Arcczr",
+        "url": "https://github.com/Arcczr"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Arcczr/maibot-codex-plugin",
+        "homepage": "https://github.com/Arcczr/maibot-codex-plugin",
+        "documentation": "https://github.com/Arcczr/maibot-codex-plugin#readme",
+        "issues": "https://github.com/Arcczr/maibot-codex-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "terminal",
+          "fallback": "bot"
+        }
+      },
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "send.custom",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "arcczr.remote-codex-agent"
+    }
+  },
+  {
+    "id": "github.pan-ice.plugins-feed-bot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.pan-ice.plugins-feed-bot",
+      "version": "1.0.1",
+      "name": "投喂插件",
+      "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、群管理员授权、按群隔离数据。",
+      "author": {
+        "name": "磐冰",
+        "url": "https://github.com/pan-ice"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/pan-ice/feed-bot",
+        "homepage": "https://github.com/pan-ice/feed-bot",
+        "documentation": "https://github.com/pan-ice/feed-bot/blob/main/README.md",
+        "issues": "https://github.com/pan-ice/feed-bot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "chat.get_group_streams",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.maimai-group-admin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "群管理助手",
+      "description": "LLM自主群管理插件 — 18个管理工具+15条快捷命令，支持禁言/踢人/设精华/公告/审批入群等，含8步安全校验护栏，按群独立配置",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "send.hybrid",
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.maimai-group-admin"
     }
   }
 ]
