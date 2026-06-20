@@ -2869,9 +2869,9 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.6",
+      "version": "2.4.0",
       "name": "群聊静音插件 | GroupMuter Plugin",
-      "description": "一个允许管理员通过聊天命令，让麦麦在指定群聊中临时进入“静音状态”（闭嘴）的群组管理插件。",
+      "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
         "name": "TaiYang",
         "url": "https://github.com/TAIY2020"
@@ -2893,7 +2893,10 @@
       },
       "dependencies": [],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "frequency.get_adjust",
+        "frequency.set_adjust",
+        "chat.get_group_streams"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -3050,7 +3053,7 @@
               "/setu - 获取1张随机图片",
               "/setu help - 显示帮助信息",
               "/setu 3 - 获取3张图片",
-              "/setu #萝莉 - 搜索萝莉标签",
+              "/setu #萝莉 - 搜��萝莉标签",
               "/setu 原神 - 搜索原神关键词",
               "/setu #白丝,黑丝 - OR搜索",
               "/setu 5 #风景 横图 - 组合筛选"
@@ -12472,6 +12475,179 @@
         ]
       },
       "id": "deepseek-v4-pro.maimai-group-admin"
+    }
+  },
+  {
+    "id": "maibot-xmpp-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.4",
+      "name": "XMPP_Adapter 适配器",
+      "description": "插件版 XMPP 适配器，提供与 XMPP 服务器的连接功能。",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "homepage": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "documentation": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "issues": "https://github.com/clfr41/MaiBot-XMPP-Adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "slixmpp",
+          "version_spec": ">=1.0.0"
+        }
+      ],
+      "capabilities": [
+        "message_gateway:duplex",
+        "api:adapter.xmpp"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
+      "id": "maibot-xmpp-adapter"
+    }
+  },
+  {
+    "id": "github.xiexiaojia780.date-context-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "日期上下文注入插件",
+      "description": "在每次模型请求前向上下文最顶部注入当前日期、星期、农历、节日与节气，让 bot 始终知道现在是哪天、是否放假调休",
+      "author": {
+        "name": "xiexiaojia780",
+        "url": "https://github.com/xiexiaojia780"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/xiexiaojia780/date_context_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "cnlunar",
+          "version_spec": ">=0.2.4"
+        },
+        {
+          "type": "python_package",
+          "name": "chinese-calendar",
+          "version_spec": ">=1.11.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.xiexiaojia780.date-context-plugin"
+    }
+  },
+  {
+    "id": "github.silencieuxzero.backrooms-escape",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.silencieuxzero.backrooms-escape",
+      "version": "1.0.4",
+      "name": "后室:逃出生天",
+      "description": "扮演M.E.G.CN工作人员，从Level 0出发在后室中寻找出口，不断切入下一个楼层直至Level 399的最终出口",
+      "author": {
+        "name": "Appennino(花束)",
+        "url": "https://github.com/silencieuxzero/backrooms_escape"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/silencieuxzero/backrooms_escape",
+        "homepage": "https://github.com/silencieuxzero/backrooms_escape",
+        "documentation": "https://github.com/silencieuxzero/backrooms_escape",
+        "issues": "https://github.com/silencieuxzero/backrooms_escape/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "command.match",
+        "send.text",
+        "send.forward",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.yueshenqiu.ai-draw-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.1.5",
+      "name": "AI Draw 图片生成插件",
+      "description": "AI 绘图插件。命令前缀 /ad。支持多模型热切换、LLM 提示词生成、画师/风格预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
+      "author": {
+        "name": "三花",
+        "url": "https://github.com/yueshenqiu"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/yueshenqiu/ai_draw_plugin",
+        "homepage": "https://github.com/yueshenqiu/ai_draw_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.0"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.0"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "message.get_recent",
+        "message.get_by_id",
+        "llm.generate",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.yueshenqiu.ai-draw-plugin"
     }
   }
 ]
