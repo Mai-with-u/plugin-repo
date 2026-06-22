@@ -3145,10 +3145,9 @@
     "id": "xuqian13.context_clear_plugin",
     "manifest": {
       "manifest_version": 2,
-      "id": "xuqian13.amnesia_plugin",
-      "version": "1.6.0",
+      "version": "2.0.0",
       "name": "麦麦失忆插件",
-      "description": "让麦麦选择性失忆,忘记之前的对话~ 支持忘记全部/最近/指定时间前的记忆,完全失忆模式支持配置保留个人印象/黑话/统计数据",
+      "description": "让麦麦选择性清理聊天上下文。支持当前聊天全部、最近 N 条、指定时间前清理，并提供默认关闭的完全失忆模式。",
       "author": {
         "name": "靓仔",
         "url": "https://github.com/xuqian13"
@@ -3158,37 +3157,37 @@
         "repository": "https://github.com/xuqian13/context_clear_plugin"
       },
       "host_application": {
-        "min_version": "0.11.0",
-        "max_version": "1.0.0"
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "3.0.0"
+        "max_version": "2.99.99"
       },
-      "capabilities": [],
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "database.count",
+        "database.delete",
+        "database.get",
+        "database.query",
+        "message.get_by_time_in_chat"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
-        "locales": [
-          "zh-CN",
-          "en-US"
+        "supported_locales": [
+          "zh-CN"
         ]
       },
-      "components": {
-        "commands": [
-          {
-            "name": "amnesia",
-            "pattern": "^/(失忆|忘记|断片|amnesia|forget|clear|清除上下文|清空上下文)",
-            "description": "让麦麦失忆忘记对话"
-          }
-        ],
-        "event_handlers": [
-          {
-            "name": "amnesia_confirm_handler",
-            "event_type": "ON_MESSAGE",
-            "description": "监听失忆确认消息"
-          }
-        ]
-      }
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "brain-circuit",
+          "background": "#3B82F6"
+        }
+      },
+      "id": "xuqian13.context-clear"
     }
   },
   {
@@ -8581,7 +8580,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.8.3",
+      "version": "1.8.4",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -8627,6 +8626,7 @@
         "chat.get_all_streams",
         "chat.get_group_streams",
         "chat.get_private_streams",
+        "chat.open_session",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "message.get_recent",
@@ -11838,7 +11838,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.image-recompress",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "智能入站图片重压缩",
       "description": "在入站消息进入处理流程前，把图片组件重压缩为更高效的 WebP（可配置 JPEG/PNG）。支持动图转动态 WebP、仅压缩超大图、目标大小循环压缩等模式，用于替代主程序内置的 JPEG 压缩（需关闭 visual.handle_oversized_images）。",
       "author": {
@@ -12684,7 +12684,8 @@
         }
       },
       "capabilities": [
-        "trigger_proactive"
+        "trigger_proactive",
+        "maisaka.proactive.trigger"
       ],
       "i18n": {
         "default_locale": "zh-CN",
