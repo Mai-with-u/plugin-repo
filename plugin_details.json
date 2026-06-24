@@ -2676,7 +2676,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.5.0",
+      "version": "2.5.2",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -2702,7 +2702,6 @@
       "capabilities": [
         "send.text",
         "send.image",
-        "config.get",
         "api.call",
         "component.reload_plugin"
       ],
@@ -5209,7 +5208,7 @@
           "三种自拍模式(standard/mirror/photo)",
           "SSE流式响应支持",
           "智能参考搜索(内置Bing搜图)",
-          "独���生图接口(generate_image_standalone)"
+          "独立生图接口(generate_image_standalone)"
         ]
       },
       "id": "selfie_painter"
@@ -8126,7 +8125,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.7.1",
+      "version": "0.7.2",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -12358,7 +12357,7 @@
     "manifest": {
       "manifest_version": 2,
       "version": "0.5.0",
-      "name": "Codex CLI QQ 调度器",
+      "name": "麦麦用codex CLI做任务",
       "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Codex CLI，并可通过 NapCat Adapter API 将产物文件直传回当前聊天流；也保留远程 HTTP Agent 模式。",
       "author": {
         "name": "Arcczr",
@@ -12869,6 +12868,141 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "xhstoyea.maibot-reminder",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "xhstoyea.maibot-reminder",
+      "version": "1.0.0",
+      "name": "MaiBot Reminder | 麦麦提醒器",
+      "description": "让 MaiBot 能够在指定时间主动发送提醒消息的秒级定时器插件。",
+      "author": {
+        "name": "xhstoyea",
+        "url": "https://github.com/xhstoyea"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/xhstoyea/maibot-reminder",
+        "homepage": "https://github.com/xhstoyea/maibot-reminder",
+        "documentation": "https://github.com/xhstoyea/maibot-reminder/blob/main/README.md",
+        "issues": "https://github.com/xhstoyea/maibot-reminder/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12.0"
+        }
+      ],
+      "capabilities": [
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "E33EPUS.c-daily-problem",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "id": "E33EPUS.c-daily-problem",
+      "name": "C语言每日一题",
+      "description": "C语言程序阅读题，AI出题+题库兜底，不限次数。指令：/每日一题 /再来一题 /答 /答案 /题解",
+      "author": {
+        "name": "E33EPUS",
+        "url": "https://github.com/E33EPUS"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/E33EPUS/c-daily-problem",
+        "homepage": "https://github.com/E33EPUS/c-daily-problem",
+        "documentation": "https://github.com/E33EPUS/c-daily-problem/blob/main/README.md",
+        "issues": "https://github.com/E33EPUS/c-daily-problem/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "keywords": [
+        "C语言",
+        "编程",
+        "学习",
+        "每日一题",
+        "刷题",
+        "代码阅读"
+      ],
+      "categories": [
+        "教育",
+        "编程学习"
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "persona-iter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "PersonaIter 人设迭代器",
+      "description": "分析聊天记录，追踪人设一致性，生成人设优化建议文件。不自动修改任何配置。",
+      "author": {
+        "name": "RIEZ-ON/clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/mai-persona-iter",
+        "homepage": "https://github.com/clfr41/mai-persona-iter",
+        "documentation": "https://github.com/clfr41/mai-persona-iter",
+        "issues": "https://github.com/clfr41/mai-persona-iter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "command",
+        "tool"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "persona-iter"
     }
   }
 ]
