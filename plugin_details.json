@@ -927,7 +927,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "internetsb.maizone",
-      "version": "3.0.1",
+      "version": "3.0.2",
       "name": "Maizone（麦麦空间）",
       "description": "让麦麦阅读、评论、点赞、发送QQ空间。为插件提供发送说说接口",
       "author": {
@@ -985,7 +985,18 @@
       ],
       "i18n": {
         "default_locale": "zh-CN"
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "package",
+          "background": "#1f2937"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/internetsb.Maizone.webp"
     }
   },
   {
@@ -1415,7 +1426,7 @@
     "id": "whitefox20011120.bilibili_dynamic_push_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.6.1",
+      "version": "2.6.2",
       "name": "B站动态推送",
       "description": "适用于MaiSaka的B站动态订阅与直播状态自动推送插件（旧版请去仓库分支）",
       "author": {
@@ -1477,7 +1488,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xinxinxin0.bilibili-video-sender",
-      "version": "2.0.6",
+      "version": "2.0.7",
       "name": "麦麦发 B 站视频",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
@@ -2665,7 +2676,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.5.0",
+      "version": "2.5.2",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -2691,7 +2702,6 @@
       "capabilities": [
         "send.text",
         "send.image",
-        "config.get",
         "api.call",
         "component.reload_plugin"
       ],
@@ -2869,9 +2879,9 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.6",
+      "version": "2.4.0",
       "name": "群聊静音插件 | GroupMuter Plugin",
-      "description": "一个允许管理员通过聊天命令，让麦麦在指定群聊中临时进入“静音状态”（闭嘴）的群组管理插件。",
+      "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
         "name": "TaiYang",
         "url": "https://github.com/TAIY2020"
@@ -2893,7 +2903,10 @@
       },
       "dependencies": [],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "frequency.get_adjust",
+        "frequency.set_adjust",
+        "chat.get_group_streams"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -3142,10 +3155,9 @@
     "id": "xuqian13.context_clear_plugin",
     "manifest": {
       "manifest_version": 2,
-      "id": "xuqian13.amnesia_plugin",
-      "version": "1.6.0",
+      "version": "2.0.0",
       "name": "麦麦失忆插件",
-      "description": "让麦麦选择性失忆,忘记之前的对话~ 支持忘记全部/最近/指定时间前的记忆,完全失忆模式支持配置保留个人印象/黑话/统计数据",
+      "description": "让麦麦选择性清理聊天上下文。支持当前聊天全部、最近 N 条、指定时间前清理，并提供默认关闭的完全失忆模式。",
       "author": {
         "name": "靓仔",
         "url": "https://github.com/xuqian13"
@@ -3155,37 +3167,37 @@
         "repository": "https://github.com/xuqian13/context_clear_plugin"
       },
       "host_application": {
-        "min_version": "0.11.0",
-        "max_version": "1.0.0"
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "3.0.0"
+        "max_version": "2.99.99"
       },
-      "capabilities": [],
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "database.count",
+        "database.delete",
+        "database.get",
+        "database.query",
+        "message.get_by_time_in_chat"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
-        "locales": [
-          "zh-CN",
-          "en-US"
+        "supported_locales": [
+          "zh-CN"
         ]
       },
-      "components": {
-        "commands": [
-          {
-            "name": "amnesia",
-            "pattern": "^/(失忆|忘记|断片|amnesia|forget|clear|清除上下文|清空上下文)",
-            "description": "让麦麦失忆忘记对话"
-          }
-        ],
-        "event_handlers": [
-          {
-            "name": "amnesia_confirm_handler",
-            "event_type": "ON_MESSAGE",
-            "description": "监听失忆确认消息"
-          }
-        ]
-      }
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "brain-circuit",
+          "background": "#3B82F6"
+        }
+      },
+      "id": "xuqian13.context-clear"
     }
   },
   {
@@ -4166,7 +4178,8 @@
     "manifest": {
       "manifest_version": 2,
       "id": "khiqwq.daily_analysis",
-      "version": "2.2.0",
+      "version": "2.4.0",
+      "plugin_type": "tool",
       "name": "每日分析插件",
       "description": "智能分析 QQ 群聊天记录并生成精美图片总结。支持群聊整体总结、个人总结、智能群友称号、群聊金句、炫压抑评级、24小时活跃轨迹与每日定时自动总结。已适配 MaiBot 1.0 / maibot_sdk 2.x，使用宿主内置 HTML 渲染能力，无需自行安装浏览器依赖。",
       "author": {
@@ -4199,6 +4212,7 @@
         "send.text",
         "send.image",
         "llm.generate",
+        "llm.get_available_models",
         "config.get",
         "message.get_by_time_in_chat",
         "chat.get_group_streams",
@@ -8111,7 +8125,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.6.0",
+      "version": "0.7.2",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8134,7 +8148,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.0"
+        "max_version": "1.0.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -8515,7 +8529,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.7.5",
+      "version": "1.7.6",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -8578,7 +8592,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.7.2",
+      "version": "1.8.4",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -8624,6 +8638,7 @@
         "chat.get_all_streams",
         "chat.get_group_streams",
         "chat.get_private_streams",
+        "chat.open_session",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "message.get_recent",
@@ -8729,7 +8744,7 @@
     "id": "exynos967.telegram-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "Telegram_Adapter",
       "description": "Telegram Bot API adapter plugin for MaiBot",
       "author": {
@@ -9516,7 +9531,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "LowValueTarget.maibot-web-retriever",
-      "version": "0.1.2",
+      "version": "0.1.4",
       "name": "maibot-web-retriever",
       "description": "基于 SearXNG + Crawl4AI 的网页检索插件，为 MaiBot 提供网页搜索与内容抓取能力。搜索-决策-抓取：AI 自主选择感兴趣的网页并抓取全文 Markdown。",
       "author": {
@@ -9534,7 +9549,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
+        "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -9546,7 +9561,8 @@
       ],
       "capabilities": [
         "send.text",
-        "llm.generate"
+        "llm.generate",
+        "llm.tool"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -9976,7 +9992,7 @@
       "name": "今日老婆",
       "description": "随机抽取今日老婆",
       "author": {
-        "name": "whitefox",
+        "name": "白狐",
         "url": "https://github.com/whitefox20011120"
       },
       "license": "MIT",
@@ -10165,7 +10181,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -11625,7 +11641,7 @@
     "manifest": {
       "manifest_version": 2,
       "version": "1.2.0",
-      "name": "怕寂寞的麦麦 (LonelyMai)",
+      "name": "怕寂寞的麦麦 (LonelyMai) sdkv2",
       "description": "让 AI 在群里冷场时主动找话题聊天，基于历史、知识库或预置话题，支持白名单与概率控制",
       "author": {
         "name": "海菜汤 & RIEZ-ON",
@@ -11660,7 +11676,7 @@
           "zh-CN"
         ]
       },
-      "id": "NothingButSeaweedSoup.LonelyMai"
+      "id": "NothingButSeaweedSoup.LonelyMai-sdkv2"
     }
   },
   {
@@ -11835,7 +11851,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.image-recompress",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "智能入站图片重压缩",
       "description": "在入站消息进入处理流程前，把图片组件重压缩为更高效的 WebP（可配置 JPEG/PNG）。支持动图转动态 WebP、仅压缩超大图、目标大小循环压缩等模式，用于替代主程序内置的 JPEG 压缩（需关闭 visual.handle_oversized_images）。",
       "author": {
@@ -12172,7 +12188,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -12282,6 +12298,699 @@
     },
     "assets": {
       "icon_64": "icons/1m.nightmare.webp"
+    }
+  },
+  {
+    "id": "github.kuuri-krtt.mai_tarots",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.kuuri-krtt.mai_tarots",
+      "version": "1.0.2",
+      "name": "麦麦塔罗",
+      "description": "提供本地塔罗占卜功能，支持多种牌阵、牌面图片发送、AI 解读和语境化延伸评论。",
+      "author": {
+        "name": "kuuri-krtt",
+        "url": "https://github.com/kuuri-krtt"
+      },
+      "license": "AGPL-v3.0",
+      "urls": {
+        "repository": "https://github.com/kuuri-krtt/Mai_tarots/",
+        "homepage": "https://github.com/kuuri-krtt/",
+        "documentation": "https://github.com/kuuri-krtt/Mai_tarots/#readme",
+        "issues": "https://github.com/kuuri-krtt/Mai_tarots/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.5",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "./icon.png",
+          "fallback": "puzzle"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.kuuri-krtt.mai_tarots.webp"
+    }
+  },
+  {
+    "id": "arcczr.remote-codex-agent",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "麦麦用codex CLI做任务",
+      "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Codex CLI，支持 NapCat 文件直传，并适配 SnowLuma 的 NapCat 兼容消息 API；也保留远程 HTTP Agent 模式。",
+      "author": {
+        "name": "Arcczr",
+        "url": "https://github.com/Arcczr"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Arcczr/maibot-codex-plugin",
+        "homepage": "https://github.com/Arcczr/maibot-codex-plugin",
+        "documentation": "https://github.com/Arcczr/maibot-codex-plugin#readme",
+        "issues": "https://github.com/Arcczr/maibot-codex-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "terminal",
+          "fallback": "bot"
+        }
+      },
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "send.custom",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "arcczr.remote-codex-agent"
+    }
+  },
+  {
+    "id": "github.pan-ice.plugins-feed-bot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.pan-ice.plugins-feed-bot",
+      "version": "1.0.1",
+      "name": "投喂插件",
+      "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、群管理员授权、按群隔离数据。",
+      "author": {
+        "name": "磐冰",
+        "url": "https://github.com/pan-ice"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/pan-ice/feed-bot",
+        "homepage": "https://github.com/pan-ice/feed-bot",
+        "documentation": "https://github.com/pan-ice/feed-bot/blob/main/README.md",
+        "issues": "https://github.com/pan-ice/feed-bot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "chat.get_group_streams",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.maimai-group-admin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "群管理助手",
+      "description": "LLM自主群管理插件 — 18个管理工具+15条快捷命令，支持禁言/踢人/设精华/公告/审批入群等，含8步安全校验护栏，按群独立配置。",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "send.hybrid"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.maimai-group-admin"
+    }
+  },
+  {
+    "id": "maibot-xmpp-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.5",
+      "name": "XMPP_Adapter 适配器",
+      "description": "插件版 XMPP 适配器，提供与 XMPP 服务器的连接功能。",
+      "author": {
+        "name": "clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "homepage": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "documentation": "https://github.com/clfr41/MaiBot-XMPP-Adapter",
+        "issues": "https://github.com/clfr41/MaiBot-XMPP-Adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "slixmpp",
+          "version_spec": ">=1.0.0"
+        }
+      ],
+      "capabilities": [
+        "message_gateway:duplex",
+        "api:adapter.xmpp"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
+      "id": "maibot-xmpp-adapter"
+    }
+  },
+  {
+    "id": "github.xiexiaojia780.date-context-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.0",
+      "name": "日期上下文注入插件",
+      "description": "在每次模型请求前向上下文最顶部注入当前日期、星期、农历、节日与节气，让 bot 始终知道现在是哪天、是否放假调休",
+      "author": {
+        "name": "xiexiaojia780",
+        "url": "https://github.com/xiexiaojia780"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/xiexiaojia780/date_context_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "cnlunar",
+          "version_spec": ">=0.2.4"
+        },
+        {
+          "type": "python_package",
+          "name": "chinese-calendar",
+          "version_spec": ">=1.11.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.xiexiaojia780.date-context-plugin"
+    }
+  },
+  {
+    "id": "github.silencieuxzero.backrooms-escape",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.silencieuxzero.backrooms-escape",
+      "version": "1.0.9",
+      "name": "后室:逃出生天",
+      "description": "扮演M.E.G.CN工作人员，从Level 0出发在后室中寻找出口，不断切入下一个楼层直至Level 399的最终出口",
+      "author": {
+        "name": "Appennino(花束)",
+        "url": "https://github.com/silencieuxzero/backrooms_escape"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/silencieuxzero/backrooms_escape",
+        "homepage": "https://github.com/silencieuxzero/backrooms_escape",
+        "documentation": "https://github.com/silencieuxzero/backrooms_escape",
+        "issues": "https://github.com/silencieuxzero/backrooms_escape/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "command.match",
+        "send.text",
+        "send.forward",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.yueshenqiu.ai-draw-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.1.6",
+      "name": "AI Draw 图片生成插件",
+      "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、画师/风格预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
+      "author": {
+        "name": "三花",
+        "url": "https://github.com/yueshenqiu"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/yueshenqiu/ai_draw_plugin",
+        "homepage": "https://github.com/yueshenqiu/ai_draw_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.0"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.0"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "message.get_recent",
+        "message.get_by_id",
+        "llm.generate",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.yueshenqiu.ai-draw-plugin"
+    }
+  },
+  {
+    "id": "org.maibot.private-humanizer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.maibot.private-humanizer",
+      "version": "0.1.0",
+      "name": "麦麦私聊拟人化增强",
+      "description": "为指定 MaiBot 私聊注入时间感、对象画像和事实边界，减少无证据编造与过度小说化回复。",
+      "author": {
+        "name": "Fucarlosm",
+        "url": "https://github.com/Fucarlosm"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Fucarlosm/private-humanizer",
+        "documentation": "https://github.com/Fucarlosm/private-humanizer#readme"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "shield-check"
+        }
+      },
+      "capabilities": [
+        "trigger_proactive",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "attention-seeker-mai",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "想要引起注意的麦麦",
+      "description": "冷场时通过 Maisaka Planner 主动找话题，基于人格、记忆、上下文自行决定是否回复",
+      "author": {
+        "name": "RIEZ-ON/clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/attention-seeker-mai",
+        "homepage": "https://github.com/clfr41/attention-seeker-mai",
+        "issues": "https://github.com/clfr41/attention-seeker-mai/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_by_time_in_chat",
+        "config.get",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "attention-seeker-mai"
+    }
+  },
+  {
+    "id": "mai-timefree",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mai-timefree",
+      "version": "0.1.0",
+      "name": "mai-timefree",
+      "description": "为 planner 提供定时调度能力，支持 relative/absolute/interval/chain 四种模式，多级触发前判定（冷却/活跃/频控），所有行为可配置(无限麦麦)。",
+      "author": {
+        "name": "RIEZ-ON/clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "AGPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/mai-timefree",
+        "homepage": "https://github.com/clfr41/mai-timefree",
+        "documentation": "https://github.com/clfr41/mai-timefree",
+        "issues": "https://github.com/clfr41/mai-timefree/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text",
+        "maisaka.proactive.trigger",
+        "logger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "juzi865.emoji2face",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "juzi865.emoji2face",
+      "version": "1.0.0",
+      "name": "Emoji 转 QQ 表情",
+      "description": "将 Unicode emoji 自动转换为 QQ 自定义表情（face 类型），让 bot 发的表情更贴近 QQ 原生体验。",
+      "author": {
+        "name": "juzi865",
+        "url": "https://github.com/juzi865"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/juzi865/emoji2face",
+        "homepage": "https://github.com/juzi865/emoji2face"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "hook.send_service.before_send"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "juzi865.uno-game-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "juzi865.uno-game-plugin",
+      "version": "1.0.0",
+      "name": "UNO 小游戏",
+      "description": "支持群聊和私聊的 UNO 牌插件，Bot 可参与对局，同时提供 API 供 EXE/APK 客户端接入。",
+      "author": {
+        "name": "juzi865",
+        "url": "https://github.com/juzi865"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/juzi865/uno-game-plugin",
+        "homepage": "https://github.com/juzi865/uno-game-plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "llm.generate",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "xhstoyea.maibot-reminder",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "xhstoyea.maibot-reminder",
+      "version": "1.0.0",
+      "name": "MaiBot Reminder | 麦麦提醒器",
+      "description": "让 MaiBot 能够在指定时间主动发送提醒消息的秒级定时器插件。",
+      "author": {
+        "name": "xhstoyea",
+        "url": "https://github.com/xhstoyea"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/xhstoyea/maibot-reminder",
+        "homepage": "https://github.com/xhstoyea/maibot-reminder",
+        "documentation": "https://github.com/xhstoyea/maibot-reminder/blob/main/README.md",
+        "issues": "https://github.com/xhstoyea/maibot-reminder/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12.0"
+        }
+      ],
+      "capabilities": [
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "E33EPUS.c-daily-problem",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "id": "E33EPUS.c-daily-problem",
+      "name": "C语言每日一题",
+      "description": "C语言程序阅读题，AI出题+题库兜底，不限次数。指令：/每日一题 /再来一题 /答 /答案 /题解",
+      "author": {
+        "name": "E33EPUS",
+        "url": "https://github.com/E33EPUS"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/E33EPUS/c-daily-problem",
+        "homepage": "https://github.com/E33EPUS/c-daily-problem",
+        "documentation": "https://github.com/E33EPUS/c-daily-problem/blob/main/README.md",
+        "issues": "https://github.com/E33EPUS/c-daily-problem/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "persona-iter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "PersonaIter 人设迭代器",
+      "description": "分析聊天记录，追踪人设一致性，生成人设优化建议文件。不自动修改任何配置。",
+      "author": {
+        "name": "RIEZ-ON/clfr41",
+        "url": "https://github.com/clfr41"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/clfr41/mai-persona-iter",
+        "homepage": "https://github.com/clfr41/mai-persona-iter",
+        "documentation": "https://github.com/clfr41/mai-persona-iter",
+        "issues": "https://github.com/clfr41/mai-persona-iter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.0.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "command",
+        "tool"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "persona-iter"
     }
   }
 ]
