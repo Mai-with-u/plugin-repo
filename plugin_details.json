@@ -1488,7 +1488,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xinxinxin0.bilibili-video-sender",
-      "version": "2.0.6",
+      "version": "2.0.7",
       "name": "麦麦发 B 站视频",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
@@ -5208,7 +5208,7 @@
           "三种自拍模式(standard/mirror/photo)",
           "SSE流式响应支持",
           "智能参考搜索(内置Bing搜图)",
-          "独立生图接口(generate_image_standalone)"
+          "独���生图接口(generate_image_standalone)"
         ]
       },
       "id": "selfie_painter"
@@ -8744,7 +8744,7 @@
     "id": "exynos967.telegram-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "Telegram_Adapter",
       "description": "Telegram Bot API adapter plugin for MaiBot",
       "author": {
@@ -12188,7 +12188,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -12356,9 +12356,9 @@
     "id": "arcczr.remote-codex-agent",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.0",
+      "version": "1.0.0",
       "name": "麦麦用codex CLI做任务",
-      "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Codex CLI，并可通过 NapCat Adapter API 将产物文件直传回当前聊天流；也保留远程 HTTP Agent 模式。",
+      "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Codex CLI，支持 NapCat 文件直传，并适配 SnowLuma 的 NapCat 兼容消息 API；也保留远程 HTTP Agent 模式。",
       "author": {
         "name": "Arcczr",
         "url": "https://github.com/Arcczr"
@@ -12454,9 +12454,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "群管理助手",
-      "description": "LLM自主群管理插件 — 18个管理工具+15条快捷命令，支持禁言/踢人/设精华/公告/审批入群等，含8步安全校验护栏，按群独立配置",
+      "description": "LLM自主群管理插件 — 18个管理工具+15条快捷命令，支持禁言/踢人/设精华/公告/审批入群等，含8步安全校验护栏，按群独立配置。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12478,8 +12478,7 @@
       "capabilities": [
         "api.call",
         "send.text",
-        "send.hybrid",
-        "maisaka.context.append"
+        "send.hybrid"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -12943,20 +12942,9 @@
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "keywords": [
-        "C语言",
-        "编程",
-        "学习",
-        "每日一题",
-        "刷题",
-        "代码阅读"
-      ],
-      "categories": [
-        "教育",
-        "编程学习"
-      ],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
