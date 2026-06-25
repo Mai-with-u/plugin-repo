@@ -8046,7 +8046,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -8062,7 +8062,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.0"
+        "max_version": "1.0.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -8936,23 +8936,13 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.0"
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.99.0"
+        "max_version": "2.99.99"
       },
       "dependencies": [
-        {
-          "type": "python_package",
-          "name": "python-docx",
-          "version_spec": ">=1.1.2"
-        },
-        {
-          "type": "python_package",
-          "name": "pypdf",
-          "version_spec": ">=5.0.0"
-        },
         {
           "type": "python_package",
           "name": "PyYAML",
@@ -12991,6 +12981,113 @@
         ]
       },
       "id": "persona-iter"
+    }
+  },
+  {
+    "id": "github.pan-ice.music",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.pan-ice.music",
+      "version": "1.1.0",
+      "name": "音乐插件",
+      "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
+      "author": {
+        "name": "磐冰",
+        "url": "https://github.com/pan-ice"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/pan-ice/maibot-music",
+        "issues": "https://github.com/pan-ice/maibot-music/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=42.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.0-hz.maibook",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.maibook",
+      "version": "0.1.0",
+      "name": "麦书 (MaiBook)",
+      "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibook-plugin",
+        "homepage": "https://github.com/yufei-pan/maibook-plugin",
+        "documentation": "https://github.com/yufei-pan/maibook-plugin/blob/master/README.md",
+        "issues": "https://github.com/yufei-pan/maibook-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomli",
+          "version_spec": ">=2.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tomli-w",
+          "version_spec": ">=1.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "send.text",
+        "send.image",
+        "render.html2png",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
     }
   }
 ]
