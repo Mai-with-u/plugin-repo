@@ -8546,7 +8546,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.8.4",
+      "version": "1.8.5",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -11461,9 +11461,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.1.9",
+      "version": "0.3.3",
       "name": "塑料内存条 (Plastic Memory)",
-      "description": "为麦麦提供可自行管理的便利贴笔记（全局 my_memory.md 与按聊天流隔离的 chat_notes），并在 planner / 时机判断 / replyer 请求中注入笔记内容与剩余空间，供麦麦随时给自己留言备忘。",
+      "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
         "name": "kes",
         "url": "https://github.com/yufei-pan"
@@ -12401,9 +12401,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.0",
+      "version": "1.4.0",
       "name": "群管理助手",
-      "description": "群管理助手 v1.3 — 18个管理工具+15条快捷命令。via before_model_request 直注管理提示词到 LLM 每次思考，自动审核/禁言/踢人/精华/公告/审批入群真正可用。",
+      "description": "群管理助手 v1.4 — 18个管理工具+15条快捷命令+4个HookHandler。按群注入管理提示词，精确获取各群bot角色，自动审核/禁言/踢人/精华/公告/审批入群。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
