@@ -3254,76 +3254,6 @@
     }
   },
   {
-    "id": "magisk317.MaiMBot_LiteratureFeeder",
-    "manifest": {
-      "manifest_version": 1,
-      "package": "maimbot_literature_feeder",
-      "name": "MaiMBot Literature Feeder",
-      "version": "0.4.1",
-      "description": "聚合最新学术文献并向指定会话推送摘要的完整插件。",
-      "author": {
-        "name": "MaiMBot Community",
-        "url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.11.0"
-      },
-      "homepage_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
-      "repository_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
-      "documentation_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder#readme",
-      "issues_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder/issues",
-      "keywords": [
-        "literature",
-        "academic",
-        "rss",
-        "scheduler"
-      ],
-      "categories": [
-        "Knowledge",
-        "Automation"
-      ],
-      "default_locale": "zh-CN",
-      "entry_module": "plugin",
-      "entry_class": "LiteratureFeederPlugin",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "integration",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "literature_scheduler",
-            "description": "启动文献推送定时器"
-          },
-          {
-            "type": "command",
-            "name": "literature_preview",
-            "description": "预览当前配置下的文献推送计划",
-            "pattern": "/lit preview"
-          },
-          {
-            "type": "command",
-            "name": "literature_force_dispatch",
-            "description": "强制触发一次文献推送（忽略去重）",
-            "pattern": "/lit force"
-          },
-          {
-            "type": "command",
-            "name": "literature_search",
-            "description": "根据关键词搜索指定来源的最新文献",
-            "pattern": "/lit search"
-          }
-        ],
-        "features": [
-          "可配置的学术来源列表",
-          "可插拔的LLM摘要策略",
-          "定时推送调度框架（间隔模式与定时模式）",
-          "手动预览、搜索与强制推送命令"
-        ]
-      }
-    }
-  },
-  {
     "id": "XXXxx7258.nbnhhsh_translate_plugin",
     "manifest": {
       "manifest_version": 1,
@@ -12607,6 +12537,51 @@
         ]
       },
       "id": "github.yueshenqiu.ai-draw-plugin"
+    }
+  },
+  {
+    "id": "org.maibot.private-humanizer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.maibot.private-humanizer",
+      "version": "0.1.0",
+      "name": "麦麦私聊拟人化增强",
+      "description": "为指定 MaiBot 私聊注入时间感、对象画像和事实边界，减少无证据编造与过度小说化回复。",
+      "author": {
+        "name": "Fucarlosm",
+        "url": "https://github.com/Fucarlosm"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Fucarlosm/private-humanizer",
+        "documentation": "https://github.com/Fucarlosm/private-humanizer#readme"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "shield-check"
+        }
+      },
+      "capabilities": [
+        "trigger_proactive",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   },
   {
