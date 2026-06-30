@@ -1488,7 +1488,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xinxinxin0.bilibili-video-sender",
-      "version": "2.0.8",
+      "version": "2.0.9",
       "name": "麦麦发 B 站视频",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
@@ -8476,7 +8476,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.8.5",
+      "version": "1.8.6",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -10145,7 +10145,11 @@
         }
       ],
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   },
@@ -11767,7 +11771,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibot-corpus-callosum",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "神经闭环反馈",
       "description": "给 replyer 一条内部再审通道：当回复器认为规划器的回复请求与聊天流严重不符时，可驳回发送并要求规划器重新思考，再审理由经内部上下文注入回规划器思考循环，全程聊天对象不可见。",
       "author": {
@@ -12331,9 +12335,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "群管理助手",
-      "description": "群管理助手 v1.4 — 18个管理工具+15条快捷命令+4个HookHandler。按群注入管理提示词，精确获取各群bot角色，自动审核/禁言/踢人/精华/公告/审批入群。",
+      "description": "群管理助手 v1.5 — 18个管理工具+15条快捷命令+4个HookHandler。按群注入管理提示词，8步安全护栏，缓存TTL/跨群隔离/内存清理/竞态加锁全面修复。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12543,18 +12547,18 @@
     "id": "org.maibot.private-humanizer",
     "manifest": {
       "manifest_version": 2,
-      "id": "org.maibot.private-humanizer",
-      "version": "0.1.0",
-      "name": "麦麦私聊拟人化增强",
-      "description": "为指定 MaiBot 私聊注入时间感、对象画像和事实边界，减少无证据编造与过度小说化回复。",
+      "id": "local.private-humanizer-merged",
+      "version": "1.0.0",
+      "name": "麦麦私聊拟人化增强（合并版）",
+      "description": "合并本地私聊画像配置与写作优化版提示词。增强私聊真实感：注入时间感与对象画像，守卫回复防止无证据编造、纪念日猜测与小说化回复，拦截可疑记忆写入，支持智能主动续话。",
       "author": {
-        "name": "Fucarlosm",
-        "url": "https://github.com/Fucarlosm"
+        "name": "Fucarlosm / DeepSeek-V4-Pro / local merge",
+        "url": ""
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Fucarlosm/private-humanizer",
-        "documentation": "https://github.com/Fucarlosm/private-humanizer#readme"
+        "repository": "",
+        "homepage": ""
       },
       "host_application": {
         "min_version": "1.0.0",
@@ -12573,7 +12577,6 @@
         }
       },
       "capabilities": [
-        "trigger_proactive",
         "maisaka.proactive.trigger"
       ],
       "i18n": {
@@ -12875,7 +12878,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.music",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "音乐插件",
       "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
       "author": {
@@ -13017,6 +13020,135 @@
         ]
       },
       "id": "imai.telegram-adapter-plus"
+    }
+  },
+  {
+    "id": "com.maibot.minecraft-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.maibot.minecraft-adapter",
+      "version": "1.0.0",
+      "name": "Minecraft 适配器",
+      "description": "通过 WebSocket 连接 Minecraft 服务器，支持 AI 执行 MC 命令和双向聊天同步",
+      "author": {
+        "name": "TGBUG",
+        "url": "https://github.com/TGBUG"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter",
+        "homepage": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter",
+        "documentation": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter/blob/main/README.md",
+        "issues": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "route_message",
+        "gateway_state"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot-community.mai-love",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-community.mai-love",
+      "name": "麦麦恋人",
+      "version": "2.0.0",
+      "description": "私聊专用虚拟恋人插件，会主动找你聊天。基于麦麦的独立日程生活，通过 planner 自主决策什么时候说话、说什么，配合好感度系统调节语气温度",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy/Mai_love"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/Mai_love",
+        "homepage": "https://github.com/octmicy/Mai_love",
+        "documentation": "https://docs.mai-mai.org"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text",
+        "chat.get_stream_by_user_id",
+        "chat.get_private_streams",
+        "llm.generate",
+        "maisaka.proactive.trigger",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.private-humanizer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "deepseek-v4-pro.private-humanizer",
+      "version": "1.0.0",
+      "name": "麦麦私聊拟人化增强（深度优化版）",
+      "description": "基于 Fucarlosm/private-humanizer 深度优化。增强私聊真实感：注入时间感与对象画像，守卫回复防止无证据编造、纪念日猜测与小说化回复，拦截可疑记忆写入，支持智能主动续话。提示词全面重写，配置重置为安全默认值。",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/private-humanizer",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/private-humanizer"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "shield-check"
+        }
+      },
+      "capabilities": [
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
