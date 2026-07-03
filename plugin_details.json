@@ -8008,7 +8008,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.0",
+      "version": "0.8.1",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8628,7 +8628,7 @@
     "id": "exynos967.telegram-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.0",
+      "version": "1.3.0",
       "name": "Telegram_Adapter",
       "description": "Telegram Bot API adapter plugin for MaiBot",
       "author": {
@@ -12336,9 +12336,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.5.0",
+      "version": "2.0.0",
       "name": "群管理助手",
-      "description": "群管理助手 v1.5 — 18个管理工具+15条快捷命令+4个HookHandler。按群注入管理提示词，8步安全护栏，缓存TTL/跨群隔离/内存清理/竞态加锁全面修复。",
+      "description": "群管理助手 v2.0 — 18个管理工具+15条快捷命令+5个HookHandler(Replyer双路+Planner注入+守门+缓存)。多文件模块化架构，Planner/Replyer双阶段提示词注入，角色感知中文化提示词。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12507,9 +12507,9 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.0",
+      "version": "2.3.1",
       "name": "AI Draw 图片生成插件",
-      "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、画师/风格预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
+      "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
         "name": "三花",
         "url": "https://github.com/yueshenqiu"
@@ -13150,6 +13150,235 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "davidblackcn.maibot-message-react-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "davidblackcn.maibot-message-react-plugin",
+      "version": "2.1.1",
+      "name": "maibot-message-react-plugin - 麦麦贴表情",
+      "description": "通过 Napcat API 赋予麦麦对消息贴表情的能力，LLM 自动选择合适的表情对群聊消息做出反应",
+      "author": {
+        "name": "DavidBlackCN",
+        "url": "https://github.com/DavidBlackCN"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DavidBlackCN/maibot-message-react-plugin",
+        "homepage": "https://github.com/DavidBlackCN/maibot-message-react-plugin",
+        "issues": "https://github.com/DavidBlackCN/maibot-message-react-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "💖",
+          "background": "#7a617f"
+        }
+      },
+      "capabilities": [
+        "llm.generate",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "ling.group-request-handler",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ling.group-request-handler",
+      "version": "1.1.0",
+      "name": "群聊申请处理",
+      "description": "监听群聊邀请，管理员审核 + 白名单管理 + 群列表查询",
+      "author": {
+        "name": "ling",
+        "url": "https://github.com/Ling-LA"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-LA/group-request-handler",
+        "homepage": "https://github.com/Ling-LA/group-request-handler",
+        "documentation": "https://github.com/Ling-LA/group-request-handler/blob/main/README.md",
+        "issues": "https://github.com/Ling-LA/group-request-handler/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "qr0w.maiclaude",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "麦可当劳(MaicLaude):Maibot Using Claude Code CLI",
+      "description": "通过 QQ 命令在 MaiBot 所在服务器上运行 Claude Code CLI。支持本机任务执行、实时进度转发、NapCat 文件直传与输入。基于 Arcczr/maibot-codex-plugin (MIT) 改造。",
+      "author": {
+        "name": "QR-0W",
+        "url": "https://github.com/QR-0W"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/QR-0W/maibot-maiclaude-plugin",
+        "homepage": "https://github.com/QR-0W/maibot-maiclaude-plugin",
+        "documentation": "https://github.com/QR-0W/maibot-maiclaude-plugin#readme",
+        "issues": "https://github.com/QR-0W/maibot-maiclaude-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.svg",
+          "fallback": "terminal"
+        }
+      },
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "send.custom",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "qr0w.maiclaude"
+    },
+    "assets": {
+      "icon_64": "icons/qr0w.maiclaude.webp"
+    }
+  },
+  {
+    "id": "chuanchuan744.arcade-occupancy",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "chuanchuan744.arcade-occupancy",
+      "version": "0.1.0",
+      "name": "机厅人数登记",
+      "description": "登记和查询群聊内多个机厅的当前排卡人数，支持群聊白名单、用户黑名单、营业时间、限速、管理员清空和自定义回复模板。",
+      "author": {
+        "name": "chuanchuan",
+        "url": "https://github.com/chuanchuan744"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/chuanchuan744/maibot-arcade-occupancy",
+        "homepage": "https://github.com/chuanchuan744/maibot-arcade-occupancy",
+        "documentation": "https://github.com/chuanchuan744/maibot-arcade-occupancy#readme"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send.text",
+        "logger.info",
+        "paths.data_dir"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.changingself.maibot-nga-thread-reader-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "NGA帖子阅读器插件 (NGA Thread Reader Plugin)",
+      "description": "读取和解析NGA论坛帖子内容，提供结构化的帖子信息，支持HTML清理和登录凭证配置",
+      "author": {
+        "name": "憧憬少",
+        "url": "https://github.com/ChangingSelf"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ChangingSelf/maibot-nga-thread-reader-plugin",
+        "homepage": "https://github.com/ChangingSelf/maibot-nga-thread-reader-plugin",
+        "documentation": "https://github.com/ChangingSelf/maibot-nga-thread-reader-plugin/README.md",
+        "issues": "https://github.com/ChangingSelf/maibot-nga-thread-reader-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.changingself.maibot-nga-thread-reader-plugin"
     }
   }
 ]
