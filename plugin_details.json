@@ -2171,50 +2171,34 @@
   {
     "id": "Heximiao.repeat_plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "repeat_plugin",
-      "display_name": "复读插件",
-      "version": "1.1.0",
-      "description": "一个简单的复读插件(和上面的复读插件不一样，无需更改代码)，可以检测群聊中连续重复的消息并自动进行复读，为群聊增添乐趣。",
+      "manifest_version": 2,
+      "id": "com.hexing.repeat-plugin",
+      "version": "2.0.0",
+      "name": "复读插件",
+      "description": "检测群聊中连续重复的消息并自动进行复读，为群聊增添乐趣。",
       "author": {
         "name": "何夕",
-        "url": "https://github.com/Heximiao/repeat_plugin",
-        "email": "lcy1416603026@gmail.com"
+        "url": "https://github.com/Heximiao/repeat_plugin"
       },
       "license": "MIT",
-      "host_application": {
-        "min_version": "0.10.1"
+      "urls": {
+        "repository": "https://github.com/Heximiao/repeat_plugin"
       },
-      "entry": "plugin.py",
-      "homepage_url": "https://github.com/Heximiao/repeat_plugin",
-      "repository_url": "https://github.com/Heximiao/repeat_plugin",
-      "keywords": [
-        "repeat",
-        "maimai",
-        "复读",
-        "梗",
-        "插件"
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "3.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
       ],
-      "categories": [
-        "Fun",
-        "Interaction"
-      ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "chat",
-        "components": [
-          {
-            "type": "handler",
-            "name": "RepeatHandler",
-            "description": "复读处理器，用于检测群聊中的连续重复消息并进行复读。"
-          }
-        ],
-        "features": [
-          "复读",
-          "自动互动"
-        ]
+      "i18n": {
+        "default_locale": "zh-CN"
       }
     }
   },
@@ -8002,7 +7986,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.1",
+      "version": "0.8.2",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8024,11 +8008,11 @@
         }
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.0.6",
         "max_version": "1.0.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.5.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -9913,9 +9897,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.claw.pixiv-crawler",
-      "version": "3.2.3",
+      "version": "4.1.0",
       "name": "麦麦!来点二次元图片!",
-      "description": "基于 Lolicon API 的二次元随机图片插件。支持多标签组合搜索、定时/手动爬取、年龄分级、AI排除、@触发。无需 Pixiv 账号。",
+      "description": "基于 cnmiw.com (MirlKoi API) 的随机二次元图片插件。支持色图/无色图随机发图、群聊私聊黑白名单、@触发、冷却防刷、近期去重。原图直发不压缩，无需 Pixiv 账号。",
       "author": {
         "name": "octmicy",
         "url": "https://github.com/octmicy"
@@ -9940,11 +9924,6 @@
           "type": "python_package",
           "name": "httpx",
           "version_spec": ">=0.24.0"
-        },
-        {
-          "type": "python_package",
-          "name": "Pillow",
-          "version_spec": ">=10.0.0"
         }
       ],
       "capabilities": [
@@ -12330,9 +12309,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.1.0",
       "name": "群管理助手",
-      "description": "群管理助手 v2.0 — 18个管理工具+15条快捷命令+5个HookHandler(Replyer双路+Planner注入+守门+缓存)。多文件模块化架构，Planner/Replyer双阶段提示词注入，角色感知中文化提示词。",
+      "description": "群管理助手 v2.1 — 18个管理工具+15条快捷命令+5个HookHandler(Replyer双路+Planner注入+守门+缓存)。多文件模块化架构，Planner/Replyer双阶段提示词注入，角色感知中文化提示词。命令签名修复+配置持久化。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12350,7 +12329,13 @@
         "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.11.0"
+        }
+      ],
       "capabilities": [
         "api.call",
         "send.text",
@@ -12501,7 +12486,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.1",
+      "version": "2.3.2",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
