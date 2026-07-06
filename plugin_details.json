@@ -5953,7 +5953,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID ��表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -10028,7 +10028,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.0.6",
+      "version": "1.1.0",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -10053,6 +10053,8 @@
       "dependencies": [],
       "capabilities": [
         "send.text",
+        "send.image",
+        "render.html2png",
         "llm.generate"
       ],
       "i18n": {
@@ -12486,7 +12488,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.2",
+      "version": "2.3.3",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
