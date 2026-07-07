@@ -5953,7 +5953,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID ��表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -13354,6 +13354,105 @@
           "en-US"
         ]
       }
+    }
+  },
+  {
+    "id": "davidblackcn.maibot-expenses-summary-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "davidblackcn.maibot-expenses-summary-plugin",
+      "name": "麦麦财务总结插件",
+      "version": "1.0.2",
+      "description": "统计当天模型调用次数和花费，并以默认或麦晨风模式生成转发消息财报。",
+      "author": {
+        "name": "DavidBlackCN",
+        "url": "https://github.com/DavidBlackCN"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "urls": {
+        "homepage": "https://github.com/DavidBlackCN/maibot-expenses-summary-plugin",
+        "repository": "https://github.com/DavidBlackCN/maibot-expenses-summary-plugin"
+      },
+      "capabilities": [
+        "send.forward",
+        "send.text",
+        "send.image",
+        "chat",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "render.html2png",
+        "llm.generate",
+        "statistics.local.models",
+        "statistics.local.model_trend",
+        "statistics.local.message_trend"
+      ],
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "💸"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.Group-chat-automatically-opens",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "群聊定时打卡",
+      "description": "自动在指定时间对配置的群聊执行打卡操作的MaiBot插件",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/Group-chat-automatically-opens",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/Group-chat-automatically-opens"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "name": "aiohttp",
+          "version": ">=3.8.0",
+          "reason": "发送打卡API请求"
+        },
+        {
+          "name": "tomlkit",
+          "version": ">=0.11.0",
+          "reason": "读写config.toml配置文件"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.Group-chat-automatically-opens"
     }
   }
 ]
