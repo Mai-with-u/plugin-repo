@@ -5953,7 +5953,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -8454,7 +8454,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.8.8",
+      "version": "1.9.0",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -12488,7 +12488,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.3",
+      "version": "2.3.4",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
@@ -13453,6 +13453,48 @@
         ]
       },
       "id": "deepseek-v4-pro.Group-chat-automatically-opens"
+    }
+  },
+  {
+    "id": "ling.avatar-meme",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "3.4.0",
+      "name": "QQ头像表情包 | Avatar Meme",
+      "description": "输入QQ号或@某人，用其头像制作精神小伙、我太难了、暗中观察等搞笑表情包。",
+      "author": {
+        "name": "Ling-LA",
+        "url": "https://github.com/Ling-LA"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-LA/maibot-avatar-meme",
+        "homepage": "https://github.com/Ling-LA/maibot-avatar-meme",
+        "documentation": "https://github.com/Ling-LA/maibot-avatar-meme",
+        "issues": "https://github.com/Ling-LA/maibot-avatar-meme/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "ling.avatar-meme"
     }
   }
 ]
