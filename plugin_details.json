@@ -235,95 +235,6 @@
     }
   },
   {
-    "id": "TT-P607.MaiMbot-Pixiv-Setu-Plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "pixiv_setu_plugin",
-      "version": "1.0.0",
-      "description": "根据关键词或随机从Lolicon API获取P站图片",
-      "author": {
-        "name": "言柒和他的师傅一闪^ω^",
-        "url": "https://github.com/tt-P607"
-      },
-      "homepage_url": "https://github.com/tt-P607/MaiMbot-Pixiv-Setu-Plugin",
-      "repository_url": "https://github.com/tt-P607/MaiMbot-Pixiv-Setu-Plugin",
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.8.0",
-        "max_version": "0.8.0"
-      },
-      "keywords": [
-        "pixiv",
-        "setu",
-        "图片",
-        "Lolicon API"
-      ],
-      "categories": [
-        "娱乐",
-        "图片",
-        "API"
-      ],
-      "config_file_name": "config.toml",
-      "config_section_descriptions": {
-        "plugin": "插件基本配置",
-        "components": "组件启用控制",
-        "cache": "缓存相关配置",
-        "logging": "日志记录配置"
-      },
-      "config_schema": {
-        "plugin": {
-          "config_version": {
-            "type": "str",
-            "default": "1.0.0",
-            "description": "插件配置文件版本号"
-          },
-          "enabled": {
-            "type": "bool",
-            "default": true,
-            "description": "是否启用插件"
-          }
-        },
-        "components": {
-          "enable_pixiv_setu": {
-            "type": "bool",
-            "default": true,
-            "description": "是否启用P站发图功能"
-          }
-        },
-        "cache": {
-          "expire_seconds": {
-            "type": "int",
-            "default": 7200,
-            "description": "缓存有效期(秒)"
-          },
-          "max_image_size": {
-            "type": "int",
-            "default": 1048576,
-            "description": "图片最大字节数(默认1MB)"
-          }
-        },
-        "logging": {
-          "level": {
-            "type": "str",
-            "default": "INFO",
-            "description": "日志级别",
-            "choices": [
-              "DEBUG",
-              "INFO",
-              "WARNING",
-              "ERROR"
-            ]
-          },
-          "prefix": {
-            "type": "str",
-            "default": "[PixivSetu]",
-            "description": "日志前缀"
-          }
-        }
-      }
-    }
-  },
-  {
     "id": "ZmasCloud.bingsearch",
     "manifest": {
       "manifest_version": 1,
@@ -339,40 +250,6 @@
         "min_version": "0.7.0",
         "max_version": "0.7.3"
       }
-    }
-  },
-  {
-    "id": "A0000Xz.MaiBot-Curfew-Plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "宵禁插件",
-      "version": "1.4.6",
-      "description": "在机器人是QQ群聊管理员的情况下实现了自动宵禁功能",
-      "author": {
-        "name": "A肆零西烛",
-        "url": "https://github.com/A0000Xz"
-      },
-      "license": "GPL-v3.0-or-later",
-      "host_application": {
-        "min_version": "0.9.1",
-        "max_version": "0.11.1"
-      },
-      "keywords": [
-        "mute",
-        "moderation",
-        "admin",
-        "management",
-        "group",
-        "curfew"
-      ],
-      "categories": [
-        "Moderation",
-        "Group Management",
-        "Admin Tools"
-      ],
-      "repository_url": "https://github.com/A0000Xz/MaiBot-Curfew-Plugin",
-      "default_locale": "zh-CN",
-      "locales_path": "_locales"
     }
   },
   {
@@ -1783,47 +1660,6 @@
     }
   },
   {
-    "id": "khIqwq.owner_auth_plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "khiqwq.owner_auth_plugin",
-      "version": "2.1.0",
-      "name": "用户身份验证插件",
-      "description": "通过 QQ 号精确验证发言者身份，在麦麦回复前注入用户/非用户身份提示词。用「用户数量控制」数字生成 N 个用户槽位，每个用户独立 QQ/昵称/限制群聊/多行模板，基于官方回复钩子实现，无 monkey-patch、无全局缓存，兼容 Windows 与 Linux 部署。",
-      "author": {
-        "name": "风花叶",
-        "url": "https://github.com/khiqwq"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/khiqwq/owner_auth_plugin",
-        "homepage": "https://github.com/khiqwq/owner_auth_plugin",
-        "issues": "https://github.com/khiqwq/owner_auth_plugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "message.get_by_id",
-        "config.get",
-        "send.text"
-      ],
-      "plugin_type": "extension",
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
     "id": "Heximiao.turtlesoup_plugin",
     "manifest": {
       "manifest_version": 1,
@@ -1895,43 +1731,6 @@
           "交互式谜题",
           "海龟汤游戏",
           "推理解谜"
-        ]
-      }
-    }
-  },
-  {
-    "id": "Unreal.My_Fucked_100_People",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "MY_FUCKED_100_PEOPLE",
-      "version": "1.3.3",
-      "description": "群U群U，让我c一下，就一下，好不好嘛~",
-      "author": {
-        "name": "Unreal",
-        "url": "https://github.com/svila-ylym"
-      },
-      "license": "MIT",
-      "keywords": [
-        "qq",
-        "娱乐",
-        "哈基米",
-        "command"
-      ],
-      "categories": [
-        "Entertainment & Interaction"
-      ],
-      "host_application": {
-        "min_version": "0.10.0"
-      },
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "CcbLoadQQCommand",
-            "description": "懂的都懂"
-          }
         ]
       }
     }
@@ -2314,146 +2113,6 @@
     }
   },
   {
-    "id": "Heximiao.vote_plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "vote_plugin",
-      "display_name": "群聊投票插件",
-      "version": "1.1.2",
-      "description": "一个通用的群聊投票插件（目前只有投票禁言）。支持发起投票、成员参与投票、并自动统计结果。",
-      "author": {
-        "name": "何夕",
-        "url": "https://github.com/Heximiao/vote_plugin",
-        "email": "lcy1416603026@gmail.com"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.9.0",
-        "max_version": "0.10.2"
-      },
-      "entry": "plugin.py",
-      "homepage_url": "https://github.com/Heximiao/vote_plugin",
-      "repository_url": "https://github.com/Heximiao/vote_plugin",
-      "keywords": [
-        "vote",
-        "poll",
-        "group",
-        "utility",
-        "投票",
-        "问卷",
-        "群聊",
-        "工具"
-      ],
-      "categories": [
-        "Utility",
-        "Group"
-      ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "chat",
-        "components": [
-          {
-            "type": "command",
-            "name": "vote",
-            "description": "发起一个群聊投票。"
-          },
-          {
-            "type": "command",
-            "name": "vote_help",
-            "description": "显示投票命令的使用说明。"
-          }
-        ],
-        "features": [
-          "发起投票",
-          "统计投票结果",
-          "群聊互动"
-        ]
-      }
-    }
-  },
-  {
-    "id": "CharTyr.Maibot_topic_finder_plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "麦麦找话题插件 (Topic Finder Plugin)",
-      "version": "1.1.0",
-      "description": "通过RSS订阅与联网模型获取信息，可单独或同时启用；在固定时间或群聊静默时自动发起话题讨论",
-      "author": {
-        "name": "CharTyr",
-        "url": "https://github.com/CharTyr"
-      },
-      "license": "GPL-v3.0-or-later",
-      "host_application": {
-        "min_version": "0.11.0"
-      },
-      "homepage_url": "https://github.com/CharTyr/Maibot_topic_finder_plugin",
-      "repository_url": "https://github.com/CharTyr/Maibot_topic_finder_plugin",
-      "keywords": [
-        "topic",
-        "rss",
-        "chat",
-        "automation",
-        "discussion"
-      ],
-      "categories": [
-        "Chat Enhancement",
-        "Automation"
-      ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "enhancement",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "topic_scheduler",
-            "description": "定时话题调度器，负责在固定时间发起话题"
-          },
-          {
-            "type": "event_handler",
-            "name": "chat_silence_detector",
-            "description": "群聊静默检测器，检测群聊长时间无消息时发起话题"
-          },
-          {
-            "type": "action",
-            "name": "start_topic",
-            "description": "发起话题讨论的动作"
-          },
-          {
-            "type": "command",
-            "name": "topic_test",
-            "description": "测试话题生成功能",
-            "pattern": "/topic_test"
-          },
-          {
-            "type": "command",
-            "name": "topic_config",
-            "description": "查看话题插件配置",
-            "pattern": "/topic_config"
-          },
-          {
-            "type": "command",
-            "name": "topic_debug",
-            "description": "立即生成并发起话题（调试用）",
-            "pattern": "/topic_debug"
-          }
-        ],
-        "features": [
-          "RSS订阅话题源",
-          "联网大模型话题源",
-          "定时自动发起话题",
-          "群聊静默检测",
-          "智能话题生成",
-          "可配置时间和频率",
-          "多种话题来源支持"
-        ]
-      }
-    }
-  },
-  {
     "id": "whitefox20011120.recall_manager_plugin",
     "manifest": {
       "manifest_version": 1,
@@ -2485,75 +2144,6 @@
       ],
       "default_locale": "zh-CN",
       "locales_path": "_locales"
-    }
-  },
-  {
-    "id": "namchengwuqiu.gemini_drawer",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.15",
-      "name": "Gemini 绘图",
-      "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
-      "author": {
-        "name": "sakura桜花",
-        "url": "https://github.com/namchengwuqiu"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/namchengwuqiu/gemini_drawer",
-        "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
-        "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
-        "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0.26.0"
-        },
-        {
-          "type": "python_package",
-          "name": "pillow",
-          "version_spec": ">=9.0.0"
-        },
-        {
-          "type": "python_package",
-          "name": "toml",
-          "version_spec": ">=0.10.0"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.image",
-        "send.video",
-        "send.forward",
-        "send.hybrid",
-        "send.custom",
-        "send.command",
-        "api.call",
-        "config.get",
-        "llm.generate",
-        "llm.get_available_models",
-        "database.get",
-        "message.get_by_time_in_chat",
-        "message.get_by_id"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "plugin_type": "extension"
     }
   },
   {
@@ -4136,33 +3726,6 @@
     }
   },
   {
-    "id": "A0000Xz.MaiBot-MineMai-Plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "Mine麦插件",
-      "version": "0.1.4",
-      "description": "使麦麦能够与Minecraft服务器进行互通的插件",
-      "author": {
-        "name": "A肆零西烛",
-        "url": "https://github.com/A0000Xz"
-      },
-      "license": "GPL-v3.0-or-later",
-      "host_application": {
-        "min_version": "0.11.2",
-        "max_version": "0.12.0"
-      },
-      "keywords": [
-        "Minecraft"
-      ],
-      "categories": [
-        "Connection"
-      ],
-      "repository_url": "https://github.com/A0000Xz/MaiBot-MineMai-Plugin",
-      "default_locale": "zh-CN",
-      "locales_path": "locales"
-    }
-  },
-  {
     "id": "A-Dawn.Mai_Forever_memories",
     "manifest": {
       "manifest_version": 1,
@@ -4231,59 +3794,6 @@
         ]
       },
       "id": "A-Dawn.MaiForeverMemories"
-    }
-  },
-  {
-    "id": "linyuww.IgnorePhrasePlugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "IgnorePhrasePlugin",
-      "version": "1.0.0",
-      "description": "当用户输入匹配特定正则表达式的短语时，自动忽略该消息，不进行回复。",
-      "author": {
-        "name": "linyuww",
-        "url": "https://github.com/linyuww"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.10.2"
-      },
-      "repository_url": "https://github.com/linyuww/IgnorePhrasePlugin",
-      "keywords": [
-        "ignore",
-        "regex",
-        "filter",
-        "忽略",
-        "过滤"
-      ],
-      "categories": [
-        "Utility Tools"
-      ],
-      "default_locale": "zh-CN",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "filter",
-        "components": [
-          {
-            "type": "event_handler",
-            "name": "ignore_message_handler",
-            "description": "拦截匹配配置短语或正则表达式的消息"
-          },
-          {
-            "type": "command",
-            "name": "ignore",
-            "description": "管理忽略词列表",
-            "pattern": "/ignore"
-          }
-        ],
-        "features": [
-          "短语匹配过滤",
-          "正则表达式匹配",
-          "WebUI可视化配置",
-          "聊天命令管理",
-          "白名单/黑名单权限控制"
-        ]
-      }
     }
   },
   {
@@ -4695,31 +4205,6 @@
         "min_version": "0.10.3"
       },
       "repository_url": "https://github.com/Pekofirst/MCping-for-Maibot"
-    }
-  },
-  {
-    "id": "HyperSharkawa.like_plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "麦麦赞我",
-      "version": "1.0.1",
-      "description": "让麦麦能给你点赞",
-      "author": {
-        "name": "鲨鱼",
-        "url": "https://github.com/HyperSharkawa"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.11.5"
-      },
-      "homepage_url": "https://github.com/HyperSharkawa/like_plugin",
-      "repository_url": "https://github.com/HyperSharkawa/like_plugin",
-      "keywords": [
-        "点赞",
-        "互动"
-      ],
-      "default_locale": "zh-CN",
-      "locales_path": "_locales"
     }
   },
   {
@@ -5953,7 +5438,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -8283,110 +7768,6 @@
     }
   },
   {
-    "id": "Maboroshinatsu.maibot-deskpet-plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "maibot.deskpet-plugin",
-      "version": "0.3.0",
-      "name": "MaiBot Deskpet",
-      "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、表情/动作控制、视线追踪、滚轮缩放和拖拽平移。需配合 deskpet-app Electron 前端使用。",
-      "author": {
-        "name": "MaboroshiNatsu / DeepSeek-V4PRO",
-        "url": "https://github.com/Maboroshinatsu"
-      },
-      "license": "GPL-3.0",
-      "urls": {
-        "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
-        "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "websockets",
-          "version_spec": ">=12.0"
-        },
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.8"
-        },
-        {
-          "type": "python_package",
-          "name": "numpy",
-          "version_spec": ">=1.24"
-        },
-        {
-          "type": "python_package",
-          "name": "sherpa-onnx",
-          "version_spec": ">=1.10"
-        }
-      ],
-      "capabilities": [
-        "llm.generate"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
-    "id": "sengokucola.better-image",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.1.1",
-      "name": "Better Image",
-      "description": "提供互联网搜图、历史消息图片提取、裁切、放大、翻转、旋转和缩放工具。",
-      "author": {
-        "name": "SengokuCola",
-        "url": "https://github.com/SengokuCola"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/SengokuCola/better_image",
-        "homepage": "https://github.com/SengokuCola/better_image",
-        "documentation": "https://github.com/SengokuCola/better_image",
-        "issues": "https://github.com/SengokuCola/better_image/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.0.0"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0"
-        }
-      ],
-      "capabilities": [
-        "message.get_by_id"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": "_locales",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "sengokucola.better-image"
-    }
-  },
-  {
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
@@ -9022,62 +8403,6 @@
     }
   },
   {
-    "id": "Color2333.maibot-multi-platform-parser",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "Color2333.maibot-multi-platform-parser",
-      "version": "1.0.0",
-      "name": "多平台链接解析",
-      "description": "自动解析抖音、小红书、小黑盒等平台链接，并把图文/视频发送到 QQ 群。MaiBot 移植版，迁移来源：Zhalslar/astrbot_plugin_parser。",
-      "author": {
-        "name": "Color2333",
-        "url": "https://github.com/Color2333"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/Color2333/maibot-multi-platform-parser"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiofiles",
-          "version_spec": ">=25.1.0"
-        },
-        {
-          "type": "python_package",
-          "name": "msgspec",
-          "version_spec": ">=0.21.0"
-        },
-        {
-          "type": "python_package",
-          "name": "yt-dlp",
-          "version_spec": ">=2026.3.17"
-        },
-        {
-          "type": "python_package",
-          "name": "bilibili-api-python",
-          "version_spec": ">=17.4.1"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.custom",
-        "config.get"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN"
-      }
-    }
-  },
-  {
     "id": "litroenade.maibot-maid-adapter",
     "manifest": {
       "manifest_version": 2,
@@ -9133,45 +8458,6 @@
     }
   },
   {
-    "id": "hsd221.searxng-search",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.1",
-      "name": "SearXNG Search",
-      "description": "通过 planner 工具调用本地 SearXNG 实例进行网页搜索，支持通用搜索、新闻搜索、图片搜索等多种类别。",
-      "author": {
-        "name": "hsd221",
-        "url": "https://github.com/hsd221"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/hsd221/maibot-plugin-searxng-search",
-        "homepage": "https://github.com/hsd221/maibot-plugin-searxng-search",
-        "documentation": "https://github.com/hsd221/maibot-plugin-searxng-search",
-        "issues": "https://github.com/hsd221/maibot-plugin-searxng-search/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "llm.generate"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "hsd221.searxng-search"
-    }
-  },
-  {
     "id": "a-dawn.oaimage",
     "manifest": {
       "manifest_version": 2,
@@ -9218,75 +8504,6 @@
         ]
       },
       "id": "a-dawn.oaimage"
-    }
-  },
-  {
-    "id": "NymphSong.Pighub_plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "今日猪猪 (Pighub)",
-      "version": "1.0.0",
-      "description": "每日随机抽取一只猪猪图片并发送，支持 @群友为别人抽取，群名片互动玩法。",
-      "author": {
-        "name": "NymphSong",
-        "url": "https://github.com/NymphSong"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.10.0",
-        "max_version": "0.12.2"
-      },
-      "homepage_url": "",
-      "repository_url": "https://github.com/NymphSong/Pighub_plugin",
-      "keywords": [
-        "pighub",
-        "今日猪猪",
-        "娱乐"
-      ],
-      "categories": [
-        "Entertainment & Interaction"
-      ],
-      "default_locale": "zh-CN",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "entertainment",
-        "components": [
-          {
-            "type": "command",
-            "name": "今日猪猪",
-            "description": "随机抽取一张猪猪图片和对应的文字，每人每天首次抽取会缓存结果",
-            "pattern": "/今日猪猪",
-            "usage": "/今日猪猪 [@某人]",
-            "examples": [
-              "/今日猪猪 - 为自己抽取今日猪猪",
-              "@张三 /今日猪猪 - 为张三抽取今日猪猪"
-            ]
-          },
-          {
-            "type": "command",
-            "name": "刷新今日猪猪",
-            "description": "清除缓存并重新抽取今日猪猪",
-            "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
-            "examples": [
-              "/刷新今日猪猪 - 清除今日缓存并重新抽取",
-              "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
-            ]
-          }
-        ],
-        "features": [
-          "每日随机抽取猪猪图片",
-          "配套对应猪猪的描述",
-          "每人每日缓存，避免重复",
-          "支持@群友为他人抽取",
-          "支持调用 NapCat HTTP API 发送图片"
-        ],
-        "config": {
-          "config_file": "config.toml",
-          "has_default_config": true
-        }
-      },
-      "id": "NymphSong.Pighub_plugin"
     }
   },
   {
@@ -9893,52 +9110,6 @@
     }
   },
   {
-    "id": "octmicy.pixiv-crawler",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "com.claw.pixiv-crawler",
-      "version": "4.1.0",
-      "name": "麦麦!来点二次元图片!",
-      "description": "基于 cnmiw.com (MirlKoi API) 的随机二次元图片插件。支持色图/无色图随机发图、群聊私聊黑白名单、@触发、冷却防刷、近期去重。原图直发不压缩，无需 Pixiv 账号。",
-      "author": {
-        "name": "octmicy",
-        "url": "https://github.com/octmicy"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/octmicy/pixiv-crawler",
-        "homepage": "https://github.com/octmicy/pixiv-crawler",
-        "documentation": "https://github.com/octmicy/pixiv-crawler",
-        "issues": "https://github.com/octmicy/pixiv-crawler/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0.24.0"
-        }
-      ],
-      "capabilities": [
-        "send.image",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
     "id": "a-dawn.a-tts-plugin",
     "manifest": {
       "manifest_version": 2,
@@ -10338,48 +9509,6 @@
       },
       "capabilities": [],
       "dependencies": [],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
-    "id": "deepseek-v4-pro.self-writing-plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "deepseek-v4-pro.self-writing-plugin",
-      "version": "0.2.1",
-      "name": "插件自生成器",
-      "description": "让麦麦根据自然语言描述自动生成 MaiBot 插件代码，生成后可预览、确认或拒绝",
-      "author": {
-        "name": "DeepSeek-V4",
-        "url": "https://github.com/DeepSeek-V4-Pro"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/DeepSeek-V4-Pro/self_writing_plugin",
-        "homepage": "https://github.com/DeepSeek-V4-Pro/self_writing_plugin",
-        "documentation": "https://github.com/DeepSeek-V4-Pro/self_writing_plugin",
-        "issues": "https://github.com/DeepSeek-V4-Pro/self_writing_plugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "llm.generate",
-        "send.text",
-        "send.forward",
-        "config.get"
-      ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -11403,52 +10532,6 @@
     }
   },
   {
-    "id": "xxxxx7258.idle-proactive-chat",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.5",
-      "name": "静默主动发言",
-      "description": "当白名单聊天流长时间没有新入站消息时，通过 Maisaka 主动任务自然发起聊天。",
-      "author": {
-        "name": "晴空",
-        "url": "https://github.com/XXXxx7258"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/XXXxx7258/idle_proactive_chat",
-        "homepage": "https://github.com/XXXxx7258/idle_proactive_chat",
-        "documentation": "https://github.com/XXXxx7258/idle_proactive_chat#readme",
-        "issues": "https://github.com/XXXxx7258/idle_proactive_chat/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.9.9"
-      },
-      "sdk": {
-        "min_version": "2.5.2",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.get_group_streams",
-        "chat.get_private_streams",
-        "chat.get_stream_by_group_id",
-        "chat.get_stream_by_user_id",
-        "chat.open_session",
-        "message.get_by_time_in_chat",
-        "maisaka.context.append",
-        "maisaka.proactive.trigger"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "xxxxx7258.idle-proactive-chat"
-    }
-  },
-  {
     "id": "DeepSeek-V4-pro.eku-egg-protocol",
     "manifest": {
       "manifest_version": 2,
@@ -11487,49 +10570,6 @@
         ]
       },
       "id": "DeepSeek-V4-pro.eku-egg-protocol"
-    }
-  },
-  {
-    "id": "NothingButSeaweedSoup.LonelyMai",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.2.0",
-      "name": "怕寂寞的麦麦 (LonelyMai) sdkv2",
-      "description": "让 AI 在群里冷场时主动找话题聊天，基于历史、知识库或预置话题，支持白名单与概率控制",
-      "author": {
-        "name": "海菜汤 & RIEZ-ON",
-        "url": "https://github.com/clfr41"
-      },
-      "license": "GPL-v3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/clfr41/lonely-mai-sdkv2",
-        "homepage": "https://github.com/clfr41/lonely-mai-sdkv2",
-        "issues": "https://github.com/clfr41/lonely-mai-sdkv2/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.3.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.get_stream_by_group_id",
-        "chat.get_stream_by_user_id",
-        "message.get_by_time_in_chat",
-        "config.get",
-        "llm.generate",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "NothingButSeaweedSoup.LonelyMai-sdkv2"
     }
   },
   {
@@ -11594,70 +10634,6 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
-    }
-  },
-  {
-    "id": "deepseek-v4-pro.phigros-b30",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.0",
-      "name": "Phigros B30 查分器",
-      "description": "连接 Phigros 云存档与 phib19.top 社区 API，支持 B30（b30） 成绩查询（图片输出）、RKS 全球排名、曲目搜索（含模糊匹配）、推分建议、谱面标签、社区评论与本地曲绘缓存",
-      "author": {
-        "name": "DeepSeek-V4",
-        "url": "https://github.com/DeepSeek-V4-Pro"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
-        "homepage": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
-        "documentation": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin",
-        "issues": "https://github.com/DeepSeek-V4-Pro/phigros-b30-plugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.8"
-        },
-        {
-          "type": "python_package",
-          "name": "playwright",
-          "version_spec": ">=1.40"
-        },
-        {
-          "type": "python_package",
-          "name": "pycryptodome",
-          "version_spec": ">=3.20"
-        },
-        {
-          "type": "python_package",
-          "name": "qrcode",
-          "version_spec": ">=7.4"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.image",
-        "config.get",
-        "api.call",
-        "message.get_recent"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "deepseek-v4-pro.phigros-b30"
     }
   },
   {
@@ -12961,46 +11937,6 @@
     }
   },
   {
-    "id": "com.maibot.minecraft-adapter",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "com.maibot.minecraft-adapter",
-      "version": "1.0.0",
-      "name": "Minecraft 适配器",
-      "description": "通过 WebSocket 连接 Minecraft 服务器，支持 AI 执行 MC 命令和双向聊天同步",
-      "author": {
-        "name": "TGBUG",
-        "url": "https://github.com/TGBUG"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter",
-        "homepage": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter",
-        "documentation": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter/blob/main/README.md",
-        "issues": "https://github.com/TGBUG/MaiBot-MineCraft-Adapter/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "route_message",
-        "gateway_state"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
     "id": "maibot-community.mai-love",
     "manifest": {
       "manifest_version": 2,
@@ -13459,7 +12395,7 @@
     "id": "ling.avatar-meme",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.4.0",
+      "version": "3.4.1",
       "name": "QQ头像表情包 | Avatar Meme",
       "description": "输入QQ号或@某人，用其头像制作精神小伙、我太难了、暗中观察等搞笑表情包。",
       "author": {
