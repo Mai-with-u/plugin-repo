@@ -99,10 +99,11 @@ jobs:
 
       - name: Write Codex config
         env:
-          ARK_BASE_URL: https://ark.cn-beijing.volces.com/api/plan/v3
+          ARK_BASE_URL: ${{ vars.MAI_REVIEW_BASE_URL }}
           ARK_MODEL: ${{ vars.MAI_REVIEW_MODEL }}
         run: |
           mkdir -p "$HOME/.codex"
+          BASE_URL="${ARK_BASE_URL:-https://ark.cn-beijing.volces.com/api/plan/v3}"
           MODEL_NAME="${ARK_MODEL:-ark-code-latest}"
           cat > "$HOME/.codex/config.toml" <<EOF
           model = "${MODEL_NAME}"
@@ -112,7 +113,7 @@ jobs:
 
           [model_providers.ark]
           name = "Volcengine Ark Agent Plan"
-          base_url = "${ARK_BASE_URL}"
+          base_url = "${BASE_URL}"
           env_key = "ARK_API_KEY"
           wire_api = "responses"
           request_max_retries = 4
