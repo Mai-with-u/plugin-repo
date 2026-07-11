@@ -12450,7 +12450,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.silencieuxzero.backrooms-escape",
-      "version": "1.1.2",
+      "version": "1.1.7",
       "name": "后室:逃出生天",
       "description": "扮演M.E.G.CN工作人员，从Level 0出发在后室中寻找出口，不断切入下一个楼层直至Level 399的最终出口",
       "author": {
@@ -12477,7 +12477,8 @@
         "command.match",
         "send.text",
         "send.forward",
-        "config.get"
+        "config.get",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -12488,7 +12489,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.4",
+      "version": "2.3.5",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
