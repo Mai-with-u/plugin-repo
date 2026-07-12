@@ -11370,7 +11370,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.0",
+      "version": "0.4.2",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -11537,7 +11537,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.2.5",
+      "version": "0.2.7",
       "name": "网页抓取 (Fetch URL)",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
       "author": {
@@ -11704,7 +11704,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.image-recompress",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "name": "智能入站图片重压缩",
       "description": "在入站消息进入处理流程前，把图片组件重压缩为更高效的 WebP（可配置 JPEG/PNG）。支持动图转动态 WebP、仅压缩超大图、目标大小循环压缩等模式，用于替代主程序内置的 JPEG 压缩（需关闭 visual.handle_oversized_images）。",
       "author": {
@@ -11746,7 +11746,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibot-corpus-callosum",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "神经闭环反馈",
       "description": "给 replyer 一条内部再审通道：当回复器认为规划器的回复请求与聊天流严重不符时，可驳回发送并要求规划器重新思考，再审理由经内部上下文注入回规划器思考循环，全程聊天对象不可见。",
       "author": {
@@ -11863,7 +11863,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.rss-reader",
-      "version": "0.4.0",
+      "version": "0.4.2",
       "name": "麦麦 RSS 阅读器",
       "description": "订阅 RSS 源，将新内容注入 Maisaka 上下文并触发主动处理；提供 Tool 与 /rss 命令供麦麦与用户查阅订阅。",
       "author": {
@@ -12041,7 +12041,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.2.3",
+      "version": "0.2.5",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -12489,7 +12489,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.5",
+      "version": "2.3.6",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
@@ -12866,7 +12866,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibook",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "麦书 (MaiBook)",
       "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
       "author": {
