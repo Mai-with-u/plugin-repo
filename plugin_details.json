@@ -2884,7 +2884,9 @@
         "send.text",
         "frequency.get_adjust",
         "frequency.set_adjust",
-        "chat.get_group_streams"
+        "chat.get_group_streams",
+        "llm.generate",
+        "message.get_recent"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8454,7 +8456,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.9.1",
+      "version": "1.9.2",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -12403,9 +12405,9 @@
     "id": "github.xiexiaojia780.date-context-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.0",
-      "name": "日期上下文注入插件",
-      "description": "在模型请求前注入日期/农历/节日/节气上下文，并通过公开 API 供其他插件复用同一套日期信息",
+      "version": "1.4.0",
+      "name": "日期上下文插件",
+      "description": "提供 date/date_text 公开 API（仅今天）、query_date 工具（昨天/今天/明天），以及可选的模型请求日期注入（date.inject_on_model_request）",
       "author": {
         "name": "xiexiaojia780",
         "url": "https://github.com/xiexiaojia780"
