@@ -5955,7 +5955,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列��。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -7909,7 +7909,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -7925,7 +7925,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.99"
+        "max_version": "1.1.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -7940,7 +7940,8 @@
           "en-US"
         ]
       },
-      "id": "maibot-team.napcat-adapter"
+      "id": "maibot-team.napcat-adapter",
+      "plugin_type": "adapter"
     }
   },
   {
@@ -7988,7 +7989,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.2",
+      "version": "0.8.3",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -8011,7 +8012,7 @@
       },
       "host_application": {
         "min_version": "1.0.6",
-        "max_version": "1.0.99"
+        "max_version": "1.1.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -10268,51 +10269,6 @@
     }
   },
   {
-    "id": "deepseek-v4-pro.avatar-fetcher-plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.0",
-      "name": "头像获取插件 (Avatar Fetcher Plugin)",
-      "description": "通过指令获取 @用户 或指定 QQ 号的头像，以图片形式发送",
-      "author": {
-        "name": "DeepSeek-V4",
-        "url": "https://github.com/DeepSeek-V4-Pro"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/DeepSeek-V4-Pro/avatar_fetcher_plugin",
-        "homepage": "https://github.com/DeepSeek-V4-Pro/avatar_fetcher_plugin"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.0.0"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.image",
-        "config.get"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "deepseek-v4-pro.avatar-fetcher-plugin"
-    }
-  },
-  {
     "id": "local.message-debounce-cn",
     "manifest": {
       "manifest_version": 2,
@@ -12160,7 +12116,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.kuuri-krtt.mai_tarots",
-      "version": "1.1.1",
+      "version": "1.1.4",
       "name": "麦麦塔罗",
       "description": "提供本地塔罗占卜功能，支持多种牌阵、牌面图片发送、AI 解读和语境化延伸评论。",
       "author": {
@@ -13053,9 +13009,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "deepseek-v4-pro.private-humanizer",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "麦麦私聊拟人化增强（深度优化版）",
-      "description": "私聊拟人化增强 v1.4.0：Planner+Replyer 双阶段提示词注入，时间感知、画像注入、回复守卫、记忆守卫、主动续话。提示词全面精简优化。",
+      "description": "私聊拟人化增强 v1.5.0：Planner+Replyer 双阶段提示词注入，时间感知、画像注入、回复守卫、记忆守卫、主动续话。提示词全面精简优化。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
