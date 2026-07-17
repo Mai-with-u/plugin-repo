@@ -10269,6 +10269,51 @@
     }
   },
   {
+    "id": "deepseek-v4-pro.avatar-fetcher-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "头像获取插件 (Avatar Fetcher Plugin)",
+      "description": "通过指令获取 @用户 或指定 QQ 号的头像，以图片形式发送",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/avatar_fetcher_plugin",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/avatar_fetcher_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "deepseek-v4-pro.avatar-fetcher-plugin"
+    }
+  },
+  {
     "id": "local.message-debounce-cn",
     "manifest": {
       "manifest_version": 2,
@@ -13454,6 +13499,468 @@
         ]
       },
       "id": "ling.avatar-meme"
+    }
+  },
+  {
+    "id": "Ling-LA.llm-balance-monitor",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.8.6",
+      "name": "MaiBot LLM 余额与用量统计 | LLM Balance Monitor",
+      "description": "为 MaiBot 查询多个 LLM 平台的账户余额与按日消费趋势，支持近 7 天、今日、本月折线图及图片卡片汇总。",
+      "author": {
+        "name": "Ling-LA",
+        "url": "https://github.com/Ling-LA"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-LA/maibot-llm-balance-monitor",
+        "homepage": "https://github.com/Ling-LA/maibot-llm-balance-monitor",
+        "documentation": "https://github.com/Ling-LA/maibot-llm-balance-monitor/blob/main/README.md",
+        "issues": "https://github.com/Ling-LA/maibot-llm-balance-monitor/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "./icon.svg"
+        }
+      },
+      "id": "Ling-LA.llm-balance-monitor"
+    },
+    "assets": {
+      "icon_64": "icons/Ling-LA.llm-balance-monitor.webp"
+    }
+  },
+  {
+    "id": "dmjxmj.sensevoice-stt",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "dmjxmj.sensevoice-stt",
+      "version": "0.3.0",
+      "name": "SenseVoice STT 语音转文字",
+      "description": "通过本地或远程 SenseVoice sidecar 将 QQ 语音消息识别为文字",
+      "author": {
+        "name": "GPT-5.5, Deepseek-V4",
+        "url": "https://github.com/DMJXMJ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DMJXMJ/maibot-sensevoice-stt",
+        "homepage": "https://github.com/DMJXMJ/maibot-sensevoice-stt#readme",
+        "documentation": "https://github.com/DMJXMJ/maibot-sensevoice-stt/blob/main/README.md",
+        "issues": "https://github.com/DMJXMJ/maibot-sensevoice-stt/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [],
+      "plugin_type": "media",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🎙️",
+          "background": "#F0E8F7"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.windowsnoeditor.photo_geolocation_plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.windowsnoeditor.photo_geolocation_plugin",
+      "version": "1.0.0",
+      "name": "照片定位识别",
+      "description": "群友发照片时，读取图片 EXIF 里的 GPS 定位信息，逆地理编码成中文地址，并 @ 发图人回复「请问是在xxx的xxx群友吗」。支持免费 OSM 或高德（需 key）。注意：QQ 发普通压缩图通常会抹掉 GPS，一般只有发原图/文件才带 GPS。通过 chat.receive.before_process 钩子实现，不改动核心源码。",
+      "author": {
+        "name": "WindowsNoEditor",
+        "url": "https://github.com/windowsnoeditor"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/windowsnoeditor/photo_geolocation_plugin",
+        "homepage": "https://github.com/windowsnoeditor/photo_geolocation_plugin",
+        "documentation": "https://github.com/windowsnoeditor/photo_geolocation_plugin/blob/main/README.md",
+        "issues": "https://github.com/windowsnoeditor/photo_geolocation_plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "map-pin"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.galeros.imessage_adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.galeros.imessage_adapter",
+      "version": "0.1.5",
+      "name": "iMessage 连接器 / iMessage Adapter",
+      "description": "将你的MaiBot通过Photon连接到iMessage，允许通过iMessage发送和接收消息。",
+      "author": {
+        "name": "mayan613",
+        "url": "https://github.com/mayan613"
+      },
+      "license": "GPL-3.0",
+      "urls": {
+        "repository": "https://github.com/mayan613/MaiBot-iMessage-Adapter",
+        "homepage": "https://github.com/mayan613/MaiBot-iMessage-Adapter",
+        "documentation": "https://www.galeros.xyz/2026/07/07/imessage-adapter",
+        "issues": "https://github.com/mayan613/MaiBot-iMessage-Adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "nodeenv",
+          "version_spec": ">=1.10.0"
+        },
+        {
+          "type": "python_package",
+          "name": "websockets",
+          "version_spec": ">=16.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.15.0"
+        }
+      ],
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "wrench"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja_JP",
+          "ko_KR"
+        ]
+      }
+    }
+  },
+  {
+    "id": "galeros.qqbot-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "galeros.qqbot-adapter",
+      "version": "0.1.0",
+      "name": "QQBot 适配器 / QQBot Adapter",
+      "description": "QQ 官方机器人适配器，通过 QQ Bot API (WebSocket + REST) 连接 QQ 开放平台。",
+      "author": {
+        "name": "mayan613",
+        "url": "https://github.com/mayan613"
+      },
+      "license": "GPL-3.0",
+      "urls": {
+        "repository": "https://github.com/mayan613/MaiBot-QQBot-Adapter",
+        "homepage": "https://github.com/mayan613/MaiBot-QQBot-Adapter",
+        "documentation": "https://www.galeros.xyz/2026/07/07/qqbot-adapter",
+        "issues": "https://github.com/mayan613/MaiBot-QQBot-Adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "message-circle"
+        }
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja_JP",
+          "ko_KR"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.ling-la.ling-video-bot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.ling-la.ling-video-bot",
+      "version": "2.1.0",
+      "name": "视频解析Bot",
+      "description": "自动解析抖音和 B站分享链接，发送原视频并结合视觉识别生成人设风格点评。",
+      "author": {
+        "name": "Ling-LA",
+        "url": "https://github.com/Ling-LA"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-LA/ling-video-bot",
+        "homepage": "https://github.com/Ling-LA/ling-video-bot",
+        "documentation": "https://github.com/Ling-LA/ling-video-bot/blob/master/README.md",
+        "issues": "https://github.com/Ling-LA/ling-video-bot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiofiles",
+          "version_spec": ">=25.1.0"
+        },
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": ">=17.4.1"
+        },
+        {
+          "type": "python_package",
+          "name": "curl-cffi",
+          "version_spec": ">=0.15.0"
+        },
+        {
+          "type": "python_package",
+          "name": "yt-dlp",
+          "version_spec": ">=2026.3.17"
+        }
+      ],
+      "plugin_type": "media",
+      "capabilities": [
+        "config.get",
+        "send.custom",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.chrono-temporal-sync",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "量子时空拓扑与跨维度时间同步引擎",
+      "description": "基于广义相对论微扰补偿与原子钟族系一致性锁定的高精度时间坐标提取系统，采用北斗-UTC双模量子纠缠同步协议实现跨时区时空基准面的即时坍缩",
+      "author": {
+        "name": "赛博语义实验室 · 时空分室",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/chrono_temporal_sync",
+        "homepage": "https://github.com/DeepSeek-V4-Pro/chrono_temporal_sync",
+        "documentation": "https://github.com/DeepSeek-V4-Pro/chrono_temporal_sync",
+        "issues": "https://github.com/DeepSeek-V4-Pro/chrono_temporal_sync/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "99.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.forward"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "id": "deepseek-v4-pro.chrono-temporal-sync"
+    }
+  },
+  {
+    "id": "gomico.anysearch-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "gomico.anysearch-plugin",
+      "version": "0.2.0",
+      "name": "AnySearch 实时搜索",
+      "description": "通过 AnySearch 提供实时网页搜索、批量搜索和 URL 内容提取能力。",
+      "author": {
+        "name": "gomico",
+        "url": "https://github.com/gomico"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/gomico/maibot_plugin_anysearch",
+        "homepage": "https://github.com/gomico/maibot_plugin_anysearch",
+        "documentation": "https://github.com/gomico/maibot_plugin_anysearch/blob/main/README.md",
+        "issues": "https://github.com/gomico/maibot_plugin_anysearch/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.26.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.octmicy.vw50",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.octmicy.vw50",
+      "name": "麦麦vw50",
+      "version": "2.0.1",
+      "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；并提供 send_payment_code 工具供群友主动索要收款码。目标群只需填 QQ 群号。",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy/vw50_sponsor"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/vw50_sponsor"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "maisaka.proactive.trigger",
+        "chat.get_stream_by_group_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
     }
   }
 ]
