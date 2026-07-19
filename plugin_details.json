@@ -8457,7 +8457,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.9.2",
+      "version": "1.10.1",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -10136,7 +10136,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chinokou.maidock",
-      "version": "1.0.9",
+      "version": "1.1.0",
       "name": "MaiDock",
       "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope、硅基流动 与 火山方舟 Responses 等端点支持与高级参数控制功能。",
       "author": {
@@ -10151,11 +10151,11 @@
         "issues": "https://github.com/ChinoKou/MaiDock/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.0.9",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -13961,6 +13961,93 @@
           "en-US"
         ]
       }
+    }
+  },
+  {
+    "id": "github.QlzqQlzq.sg-divination-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.QlzqQlzq.sg-divination-plugin",
+      "version": "1.1.2",
+      "name": "随机算卦",
+      "description": "面向群聊的随机算卦插件，通过 /sg 问题 起卦，并使用 MaiBot 模型生成克制、务实的情境解读。",
+      "author": {
+        "name": "QlzqQlzq",
+        "url": "https://github.com/QlzqQlzq"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/QlzqQlzq/MaiBot-SG-Divination-Plugin",
+        "homepage": "https://github.com/QlzqQlzq/MaiBot-SG-Divination-Plugin",
+        "documentation": "https://github.com/QlzqQlzq/MaiBot-SG-Divination-Plugin/blob/main/README.md",
+        "issues": "https://github.com/QlzqQlzq/MaiBot-SG-Divination-Plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward",
+        "render.html2png",
+        "llm.generate_with_tools"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot_plugin.keywords_reply",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.0",
+      "name": "关键词回复",
+      "description": "关键词/检测词自动回复插件，支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复、群聊黑白名单、引用内触发开关、合并转发忽略与变量模板。由 AstrBot 同名插件迁移而来。",
+      "author": {
+        "name": "FlandreSatori",
+        "url": "https://github.com/FlandreSatori"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/FlandreSatori/maibot_plugin_keywords_reply",
+        "homepage": "https://github.com/FlandreSatori/maibot_plugin_keywords_reply",
+        "issues": "https://github.com/FlandreSatori/maibot_plugin_keywords_reply/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.hybrid",
+        "send.forward",
+        "message.get_by_id",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "maibot_plugin.keywords_reply"
     }
   }
 ]
