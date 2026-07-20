@@ -5955,7 +5955,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表���支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -10136,7 +10136,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chinokou.maidock",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "MaiDock",
       "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope、硅基流动 与 火山方舟 Responses 等端点支持与高级参数控制功能。",
       "author": {
@@ -10221,8 +10221,13 @@
       "capabilities": [],
       "i18n": {
         "default_locale": "zh-CN",
+        "locales_path": "locales",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "zh-TW",
+          "en-US",
+          "ja-JP",
+          "ko-KR"
         ]
       },
       "plugin_type": "provider"
@@ -12453,7 +12458,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.silencieuxzero.backrooms-escape",
-      "version": "1.1.7",
+      "version": "1.2.1",
       "name": "后室:逃出生天",
       "description": "扮演M.E.G.CN工作人员，从Level 0出发在后室中寻找出口，不断切入下一个楼层直至Level 399的最终出口",
       "author": {
