@@ -5955,7 +5955,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列表���支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -10031,7 +10031,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.1.0",
+      "version": "1.1.2",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
       "author": {
@@ -11378,7 +11378,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -11545,7 +11545,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.2.8",
+      "version": "0.2.9",
       "name": "网页抓取 (Fetch URL)",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。",
       "author": {
@@ -12049,7 +12049,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -12278,7 +12278,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.plugins-feed-bot",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "name": "投喂插件",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、群管理员授权、按群隔离数据。",
       "author": {
@@ -14053,6 +14053,194 @@
         ]
       },
       "id": "maibot_plugin.keywords_reply"
+    }
+  },
+  {
+    "id": "github.QlzqQlzq.mahjong-quiz-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.QlzqQlzq.mahjong-quiz-plugin",
+      "version": "1.0.1",
+      "name": "雀练 · 麻将文字训练",
+      "description": "纯娱乐的日麻与国标群共享麻将训练，分块压缩内置300道原创何切，并支持模型策划的30日缓存每日题。",
+      "author": {
+        "name": "QlzqQlzq",
+        "url": "https://github.com/QlzqQlzq"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/QlzqQlzq/MaiBot-Mahjong-Quiz-Plugin",
+        "homepage": "https://github.com/QlzqQlzq/MaiBot-Mahjong-Quiz-Plugin",
+        "documentation": "https://github.com/QlzqQlzq/MaiBot-Mahjong-Quiz-Plugin/blob/main/README.md",
+        "issues": "https://github.com/QlzqQlzq/MaiBot-Mahjong-Quiz-Plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.4",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "extension"
+    }
+  },
+  {
+    "id": "1m.whatsmailog",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "1m.whatsmailog",
+      "version": "1.0.0",
+      "name": "日志小窥",
+      "description": "让麦麦能窥见自己的log，并提供LLM总结。支持自定义触发词、时间范围、日志路径，并可选择启用LLM进行智能总结。",
+      "author": {
+        "name": "1m",
+        "url": "https://github.com/Emaginations"
+      },
+      "license": "Apache License 2.0",
+      "urls": {
+        "repository": "https://github.com/Emaginations/WhatsMaiLog"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "📋"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "logger"
+      ],
+      "llm_providers": [
+        {
+          "client_type": "1m.whatsmailog.provider",
+          "name": "日志小窥 LLM Provider",
+          "description": "用于总结和分析日志的 OpenAI 兼容 LLM 提供商",
+          "version": "1.0.0"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "ru-RU"
+        ]
+      }
+    }
+  },
+  {
+    "id": "qxy871sda.llm_model_health",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.5",
+      "name": "LLM 模型健康度/成功率统计",
+      "description": "总结并展示 MaiBot 使用的 LLM 模型的请求数、成功数与历史累计总量。",
+      "author": {
+        "name": "qxy871sda",
+        "url": "https://github.com/qxy871sda"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/qxy871sda/llm_model_health",
+        "homepage": "https://github.com/qxy871sda/llm_model_health",
+        "documentation": "https://github.com/qxy871sda/llm_model_health/blob/main/README.md",
+        "issues": "https://github.com/qxy871sda/llm_model_health/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "config.get",
+        "statistics.local.models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "qxy871sda.llm_model_health"
+    }
+  },
+  {
+    "id": "github.xiexiaojia780.file-reader-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.9",
+      "name": "文件阅读插件",
+      "description": "通过指令或引用文件消息读取纯文本文件，交给 LLM 按要求处理后回复",
+      "author": {
+        "name": "xiexiaojia780",
+        "url": "https://github.com/xiexiaojia780"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/xiexiaojia780/file_reader_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8"
+        },
+        {
+          "type": "python_package",
+          "name": "charset-normalizer",
+          "version_spec": ">=3.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "llm.generate_with_tools",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.xiexiaojia780.file-reader-plugin"
     }
   }
 ]
