@@ -5955,7 +5955,7 @@
               "type": "string"
             },
             "default": [],
-            "description": "聊天流 ID 列���。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+            "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
           }
         },
         "person_profile": {
@@ -7989,7 +7989,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.3",
+      "version": "0.8.4",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -10136,7 +10136,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chinokou.maidock",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "name": "MaiDock",
       "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope、硅基流动 与 火山方舟 Responses 等端点支持与高级参数控制功能。",
       "author": {
