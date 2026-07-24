@@ -5982,7 +5982,7 @@
           "refresh_interval_minutes": {
             "type": "integer",
             "default": 30,
-            "description": "人物���像定时刷新周期（分钟）"
+            "description": "人物画像定时刷新周期（分钟）"
           },
           "active_window_hours": {
             "type": "number",
@@ -14191,57 +14191,6 @@
         ]
       },
       "id": "qxy871sda.llm_model_health"
-    }
-  },
-  {
-    "id": "github.xiexiaojia780.file-reader-plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.2.9",
-      "name": "文件阅读插件",
-      "description": "通过指令或引用文件消息读取纯文本文件，交给 LLM 按要求处理后回复",
-      "author": {
-        "name": "xiexiaojia780",
-        "url": "https://github.com/xiexiaojia780"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/xiexiaojia780/file_reader_plugin"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.8"
-        },
-        {
-          "type": "python_package",
-          "name": "charset-normalizer",
-          "version_spec": ">=3.0"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "llm.generate",
-        "llm.generate_with_tools",
-        "api.call"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": "_locales",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "github.xiexiaojia780.file-reader-plugin"
     }
   },
   {
