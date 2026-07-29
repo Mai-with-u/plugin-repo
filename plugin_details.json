@@ -6851,7 +6851,7 @@
           "结构化messages请求",
           "真实身份判定assistant角色",
           "相邻同人同角色消息合并",
-          "失败自动回退原始调用"
+          "失败自��回退原始调用"
         ]
       }
     }
@@ -8133,7 +8133,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9270,7 +9270,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12498,7 +12498,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.6",
+      "version": "2.3.7",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
       "author": {
