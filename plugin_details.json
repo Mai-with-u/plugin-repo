@@ -6851,7 +6851,7 @@
           "结构化messages请求",
           "真实身份判定assistant角色",
           "相邻同人同角色消息合并",
-          "失败自��回退原始调用"
+          "失败自动回退原始调用"
         ]
       }
     }
@@ -10031,9 +10031,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.2.0",
+      "version": "1.3.1",
       "name": "F1 资讯插件",
-      "description": "查询 F1 赛历、赛果，并生成每日重要 F1 新闻一句话中文摘要。",
+      "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
       "author": {
         "name": "chi8wah",
         "url": "https://github.com/Chi8wah"
@@ -14422,9 +14422,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.eoeoy.diceframe-bridge",
-      "version": "0.1.2",
+      "version": "0.2.1",
       "name": "DiceFrame Bridge",
-      "description": "将 MaiBot 聊天流桥接到 DiceFrame 跑团服务，支持群聊绑定、角色认领、行动提交、掷骰确认、前情、地图、状态、支付和 GM 推进。",
+      "description": "将 MaiBot 聊天流桥接到 DiceFrame 跑团服务，支持中英文对局、群聊绑定、角色认领、行动、掷骰、支付和 GM 推进。",
       "author": {
         "name": "EOEOY",
         "url": "https://github.com/EOEOY"
@@ -14453,12 +14453,14 @@
         }
       ],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "send.image"
       ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en"
         ]
       }
     }
