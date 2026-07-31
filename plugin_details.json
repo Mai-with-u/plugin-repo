@@ -8133,7 +8133,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的帮助信息"
+            "description": "显示 AI 绘图插件的��助信息"
           },
           {
             "type": "command",
@@ -9270,7 +9270,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12412,12 +12412,13 @@
     "id": "github.xiexiaojia780.date-context-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "日期上下文插件",
       "description": "提供 date/date_text 公开 API（仅今天）、query_date 工具（昨天/今天/明天），以及可选的模型请求日期注入（date.inject_on_model_request）",
       "author": {
         "name": "xiexiaojia780",
-        "url": "https://github.com/xiexiaojia780"
+        "url": "https://github.com/xiexiaojia780",
+        "email": "483403354@qq.com"
       },
       "license": "GPL-3.0-or-later",
       "urls": {
@@ -14462,6 +14463,439 @@
           "zh-CN",
           "en"
         ]
+      }
+    }
+  },
+  {
+    "id": "github.lowvaluetarget777.doubao-search",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.lowvaluetarget777.doubao-search",
+      "version": "0.1.0",
+      "name": "豆包搜索",
+      "description": "通过火山引擎豆包搜索 API 为 MaiBot 提供 Global/Custom 网页搜索与 Custom 图片搜索能力。",
+      "author": {
+        "name": "LowValueTarget777",
+        "url": "https://github.com/LowValueTarget777"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LowValueTarget777/maibot-doubao-search",
+        "homepage": "https://github.com/LowValueTarget777/maibot-doubao-search",
+        "documentation": "https://github.com/LowValueTarget777/maibot-doubao-search/blob/main/README.md",
+        "issues": "https://github.com/LowValueTarget777/maibot-doubao-search/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "search"
+        }
+      },
+      "capabilities": [
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.fffold.bangumi-browse-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.fffold.bangumi-browse-plugin",
+      "version": "1.0.1",
+      "name": "Bangumi 动漫高手插件",
+      "description": "接入 Bangumi (bgm.tv)，让你的 MaiBot 变身动画高手！支持新番速览、每日放送、单集吐槽、长评阅读、制作阵容查询，动画/游戏/书籍一网打尽。",
+      "author": {
+        "name": "FFFold",
+        "url": "https://github.com/FFFold"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/FFFold/bangumi_browse_plugin",
+        "homepage": "https://github.com/FFFold/bangumi_browse_plugin",
+        "documentation": "https://github.com/FFFold/bangumi_browse_plugin/blob/main/README.md",
+        "issues": "https://github.com/FFFold/bangumi_browse_plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.25.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.11.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lxml",
+          "version_spec": ">=4.9.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "togawasakiko-desuwa.emoji-select-with-text",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.0",
+      "name": "Maibot_Emoji_Select_With_Text",
+      "description": "表情包选择工具，支持轻量混合召回、文本 LLM 重排和无匹配终态",
+      "author": {
+        "name": "TogawaSakiko-desuwa",
+        "url": "https://github.com/TogawaSakiko-desuwa/Maibot_Emoji_Select_With_Text"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/TogawaSakiko-desuwa/Maibot_Emoji_Select_With_Text",
+        "homepage": "https://github.com/TogawaSakiko-desuwa/Maibot_Emoji_Select_With_Text",
+        "documentation": "https://github.com/TogawaSakiko-desuwa/Maibot_Emoji_Select_With_Text#readme"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.9"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.7.1"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.emoji",
+        "emoji.get_all",
+        "llm.embed",
+        "llm.generate",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "togawasakiko-desuwa.emoji-select-with-text"
+    }
+  },
+  {
+    "id": "togawasakiko-desuwa.qwen-web-search",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "千问联网搜索",
+      "description": "由 Planner 按需调用，支持实时资料查询和歌词、台词、网络梗等公开引用识别，并带独立缓存。",
+      "author": {
+        "name": "TogawaSakiko-desuwa",
+        "url": "https://github.com/TogawaSakiko-desuwa"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/TogawaSakiko-desuwa/Maibot_Qwen_Web_Search",
+        "homepage": "https://github.com/TogawaSakiko-desuwa/Maibot_Qwen_Web_Search",
+        "documentation": "https://github.com/TogawaSakiko-desuwa/Maibot_Qwen_Web_Search#readme",
+        "issues": "https://github.com/TogawaSakiko-desuwa/Maibot_Qwen_Web_Search/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.9"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.7.1"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28,<1"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "togawasakiko-desuwa.qwen-web-search"
+    }
+  },
+  {
+    "id": "com.0-hz.world-clock",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.world-clock",
+      "version": "0.1.0",
+      "name": "世界时钟（World Clock）",
+      "description": "在 Maisaka 规划器与回复器请求模型前，把 Host 注入的无时区时间提示改写（或追加）为带 IANA 与缩写的本地时间 / 世界时间块。默认展示进程本地时区，并附加 Asia/Shanghai 与 UTC（与本地相同时自动去重）。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-world-clock",
+        "homepage": "https://github.com/yufei-pan/maibot-world-clock",
+        "documentation": "https://github.com/yufei-pan/maibot-world-clock/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-world-clock/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "maibot_plugin.redirect_err",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.3.1",
+      "name": "错误输出重定向",
+      "description": "当 Bot 出站文本包含指定关键词时拦截并重定向/抑制；可分别配置对触发消息与对会话的沉默秒数。",
+      "author": {
+        "name": "FlandreSatori",
+        "url": "https://github.com/FlandreSatori"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/FlandreSatori/maibot_plugin_redirect_err",
+        "homepage": "https://github.com/FlandreSatori/maibot_plugin_redirect_err",
+        "issues": "https://github.com/FlandreSatori/maibot_plugin_redirect_err/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "chat.get_all_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "message.get_by_id",
+        "message.get_recent",
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "maibot_plugin.redirect_err"
+    }
+  },
+  {
+    "id": "blissky.autocheckin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "blissky.autocheckin",
+      "version": "1.0.0",
+      "name": "自动签到",
+      "description": "通过 Camoufox 浏览器自动化实现多网站每日定时签到，支持 WebUI 可视化操作、签到流程录制回放与识图验证。",
+      "author": {
+        "name": "blissky",
+        "url": "https://github.com/blissky"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/blissky/mai_autocheckin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "integration",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "camoufox",
+          "version_spec": ">=0.4.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.40.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "qq-official-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "qq-official-adapter",
+      "version": "1.1.5",
+      "name": "QQ 官方机器人适配器",
+      "description": "通过 QQ 官方 WebSocket 与 OpenAPI 接入群聊、单聊和频道消息的 MaiBot 适配器。",
+      "author": {
+        "name": "清蒸云鸭",
+        "url": "https://github.com/WhiteCloudOL"
+      },
+      "license": "AGPL-3.0",
+      "plugin_type": "adapter",
+      "urls": {
+        "repository": "https://github.com/WhiteCloudOL/qq-official-adapter",
+        "homepage": "https://github.com/WhiteCloudOL/qq-official-adapter",
+        "documentation": "https://github.com/WhiteCloudOL/qq-official-adapter#readme",
+        "issues": "https://github.com/WhiteCloudOL/qq-official-adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.6",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "gateway.route_message",
+        "gateway.update_state"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "database",
+          "background": "#eaf6ff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/qq-official-adapter.webp"
+    }
+  },
+  {
+    "id": "github.kumburovicbranko682-boop.fanqie-novel-downloader",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.kumburovicbranko682-boop.fanqie-novel-downloader",
+      "version": "1.3.0",
+      "name": "番茄小说下载插件",
+      "description": "检测番茄/常读链接并延迟发卡片；本机引擎从 third_party 源码构建后下载 TXT。",
+      "author": {
+        "name": "kumburovicbranko682-boop",
+        "url": "https://github.com/kumburovicbranko682-boop"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/kumburovicbranko682-boop/maibot-fanqie-novel-downloader",
+        "homepage": "https://github.com/kumburovicbranko682-boop/maibot-fanqie-novel-downloader",
+        "documentation": "https://github.com/kumburovicbranko682-boop/maibot-fanqie-novel-downloader#readme",
+        "issues": "https://github.com/kumburovicbranko682-boop/maibot-fanqie-novel-downloader/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "send.custom",
+        "send.hybrid",
+        "send.image",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "book-open",
+          "fallback": "download",
+          "background": "#E11D48"
+        }
       }
     }
   }
