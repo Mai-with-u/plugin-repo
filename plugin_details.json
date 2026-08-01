@@ -1488,7 +1488,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xinxinxin0.bilibili-video-sender",
-      "version": "2.0.9",
+      "version": "2.0.10",
       "name": "麦麦发 B 站视频",
       "description": "让麦麦解析 B 站视频链接并发送，群聊私聊都可用",
       "author": {
@@ -3569,7 +3569,7 @@
     "id": "saberlights.smart_segmentation_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "智能分段插件 (Smart Segmentation Plugin)",
       "description": "使用 LLM 智能切分回复文本，在语义自然的地方切分，保持原文内容不变，让回复更加灵活自然。",
       "author": {
@@ -8133,7 +8133,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9270,7 +9270,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10136,9 +10136,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chinokou.maidock",
-      "version": "1.1.3",
+      "version": "1.2.0",
       "name": "MaiDock",
-      "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope、硅基流动 与 火山方舟 Responses 等端点支持与高级参数控制功能。",
+      "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope/Responses、硅基流动 与 火山方舟 Responses 等端点支持与参数覆写功能。",
       "author": {
         "name": "ChinoKou",
         "url": "https://github.com/ChinoKou"
@@ -10155,7 +10155,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.6.0",
+        "min_version": "2.7.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -10197,6 +10197,12 @@
           "client_type": "maidock-dashscope",
           "name": "MaiDock 阿里云百炼 DashScope",
           "description": "基于阿里云百炼 DashScope API 的 LLM Provider。",
+          "version": "1.0.0"
+        },
+        {
+          "client_type": "maidock-bailian-responses",
+          "name": "MaiDock 阿里云百炼 Responses",
+          "description": "基于阿里云百炼 OpenAI Responses API 的 LLM Provider。",
           "version": "1.0.0"
         },
         {
@@ -12412,13 +12418,12 @@
     "id": "github.xiexiaojia780.date-context-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.1",
+      "version": "1.4.2",
       "name": "日期上下文插件",
       "description": "提供 date/date_text 公开 API（仅今天）、query_date 工具（昨天/今天/明天），以及可选的模型请求日期注入（date.inject_on_model_request）",
       "author": {
         "name": "xiexiaojia780",
-        "url": "https://github.com/xiexiaojia780",
-        "email": "483403354@qq.com"
+        "url": "https://github.com/xiexiaojia780"
       },
       "license": "GPL-3.0-or-later",
       "urls": {
