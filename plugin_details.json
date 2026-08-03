@@ -2492,7 +2492,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.15",
+      "version": "1.9.16",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -8290,7 +8290,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.deskpet-plugin",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "name": "MaiBot Deskpet",
       "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、表情/动作控制、视线追踪、滚轮缩放和拖拽平移。需配合 deskpet-app Electron 前端使用。",
       "author": {
@@ -8330,6 +8330,11 @@
           "type": "python_package",
           "name": "sherpa-onnx",
           "version_spec": ">=1.10"
+        },
+        {
+          "type": "python_package",
+          "name": "pynput",
+          "version_spec": ">=1.7"
         }
       ],
       "capabilities": [
@@ -14901,6 +14906,99 @@
           "fallback": "download",
           "background": "#E11D48"
         }
+      }
+    }
+  },
+  {
+    "id": "mai.prompt-journal",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.0.0",
+      "name": "麦麦的绘图笔记本",
+      "description": "AI 绘画提示词经验记录与语义检索，支持向量搜索历史笔记",
+      "author": {
+        "name": "LegnaW",
+        "url": "https://github.com/LegnaW"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LegnaW/mai-prompt-journal",
+        "homepage": "https://github.com/LegnaW/mai-prompt-journal",
+        "documentation": "https://github.com/LegnaW/mai-prompt-journal/blob/main/README.md",
+        "issues": "https://github.com/LegnaW/mai-prompt-journal/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "numpy",
+          "version_spec": ">=1.20.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.embed",
+        "component.disable",
+        "component.enable"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "id": "mai.prompt-journal"
+    }
+  },
+  {
+    "id": "maibot-community.affinity-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-community.affinity-plugin",
+      "version": "1.0.0",
+      "name": "跨群好感度",
+      "description": "跨群共享用户好感度，使用 OpenAI 兼容模型定时结算，并为 Planner 与 Replyer 注入精确身份关系。",
+      "author": {
+        "name": "VNG",
+        "url": "https://github.com/chengxuanchengyu-afk"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/chengxuanchengyu-afk/affinity_plugin",
+        "homepage": "https://github.com/chengxuanchengyu-afk/affinity_plugin",
+        "documentation": "https://github.com/chengxuanchengyu-afk/affinity_plugin#readme",
+        "issues": "https://github.com/chengxuanchengyu-afk/affinity_plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "person.get_id",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   }
