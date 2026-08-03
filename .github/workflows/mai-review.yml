@@ -1,4 +1,5 @@
 name: Mai Review Plugin Issue
+run-name: "Mai Review Issue #${{ github.event.issue.number }}"
 
 on:
   issues:
@@ -22,6 +23,7 @@ jobs:
        contains(github.event.comment.body, '/mai_review'))
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: read
       issues: write
     steps:
@@ -53,17 +55,57 @@ jobs:
 
             core.setOutput('commenter', commenter);
 
+      - name: Check for active review
+        id: active-review
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const expectedTitle = `Mai Review Issue #${context.issue.number}`;
+            const activeRuns = [];
+
+            for (const status of ['queued', 'in_progress']) {
+              const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'mai-review.yml',
+                status,
+                per_page: 100,
+              });
+              activeRuns.push(...runs);
+            }
+
+            const firstRun = activeRuns
+              .filter(run => run.display_title === expectedTitle)
+              .sort((a, b) => Number(a.id) - Number(b.id))[0];
+            const duplicate = firstRun && Number(firstRun.id) !== Number(context.runId);
+
+            if (duplicate) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: '正在审核中，请不要重复请求。',
+              });
+              core.setOutput('should_run', 'false');
+              return;
+            }
+
+            core.setOutput('should_run', 'true');
+
       - name: Checkout repository
+        if: steps.active-review.outputs.should_run == 'true'
         uses: actions/checkout@v5
         with:
           persist-credentials: false
 
       - name: Setup Node.js
+        if: steps.active-review.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Validate Ark credentials
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
         run: |
@@ -73,6 +115,7 @@ jobs:
           fi
 
       - name: Validate GitHub App credentials
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           MAI_REVIEW_APP_ID: ${{ secrets.MAI_REVIEW_APP_ID }}
           MAI_REVIEW_APP_PRIVATE_KEY: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
@@ -88,6 +131,7 @@ jobs:
           fi
 
       - name: Build review context
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
@@ -95,9 +139,11 @@ jobs:
         run: node .github/scripts/build_mai_review_context.js
 
       - name: Install Codex CLI
+        if: steps.active-review.outputs.should_run == 'true'
         run: npm install -g @openai/codex
 
       - name: Write Codex config
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           ARK_BASE_URL: ${{ vars.MAI_REVIEW_BASE_URL }}
           ARK_MODEL: ${{ vars.MAI_REVIEW_MODEL }}
@@ -122,6 +168,7 @@ jobs:
           EOF
 
       - name: Run Codex review
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
         run: |
@@ -132,6 +179,7 @@ jobs:
             "$PROMPT"
 
       - name: Run Codex Mai comment
+        if: steps.active-review.outputs.should_run == 'true'
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
         run: |
@@ -142,6 +190,7 @@ jobs:
             "$PROMPT"
 
       - name: Create GitHub App token
+        if: steps.active-review.outputs.should_run == 'true'
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
@@ -149,7 +198,7 @@ jobs:
           private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
 
       - name: Post review comment
-        if: success()
+        if: steps.active-review.outputs.should_run == 'true' && success()
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.app-token.outputs.token }}
