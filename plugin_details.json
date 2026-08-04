@@ -7872,40 +7872,6 @@
     }
   },
   {
-    "id": "small_sunshine.prompt-injection-guard",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "small_sunshine.prompt-injection-guard",
-      "version": "1.1.0",
-      "name": "提示词注入防护插件",
-      "description": "防御提示词注入攻击，支持规则检测和 LLM 检测。基于 heitiehu-beep 的原项目适配新版 MaiBot。",
-      "author": {
-        "name": "small_sunshine",
-        "url": "https://github.com/MCYXG233"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/MCYXG233/prompt_injection_guard_new",
-        "homepage": "https://github.com/MCYXG233/prompt_injection_guard_new"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "send_message"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN"
-      }
-    }
-  },
-  {
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
@@ -7942,47 +7908,6 @@
       },
       "id": "maibot-team.napcat-adapter",
       "plugin_type": "adapter"
-    }
-  },
-  {
-    "id": "small_sunshine.date-aware-plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "small_sunshine.date-aware-plugin",
-      "version": "2.0.0",
-      "name": "日期感知插件",
-      "description": "让麦麦能够更准确地感知日期和节假日信息，自动将\"昨天/今天/明天\"的日期注入到对话上下文中",
-      "author": {
-        "name": "small_sunshine",
-        "url": "https://github.com/MCYXG233"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/MCYXG233/date_aware_plugin_New",
-        "homepage": "https://github.com/MCYXG233/date_aware_plugin_New"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "capabilities": [
-        "send_message"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN"
-      },
-      "keywords": [
-        "日期",
-        "节假日",
-        "日历"
-      ],
-      "categories": [
-        "Utilities"
-      ]
     }
   },
   {
@@ -8044,45 +7969,6 @@
     }
   },
   {
-    "id": "com.mcyxg233.acpoke-plugin-new",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "com.mcyxg233.acpoke-plugin-new",
-      "version": "1.0.0",
-      "name": "戳一戳插件",
-      "description": "全新重构的戳一戳插件，做到真正的装载即用！一个主动发起’戳一戳’的 MaiMai 插件，主动发起戳一戳，增添群聊乐趣。本分支适配新版 MaiBot SDK。",
-      "author": {
-        "name": "Small_sunshine",
-        "url": "https://github.com/MCYXG233"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/MCYXG233/acpoke_plugin_new",
-        "homepage": "https://github.com/MCYXG233/acpoke_plugin_new"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "send_message"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN"
-      },
-      "original_project": {
-        "repository": "https://github.com/Heximiao/acpoke_plugin",
-        "author": "何夕",
-        "description": "本分支基于原项目适配新版 MaiBot SDK"
-      }
-    }
-  },
-  {
     "id": "pspixel.ai-drawing-plugin",
     "manifest": {
       "manifest_version": 1,
@@ -8133,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的帮助信息"
+            "description": "显示 AI 绘图插件的��助信息"
           },
           {
             "type": "command",
@@ -9275,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12837,7 +12723,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.music",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "name": "音乐插件",
       "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
       "author": {
@@ -14913,7 +14799,7 @@
     "id": "mai.prompt-journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.2.1",
       "name": "麦麦的绘图笔记本",
       "description": "AI 绘画提示词经验记录与语义检索，支持向量搜索历史笔记",
       "author": {
@@ -14996,6 +14882,346 @@
       "i18n": {
         "default_locale": "zh-CN",
         "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "local.message-debounce-rebuild",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.message-debounce-rebuild",
+      "name": "消息防抖合并",
+      "version": "2.0.1",
+      "description": "短时间内合并同一会话同一用户的连续消息，再交给 MaiBot 处理，减少断句触发和重复思考。",
+      "author": {
+        "name": "Blackwindy2333",
+        "url": "https://github.com/Blackwindy2333"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Blackwindy2333/Message_Debouncing_Refactored"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "messages-square"
+        }
+      },
+      "capabilities": [],
+      "dependencies": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ffdvdgd.bilibili-video-info",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.3",
+      "name": "Bilibili 视频信息与 AI 总结",
+      "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
+      "author": {
+        "name": "FFDVDGD",
+        "url": "https://github.com/FFDVDGD"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/FFDVDGD/bilibili-video-info"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.1.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0,<1.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "oss2",
+          "version_spec": ">=2.19.1,<3.0.0"
+        }
+      ],
+      "capabilities": [
+        "chat.open_session",
+        "llm.generate",
+        "maisaka.context.append",
+        "send.hybrid",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "ffdvdgd.bilibili-video-info"
+    }
+  },
+  {
+    "id": "xuesheng.maibot-server-command",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "xuesheng.maibot-server-command",
+      "version": "1.0.20",
+      "name": "麦麦操作服务器与发送文件",
+      "description": "让 MaiBot 运行受控服务器命令、发送服务器文件并安全清理临时副本",
+      "author": {
+        "name": "XUESHENG",
+        "url": "https://github.com/bilixuesheng"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/bilixuesheng/maibot-server-command"
+      },
+      "host_application": {
+        "min_version": "1.1.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "terminal",
+          "background": "#F3F4F6"
+        }
+      },
+      "capabilities": [
+        "send.custom",
+        "chat.get_all_streams",
+        "chat.get_group_streams",
+        "chat.get_private_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/xuesheng.maibot-server-command.webp"
+    }
+  },
+  {
+    "id": "github.happycola233.maibot-poke-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.happycola233.maibot-poke-plugin",
+      "version": "1.2.0",
+      "name": "MaiBot 戳一戳插件",
+      "description": "将 SnowLuma Adapter 的 QQ 戳一戳能力注册为模型可自主调用的 send_poke 工具。",
+      "author": {
+        "name": "happycola233",
+        "url": "https://github.com/happycola233"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/happycola233/maibot-poke-plugin",
+        "homepage": "https://github.com/happycola233/maibot-poke-plugin",
+        "documentation": "https://github.com/happycola233/maibot-poke-plugin/blob/main/README.md",
+        "issues": "https://github.com/happycola233/maibot-poke-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.6",
+        "max_version": "1.1.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=0.8.4,<1.0.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "capabilities": [
+        "message.get_by_id",
+        "message.get_recent",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "papaya0481.forward-messages-auto",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "papaya0481.forward-messages-auto",
+      "version": "0.2.10",
+      "name": "自主跨群转发插件",
+      "description": "MaiBot 在多个群聊中时，让其自主判断群聊中的消息是否值得分享，并转发到其他群。群聊由配置决定。",
+      "author": {
+        "name": "papaya0481",
+        "url": "https://github.com/papaya0481"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/papaya0481/maibot-ForwardMessagesAuto-plugin",
+        "homepage": "https://github.com/papaya0481/maibot-ForwardMessagesAuto-plugin",
+        "documentation": "https://github.com/papaya0481/maibot-ForwardMessagesAuto-plugin#readme",
+        "issues": "https://github.com/papaya0481/maibot-ForwardMessagesAuto-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.1.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "share-2"
+        }
+      },
+      "capabilities": [
+        "send.forward",
+        "message.get_by_id",
+        "chat.get_group_streams",
+        "chat.get_stream_by_group_id",
+        "chat.open_session",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.kumburovicbranko682-boop.persona-optimizer",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "MaiBot 人设优化器",
+      "description": "每小时概括聊天表现，使用可选模型生成人设优化方向与可审阅的新设定版本。",
+      "author": {
+        "name": "kumburovicbranko682-boop",
+        "url": "https://github.com/kumburovicbranko682-boop"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/kumburovicbranko682-boop/maibot-persona-optimizer",
+        "homepage": "https://github.com/kumburovicbranko682-boop/maibot-persona-optimizer",
+        "documentation": "https://github.com/kumburovicbranko682-boop/maibot-persona-optimizer/blob/main/README.md",
+        "issues": "https://github.com/kumburovicbranko682-boop/maibot-persona-optimizer/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "llm.get_available_models",
+        "config.get",
+        "message.get_by_time",
+        "message.build_readable"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "wand-sparkles",
+          "fallback": "sparkles",
+          "background": "#7C3AED"
+        }
+      },
+      "id": "github.kumburovicbranko682-boop.persona-optimizer"
+    }
+  },
+  {
+    "id": "ling.tts-bot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ling.tts-bot",
+      "version": "2.3.2",
+      "name": "TTS语音插件",
+      "description": "MiMo v2.5 音色克隆语音合成，支持语音优先、随机和只发语音三种热重载模式。",
+      "author": {
+        "name": "Ling-LA",
+        "url": "https://github.com/Ling-LA"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-LA/ling-tts-bot",
+        "homepage": "https://github.com/Ling-LA/ling-tts-bot",
+        "documentation": "https://github.com/Ling-LA/ling-tts-bot/blob/main/README.md",
+        "issues": "https://github.com/Ling-LA/ling-tts-bot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0"
+        }
+      ],
+      "capabilities": [
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
         "supported_locales": [
           "zh-CN"
         ]
