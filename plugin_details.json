@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -14749,9 +14749,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.kumburovicbranko682-boop.fanqie-novel-downloader",
-      "version": "1.3.0",
+      "version": "1.4.5",
       "name": "番茄小说下载插件",
-      "description": "检测番茄/常读链接并延迟发卡片；本机引擎从 third_party 源码构建后下载 TXT。",
+      "description": "检测到番茄/常读链接后自动发卡片并下载；Linux 老 glibc 自动选用 musl 引擎；首次运行自动拉取本机引擎。",
       "author": {
         "name": "kumburovicbranko682-boop",
         "url": "https://github.com/kumburovicbranko682-boop"
@@ -14799,7 +14799,7 @@
     "id": "mai.prompt-journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.2.1",
+      "version": "2.3.0",
       "name": "麦麦的绘图笔记本",
       "description": "AI 绘画提示词经验记录与语义检索，支持向量搜索历史笔记",
       "author": {
@@ -14933,7 +14933,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.3",
+      "version": "0.1.4",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
