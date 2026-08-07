@@ -7171,7 +7171,7 @@
           {
             "type": "event_handler",
             "name": "mai_plan_stop_handler",
-            "description": "Mai_Plan 停止时关闭提���调度器"
+            "description": "Mai_Plan 停止时关闭提醒调度器"
           },
           {
             "type": "tool",
@@ -7875,7 +7875,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.2",
+      "version": "1.3.3",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -7891,7 +7891,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.1.99"
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -7914,7 +7914,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.4",
+      "version": "0.8.5",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -7937,7 +7937,7 @@
       },
       "host_application": {
         "min_version": "1.0.6",
-        "max_version": "1.1.99"
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12176,7 +12176,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.plugins-feed-bot",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "投喂插件",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、群管理员授权、按群隔离数据。",
       "author": {
@@ -12217,9 +12217,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.0",
+      "version": "2.4.0",
       "name": "群管理助手",
-      "description": "群管理助手 v2.3 — 18个管理工具+14条快捷命令+5个HookHandler(Replyer双路+Planner注入+守门+缓存)。群号自动获取稳定性修复：提示词携带当前群号、工具群号兜底+白名单校验、统一解析逻辑、LRU缓存。",
+      "description": "群管理助手 v2.4 — 给 QQ 群装一个自动小管理员：广告/刷屏/骂人自动警告、禁言、踢出，支持群公告、撤回消息、设精华、入群审批，以及 /mute、/kick、/warn 等快捷命令。配置群号即可使用。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12555,7 +12555,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "juzi865.uno-game-plugin",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "UNO 小游戏",
       "description": "支持群聊和私聊的 UNO 牌插件，Bot 可参与对局，同时提供 API 供 EXE/APK 客户端接入。",
       "author": {
@@ -14799,7 +14799,7 @@
     "id": "mai.prompt-journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.0",
+      "version": "2.4.1",
       "name": "麦麦的绘图笔记本",
       "description": "AI 绘画提示词经验记录与语义检索，支持向量搜索历史笔记",
       "author": {
