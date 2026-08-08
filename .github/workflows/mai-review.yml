@@ -34,6 +34,12 @@ jobs:
         with:
           script: |
             const commenter = context.payload.comment.user.login;
+            const command = context.payload.comment.body.trim();
+
+            if (command !== '/mai_review') {
+              core.setFailed('评论不是独立的 /mai_review 命令');
+              return;
+            }
 
             const { data: permission } = await github.rest.repos.getCollaboratorPermissionLevel({
               owner: context.repo.owner,
@@ -132,18 +138,24 @@ jobs:
 
       - name: Build review context
         if: steps.active-review.outputs.should_run == 'true'
+        id: build-context
         env:
           GITHUB_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          FORCE_REVIEW: ${{ github.event_name == 'issue_comment' }}
         run: node .github/scripts/build_mai_review_context.js
 
+      - name: Skip duplicate or throttled review
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review != 'true'
+        run: echo "${{ steps.build-context.outputs.skip_reason }}"
+
       - name: Install Codex CLI
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         run: npm install -g @openai/codex
 
       - name: Write Codex config
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         env:
           ARK_BASE_URL: ${{ vars.MAI_REVIEW_BASE_URL }}
           ARK_MODEL: ${{ vars.MAI_REVIEW_MODEL }}
@@ -168,7 +180,7 @@ jobs:
           EOF
 
       - name: Run Codex review
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
         run: |
@@ -179,7 +191,7 @@ jobs:
             "$PROMPT"
 
       - name: Run Codex Mai comment
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         env:
           ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
         run: |
@@ -190,7 +202,7 @@ jobs:
             "$PROMPT"
 
       - name: Create GitHub App token
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
@@ -198,7 +210,7 @@ jobs:
           private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
 
       - name: Post review comment
-        if: steps.active-review.outputs.should_run == 'true' && success()
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true' && success()
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.app-token.outputs.token }}
@@ -224,5 +236,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `<!-- codex-mai-review -->\n${review}\n${maimai}`,
+              body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${review}\n${maimai}`,
             });

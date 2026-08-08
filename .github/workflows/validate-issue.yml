@@ -46,6 +46,12 @@ jobs:
           script: |
             const commenter = context.payload.comment.user.login;
             const issueAuthor = context.payload.issue.user.login;
+            const command = context.payload.comment.body.trim();
+
+            if (command !== '/recheck') {
+              core.setFailed('评论不是独立的 /recheck 命令');
+              return;
+            }
 
             // Issue 作者可以 /recheck
             if (commenter === issueAuthor) {
@@ -569,17 +575,31 @@ jobs:
 
       - name: Create GitHub App token for validated label
         id: validation-label-token
-        if: steps.validate.outputs.status == 'success'
+        if: steps.validate.outputs.status == 'success' && github.event_name != 'issue_comment'
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
           private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
 
       - name: Add validated label
-        if: steps.validate.outputs.status == 'success'
+        if: steps.validate.outputs.status == 'success' && github.event_name != 'issue_comment'
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.validation-label-token.outputs.token }}
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['validated']
+            });
+
+      # /recheck 只重新验证 manifest。使用默认 GITHUB_TOKEN 恢复标签，
+      # 避免该 labeled 事件再次触发完整的 AI 审核。
+      - name: Restore validated label after recheck
+        if: steps.validate.outputs.status == 'success' && github.event_name == 'issue_comment'
+        uses: actions/github-script@v7
+        with:
           script: |
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
