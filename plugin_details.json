@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -11046,9 +11046,9 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "2.0.0",
       "name": "MaiMai DX 双源查分器",
-      "description": "连接 diving-fish 与 lxns 双查分器 API，支持 B50 查询（图片）、曲目搜索（含别称）、猜歌游戏、谱面统计、热力图、Rating趋势、收藏品、年度回顾与个人成绩查询",
+      "description": "连接 diving-fish（水鱼）与 lxns（落雪）公开接口的舞萌 DX 查分插件，支持 B50 图片、曲目搜索（含别称与 lxns 数据补全）、猜歌游戏、谱面统计、运势、收藏品与个人成绩查询",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -11084,7 +11084,8 @@
         "send.text",
         "send.forward",
         "send.image",
-        "config.get"
+        "config.get",
+        "render.html2png"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -12217,9 +12218,9 @@
     "id": "deepseek-v4-pro.maimai-group-admin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.0",
+      "version": "2.5.0",
       "name": "群管理助手",
-      "description": "群管理助手 v2.4 — 给 QQ 群装一个自动小管理员：广告/刷屏/骂人自动警告、禁言、踢出，支持群公告、撤回消息、设精华、入群审批，以及 /mute、/kick、/warn 等快捷命令。配置群号即可使用。",
+      "description": "群管理助手 v2.5 — 给 QQ 群装一个自动小管理员：自动识别群主/管理员身份，广告/刷屏/骂人自动警告、禁言、踢出，支持群公告、撤回消息、设精华、入群审批、权限决策链排查，以及 /mute、/kick、/warn 等快捷命令。配置群号即可使用。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12957,9 +12958,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "deepseek-v4-pro.private-humanizer",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "name": "麦麦私聊拟人化增强（深度优化版）",
-      "description": "私聊拟人化增强 v1.5.0：Planner+Replyer 双阶段提示词注入，时间感知、画像注入、回复守卫、记忆守卫、主动续话。提示词全面精简优化。",
+      "description": "私聊拟人化增强 v1.6.0：Planner+Replyer 双阶段提示词注入，群聊硬拦截与会话确认缓存，时间感知、画像注入、回复守卫、记忆守卫、主动续话。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
