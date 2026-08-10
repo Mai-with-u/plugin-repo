@@ -2654,7 +2654,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.5.2",
+      "version": "2.6.0",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -2673,7 +2673,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -2857,7 +2857,7 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.2",
+      "version": "2.5.0",
       "name": "群聊静音插件 | GroupMuter Plugin",
       "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
@@ -2876,7 +2876,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -8284,7 +8284,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.8.4",
+      "version": "1.9.0",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -8303,7 +8303,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -8348,7 +8348,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.10.3",
+      "version": "1.10.4",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -11507,9 +11507,9 @@
     "id": "deepseek-v4-pro.phigros-b30",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Phigros B30 查分器",
-      "description": "连接 Phigros 云存档与 phib19.top 社区 API，支持 B30（b30） 成绩查询（图片输出）、RKS 全球排名、曲目搜索（含模糊匹配）、推分建议、谱面标签、社区评论与本地曲绘缓存",
+      "description": "连接 Phigros 云存档与 phib19.top 社区 API，支持 B30 成绩查询（2x 高清图片输出）、RKS 全球排名、曲目搜索（含模糊匹配）、推分建议、谱面标签、社区评论与本地曲绘缓存",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -11556,7 +11556,8 @@
         "send.image",
         "config.get",
         "api.call",
-        "message.get_recent"
+        "message.get_recent",
+        "render.html2png"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -14219,9 +14220,9 @@
     "id": "deepseek-v4-pro.ongeki-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "オンゲキ 谱面查询器",
-      "description": "查询オンゲキ(音击)曲目信息、谱面定数、Note 配置等，数据来源 arcade-songs",
+      "description": "查询オンゲキ(音击)曲目信息、谱面定数、Note 配置等，数据来源 arcade-songs；支持 LUNATIC 特殊难度谱面合并显示、搜索结果/帮助图片化、高清渲染",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -14255,6 +14256,8 @@
       "capabilities": [
         "send.text",
         "send.hybrid",
+        "send.image",
+        "render.html2png",
         "config.get"
       ],
       "i18n": {
