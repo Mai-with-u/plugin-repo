@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的帮助信息"
+            "description": "显示 AI 绘图插件的��助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -11444,9 +11444,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "name": "网页抓取 (Fetch URL)",
-      "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片）。",
+      "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
       "author": {
         "name": "kes",
         "url": "https://github.com/yufei-pan"
@@ -12397,9 +12397,9 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.3.7",
+      "version": "2.4.2",
       "name": "AI Draw 图片生成插件",
-      "description": "AI 绘图插件。命令前缀 /ad。支持多服务商“NovelAI”等，多模型热切换、LLM 提示词生成、风格预设（画师串）/提示词预设、自拍模式、图生图/参考模式、双发送模式、自动撤回。Provider 架构预留扩展其他服务商。",
+      "description": "AI 绘图插件。命令前缀 /ad。支持有界任务队列、状态与取消、连续绘图、多模型热切换、LLM 提示词生成、风格/提示词预设、自拍、图生图/参考模式、双发送模式与精确撤回。",
       "author": {
         "name": "三花",
         "url": "https://github.com/yueshenqiu"
@@ -13873,7 +13873,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.QlzqQlzq.sg-divination-plugin",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "name": "随机算卦",
       "description": "面向群聊的随机算卦插件，通过 /sg 问题 起卦，并使用 MaiBot 模型生成克制、务实的情境解读。",
       "author": {
