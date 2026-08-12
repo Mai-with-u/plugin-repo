@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的��助信息"
+            "description": "显示 AI 绘图插件的帮助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -11046,9 +11046,9 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "3.0.0",
       "name": "MaiMai DX 双源查分器",
-      "description": "连接 diving-fish（水鱼）与 lxns（落雪）公开接口的舞萌 DX 查分插件，支持 B50 图片、曲目搜索（含别称与 lxns 数据补全）、猜歌游戏、谱面统计、运势、收藏品与个人成绩查询",
+      "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -12397,7 +12397,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.2",
+      "version": "2.4.3",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持有界任务队列、状态与取消、连续绘图、多模型热切换、LLM 提示词生成、风格/提示词预设、自拍、图生图/参考模式、双发送模式与精确撤回。",
       "author": {
@@ -14937,7 +14937,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.5",
+      "version": "0.1.6",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
@@ -14969,6 +14969,7 @@
         }
       ],
       "capabilities": [
+        "api.call",
         "chat.open_session",
         "llm.generate",
         "maisaka.context.append",
