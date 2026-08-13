@@ -8019,7 +8019,7 @@
           {
             "type": "command",
             "name": "drawhelp",
-            "description": "显示 AI 绘图插件的帮助信息"
+            "description": "显示 AI 绘图插件的��助信息"
           },
           {
             "type": "command",
@@ -9161,7 +9161,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12397,7 +12397,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.3",
+      "version": "2.4.4",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持有界任务队列、状态与取消、连续绘图、多模型热切换、LLM 提示词生成、风格/提示词预设、自拍、图生图/参考模式、双发送模式与精确撤回。",
       "author": {
@@ -13319,7 +13319,7 @@
     "id": "deepseek-v4-pro.Group-chat-automatically-opens",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.1.0",
       "name": "群聊定时打卡",
       "description": "自动在指定时间对配置的群聊执行打卡操作的MaiBot插件",
       "author": {
@@ -13341,14 +13341,14 @@
       },
       "dependencies": [
         {
+          "type": "python_package",
           "name": "aiohttp",
-          "version": ">=3.8.0",
-          "reason": "发送打卡API请求"
+          "version_spec": ">=3.8.0"
         },
         {
+          "type": "python_package",
           "name": "tomlkit",
-          "version": ">=0.11.0",
-          "reason": "读写config.toml配置文件"
+          "version_spec": ">=0.11.0"
         }
       ],
       "capabilities": [
@@ -13915,9 +13915,9 @@
     "id": "maibot_plugin.keywords_reply",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.2",
+      "version": "1.2.3",
       "name": "关键词回复",
-      "description": "关键词/检测词自动回复插件，支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复、群聊黑白名单、引用内触发开关、合并转发忽略与变量模板。由 AstrBot 同名插件迁移而来。",
+      "description": "支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复。如无法发送音乐卡片尝试更新 MaiBot-Napcat-Adapter",
       "author": {
         "name": "FlandreSatori",
         "url": "https://github.com/FlandreSatori"
@@ -14325,7 +14325,7 @@
       "id": "github.eoeoy.diceframe-bridge",
       "version": "0.2.2",
       "name": "DiceFrame Bridge",
-      "description": "将 MaiBot 聊天流桥接到 DiceFrame 跑团服务，支持中英文对局、群聊绑定、角色认领、行动、掷骰、支付和 GM 推进。",
+      "description": "将 MaiBot 聊天流桥接到 DiceFrame 跑团服务，支持中英文对局、群聊绑定、角色认领、行动、系统检定、支付和 GM 推进。",
       "author": {
         "name": "EOEOY",
         "url": "https://github.com/EOEOY"
