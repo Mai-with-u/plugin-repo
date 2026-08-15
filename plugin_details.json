@@ -2492,7 +2492,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.9.16",
+      "version": "1.10.0",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -11048,7 +11048,7 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.0.0",
+      "version": "3.1.0",
       "name": "MaiMai DX 双源查分器",
       "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
       "author": {
@@ -12732,7 +12732,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.music",
-      "version": "1.4.2",
+      "version": "1.4.4",
       "name": "音乐插件",
       "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
       "author": {
@@ -12745,7 +12745,7 @@
         "issues": "https://github.com/pan-ice/maibot-music/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.0.9",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -12939,7 +12939,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
+        "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -15895,6 +15895,212 @@
         ]
       },
       "id": "github.xiexiaojia780.video-summary-plugin"
+    }
+  },
+  {
+    "id": "feyumy.affection-system",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "feyumy.affection-system",
+      "version": "1.2.0",
+      "name": "好感度系统",
+      "description": "为 MaiBot 角色扮演提供好感度追踪系统。记录不同用户的好感度（-20~100），分为不喜/正常/熟悉/亲近/亲密/思慕六个等级。通过插件内 LLM 自动评价与 Planner 工具调用相结合：自动评价基于对话上下文、角色性格与当前关系等级综合判断互动是否改变好感度，不依赖关键词行为分类；并提供对应的回应风格提示。数据持久化存储，支持 WebUI 可视化配置。",
+      "author": {
+        "name": "Feyumy",
+        "url": "https://github.com/feiyunming"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/feiyunming/maibot-affection-system",
+        "homepage": "https://github.com/feiyunming/maibot-affection-system",
+        "documentation": "https://github.com/feiyunming/maibot-affection-system/blob/main/README.md",
+        "issues": "https://github.com/feiyunming/maibot-affection-system/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "data",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.3"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "chat.get_all_streams",
+        "message.get_recent",
+        "person.get_id_by_name",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.QlzqQlzq.character-knowledge-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.QlzqQlzq.character-knowledge-plugin",
+      "version": "1.0.4",
+      "name": "角色知识",
+      "description": "通过 AnimeTrace、可选视觉识别和私有角色库为图片补充角色标签。",
+      "author": {
+        "name": "QlzqQlzq",
+        "url": "https://github.com/QlzqQlzq"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/QlzqQlzq/character-knowledge-plugin",
+        "homepage": "https://github.com/QlzqQlzq/character-knowledge-plugin",
+        "documentation": "https://github.com/QlzqQlzq/character-knowledge-plugin#readme",
+        "issues": "https://github.com/QlzqQlzq/character-knowledge-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.0.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "message.get_by_id",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.achenjins.runninghub-workflow-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "plugin_type": "media",
+      "id": "github.achenjins.runninghub-workflow-adapter",
+      "version": "1.0.0",
+      "name": "RunningHub 通用工作流插件",
+      "description": "让 MaiBot 操作你的账号跑 RunningHub 工作流：文生图、图生图、图生视频等等，结果自动发回。支持配置多工作流、工作流自动识别、LLM 提示词扩写与访问控制，仓库内含一个文生图工作流配置教程。仅适配 NapCat 的 QQ 消息平台。",
+      "author": {
+        "name": "achenjins",
+        "url": "https://github.com/achenjins"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/achenjins/runninghub-workflow-adapter",
+        "homepage": "https://github.com/achenjins/runninghub-workflow-adapter",
+        "documentation": "https://github.com/achenjins/runninghub-workflow-adapter/blob/main/README.md",
+        "issues": "https://github.com/achenjins/runninghub-workflow-adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.31.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.custom",
+        "api.call",
+        "llm.generate",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.jpg"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.achenjins.runninghub-workflow-adapter.webp"
+    }
+  },
+  {
+    "id": "com.0-hz.email-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.email-adapter",
+      "version": "0.1.0",
+      "name": "邮件适配器（Email Adapter）",
+      "description": "通过 IMAP/SMTP 将一个机器人邮箱接入 MaiBot 消息网关：收取邮件、按名单过滤、按会话回复，并可选提供 send_email 工具主动开启对话。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-email-adapter",
+        "homepage": "https://github.com/yufei-pan/maibot-email-adapter",
+        "documentation": "https://github.com/yufei-pan/maibot-email-adapter/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-email-adapter/issues"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aioimaplib",
+          "version_spec": ">=1.2.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiosmtplib",
+          "version_spec": ">=3.0.0"
+        }
+      ],
+      "capabilities": [
+        "chat.open_session",
+        "component.enable",
+        "component.disable",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
