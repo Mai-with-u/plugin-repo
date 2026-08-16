@@ -9163,7 +9163,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12404,7 +12404,7 @@
     "id": "github.yueshenqiu.ai-draw-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.4.5",
+      "version": "2.4.7",
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持有界任务队列、状态与取消、连续绘图、多模型热切换、LLM 提示词生成、风格/提示词预设、自拍、图生图/参考模式、双发送模式与精确撤回。",
       "author": {
@@ -15415,7 +15415,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.2.0",
+      "version": "3.2.1",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -15994,9 +15994,9 @@
       "manifest_version": 2,
       "plugin_type": "media",
       "id": "github.achenjins.runninghub-workflow-adapter",
-      "version": "1.0.0",
-      "name": "RunningHub 通用工作流插件",
-      "description": "让 MaiBot 操作你的账号跑 RunningHub 工作流：文生图、图生图、图生视频等等，结果自动发回。支持配置多工作流、工作流自动识别、LLM 提示词扩写与访问控制，仓库内含一个文生图工作流配置教程。仅适配 NapCat 的 QQ 消息平台。",
+      "version": "1.0.1",
+      "name": "麦麦画师 · RunningHub",
+      "description": "让麦麦亲手给你画画：从一句话文生图，到多参考图 / 视频生成，统统自动完成并把成品发回聊天。支持自定义工作流、自己优化成本、AI 扩写提示词和限流防刷。仅适配 NapCat / QQ。",
       "author": {
         "name": "achenjins",
         "url": "https://github.com/achenjins"
