@@ -12318,9 +12318,9 @@
     "id": "github.xiexiaojia780.date-context-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.2",
+      "version": "1.4.5",
       "name": "日期上下文插件",
-      "description": "提供 date/date_text 公开 API（仅今天）、query_date 工具（昨天/今天/明天），以及可选的模型请求日期注入（date.inject_on_model_request）",
+      "description": "提供 date/date_text/holiday 公开 API（仅今天）、query_date/query_holiday 工具（日期与特定节日查询），以及可选的模型请求日期注入（date.inject_on_model_request）",
       "author": {
         "name": "xiexiaojia780",
         "url": "https://github.com/xiexiaojia780"
@@ -12732,7 +12732,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.music",
-      "version": "1.4.4",
+      "version": "1.4.5",
       "name": "音乐插件",
       "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
       "author": {
@@ -15994,7 +15994,7 @@
       "manifest_version": 2,
       "plugin_type": "media",
       "id": "github.achenjins.runninghub-workflow-adapter",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "麦麦画师 · RunningHub",
       "description": "让麦麦亲手给你画画：从一句话文生图，到多参考图 / 视频生成，统统自动完成并把成品发回聊天。支持自定义工作流、自己优化成本、AI 扩写提示词和限流防刷。仅适配 NapCat / QQ。",
       "author": {
