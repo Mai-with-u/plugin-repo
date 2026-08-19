@@ -2492,7 +2492,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.10.0",
+      "version": "1.10.2",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -2553,7 +2553,18 @@
           "zh-CN"
         ]
       },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "image",
+          "background": "#071b3d"
+        }
+      },
       "plugin_type": "extension"
+    },
+    "assets": {
+      "icon_64": "icons/namchengwuqiu.gemini_drawer.webp"
     }
   },
   {
@@ -7914,7 +7925,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.5",
+      "version": "0.9.0",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -7936,7 +7947,7 @@
         }
       },
       "host_application": {
-        "min_version": "1.0.6",
+        "min_version": "1.2.0",
         "max_version": "1.2.99"
       },
       "sdk": {
@@ -9163,7 +9174,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12408,8 +12419,8 @@
       "name": "AI Draw 图片生成插件",
       "description": "AI 绘图插件。命令前缀 /ad。支持有界任务队列、状态与取消、连续绘图、多模型热切换、LLM 提示词生成、风格/提示词预设、自拍、图生图/参考模式、双发送模式与精确撤回。",
       "author": {
-        "name": "三花",
-        "url": "https://github.com/yueshenqiu"
+        "name": "AI Draw Contributors",
+        "url": "https://github.com/yueshenqiu/ai_draw_plugin"
       },
       "license": "GPL-3.0-or-later",
       "urls": {
@@ -15967,8 +15978,8 @@
         "issues": "https://github.com/QlzqQlzq/character-knowledge-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.12",
-        "max_version": "1.0.99"
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.7.0",
