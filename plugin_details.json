@@ -2492,7 +2492,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.10.2",
+      "version": "1.10.3",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -7886,7 +7886,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.3",
+      "version": "1.4.0",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -7901,15 +7901,20 @@
         "issues": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.0",
         "max_version": "1.2.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.5.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "capabilities": [],
+      "capabilities": [
+        "chat.open_session",
+        "component.disable",
+        "component.enable",
+        "message.get_by_id"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -9174,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/���新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -15059,7 +15064,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.happycola233.maibot-poke-plugin",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "MaiBot 戳一戳插件",
       "description": "将 SnowLuma Adapter 的 QQ 戳一戳能力注册为模型可自主调用的 send_poke 工具。",
       "author": {
@@ -15075,7 +15080,7 @@
       },
       "host_application": {
         "min_version": "1.0.6",
-        "max_version": "1.1.99"
+        "max_version": "2.0.0"
       },
       "sdk": {
         "min_version": "2.7.0",
