@@ -2492,7 +2492,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.10.3",
+      "version": "1.10.5",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/���新今日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -11295,7 +11295,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.4",
+      "version": "0.4.5",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -11672,7 +11672,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibot-corpus-callosum",
-      "version": "1.3.3",
+      "version": "1.3.4",
       "name": "神经闭环反馈",
       "description": "给 replyer 一条内部再审通道：当回复器认为规划器的回复请求与聊天流严重不符时，可驳回发送并要求规划器重新思考，再审理由经内部上下文注入回规划器思考循环，全程聊天对象不可见。",
       "author": {
@@ -11967,7 +11967,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -14584,7 +14584,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.world-clock",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "世界时钟（World Clock）",
       "description": "在 Maisaka 规划器与回复器请求模型前，把 Host 注入的无时区时间提示改写（或追加）为带 IANA 与缩写的本地时间 / 世界时间块。默认展示进程本地时区，并附加 Asia/Shanghai 与 UTC（与本地相同时自动去重）。",
       "author": {
@@ -14960,7 +14960,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.6",
+      "version": "0.1.7",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
@@ -15112,7 +15112,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "papaya0481.forward-messages-auto",
-      "version": "0.2.10",
+      "version": "0.2.12",
       "name": "自主跨群转发插件",
       "description": "MaiBot 在多个群聊中时，让其自主判断群聊中的消息是否值得分享，并转发到其他群。群聊由配置决定。",
       "author": {
@@ -15127,7 +15127,7 @@
         "issues": "https://github.com/papaya0481/maibot-ForwardMessagesAuto-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.1.0",
+        "min_version": "1.2.0",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -15968,7 +15968,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.QlzqQlzq.character-knowledge-plugin",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "name": "角色知识",
       "description": "通过 AnimeTrace、可选视觉识别和私有角色库为图片补充角色标签。",
       "author": {
@@ -16070,7 +16070,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.email-adapter",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "邮件适配器（Email Adapter）",
       "description": "通过 IMAP/SMTP 将一个机器人邮箱接入 MaiBot 消息网关：收取邮件、按名单过滤、按会话回复，并可选提供 send_email 工具主动开启对话。",
       "author": {
