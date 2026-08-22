@@ -3,7 +3,7 @@
     "id": "SengokuCola.Mute-Plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.6.1",
+      "version": "4.7.0",
       "name": "群聊禁言管理插件 (Mute Plugin)",
       "description": "群聊禁言管理插件，提供智能禁言和手动禁言命令",
       "author": {
@@ -18,11 +18,11 @@
         "issues": "https://github.com/SengokuCola/MutePlugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.1.99"
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
       },
       "sdk": {
-        "min_version": "2.3.0",
+        "min_version": "2.8.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -1686,7 +1686,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.0"
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10152,9 +10152,9 @@
     "id": "deepseek-v4-pro.poke-reply-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "戳一戳自动回复插件",
-      "description": "接收 NapCat 适配器的 QQ 戳一戳事件，转发给 LLM 独立思考并自动回复，支持回戳",
+      "description": "接收 NapCat 适配器的 QQ 戳一戳事件，转发给 LLM 独立思考并自动回复，支持回戳、群黑名单与自动读取昵称",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -10442,58 +10442,6 @@
           "zh-CN"
         ]
       }
-    }
-  },
-  {
-    "id": "tackyeel.maibot-model-budget-router",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "tackyeel.maibot-model-budget-router",
-      "name": "Model Budget Router",
-      "version": "1.1.2",
-      "description": "Route MaiBot LLM requests by task, relay budget, balance, latency, and failures. Useful for classifying and managing many free or low-cost relay providers.",
-      "author": {
-        "name": "tackyeel",
-        "url": "https://github.com/tackyeel"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/tackyeel/maibot-model-budget-router",
-        "homepage": "https://github.com/tackyeel/maibot-model-budget-router",
-        "documentation": "https://github.com/tackyeel/maibot-model-budget-router#readme",
-        "issues": "https://github.com/tackyeel/maibot-model-budget-router/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.5.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0.24.0"
-        }
-      ],
-      "llm_providers": [
-        {
-          "client_type": "budget_router",
-          "name": "Model Budget Router",
-          "description": "Budget, latency, and failover router for OpenAI-compatible relay providers.",
-          "version": "1.1.2"
-        }
-      ],
-      "capabilities": [],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "plugin_type": "provider"
     }
   },
   {
