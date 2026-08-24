@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -15694,7 +15694,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.kumburovicbranko682-boop.image-relook",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "name": "图片重看",
       "description": "当首遍图片描述不够时，按当前问题重新调用 VLM 看图。向 planner 暴露 inspect_image 工具，避免图转文信息丢失。",
       "author": {
