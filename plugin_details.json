@@ -3595,7 +3595,7 @@
         "issues": "https://github.com/saberlights/smart_segmentation_plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.0",
         "max_version": "999999.0.0"
       },
       "sdk": {
@@ -8845,7 +8845,7 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.6.2",
+      "version": "1.6.3",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
       "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 和阿里云账号余额，支持 HTML 卡片可视化输出，仅依赖 Python 标准库。",
       "author": {
@@ -16058,6 +16058,725 @@
         "component.enable",
         "component.disable",
         "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "photalia.deepseek-peak-valley",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "photalia.deepseek-peak-valley",
+      "version": "1.1.0",
+      "name": "DeepSeek 峰谷價格播報",
+      "description": "每天透過已配置的 Exa MCP 更新 DeepSeek V4 官方價格與峰谷規則，由 Replyer 生成每日銳評。",
+      "author": {
+        "name": "Photalia",
+        "url": "https://github.com/Photalia"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Photalia/maibot-deepseek-peak-valley",
+        "homepage": "https://github.com/Photalia/maibot-deepseek-peak-valley",
+        "documentation": "https://github.com/Photalia/maibot-deepseek-peak-valley#readme",
+        "issues": "https://github.com/Photalia/maibot-deepseek-peak-valley/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "chat.get_stream_by_group_id",
+        "chat.open_session",
+        "config.get",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.DisguisedFrogs.maibot-mood",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "maibot-mood 在线搜索和发图",
+      "description": "按群 LLM 分析聊天氛围心情（差/中/好）并持久化，供模型按心情从本地 Pixiv 榜库选图发图",
+      "author": {
+        "name": "DisguisedFrogs",
+        "url": "https://github.com/DisguisedFrogs"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DisguisedFrogs/Maibot_Picture_search",
+        "homepage": "https://github.com/DisguisedFrogs/Maibot_Picture_search",
+        "documentation": "https://github.com/DisguisedFrogs/Maibot_Picture_search/blob/main/README.md",
+        "issues": "https://github.com/DisguisedFrogs/Maibot_Picture_search/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "message.get_recent",
+        "paths"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.DisguisedFrogs.maibot-mood"
+    }
+  },
+  {
+    "id": "spica.easysvg-creator",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "spica.easysvg-creator",
+      "version": "1.0.0",
+      "name": "SVG 简笔画生成器",
+      "description": "一个用于生成和渲染简单 SVG 图像的插件。支持 LLM 自主调用生成动态 SVG 图像，可配置尺寸限制与默认背景色。",
+      "author": {
+        "name": "spica",
+        "url": "https://github.com/sp1ca0722"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/sp1ca0722/maibot-easysvg-creator"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "resvg-py",
+          "version_spec": ">=0.4.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/spica.easysvg-creator.webp"
+    }
+  },
+  {
+    "id": "github.cateye.skland.sign",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.skland.sign",
+      "version": "1.1.0",
+      "name": "森空岛签到",
+      "description": "森空岛（Skland）游戏自动签到插件：支持明日方舟与终末地，用户可通过指令或 LLM 工具绑定 token、手动签到、查看状态与开启每日自动签到。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_skland_sign",
+        "homepage": "https://github.com/cateyemizuki/cateye_skland_sign",
+        "documentation": "https://github.com/cateyemizuki/cateye_skland_sign/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_skland_sign/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.25.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pycryptodome",
+          "version_spec": ">=3.19.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.3"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "calendar-check"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.forward"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.cateye.skland.sign.webp"
+    }
+  },
+  {
+    "id": "dcy501.reminder",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.1",
+      "name": "自然语言提醒",
+      "description": "通过自然对话设置定时提醒：『明晚7点提醒我训练』『10分钟后叫我』。到点提醒由 bot 本体口吻发出（走主链路生成，无人设硬编码），支持提前提醒、取消与查询，重启不丢任务。",
+      "author": {
+        "name": "DCY501",
+        "url": "https://github.com/DCY501"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DCY501/maibot-reminder-plugin",
+        "homepage": "https://github.com/DCY501/maibot-reminder-plugin",
+        "issues": "https://github.com/DCY501/maibot-reminder-plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "config.get",
+        "message.get_recent",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "dcy501.reminder"
+    }
+  },
+  {
+    "id": "com.0-hz.lunagentic-research-swarm",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.lunagentic-research-swarm",
+      "version": "0.2.0",
+      "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
+      "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm"
+      },
+      "host_application": {
+        "min_version": "1.1.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.10.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
+        },
+        {
+          "type": "python_package",
+          "name": "ddgs",
+          "version_spec": ">=9.14.4,<10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lancedb",
+          "version_spec": ">=0.34.0,<0.35.0"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "api.list",
+        "chat.get_all_streams",
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "config.get",
+        "knowledge.search",
+        "llm.embed",
+        "llm.generate",
+        "llm.generate_with_tools",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "message.build_readable",
+        "message.get_by_id",
+        "message.get_by_time",
+        "message.get_by_time_in_chat",
+        "message.get_recent",
+        "person.get_id",
+        "person.get_id_by_name",
+        "person.get_value",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "haitai-git.chat-style-translator",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.20.0",
+      "name": "聊天风格转译",
+      "description": "绑定 QQ 群后自动收集群友对话（也可用 /风格拉取历史 从 NapCat 直接回填历史消息），在后台用 LLM 分析群聊场景、说话对象与每位群友的聊天风格，生成可审核、可融合、可编辑的风格模型；通过黑名单语义过滤剔除不合语境的语句；审核通过后，AI 自身行为风格保持不变，每次生成回复草稿后检索该群风格并做轻度微调（只改几个词，原意严格不变）。内置回复乱码拦截：AI 回复出现乱码、指令残片或内部标识符泄漏时自动要求回复器重新生成。内置微调前黑名单：回复草稿中出现黑名单词（仅支持中文词条）时，先在风格微调前删除（可开启语义换词匹配，基于没删前的整句理解意思、补字保持原意；语义换词匹配生效时直接返回删词补意结果、不再叠加回复后风格微调，仅字面删词命中时仍继续回复后微调）。",
+      "author": {
+        "name": "haitai-git",
+        "url": "https://github.com/haitai-git"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/haitai-git/chat-style-translator-plugin",
+        "homepage": "https://github.com/haitai-git/chat-style-translator-plugin",
+        "documentation": "https://github.com/haitai-git/chat-style-translator-plugin/blob/main/README.md",
+        "issues": "https://github.com/haitai-git/chat-style-translator-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "llm.generate",
+        "llm.embed",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "haitai-git.chat-style-translator"
+    }
+  },
+  {
+    "id": "github.jessiongod.wemai-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.2.0",
+      "name": "MaiBot WeChat Adapter",
+      "description": "MaiBot 的微信个人号适配器插件（OneBot v11 WS 客户端）：作为协议适配层，在 MaiBot 与微信桥接服务之间转发私聊/群聊消息。仅用于个人学习与研究。",
+      "author": {
+        "name": "jessiongod",
+        "url": "https://github.com/jessiongod"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/jessiongod/mai-bot-wechat-adapter",
+        "homepage": "https://github.com/jessiongod/mai-bot-wechat-adapter",
+        "documentation": "https://github.com/jessiongod/mai-bot-wechat-adapter/blob/main/README.md",
+        "issues": "https://github.com/jessiongod/mai-bot-wechat-adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "websockets",
+          "version_spec": ">=12.0"
+        }
+      ],
+      "capabilities": [
+        "gateway.route_message",
+        "gateway.update_state"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
+      "id": "github.jessiongod.wemai-adapter"
+    }
+  },
+  {
+    "id": "github.QlzqQlzq.role-memory-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.QlzqQlzq.role-memory-plugin",
+      "version": "1.0.0",
+      "name": "基于知识库的动态人设",
+      "description": "从角色原作资料构建本地知识库，按当前场景动态注入记忆、表达参考与渐进关系状态。",
+      "author": {
+        "name": "QlzqQlzq",
+        "url": "https://github.com/QlzqQlzq"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/QlzqQlzq/role-memory-plugin",
+        "homepage": "https://github.com/QlzqQlzq/role-memory-plugin",
+        "documentation": "https://github.com/QlzqQlzq/role-memory-plugin#readme",
+        "issues": "https://github.com/QlzqQlzq/role-memory-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.0.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "person.get_id",
+        "person.get_value"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.Chenhui-2.mai-tarot.plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.Chenhui-2.mai-tarot.plugin",
+      "version": "1.0.0",
+      "name": "塔罗牌占卜",
+      "description": "塔罗牌占卜插件，支持单张抽牌和三张牌阵，支持AI解读，可配置指令与AI参数",
+      "author": {
+        "name": "Chenhui",
+        "url": "https://github.com/Chenhui-2"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Chenhui-2/mai-tarot"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🔮"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "fulawa.maibot-expenses-summary-plus",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "fulawa.maibot-expenses-summary-plus",
+      "name": "麦麦财务总结优化",
+      "version": "1.0.4",
+      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。",
+      "author": {
+        "name": "fulawa",
+        "url": "https://github.com/jiruiyu330784"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
+        "homepage": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
+        "documentation": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus/blob/main/README.md",
+        "issues": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.forward",
+        "send.text",
+        "send.image",
+        "chat",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "render.html2png",
+        "llm.generate",
+        "statistics.local.model_trend",
+        "statistics.local.message_trend"
+      ],
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "💸"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "maitu.photo-studio",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maitu.photo-studio",
+      "version": "0.1.0",
+      "name": "麦麦写真",
+      "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+      "author": {
+        "name": "tsuiraku9",
+        "url": "https://github.com/tsuiraku9"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+        "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+        "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+        "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+      },
+      "host_application": {
+        "min_version": "1.1.4",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=11.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "plugin_type": "media",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "message.get_by_id",
+        "message.get_recent",
+        "config.get",
+        "llm.generate",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "camera",
+          "fallback": "image"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.airlibrax.game-update-watcher",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.airlibrax.game-update-watcher",
+      "version": "0.2.0",
+      "name": "游戏更新速报",
+      "description": "定时采集多款游戏版本更新信息（鸣潮/明日方舟/终末地/绝区零/崩铁），字段级交叉认证后按 6 周版本节奏生成汇总图，推送到指定 QQ 群。新增游戏只需写一个 JSON 配置。",
+      "author": {
+        "name": "AirLibrax",
+        "url": "https://github.com/AirLibrax"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/AirLibrax/game-update-watcher",
+        "homepage": "https://github.com/AirLibrax/game-update-watcher",
+        "documentation": "https://github.com/AirLibrax/game-update-watcher/blob/main/README.md",
+        "issues": "https://github.com/AirLibrax/game-update-watcher/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "9.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "9.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "integration",
+      "capabilities": [
+        "send",
+        "chat",
+        "config"
+      ],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "newspaper"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.yudanpi.mai-companion",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.yudanpi.mai-companion",
+      "version": "0.2.0",
+      "name": "年上陪伴主动对话",
+      "description": "结合 Maizone QQ 空间动态和公开联网话题，向配置的 QQ 私聊目标发送陪伴消息，并可优先使用本地 IndexTTS 语音。",
+      "author": {
+        "name": "yudanpi",
+        "url": "https://github.com/yudanpi"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yudanpi/mai-companion",
+        "homepage": "https://github.com/yudanpi/mai-companion",
+        "documentation": "https://github.com/yudanpi/mai-companion/blob/main/README.md",
+        "issues": "https://github.com/yudanpi/mai-companion/issues"
+      },
+      "host_application": {
+        "min_version": "1.1.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.4",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "internetsb.maizone",
+          "version_spec": ">=3.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.hybrid",
+        "llm.generate",
+        "llm.get_available_models",
+        "config.get",
+        "api.call",
+        "chat.open_session",
+        "message.get_recent"
       ],
       "i18n": {
         "default_locale": "zh-CN",
