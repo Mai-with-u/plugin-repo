@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -9711,7 +9711,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Emilia-awa.maibot-moepix",
-      "version": "1.1.0",
+      "version": "1.1.2",
       "name": "maibot moepix",
       "description": "基于 Lolicon API 的二次元图片获取插件，支持 AI 智能调用和命令直接调用，并采取一系列防风控手段，内容级别采用白名单控制",
       "author": {
@@ -14118,9 +14118,9 @@
     "id": "com.maibot.link-parser",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.0",
+      "version": "1.4.1",
       "name": "多平台链接解析器",
-      "description": "自动解析知乎、微博、YouTube、Twitter(X) 链接，并直接发送文本解析结果和视频回复",
+      "description": "自动解析知乎、微博、YouTube、Twitter(X)、Pixiv 链接，并直接发送文本解析结果和媒体回复",
       "author": {
         "name": "jhmmm",
         "url": "https://github.com/jh-mmm"
@@ -14155,6 +14155,11 @@
           "type": "python_package",
           "name": "curl_cffi",
           "version_spec": ">=0.13.0,<0.15.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
         },
         {
           "type": "python_package",
@@ -16274,9 +16279,9 @@
     "id": "dcy501.reminder",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.1",
+      "version": "0.3.0",
       "name": "自然语言提醒",
-      "description": "通过自然对话设置定时提醒：『明晚7点提醒我训练』『10分钟后叫我』。到点提醒由 bot 本体口吻发出（走主链路生成，无人设硬编码），支持提前提醒、取消与查询，重启不丢任务。",
+      "description": "通过自然对话设置定时提醒：『明晚7点提醒我训练』『10分钟后叫我』；并能自动观察群里『已敲定』的约定（训练/比赛/聚餐），到点主动提醒一次。到点提醒由 bot 本体口吻发出（走主链路生成，无人设硬编码），支持提前提醒、取消与查询，重启不丢任务。",
       "author": {
         "name": "DCY501",
         "url": "https://github.com/DCY501"
@@ -16686,7 +16691,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.airlibrax.game-update-watcher",
-      "version": "0.2.0",
+      "version": "0.5.2",
       "name": "游戏更新速报",
       "description": "定时采集多款游戏版本更新信息（鸣潮/明日方舟/终末地/绝区零/崩铁），字段级交叉认证后按 6 周版本节奏生成汇总图，推送到指定 QQ 群。新增游戏只需写一个 JSON 配置。",
       "author": {
@@ -16711,9 +16716,9 @@
       "dependencies": [],
       "plugin_type": "integration",
       "capabilities": [
-        "send",
-        "chat",
-        "config"
+        "send.image",
+        "chat.open_session",
+        "llm.generate"
       ],
       "display": {
         "icon": {
@@ -16783,6 +16788,46 @@
         "supported_locales": [
           "zh-CN"
         ]
+      }
+    }
+  },
+  {
+    "id": "lnrh1.maibot-auto-restart",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "lnrh1.maibot-auto-restart",
+      "name": "MaiBot自动重启插件",
+      "version": "1.1.0",
+      "description": "提供阈值触发重启、定时重启和手动重启功能。",
+      "author": {
+        "name": "lnrh1",
+        "url": "https://github.com/lnrh1"
+      },
+      "urls": {
+        "homepage": "https://github.com/lnrh1/maibot-auto-restart",
+        "repository": "https://github.com/lnrh1/maibot-auto-restart"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.8.0",
+        "max_version": "1.2.0"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "3.0.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "psutil",
+          "version_spec": ">=5.9.0"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh_CN"
       }
     }
   }
