@@ -8366,7 +8366,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.10.5",
+      "version": "1.10.6",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -14118,7 +14118,7 @@
     "id": "com.maibot.link-parser",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.1",
+      "version": "1.4.2",
       "name": "多平台链接解析器",
       "description": "自动解析知乎、微博、YouTube、Twitter(X)、Pixiv 链接，并直接发送文本解析结果和媒体回复",
       "author": {
@@ -15506,7 +15506,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nero-umu.nitter-to-maibot",
-      "version": "1.5.12",
+      "version": "1.6.2",
       "name": "Nitter 推文转发",
       "description": "定期读取 Nitter 订阅账号的新推文，支持按 QQ 群独立订阅，并转发正文、图片和视频附件。",
       "author": {
@@ -15539,6 +15539,7 @@
       "capabilities": [
         "chat.open_session",
         "llm.generate",
+        "maisaka.context.append",
         "send.custom",
         "send.forward",
         "send.image",
@@ -16119,9 +16120,9 @@
     "id": "github.DisguisedFrogs.maibot-mood",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.3.0",
       "name": "maibot-mood 在线搜索和发图",
-      "description": "按群 LLM 分析聊天氛围心情（差/中/好）并持久化，供模型按心情从本地 Pixiv 榜库选图发图",
+      "description": "按群 LLM 分析聊天氛围心情（0-100 心情分，分档差/中/好）并持久化，供模型按心情从本地 Pixiv 榜库选图发图",
       "author": {
         "name": "DisguisedFrogs",
         "url": "https://github.com/DisguisedFrogs"
@@ -16691,7 +16692,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.airlibrax.game-update-watcher",
-      "version": "0.5.2",
+      "version": "0.5.4",
       "name": "游戏更新速报",
       "description": "定时采集多款游戏版本更新信息（鸣潮/明日方舟/终末地/绝区零/崩铁），字段级交叉认证后按 6 周版本节奏生成汇总图，推送到指定 QQ 群。新增游戏只需写一个 JSON 配置。",
       "author": {
