@@ -7182,7 +7182,7 @@
           {
             "type": "event_handler",
             "name": "mai_plan_stop_handler",
-            "description": "Mai_Plan 停止时关闭提醒调度器"
+            "description": "Mai_Plan 停止时关闭提���调度器"
           },
           {
             "type": "tool",
@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12930,9 +12930,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "deepseek-v4-pro.private-humanizer",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "name": "麦麦私聊拟人化增强（深度优化版）",
-      "description": "私聊拟人化增强 v1.6.0：Planner+Replyer 双阶段提示词注入，群聊硬拦截与会话确认缓存，时间感知、画像注入、回复守卫、记忆守卫、主动续话。",
+      "description": "私聊拟人化增强 v1.6.1：Planner+Replyer 双阶段提示词注入（兼容 1.0.x/1.1.x messages 与 1.2.x items 载荷），群聊硬拦截与会话确认缓存，时间感知、画像注入、回复守卫、记忆守卫、主动续话。",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
@@ -15739,7 +15739,7 @@
     "id": "github.icecranberry.linshe-bridge",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "邻舍.EXE桥接适配器————为了ComfyUI自动生成图片这碟醋你想来包顿饺子吗？",
       "description": "邻舍，力求借助Anima本地绘图模型搭配LLM，通过日程和朋友圈记录，自动运行一个AI小镇，就好像二次元角色真的活了一整天。插件给予了角色暂时桥接进入MaiBot的能力，方便切换人格之外，还赋予了自动Anima配图能力",
       "author": {
