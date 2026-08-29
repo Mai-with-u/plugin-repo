@@ -7182,7 +7182,7 @@
           {
             "type": "event_handler",
             "name": "mai_plan_stop_handler",
-            "description": "Mai_Plan 停止时关闭提���调度器"
+            "description": "Mai_Plan 停止时关闭提醒调度器"
           },
           {
             "type": "tool",
@@ -9179,7 +9179,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -14118,7 +14118,7 @@
     "id": "com.maibot.link-parser",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.2",
+      "version": "1.4.3",
       "name": "多平台链接解析器",
       "description": "自动解析知乎、微博、YouTube、Twitter(X)、Pixiv 链接，并直接发送文本解析结果和媒体回复",
       "author": {
@@ -14913,7 +14913,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.7",
+      "version": "0.1.8",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
@@ -14926,7 +14926,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.1.99"
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.7.1",
