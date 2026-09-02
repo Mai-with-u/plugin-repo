@@ -9946,7 +9946,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.3.1",
+      "version": "1.4.0",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
       "author": {
@@ -11018,14 +11018,14 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.1.0",
+      "version": "3.2.0",
       "name": "MaiMai DX 双源查分器",
       "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
       "author": {
         "name": "DeepSeek-V4",
         "url": "https://github.com/DeepSeek-V4-Pro"
       },
-      "license": "GPL-3.0-or-later",
+      "license": "AGPL-3.0-only",
       "urls": {
         "repository": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
         "homepage": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
@@ -11050,6 +11050,11 @@
           "type": "python_package",
           "name": "playwright",
           "version_spec": ">=1.40"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
         }
       ],
       "capabilities": [
