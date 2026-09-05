@@ -9185,7 +9185,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -13902,9 +13902,9 @@
     "id": "maibot_plugin.keywords_reply",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.4",
+      "version": "1.2.5",
       "name": "关键词回复",
-      "description": "支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复。如无法发送音乐卡片尝试更新 MaiBot-Napcat-Adapter",
+      "description": "支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复。如无法发送音乐卡片请关注napcat本体issue",
       "author": {
         "name": "FlandreSatori",
         "url": "https://github.com/FlandreSatori"
