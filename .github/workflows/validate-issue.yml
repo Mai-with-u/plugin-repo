@@ -92,6 +92,7 @@ jobs:
         with:
           script: |
             const expectedTitle = `Mai Review Issue #${context.issue.number}`;
+            const currentCommentAt = Date.parse(context.payload.comment.created_at || '');
             const activeRuns = [];
 
             for (const status of ['queued', 'in_progress']) {
@@ -105,7 +106,21 @@ jobs:
               activeRuns.push(...runs);
             }
 
-            if (activeRuns.some(run => run.display_title === expectedTitle)) {
+            // The current /recheck comment also triggers mai-review.yml because
+            // that workflow listens to every issue_comment event. Its run is
+            // created a few seconds after this comment, then becomes skipped
+            // due to mai-review.yml's job-level condition. Only consider runs
+            // that already existed before the current comment as active reviews
+            // to avoid treating that sibling run as a duplicate review.
+            const activePreviousReviews = activeRuns.filter(run => {
+              const runCreatedAt = Date.parse(run.created_at || '');
+              return run.display_title === expectedTitle &&
+                Number.isFinite(runCreatedAt) &&
+                Number.isFinite(currentCommentAt) &&
+                runCreatedAt < currentCommentAt;
+            });
+
+            if (activePreviousReviews.length > 0) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
