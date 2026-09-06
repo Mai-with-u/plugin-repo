@@ -13,6 +13,9 @@ jobs:
       contains(github.event.issue.labels.*.name, 'validated') &&
       contains(github.event.comment.body, '/approve')
     runs-on: ubuntu-latest
+    concurrency:
+      group: plugin-repo-main-write
+      cancel-in-progress: false
     permissions:
       contents: write
       issues: write
@@ -174,13 +177,92 @@ jobs:
           git config --local user.name "GitHub Action"
           git add plugins.json
           if [ "${{ steps.add-plugin.outputs.request_type }}" = "modify" ]; then
-            git commit -m "chore: Update ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+            commit_message="chore: Update ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
           elif [ "${{ steps.add-plugin.outputs.request_type }}" = "remove" ]; then
-            git commit -m "chore: Remove ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+            commit_message="chore: Remove ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
           else
-            git commit -m "feat: Add ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
+            commit_message="feat: Add ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
           fi
-          git push
+          git commit -m "$commit_message"
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "无法推送到 main，已重试 $attempt 次" >&2
+              exit 1
+            fi
+
+            echo "推送失败，正在基于最新 main 重新应用当前操作（第 $((attempt + 1)) 次）"
+            git fetch origin main
+            git reset --hard origin/main
+            REQUEST_TYPE="${{ steps.add-plugin.outputs.request_type }}" \
+            PLUGIN_ID="${{ steps.add-plugin.outputs.plugin_id }}" \
+            CURRENT_PLUGIN_ID="${{ steps.add-plugin.outputs.current_plugin_id }}" \
+            REPO_URL="${{ steps.add-plugin.outputs.repo_url }}" \
+            node <<'EOL'
+          const fs = require('fs');
+          const requestType = process.env.REQUEST_TYPE;
+          const pluginId = process.env.PLUGIN_ID;
+          const currentPluginId = process.env.CURRENT_PLUGIN_ID || pluginId;
+          const repoUrl = process.env.REPO_URL || '';
+          const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
+          const existingPluginIndex = requestType === 'modify'
+            ? plugins.findIndex(plugin => plugin.id === currentPluginId)
+            : plugins.findIndex(plugin => plugin.id === pluginId);
+
+          if (requestType === 'add') {
+            if (plugins.some(plugin => plugin.id === pluginId)) {
+              throw new Error(`插件 ID 已存在: ${pluginId}`);
+            }
+            if (!repoUrl) {
+              throw new Error('无法解析 Issue 内容：缺少仓库地址');
+            }
+            if (plugins.some(plugin => plugin.repositoryUrl === repoUrl)) {
+              throw new Error(`仓库 URL 已存在: ${repoUrl}`);
+            }
+            plugins.push({ id: pluginId, repositoryUrl: repoUrl });
+          } else if (requestType === 'modify') {
+            if (existingPluginIndex === -1) {
+              throw new Error(`插件 ID 不存在: ${currentPluginId}`);
+            }
+            const hasRepoChange = Boolean(repoUrl && repoUrl !== plugins[existingPluginIndex].repositoryUrl);
+            const hasIdChange = currentPluginId !== pluginId;
+            if (!hasRepoChange && !hasIdChange) {
+              throw new Error('未检测到修改内容');
+            }
+            if (hasIdChange && plugins.some(plugin => plugin.id === pluginId)) {
+              throw new Error(`新插件 ID 已存在: ${pluginId}`);
+            }
+            if (repoUrl) {
+              const duplicateUrl = plugins.find(
+                (plugin, index) => index !== existingPluginIndex && plugin.repositoryUrl === repoUrl,
+              );
+              if (duplicateUrl) {
+                throw new Error(`仓库 URL 已存在: ${repoUrl}`);
+              }
+            }
+            plugins[existingPluginIndex] = {
+              ...plugins[existingPluginIndex],
+              id: hasIdChange ? pluginId : plugins[existingPluginIndex].id,
+              repositoryUrl: hasRepoChange ? repoUrl : plugins[existingPluginIndex].repositoryUrl,
+            };
+          } else if (requestType === 'remove') {
+            if (existingPluginIndex === -1) {
+              throw new Error(`插件 ID 不存在: ${pluginId}`);
+            }
+            plugins.splice(existingPluginIndex, 1);
+          } else {
+            throw new Error(`未知操作类型: ${requestType}`);
+          }
+
+          fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\\n');
+          EOL
+            git add plugins.json
+            git commit -m "$commit_message"
+          done
 
       - name: Close issue with success
         uses: actions/github-script@v7

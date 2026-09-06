@@ -16,6 +16,9 @@ permissions:
 jobs:
   generate-details:
     runs-on: ubuntu-latest
+    concurrency:
+      group: plugin-repo-main-write
+      cancel-in-progress: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -331,8 +334,26 @@ jobs:
           git add plugin_details.json icons
           if git diff --staged --quiet; then
             echo "没有变更需要提交"
-          else
-            git commit -m "自动生成 plugin_details.json 和图标缓存"
-            git push
-            echo "✅ 已提交并推送 plugin_details.json 和图标缓存更新"
+            exit 0
           fi
+
+          git commit -m "自动生成 plugin_details.json 和图标缓存"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "✅ 已提交并推送 plugin_details.json 和图标缓存更新"
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "无法推送到 main，已重试 $attempt 次" >&2
+              exit 1
+            fi
+
+            echo "推送失败，正在同步远端 main 后重试（第 $((attempt + 1)) 次）"
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "同步远端 main 时发生冲突，停止重试" >&2
+              exit 1
+            fi
+          done
