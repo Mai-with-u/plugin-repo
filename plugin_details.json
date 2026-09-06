@@ -10009,7 +10009,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "davidblackcn.maibot-api-balance-plugin",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "API 余额查询",
       "description": "一键查询众多API平台账号余额",
       "author": {
@@ -10028,12 +10028,15 @@
         "max_version": "2.99.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
+        "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
       "capabilities": [
         "send.text",
         "send.image",
+        "send.forward",
+        "chat",
+        "chat.get_stream_by_group_id",
         "render.html2png",
         "component.reload_plugin"
       ],
@@ -16857,6 +16860,1408 @@
       ],
       "i18n": {
         "default_locale": "zh_CN"
+      }
+    }
+  },
+  {
+    "id": "tidain.maibot-platform-parser",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "tidain.maibot-platform-parser",
+      "version": "1.7.3",
+      "name": "万能链接解析器",
+      "description": "自动解析抖音、小红书、B站等17个平台链接，并把图文/视频发送到QQ群。基于 Zhalslar/astrbot_plugin_parser 解析核心和 Color2333/maibot-multi-platform-parser 移植框架改进。",
+      "author": {
+        "name": "tidain",
+        "url": "https://github.com/tidain"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tidain/maibot-platform-parser"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiofiles",
+          "version_spec": ">=25.1.0"
+        },
+        {
+          "type": "python_package",
+          "name": "msgspec",
+          "version_spec": ">=0.21.0"
+        },
+        {
+          "type": "python_package",
+          "name": "yt-dlp",
+          "version_spec": ">=2026.3.17"
+        },
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": ">=17.4.1"
+        },
+        {
+          "type": "python_package",
+          "name": "curl_cffi",
+          "version_spec": ">=0.7.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tqdm",
+          "version_spec": ">=4.66.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "apscheduler",
+          "version_spec": ">=3.10.0"
+        },
+        {
+          "type": "python_package",
+          "name": "apilmoji",
+          "version_spec": ">=0.1.0"
+        },
+        {
+          "type": "python_package",
+          "name": "gallery-dl",
+          "version_spec": ">=1.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "group-awareness-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.3.0",
+      "name": "麦麦看到你了！",
+      "description": "感知群人员变动事件（进群/退群/禁言/群名/管理变动），按事件类型可选固定模板/人格化LLM/注入上下文三种处理；并提供群荣誉、群员称号、群头像、群公告、禁言列表、精华消息、成员变动等工具化查询能力。麦麦看到你了！",
+      "author": {
+        "name": "ji-or-ji",
+        "url": "https://github.com/ji-or-ji"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ji-or-ji/group-awareness-plugin",
+        "homepage": "https://github.com/ji-or-ji/group-awareness-plugin",
+        "documentation": "https://github.com/ji-or-ji/group-awareness-plugin/blob/main/README.md",
+        "issues": "https://github.com/ji-or-ji/group-awareness-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "maisaka.context.append",
+        "llm.generate",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "id": "group-awareness-plugin"
+    }
+  },
+  {
+    "id": "github.cateye.set-msg-emoji-like",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.set-msg-emoji-like",
+      "version": "0.2.1",
+      "name": "表情回应",
+      "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。必需依赖 NapCat 适配器（maibot-team.napcat-adapter）提供 set_msg_emoji_like API；缺失时插件不会被加载。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+        "homepage": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+        "documentation": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.napcat-adapter",
+          "version_spec": ">=1.0.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "smile-plus"
+        }
+      },
+      "capabilities": [
+        "api.call",
+        "maisaka.context.append",
+        "message.get_by_time_in_chat"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "omsociety.tavily-search",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "omsociety.tavily-search",
+      "version": "1.0.0",
+      "name": "Tavily 网页搜索",
+      "description": "提供 tavily_search LLM 工具，调用 Tavily API 搜索网页，支持多 Key 轮询与来源引用显示",
+      "author": {
+        "name": "OMSociety",
+        "url": "https://github.com/OMSociety"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/OMSociety/maibot_plugin_tavily_search"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "package"
+        }
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/omsociety.tavily-search.webp"
+    }
+  },
+  {
+    "id": "com.zhigengniao258.error-notify",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.zhigengniao258.error-notify",
+      "name": "报错日志推送",
+      "version": "1.0.0",
+      "description": "监控 MaiBot 日志中的 ERROR/CRITICAL 报错，按周期（默认 30 分钟）通过 Server酱聚合推送一次到手机；完整错误记录按天归档在本插件目录 errors/ 下，推送缺失不丢记录，支持关键词忽略与通知阈值。",
+      "author": {
+        "name": "ZHIGENGNIAO258",
+        "url": "https://github.com/ZHIGENGNIAO258"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZHIGENGNIAO258/error-notify",
+        "homepage": "https://github.com/ZHIGENGNIAO258/error-notify",
+        "documentation": "https://github.com/ZHIGENGNIAO258/error-notify/blob/main/README.md",
+        "issues": "https://github.com/ZHIGENGNIAO258/error-notify/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "integration",
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.valleywinds.filter-sama",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.valleywinds.filter-sama",
+      "version": "1.1.2",
+      "name": "出站消息过滤器(Filter-sama)",
+      "description": "出站消息过滤器：当 MaiBot 的回复命中你配置的提示词时，直接拦截不发送，只在日志中留一条记录。支持多条提示词与 contains / exact / regex 三种匹配模式；可选开启 /filter_test 命令，跳过 planner 直接把消息喂给 reply 模型生成并发送，用于联调验证。",
+      "author": {
+        "name": "ValleyWinds",
+        "url": "https://github.com/ValleyWinds"
+      },
+      "license": "GPL-3.0",
+      "urls": {
+        "repository": "https://github.com/ValleyWinds/Filter-sama",
+        "homepage": "https://github.com/ValleyWinds/Filter-sama",
+        "documentation": "https://github.com/ValleyWinds/Filter-sama#readme"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.cateye.filter-assistant",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.filter-assistant",
+      "version": "1.0.1",
+      "name": "不要只说不干",
+      "description": "修复 DeepSeek V4 flash（测试时使用的提供方含 Command Code、阿里云百炼）Planner 工具调用失败问题（详见 https://github.com/Mai-with-u/MaiBot/issues/2017 ）：在 Planner 构造发送给 LLM 的请求体之前，自动过滤掉 messages/Context Items 中所有 role 为 assistant 的纯文本消息（仅保留 system、user、tool 角色），消除「不调用工具」坏示例对模型的污染。支持配置开关 strip_assistant_messages（默认开启）与 strip_reasoning_messages（默认关闭），仅影响临时请求体，不回写聊天历史。如果你发现 planner 决策声明回复而没有任何 reply 的调用，可以尝试使用该插件解决。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_filter_assistant",
+        "homepage": "https://github.com/cateyemizuki/cateye_filter_assistant",
+        "documentation": "https://github.com/cateyemizuki/cateye_filter_assistant/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_filter_assistant/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "eraser"
+        }
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.cateye.api-balance",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.api-balance",
+      "version": "1.0.1",
+      "name": "麦麦钱包",
+      "description": "查询指定 API Key 的账户余额：通过配置的余额接口获取 JSON 数据，并使用 LLM 总结为清晰的中文报告；提供 /wallet 指令与 get_api_balance 工具。查询与总结分别配置 API Key（只配一个时自动复用）。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_api_balance",
+        "homepage": "https://github.com/cateyemizuki/cateye_api_balance",
+        "documentation": "https://github.com/cateyemizuki/cateye_api_balance/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_api_balance/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.25.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "wallet"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.forward"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.cateye.api-balance.webp"
+    }
+  },
+  {
+    "id": "beiyu.bilibili-dynamic-push",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.6.2",
+      "name": "B站动态推送",
+      "description": "适用于MaiSaka的B站动态订阅与直播状态自动推送插件（旧版请去仓库分支）",
+      "author": {
+        "name": "北遇 (原作者: 白狐whitefox)",
+        "url": "https://github.com/beiyu504"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beiyu504/beiyu_bilibili-dynamic-push"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": ">=17.4.1"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "beiyu.bilibili-dynamic-push",
+      "plugin_type": "media",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/bilibili.png",
+          "fallback": "image",
+          "background": "#ffffff"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/beiyu.bilibili-dynamic-push.webp"
+    }
+  },
+  {
+    "id": "github.Parssce-lgtm.target-qq-style-learner",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.Parssce-lgtm.target-qq-style-learner",
+      "version": "2.0.0",
+      "name": "目标 QQ 表达方式学习",
+      "description": "从 MaiBot 已收到的真实私聊和群聊消息中，学习指定 QQ 或指定群成员的表达方式。",
+      "author": {
+        "name": "Parssce-lgtm",
+        "url": "https://github.com/Parssce-lgtm"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/Parssce-lgtm/target-qq-style-learner-plugin",
+        "homepage": "https://github.com/Parssce-lgtm/target-qq-style-learner-plugin",
+        "documentation": "https://github.com/Parssce-lgtm/target-qq-style-learner-plugin/blob/main/README.md",
+        "issues": "https://github.com/Parssce-lgtm/target-qq-style-learner-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_by_time_in_chat",
+        "llm.generate",
+        "database.get",
+        "database.query",
+        "database.save",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.ZhaoCang-QWQ.keyword-sticker-replace",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.0",
+      "id": "github.ZhaoCang-QWQ.keyword-sticker-replace",
+      "name": "关键词表情包替换",
+      "description": "让麦麦更像真人：她整句说出关键词时按概率整条换成一套表情包（如'我爱你'→连发三张字牌），句中包含关键词时文字照发、随后按概率补发表情包。在 QQ 里回复一张图片即可把图收录成规则，无需登录服务器。",
+      "author": {
+        "name": "昭沧QWQ",
+        "url": "https://github.com/ZhaoCang-QWQ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZhaoCang-QWQ/keyword-sticker-replace",
+        "homepage": "https://github.com/ZhaoCang-QWQ/keyword-sticker-replace",
+        "documentation": "https://github.com/ZhaoCang-QWQ/keyword-sticker-replace",
+        "issues": "https://github.com/ZhaoCang-QWQ/keyword-sticker-replace/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "message.get_by_id"
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🃏"
+        }
+      },
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.ZhaoCang-QWQ.doubao-tts",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.4.0",
+      "id": "github.ZhaoCang-QWQ.doubao-tts",
+      "name": "豆包语音TTS（新版控制台）",
+      "description": "麦麦语音回复：调用火山引擎豆包语音合成大模型把文字变语音。内置官方预置音色库，也支持复刻音色；若 /说 后收到的是文字而非语音，通常是音色与资源不匹配（复刻音色须配 seed-icl-2.0，预置音色配 seed-tts-2.0）。新版 X-Api-Key 鉴权，无需旧版 App ID。",
+      "author": {
+        "name": "昭沧QWQ",
+        "url": "https://github.com/ZhaoCang-QWQ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZhaoCang-QWQ/doubao-tts",
+        "homepage": "https://github.com/ZhaoCang-QWQ/doubao-tts"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🎙️"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "mailife.mai-life",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mailife.mai-life",
+      "version": "1.2.0",
+      "name": "麦麦生活",
+      "description": "自动生成每日日程与聊天分享任务，在聊天时注入规划器，并在提醒时间唤醒规划器。",
+      "author": {
+        "name": "mailife",
+        "url": "https://github.com/tsuiraku9"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tsuiraku9/mai-life",
+        "homepage": "https://github.com/tsuiraku9/mai-life",
+        "documentation": "https://github.com/tsuiraku9/mai-life/blob/main/README.md",
+        "issues": "https://github.com/tsuiraku9/mai-life/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.3",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "chat.get_all_streams",
+        "maisaka.proactive.trigger",
+        "message.get_by_time_in_chat",
+        "message.build_readable",
+        "knowledge.search",
+        "config.get",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "deepseek-v4-pro.ongeki-gacha",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.0",
+      "name": "音击抽卡模拟器",
+      "description": "音击抽卡模拟器",
+      "author": {
+        "name": "DeepSeek-V4",
+        "url": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/DeepSeek-V4-Pro/ongeki_gacha",
+        "homepage": "https://github.com/DeepSeek-V4-Pro"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=11.3.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🎴",
+          "background": "#1f2433"
+        }
+      },
+      "id": "deepseek-v4-pro.ongeki-gacha"
+    }
+  },
+  {
+    "id": "github.cateye.mai-forward",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.mai-forward",
+      "version": "0.1.0",
+      "name": "麦麦转发",
+      "description": "消息打包转发/复读/收藏分享：内容从 NapCat/宿主数据库原样读取（不从 LLM 文本构造）；提供 forward_messages（转发到其他聊天，群聊注入 [转发工具] 标注记录、私聊只真发不入库）、repeat_message（复读）、pack_chat_messages（把感兴趣的消息打包到本地，返回 pack_id）、list_message_packs（列包+概括）、share_message_pack（把打包内容以合并转发分享到当前聊天，受名单限制，支持分享后销毁/最大分享次数）。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_mai_forward",
+        "homepage": "https://github.com/cateyemizuki/cateye_mai_forward",
+        "documentation": "https://github.com/cateyemizuki/cateye_mai_forward/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_mai_forward/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.emoji",
+        "send.hybrid",
+        "send.forward",
+        "message.get_by_id",
+        "chat.get_all_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "forward",
+          "fallback": "mai-forward"
+        }
+      }
+    }
+  },
+  {
+    "id": "cateye.napcat-shadow-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "cateye.napcat-shadow-adapter",
+      "version": "0.2.0",
+      "name": "NapCat 影子适配器",
+      "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。不改写、不拦截、不依赖适配器配置，上游修复后自动失效。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_napcat_shadow_adapter",
+        "homepage": "https://github.com/cateyemizuki/cateye_napcat_shadow_adapter",
+        "documentation": "https://github.com/cateyemizuki/cateye_napcat_shadow_adapter/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_napcat_shadow_adapter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "websockets",
+          "version_spec": ">=10.0"
+        }
+      ],
+      "capabilities": [
+        "config.get_plugin"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "ghost"
+        }
+      },
+      "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "jh-mmm.maibot-wordle-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "jh-mmm.maibot-wordle-plugin",
+      "name": "Wordle 猜单词",
+      "version": "1.0.4",
+      "description": "经典的 5 字母 Wordle 猜单词游戏插件，支持精美卡片渲染、单词释义与战绩统计。",
+      "author": {
+        "name": "jh-mmm",
+        "url": "https://github.com/jh-mmm"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/jh-mmm/maibot-wordle-plugin",
+        "homepage": "https://github.com/jh-mmm/maibot-wordle-plugin",
+        "documentation": "https://github.com/jh-mmm/maibot-wordle-plugin#readme",
+        "issues": "https://github.com/jh-mmm/maibot-wordle-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "gamepad-2"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/jh-mmm.maibot-wordle-plugin.webp"
+    }
+  },
+  {
+    "id": "mengshouer.analysis-bilibili",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.6",
+      "name": "Bilibili 内容解析",
+      "description": "自动解析 Bilibili 视频、番剧、直播、专栏和动态，并支持视频搜索",
+      "author": {
+        "name": "493Arceus",
+        "url": "https://github.com/493Arceus"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/493Arceus/maibot-bilibili-analyzer",
+        "homepage": "https://github.com/493Arceus/maibot-bilibili-analyzer",
+        "documentation": "https://github.com/493Arceus/maibot-bilibili-analyzer#readme",
+        "issues": "https://github.com/493Arceus/maibot-bilibili-analyzer/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.14,<4"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.hybrid"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "id": "mengshouer.analysis-bilibili",
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "video",
+          "background": "#FFFFFF"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/mengshouer.analysis-bilibili.webp"
+    }
+  },
+  {
+    "id": "io.github.yumian114514.group-daily-analysis",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "io.github.yumian114514.group-daily-analysis",
+      "version": "1.0.0",
+      "name": "群聊日报分析",
+      "description": "使用 MaiBot 历史消息、当前大模型和内置渲染服务生成群聊日报，支持手动命令与每日订阅。",
+      "author": {
+        "name": "yumian114514",
+        "url": "https://github.com/yumian114514"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yumian114514/maibot-plugin-group-daily-analysis",
+        "homepage": "https://github.com/yumian114514/maibot-plugin-group-daily-analysis",
+        "documentation": "https://github.com/yumian114514/maibot-plugin-group-daily-analysis#readme",
+        "issues": "https://github.com/yumian114514/maibot-plugin-group-daily-analysis/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "📊",
+          "background": "#7c3aed"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "message.get_by_time_in_chat",
+        "llm.generate",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "omsociety.schedule-assistant",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "omsociety.schedule-assistant",
+      "version": "1.0.1",
+      "name": "日程提醒助手",
+      "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+      "author": {
+        "name": "OMSociety",
+        "url": "https://github.com/OMSociety"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "apscheduler",
+          "version_spec": ">=3.10.0,<4.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "python-dateutil",
+          "version_spec": ">=2.8.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "package"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "chat.get_stream_by_user_id",
+        "maisaka.proactive.trigger",
+        "llm.generate",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/omsociety.schedule-assistant.webp"
+    }
+  },
+  {
+    "id": "omsociety.bilicaption",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "omsociety.bilicaption",
+      "version": "1.0.1",
+      "name": "B站字幕提取解读",
+      "description": "提供获取B站视频字幕文本、解读视频内容的 LLM 工具，自动识别消息中的 B 站链接/BV 号/b23 短链",
+      "author": {
+        "name": "OMSociety",
+        "url": "https://github.com/OMSociety"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/OMSociety/maibot_plugin_bilicaption"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": ">=16.0.0,<17.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "package"
+        }
+      },
+      "capabilities": [
+        "component.enable",
+        "component.disable"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/omsociety.bilicaption.webp"
+    }
+  },
+  {
+    "id": "XHC.maibot_yukkuri_voice",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "XHC.maibot_yukkuri_voice",
+      "version": "0.3.0",
+      "name": "油库里语音",
+      "description": "让你的麦麦能发送油库里语音（暂时仅支持Windows环境）",
+      "author": {
+        "name": "XH_creeper",
+        "url": "https://github.com/XHcreeper"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/XHcreeper/maibot_yukkuri_voice"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aquestalk_python",
+          "version_spec": ">=1.1"
+        },
+        {
+          "type": "python_package",
+          "name": "cn2an",
+          "version_spec": ">=0.5.24"
+        },
+        {
+          "type": "python_package",
+          "name": "e2k",
+          "version_spec": ">=0.6.2"
+        },
+        {
+          "type": "python_package",
+          "name": "pysilk",
+          "version_spec": ">=0.0.1"
+        },
+        {
+          "type": "python_package",
+          "name": "regex",
+          "version_spec": ">=2026.7.19"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.ZhaoCang-QWQ.recall-follow",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.5.0",
+      "id": "github.ZhaoCang-QWQ.recall-follow",
+      "name": "撤回跟随",
+      "description": "旁路监听 NapCat 撤回通知：① 别人撤回一条消息后，如果麦麦回复过它，麦麦的回复自动撤回；② 撤回发生时麦麦还没回复，则中止发送（不回复幽灵消息）。免改源码，绕过主程序入站去重误杀撤回的 bug。",
+      "author": {
+        "name": "昭沧QWQ",
+        "url": "https://github.com/ZhaoCang-QWQ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZhaoCang-QWQ/recall-follow",
+        "homepage": "https://github.com/ZhaoCang-QWQ/recall-follow"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.napcat-adapter",
+          "version_spec": ">=1.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "websockets",
+          "version_spec": ">=12.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "api.call"
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "↩️"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.cateye.maimai-recall",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.maimai-recall",
+      "version": "0.1.0",
+      "name": "麦麦撤回",
+      "description": "为机器人提供消息撤回能力：LLM 工具按消息 ID 撤回指定消息；引用一条消息发送「/撤回」即可撤回被引用的消息；失败时返回具体原因（权限不足、超过时间限制、消息不存在等）。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_maimai_recall",
+        "homepage": "https://github.com/cateyemizuki/cateye_maimai_recall",
+        "documentation": "https://github.com/cateyemizuki/cateye_maimai_recall/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_maimai_recall/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "undo-2"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.cateye.machine-crisis",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.machine-crisis",
+      "version": "1.1.0",
+      "name": "智械危机",
+      "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文尾部（工具列表上方）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于消息ID→发送者追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词。仅改写本次临时请求体，不回写聊天历史。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_machine_crisis",
+        "homepage": "https://github.com/cateyemizuki/cateye_machine_crisis",
+        "documentation": "https://github.com/cateyemizuki/cateye_machine_crisis/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_machine_crisis/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bot"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.ZhaoCang-QWQ.model-scheduler",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.3.0",
+      "id": "github.ZhaoCang-QWQ.model-scheduler",
+      "name": "峰谷时段省钱调度",
+      "description": "像峰谷电价一样按「星期+时段」自动切换回复模型：DeepSeek 官方错峰空闲时段（半价）继续用 DeepSeek，工作日高峰自动切到便宜的备用模型，谷时省钱、峰时避贵。通用调度器，不绑定任何模型厂商。",
+      "author": {
+        "name": "昭沧QWQ",
+        "url": "https://github.com/ZhaoCang-QWQ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZhaoCang-QWQ/model-scheduler",
+        "homepage": "https://github.com/ZhaoCang-QWQ/model-scheduler"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "⏰"
+        }
+      },
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot.video_recognizer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.video_recognizer",
+      "version": "1.5.0",
+      "name": "视频内容识别",
+      "description": "识别入站消息中的视频内容（QQ 视频等），把视频描述以 [视频：xxx] 形式注入聊天上下文，让麦麦能看懂群里的视频。",
+      "author": {
+        "name": "yumuq",
+        "url": "https://github.com/yumuq/maibot-video-recognizer"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/yumuq/maibot-video-recognizer",
+        "homepage": "https://github.com/yumuq/maibot-video-recognizer",
+        "documentation": "https://github.com/yumuq/maibot-video-recognizer",
+        "issues": "https://github.com/yumuq/maibot-video-recognizer/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP"
+        ]
       }
     }
   }
