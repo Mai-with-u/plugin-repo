@@ -258,8 +258,9 @@ jobs:
             throw new Error(`未知操作类型: ${requestType}`);
           }
 
-          fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\\n');
+          fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
           EOL
+            node -e "JSON.parse(require('fs').readFileSync('plugins.json', 'utf8'))"
             git add plugins.json
             git commit -m "$commit_message"
           done
