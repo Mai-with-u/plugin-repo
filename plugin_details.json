@@ -7448,47 +7448,59 @@
   {
     "id": "maibot_music_plugin",
     "manifest": {
-      "manifest_version": 1,
+      "manifest_version": 2,
+      "id": "hydrogen.astrbot-plugin-music",
+      "version": "3.0.0",
       "name": "点歌插件",
-      "version": "2.1.0",
       "description": "轻量化的点歌插件，支持多音源、卡片播放、语音播放、热评、歌词、无需VIP",
       "author": {
         "name": "氢",
         "url": "https://github.com/hydrogen-francium"
       },
       "license": "MIT",
-      "homepage_url": "https://github.com/hydrogen-francium/maibot_music_plugin",
-      "repository_url": "https://github.com/hydrogen-francium/maibot_music_plugin",
-      "keywords": [
-        "音乐",
-        "点歌",
-        "网易云",
-        "QQ音乐"
-      ],
-      "categories": [
-        "娱乐",
-        "音乐"
-      ],
+      "urls": {
+        "repository": "https://github.com/hydrogen-francium/maibot_music_plugin",
+        "homepage": "https://github.com/hydrogen-francium/maibot_music_plugin"
+      },
       "host_application": {
-        "min_version": "0.10.0"
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
       },
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "music",
-            "description": "点歌命令"
-          },
-          {
-            "type": "command",
-            "name": "lyrics",
-            "description": "查歌词命令"
-          }
-        ]
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
       },
-      "id": "maibot_music_plugin"
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiofiles",
+          "version_spec": ">=23.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "plugin_type": "media",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
     }
   },
   {
@@ -9946,7 +9958,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
       "author": {
@@ -11018,7 +11030,7 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.3.0",
+      "version": "3.3.1",
       "name": "MaiMai DX 双源查分器",
       "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
       "author": {
@@ -15400,7 +15412,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.2.1",
+      "version": "3.2.2",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -16094,7 +16106,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "photalia.deepseek-peak-valley",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "DeepSeek 峰谷價格播報",
       "description": "每天透過已配置的 Exa MCP 更新 DeepSeek V4 官方價格與峰谷規則，由 Replyer 生成每日銳評。",
       "author": {
@@ -16592,18 +16604,18 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。",
       "author": {
         "name": "fulawa",
-        "url": "https://github.com/jiruiyu330784"
+        "url": "https://github.com/ji-or-ji"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
-        "homepage": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
-        "documentation": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus/blob/main/README.md",
-        "issues": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus/issues"
+        "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+        "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+        "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+        "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
