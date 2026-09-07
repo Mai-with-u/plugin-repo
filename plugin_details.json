@@ -18180,7 +18180,7 @@
     "id": "github.ZhaoCang-QWQ.model-scheduler",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.0",
+      "version": "0.3.1",
       "id": "github.ZhaoCang-QWQ.model-scheduler",
       "name": "峰谷时段省钱调度",
       "description": "像峰谷电价一样按「星期+时段」自动切换回复模型：DeepSeek 官方错峰空闲时段（半价）继续用 DeepSeek，工作日高峰自动切到便宜的备用模型，谷时省钱、峰时避贵。通用调度器，不绑定任何模型厂商。",
@@ -18261,6 +18261,378 @@
           "zh-CN",
           "en-US",
           "ja-JP"
+        ]
+      }
+    }
+  },
+  {
+    "id": "beiyu.help-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "帮助指令聚合",
+      "description": "聚合各插件的指令说明，输入 /help 后生成一张包含全部插件指令的图片",
+      "author": {
+        "name": "北遇 (Beiyu)",
+        "url": "https://github.com/beiyu504"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beiyu504/beiyu.help-plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "_locales",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "beiyu.help-plugin"
+    }
+  },
+  {
+    "id": "github.cateye.custom-filter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.custom-filter",
+      "version": "1.0.2",
+      "name": "麦麦不要再看那个了！",
+      "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_custom_filter",
+        "homepage": "https://github.com/cateyemizuki/cateye_custom_filter",
+        "documentation": "https://github.com/cateyemizuki/cateye_custom_filter/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_custom_filter/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "filter"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "group-probation-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.2.1",
+      "name": "麦麦喊新人说话！",
+      "description": "加群考察期：新人入群自动 @ 欢迎邀请发言，超过考察时长（默认 48 小时）未发言的新成员自动移出群聊。考察/移出仅对 probation.enabled_groups 显式列出的群号生效（空数组 = 全局停用，安全默认），入群登记与周期踢人均执行群号校验。移出是确定性代码行为（定时检查 + 条件判断），不注册任何 LLM 工具，机器人不会自主决定移出谁；需要 bot 拥有群管理员权限。与「麦麦看到你了！」联动：该插件启用时本插件自动禁用，避免重复执行。",
+      "author": {
+        "name": "ji-or-ji",
+        "url": "https://github.com/ji-or-ji"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ji-or-ji/group-probation-plugin",
+        "homepage": "https://github.com/ji-or-ji/group-probation-plugin",
+        "documentation": "https://github.com/ji-or-ji/group-probation-plugin/blob/main/README.md",
+        "issues": "https://github.com/ji-or-ji/group-probation-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "llm.generate",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "id": "group-probation-plugin"
+    }
+  },
+  {
+    "id": "ghmk119-group-nickname-guard",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ghmk119-group-nickname-guard",
+      "version": "1.1.1",
+      "name": "群昵称守护",
+      "description": "定时检测机器人在各群内的群昵称（群名片），发现被修改时自动恢复为 QQ 账号本来的昵称，并可在群里提示。数据通过 NapCat 等协议端的 OneBot v11 HTTP API 读写。",
+      "author": {
+        "name": "ghmk119",
+        "url": "https://github.com/ghmk119"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ghmk119/group-nickname-guard"
+      },
+      "host_application": {
+        "min_version": "0.0.0",
+        "max_version": "99.99.99"
+      },
+      "sdk": {
+        "min_version": "0.0.0",
+        "max_version": "99.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "shield-check"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "chat.get_stream_by_group_id",
+        "chat.open_session"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "zhaocang.hot-topics",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "zhaocang.hot-topics",
+      "version": "0.7.0",
+      "name": "热点雷达 · 圈子资讯订阅感知",
+      "description": "让 MaiBot 像真人一样'泡在信息流里'：全网热榜、订阅话题全网搜索、随机'刷到'三路信息，经雷区过滤、人设兴趣加权、分群内容定制与新鲜度校验后，作为素材交给角色用自己的口吻自然聊起。支持按群/私聊定制关注面、表达约束、主动提起（由角色自主决定）。数据来自开源 60s API，多实例自动切换，零第三方依赖，开箱即用无需部署。",
+      "author": {
+        "name": "ZhaoCang",
+        "url": "https://github.com/ZhaoCang-QWQ"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ZhaoCang-QWQ/hot-topics"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "chat.get_stream_by_group_id",
+        "config.get",
+        "chat.get_stream_by_user_id",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🔥"
+        }
+      }
+    }
+  },
+  {
+    "id": "codex-draw",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "codex-draw",
+      "version": "0.1.0",
+      "name": "Codex 绘图",
+      "description": "通过本地 codex CLI 生成或编辑图片：/gpt <提示词> 生成；回复一条含图片的消息再发 /gpt <提示词> 触发编辑。出图前用多模态 LLM 做合规审查，代理地址可在 WebUI 配置。",
+      "author": {
+        "name": "SawataLi",
+        "url": "https://github.com/SawataLi"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/SawataLi/codex-draw",
+        "homepage": "https://github.com/SawataLi/codex-draw",
+        "documentation": "https://github.com/SawataLi/codex-draw/blob/main/README.md",
+        "issues": "https://github.com/SawataLi/codex-draw/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.dreamwxz.oh-mai-agent",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "离线多线程 Agent 插件（Oh-Mai-Agent）",
+      "description": "离线多线程 Agent 插件：后台子代理任务管理（instant/agent 两级）、定时任务（cron/delay）、MCP 工具集成、跨插件协作、shell 命令执行、Planner 待办看板",
+      "author": {
+        "name": "Dreamwxz",
+        "url": "https://github.com/Dreamwxz"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/Dreamwxz/oh-mai-agent",
+        "homepage": "https://github.com/Dreamwxz",
+        "documentation": "https://dreamwxz.github.io/oh-mai-agent/",
+        "issues": "https://github.com/Dreamwxz/oh-mai-agent/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "99.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "croniter",
+          "version_spec": ">=2.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "jinja2",
+          "version_spec": ">=3.1"
+        },
+        {
+          "type": "python_package",
+          "name": "mcp-server-fetch",
+          "version_spec": ">=2025.4.7"
+        },
+        {
+          "type": "python_package",
+          "name": "mcp",
+          "version_spec": ">=1.1.3,<2.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "llm.generate_with_tools",
+        "config.get",
+        "database.query",
+        "message.get_recent",
+        "chat.get_all_streams",
+        "person.get_id_by_name",
+        "frequency.get_current_talk_value",
+        "knowledge.search",
+        "tool.get_definitions",
+        "api.call",
+        "api.list",
+        "maisaka.context.append",
+        "chat.open_session"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.dreamwxz.oh-mai-agent"
+    }
+  },
+  {
+    "id": "maibot-community.mai-repeater",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-community.mai-repeater",
+      "name": "麦麦的本质就是复读机",
+      "version": "1.0.0",
+      "description": "群聊复读插件：当群友复读时，插件会识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy/Mai_repeater"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/Mai_repeater",
+        "homepage": "https://github.com/octmicy/Mai_repeater",
+        "documentation": "https://docs.mai-mai.org"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
         ]
       }
     }
