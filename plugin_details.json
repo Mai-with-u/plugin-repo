@@ -17538,7 +17538,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -18135,7 +18135,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.machine-crisis",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "智械危机",
       "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文尾部（工具列表上方）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于消息ID→发送者追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词。仅改写本次临时请求体，不回写聊天历史。",
       "author": {
@@ -18440,11 +18440,11 @@
     "manifest": {
       "manifest_version": 2,
       "id": "zhaocang.hot-topics",
-      "version": "0.7.4",
+      "version": "0.7.6",
       "name": "热点雷达 · 圈子资讯订阅感知",
       "description": "让 MaiBot 像真人一样'泡在信息流里'：全网热榜、订阅话题全网搜索、随机'刷到'三路信息，经雷区过滤、人设兴趣加权、分群内容定制与新鲜度校验后，作为素材交给角色用自己的口吻自然聊起。支持按群/私聊定制关注面、表达约束、主动提起（由角色自主决定）。数据来自开源 60s API，多实例自动切换，零第三方依赖，开箱即用无需部署。",
       "author": {
-        "name": "ZhaoCang",
+        "name": "昭沧QWQ",
         "url": "https://github.com/ZhaoCang-QWQ"
       },
       "license": "MIT",
