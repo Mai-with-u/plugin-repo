@@ -9197,7 +9197,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -16245,7 +16245,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.skland.sign",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "森空岛签到",
       "description": "森空岛（Skland）游戏自动签到插件：支持明日方舟与终末地，用户可通过指令或 LLM 工具绑定 token、手动签到、查看状态与开启每日自动签到。",
       "author": {
@@ -17007,7 +17007,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.set-msg-emoji-like",
-      "version": "0.2.1",
+      "version": "0.2.3",
       "name": "表情回应",
       "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。必需依赖 NapCat 适配器（maibot-team.napcat-adapter）提供 set_msg_emoji_like API；缺失时插件不会被加载。",
       "author": {
@@ -17185,7 +17185,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.filter-assistant",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "name": "不要只说不干",
       "description": "修复 DeepSeek V4 flash（测试时使用的提供方含 Command Code、阿里云百炼）Planner 工具调用失败问题（详见 https://github.com/Mai-with-u/MaiBot/issues/2017 ）：在 Planner 构造发送给 LLM 的请求体之前，自动过滤掉 messages/Context Items 中所有 role 为 assistant 的纯文本消息（仅保留 system、user、tool 角色），消除「不调用工具」坏示例对模型的污染。支持配置开关 strip_assistant_messages（默认开启）与 strip_reasoning_messages（默认关闭），仅影响临时请求体，不回写聊天历史。如果你发现 planner 决策声明回复而没有任何 reply 的调用，可以尝试使用该插件解决。",
       "author": {
@@ -17221,7 +17221,8 @@
         "supported_locales": [
           "zh-CN"
         ]
-      }
+      },
+      "changelog": "CHANGELOG.md"
     }
   },
   {
@@ -17229,7 +17230,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.api-balance",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "name": "麦麦钱包",
       "description": "查询指定 API Key 的账户余额：通过配置的余额接口获取 JSON 数据，并使用 LLM 总结为清晰的中文报告；提供 /wallet 指令与 get_api_balance 工具。查询与总结分别配置 API Key（只配一个时自动复用）。",
       "author": {
@@ -17538,7 +17539,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -17592,7 +17593,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.mai-forward",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "麦麦转发",
       "description": "消息打包转发/复读/收藏分享：内容从 NapCat/宿主数据库原样读取（不从 LLM 文本构造）；提供 forward_messages（转发到其他聊天，群聊注入 [转发工具] 标注记录、私聊只真发不入库）、repeat_message（复读）、pack_chat_messages（把感兴趣的消息打包到本地，返回 pack_id）、list_message_packs（列包+概括）、share_message_pack（把打包内容以合并转发分享到当前聊天，受名单限制，支持分享后销毁/最大分享次数）。",
       "author": {
@@ -17645,7 +17646,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cateye.napcat-shadow-adapter",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "name": "NapCat 影子适配器",
       "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。不改写、不拦截、不依赖适配器配置，上游修复后自动失效。",
       "author": {
@@ -18090,7 +18091,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.maimai-recall",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "麦麦撤回",
       "description": "为机器人提供消息撤回能力：LLM 工具按消息 ID 撤回指定消息；引用一条消息发送「/撤回」即可撤回被引用的消息；失败时返回具体原因（权限不足、超过时间限制、消息不存在等）。",
       "author": {
@@ -18135,9 +18136,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.machine-crisis",
-      "version": "1.2.0",
+      "version": "1.2.2",
       "name": "智械危机",
-      "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文尾部（工具列表上方）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于消息ID→发送者追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词。仅改写本次临时请求体，不回写聊天历史。",
+      "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文紧随头部系统提示词之后（默认以 SystemMessageItem 形式）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于消息ID→发送者追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词。仅改写本次临时请求体，不回写聊天历史。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -18164,7 +18165,8 @@
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en-US"
         ]
       },
       "plugin_type": "extension",
@@ -18173,7 +18175,8 @@
           "type": "lucide",
           "value": "bot"
         }
-      }
+      },
+      "changelog": "CHANGELOG.md"
     }
   },
   {
@@ -18314,7 +18317,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.custom-filter",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "麦麦不要再看那个了！",
       "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
       "author": {
