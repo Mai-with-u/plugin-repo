@@ -3060,7 +3060,7 @@
               "/setu - 获取1张随机图片",
               "/setu help - 显示帮助信息",
               "/setu 3 - 获取3张图片",
-              "/setu #萝莉 - 搜索萝莉标签",
+              "/setu #萝莉 - 搜��萝莉标签",
               "/setu 原神 - 搜索原神关键词",
               "/setu #白丝,黑丝 - OR搜索",
               "/setu 5 #风景 横图 - 组合筛选"
@@ -11218,7 +11218,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "LowValueTarget.deepseek-anthropic-provider",
-      "version": "0.2.3",
+      "version": "0.2.5",
       "name": "DeepSeek Anthropic Provider",
       "description": "将 DeepSeek Anthropic API 包装为 MaiBot Tool，让 Bot 可以按需调用联网搜索、网页读取和深度推理能力。",
       "author": {
@@ -11237,7 +11237,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.5.2",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -11249,7 +11249,7 @@
         {
           "type": "python_package",
           "name": "maibot-plugin-sdk",
-          "version_spec": ">=2.0.0,<3.0.0"
+          "version_spec": ">=2.5.2,<3.0.0"
         }
       ],
       "capabilities": [
