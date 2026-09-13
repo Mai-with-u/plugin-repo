@@ -2498,7 +2498,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.10.6",
+      "version": "1.11.1",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -3060,7 +3060,7 @@
               "/setu - 获取1张随机图片",
               "/setu help - 显示帮助信息",
               "/setu 3 - 获取3张图片",
-              "/setu #萝莉 - 搜��萝莉标签",
+              "/setu #萝莉 - 搜索萝莉标签",
               "/setu 原神 - 搜索原神关键词",
               "/setu #白丝,黑丝 - OR搜索",
               "/setu 5 #风景 横图 - 组合筛选"
@@ -16607,8 +16607,8 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "1.0.5",
-      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。",
+      "version": "2.0.1",
+      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。",
       "author": {
         "name": "fulawa",
         "url": "https://github.com/ji-or-ji"
@@ -17230,7 +17230,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.api-balance",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "麦麦钱包",
       "description": "查询指定 API Key 的账户余额：通过配置的余额接口获取 JSON 数据，并使用 LLM 总结为清晰的中文报告；提供 /wallet 指令与 get_api_balance 工具。查询与总结分别配置 API Key（只配一个时自动复用）。",
       "author": {
@@ -18606,7 +18606,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-repeater",
       "name": "麦麦的本质就是复读机",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "群聊复读插件：当群友复读时，插件会识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
       "author": {
         "name": "octmicy",
