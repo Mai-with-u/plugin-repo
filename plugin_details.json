@@ -17061,7 +17061,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.tavily-search",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "Tavily 网页搜索",
       "description": "提供 tavily_search LLM 工具，调用 Tavily API 搜索网页，支持多 Key 轮询与来源引用显示",
       "author": {
@@ -17097,7 +17097,12 @@
       },
       "capabilities": [],
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP"
+        ]
       }
     },
     "assets": {
@@ -17854,7 +17859,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "日程提醒助手",
       "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
       "author": {
@@ -17907,7 +17912,12 @@
         "config.get"
       ],
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP"
+        ]
       }
     },
     "assets": {
@@ -17919,7 +17929,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.bilicaption",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "B站字幕提取解读",
       "description": "提供获取B站视频字幕文本、解读视频内容的 LLM 工具，自动识别消息中的 B 站链接/BV 号/b23 短链",
       "author": {
@@ -17963,7 +17973,12 @@
         "component.disable"
       ],
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP"
+        ]
       }
     },
     "assets": {
