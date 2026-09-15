@@ -1,0 +1,49 @@
+name: Sync Plugin Versions
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - plugins.json
+      - .github/scripts/sync_plugin_versions.cjs
+      - .github/workflows/sync-plugin-versions.yml
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: plugin-repo-main-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Test version synchronization
+        run: node --test .github/scripts/sync_plugin_versions.test.cjs
+      - name: Synchronize releases
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/sync_plugin_versions.cjs
+      - name: Publish index and explicit synchronization errors
+        if: ${{ !cancelled() && steps.sync.outcome != 'skipped' }}
+        run: |
+          test -f plugin_versions.json
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add plugin_versions.json
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: 同步插件发布版本索引"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+          done
+          exit 1

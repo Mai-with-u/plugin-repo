@@ -71,9 +71,22 @@
 
 ---
 
-## 提交方式一：Issue 提交（推荐）
+## 发布多个插件版本
 
-这是当前推荐方式，无需 Fork、无需本地 Git 操作，也能避免多人同时修改 `plugins.json` 带来的合并冲突。
+插件登记后，建议使用 GitHub Release 发布可安装版本：
+
+1. 在目标提交的 `_manifest.json` 中设置三段式 `version`，如 `2.3.0`，准确声明该版本的 `host_application` 和 `sdk` 范围。
+2. 保持插件 `id` 不变；历史版本需要修复时，可从维护分支发布新的版本号。
+3. 提交代码，创建 `v2.3.0` 或 `2.3.0` Tag，再发布对应 GitHub Release。版本号必须与该提交的 manifest 完全一致。
+4. 等待每日同步，或由维护者手动运行 **Sync Plugin Versions** 工作流。
+
+同一版本首次收录后，其 Tag 和 commit 不允许改变。修复代码应发布新的版本号，不要删除并重打同版本 Tag。删除已收录的 Release 会将该版本标记为撤回，历史记录仍然保留。
+
+没有可识别 Release 的插件继续使用分支安装。如果已有三段式 Release，但它们全部校验失败，不会转回分支安装。
+
+完整的数据结构、兼容规则与上线顺序见 [多版本插件索引说明](./VERSIONING.md)。
+
+## 提交方式：Issue 提交
 
 ### 步骤
 
@@ -110,42 +123,6 @@
 
 ---
 
-## 提交方式二：PR 提交（已弃用）
-
-> [!WARNING]
-> PR 方式已弃用，建议使用 Issue 方式提交。
->
-> PR 方式需要 Fork 仓库并手动修改 `plugins.json`，多人同时提交时容易产生合并冲突。
-
-如果您仍希望使用 PR 方式：
-
-1. **Fork 本仓库**
-2. **Clone 并创建分支**：
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/plugin-repo.git
-   cd plugin-repo
-   git checkout -b add/your-plugin-name
-   ```
-3. **编辑 `plugins.json`**，在数组末尾添加：
-   ```json
-   {
-     "id": "github.username.my-plugin",
-     "repositoryUrl": "https://github.com/username/my-plugin"
-   }
-   ```
-4. **提交并推送**：
-   ```bash
-   git add plugins.json
-   git commit -m "feat: add my plugin"
-   git push origin add/your-plugin-name
-   ```
-5. **创建 Pull Request**
-
-> [!NOTE]
-> PR 创建后会收到引导消息，建议改用 Issue 方式提交。
-
----
-
 ## 常见问题
 
 ### 验证错误：无法获取 `_manifest.json`
@@ -155,14 +132,6 @@
 - 文件名错误，必须是 `_manifest.json`。
 - 插件仓库不是公开仓库。
 - `_manifest.json` 不在 main/master/dev/develop 分支的根目录。
-
-### 验证错误：`manifest_version` 不正确
-
-新插件必须使用：
-
-```json
-"manifest_version": 2
-```
 
 ### 验证错误：`author` 字段格式错误
 
@@ -195,9 +164,3 @@
 - 不要使用：`git@github.com:username/repo-name.git`
 
 ---
-
-## 需要帮助？
-
-如果您在提交过程中遇到问题，可以在 Issue 中描述，我们会尽快回复。
-
-感谢您对麦麦（MaiBot）生态的贡献。
