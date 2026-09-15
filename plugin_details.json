@@ -1432,7 +1432,7 @@
     "id": "whitefox20011120.bilibili_dynamic_push_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.6.2",
+      "version": "2.7.0",
       "name": "B站动态推送",
       "description": "适用于MaiSaka的B站动态订阅与直播状态自动推送插件（旧版请去仓库分支）",
       "author": {
@@ -2263,7 +2263,7 @@
     "id": "bockegai.diary_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.0.0",
+      "version": "3.0.1",
       "name": "日记插件 (Diary Plugin)",
       "description": "让麦麦能够回忆和记录每一天的聊天，生成个性化的日记内容(适配新版 MaiBot SDK 2.3+)",
       "author": {
@@ -3538,9 +3538,9 @@
     "id": "xuqian13.autonomous_planning_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.4.5",
+      "version": "4.4.6",
       "name": "麦麦自主规划插件 v4",
-      "description": "让麦麦具备自主规划能力，通过 LLM 智能生成符合人设的日常生活日程。v4.4.5: 约定到点真发出（强指令模板）+ /plan regenerate 命令 + ScheduleGenerator 配置单一来源（修 auto_scheduler 漏带 bot_profile）。",
+      "description": "让麦麦具备自主规划能力，通过 LLM 智能生成符合人设的日常生活日程。v4.4.6: host 兼容范围放宽到 MaiBot 1.x（原声明 1.0.0 上限导致 1.1+ 无法加载）。v4.4.5: 约定到点真发出（强指令模板）+ /plan regenerate 命令 + ScheduleGenerator 配置单一来源（修 auto_scheduler 漏带 bot_profile）。",
       "author": {
         "name": "靓仔",
         "url": "https://github.com/xuqian13"
@@ -3551,7 +3551,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.0.0"
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -9197,7 +9197,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -14149,7 +14149,7 @@
     "id": "com.maibot.link-parser",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.3",
+      "version": "1.4.4",
       "name": "多平台链接解析器",
       "description": "自动解析知乎、微博、YouTube、Twitter(X)、Pixiv 链接，并直接发送文本解析结果和媒体回复",
       "author": {
