@@ -7904,7 +7904,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -7919,8 +7919,8 @@
         "issues": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter/issues"
       },
       "host_application": {
-        "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "min_version": "1.3.0",
+        "max_version": "999.99.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -7948,7 +7948,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.9.0",
+      "version": "0.10.0",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -7970,8 +7970,8 @@
         }
       },
       "host_application": {
-        "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "min_version": "1.3.0",
+        "max_version": "999.99.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -9197,7 +9197,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10081,8 +10081,8 @@
         "issues": "https://github.com/ChinoKou/MaiDock/issues"
       },
       "host_application": {
-        "min_version": "1.0.9",
-        "max_version": "1.99.99"
+        "min_version": "0.0.1",
+        "max_version": "0.0.2"
       },
       "sdk": {
         "min_version": "2.7.0",
@@ -12063,7 +12063,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.kuuri-krtt.mai_tarots",
-      "version": "1.1.4",
+      "version": "1.1.5",
       "name": "麦麦塔罗",
       "description": "提供本地塔罗占卜功能，支持多种牌阵、牌面图片发送、AI 解读和语境化延伸评论。",
       "author": {
@@ -12917,7 +12917,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-love",
       "name": "麦麦恋人",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "description": "私聊专用虚拟恋人插件，会主动找你聊天。基于麦麦的独立日程生活，通过 planner 自主决策什么时候说话、说什么，配合好感度系统调节语气温度",
       "author": {
         "name": "octmicy",
@@ -13834,7 +13834,7 @@
       "manifest_version": 2,
       "id": "com.octmicy.vw50",
       "name": "麦麦vw50",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；并提供 send_payment_code 工具供群友主动索要收款码。目标群只需填 QQ 群号。",
       "author": {
         "name": "octmicy",
@@ -16109,7 +16109,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "photalia.deepseek-peak-valley",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "name": "DeepSeek 峰谷價格播報",
       "description": "每天透過已配置的 Exa MCP 更新 DeepSeek V4 官方價格與峰谷規則，由 Replyer 生成每日銳評。",
       "author": {
@@ -17447,10 +17447,10 @@
     "id": "github.ZhaoCang-QWQ.doubao-tts",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
+      "version": "1.7.1",
       "id": "github.ZhaoCang-QWQ.doubao-tts",
       "name": "豆包语音TTS（新版控制台）",
-      "description": "麦麦语音回复：调用火山引擎豆包语音合成大模型把文字变语音。内置官方预置音色库，也支持复刻音色；若 /说 后收到的是文字而非语音，通常是音色与资源不匹配（复刻音色须配 seed-icl-2.0，预置音色配 seed-tts-2.0）。新版 X-Api-Key 鉴权，无需旧版 App ID。",
+      "description": "麦麦语音回复：调用火山引擎豆包语音合成大模型把文字变语音。内置官方预置音色库，也支持复刻音色。支持跨语种合成（麦麦说日语/英语等外语时自动按该语种合成，复刻音色也能说外语）；并可选启用「语音翻译」——麦麦默认用中文回复、而你的音色是外语训练时，可让它把回复翻译成目标语言再说出来。翻译方式四选一：不翻译（原样）/ 全部翻译（全说外语）/ 按概率翻译（中外交替）/ 由麦麦判断（LLM 按你的规则决定）。目标语种支持日语、英语、韩语、西班牙语、印尼语、葡萄牙语等（以音色实际支持范围为准），默认关闭、零打扰。若 /说 后收到的是文字而非语音，通常是音色与资源不匹配（复刻音色须配 seed-icl-2.0，预置音色配 seed-tts-2.0）。新版 X-Api-Key 鉴权，无需旧版 App ID。",
       "author": {
         "name": "昭沧QWQ",
         "url": "https://github.com/ZhaoCang-QWQ"
@@ -17477,7 +17477,9 @@
       ],
       "capabilities": [
         "send.text",
-        "send.custom"
+        "send.custom",
+        "llm.generate",
+        "llm.get_available_models"
       ],
       "plugin_type": "extension",
       "display": {
@@ -18621,7 +18623,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-repeater",
       "name": "麦麦的本质就是复读机",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "群聊复读插件：当群友复读时，插件会识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
       "author": {
         "name": "octmicy",
@@ -18653,6 +18655,209 @@
           "en-US"
         ]
       }
+    }
+  },
+  {
+    "id": "ggsfly.stellasora-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.1",
+      "name": "星塔旅人攻略查询",
+      "description": "星塔旅人（Stella Sora）游戏攻略查询：角色/技能/素材信息、配队/纹章/秘纹/技能优先度指南、游戏术语中英查词。数据来自 stelladb 攻略站与游戏解包中英字典（4.8 万余条官方译名映射），输出为官方中文。",
+      "author": {
+        "name": "ggsfly",
+        "url": "https://github.com/ggsfly"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/ggsfly/stellasora-plugin",
+        "homepage": "https://stelladb.pages.dev/",
+        "documentation": "https://github.com/ggsfly/stellasora-plugin#readme",
+        "issues": "https://github.com/ggsfly/stellasora-plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
+      },
+      "sdk": {
+        "min_version": "2.8.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "compass"
+        }
+      },
+      "capabilities": [
+        "config.get",
+        "send.text",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "ggsfly.stellasora-plugin"
+    }
+  },
+  {
+    "id": "maibot.fun-pack",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.fun-pack",
+      "version": "1.3.1",
+      "name": "麦爹必备娱乐小插件合集",
+      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；同时注册为麦麦可自主调用的 LLM 工具。",
+      "author": {
+        "name": "NetaJuutilainen",
+        "url": "https://github.com/NetaJuutilainen"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "maisaka.context.append",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "game"
+    }
+  },
+  {
+    "id": "github.xiexiaojia780.grok-x-search",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "Grok X 搜索工具",
+      "description": "把 xAI Grok 的 X (Twitter) 搜索能力封装为 Tool，供 LLM 调用；接口地址与 API Key 在 WebUI 插件配置页填写",
+      "author": {
+        "name": "xiexiaojia780",
+        "url": "https://github.com/xiexiaojia780"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/xiexiaojia780/grok-x-search"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.xiexiaojia780.grok-x-search"
+    }
+  },
+  {
+    "id": "omsociety.minecraft-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "omsociety.minecraft-adapter",
+      "version": "1.3.0",
+      "name": "Minecraft 聊天适配器",
+      "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
+      "author": {
+        "name": "OMSociety",
+        "url": "https://github.com/OMSociety"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.1.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png",
+          "fallback": "package"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/omsociety.minecraft-adapter.webp"
     }
   }
 ]
