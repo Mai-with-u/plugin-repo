@@ -2839,10 +2839,12 @@
     },
     {
       "id": "magisk317.MaiMBot_LiteratureFeeder",
+      "manifest_id": "magisk317.MaiMBot_LiteratureFeeder",
       "repositoryUrl": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
       "mode": "branch",
       "versions": [],
-      "sync_error": "GitHub 404：/repos/magisk317/MaiMBot_LiteratureFeeder/releases?per_page=100&page=1"
+      "ignored_tags": [],
+      "rejected_releases": []
     },
     {
       "id": "XXXxx7258.nbnhhsh_translate_plugin",
@@ -4004,7 +4006,7 @@
           "tag": "v0.10.0",
           "commit": "4d4b25e02e92639a8531425f37a0481598e712ad",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-09-15T10:58:26Z",
           "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v0.10.0",
           "release_notes": "## [0.10.0] - 2026-09-15\r\n\r\n- 最低支持 MaiBot 1.3.0，允许后续主程序版本；manifest 按当前格式填写上限 999.99.99。\r\n- MaiBot 1.2.x 请继续使用 0.9.0 发布版；升级主程序后可选择本版本。\r\n\r\n\r\n## 兼容范围\r\n\r\n- 麦麦：最低 1.3.0；manifest 上限为 999.99.99。\r\n- 插件 SDK：2.5.0 ～ 2.99.99。\r\n- 麦麦 1.2.x 请使用 v0.9.0。\r\n",
