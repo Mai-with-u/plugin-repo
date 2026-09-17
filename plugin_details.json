@@ -3251,6 +3251,76 @@
     }
   },
   {
+    "id": "magisk317.MaiMBot_LiteratureFeeder",
+    "manifest": {
+      "manifest_version": 1,
+      "package": "maimbot_literature_feeder",
+      "name": "MaiMBot Literature Feeder",
+      "version": "0.4.1",
+      "description": "聚合最新学术文献并向指定会话推送摘要的完整插件。",
+      "author": {
+        "name": "MaiMBot Community",
+        "url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.11.0"
+      },
+      "homepage_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
+      "repository_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
+      "documentation_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder#readme",
+      "issues_url": "https://github.com/magisk317/MaiMBot_LiteratureFeeder/issues",
+      "keywords": [
+        "literature",
+        "academic",
+        "rss",
+        "scheduler"
+      ],
+      "categories": [
+        "Knowledge",
+        "Automation"
+      ],
+      "default_locale": "zh-CN",
+      "entry_module": "plugin",
+      "entry_class": "LiteratureFeederPlugin",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "integration",
+        "components": [
+          {
+            "type": "event_handler",
+            "name": "literature_scheduler",
+            "description": "启动文献推送定时器"
+          },
+          {
+            "type": "command",
+            "name": "literature_preview",
+            "description": "预览当前配置下的文献推送计划",
+            "pattern": "/lit preview"
+          },
+          {
+            "type": "command",
+            "name": "literature_force_dispatch",
+            "description": "强制触发一次文献推送（忽略去重）",
+            "pattern": "/lit force"
+          },
+          {
+            "type": "command",
+            "name": "literature_search",
+            "description": "根据关键词搜索指定来源的最新文献",
+            "pattern": "/lit search"
+          }
+        ],
+        "features": [
+          "可配置的学术来源列表",
+          "可插拔的LLM摘要策略",
+          "定时推送调度框架（间隔模式与定时模式）",
+          "手动预览、搜索与强制推送命令"
+        ]
+      }
+    }
+  },
+  {
     "id": "XXXxx7258.nbnhhsh_translate_plugin",
     "manifest": {
       "manifest_version": 1,
@@ -7904,7 +7974,7 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.5.0",
+      "version": "1.4.0",
       "name": "Napcat_Adapter 适配器",
       "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
@@ -7919,8 +7989,8 @@
         "issues": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter/issues"
       },
       "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "999.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -7948,7 +8018,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.10.0",
+      "version": "0.9.0",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
       "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
       "author": {
@@ -7970,8 +8040,8 @@
         }
       },
       "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "999.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -15537,7 +15607,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nero-umu.nitter-to-maibot",
-      "version": "1.6.2",
+      "version": "1.6.3",
       "name": "Nitter 推文转发",
       "description": "定期读取 Nitter 订阅账号的新推文，支持按 QQ 群独立订阅，并转发正文、图片和视频附件。",
       "author": {
@@ -16565,7 +16635,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.Chenhui-2.mai-tarot.plugin",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "塔罗牌占卜",
       "description": "塔罗牌占卜插件，支持单张抽牌和三张牌阵，支持AI解读，可配置指令与AI参数",
       "author": {
