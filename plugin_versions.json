@@ -3519,12 +3519,18 @@
       "id": "CharTyr.Mai-Soul-Engine",
       "manifest_id": "chartyr.mai-soul-engine",
       "repositoryUrl": "https://github.com/CharTyr/Mai-Soul-Engine",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [
         "1.0"
       ],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v2.5.0",
+          "version": "2.5.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'char-tyr.mai-soul-engine'\n- 'chartyr.mai-soul-engine'\n       ^"
+        }
+      ]
     },
     {
       "id": "WaterInk0101.coc_dice_plugin",
@@ -5167,6 +5173,87 @@
       "repositoryUrl": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.12.1",
+          "tag": "v1.12.1",
+          "commit": "b60ce2754de1ecfd41a9abaceeb0d92c38d391ee",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-18T01:29:09Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.1",
+          "release_notes": "## 新增功能\n\n- 阿里百炼新增 Qwen Image 3.0/2.0、早期 Qwen Image、Z-Image、可灵图像与 Vidu 图像模型支持；DashScope Base URL 可配置，兼容公网与工作空间地址。\n- 新增阿里云模型能力自动识别，并提供“仅支持文生图”“仅支持图生图”人工覆盖名单；不支持的任务会在审核、扣额度和付费请求前明确拒绝。\n- 可灵与 Vidu 支持异步任务提交和状态轮询；图生图使用消息适配器提供的原始 HTTP(S) 图片 URL，Qwen 默认保持 Base64 输入，并支持手动选择输入模式。\n- 绘图风格新增可选 `description` 字段；`/绘图 风格` 展示风格语义描述，图片回复使用较小的灰色文字区分描述与名称。\n- `draw_styles` 保留原 `styles` 列表并新增结构化 `style_details`，模型可依据描述匹配用户需求后调用 `styled_draw`。\n\n## 修复功能\n\n- 修复消息链路提取图片后丢失适配器原始 URL，导致仅接受 URL 的模型无法使用参考图的问题。\n- 阿里云模型定义、任务约束与参数构造移动到 `models/`，`providers/` 仅保留平台鉴权、传输、轮询、响应解析和下载逻辑。\n- 完善阿里云 HTTP、业务错误和异步终态处理；日志保留状态码、业务错误码、 request_id 与耗时，同时脱敏 API Key、Authorization、Base64 和签名 URL。\n- 风格描述留空时保持原有只显示名称的行为；禁用与重复名称过滤逻辑保持不变。\n- 更新 README、配置 Schema 与回归测试，配置版本提升至 2.25.0。\n\n关联 Issue：#7",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.1",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
         {
           "version": "1.11.2",
           "tag": "v1.11.2",
@@ -15658,6 +15745,17 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "YukiSakiko.content_understanding_plugin",
+      "manifest_id": "YukiSakiko.content_understanding_plugin",
+      "repositoryUrl": "https://github.com/YukiSakiko/content_understanding_plugin",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [
+        "v1"
+      ],
       "rejected_releases": []
     }
   ]
