@@ -2498,7 +2498,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.11.1",
+      "version": "1.11.2",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -6436,10 +6436,10 @@
     "id": "CharTyr.Mai-Soul-Engine",
     "manifest": {
       "manifest_version": 2,
-      "id": "chartyr.mai-soul-engine",
-      "version": "2.0.0",
+      "id": "char-tyr.mai-soul-engine",
+      "version": "2.5.0",
       "name": "Mai-Soul-Engine",
-      "description": "通过聊天塑造 MaiBot 三观的人格底座 — 意识形态光谱演化 + 思维阁内化 + 回复注入",
+      "description": "通过聊天塑造 MaiBot 三观的人格底座 — 光谱演化 + 思维阁/12槽 + 可追踪注入 + 自评闭环",
       "author": {
         "name": "CharTyr",
         "url": "https://github.com/CharTyr/Mai-Soul-Engine"
@@ -6456,7 +6456,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
+        "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -6468,7 +6468,10 @@
         "chat.get_all_streams",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
-        "config.get"
+        "chat.open_session",
+        "config.get",
+        "send.image",
+        "render.html2png"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8454,7 +8457,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.11.2",
+      "version": "1.12.1",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -9267,7 +9270,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -17723,7 +17726,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cateye.napcat-shadow-adapter",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "NapCat 影子适配器",
       "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。不改写、不拦截、不依赖适配器配置，上游修复后自动失效。",
       "author": {
@@ -17931,7 +17934,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "日程提醒助手",
       "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
       "author": {
@@ -18872,7 +18875,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.minecraft-adapter",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "Minecraft 聊天适配器",
       "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
       "author": {
@@ -18928,6 +18931,64 @@
     },
     "assets": {
       "icon_64": "icons/omsociety.minecraft-adapter.webp"
+    }
+  },
+  {
+    "id": "YukiSakiko.content_understanding_plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "YukiSakiko.content_understanding_plugin",
+      "name": "麦麦视频内容理解插件（B站/抖音）",
+      "version": "2.1.1",
+      "description": "自动识别聊天中的B站与抖音视频链接/分享，获取视频信息、高光片段、章节要点与官方AI总结并附加到上下文，辅助麦麦更好地参与聊天",
+      "author": {
+        "name": "YukiSakiko",
+        "url": "https://github.com/YukiSakiko"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/YukiSakiko/content_understanding_plugin"
+      },
+      "host_application": {
+        "min_version": "0.10.0",
+        "max_version": "1.14.5"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": ">=17.4.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
