@@ -1767,6 +1767,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.7.0",
+          "tag": "v2.7.0",
+          "commit": "22dfac18bb9a04be4f86ff618bc638ecc217f33b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-19T18:54:58Z",
+          "release_url": "https://github.com/TAIY2020/custom_commands_plugin/releases/tag/v2.7.0",
+          "release_notes": "## 主要更新\r\n\r\n修复命令解析、生命周期、多适配器与数据安全加固 (v2.7.0)\r\n\r\n命令解析\r\n\r\n- **修复引用内容注入**：Host 用 `processed_plain_text` 匹配命令正则，NapCat 引用预览无前缀且各段以空格拼接，引用一条 `.问：x答：y` 再发 `.列表` 会命中 add 并误执行。两道防线：hook 在 Host 匹配前发现正文（仅 text 段）是内置命令且与匹配文本不一致时，改写后 continue，让 Host 命中正确组件、由 Host 正常执行组件启停与命令前后 hook；四个 `@Command` 统一经 `_dispatch_builtin` 用 text 段重新匹配，且只执行与自身组件一致的命令，不越权借用其它组件。\r\n- 无 text 段（只有引用/转发）的消息不再回退 `processed_plain_text` 触发动态命令。\r\n- 首尾空白导致的 Host 正则失配同样被改写。\r\n- 四个内置命令正则收敛为单一来源。\r\n\r\n生命周期与并发\r\n\r\n- **Hook 超时重复处理**：命中后立即 abort，发送/落盘交给有界后台执行器（并发 8 + 排队 64），避免大图发送撞 Hook 超时后被 Host 按 SKIP 放行导致 LLM 二次回复；执行器满载或卸载中快速拒绝，仍 abort 并发带 3 秒超时的短回执，不在 hook 内同步执行业务。\r\n- **代际隔离**：`on_load` 递增代际并解除退役，hook / Command / 后台任务把进入时的代际绑进 contextvar，写入与孤儿清理按代际校验；`on_unload` 先排空后台任务，再在写锁内退役并做最终保存。重载失败回滚到旧实例后功能恢复，卸载前开始的旧任务不能再改数据或按过期快照删图。\r\n- 带图添加的组件开关查询跨越 await 后重新校验代际与退役，旧请求不能借回滚后新建的执行器提交。\r\n\r\n冷会话与多适配器\r\n\r\n- **冷会话下 hook 回复静默失败**：`after_process` hook 先于 Host 建流，从未建过会话的聊天发送必失败。命中后经 `ctx.chat.open_session`（带 `account_id`/`scope`）兜底建流，缓存入站 ID 到实际 ID 的映射（30 分钟 TTL），发送返回 False 即失效重解析。\r\n- **双适配器共存**：NapCat 与 SnowLuma 都注册 `adapter.napcat.*` 短名，同时启用时短名调用被 Host 判为不唯一。按 `additional_config` 识别来源并用插件 ID 全名调用；来源未知或非 QQ 平台不发起转发 API、直接降级纯文本；UIN 缓存按提供者+账号隔离，来源可信时直接用入站 `self_id`；登录返回兼容 SnowLuma 的 `data` 层。\r\n\r\n数据与图片安全\r\n\r\n- **`admin_user_ids` 容忍 TOML 整数写法**：接受非 bool 正整数并转字符串，拒绝 bool/小数/非正数。\r\n- **保护模式**：清洗幽灵命令时只改内存不落盘，并捕获 `DataProtectionError`，不再让整个插件加载失败；作用域名同样校验可 UTF-8 落盘；`UnicodeDecodeError` 纳入损坏文件保护，序列化异常转为 `DataSaveError` 走同一回滚；添加前拦截孤立代理项；配额超限改抛独立的 `CommandQuotaError`。\r\n- **旧数据迁移可重试**：JSON 迁移临时名+原子改名，失败时不新建空库（否则后续启动永久跳过迁移）；图片迁移以标记文件判断完成，逐文件补齐、不覆盖目标已有文件，任一文件失败不写标记、下次只补剩余。\r\n- **图片文件身份统一**：托管图片名先 `normpath` 再判定，`cc_x.png` / `./cc_x.png` / `sub/../cc_x.png` 在引用比较、文件锁、孤儿判定、删除四处同键，避免误清仍在使用的图片；最后一条别名引用删除后可回收。\r\n- **符号链接**：新增文本引用拒绝文件链接与目录链接（含 Windows junction）；去重不复用链接；清理在字符串判定为孤儿后再于线程池复核历史链接引用，复核后重查代际与目录，无法确认时保留文件。\r\n- **目录热更新**：图片保存返回实际目录，绑定前比对、不一致按新目录重存；写锁内前置条件不成立则拒绝提交，文本引用图片路径同样校验；删除路径在写锁内按删除时刻的目录计算。\r\n- 退役 / 代际过期 / 保护模式下不做孤儿清理，宁可留孤儿也不按过期快照删共享文件。\r\n- 带图添加前实时查询 `custom_command_add` 组件全局开关，禁用时放行交回普通消息流程，查询失败或结构异常时拦截并提示重试，不放行到文本添加路径。\r\n\r\n优化\r\n\r\n- 同 hash 图片落盘前逐字节比对，非链接普通文件且内容一致才跳过重写。\r\n- 引用扫描改为纯字符串运算，`resolve_dir` 加缓存，不再在写锁内逐条解析文件系统。\r\n- `on_load` 中的数据加载（持写锁）、建目录与图片迁移移入线程池，避免重载时阻塞同 Runner 其他插件。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.7.0",
+            "name": "自定义命令插件 | CustomCommands Plugin",
+            "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/custom_commands_plugin",
+              "homepage": "https://github.com/TAIY2020/custom_commands_plugin",
+              "documentation": "https://github.com/TAIY2020/custom_commands_plugin",
+              "issues": "https://github.com/TAIY2020/custom_commands_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "api.call",
+              "chat.open_session",
+              "component.get_all_plugins",
+              "component.reload_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg"
+              }
+            },
+            "id": "TAIY2020.custom-commands-plugin"
+          }
+        },
+        {
           "version": "2.6.0",
           "tag": "v2.6.0",
           "commit": "05b949590b4902229eed980910304a959069e252",
@@ -7193,6 +7252,62 @@
       "repositoryUrl": "https://github.com/TAIY2020/llm_balance_plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.6.4",
+          "tag": "v1.6.4",
+          "commit": "0285da227f8c16ff5fc8ef4af609d2add48b7da7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-19T18:56:37Z",
+          "release_url": "https://github.com/TAIY2020/llm_balance_plugin/releases/tag/v1.6.4",
+          "release_notes": "## 主要更新\r\n\r\n统一网络层异常归一化并对齐 Host 超时预算（v1.6.4）\r\n\r\n修复\r\n\r\n- **网络层**：新增 `_BalanceProvider._request_json()`，三个 Provider 共用；除 `URLError` 外捕获读取阶段的裸 `TimeoutError` / `OSError` / `http.client.HTTPException`，统一转为 `_BalanceRequestError`，使其进入重试分支并显示为「网络错误」而非「内部错误」\r\n- **配置**：`admin_user_ids` 增加 before 校验器，手写 TOML 的整数 QQ 号（`[123456]`）不再导致整个插件激活失败\r\n- **HTML 卡片**：移除永远命中不了的 `.entry:first-of-type` 规则，分隔线改挂 `.entry + .entry-currency`，首组金额上方不再多出虚线\r\n- **阿里云**：`_extract_http_error_detail` 兼容首字母大写的 `Message` 键，鉴权错误可读\r\n\r\n优化\r\n\r\n- **超时预算**：`@Command` 显式声明 `timeout_ms`（按最坏耗时 176s），`render_timeout_ms` 钳在 25s 以内，不再撞 Host 命令 RPC 60s / cap.call 30s 默认超时\r\n- **并发**：信号量提升为实例级；新增 `_get_or_start_query()` 合并进行中的查询，后到的命令复用结果，权限检查仍逐条执行，配置热更新后失效\r\n- **响应体**：上限 1 MiB，顶层非对象 JSON 直接拒绝",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.6.4",
+            "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
+            "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 和阿里云账号余额，支持 HTML 卡片可视化输出，仅依赖 Python 标准库。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/llm_balance_plugin",
+              "homepage": "https://github.com/TAIY2020/llm_balance_plugin",
+              "documentation": "https://github.com/TAIY2020/llm_balance_plugin",
+              "issues": "https://github.com/TAIY2020/llm_balance_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.3",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.svg"
+              }
+            },
+            "id": "TAIY2020.llm-balance-plugin"
+          }
+        },
         {
           "version": "1.6.3",
           "tag": "v1.6.3",
