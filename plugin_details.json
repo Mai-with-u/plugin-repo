@@ -2671,7 +2671,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.6.0",
+      "version": "2.7.0",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -2698,6 +2698,8 @@
         "send.text",
         "send.image",
         "api.call",
+        "chat.open_session",
+        "component.get_all_plugins",
         "component.reload_plugin"
       ],
       "i18n": {
@@ -8939,7 +8941,7 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.6.3",
+      "version": "1.6.4",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
       "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 和阿里云账号余额，支持 HTML 卡片可视化输出，仅依赖 Python 标准库。",
       "author": {
@@ -8958,7 +8960,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.5.3",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -17729,9 +17731,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cateye.napcat-shadow-adapter",
-      "version": "0.2.2",
+      "version": "0.3.0",
       "name": "NapCat 影子适配器",
-      "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。不改写、不拦截、不依赖适配器配置，上游修复后自动失效。",
+      "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。自动镜像适配器黑白名单与全局屏蔽用户；可选按目标消息 @ 官方机器人/@ 全局屏蔽用户过滤补投（默认关闭）。不改写、不拦截，上游修复后自动失效。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
