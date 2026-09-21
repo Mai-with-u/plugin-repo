@@ -1070,8 +1070,53 @@
       "id": "CharTyr.Maibot_hltv_plugin",
       "manifest_id": "chartyr.hltv-plugin",
       "repositoryUrl": "https://github.com/CharTyr/Maibot_hltv_plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "6.1.1",
+          "tag": "v6.1.1",
+          "commit": "934722eb4a46d56ab171f2c663b963e196f95b6e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T12:38:17Z",
+          "release_url": "https://github.com/CharTyr/Maibot_hltv_plugin/releases/tag/v6.1.1",
+          "release_notes": "## v6.1.1 — 2026-09-20\n\n### 数据质量与可用性\n\n- Jina Reader 成为优先 HTML 抓取通道，用于稳定读取 HLTV 页面。\n- 主通道遇到无效页面时最多重试两次，每次间隔 5 秒；全部失败后才回退 Tavily Extract。\n- Tavily Extract 降为备选通道，并支持通过 `base_url` 接入兼容中转。\n- 比赛列表按 `match_id` 去重。\n- 赛事名读取 `data-event-headline`，开赛时间读取 `data-unix`。\n- 比赛列表与实时查询共用 `/matches` HTML 缓存。\n- 直播比赛详情并发抓取，减少等待时间。\n- veto 按步骤逐行输出；解析失败改为 warning，便于排障。\n\n### 项目维护\n\n- 统一发布元数据、README、交接文档与配置模板。\n- 仅保留 `config.toml.example` 作为公开模板。\n- 增加项目契约测试，防止发布号、模板和文档再次漂移。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "6.1.1",
+            "name": "CS2/CSGO HLTV 电竞信息插件",
+            "description": "开箱即用的CS2数据查询插件，支持比赛、战队、选手数据查询和实时比分",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr/Maibot_hltv_plugin"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CharTyr/Maibot_hltv_plugin",
+              "homepage": "https://github.com/CharTyr/Maibot_hltv_plugin"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "chartyr.hltv-plugin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -2283,6 +2328,66 @@
       "repositoryUrl": "https://github.com/TAIY2020/group_muter_plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "2.6.1",
+          "tag": "v2.6.1",
+          "commit": "2df991156cb90fc9d188385819467da1c644ad8e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T14:36:35Z",
+          "release_url": "https://github.com/TAIY2020/group_muter_plugin/releases/tag/v2.6.1",
+          "release_notes": "## 主要更新\r\n\r\n收紧 silence 工具信任边界，修正群角色授权失效并补齐只读状态 API (v2.6.1)\r\n\r\n### 修复\r\n\r\n- **群角色授权永远拒绝**：`MessageContext.from_message` 只从 `message_info` 读 `platform`，\r\n  但 Host 序列化把 `platform` 放在消息顶层，读出恒为空，`group_admin` 模式每次都判成\r\n  非 QQ 平台直接拒绝。改为优先读顶层、`message_info` 作回退。\r\n- **群角色响应解析形态错误**：原假定 `api.call` 返回 `{\"success\", \"result\"}` 包装，\r\n  但 SDK 成功时已剥到裸返回值；NapCat 适配器返回成员信息本体，SnowLuma 适配器返回\r\n  带 `data` 的完整 OneBot 响应且失败不抛异常。新增 `_extract_member_info` 统一兼容，\r\n  未知角色一律拒绝。\r\n- **`_peek_operations` 残留已完成任务**：调用方 0.25s 超时先返回后不再走 finally 清理，\r\n  加完成回调兜底移除。\r\n- LLM 动态回复改传 `task_name=\"replyer\"`，不再用 `model` 传任务槽位。\r\n- 解除静音与首次进入窥屏并发时频率可能卡 0：恢复路径先取 stream 锁再判恢复记录，\r\n  跨 RPC 后复查会话/配置/卸载状态，热关闭与卸载先排空在途任务。\r\n- 静音快照改单写入器串行提交、捕获目标路径、合并等待中的过时快照，卸载时排空写入。\r\n\r\n### 安全\r\n\r\n- `tool.require_admin=true` 改为**一律保守拒绝**：Host 注入的 `user_id` 来自会话对象\r\n  而非本轮发言者，且模型填了非空值不会被覆盖，没有可信身份可用；引导管理员改走基于\r\n  真实入站消息鉴权的关键词路径。\r\n- silence 工具目标核验收紧：不再信任参数里的 `group_id`，一律按 `stream_id` 反查\r\n  Host 真实群聊流（`platform=\"all_platforms\"`），流不存在、非群聊或与声称的\r\n  `group_id` 不一致时拒绝，避免 A 群记静音、B 流被调频。\r\n\r\n### 新增\r\n\r\n- `user_control.authorization_mode`（`list` / `group_admin` / `list_or_group_admin`）\r\n  与 `role_cache_seconds`：可选的 QQ 群主/管理员授权，查询失败或超时不授权、不缓存。\r\n- 公开只读 API `group_muter.get_status@1.0.0`：按 `stream_id` 或 `group_id` 查询\r\n  静音状态，纯读、不终结过期会话、不触发写盘，供戳一戳等绕过发送服务的插件自查。\r\n- silence 工具成功时返回 `stop_after_execution: true`，让 Host 结束本轮 Planner，\r\n  避免模型继续生成注定被出站守卫拦下的回复。\r\n- 离线回归测试 `tests/`（34 项）：权限边界、两种适配器响应形态、频率并发、\r\n  快照串行、工具目标核验、状态 API。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.6.1",
+            "name": "群聊静音插件 | GroupMuter Plugin",
+            "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/group_muter_plugin",
+              "homepage": "https://github.com/TAIY2020/group_muter_plugin",
+              "documentation": "https://github.com/TAIY2020/group_muter_plugin",
+              "issues": "https://github.com/TAIY2020/group_muter_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "chat.get_group_streams",
+              "api.call",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.webp"
+              }
+            },
+            "id": "TAIY2020.group-muter-plugin"
+          }
+        },
         {
           "version": "2.5.0",
           "tag": "v2.5.0",
@@ -4848,6 +4953,73 @@
       "repositoryUrl": "https://github.com/TAIY2020/smart_poke_plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.10.1",
+          "tag": "v1.10.1",
+          "commit": "42c9865a68f98db6400fc00bb6e0d1000c4c554d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T14:31:02Z",
+          "release_url": "https://github.com/TAIY2020/smart_poke_plugin/releases/tag/v1.10.1",
+          "release_notes": "## 主要更新\r\n\r\nLLM 反应档改用 task_name 传任务槽位，并修复冷会话建流与长冷却保留 (v1.10.1)\r\n\r\n### 修复\r\n\r\n- **LLM 反应档报「未找到名为 'planner' 的模型」（#5）**\r\n  任务槽位以 `task_name` 下发、`model` 留空。Host 1.2.5 起按请求是否带 `task_name` 键区分新旧协议，SDK 2.8.1 无条件附带 `task_name=utils` 后旧写法 `model=<槽位>` 被当作具体模型名（SDK 2.8.2 已修复，但还是按 Host 1.2.5 要求的那样用`task_name` 键调用模型）。清单 `host_application.min_version` 提到 1.2.5。\r\n- **冷会话下文字 / 表情 / LLM 三档发送失败并退化为回戳**\r\n  Host 在 `before_process` Hook 前算好 session_id、Hook 后才建流，插件 abort 后该会话永远不会建。`PokeContext` 新增 `account_id` / `scope`（提取口径同 Host `RouteKeyFactory`），发送前经 `chat.open_session` 带路由身份幂等确保会话存在，用返回的 session_id 发送并按目标 + 身份缓存；纯回戳不触发建会话。\r\n- **主动戳同群 / 全局冷却超过 1 小时被提前清除**\r\n  `_prune` 与快照导入原按固定 3600s 过滤。新增 `set_proactive_retention_seconds`，按 `max(per_chat, global)` 上调保留期。\r\n\r\n### 新增与优化\r\n\r\n- **状态持久化**：每分钟反应窗口纳入快照；导出导入回到事件循环线程、文件 IO 进线程池；新增 60s 定期落盘（`persist_version` 有变化才写），卸载时仍强制写一次。\r\n- **热更新即时生效**：反应 / 沉默 / LLM / 连戳每一下 / 跟风 / 主动戳在思考延迟后、发送前复查最新开关与黑白名单；主动戳放弃不扣额度。\r\n- **主动戳**：直接使用消息自带 session_id，不再反查 `get_stream_by_group_id`。\r\n- **多适配器**：新增 `plugin.adapter_plugin_id`，非空时以 `<插件ID>.<短名>` 全名调用适配器 API（NapCat 与 SnowLuma 同时启用时短名不唯一会被 Host 拒绝）。\r\n- **回声去重**：`record_self_poke_to_context` 开启时 abort NapCat 回灌的自戳回声，避免与「我戳了戳X」在上下文重复；payload 缺 `self_id` 时回退 `additional_config`。\r\n\r\nCloses #5",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.10.1",
+            "name": "智能戳一戳插件 | Smart Poke Plugin",
+            "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/smart_poke_plugin",
+              "homepage": "https://github.com/TAIY2020/smart_poke_plugin",
+              "documentation": "https://github.com/TAIY2020/smart_poke_plugin",
+              "issues": "https://github.com/TAIY2020/smart_poke_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "api.call",
+              "emoji.get_random",
+              "emoji.get_by_description",
+              "emoji.get_emotions",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "message.get_recent",
+              "message.build_readable",
+              "maisaka.context.append",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.webp"
+              }
+            },
+            "id": "TAIY2020.smart_poke_plugin"
+          }
+        },
         {
           "version": "1.9.0",
           "tag": "v1.9.0",
@@ -9547,6 +9719,51 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.6",
+          "tag": "v0.4.6",
+          "commit": "b12f1ee7eecd86ae488332dd7f0e964c1805c636",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T09:03:24Z",
+          "release_url": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/releases/tag/v0.4.6",
+          "release_notes": "## 修复\n\n- compact / rewrite 的 LLM 调用改为按 Host 任务名走 `task_name`，具体模型走 `model_name`。SDK 2.8.1 会默认附带 `task_name=\"utils\"`，若再把 `replyer`/`planner` 放进 `model`，Host 会当成具体模型名并报「未找到名为 … 的模型」\n- 用 `llm.get_available_models()` 判断配置值：命中任务名走 `task_name`，否则走 `model_name` 直选具体模型",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.plastic-memory",
+            "version": "0.4.6",
+            "name": "塑料内存条 (Plastic Memory)",
+            "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+              "homepage": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+              "documentation": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.4.5",
           "tag": "v0.4.5",
           "commit": "4005c1862b07561c36ad154c5c48654eefae38fd",
@@ -10206,6 +10423,77 @@
       "repositoryUrl": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "3712c56aa0db65f571d07452a4d2bf23669d65e6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T09:03:26Z",
+          "release_url": "https://github.com/yufei-pan/maibot-fetch-url-plugin/releases/tag/v0.4.1",
+          "release_notes": "## 修复\n\n- 总结与 VLM 描述的 LLM 调用改为按 Host 任务名走 `task_name`，具体模型走 `model_name`。SDK 2.8.1 会默认附带 `task_name=\"utils\"`，若再把 `utils`/`planner` 放进 `model`，Host 会当成具体模型名并报「未找到名为 … 的模型」\n- 用 `llm.get_available_models()` 判断配置值：命中任务名走 `task_name`，否则走 `model_name` 直选具体模型",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.fetch-url",
+            "version": "0.4.1",
+            "name": "网页抓取 (Fetch URL)",
+            "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+              "homepage": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+              "documentation": "https://github.com/yufei-pan/maibot-fetch-url-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-fetch-url-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "markdownify",
+                "version_spec": ">=0.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pypdf",
+                "version_spec": ">=4.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
         {
           "version": "0.4.0",
           "tag": "v0.4.0",
@@ -11930,6 +12218,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.3",
+          "tag": "v0.3.3",
+          "commit": "0024ed961a58d68d96c89d3c235f7b8bfc14f3b2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T08:39:36Z",
+          "release_url": "https://github.com/yufei-pan/maibot-impression-card-plugin/releases/tag/v0.3.3",
+          "release_notes": "## 修复\n\n- LLM 调用改为传 `task_name`（Host 模型任务名）。SDK 2.8.1 会默认附带 `task_name=\"utils\"`，若再把 `utils`/`planner`/`replyer` 放进 `model`，Host 会当成具体模型名并报「未找到名为 'utils' 的模型」\n\n## 新增\n\n- 用 `llm.get_available_models()` 判断配置值：命中任务名走 `task_name`，否则走 `model_name` 直选具体模型",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.impression-card",
+            "version": "0.3.3",
+            "name": "印象卡片 (Impression Card)",
+            "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+              "homepage": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+              "documentation": "https://github.com/yufei-pan/maibot-impression-card-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-impression-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_id_by_name",
+              "person.get_value",
+              "message.build_readable",
+              "render.html2png",
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "chat.get_all_streams",
+              "message.count_new",
+              "message.get_recent",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.3.2",
           "tag": "v0.3.2",
           "commit": "b12cc0de9ccb47bda2278570e2d731c8a834cd6a",
@@ -12689,7 +13049,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/E33EPUS/c-daily-problem/releases?per_page=100&page=1"
     },
     {
       "id": "persona-iter",
@@ -12715,6 +13076,72 @@
       "repositoryUrl": "https://github.com/yufei-pan/maibook-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "23ae3efc57bbc89e04ee9fc9b62c7ab12ecaafe3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T09:03:29Z",
+          "release_url": "https://github.com/yufei-pan/maibook-plugin/releases/tag/v0.1.3",
+          "release_notes": "## 修复\n\n- 写手与章节摘要的 LLM 调用改为按 Host 任务名走 `task_name`，具体模型走 `model_name`。SDK 2.8.1 会默认附带 `task_name=\"utils\"`，若再把 `replyer`/`utils` 放进 `model`，Host 会当成具体模型名并报「未找到名为 … 的模型」\n- 用 `llm.get_available_models()` 判断配置值：命中任务名走 `task_name`，否则走 `model_name` 直选具体模型",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.maibook",
+            "version": "0.1.3",
+            "name": "麦书 (MaiBook)",
+            "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibook-plugin",
+              "homepage": "https://github.com/yufei-pan/maibook-plugin",
+              "documentation": "https://github.com/yufei-pan/maibook-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibook-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomli",
+                "version_spec": ">=2.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomli-w",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
         {
           "version": "0.1.2",
           "tag": "v0.1.2",
@@ -14602,6 +15029,91 @@
       "repositoryUrl": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "311c2c62652fa5bb0a3dd4db02704dd2ba914108",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T09:03:31Z",
+          "release_url": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm/releases/tag/v0.2.1",
+          "release_notes": "## 修复\n\n- `task:` selector 的公开 LLM 调用改为传 `task_name` 而非 `model`。SDK 2.8.1 会默认附带 `task_name=\"utils\"`，若再把 `utils`/`planner` 放进 `model`，Host 会当成具体模型名并报「未找到名为 … 的模型」\n- `model:` selector 仍走物理 pinning，不受影响",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.lunagentic-research-swarm",
+            "version": "0.2.1",
+            "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
+            "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm"
+            },
+            "host_application": {
+              "min_version": "1.1.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.0"
+              },
+              {
+                "type": "python_package",
+                "name": "ddgs",
+                "version_spec": ">=9.14.4,<10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lancedb",
+                "version_spec": ">=0.34.0,<0.35.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "api.list",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "knowledge.search",
+              "llm.embed",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "message.build_readable",
+              "message.get_by_id",
+              "message.get_by_time",
+              "message.get_by_time_in_chat",
+              "message.get_recent",
+              "person.get_id",
+              "person.get_id_by_name",
+              "person.get_value",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.2.0",
           "tag": "v0.2.0",
