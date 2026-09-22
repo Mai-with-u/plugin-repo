@@ -847,7 +847,7 @@
     "id": "1021143806.mais_art_journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.1.0",
+      "version": "4.2.1",
       "name": "麦麦绘卷（Claude MAInet）",
       "description": "基于 MaiBot 的多模型智能绘图插件。兼容 OpenAI、OpenAI-Chat、豆包（火山方舟）、Gemini、魔搭、硅基流动、砂糖云、梦羽、智谱 GLM、阿里百炼 DashScope（通义千问/万相/Z-Image/可灵）、ComfyUI 等多种 API 格式。提供命令式风格转换、自拍模式、自动自拍发说说、日程感知、模型配置管理、运行时聊天流隔离状态、对外 @API 生图接口等功能。",
       "author": {
@@ -7136,8 +7136,8 @@
     "manifest": {
       "manifest_version": 1,
       "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
-      "version": "1.0.2",
-      "description": "基于 Random-image-api 的随机 Pixiv 图片插件，支持全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+      "version": "1.1.0",
+      "description": "适配新版 Random-image-api 图片地址契约，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
       "author": {
         "name": "NGU-SprinG",
         "url": "https://github.com/nguspring"
@@ -12715,46 +12715,6 @@
       ],
       "capabilities": [
         "maisaka.proactive.trigger"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
-    "id": "E33EPUS.c-daily-problem",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "2.0.0",
-      "id": "E33EPUS.c-daily-problem",
-      "name": "C语言每日一题",
-      "description": "C语言程序阅读题，AI出题+题库兜底，不限次数。指令：/每日一题 /再来一题 /答 /答案 /题解",
-      "author": {
-        "name": "E33EPUS",
-        "url": "https://github.com/E33EPUS"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/E33EPUS/c-daily-problem",
-        "homepage": "https://github.com/E33EPUS/c-daily-problem",
-        "documentation": "https://github.com/E33EPUS/c-daily-problem/blob/main/README.md",
-        "issues": "https://github.com/E33EPUS/c-daily-problem/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "send.text",
-        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
