@@ -985,6 +985,7 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [
+        "1.06",
         "fix",
         "1.04",
         "1.10",
@@ -16228,8 +16229,69 @@
       "id": "deepseek-v4-pro.ongeki-gacha",
       "manifest_id": "deepseek-v4-pro.ongeki-gacha",
       "repositoryUrl": "https://github.com/DeepSeek-V4-Pro/ongeki_gacha",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "48f582fb3c8bd9de1c1e0ae197fea7596dfbb0a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-23T06:09:51Z",
+          "release_url": "https://github.com/DeepSeek-V4-Pro/ongeki_gacha/releases/tag/v1.3.1",
+          "release_notes": "## 1.3.1 - 2026-09-23\n\n- 好感页改用原始奖励附件标注的 17 名角色专属 RGB 色值；主题色生成工具不再从立绘批量取色。\n- 好感心形的金色高档图标改为达到 Lv1000 才显示，低等级沿用普通图标。\n- 卡牌揭示改按解花阶段显示 MAX Lv：未解花为 Lv10，解花后从 Lv50 起随突破星数提高，N 卡满星 Lv100、其余满星 Lv70；新增由卡牌参数计算的 MAX 攻击力。暂不展示技能。\n- 排查重启时的日、周时间状态，补充同日重启及跨周只重置一次的回归测试；未发现额外的误重置路径。\n- 统一伙伴、解花、礼物、任务与语音指令的回执和引导文案，修正规则页解花券门槛说明，并同步使用文档。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.1",
+            "name": "音击抽卡模拟器",
+            "description": "音击抽卡模拟器",
+            "author": {
+              "name": "DeepSeek-V4",
+              "url": "https://github.com/DeepSeek-V4-Pro"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/DeepSeek-V4-Pro/ongeki_gacha",
+              "homepage": "https://github.com/DeepSeek-V4-Pro"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.custom"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🎴",
+                "background": "#1f2433"
+              }
+            },
+            "id": "deepseek-v4-pro.ongeki-gacha"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -16282,8 +16344,83 @@
       "id": "omsociety.schedule-assistant",
       "manifest_id": "omsociety.schedule-assistant",
       "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "a9d773d201f3bb2bae06073968a21d1da7413b5c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-23T05:58:25Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v1.2.0",
+          "release_notes": "### ✨ 新增\n\n- **Apple 日历事件提前提醒**：开启日程提醒与 Apple 日历同步后，手机侧新建 / 改期的事件同样在开始前提醒（扫描前触发一次同步，300 秒内的重复拉取走缓存）。\n- **日程工具支持时间区间与全天日程**：创建 / 修改日程可写「明天9点到11点」（区间）、「明天全天」或纯日期（全天）；两端纯日期的区间（「明天到后天」）按全天处理，多日取开始日；全天事件写入 Apple 日历为全天事件，单时间点模式行为不变（Apple 日历按开始后 1 小时）。\n\n### 🐛 修复\n\n- **修复定时扫描空转**：锁获取写法 `asyncio.wait_for(lock.acquire(), timeout=0)` 在该语义下必超时（空闲锁也一样），日程提醒扫描与 Apple 定时同步此前整体不执行；现改为非阻塞抢锁，锁被占用时跳过本轮。\n- 修复提前量窗口漏提醒：判定由「开始前 N 分钟 ±2 分钟」的窄窗口改为「开始前 N 分钟内均触发」（窗口含上边界，扫描间隔不大于提前提醒分钟数时必达）。\n- 修复长提前量下同一事件重复提醒：防重标记此前 1 小时后自动失效，提前量大于约 1 小时时事件会在开始前 5 分钟兜底窗口被再次提醒；现防重标记持续有效（事件改期时重置，改期重新提醒）。\n- 修复全天 / 日期型日程在「查看日程」中被静默跳过的问题。\n- 修复「明天下午3点」这类带时段词的口语时间表达解析失败的问题。\n\n### ⚙️ 变更\n\n- 日程提醒（本地日程与 Apple 日历事件）改为 Maisaka 拟人开口（`maisaka.proactive.trigger`，intent 注入回复生命周期），同一轮的多个事件合并为一次提醒；早安播报保持固定格式直发。\n- 早安播报与日程列表的时间标签支持区间（15:00-16:30）与全天显示。\n- 扫描间隔配置提示补充「建议不大于提前提醒分钟数」。\n\n### 🗑️ 移除\n\n- 配置项「日程提醒模板」（`prompt_schedule`）：日程提醒措辞由 Maisaka 按人格生成。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "1.2.0",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
