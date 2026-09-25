@@ -1527,7 +1527,7 @@
     "id": "XXXxx7258.google_search_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.0.2",
+      "version": "4.0.3",
       "name": "麦麦联网插件（search plugin）",
       "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
       "author": {
@@ -7725,7 +7725,7 @@
           }
         ],
         "features": [
-          "指定时间段内以概率触发主动聊天",
+          "指定���间段内以概率触发主动聊天",
           "支持基于历史聊天记录找话题（延续、吐槽、联想）",
           "支持基于知识库/人设自由发挥找话题",
           "支持预置话题列表，AI围绕主题展开聊天",
@@ -9276,7 +9276,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -11254,7 +11254,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.zfgy.deer-pipe-table",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "鹿管记录插件",
       "description": "记录群成员鹿管次数，生成月度图表和排行榜",
       "author": {
@@ -12389,7 +12389,7 @@
     "id": "github.xiexiaojia780.date-context-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.5",
+      "version": "1.4.6",
       "name": "日期上下文插件",
       "description": "提供 date/date_text/holiday 公开 API（仅今天）、query_date/query_holiday 工具（日期与特定节日查询），以及两个独立开关的模型请求前日期注入：回复模型（reply_injection）与 Planner（planner_injection），默认均关闭",
       "author": {
@@ -13681,7 +13681,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "galeros.qqbot-adapter",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "name": "QQBot 适配器 / QQBot Adapter",
       "description": "QQ 官方机器人适配器，通过 QQ Bot API (WebSocket + REST) 连接 QQ 开放平台。",
       "author": {
@@ -15039,7 +15039,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xuesheng.maibot-server-command",
-      "version": "1.0.20",
+      "version": "1.0.22",
       "name": "麦麦操作服务器与发送文件",
       "description": "让 MaiBot 运行受控服务器命令、发送服务器文件并安全清理临时副本",
       "author": {
