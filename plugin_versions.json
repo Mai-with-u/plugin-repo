@@ -9699,8 +9699,59 @@
       "id": "github.zfgy.deer-pipe-table",
       "manifest_id": "github.zfgy.deer-pipe-table",
       "repositoryUrl": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.1",
+          "tag": "1.4.1",
+          "commit": "674db7ad0d8c5e2138e08591ed283c3655f539f0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-24T14:12:42Z",
+          "release_url": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin/releases/tag/1.4.1",
+          "release_notes": "## 功能\n\n- 记录、排行、个人统计、月表四类触发词支持用英文逗号 `,` 或中文逗号 `，` 分隔多个别名，同一功能可响应多个触发词，无需改代码（来源 PR #2，作者 @miao670）\n- 别名按字面量转义并整条消息匹配；两侧空白去除、空项忽略、重复项去重；全部为空时该字段不匹配任何命令\n- 月表的每个别名都保留基础词、`上月X`、`本月X`、`X7月` 等原有格式\n- 排行榜与个人统计的无记录提示只展示第一个有效记录别名\n\n## 文档与测试\n\n- `config.toml` 注释同步多别名说明\n- 新增离线单元测试 `test_triggers.py`（10 项，仅依赖标准库）\n\n## 升级方式\n\n- 覆盖插件目录后重启 MaiBot 生效（触发词在插件加载时构建）\n- 原单触发词配置无需迁移；逗号现在是分隔符，不能再作为单个触发词的一部分",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zfgy.deer-pipe-table",
+            "version": "1.4.1",
+            "name": "鹿管记录插件",
+            "description": "记录群成员鹿管次数，生成月度图表和排行榜",
+            "author": {
+              "name": "追风观影",
+              "url": "https://github.com/zfgy-ma"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin",
+              "homepage": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin",
+              "documentation": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin/blob/main/README.md",
+              "issues": "https://github.com/zfgy-ma/Deer_Pipe_table_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -13950,6 +14001,116 @@
       "repositoryUrl": "https://github.com/bilixuesheng/maibot-server-command",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.0.22",
+          "tag": "v1.0.22",
+          "commit": "30de3ad4b4b701a60f3618cc4f765e39cc3bcbbb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-24T10:53:51Z",
+          "release_url": "https://github.com/bilixuesheng/maibot-server-command/releases/tag/v1.0.22",
+          "release_notes": "## 支持版本\n\n- MaiBot 兼容范围不变：1.1.0 ～ 1.99.99；已按 MaiBot 1.2.5（当前最新版）源码核对插件依赖的 Host 行为。\n- 已回归 maibot-plugin-sdk：2.3.0 与 2.8.2。\n- 本次发布只更新插件，不修改 MaiBot 主程序。\n\n## 更新日志\n\n### 适配 MaiBot 1.2.x 发送回执\n\n- 文件发送请求 MaiBot 1.2.0 / SDK 2.8.0 新增的 `return_details=True`，把平台确认的消息 ID 写入审计日志和工具结果的 `platform_message_id` 字段。\n- 同时兼容三种返回格式：SDK 2.8+ 的 `{\"sent\", \"message_id\"}`、旧 Host 的 `{\"success\"}` 和 SDK 2.3～2.7 的布尔值；只有明确为 `True` 的确认才视为发送成功，失败或不确定时照旧保留暂存副本、不删除临时源文件。\n- 旧版 Host 或 SDK 下消息 ID 显示为不可用，其余行为与 1.0.21 完全一致。\n\n### 兼容性核对（MaiBot 1.2.5 / SDK 2.8.2）\n\n- 旧 Action 调用仍由 Host 强制覆盖真实 `stream_id`，可信 QQ 私聊的身份绑定保持有效。\n- `chat_scope`、组件 `timeout_ms`、聊天流字段（`stream_id`、`user_id`、`group_id`、`account_id`、`chat_type`）与 `send.custom(\"file\")` 均未变化。\n- SDK 2.8.2 对 `@Action` 给出废弃提示，但仍完整支持并在内部转为 `plugin.invoke_action` 工具；可信私聊依赖该路径，因此保留不变。\n\n### 保持既有安全边界\n\n- 白名单只在真实 QQ 私聊发起并发回同一私聊时生效；所有群聊始终执行敏感扫描。\n- ROOT 资源边界、高风险命令正则、敏感内容扫描和临时文件精确清理逻辑均与 1.0.21 一致。\n- 发布包不包含 Host 文件、MaiBot 主程序补丁、测试文件或 CI 文件。\n\n## 验证记录\n\n- SDK 2.3.0 与 2.8.2 各运行 35 项回归（发送回执测试覆盖新旧 Host/SDK 的全部返回格式），ResourceWarning 作为错误处理。\n- GitHub Ubuntu 24.04 门禁重复执行编译、Ruff、双 SDK 全量回归及真实 Bubblewrap/ROOT 集成。\n- 正式 ZIP 只有一个 `maibot-server-command/` 顶层目录和 10 个运行文件，内容与发布源码逐字节一致。\n\n## 文件校验\n\n`maibot-server-command-v1.0.22.zip`\n\nSHA-256：`7266d12ab348fcc76afe82b5dbcf5ed7a96a991be1909f77d49d5605cad92c98`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "xuesheng.maibot-server-command",
+            "version": "1.0.22",
+            "name": "麦麦操作服务器与发送文件",
+            "description": "让 MaiBot 运行受控服务器命令、发送服务器文件并安全清理临时副本",
+            "author": {
+              "name": "XUESHENG",
+              "url": "https://github.com/bilixuesheng"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/bilixuesheng/maibot-server-command"
+            },
+            "host_application": {
+              "min_version": "1.1.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "terminal",
+                "background": "#F3F4F6"
+              }
+            },
+            "capabilities": [
+              "send.custom",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.21",
+          "tag": "v1.0.21",
+          "commit": "c669df5618d636e98174b7166ac0afc8333faeff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-24T10:40:42Z",
+          "release_url": "https://github.com/bilixuesheng/maibot-server-command/releases/tag/v1.0.21",
+          "release_notes": "## 支持版本\n\n- MaiBot 兼容范围与 1.0.20 相同：1.1.0 ～ 1.99.99；本次发布只更新插件，不修改 MaiBot 主程序。\n- 已回归 maibot-plugin-sdk：2.3.0 与 2.8.2。\n\n## 更新日志\n\n### 缺陷修复\n\n- 受限 ROOT：递归删除拦截现在也能识别换行、`(`、`$(`、反引号、`then`/`do` 等 Shell 关键字、`xargs`/`nohup`/`env` 等包装命令，以及 `/bin/rm`、`\\\\rm` 形式的 `rm -r`，修复了这些写法可绕过拦截的问题。\n- 文件上传：发送文件名被拒绝（例如敏感文件名）时不再泄漏已打开的文件描述符。\n- Python 3.10：沙箱命令超时和 ROOT 监督器兜底清理现在能正确触发（原先 `except TimeoutError` 在 3.10 下捕获不到 `asyncio.wait_for` 的超时）。\n- 受管临时目录：保留时长改为从命令结束时开始计算，长时间运行的 ROOT 命令结束后其输出不会被提前清理。\n- 进程内的临时任务记录按保留期自动回收，不再随消息数量无限增长。\n- 发送过程中调用被取消时，NapCat 暂存副本的状态回收受 `asyncio.shield` 保护。\n\n### 性能优化\n\n- 敏感内容扫描规则与检测结果不变（6 万个随机样本与旧实现逐一比对一致），速度约提升 2～4 倍；1 GiB 本地路径文件的扫描时间约从 4 分钟降到 1 分钟。\n- 沙箱目录校验和首次准备（整树遍历/chown）移到工作线程，不再阻塞 MaiBot 事件循环。\n\n### 保持既有安全边界\n\n- 白名单只在真实 QQ 私聊发起并发回同一私聊时生效；所有群聊始终执行敏感扫描。\n- ROOT 资源边界、加密/不透明载荷策略和临时文件精确清理逻辑均与 1.0.20 一致。\n- 发布包不包含 Host 文件、MaiBot 主程序补丁、测试文件或 CI 文件。\n\n## 验证记录\n\n- SDK 2.3.0 与 2.8.2 各运行 35 项回归（新增 4 项针对本次修复的回归测试），ResourceWarning 作为错误处理。\n- GitHub Ubuntu 24.04 门禁重复执行编译、Ruff、双 SDK 全量回归及真实 Bubblewrap/ROOT 集成。\n- 正式 ZIP 只有一个 `maibot-server-command/` 顶层目录和 10 个运行文件，内容与发布源码逐字节一致。\n\n## 文件校验\n\n`maibot-server-command-v1.0.21.zip`\n\nSHA-256：`7605c7660997239bcb71007701bb17e1b3bb551426aae4556846fccf73ec1bb6`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "xuesheng.maibot-server-command",
+            "version": "1.0.21",
+            "name": "麦麦操作服务器与发送文件",
+            "description": "让 MaiBot 运行受控服务器命令、发送服务器文件并安全清理临时副本",
+            "author": {
+              "name": "XUESHENG",
+              "url": "https://github.com/bilixuesheng"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/bilixuesheng/maibot-server-command"
+            },
+            "host_application": {
+              "min_version": "1.1.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "terminal",
+                "background": "#F3F4F6"
+              }
+            },
+            "capabilities": [
+              "send.custom",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.0.20",
           "tag": "v1.0.20",
