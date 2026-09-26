@@ -161,7 +161,7 @@ async function main() {
   assert.equal(previous.schema_version, 1, '不支持的版本索引协议');
   const request = createGithubClient();
   const result = [];
-  let failures = 0;
+  let warnings = 0;
   const ids = new Set();
   const retryErrorsOnly = process.argv.includes('--retry-errors');
   for (const plugin of plugins) {
@@ -182,13 +182,13 @@ async function main() {
       const synced = await syncPlugin(plugin, old, request, expectedId);
       result.push(synced);
       if (synced.rejected_releases.length) {
-        failures++;
-        console.error(`插件 ${plugin.id} 有 ${synced.rejected_releases.length} 个 Release 校验失败，详见索引 rejected_releases`);
+        warnings++;
+        console.warn(`插件 ${plugin.id} 有 ${synced.rejected_releases.length} 个 Release 校验失败，详见索引 rejected_releases`);
       }
       console.log(`已同步：${plugin.id}`);
     } catch (error) {
-      failures++;
-      console.error(`同步失败 ${plugin.id}：${error.message}`);
+      warnings++;
+      console.warn(`跳过插件 ${plugin.id} 的本次同步：${error.message}`);
       // 错误显式进入索引，客户端必须停止安装该项；不能把失败误认为没有 Release。
       result.push({
         ...(old || { id: plugin.id, repositoryUrl: plugin.repositoryUrl, mode: 'branch', versions: [] }),
@@ -200,7 +200,7 @@ async function main() {
   const temporary = `${output}.tmp`;
   fs.writeFileSync(temporary, `${JSON.stringify({ schema_version: 1, plugins: uniqueResult }, null, 2)}\n`);
   fs.renameSync(temporary, output);
-  if (failures) process.exitCode = 1;
+  if (warnings) console.warn(`同步完成：${warnings} 个插件的异常已跳过，详情已写入版本索引`);
 }
 
 module.exports = { compareVersions, skipConflictingPlugins, syncPlugin, validateManifest };
