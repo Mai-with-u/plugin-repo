@@ -54,11 +54,35 @@ function extractFirst(body, patterns) {
   return "";
 }
 
-function parseRepoUrl(issueBody) {
-  return extractFirst(issueBody, [
-    /### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/,
-    /### 新的仓库地址(?:（可选）)? \/ New Repository URL(?: \(Optional\))?\s*\n\s*\n(.+)/,
-  ]);
+function parseRepoUrl(issueBody, requestType) {
+  return extractFirst(issueBody, requestType === "modify"
+    ? [/### 新的仓库地址(?:（可选）)? \/ New Repository URL(?: \(Optional\))?\s*\n\s*\n(.+)/]
+    : [/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/]);
+}
+
+function resolveRepoUrl(issue) {
+  const body = issue.body || "";
+  const labels = (issue.labels || []).map((label) => label.name);
+  const requestType = labels.includes("plugin-modification")
+    ? "modify"
+    : labels.includes("plugin-removal")
+      ? "remove"
+      : "add";
+
+  if (requestType === "add") {
+    return { requestType, repoUrl: parseRepoUrl(body, requestType) };
+  }
+
+  const currentPluginId = extractFirst(body, requestType === "modify"
+    ? [/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/]
+    : [/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/]);
+  const plugins = JSON.parse(fs.readFileSync("plugins.json", "utf8"));
+  const registeredRepoUrl = plugins.find((plugin) => plugin.id === currentPluginId)?.repositoryUrl || "";
+  const submittedRepoUrl = requestType === "modify" ? parseRepoUrl(body, requestType) : "";
+  return {
+    requestType,
+    repoUrl: toRepoSlug(submittedRepoUrl) ? submittedRepoUrl : registeredRepoUrl,
+  };
 }
 
 function toRepoSlug(repoUrl) {
@@ -181,7 +205,7 @@ async function main() {
     },
   });
 
-  const repoUrl = parseRepoUrl(issue.body || "");
+  const { requestType, repoUrl } = resolveRepoUrl(issue);
   const pluginRepo = toRepoSlug(repoUrl);
 
   const maintainerComments = comments.filter((comment) => comment.author_association === "MEMBER");
@@ -193,26 +217,33 @@ async function main() {
   let manifestErrors = [];
   let repoFiles = [];
   if (pluginRepo) {
-    pluginRepoInfo = await gh(`/repos/${pluginRepo}`);
-    latestCommit = await gh(`/repos/${pluginRepo}/commits/${pluginRepoInfo.default_branch}`);
-
-    const manifestResult = await fetchManifestAndBranch(repoUrl, pluginRepoInfo.default_branch);
-    manifestBranch = manifestResult.branch || pluginRepoInfo.default_branch;
-    manifestText = manifestResult.manifestText || "";
-    manifestErrors = manifestResult.manifestErrors || [];
-
     try {
-      const tree = await gh(`/repos/${pluginRepo}/git/trees/${pluginRepoInfo.default_branch}?recursive=1`);
-      repoFiles = (tree.tree || [])
-        .filter((item) => item.type === "blob")
-        .map((item) => item.path);
+      pluginRepoInfo = await gh(`/repos/${pluginRepo}`);
+      const manifestResult = await fetchManifestAndBranch(repoUrl, pluginRepoInfo.default_branch);
+      manifestBranch = manifestResult.branch || pluginRepoInfo.default_branch;
+      manifestText = manifestResult.manifestText || "";
+      manifestErrors = manifestResult.manifestErrors || [];
+      latestCommit = await gh(`/repos/${pluginRepo}/commits/${encodeURIComponent(manifestBranch)}`);
+
+      try {
+        const tree = await gh(`/repos/${pluginRepo}/git/trees/${encodeURIComponent(manifestBranch)}?recursive=1`);
+        repoFiles = (tree.tree || [])
+          .filter((item) => item.type === "blob")
+          .map((item) => item.path);
+      } catch (error) {
+        repoFiles = [`(无法获取仓库树: ${error.message})`];
+      }
     } catch (error) {
-      repoFiles = [`(无法获取仓库树: ${error.message})`];
+      if (requestType !== "remove") {
+        throw error;
+      }
+      manifestErrors.push(`- 原插件仓库不可访问: ${error.message}`);
     }
   }
 
   const forceReview = process.env.FORCE_REVIEW === "true";
   const reviewDecision = decideReview(comments, latestCommit?.sha || "", forceReview);
+  setOutput("plugin_repo", latestCommit?.sha ? pluginRepo : "");
   setOutput("should_review", reviewDecision.shouldReview);
   setOutput("skip_reason", reviewDecision.skipReason);
   setOutput("latest_commit", latestCommit?.sha || "");
@@ -280,7 +311,11 @@ async function main() {
   fs.writeFileSync("mai-review-input.md", lines.join("\n"), "utf8");
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+module.exports = { resolveRepoUrl };

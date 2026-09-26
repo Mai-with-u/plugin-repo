@@ -22,6 +22,14 @@ jobs:
        contains(github.event.issue.labels.*.name, 'validated') &&
        contains(github.event.comment.body, '/mai_review'))
     runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_BASE_URL: https://api.stepfun.com/step_plan
+      ANTHROPIC_MODEL: step-5-preview
+      ANTHROPIC_DEFAULT_SONNET_MODEL: step-5-preview
+      ANTHROPIC_DEFAULT_OPUS_MODEL: step-5-preview
+      ANTHROPIC_DEFAULT_HAIKU_MODEL: step-5-preview
+      ANTHROPIC_DEFAULT_FABLE_MODEL: step-5-preview
+      CLAUDE_CODE_SUBAGENT_MODEL: step-5-preview
     permissions:
       actions: read
       contents: read
@@ -110,13 +118,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Validate Ark credentials
+      - name: Validate Step API credentials
         if: steps.active-review.outputs.should_run == 'true'
         env:
-          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
         run: |
-          if [ -z "$ARK_API_KEY" ]; then
-            echo "缺少 ARK_API_KEY secret" >&2
+          if [ -z "$STEP_API_KEY" ]; then
+            echo "缺少 STEP_API_KEY secret" >&2
             exit 1
           fi
 
@@ -150,56 +158,50 @@ jobs:
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review != 'true'
         run: echo "${{ steps.build-context.outputs.skip_reason }}"
 
-      - name: Install Codex CLI
+      - name: Checkout plugin under review
+        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true' && steps.build-context.outputs.plugin_repo != ''
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ steps.build-context.outputs.plugin_repo }}
+          ref: ${{ steps.build-context.outputs.latest_commit }}
+          path: plugin-under-review
+          persist-credentials: false
+
+      - name: Install Claude Code CLI
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
-        run: npm install -g @openai/codex
+        run: npm install -g @anthropic-ai/claude-code
 
-      - name: Write Codex config
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
-        env:
-          ARK_BASE_URL: ${{ vars.MAI_REVIEW_BASE_URL }}
-          ARK_MODEL: ${{ vars.MAI_REVIEW_MODEL }}
-        run: |
-          mkdir -p "$HOME/.codex"
-          BASE_URL="${ARK_BASE_URL:-https://ark.cn-beijing.volces.com/api/plan/v3}"
-          MODEL_NAME="${ARK_MODEL:-ark-code-latest}"
-          cat > "$HOME/.codex/config.toml" <<EOF
-          model = "${MODEL_NAME}"
-          model_provider = "ark"
-          model_reasoning_summary = "none"
-          model_supports_reasoning_summaries = false
-
-          [model_providers.ark]
-          name = "Volcengine Ark Agent Plan"
-          base_url = "${BASE_URL}"
-          env_key = "ARK_API_KEY"
-          wire_api = "responses"
-          request_max_retries = 4
-          stream_max_retries = 5
-          stream_idle_timeout_ms = 300000
-          EOF
-
-      - name: Run Codex review
+      - name: Run StepFun review
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         env:
-          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
         run: |
+          set -euo pipefail
           PROMPT="$(cat .github/codex/prompts/plugin-issue-review.md)"
-          codex exec \
-            --sandbox danger-full-access \
-            --output-last-message codex-review.md \
-            "$PROMPT"
+          claude --bare --restricted -p "$PROMPT" \
+            --model "$ANTHROPIC_MODEL" \
+            --effort high \
+            --tools "Read,Glob,Grep,WebFetch" \
+            --allowedTools "Read" "Glob" "Grep" "WebFetch" \
+            --permission-mode dontAsk \
+            --output-format json | jq -er 'select(.is_error == false and (.result | type == "string") and (.result | length > 0)) | .result' > codex-review.md
+          test -s codex-review.md
 
-      - name: Run Codex Mai comment
+      - name: Run StepFun Mai comment
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
         env:
-          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
         run: |
+          set -euo pipefail
           PROMPT="$(cat .github/codex/prompts/plugin-issue-maimai-comment.md)"
-          codex exec \
-            --sandbox danger-full-access \
-            --output-last-message codex-maimai.md \
-            "$PROMPT"
+          claude --bare --restricted -p "$PROMPT" \
+            --model "$ANTHROPIC_MODEL" \
+            --effort medium \
+            --tools "Read,Glob,Grep" \
+            --allowedTools "Read" "Glob" "Grep" \
+            --permission-mode dontAsk \
+            --output-format json | jq -er 'select(.is_error == false and (.result | type == "string") and (.result | length > 0)) | .result' > codex-maimai.md
+          test -s codex-maimai.md
 
       - name: Create GitHub App token
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
