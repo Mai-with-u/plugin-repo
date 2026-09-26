@@ -7725,7 +7725,7 @@
           }
         ],
         "features": [
-          "指定���间段内以概率触发主动聊天",
+          "指定时间段内以概率触发主动聊天",
           "支持基于历史聊天记录找话题（延续、吐槽、联想）",
           "支持基于知识库/人设自由发挥找话题",
           "支持预置话题列表，AI围绕主题展开聊天",
@@ -9276,7 +9276,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -17104,7 +17104,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.tavily-search",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "Tavily 网页搜索",
       "description": "提供 tavily_search LLM 工具，调用 Tavily API 搜索网页，支持多 Key 轮询与来源引用显示",
       "author": {
@@ -17196,7 +17196,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.valleywinds.filter-sama",
-      "version": "1.1.2",
+      "version": "1.1.4",
       "name": "出站消息过滤器(Filter-sama)",
       "description": "出站消息过滤器：当 MaiBot 的回复命中你配置的提示词时，直接拦截不发送，只在日志中留一条记录。支持多条提示词与 contains / exact / regex 三种匹配模式；可选开启 /filter_test 命令，跳过 planner 直接把消息喂给 reply 模型生成并发送，用于联调验证。",
       "author": {
@@ -17210,7 +17210,7 @@
         "documentation": "https://github.com/ValleyWinds/Filter-sama#readme"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.0",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -17904,7 +17904,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "日程提醒助手",
       "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
       "author": {
@@ -18855,7 +18855,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.minecraft-adapter",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "Minecraft 聊天适配器",
       "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
       "author": {
