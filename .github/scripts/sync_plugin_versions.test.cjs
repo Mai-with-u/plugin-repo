@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { compareVersions, syncPlugin, validateManifest } = require('./sync_plugin_versions.cjs');
+const { compareVersions, skipConflictingPlugins, syncPlugin, validateManifest } = require('./sync_plugin_versions.cjs');
 
 const plugin = { id: 'legacy.demo', repositoryUrl: 'https://github.com/example/demo' };
 const commit = 'a'.repeat(40);
@@ -96,4 +96,16 @@ test('目标 commit 缺少 manifest 属于发布错误，服务器故障仍然�
   assert.equal(result.rejected_releases.length, 1);
   assert.equal(result.mode, 'releases');
   await assert.rejects(syncPlugin(plugin, undefined, request(500)), /500/);
+});
+
+test('插件 ID 或 manifest ID 冲突时跳过后续条目', () => {
+  const warnings = [];
+  const plugins = [
+    { id: 'legacy.demo', manifest_id: 'Example.Demo' },
+    { id: 'example.demo', manifest_id: 'example.demo-v2' },
+    { id: 'legacy.DEMO', manifest_id: 'another.demo' },
+    { id: 'unique.demo', manifest_id: 'unique.demo' },
+  ];
+  assert.deepEqual(skipConflictingPlugins(plugins, message => warnings.push(message)), [plugins[0], plugins[3]]);
+  assert.equal(warnings.length, 2);
 });
