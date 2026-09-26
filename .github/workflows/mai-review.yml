@@ -116,7 +116,7 @@ jobs:
         if: steps.active-review.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Validate Step API credentials
         if: steps.active-review.outputs.should_run == 'true'
@@ -169,7 +169,9 @@ jobs:
 
       - name: Install Claude Code CLI
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
-        run: npm install -g @anthropic-ai/claude-code
+        run: |
+          npm install -g @anthropic-ai/claude-code@2.1.283
+          claude --bare --restricted --version
 
       - name: Run StepFun review
         if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
