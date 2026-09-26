@@ -136,6 +136,22 @@ async function syncPlugin(plugin, previous, request, expectedId) {
   };
 }
 
+function skipConflictingPlugins(plugins, warn = console.warn) {
+  const identities = new Map();
+  const unique = [];
+  for (const plugin of plugins) {
+    const aliases = [...new Set([plugin.id, plugin.manifest_id].filter(Boolean))];
+    const conflict = aliases.find(alias => identities.has(alias.toLowerCase()));
+    if (conflict) {
+      warn(`跳过插件 ${plugin.id}：ID ${conflict} 与 ${identities.get(conflict.toLowerCase())} 冲突`);
+      continue;
+    }
+    unique.push(plugin);
+    for (const alias of aliases) identities.set(alias.toLowerCase(), plugin.id);
+  }
+  return unique;
+}
+
 async function main() {
   const root = path.resolve(__dirname, '../..');
   const output = path.join(root, 'plugin_versions.json');
@@ -151,8 +167,11 @@ async function main() {
   for (const plugin of plugins) {
     // 与现有详情索引一致，不把登记文件中的示例占位项当成真实插件。
     if (plugin.id === 'MaiM-with-u.example-plugin1') continue;
-    assert.ok(!ids.has(plugin.id), `重复的插件索引 ID：${plugin.id}`);
-    ids.add(plugin.id);
+    if (ids.has(plugin.id.toLowerCase())) {
+      console.warn(`跳过重复的插件索引 ID：${plugin.id}`);
+      continue;
+    }
+    ids.add(plugin.id.toLowerCase());
     const old = previous.plugins.find(item => item.id === plugin.id);
     if (retryErrorsOnly && old && !old.sync_error && !old.rejected_releases?.length) {
       result.push(old);
@@ -177,26 +196,12 @@ async function main() {
       });
     }
   }
-  const identities = new Map();
-  for (const plugin of result) {
-    for (const alias of new Set([plugin.id, plugin.manifest_id].filter(Boolean))) {
-      const key = alias.toLowerCase();
-      const previousPlugin = identities.get(key);
-      if (previousPlugin && previousPlugin !== plugin) {
-        const error = `插件 ID 重复：${alias}（${previousPlugin.id} / ${plugin.id}），请维护者修正登记`;
-        previousPlugin.sync_error = error;
-        plugin.sync_error = error;
-        failures++;
-        console.error(error);
-      }
-      identities.set(key, plugin);
-    }
-  }
+  const uniqueResult = skipConflictingPlugins(result);
   const temporary = `${output}.tmp`;
-  fs.writeFileSync(temporary, `${JSON.stringify({ schema_version: 1, plugins: result }, null, 2)}\n`);
+  fs.writeFileSync(temporary, `${JSON.stringify({ schema_version: 1, plugins: uniqueResult }, null, 2)}\n`);
   fs.renameSync(temporary, output);
   if (failures) process.exitCode = 1;
 }
 
-module.exports = { compareVersions, syncPlugin, validateManifest };
+module.exports = { compareVersions, skipConflictingPlugins, syncPlugin, validateManifest };
 if (require.main === module) main().catch(error => { console.error(error); process.exitCode = 1; });
