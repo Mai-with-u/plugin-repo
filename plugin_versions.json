@@ -3147,7 +3147,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/pulsarmatrix/servercmd_plugin/releases?per_page=100&page=1"
     },
     {
       "id": "Rabbit-Jia-Er.mai_clinic_plugin",
@@ -3940,8 +3941,7 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "插件 ID 重复：NothingButSeaweedSoup.LonelyMai（NothingButSeaweedSoup.lonely-mai / NothingButSeaweedSoup.LonelyMai），请维护者修正登记"
+      "rejected_releases": []
     },
     {
       "id": "yuebaiqingfeng.MinecraftServerStatus",
@@ -4172,6 +4172,69 @@
       "repositoryUrl": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "7a794c32a5738ade22277a8955814c7e54f13f63",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-26T11:31:59Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.0.0",
+          "release_notes": "## [1.0.0] — 合并版：统一 QQ 连接器\r\n\r\n以 NapCat 适配器的模块结构为基底，合并 SnowLuma 适配器的全部特性，\r\n形成同时支持 SnowLuma / NapCat 客户端的单一适配器插件。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
+            "description": "统一 QQ 连接器：以 OneBot v11 正向 WebSocket 同时支持 SnowLuma 与 NapCat 客户端，可自动判定对端类型并支持运行时热切换。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
         {
           "version": "0.10.0",
           "tag": "v0.10.0",
@@ -10458,16 +10521,6 @@
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
-    },
-    {
-      "id": "NothingButSeaweedSoup.LonelyMai",
-      "manifest_id": "NothingButSeaweedSoup.LonelyMai-sdkv2",
-      "repositoryUrl": "https://github.com/clfr41/lonely-mai-sdkv2",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "插件 ID 重复：NothingButSeaweedSoup.LonelyMai（NothingButSeaweedSoup.lonely-mai / NothingButSeaweedSoup.LonelyMai），请维护者修正登记"
     },
     {
       "id": "com.0-hz.fetch-url",
@@ -16854,6 +16907,24 @@
       "ignored_tags": [
         "v1"
       ],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.mai-mai.cv-lyric-context",
+      "manifest_id": "org.mai-mai.cv-lyric-context",
+      "repositoryUrl": "https://github.com/orge-8/cv_lyric_context",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.better-post-processing",
+      "manifest_id": "github.cateye.better-post-processing",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_better_post-processing",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
       "rejected_releases": []
     }
   ]
