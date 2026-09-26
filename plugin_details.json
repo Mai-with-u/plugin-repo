@@ -4054,52 +4054,6 @@
     }
   },
   {
-    "id": "pulsarmatrix.servercmd_plugin",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "服务器指令发送插件",
-      "version": "0.1.0",
-      "description": "通过bot发送服务器指令的插件",
-      "author": {
-        "name": "Maclerc",
-        "url": "https://github.com/pulsarmatrix"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.11.0"
-      },
-      "keywords": [
-        "server",
-        "command",
-        "remote-ssh"
-      ],
-      "categories": [
-        "Utility Tools"
-      ],
-      "homepage_url": "https://github.com/pulsarmatrix",
-      "repository_url": "https://github.com/pulsarmatrix/servercmd_plugin",
-      "default_locale": "zh-CN",
-      "locales_path": "_locales",
-      "id": "pulsarmatrix.servercmd_plugin",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "server",
-            "description": "在服务器终端中输入完整命令"
-          },
-          {
-            "type": "command",
-            "name": "tmux",
-            "description": "在tmux中输入命令"
-          }
-        ]
-      }
-    }
-  },
-  {
     "id": "Rabbit-Jia-Er.mai_clinic_plugin",
     "manifest": {
       "manifest_version": 2,
@@ -8024,9 +7978,9 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.9.0",
+      "version": "1.0.0",
       "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
-      "description": "连接SnowLuma的Maibot连接器/SnowLuma WebSocket adapter plugin for MaiBot message gateway.",
+      "description": "统一 QQ 连接器：以 OneBot v11 正向 WebSocket 同时支持 SnowLuma 与 NapCat 客户端，可自动判定对端类型并支持运行时热切换。",
       "author": {
         "name": "MaiBot Team",
         "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
@@ -8047,7 +8001,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -8069,7 +8023,8 @@
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en-US"
         ]
       },
       "id": "maibot-team.snowluma-adapter"
@@ -18377,9 +18332,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.custom-filter",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "name": "麦麦不要再看那个了！",
-      "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
+      "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，另支持按关键词屏蔽纯文本消息（带总开关，可配置多个关键词），命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -18969,6 +18924,106 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "org.mai-mai.cv-lyric-context",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.mai-mai.cv-lyric-context",
+      "version": "2.8.3",
+      "name": "中V歌词识别 · 歌曲库",
+      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "urls": {
+        "repository": "https://github.com/orge-8/cv_lyric_context",
+        "homepage": "https://github.com/orge-8/cv_lyric_context",
+        "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send.text",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.cateye.better-post-processing",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.better-post-processing",
+      "version": "0.14.3",
+      "name": "更好的消息后处理",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」与「丰富回复」时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @；宿主关闭「启用引用回复」与「丰富回复」时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_better_post-processing"
+      },
+      "host_application": {
+        "min_version": "1.2.3",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "jieba",
+          "version_spec": ">=0.42.1"
+        },
+        {
+          "type": "python_package",
+          "name": "pypinyin",
+          "version_spec": ">=0.54.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=11.3.0"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "config.get",
+        "message.get_by_id",
+        "message.get_by_time_in_chat",
+        "emoji.get_by_description",
+        "emoji.get_random",
+        "emoji.get_count",
+        "database.query",
+        "llm.generate",
+        "send.emoji",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en"
+        ]
+      },
+      "plugin_type": "extension",
+      "changelog": "CHANGELOG.md"
     }
   }
 ]
