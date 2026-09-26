@@ -16316,8 +16316,97 @@
       "id": "com.valleywinds.filter-sama",
       "manifest_id": "com.valleywinds.filter-sama",
       "repositoryUrl": "https://github.com/ValleyWinds/Filter-sama",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.4",
+          "tag": "v1.1.4",
+          "commit": "abd6ffcd1c7d362a0a111ee056715f580f72500b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-25T15:21:33Z",
+          "release_url": "https://github.com/ValleyWinds/Filter-sama/releases/tag/v1.1.4",
+          "release_notes": "## 变更\n\n- **默认拦截提示词由 1 条增至 3 条**：新增 `<thinking>` 与 `</thinking>`，拦掉模型把思维链标记泄漏到输出文本的情况。\n\n## 同时包含 v1.1.3 的 MaiBot 1.2.5 / Plugin SDK 2.8.2 适配\n\n- **修复误拦 bug**：文本提取按组件类型过滤。此前会读取任意组件的 `data`，而 `image`/`emoji`/`voice` 的 `data` 是资源地址、`file`/`at`/`reply`/`forward`/`dict` 是结构化数据——图片 URL 中恰好含关键词即被误拦。\n- `llm.generate` 返回 `success=false` 时记录失败原因，不再静默返回空串。\n- `host_application.min_version` 由 `1.0.0` 收紧至 `1.2.0`（命令的 `permission=\"operator\"` 鉴权依赖该版本）。\n\n## 环境要求\n\n- MaiBot 1.2.0+\n- Plugin SDK 2.6.0+\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.valleywinds.filter-sama",
+            "version": "1.1.4",
+            "name": "出站消息过滤器(Filter-sama)",
+            "description": "出站消息过滤器：当 MaiBot 的回复命中你配置的提示词时，直接拦截不发送，只在日志中留一条记录。支持多条提示词与 contains / exact / regex 三种匹配模式；可选开启 /filter_test 命令，跳过 planner 直接把消息喂给 reply 模型生成并发送，用于联调验证。",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Filter-sama",
+              "homepage": "https://github.com/ValleyWinds/Filter-sama",
+              "documentation": "https://github.com/ValleyWinds/Filter-sama#readme"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "3b5dde72ee1252c7c587d5481e88fd8860a3e539",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-25T15:21:30Z",
+          "release_url": "https://github.com/ValleyWinds/Filter-sama/releases/tag/v1.1.2",
+          "release_notes": "## 修复\n\n- **`@Command` 的 `name` 去掉前导斜杠**。原来写成 `name=\"/filter_test\"`，会被 WebUI 命令管理页再补一次 `/` 前缀、显示成 `//filter_test`。按官方规范 `name` 不带斜杠（`pattern` 才带斜杠，见 `docs/zh/plugin/commands.md`）。\n- 顺带修正 `command_permissions` 路径为 `com.valleywinds.filter-sama.filter_test`（原来带斜杠会得到 `plugin_id./filter_test` 这种畸形路径）。\n\n## 环境要求\n\n- MaiBot 1.2.0+\n- Plugin SDK 2.6.0+\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.valleywinds.filter-sama",
+            "version": "1.1.2",
+            "name": "出站消息过滤器(Filter-sama)",
+            "description": "出站消息过滤器：当 MaiBot 的回复命中你配置的提示词时，直接拦截不发送，只在日志中留一条记录。支持多条提示词与 contains / exact / regex 三种匹配模式；可选开启 /filter_test 命令，跳过 planner 直接把消息喂给 reply 模型生成并发送，用于联调验证。",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Filter-sama",
+              "homepage": "https://github.com/ValleyWinds/Filter-sama",
+              "documentation": "https://github.com/ValleyWinds/Filter-sama#readme"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
