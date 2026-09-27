@@ -5,8 +5,61 @@
       "id": "SengokuCola.Mute-Plugin",
       "manifest_id": "sengokucola.mute-plugin",
       "repositoryUrl": "https://github.com/SengokuCola/MutePlugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "4.7.1",
+          "tag": "v4.7.1",
+          "commit": "1f21aa780570ad415ff53adb1c679ed0241f8c00",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-26T18:06:25Z",
+          "release_url": "https://github.com/SengokuCola/MutePlugin/releases/tag/v4.7.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "4.7.1",
+            "name": "群聊禁言管理插件 (Mute Plugin)",
+            "description": "群聊禁言管理插件，提供智能禁言和手动禁言命令",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/MutePlugin",
+              "homepage": "https://github.com/SengokuCola/MutePlugin",
+              "documentation": "https://github.com/SengokuCola/MutePlugin/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/MutePlugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "api.list",
+              "message.get_by_id",
+              "person.get_id_by_name",
+              "person.get_value",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "sengokucola.mute-plugin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -4173,6 +4226,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "4a7f2b484796bc2b82e37dbe63068b5094082b30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-26T18:33:07Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.0.1",
+          "release_notes": "修复撤回消息被过滤问题\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "7a794c32a5738ade22277a8955814c7e54f13f63",
@@ -5017,6 +5133,73 @@
       "repositoryUrl": "https://github.com/TAIY2020/smart_poke_plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.11.0",
+          "tag": "v1.11.0",
+          "commit": "4061ad6456f5530bc6bcb794ccd1dca92abe8924",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-26T19:03:50Z",
+          "release_url": "https://github.com/TAIY2020/smart_poke_plugin/releases/tag/v1.11.0",
+          "release_notes": "## 主要更新\r\n\r\n修复表情关键词校验失效，合并 Hook 并简化主动戳并发控制（v1.11.0）\r\n\r\n### 修复\r\n\r\n- **表情反应经常发出无关表情**：Host 的 `emoji.get_by_description` 没有相似度阈值，只要表情库非空就一定返回一张（相似度为 0 也返回），原先\"有返回就算命中\"的校验、失败衰退和 `allow_random_fallback` 开关因此都不起作用。`core/emoji.py` 已重写：\r\n  - 用 `emoji.get_emotions` 的标签做本地匹配，关键词和标签互为子串才去请求表情；\r\n  - 取回的表情按它的 description 标签再核对一次，不相关就不发；\r\n  - 只有开启 `allow_random_fallback` 时，不相关的表情才会作为随机兜底发出（顺带省掉一次 `get_random`）；\r\n  - 表情库为空时不再调用 `get_by_description`；\r\n  - 删除启动时的 RPC 探测和关键词衰退逻辑，标签缓存每 10 分钟刷新一次。\r\n- **沉默回复池为空时仍吞事件**：`silent_replies` 为空时不再走\"嘀咕一句\"分支，`swallow_when_silent=false` 能正常放行事件。\r\n- **戳一戳动作词取错**：raw_info 改为按 qq 元素分段提取动作词和后缀（如\"拍了拍\"+\"的脸\"），动作词为空时也不会把后缀当成动作；上下文记录和 LLM 提示词都带上后缀。\r\n- **昵称显示为 QQ 号**：适配器查不到资料、把昵称填成 QQ 号时，入站昵称和 `resolve_member_name` 都当作没有昵称处理。\r\n- **跟风戳**：黑名单用户发起的互戳不再跟风；思考延迟结束后也会复查发起者是否被拉黑。\r\n\r\n### 新增\r\n\r\n- 跟风戳新增 `bystander.whitelist_groups` / `bystander.blacklist_groups` 群名单，默认为空，也就是不限制；黑名单优先于白名单，和主动戳的群名单相互独立。\r\n- 配置 schema 版本升到 `1.9.0`，Runner 启动时会自动补齐新字段，原有配置保留。\r\n\r\n### 优化\r\n\r\n- 主动戳观察并入 `smart_poke_listener`，删除 OBSERVE handler。Host 序列化消息时会带上图片 base64，合并后每条入站消息只往插件进程传一次。\r\n- 主动戳去掉 per-group 锁和全局锁，改为在 await 之后同步复检冷却和上限，并立即预占 in-flight；同时补上原来遗漏的同群冷却复检。\r\n- 状态清理统一由 Hook 入口按时间节流触发，删除按戳次数触发的计数器。\r\n- 配置热更新时，只有表情关键词变化才重新做匹配探测。\r\n- 落盘限频快照时不再在事件循环里 `mkdir`，目录创建移到写文件的线程里。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.11.0",
+            "name": "智能戳一戳插件 | Smart Poke Plugin",
+            "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/smart_poke_plugin",
+              "homepage": "https://github.com/TAIY2020/smart_poke_plugin",
+              "documentation": "https://github.com/TAIY2020/smart_poke_plugin",
+              "issues": "https://github.com/TAIY2020/smart_poke_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "api.call",
+              "emoji.get_random",
+              "emoji.get_by_description",
+              "emoji.get_emotions",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "message.get_recent",
+              "message.build_readable",
+              "maisaka.context.append",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.webp"
+              }
+            },
+            "id": "TAIY2020.smart_poke_plugin"
+          }
+        },
         {
           "version": "1.10.1",
           "tag": "v1.10.1",
@@ -16922,6 +17105,15 @@
       "id": "github.cateye.better-post-processing",
       "manifest_id": "github.cateye.better-post-processing",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_better_post-processing",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.orge-8.budget-pacer",
+      "manifest_id": "org.orge-8.budget-pacer",
+      "repositoryUrl": "https://github.com/orge-8/budget-pacer",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
