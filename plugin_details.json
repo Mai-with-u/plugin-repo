@@ -3,7 +3,7 @@
     "id": "SengokuCola.Mute-Plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.7.0",
+      "version": "4.7.1",
       "name": "群聊禁言管理插件 (Mute Plugin)",
       "description": "群聊禁言管理插件，提供智能禁言和手动禁言命令",
       "author": {
@@ -19,7 +19,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
@@ -7978,9 +7978,9 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
-      "name": "SnowLuma 连接器（适配器）/ SnowLuma Adapter",
-      "description": "统一 QQ 连接器：以 OneBot v11 正向 WebSocket 同时支持 SnowLuma 与 NapCat 客户端，可自动判定对端类型并支持运行时热切换。",
+      "version": "1.0.1",
+      "name": "SnowLuma 适配器/ SnowLuma Adapter",
+      "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
         "name": "MaiBot Team",
         "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
@@ -8351,7 +8351,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.10.1",
+      "version": "1.11.0",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -19024,6 +19024,44 @@
       },
       "plugin_type": "extension",
       "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "org.orge-8.budget-pacer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.orge-8.budget-pacer",
+      "version": "1.0.4",
+      "name": "月度预算发言频率调节",
+      "description": "设定一个月度 API 预算，按「花费进度 ÷ 时间进度」的节奏比动态调节麦麦的发言频率，让整月花费贴近预算。支持全局预算与单会话例外额度。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/orge-8/budget-pacer",
+        "issues": "https://github.com/orge-8/budget-pacer/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.9",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "statistics.local.model_trend",
+        "frequency.set_adjust",
+        "chat.get_all_streams",
+        "database.query"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
     }
   }
 ]
