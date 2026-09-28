@@ -4226,6 +4226,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "3f9623ea14b7bcb2151b303fa72f533f0d0c644b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-28T10:05:21Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.0.3",
+          "release_notes": "## [1.0.3] — 2026-09-28\r\n\r\n- 表情解析：同步 QFace 表情库，修正 ID 错配，统一消息、卡片和回应映射。\r\n- 配置迁移：旧配置端口不再被默认端口覆盖。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.3",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.0.2",
           "tag": "v1.0.2",
           "commit": "88b5c6bb8473f7fc9819447cdf2eb50a8d5bafce",
@@ -7708,7 +7771,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/CharTyr/Mai-Skill-Loader/releases?per_page=100&page=1"
     },
     {
       "id": "Emilia-awa.maibot-mimotts-voice",
@@ -14289,8 +14353,68 @@
       "id": "ffdvdgd.bilibili-video-info",
       "manifest_id": "ffdvdgd.bilibili-video-info",
       "repositoryUrl": "https://github.com/FFDVDGD/bilibili-video-info",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.9",
+          "tag": "v0.1.9",
+          "commit": "da36841893bd4d1e8f70e6ec286de3ead12a5261",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-28T09:56:27Z",
+          "release_url": "https://github.com/FFDVDGD/bilibili-video-info/releases/tag/v0.1.9",
+          "release_notes": "修复 Bilibili 视频元数据探测时偶发 SSL EOF 导致直接失败的问题。仅对此类连接错误在原有 120 秒总时限内最多尝试三次，间隔 1 秒和 2 秒；其他解析错误及音频下载不重试。\n\n本版本不改变配置结构，现有 config.toml 无需迁移。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.9",
+            "name": "Bilibili 视频信息与 AI 总结",
+            "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
+            "author": {
+              "name": "FFDVDGD",
+              "url": "https://github.com/FFDVDGD"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FFDVDGD/bilibili-video-info"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.2.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.0,<1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "oss2",
+                "version_spec": ">=2.19.1,<3.0.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "chat.open_session",
+              "llm.generate",
+              "maisaka.context.append",
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "ffdvdgd.bilibili-video-info"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17393,6 +17517,106 @@
       "id": "riesaexe.life-behavior-reference",
       "manifest_id": "riesaexe.life-behavior-reference",
       "repositoryUrl": "https://github.com/riesaexe/life-behavior-reference",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "chartyr.maiwork",
+      "manifest_id": "chartyr.maiwork",
+      "repositoryUrl": "https://github.com/CharTyr/MaiWork",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.mai.set_avatar",
+      "manifest_id": "github.cateye.mai.set_avatar",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "da8abeae0ea7f253a1989e6bb7056a9065e17261",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-28T00:00:58Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_mai_set_avatar/releases/tag/v0.1.0",
+          "release_notes": "麦麦要换头像 v0.1.0（首个版本）\n\n让 bot 每天定时从头像库随机抽取一张更换 QQ 头像。\n\n- 每日随机换头像：触发时间（默认 08:30）、随机漂移范围（\"-45\"-\"30\"，格式错误自动回退）、跳过概率（默认 0.5）\n- /msa add [名称]：引用图片加入头像库（哈希命名按内容去重 / 自定义命名同名覆盖）\n- /msa debug random：强制立即随机换一次头像\n- change_avatar 工具：每日上限 2 次、冷却 5 小时，不可用时自动对模型隐藏\n- 图片非 1:1 时居中切割 / 拉伸可选，最长边超 1024 自动缩小\n- 适配器二选一：maibot-team.snowluma-adapter（合并版）或 maibot-team.napcat-adapter，运行时自动探测 set_qq_avatar 接口，无硬性插件依赖\n\n兼容 MaiBot 1.2.x ~ 1.3.x（host_application 1.0.0~1.99.99，sdk 2.5.0~2.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.mai.set_avatar",
+            "version": "0.1.0",
+            "name": "麦麦要换头像",
+            "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率，提供 /msa add 命令收集头像、LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（提供 set_qq_avatar 接口，无硬性插件依赖）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+              "homepage": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+              "documentation": "https://github.com/cateyemizuki/cateye_mai_set_avatar/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_mai_set_avatar/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "image",
+                "fallback": "shuffle"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "message.get_by_id",
+              "api.call",
+              "api.get",
+              "component.enable",
+              "component.disable"
+            ],
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-community.mai-life",
+      "manifest_id": "maibot-community.mai-life",
+      "repositoryUrl": "https://github.com/octmicy/Mai_life",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
