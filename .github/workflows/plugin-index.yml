@@ -1,4 +1,4 @@
-name: Generate Plugin Details
+name: Sync Plugin Index
 
 on:
   push:
@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'plugins.json'
+      - '.github/scripts/sync_plugin_versions.cjs'
+      - '.github/workflows/plugin-index.yml'
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
@@ -14,7 +16,7 @@ permissions:
   contents: write
 
 jobs:
-  generate-details:
+  sync-index:
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
@@ -30,6 +32,9 @@ jobs:
 
       - name: Install icon processor
         run: npm install --no-save --no-package-lock sharp@0.33.5
+
+      - name: Test version synchronization
+        run: node --test .github/scripts/sync_plugin_versions.test.cjs
 
       - name: Generate plugin details
         run: |
@@ -327,20 +332,25 @@ jobs:
           main();
           EOL
 
-      - name: Commit and push plugin details
+      - name: Synchronize releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/sync_plugin_versions.cjs
+
+      - name: Commit and push plugin index
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add plugin_details.json icons
+          git add plugin_details.json plugin_versions.json icons
           if git diff --staged --quiet; then
             echo "没有变更需要提交"
             exit 0
           fi
 
-          git commit -m "自动生成 plugin_details.json 和图标缓存"
+          git commit -m "chore: 同步插件详情、图标和版本索引"
           for attempt in 1 2 3; do
             if git push origin HEAD:main; then
-              echo "✅ 已提交并推送 plugin_details.json 和图标缓存更新"
+              echo "✅ 已提交并推送插件索引更新"
               exit 0
             fi
 

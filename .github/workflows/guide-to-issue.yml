@@ -49,7 +49,7 @@ jobs:
 
             > ⚠️ **PR 提交方式已弃用**，后续可能会移除支持。
             >
-            > 如果您仍希望使用 PR 方式，此 PR 仍会进行验证，但建议改用 Issue。
+            > 插件 PR 已不再自动验证，请关闭此 PR 并通过 Issue 模板提交。
             `;
 
             await github.rest.issues.createComment({
