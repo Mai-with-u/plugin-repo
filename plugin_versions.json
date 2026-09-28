@@ -4226,6 +4226,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "88b5c6bb8473f7fc9819447cdf2eb50a8d5bafce",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-27T10:09:47Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.0.2",
+          "release_notes": "## [1.0.2] — 2026-09-27\r\n\r\n### 细节\r\n\r\n- 插件 API：同时支持 `adapter.napcat.*` 和 `adapter.snowluma.*`。\r\n- 表情回应：补齐 QQ 与 Unicode 表情，修复“未知表情”显示。\r\n- 消息过滤：新增用户黑名单，拦截指定用户的群聊和私聊消息。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "4a7f2b484796bc2b82e37dbe63068b5094082b30",
@@ -16478,8 +16541,70 @@
       "id": "github.cateye.set-msg-emoji-like",
       "manifest_id": "github.cateye.set-msg-emoji-like",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "fc48033f578e03336a1e4eeec21a9e36dcbd579c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-27T20:08:02Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/releases/tag/v0.3.0",
+          "release_notes": "MaiBot 1.3.0 兼容版本：适配器依赖切换到合并版 SnowLuma 适配器。\r\n\r\n- 适配器依赖切换（`_manifest.json` `dependencies`）：`maibot-team.napcat-adapter >=1.0.0` → `maibot-team.snowluma-adapter >=1.0.0,<2.0.0`。旧声明在 1.3.0 下会因「依赖未满足」阻止本插件加载。注意：仅装旧版 NapCat 适配器的 1.2.x 环境请继续用 0.2.3，或在 1.2.x 改装合并版适配器。\r\n- 兼容性核查（对照合并版适配器 1.0.2 源码）全部通过：`adapter.napcat.action.call`（params 包装、负 message_id 透传、失败异常双路径兜底）、通知注入结构（`napcat_notice_*` 兼容字段）、`get_login_info`、网关 RPC。\r\n- 清理：负 message_id 绕道前提消失（合并版原生接受负 ID）；删除两份已落地的 issue 草稿（透传 feat、#97 去重）；影子适配器语境注释更新。功能逻辑零改动。\r\n\r\n安装：插件中心选择 0.3.0（或高级设置选分支 `compat-snowluma`），需配合合并版 SnowLuma 适配器 1.0+。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.set-msg-emoji-like",
+            "version": "0.3.0",
+            "name": "表情回应",
+            "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+              "homepage": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+              "documentation": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "smile-plus"
+              }
+            },
+            "capabilities": [
+              "api.call",
+              "maisaka.context.append",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17058,8 +17183,74 @@
       "id": "maibot.fun-pack",
       "manifest_id": "maibot.fun-pack",
       "repositoryUrl": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "8daeb9ed0925a59b662e19da8271679a8f936770",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-27T17:04:11Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.4.0",
+          "release_notes": "## 锦旗图片生成\n\n新增 `/锦旗` 命令与 `jinqi_banner` LLM 工具，把一段感谢语渲染成中式锦旗图片（竖排右起、毛笔楷书、金杆流苏底图）。\n\n### 用法\n\n```\n/锦旗 感谢语 | 赠：对象 | 落款\n```\n\n三段式参数，后两段可省略、缺省自动补全。例如：\n\n```\n/锦旗 代码零BUG 上线不炸服 | 赠：麦麦 | 测试\n```\n\n### 新增\n\n- **锦旗图片生成**：`/锦旗` 命令 + `jinqi_banner` 工具\n  - 感谢语自动分列：显式分隔符 / 空白两段 / 整句超 6 字自动对半折，最多 2 列 16 字\n  - 赠予对象缺省不渲染；写了但没带敬语前缀（赠 / 敬赠 / 谢 / 感谢 / 授予 / 奖励…）会自动补 `赠：`\n  - 落款缺省用发送者昵称 +「敬赠」，也可在配置里固定\n  - 日期三种写法：`chinese`（`二〇二六年九月廿七`）/ `numeric`（`2026-09-27`）/ `none`\n- 新增 `[jinqi]` 配置节：`enabled` / `big_font_size` / `small_font_size` / `date_style` / `default_signer`\n\n### 变更\n\n- `_manifest.json` 增加 `changelog` 字段，指向插件内 `CHANGELOG.md` —— 插件市场「更新日志」栏位从此有数据来源\n- 代码结构继续解耦：锦旗拆为**纯逻辑** `essential_jinqi.py`（零 PIL / 零 SDK）与**纯绘制** `essential_render_jinqi.py`（只按 `Protocol` 读数据，不 import 领域模块），`plugin.py` 只负责装配与发送\n\n### 说明\n\n- 字体：毛笔楷书 [Ma Shan Zheng](https://fonts.google.com/specimen/Ma+Shan+Zheng)（SIL OFL 1.1），覆盖 GB2312 全部 6763 字；生僻字自动回退 Noto Sans SC\n- 字号自适应：配置值是**上限**，字少放大填满版面，字多自动缩号\n- 拉丁字母与数字按中文竖排惯例**逐字占一格**（`代码零BUG` 就是 6 格），整列节奏一致\n- 更新不会覆盖用户数据（`data/plugins/maibot.fun-pack/` 与插件代码目录相互独立）\n\n---\n\n**完整更新日志见 [`CHANGELOG.md`](https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/blob/main/CHANGELOG.md)**\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.4.0",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17114,6 +17305,94 @@
       "id": "org.orge-8.budget-pacer",
       "manifest_id": "org.orge-8.budget-pacer",
       "repositoryUrl": "https://github.com/orge-8/budget-pacer",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.daemoku.emoji-filter",
+      "manifest_id": "github.daemoku.emoji-filter",
+      "repositoryUrl": "https://github.com/daemoku/maibot-emoji-filter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "03e4012df1e2e3ef8bf0b0148f4f11482b944b80",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-20T14:09:43Z",
+          "release_url": "https://github.com/daemoku/maibot-emoji-filter/releases/tag/v1.0.0",
+          "release_notes": "MaiBot 插件：用可自由定制的正则表达式，自动清除麦麦回复中的 emoji 表情。\r\n\r\n- 内置覆盖 Unicode 常用 emoji 全量码点的正则，可在 WebUI 自由改写\r\n- 支持追加规则、白名单保护、清理后空文本策略\r\n- 提供 /emojifilter 管理命令与 strip_emoji 工具\r\n- 通过真实 maibot-plugin-sdk 2.8.2 的 111 项自动化自检",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.daemoku.emoji-filter",
+            "version": "1.0.0",
+            "name": "Emoji 过滤器",
+            "description": "用可自由定制的正则表达式，自动清除麦麦回复中的 emoji 表情。内置覆盖 Unicode 全量常用 emoji 的规则，支持追加规则、白名单保护与清理后空文本处理。",
+            "author": {
+              "name": "NightSwan",
+              "url": "https://github.com/daemoku"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/daemoku/maibot-emoji-filter",
+              "homepage": "https://github.com/daemoku/maibot-emoji-filter",
+              "documentation": "https://github.com/daemoku/maibot-emoji-filter/blob/main/README.md",
+              "issues": "https://github.com/daemoku/maibot-emoji-filter/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "fallback": "filter"
+              }
+            },
+            "capabilities": [
+              "send_message"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.orge-8.log-doctor",
+      "manifest_id": "org.orge-8.log-doctor",
+      "repositoryUrl": "https://github.com/orge-8/log-doctor",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "xiaocutedog.maibot-sing",
+      "manifest_id": "xiaocutedog.maibot-sing",
+      "repositoryUrl": "https://github.com/xiaocutedog/maibot_sing-main",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "riesaexe.life-behavior-reference",
+      "manifest_id": "riesaexe.life-behavior-reference",
+      "repositoryUrl": "https://github.com/riesaexe/life-behavior-reference",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
