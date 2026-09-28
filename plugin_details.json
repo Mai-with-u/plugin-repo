@@ -6720,7 +6720,7 @@
     "manifest": {
       "manifest_version": 2,
       "name": "桌游搜索插件 (bgg_search_plugin)",
-      "version": "0.0.7",
+      "version": "0.0.8",
       "description": "利用集石、DDGS 和 LLM 查询桌游英文名，然后从 BGG 网站获取游戏的相关基本信息",
       "author": {
         "name": "山上的小丘",
@@ -6735,17 +6735,34 @@
         "min_version": "1.0.0",
         "max_version": "2.99.99"
       },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.26.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12"
+        },
+        {
+          "type": "python_package",
+          "name": "ddgs",
+          "version_spec": ">=0.1.0"
+        }
+      ],
       "capabilities": [
         "llm.generate",
-        "llm.get_available_models",
-        "message.get_by_time_in_chat",
-        "config.get",
         "send.text",
-        "send.image",
-        "send.forward"
+        "send.image"
       ],
+      "plugin_type": "tool",
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
       },
       "urls": {
         "repository": "https://github.com/fsqhn/maibot-bgg-plugin",
@@ -7978,7 +7995,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -8742,56 +8759,6 @@
         ]
       },
       "id": "CharTyr.MaiBot-Better-Expression"
-    }
-  },
-  {
-    "id": "chartyr.Mai-Skill-Loader",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.0",
-      "name": "MaiBot Agent Skills 加载器",
-      "description": "加载 Agent Skills 规范的 skill 文件夹，自动注册为 LLM 可调用的 Tool 组件。支持 direct 和 agent 两种执行模式。",
-      "author": {
-        "name": "CharTyr",
-        "url": "https://github.com/CharTyr"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/CharTyr/Mai-Skill-Loader",
-        "homepage": "https://github.com/CharTyr/Mai-Skill-Loader"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "PyYAML",
-          "version_spec": ">=6.0.0"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "llm.generate",
-        "llm.generate_with_tools",
-        "llm.get_available_models",
-        "config.get",
-        "message.get_recent",
-        "message.build_readable"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": "_locales",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "chartyr.skill-loader"
     }
   },
   {
@@ -14941,7 +14908,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.8",
+      "version": "0.1.9",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
@@ -19249,6 +19216,186 @@
         ]
       },
       "id": "riesaexe.life-behavior-reference"
+    }
+  },
+  {
+    "id": "chartyr.maiwork",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "chartyr.maiwork",
+      "version": "0.4.0",
+      "name": "MaiWork",
+      "description": "MaiBot 群聊生产力 Agent：和 MaiBot 并行运行，理解群、主动找资讯、提构想、追目标，接群友派的活并交付。默认关闭。",
+      "plugin_type": "extension",
+      "author": {
+        "name": "CharTyr",
+        "url": "https://github.com/CharTyr"
+      },
+      "license": "GPL-3.0-or-later",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "message.get_by_time_in_chat",
+        "knowledge.search",
+        "person.get_id",
+        "person.get_value",
+        "chat.get_stream_by_group_id",
+        "chat.get_group_streams",
+        "api.call",
+        "api.list",
+        "send.hybrid",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "briefcase"
+        }
+      },
+      "urls": {
+        "repository": "https://github.com/CharTyr/MaiWork",
+        "homepage": "https://github.com/CharTyr/MaiWork",
+        "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+        "issues": "https://github.com/CharTyr/MaiWork/issues"
+      }
+    }
+  },
+  {
+    "id": "github.cateye.mai.set_avatar",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.mai.set_avatar",
+      "version": "0.1.0",
+      "name": "麦麦要换头像",
+      "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率，提供 /msa add 命令收集头像、LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（提供 set_qq_avatar 接口，无硬性插件依赖）。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+        "homepage": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+        "documentation": "https://github.com/cateyemizuki/cateye_mai_set_avatar/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_mai_set_avatar/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "image",
+          "fallback": "shuffle"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "message.get_by_id",
+        "api.call",
+        "api.get",
+        "component.enable",
+        "component.disable"
+      ],
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot-community.mai-life",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-community.mai-life",
+      "name": "麦麦生活",
+      "version": "1.14.11",
+      "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy/Mai_life"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.49,<2"
+        }
+      ],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "chat.get_all_streams",
+        "chat.get_stream_by_user_id",
+        "chat.get_private_streams",
+        "chat.get_stream_by_group_id",
+        "chat.get_group_streams",
+        "chat.open_session",
+        "llm.generate",
+        "llm.get_available_models",
+        "message.get_by_id",
+        "api.call",
+        "maisaka.proactive.trigger",
+        "config.get",
+        "component.list_loaded_plugins"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "urls": {
+        "repository": "https://github.com/octmicy/Mai_life",
+        "homepage": "https://github.com/octmicy/Mai_life",
+        "documentation": "https://docs.mai-mai.org"
+      }
     }
   }
 ]
