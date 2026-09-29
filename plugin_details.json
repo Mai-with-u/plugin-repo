@@ -7995,7 +7995,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.3",
+      "version": "1.1.0",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -8032,6 +8032,7 @@
         }
       ],
       "capabilities": [
+        "chat.get_all_streams",
         "chat.open_session",
         "component.disable",
         "component.enable",
@@ -9198,7 +9199,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -19085,9 +19086,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.log-doctor",
-      "version": "1.2.1",
+      "version": "1.3.4",
       "name": "日志周报医生",
-      "description": "每周定时扫描 MaiBot 日志：统计 ERROR/WARN/异常堆栈，匹配 RPC 超时、能力拒绝、插件加载失败等已知故障模式，按来源插件分组出 Top 异常，LLM 生成根因诊断总结（失败自动降级为纯统计报告），私聊投递周报给管理员。支持 /日志诊断 命令手动触发与查看上次报告。",
+      "description": "每周定时扫描 MaiBot 日志：统计 ERROR/WARN/异常堆栈，匹配 RPC 超时、能力拒绝、插件加载失败等已知故障模式，按来源插件分组出 Top 异常，LLM 生成根因诊断总结（失败自动降级为纯统计报告），私聊投递周报给管理员。支持 /日志诊断 手动诊断（可筛选）、/日志周报 回看、/日志状态 目录速查、/日志搜索 原文关键词搜索；扫描覆盖 .gz 压缩归档。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -19120,7 +19121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xiaocutedog.maibot-sing",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "name": "让麦麦说话和唱歌",
       "description": "用 RVC 克隆音色翻唱歌曲和说话，内嵌音乐搜索（网易云/QQ）与 MiMo TTS",
       "author": {
@@ -19223,9 +19224,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.4.2",
+      "version": "0.4.6",
       "name": "MaiWork",
-      "description": "MaiBot 群聊生产力 Agent：和 MaiBot 并行运行，理解群、主动找资讯、提构想、追目标，接群友派的活并交付。默认关闭。",
+      "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
       "author": {
         "name": "CharTyr",
@@ -19278,8 +19279,9 @@
       },
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "briefcase"
+          "type": "local",
+          "value": "maiwork/console/static/assets/logo.png",
+          "fallback": "briefcase"
         }
       },
       "urls": {
@@ -19288,6 +19290,9 @@
         "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
         "issues": "https://github.com/CharTyr/MaiWork/issues"
       }
+    },
+    "assets": {
+      "icon_64": "icons/chartyr.maiwork.webp"
     }
   },
   {
