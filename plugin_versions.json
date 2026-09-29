@@ -17310,6 +17310,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "93e210a301612b802f63ba2bde10a2b6a963bc39",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-28T11:23:56Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.5.0",
+          "release_notes": "## 新增\n\n- **六个功能各自独立开关**：`[report]` / `[good_morning]` / `[hitokoto]` / `[what_to_eat]` / `[jinqi]` / `[answer_book]` 各新增 `enabled`，可单独关掉任意一个功能\n- `[what_to_eat].passive_enabled`：**被动触发独立开关** —— 可以只留 `/今天吃什么` 命令，同时关掉聊天里的关键词自动接话\n- 新增 `[answer_book]` 配置节（答案之书此前没有独立配置节）\n\n## 修复\n\n- **WebUI 插件配置页全部改为中文**。此前每个字段的主标签都是英文字段名（`enabled` / `font_size` / `trigger_keywords` …）—— 原因是插件配置页只渲染 `json_schema_extra` 里的 `label`（缺失时回退字段名）与 `hint`（控件下方说明），**完全不读 `description`**。现通过 `_ui_field()` 为全部 25 个字段补上中文 `label`，需要时补 `hint`\n- 已知限制：`date_style` 下拉框的选项文本仍是 `chinese` / `numeric` / `none`（前端把 `Literal` 值直接当选项名，无逐项本地化接口），含义已写在字段说明里\n\n## 变更\n\n- 开关统一由 `_feature_enabled()` 门控：插件总开关 `[plugin].enabled` 关闭时，所有功能一律视为关闭\n- 命令 / 工具 / Hook 均**不注销**（装饰器在类定义时注册，运行时无法摘除），只在入口提前返回：命令吞掉消息不回复、工具返回提示文案、Hook 直接 `return None`\n- `/工具列表` 菜单改为**按开关动态拼装**：已关闭的功能不再出现，末尾的工具数量也随之变化\n- 修正 `[what_to_eat].enabled` 的语义：此前它**只挡被动 Hook，命令和工具照常可用**；现在它统一管命令与工具，被动触发拆到 `passive_enabled`\n\n## 兼容性\n\n- 纯新增字段 + 一处语义拆分，**已有 `config.toml` 无需手工修改**：宿主检测到 `config_version` 由 `1.4.0` 升到 `1.5.0` 后按新 schema 重建，以新默认值打底、旧值覆盖，原有设置全部保留\n- 原来 `[what_to_eat].enabled = true` 的用户行为不变（`passive_enabled` 默认也是 true）\n\n---\n\n完整说明见 [CHANGELOG.md](https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/blob/main/CHANGELOG.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.5.0",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "8daeb9ed0925a59b662e19da8271679a8f936770",
