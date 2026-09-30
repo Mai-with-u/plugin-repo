@@ -17663,6 +17663,166 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.1",
+          "tag": "v0.5.1",
+          "commit": "649f03c003aa64b66a2b73aa2cd7cc4dfea723fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T03:49:43Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.5.1",
+          "release_notes": "0.5.0 上线后，在测试群跑新找法（先广撒网，再挑着打开）时发现了几处问题，这一版修掉。完整的新功能说明见 [v0.5.0](https://github.com/CharTyr/MaiWork/releases/tag/v0.5.0)。\n\n- **保底补搜真正生效**：0.5.0 里「每个方向保底搜几次」在实际运行时没有接上，冷门方向可能没人搜。现在补上了。\n- **不再挑网站首页和栏目页**：首页、新闻栏目、标签页、分类页在预筛时就会去掉，因为它们不是一篇具体内容。\n- **挑选时看来源质量**：优先官方新闻室、公告、专业媒体、有真实细节的社区帖；避开 SEO 内容农场、电商和采购指南页、转载聚合站。\n- **「这一轮怎么找的」补全**：「各个关注点」和「各家搜索服务」两栏以前是空的，现在会显示数字。\n- **撒网的子 agent 会直接调用搜索工具**，不再先去调一个不存在的工具。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.5.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "807aa4648965a936ef622f273a535c35cfeb1378",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T03:23:51Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.5.0",
+          "release_notes": "这一版合并了 0.4.7 和 0.5.0 的改动。重点是资讯「找得深、会成长」：搜索结果终于读对了，先广撒网再挑着打开，还会从群友的自然反应里慢慢学这个群的口味。从 0.4.x 升级不用改配置。\n\n## 联网搜索\n- **搜索结果读对了**：Keenable 返回的结果以前被当成一整段、没有链接的文字，子 agent 每搜一次大约只看到一条结果，只好反复换说法重搜。现在能拆成多条，每条都带链接和发布日期。\n- **「只搜最近几天」真正生效**：时间条件改由代码直接交给搜索服务。找资讯默认只搜最近 7 天，找文章放宽到 180 天，不再靠提示词里的一句话。\n- **预设六家搜索服务**：Keenable、Tavily、Exa、You.com、Firecrawl、TinyFish。\n  - 在「设置 → 扩展」的 MCP 列表里直接打开，带各家 logo。免费的可以不填密钥，要密钥的会给出官网链接。\n  - 可以设主搜索加备用（主搜索出错或额度用完时自动换），也可以让几家在找资讯时一起广撒网。\n  - 每家的参数（时间、只搜某个网站、新闻模式）都单独对接好了，每家还配了一份照官方用法写的 skill。\n- **首次引导**多了「联网搜索」一步，默认勾选 Keenable（免密钥就能用）。\n\n## 找资讯\n- **新找法：先广撒网，再挑着打开**（按群开关，默认关）：\n  - 先只看搜索结果，收一大批线索。这些线索由程序直接记下，不靠子 agent 抄；\n  - 程序预筛：发过的、屏蔽的、太旧的、重复的先去掉，每个方向不超过四成；\n  - 主模型挑 8–12 条最有希望的，再分给几个子 agent 同时打开核对；\n  - 每个关注点都有保底搜索，冷门方向不会没人搜。\n- **搜索更有章法**：每个方向换几种问法（一手来源、技术细节、社区讨论、反面意见、本地语言、后续进展），用「只搜某个网站」直奔官方来源，不再换几个同义词反复搜。\n- **重复和后续分开**：同一件事换个说法的算重复，照旧拦掉；有新数字、新版本、新决定的算「后续」，会放行，网页上标「后续」并写明比上次多了什么。同一件事每批最多一条后续。\n- **帖子写完对一遍原文**：原文撑不住的说法，这条就退回原摘要。\n- **网页上能看到每批「这一轮怎么找的」**（管理员）：搜了几次、找到多少线索、预筛剩多少、打开几篇、上了几条，被刷掉的原因排行，每一段花了多久。被筛掉的条目会写明是哪次搜索找到的。\n\n## 越用越懂这个群\n- **自动收反馈**：群友回复或引用资讯卡片、在网页上点开原文、群里接着聊这条资讯，都会自动记一次好评。没人理不算差评。群友账号只存加密摘要（哈希），不存原号。\n- **优质来源**：自动攒出每个群常出好内容的网站，找资讯时优先去看（最多约三分之一的搜索），其余照常广撒网。「设置 → 资讯来源」里可以移出。\n- **口味小结**：每天从群友反馈和最近在聊的话题里总结一段，用在定方向、打分、写帖子三处。只用摘要，不用聊天原文，不点名任何人。管理员写的偏好优先。资讯页上可以看、可以改，改过的 7 天内不会被自动覆盖。\n\n## 0.4.7：Telegram 群和 QQ 官方机器人群\n- 服务群可以写 `telegram:群 ID` 或 `qqbot:群 openid`，平台自动识别。没有群文件的平台，成品改用网页链接交付。\n- QQ 官方机器人的适配还没实测。\n\n## 还没实测\n- TinyFish：需要注册拿密钥，这一版没有实测。\n- You.com 的「只搜某个网站」：官方没有这个参数，是在搜索词后面加 `site:` 实现的，不一定每次都生效。\n- Tavily 的免密钥额度按 IP 每月计算，用完后需要填一个免费密钥。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.5.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.4.6",
           "tag": "v0.4.6",
           "commit": "d940ae90aef2691b1b4f98bb25a2b60658b14f48",
