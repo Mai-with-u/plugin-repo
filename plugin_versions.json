@@ -432,6 +432,93 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "3.0.3",
+          "tag": "v3.0.3",
+          "commit": "0884ce328a92a8aeea171c78a23f8475dbe55c16",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T04:18:39Z",
+          "release_url": "https://github.com/internetsb/Maizone/releases/tag/v3.0.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "internetsb.maizone",
+            "version": "3.0.3",
+            "name": "Maizone（麦麦空间）",
+            "description": "让麦麦阅读、评论、点赞、发送QQ空间。为插件提供发送说说接口",
+            "author": {
+              "name": "internetsb",
+              "url": "https://github.com/internetsb"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/internetsb/Maizone"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "bs4",
+                "version_spec": ">=0.0.1"
+              },
+              {
+                "type": "python_package",
+                "name": "json5",
+                "version_spec": ">=0.0.1"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=0.0.1"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.0.1"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "config.get",
+              "llm.get_available_models",
+              "message.get_recent",
+              "api.call",
+              "emoji.get_by_description",
+              "database.get",
+              "message.get_by_time",
+              "message.get_by_time_in_chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_private_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "package",
+                "background": "#1f2937"
+              }
+            }
+          }
+        },
+        {
           "version": "2.5.0",
           "tag": "v2.5.0",
           "commit": "6d07f188c56ca574b243d92a79ecf799dbc45be9",
@@ -1036,7 +1123,121 @@
       "manifest_id": "xxxxx7258.google-search-plugin",
       "repositoryUrl": "https://github.com/XXXxx7258/google_search_plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "4.0.3",
+          "tag": "4.0.3",
+          "commit": "0fae1b9e438bf9f136414e63cebcfbd6d8ee5349",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T16:22:52Z",
+          "release_url": "https://github.com/YukiSakiko/google_search_plugin/releases/tag/4.0.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "4.0.3",
+            "name": "麦麦联网插件（search plugin）",
+            "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
+            "author": {
+              "name": "晴空",
+              "url": "https://github.com/XXXxx7258"
+            },
+            "license": "AGPL",
+            "urls": {
+              "repository": "https://github.com/XXXxx7258/google_search_plugin",
+              "homepage": "https://github.com/XXXxx7258/google_search_plugin",
+              "documentation": "https://github.com/XXXxx7258/google_search_plugin#readme",
+              "issues": "https://github.com/XXXxx7258/google_search_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "0.10.0",
+              "max_version": "1.14.5"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "curl_cffi",
+                "version_spec": ">=0.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=4.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "readability-lxml",
+                "version_spec": ">=0.8.1"
+              },
+              {
+                "type": "python_package",
+                "name": "trafilatura",
+                "version_spec": ">=1.6.0"
+              },
+              {
+                "type": "python_package",
+                "name": "charset-normalizer",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml-html-clean",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp-socks",
+                "version_spec": ">=0.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "brotli",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "ddgs",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "xxxxx7258.google-search-plugin"
+          }
+        }
+      ],
       "ignored_tags": [
         "1.06",
         "fix",
@@ -1064,11 +1265,6 @@
         "010"
       ],
       "rejected_releases": [
-        {
-          "tag": "4.0.1",
-          "version": "4.0.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.3'\n- '4.0.1'\n       ^"
-        },
         {
           "tag": "1.0.3",
           "version": "1.0.3",
@@ -17663,6 +17859,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.6.1",
+          "tag": "v0.6.1",
+          "commit": "a48014a4ca497b5104b1bc0477e83d5b77d94faf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T07:56:26Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.6.1",
+          "release_notes": "这一版合并了 0.5.2、0.6.0、0.6.1 三次更新（上一个 Release 是 [v0.5.1](https://github.com/CharTyr/MaiWork/releases/tag/v0.5.1)）。\n\n### 资讯标题一律中文（0.6.1）\n- 外文资讯、文章的标题会自动译成中文，网页、资讯卡片和 MaiBot 顺口提起时都用中文标题；原文标题仍在来源卡片里能看到。\n- 原标题本来就是中文的不动；日文、韩文标题也会翻译。\n- 翻译和写正文在同一次模型调用里完成，不多花调用。\n- 按标题判断重复时，中文标题和原标题都会比，外文同一篇换个链接也能认出来。\n\n### 专岗（0.6.0）\n- 新增四个常驻岗位：**资讯**、**构想**、**目标**三个专岗，加一个**通用任务执行者**。每个岗位可以改名字、写工作说明、挑可用的 skill，也可以停用。\n- 专岗按群记经验：每个群有自己的一份「本群提醒」和岗位学到的经验，不跨群。\n- 每次派活都有**交接记录**（交代了什么、交回了什么、主模型收下还是退回），在「设置 → 专岗」里能看。\n- 构想和目标提出前、目标定期检查前，对应专岗会先去查一查（每次最多约 3 分钟）。停用某个专岗，对应的这一步就跳过；目标专岗停用时，已批准目标的定期检查也一起跳过。\n- 更严格的隔离：每一轮只给岗位固定的那几样工具，子 agent 不能跨群读画像和聊天记录。\n- 主模型仍然负责验收，专岗交回的东西不会绕过它。\n\n### skill 开关（0.5.2）\n- skill 可以单独启用 / 停用。\n- 搜索服务预设和对应的 skill 连在一起：换搜索服务时，相应的 skill 跟着切换。\n\n### 升级\n- 配置文件结构没变，直接覆盖插件目录即可（保留你的 `config.toml`）。新的数据表首次用到时自动建。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.6.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.5.1",
           "tag": "v0.5.1",
           "commit": "649f03c003aa64b66a2b73aa2cd7cc4dfea723fb",
@@ -18073,6 +18349,68 @@
       "repositoryUrl": "https://github.com/octmicy/Mai_life",
       "mode": "branch",
       "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "Mai-with-u.qq-adapter",
+      "manifest_id": "Mai-with-u.qq-adapter",
+      "repositoryUrl": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "f2e8a64ac6f94566c732b1f6e59e846f4d329eaa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T09:33:19Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter/releases/tag/v0.3.0",
+          "release_notes": "首个发布版本。\n\n- 直连 QQ 开放平台官方 API（WebSocket 事件 + OpenAPI），支持群 @ 消息、全量群消息与单聊收发\n- 入站图片、表情、语音、文件附件解析；出站 @ 以 markdown 渲染为真实 @\n- `/assign_group_id`、`/assign_id` 绑定命令，将 OpenID 映射为真实群号/QQ 号，可与其它 qq 适配器共享聊天流\n- 禁言工具 `mute`（`[mute].enabled` 开启）\n- 撤回工具 `recall_message`（`[recall].enabled` 开启）：2 分钟内；群管理员可撤回普通成员消息\n- 适配 MaiBot 1.3.x，SDK >= 2.8.2",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Mai-with-u.qq-adapter",
+            "version": "0.3.0",
+            "name": "QQ 官方机器人适配器",
+            "description": "直连 QQ 开放平台官方 API，支持群 @ 消息与单聊文本收发，提供禁言、撤回工具。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              }
+            ],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }

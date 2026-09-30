@@ -19224,7 +19224,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.5.1",
+      "version": "0.6.3",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19416,6 +19416,51 @@
         "repository": "https://github.com/octmicy/Mai_life",
         "homepage": "https://github.com/octmicy/Mai_life",
         "documentation": "https://docs.mai-mai.org"
+      }
+    }
+  },
+  {
+    "id": "Mai-with-u.qq-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "Mai-with-u.qq-adapter",
+      "version": "0.3.0",
+      "name": "QQ 官方机器人适配器",
+      "description": "直连 QQ 开放平台官方 API，支持群 @ 消息与单聊文本收发，提供禁言、撤回工具。",
+      "author": {
+        "name": "MaiBot Team",
+        "url": "https://github.com/Mai-with-u"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.14.3"
+        }
+      ],
+      "capabilities": [
+        "component.disable",
+        "component.enable",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   }
