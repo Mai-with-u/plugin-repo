@@ -9199,7 +9199,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -19224,7 +19224,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.6.3",
+      "version": "0.7.0",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19300,9 +19300,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.mai.set_avatar",
-      "version": "0.1.0",
+      "version": "1.0.2",
       "name": "麦麦要换头像",
-      "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率，提供 /msa add 命令收集头像、LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（提供 set_qq_avatar 接口，无硬性插件依赖）。",
+      "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率；首次运行自动捕获 bot 当前头像入库；/msa bot 捕获当前头像、/msa list [组号] 合并转发按序号浏览（单张压缩至 500KB 内，每组 20 张，增删后序号紧凑重排）、/msa remove 序号 移除、/msa add 收集头像；管理员 = 宿主操作员 ∪ 插件配置（自动去重）；更换头像后可向 planner / replyer 注入带时间戳的提醒（保留时长可配置）；LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（无硬性插件依赖）。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -19332,6 +19332,11 @@
           "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "yarl",
+          "version_spec": ">=1.0"
         }
       ],
       "plugin_type": "extension",
@@ -19344,9 +19349,11 @@
       },
       "capabilities": [
         "send.text",
+        "send.forward",
         "message.get_by_id",
         "api.call",
         "api.get",
+        "config.get",
         "component.enable",
         "component.disable"
       ],
@@ -19424,9 +19431,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Mai-with-u.qq-adapter",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "name": "QQ 官方机器人适配器",
-      "description": "直连 QQ 开放平台官方 API，支持群 @ 消息与单聊文本收发，提供禁言、撤回工具。",
+      "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
       "author": {
         "name": "MaiBot Team",
         "url": "https://github.com/Mai-with-u"

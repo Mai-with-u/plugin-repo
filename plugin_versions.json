@@ -18268,6 +18268,85 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "a30b0a07b209541c3afc6aed813a0f29634d9861",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T17:40:20Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_mai_set_avatar/releases/tag/v1.0.2",
+          "release_notes": "## v1.0.2\n\n**修复**\n- **更换提醒条目 `meta=None` 毒化 planner Hook 链**：`_inject_into_system_items` 此前复制 system 模板后把所有键置 `None`，构造出 `meta=None` 的提醒条目。宿主 1.3.x 对 `maisaka.planner.before_request` Hook 返回的 items 做**逐条强 schema 校验**，任一条目不合法即把整份修改静默丢弃并回退原文——不仅本插件的头像更换提醒注不进去，还会**连带同链其他插件的注入全部失效**（mai-love 的屏幕旁白与【当前日期】/好感度注入、filter-assistant、better-post-processing、自主规划日程注入等），主进程日志每轮请求报 `Hook maisaka.planner.before_request 返回的 items 无法反序列化，已忽略: 快照中的 item.meta 必须是字典`。\n- 现改为快照投影下构造带完整 meta 的合法 SystemMessageItem（唯一 item_id、继承 logical_turn_id、ISO timestamp）；旧 role/content 投影行为不变。\n- **如果你同时安装了 mai-love 等注入型插件且发现注入莫名失效，强烈建议升级本插件。**\n\n## v1.0.1（此前未发 Release，变更随本版一并生效）\n\n- 跳过概率默认值改回 0.5（约一半的天数当天不换；已显式配置的用户不受影响）\n- 安全加固：IP 黑名单补充 CGNAT 网段 `100.64.0.0/10`；`/msa remove` 删除前校验路径落在头像库目录内；图片下载校验 Content-Type（`image/*`，缺失时按文件魔数兜底）；DNS 校验移入线程池\n- 并发：每日计划的读取与写入全程纳入状态锁，消除丢更新窗口\n- 命令行为明确：裸 `/msa` 对所有人仅显示用法、不触发任何动作；各子命令仍仅管理员可用\n\n**升级说明**：直接更新插件即可，配置与头像库数据向下兼容；无破坏性变更。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.mai.set_avatar",
+            "version": "1.0.2",
+            "name": "麦麦要换头像",
+            "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率；首次运行自动捕获 bot 当前头像入库；/msa bot 捕获当前头像、/msa list [组号] 合并转发按序号浏览（单张压缩至 500KB 内，每组 20 张，增删后序号紧凑重排）、/msa remove 序号 移除、/msa add 收集头像；管理员 = 宿主操作员 ∪ 插件配置（自动去重）；更换头像后可向 planner / replyer 注入带时间戳的提醒（保留时长可配置）；LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（无硬性插件依赖）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+              "homepage": "https://github.com/cateyemizuki/cateye_mai_set_avatar",
+              "documentation": "https://github.com/cateyemizuki/cateye_mai_set_avatar/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_mai_set_avatar/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "yarl",
+                "version_spec": ">=1.0"
+              }
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "image",
+                "fallback": "shuffle"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "api.call",
+              "api.get",
+              "config.get",
+              "component.enable",
+              "component.disable"
+            ],
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "da8abeae0ea7f253a1989e6bb7056a9065e17261",
@@ -18358,6 +18437,58 @@
       "repositoryUrl": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "c01baa1fe1619ffae73f773625c0bfe4ede708ad",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T19:11:51Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter/releases/tag/v0.4.0",
+          "release_notes": "### 新增\n\n- 出站支持图片与表情。\n- 混合消息（文本、@、图片）按原顺序拆成多条发送。\n- 出站 @ 可渲染为真实 @。\n\n### 修复\n\n- 修复入站消息中 @ 与文本的穿插顺序丢失的问题。\n\n### 变更\n\n- 优化发送失败时的错误信息。\n- 更新插件描述与 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Mai-with-u.qq-adapter",
+            "version": "0.4.0",
+            "name": "QQ 官方机器人适配器",
+            "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              }
+            ],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.3.0",
           "tag": "v0.3.0",
