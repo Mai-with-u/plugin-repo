@@ -9199,7 +9199,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10990,37 +10990,36 @@
       "id": "taskmemz.wemai-adapter",
       "version": "1.0.0",
       "name": "WeMai 微信适配器",
-      "description": "接收 pyweixin 客户端的 WebSocket 连接，将微信消息桥接到 MaiBot。",
+      "description": "接收 pyweixin / WeFlow 客户端的 TCP 连接，将微信消息桥接到 MaiBot。",
       "author": {
-        "name": "MaiBot Team",
-        "url": "https://github.com/Mai-with-u"
+        "name": "taskmemz",
+        "url": "https://github.com/taskmemz"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Mai-with-u/wemai-adapter",
-        "homepage": "https://github.com/Mai-with-u/wemai-adapter",
-        "documentation": "https://github.com/Mai-with-u/wemai-adapter",
-        "issues": "https://github.com/Mai-with-u/wemai-adapter/issues"
+        "repository": "https://github.com/taskmemz/wemai-adaptor",
+        "homepage": "https://github.com/taskmemz/wemai-adaptor",
+        "documentation": "https://github.com/taskmemz/wemai-adaptor",
+        "issues": "https://github.com/taskmemz/wemai-adaptor/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "999.999.999"
       },
       "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "min_version": "1.0.0",
+        "max_version": "999.999.999"
       },
       "dependencies": [],
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "message-square"
+        }
+      },
       "capabilities": [
-        "platform:wechat",
-        "gateway:duplex",
-        "message:text",
-        "message:emoji",
-        "message:image",
-        "friend:request",
-        "moment:read",
-        "moment:post",
-        "message.get_by_id"
+        "send_message"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -15829,9 +15828,9 @@
     "id": "github.xiexiaojia780.video-summary-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.1",
       "name": "视频内容概括插件",
-      "description": "检测入站视频/视频文件，抽帧走 Host VLM 或直调外部视频多模态 API 生成内容概括，并注入 bot 上下文（不直接对用户发言）",
+      "description": "检测入站视频/视频文件，抽帧走 Host VLM 或直调外部视频多模态 API 生成内容概括，并把概括作为上下文消息追加进聊天历史（不直接对用户发言）",
       "author": {
         "name": "xiexiaojia780",
         "url": "https://github.com/xiexiaojia780"
@@ -15840,6 +15839,7 @@
       "urls": {
         "repository": "https://github.com/xiexiaojia780/video_summary_plugin"
       },
+      "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.0.0",
         "max_version": "1.99.99"
@@ -15851,7 +15851,8 @@
       "dependencies": [],
       "capabilities": [
         "llm.generate",
-        "api.call"
+        "api.call",
+        "maisaka.context.append"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -16021,7 +16022,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.email-adapter",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "name": "邮件适配器（Email Adapter）",
       "description": "通过 IMAP/SMTP 将一个机器人邮箱接入 MaiBot 消息网关：收取邮件、按名单过滤、按会话回复，并可选提供 send_email 工具主动开启对话。",
       "author": {
@@ -19004,7 +19005,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.budget-pacer",
-      "version": "1.0.4",
+      "version": "1.1.0",
       "name": "月度预算发言频率调节",
       "description": "设定一个月度 API 预算，按「花费进度 ÷ 时间进度」的节奏比动态调节麦麦的发言频率，让整月花费贴近预算。支持全局预算与单会话例外额度。",
       "author": {
@@ -19224,7 +19225,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.7.0",
+      "version": "0.7.6",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
