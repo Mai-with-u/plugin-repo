@@ -17920,6 +17920,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.9",
+          "tag": "v0.7.9",
+          "commit": "6144107725a302f4f619b6050a25a7b5aa3cced9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-03T03:26:19Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.7.9",
+          "release_notes": "## 新增：模型端点高级请求头覆盖（支持按行或 JSON 填写）\n\n在 **设置 → 模型 → 新增或编辑端点 → 高级设置** 中，可以按行添加请求头覆盖。高级设置默认收起，不设置时保持原有请求行为。\n\n- 每个端点独立设置，该端点下的所有模型共用；切换备用端点不会串用请求头。\n- **支持两种填写方式，可来回切换**：按行填写，或切到 JSON 直接粘贴一个 `{\"名称\": \"值\"}` 对象。JSON 默认只列已保存的名称（值留空表示保留原值，不回显已存的值）；已保存项写 `\"\"` 或 `null` 保留原值，去掉名称即取消覆盖，写 `{}` 清空全部；值必须是字符串，JSON 写错的提示不带出你写的内容。注意 JSON 文本框里的值是明文显示。\n- 名称不分大小写，同名覆盖默认头，支持 `User-Agent`、`Authorization`、`x-api-key`、`anthropic-version` 及服务商需要的自定义头。\n- 正式模型调用、流式请求、测试连接、模型列表和模型验证使用同一份设置。测试连接可使用尚未保存的头，不会自动保存配置。\n- 头值按凭据处理：保存后只显示名称和已填状态，不回显值；已有项留空保留原值，删除该行再保存即可取消覆盖。\n- 对重复名称、非法字符、换行和过长值做校验；`Host`、`Content-Length` 等传输或代理头不开放手动覆盖。\n- 加强凭据遮罩：错误、重试日志、用量与调用记录、网页接口以及模型列表回显均覆盖；授权头中的裸 token 也会遮罩。\n- 更改请求头后，旧模型验证记录失效，需要重新验证；没有配置请求头的端点保留原有验证状态。\n\n## 一并包含 0.7.7 的修复\n\n上一个 Release 为 0.7.6，以下 0.7.7 修复此前已推送到主分支，本次一并说明：\n\n- 模型返回空回答时按失败重试或切换备用；资讯打分的结果格式不正确时再询问一次。\n- 群资讯写作补齐日期、来源和限定词，并对照原文检查，避免来源拔高和相对日期错误。\n- 个人向资讯设置搜索与打开页面的硬上限，写完后对照原文检查；按成员错开到北京时间 9–12 点启动。\n- 闲聊资讯匹配读取一条消息的全部文字片段，图片与表情包描述不参与匹配。\n- 生成构想时参考本群最近做过和正在做的任务，减少重复建议。\n\n## 升级提醒\n\n- **v0.7.8 已撤回**（对应的 Release 和标签已删除），本版本包含它的全部内容，并新增了请求头的 JSON 填写方式。如果你已经装了 0.7.8，直接覆盖升级到 0.7.9 即可，配置版本保持 0.4.6，不需要改任何配置。\n- 更新插件文件时，**保留自己的 `config.toml` 和数据目录**。\n- 配置版本从 **0.4.5 升为 0.4.6**，宿主自动规范化；新增的 `headers` 默认空，不需要手动填写，原有端点、密钥和群配置继续保留。\n- 本次没有数据库结构迁移，也不会自动改变所选模型、群回复频率或推送规则。\n- 请求头值可能包含凭据，请只填写在自己的配置或管理员设置中，不要放进公开仓库。\n\n## 验证\n\n新增功能覆盖配置回读、三种协议、端点隔离、临时测试、凭据遮罩和验证失效的回归用例；手机与桌面浏览器（含浅色、深色模式）交互已通过本地模拟接口验收，按行和 JSON 两种方式都覆盖。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.7.9",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.7.6",
           "tag": "v0.7.6",
           "commit": "e7f6d877959dea8ea1c3d81dbdf5efcda65699f1",
