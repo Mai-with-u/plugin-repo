@@ -4300,6 +4300,57 @@
           }
         },
         {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "d87203e2eff1835895ee34196b17a571dc6bbe24",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-03T13:59:30Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter/releases/tag/v1.4.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.1",
+            "name": "Napcat 适配器 （不再更新，请使用Snowluma适配器）",
+            "description": " （不再更新，请使用Snowluma适配器）插件版Napcat适配器，提供与Napcat的连接功能。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-Napcat-Adapter/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.napcat-adapter",
+            "plugin_type": "adapter"
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "443d6132f543e51c45adc89a2875c5d7744d65fa",
@@ -4426,6 +4477,70 @@
       "repositoryUrl": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "746de2452d336c3a2b0a22ce4ba2ca46309ce316",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-03T14:00:59Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.1",
+          "release_notes": "### 主要功能\n\n- 插件 API：新增 `adapter.avatar.get` 用户和群头像查询接口，返回资源 URL 与有效期，供宿主统一缓存。\n\n### 细节\n\n- 头像：遇到 QQ 官方机器人 OpenID 时返回 `unsupported`，避免不支持的头像目标产生异常堆栈。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.1",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
         {
           "version": "1.1.0",
           "tag": "v1.1.0",
