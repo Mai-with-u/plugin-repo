@@ -18,10 +18,15 @@ jobs:
         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
         contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
       (github.event_name == 'issue_comment' &&
-       contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+       (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
+        contains(github.event.issue.labels.*.name, 'plugin-modification') ||
+        contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
        contains(github.event.issue.labels.*.name, 'validated') &&
        contains(github.event.comment.body, '/mai_review'))
     runs-on: ubuntu-latest
+    concurrency:
+      group: mai-review-issue-${{ github.event.issue.number }}
+      cancel-in-progress: false
     env:
       ANTHROPIC_BASE_URL: https://api.stepfun.com/step_plan
       ANTHROPIC_MODEL: step-5-preview
@@ -69,57 +74,51 @@ jobs:
 
             core.setOutput('commenter', commenter);
 
-      - name: Check for active review
-        id: active-review
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const expectedTitle = `Mai Review Issue #${context.issue.number}`;
-            const activeRuns = [];
-
-            for (const status of ['queued', 'in_progress']) {
-              const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                workflow_id: 'mai-review.yml',
-                status,
-                per_page: 100,
-              });
-              activeRuns.push(...runs);
-            }
-
-            const firstRun = activeRuns
-              .filter(run => run.display_title === expectedTitle)
-              .sort((a, b) => Number(a.id) - Number(b.id))[0];
-            const duplicate = firstRun && Number(firstRun.id) !== Number(context.runId);
-
-            if (duplicate) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: '正在审核中，请不要重复请求。',
-              });
-              core.setOutput('should_run', 'false');
-              return;
-            }
-
-            core.setOutput('should_run', 'true');
-
       - name: Checkout repository
-        if: steps.active-review.outputs.should_run == 'true'
         uses: actions/checkout@v5
         with:
           persist-credentials: false
 
+      - name: Reserve review and announce start
+        id: review-start
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { countReviews, MAX_REVIEWS } = require('./.github/scripts/mai_review_state.js');
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const count = countReviews(comments);
+            if (count >= MAX_REVIEWS) {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body: `该 Issue 已达到审核次数上限，无法再次发起审核。\n\n已审核：${count}次 / ${MAX_REVIEWS}次`,
+              });
+              core.setOutput('should_run', 'false');
+              return;
+            }
+            const reviewCount = count + 1;
+            const reviewRun = `${context.runId}:${process.env.GITHUB_RUN_ATTEMPT}`;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: `<!-- codex-mai-review-start: ${reviewRun} -->\n🔄 已开始审核，正在检查当前插件版本，请等待审核结果。\n\n已审核：${reviewCount}次 / ${MAX_REVIEWS}次`,
+            });
+            core.setOutput('review_count', reviewCount);
+            core.setOutput('review_run', reviewRun);
+            core.setOutput('should_run', 'true');
+
       - name: Setup Node.js
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
       - name: Validate Step API credentials
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         env:
           STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
         run: |
@@ -128,38 +127,17 @@ jobs:
             exit 1
           fi
 
-      - name: Validate GitHub App credentials
-        if: steps.active-review.outputs.should_run == 'true'
-        env:
-          MAI_REVIEW_APP_ID: ${{ secrets.MAI_REVIEW_APP_ID }}
-          MAI_REVIEW_APP_PRIVATE_KEY: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
-        run: |
-          if [ -z "$MAI_REVIEW_APP_ID" ]; then
-            echo "缺少 MAI_REVIEW_APP_ID secret" >&2
-            exit 1
-          fi
-
-          if [ -z "$MAI_REVIEW_APP_PRIVATE_KEY" ]; then
-            echo "缺少 MAI_REVIEW_APP_PRIVATE_KEY secret" >&2
-            exit 1
-          fi
-
       - name: Build review context
-        if: steps.active-review.outputs.should_run == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         id: build-context
         env:
           GITHUB_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          FORCE_REVIEW: ${{ github.event_name == 'issue_comment' }}
         run: node .github/scripts/build_mai_review_context.js
 
-      - name: Skip duplicate or throttled review
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review != 'true'
-        run: echo "${{ steps.build-context.outputs.skip_reason }}"
-
       - name: Checkout plugin under review
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true' && steps.build-context.outputs.plugin_repo != ''
+        if: steps.review-start.outputs.should_run == 'true' && steps.build-context.outputs.plugin_repo != ''
         uses: actions/checkout@v5
         with:
           repository: ${{ steps.build-context.outputs.plugin_repo }}
@@ -168,13 +146,13 @@ jobs:
           persist-credentials: false
 
       - name: Install Claude Code CLI
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         run: |
           npm install -g @anthropic-ai/claude-code@2.1.283
           claude --bare --restricted --version
 
       - name: Run StepFun review
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         env:
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
         run: |
@@ -190,7 +168,7 @@ jobs:
           test -s codex-review.md
 
       - name: Run StepFun Mai comment
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
+        if: steps.review-start.outputs.should_run == 'true'
         env:
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
         run: |
@@ -205,19 +183,10 @@ jobs:
             --output-format json | jq -er 'select(.is_error == false and (.result | type == "string") and (.result | length > 0)) | .result' > codex-maimai.md
           test -s codex-maimai.md
 
-      - name: Create GitHub App token
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true'
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
-          private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
-
       - name: Post review comment
-        if: steps.active-review.outputs.should_run == 'true' && steps.build-context.outputs.should_review == 'true' && success()
+        if: steps.review-start.outputs.should_run == 'true' && success()
         uses: actions/github-script@v7
         with:
-          github-token: ${{ steps.app-token.outputs.token }}
           script: |
             const fs = require('fs');
             const sanitize = (text) =>
@@ -240,5 +209,20 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${review}\n${maimai}`,
+              body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-run: ${{ steps.review-start.outputs.review_run }} -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${review}\n${maimai}\n\n已审核：${{ steps.review-start.outputs.review_count }}次 / 8次`,
+            });
+
+      - name: Post review failure
+        if: always() && steps.review-start.outputs.should_run == 'true' && (failure() || cancelled())
+        uses: actions/github-script@v7
+        env:
+          REVIEW_COUNT: ${{ steps.review-start.outputs.review_count }}
+          REVIEW_RUN: ${{ steps.review-start.outputs.review_run }}
+        with:
+          script: |
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: `<!-- codex-mai-review-failed: ${process.env.REVIEW_RUN} -->\n❌ 本次审核失败或被中止，未能完成审核。请维护者查看[运行日志](${runUrl})排查，修复后可重新请求审核。\n\n已审核：${process.env.REVIEW_COUNT}次 / 8次`,
             });

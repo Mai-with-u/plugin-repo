@@ -13,9 +13,6 @@ const IMPORTANT_FILES = [
   "pyproject.toml",
   "requirements.txt",
 ];
-const REVIEW_MARKER = "<!-- codex-mai-review -->";
-const REVIEW_COOLDOWN_MINUTES = [10, 30, 120, 360];
-const REVIEW_RESET_MILLISECONDS = 24 * 60 * 60 * 1000;
 
 function requireEnv(name) {
   const value = process.env[name];
@@ -142,57 +139,6 @@ function setOutput(name, value) {
   fs.appendFileSync(outputPath, `${name}=${String(value).replace(/\r?\n/g, " ")}\n`, "utf8");
 }
 
-function getReviewedCommit(body) {
-  if (!body || !body.includes(REVIEW_MARKER)) {
-    return "";
-  }
-  const metadataMatch = body.match(/<!-- codex-mai-review-commit: ([0-9a-f]{7,40}) -->/i);
-  if (metadataMatch) {
-    return metadataMatch[1];
-  }
-  const match = body.match(/已查看当前版本（`([0-9a-f]{7,40})`）/i);
-  return match ? match[1] : "";
-}
-
-function decideReview(comments, latestCommitSha, forceReview) {
-  if (forceReview) {
-    return { shouldReview: true, skipReason: "" };
-  }
-
-  const reviewComments = comments.filter((comment) => (comment.body || "").includes(REVIEW_MARKER));
-  const reviewedSameCommit = reviewComments.some((comment) => {
-    const reviewedCommit = getReviewedCommit(comment.body);
-    return reviewedCommit && latestCommitSha.startsWith(reviewedCommit);
-  });
-  if (reviewedSameCommit) {
-    return {
-      shouldReview: false,
-      skipReason: `跳过 AI 审核：提交 ${latestCommitSha.slice(0, 7)} 已审核过。`,
-    };
-  }
-
-  const now = Date.now();
-  const recentReviews = reviewComments
-    .map((comment) => Date.parse(comment.created_at || ""))
-    .filter((createdAt) => Number.isFinite(createdAt) && now - createdAt < REVIEW_RESET_MILLISECONDS)
-    .sort((left, right) => right - left);
-  if (recentReviews.length === 0) {
-    return { shouldReview: true, skipReason: "" };
-  }
-
-  const cooldownIndex = Math.min(recentReviews.length - 1, REVIEW_COOLDOWN_MINUTES.length - 1);
-  const cooldownMinutes = REVIEW_COOLDOWN_MINUTES[cooldownIndex];
-  const availableAt = recentReviews[0] + cooldownMinutes * 60 * 1000;
-  if (now < availableAt) {
-    return {
-      shouldReview: false,
-      skipReason: `跳过 AI 审核：处于 ${cooldownMinutes} 分钟冷却期，${new Date(availableAt).toISOString()} 后可自动复审。`,
-    };
-  }
-
-  return { shouldReview: true, skipReason: "" };
-}
-
 async function main() {
   const repository = requireEnv("REPOSITORY");
   const issueNumber = requireEnv("ISSUE_NUMBER");
@@ -241,11 +187,7 @@ async function main() {
     }
   }
 
-  const forceReview = process.env.FORCE_REVIEW === "true";
-  const reviewDecision = decideReview(comments, latestCommit?.sha || "", forceReview);
   setOutput("plugin_repo", latestCommit?.sha ? pluginRepo : "");
-  setOutput("should_review", reviewDecision.shouldReview);
-  setOutput("skip_reason", reviewDecision.skipReason);
   setOutput("latest_commit", latestCommit?.sha || "");
 
   const lines = [

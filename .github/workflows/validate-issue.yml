@@ -86,86 +86,6 @@ jobs:
 
             core.setFailed(`用户 @${commenter} 没有权限使用 /recheck`);
 
-      - name: Check recheck cooldown and active review
-        if: github.event_name == 'issue_comment'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const expectedTitle = `Mai Review Issue #${context.issue.number}`;
-            const currentCommentAt = Date.parse(context.payload.comment.created_at || '');
-            const activeRuns = [];
-
-            for (const status of ['queued', 'in_progress']) {
-              const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                workflow_id: 'mai-review.yml',
-                status,
-                per_page: 100,
-              });
-              activeRuns.push(...runs);
-            }
-
-            // The current /recheck comment also triggers mai-review.yml because
-            // that workflow listens to every issue_comment event. Its run is
-            // created a few seconds after this comment, then becomes skipped
-            // due to mai-review.yml's job-level condition. Only consider runs
-            // that already existed before the current comment as active reviews
-            // to avoid treating that sibling run as a duplicate review.
-            const activePreviousReviews = activeRuns.filter(run => {
-              const runCreatedAt = Date.parse(run.created_at || '');
-              return run.display_title === expectedTitle &&
-                Number.isFinite(runCreatedAt) &&
-                Number.isFinite(currentCommentAt) &&
-                runCreatedAt < currentCommentAt;
-            });
-
-            if (activePreviousReviews.length > 0) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: '正在审核中，请不要重复请求。',
-              });
-              core.setFailed('该 Issue 已有审核任务正在运行');
-              return;
-            }
-
-            const comments = await github.paginate(github.rest.issues.listComments, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              per_page: 100,
-            });
-            const currentComment = context.payload.comment;
-            const previousRecheck = comments
-              .filter(comment =>
-                comment.id !== currentComment.id &&
-                comment.user?.type !== 'Bot' &&
-                /^\s*\/recheck\b/im.test(comment.body || '')
-              )
-              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
-
-            if (!previousRecheck) {
-              return;
-            }
-
-            const cooldownMs = 10 * 60 * 1000;
-            const elapsedMs = new Date(currentComment.created_at) - new Date(previousRecheck.created_at);
-            if (elapsedMs >= cooldownMs) {
-              return;
-            }
-
-            const remainingSeconds = Math.ceil((cooldownMs - elapsedMs) / 1000);
-            const remainingMinutes = Math.ceil(remainingSeconds / 60);
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `请求过于频繁，请至少间隔 10 分钟后再次使用 \`/recheck\`。还需等待约 ${remainingMinutes} 分钟。`,
-            });
-            core.setFailed('两次 /recheck 必须至少间隔 10 分钟');
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -494,6 +414,9 @@ jobs:
               }
             }
 
+            core.setOutput('manifest_host_min_version', manifest.host_application.min_version);
+            core.setOutput('manifest_host_max_version', manifest.host_application.max_version);
+
             if (!Array.isArray(manifest.capabilities) || manifest.capabilities.some(item => !String(item || '').trim())) {
               core.setOutput('status', 'error');
               core.setOutput('message', '**`capabilities` 字段格式错误**\n\n必须是字符串数组；没有额外能力时请填写空数组 `[]`。');
@@ -543,12 +466,35 @@ jobs:
               }
             }
 
+            // ========== 检查已发布 Release（包含 GitHub 自动生成的源码包） ==========
+            const [releaseOwner, releaseRepo] = effectiveRepoUrl.replace('https://github.com/', '').split('/');
+            let publishedRelease;
+            try {
+              for await (const { data: releases } of github.paginate.iterator(github.rest.repos.listReleases, {
+                owner: releaseOwner,
+                repo: releaseRepo,
+                per_page: 100,
+              })) {
+                publishedRelease = releases.find(release => !release.draft && release.published_at && release.tag_name);
+                if (publishedRelease) break;
+              }
+            } catch (error) {
+              core.setOutput('status', 'error');
+              core.setOutput('message', `**无法检查插件 Release**\n\nGitHub API 返回错误：${error.status || '未知状态'}。请确认仓库可访问后重试；本次无法确认是否有已发布版本。`);
+              return;
+            }
+            if (!publishedRelease) {
+              core.setOutput('status', 'error');
+              core.setOutput('message', `**插件尚未发布 Release**\n\n插件仓库必须至少有一个已发布的 GitHub Release 才能通过验证，草稿和仅创建 Tag 不算。\n\n请先在 [Releases 页面](${effectiveRepoUrl}/releases) 发布一个版本，再评论 \`/recheck\` 重新验证。GitHub 自动生成的源码包即可，预发布版本也可。`);
+              return;
+            }
+
             // ========== 验证成功 ==========
             let successMessage = '';
             if (requestType === 'add') {
-              successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| Manifest ID | ${manifest.id} |\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 分支 | ${successBranch} |`;
+              successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| Manifest ID | ${manifest.id} |\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
             } else {
-              successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 分支 | ${successBranch} |`;
+              successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
             }
 
             const approveAction = requestType === 'add'
@@ -557,7 +503,7 @@ jobs:
                 ? '批准并更新插件仓库信息'
                 : '批准并移除此插件';
 
-            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` - ${approveAction}\n- \`/reject 原因\` - 拒绝此请求\n\n**提交者操作:**\n- 如果修改了 manifest，可以评论 \`/recheck\` 重新验证`;
+            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` - ${approveAction}\n- \`/reject 原因\` - 拒绝此请求\n\n**提交者操作:**\n- 如果修改了插件，可以评论 \`/recheck\` 重新验证并审核`;
 
             core.setOutput('status', 'success');
             core.setOutput('message', successMessage);
@@ -590,31 +536,17 @@ jobs:
 
       - name: Create GitHub App token for validated label
         id: validation-label-token
-        if: steps.validate.outputs.status == 'success' && github.event_name != 'issue_comment'
+        if: steps.validate.outputs.status == 'success'
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
           private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
 
       - name: Add validated label
-        if: steps.validate.outputs.status == 'success' && github.event_name != 'issue_comment'
+        if: steps.validate.outputs.status == 'success'
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.validation-label-token.outputs.token }}
-          script: |
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              labels: ['validated']
-            });
-
-      # /recheck 只重新验证 manifest。使用默认 GITHUB_TOKEN 恢复标签，
-      # 避免该 labeled 事件再次触发完整的 AI 审核。
-      - name: Restore validated label after recheck
-        if: steps.validate.outputs.status == 'success' && github.event_name == 'issue_comment'
-        uses: actions/github-script@v7
-        with:
           script: |
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
@@ -641,6 +573,8 @@ jobs:
           VALIDATION_STATUS: ${{ steps.validate.outputs.status }}
           VALIDATION_MESSAGE: ${{ steps.validate.outputs.message }}
           EVENT_NAME: ${{ github.event_name }}
+          HOST_MIN_VERSION: ${{ steps.validate.outputs.manifest_host_min_version }}
+          HOST_MAX_VERSION: ${{ steps.validate.outputs.manifest_host_max_version }}
         with:
           script: |
             const status = process.env.VALIDATION_STATUS;
@@ -650,11 +584,14 @@ jobs:
             // 构建评论
             const emoji = status === 'success' ? '✅' : '❌';
             const title = status === 'success' ? '验证通过 / Validation Passed' : '验证失败 / Validation Failed';
+            const compatibilityNote = status !== 'success' && process.env.HOST_MIN_VERSION && process.env.HOST_MAX_VERSION
+              ? `\n\n**适配 MaiBot 版本（manifest 声明）：** ${process.env.HOST_MIN_VERSION} ～ ${process.env.HOST_MAX_VERSION}`
+              : '';
             const recheckNote = isRecheck ? '\n\n> 🔄 此为重新验证结果' : '';
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## ${emoji} ${title}${recheckNote}\n\n${message}`
+              body: `## ${emoji} ${title}${recheckNote}\n\n${message}${compatibilityNote}`
             });
