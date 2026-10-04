@@ -7951,9 +7951,9 @@
     "id": "maibot-team.napcat-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
-      "name": "Napcat_Adapter 适配器",
-      "description": "插件版Napcat适配器，提供与Napcat的连接功能。",
+      "version": "1.4.1",
+      "name": "Napcat 适配器 （不再更新，请使用Snowluma适配器）",
+      "description": " （不再更新，请使用Snowluma适配器）插件版Napcat适配器，提供与Napcat的连接功能。",
       "author": {
         "name": "MaiBot Team",
         "url": "https://github.com/Mai-with-u"
@@ -7967,7 +7967,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -7995,7 +7995,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.3",
+      "version": "1.1.1",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -8032,6 +8032,7 @@
         }
       ],
       "capabilities": [
+        "chat.get_all_streams",
         "chat.open_session",
         "component.disable",
         "component.enable",
@@ -8853,7 +8854,7 @@
           "server/client 双模式",
           "LLM 话题停滞判断",
           "按需群内推进",
-          "私有上下文注入",
+          "私��上下文注入",
           "本地注入记录持久化",
           "MaiBot 0.12.2 与 1.0 双版本适配"
         ]
@@ -9198,7 +9199,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10989,37 +10990,36 @@
       "id": "taskmemz.wemai-adapter",
       "version": "1.0.0",
       "name": "WeMai 微信适配器",
-      "description": "接收 pyweixin 客户端的 WebSocket 连接，将微信消息桥接到 MaiBot。",
+      "description": "接收 pyweixin / WeFlow 客户端的 TCP 连接，将微信消息桥接到 MaiBot。",
       "author": {
-        "name": "MaiBot Team",
-        "url": "https://github.com/Mai-with-u"
+        "name": "taskmemz",
+        "url": "https://github.com/taskmemz"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Mai-with-u/wemai-adapter",
-        "homepage": "https://github.com/Mai-with-u/wemai-adapter",
-        "documentation": "https://github.com/Mai-with-u/wemai-adapter",
-        "issues": "https://github.com/Mai-with-u/wemai-adapter/issues"
+        "repository": "https://github.com/taskmemz/wemai-adaptor",
+        "homepage": "https://github.com/taskmemz/wemai-adaptor",
+        "documentation": "https://github.com/taskmemz/wemai-adaptor",
+        "issues": "https://github.com/taskmemz/wemai-adaptor/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "999.999.999"
       },
       "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "min_version": "1.0.0",
+        "max_version": "999.999.999"
       },
       "dependencies": [],
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "message-square"
+        }
+      },
       "capabilities": [
-        "platform:wechat",
-        "gateway:duplex",
-        "message:text",
-        "message:emoji",
-        "message:image",
-        "friend:request",
-        "moment:read",
-        "moment:post",
-        "message.get_by_id"
+        "send_message"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -11034,7 +11034,7 @@
     "id": "deepseek-v4-pro.maimaidx-prober",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.3.1",
+      "version": "3.3.2",
       "name": "MaiMai DX 双源查分器",
       "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
       "author": {
@@ -15379,7 +15379,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.2.2",
+      "version": "3.3.0",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -15828,9 +15828,9 @@
     "id": "github.xiexiaojia780.video-summary-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.1.1",
       "name": "视频内容概括插件",
-      "description": "检测入站视频/视频文件，抽帧走 Host VLM 或直调外部视频多模态 API 生成内容概括，并注入 bot 上下文（不直接对用户发言）",
+      "description": "检测入站视频/视频文件，抽帧走 Host VLM 或直调外部视频多模态 API 生成内容概括，并把概括作为上下文消息追加进聊天历史（不直接对用户发言）",
       "author": {
         "name": "xiexiaojia780",
         "url": "https://github.com/xiexiaojia780"
@@ -15839,6 +15839,7 @@
       "urls": {
         "repository": "https://github.com/xiexiaojia780/video_summary_plugin"
       },
+      "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.0.0",
         "max_version": "1.99.99"
@@ -15850,7 +15851,8 @@
       "dependencies": [],
       "capabilities": [
         "llm.generate",
-        "api.call"
+        "api.call",
+        "maisaka.context.append"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -16020,7 +16022,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.email-adapter",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "name": "邮件适配器（Email Adapter）",
       "description": "通过 IMAP/SMTP 将一个机器人邮箱接入 MaiBot 消息网关：收取邮件、按名单过滤、按会话回复，并可选提供 send_email 工具主动开启对话。",
       "author": {
@@ -17618,7 +17620,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cateye.napcat-shadow-adapter",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "name": "NapCat 影子适配器",
       "description": "影子中继：监控 NapCat 适配器易被去重误丢的四类通知（表情回应/群撤回/好友撤回/精华消息），通过独立 OneBot WebSocket 连接协议端，对适配器未成功入站的事件以 is_notify 合成通知补投；适配器已送达的事件自动跳过。自动镜像适配器黑白名单与全局屏蔽用户；可选按目标消息 @ 官方机器人/@ 全局屏蔽用户过滤补投（默认关闭）。不改写、不拦截，上游修复后自动失效。合并版适配器（SnowLuma Adapter 1.0.x，随 MaiBot 1.3.0 发布）已修复通知去重缺陷（Napcat-Adapter issue #97），本插件使命完成：自 0.3.1 起 manifest 仅支持宿主 1.2.x，在 MaiBot 1.3.0 上注册失败属预期行为，请直接停用卸载。",
       "author": {
@@ -18677,9 +18679,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.fun-pack",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "麦麦小工具合集",
-      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；同时注册为麦麦可自主调用的 LLM 工具。",
+      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -18900,7 +18902,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.8.3",
+      "version": "2.8.4",
       "name": "中V歌词识别 · 歌曲库",
       "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
@@ -19003,7 +19005,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.budget-pacer",
-      "version": "1.0.4",
+      "version": "1.1.0",
       "name": "月度预算发言频率调节",
       "description": "设定一个月度 API 预算，按「花费进度 ÷ 时间进度」的节奏比动态调节麦麦的发言频率，让整月花费贴近预算。支持全局预算与单会话例外额度。",
       "author": {
@@ -19085,9 +19087,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.log-doctor",
-      "version": "1.2.1",
+      "version": "1.3.4",
       "name": "日志周报医生",
-      "description": "每周定时扫描 MaiBot 日志：统计 ERROR/WARN/异常堆栈，匹配 RPC 超时、能力拒绝、插件加载失败等已知故障模式，按来源插件分组出 Top 异常，LLM 生成根因诊断总结（失败自动降级为纯统计报告），私聊投递周报给管理员。支持 /日志诊断 命令手动触发与查看上次报告。",
+      "description": "每周定时扫描 MaiBot 日志：统计 ERROR/WARN/异常堆栈，匹配 RPC 超时、能力拒绝、插件加载失败等已知故障模式，按来源插件分组出 Top 异常，LLM 生成根因诊断总结（失败自动降级为纯统计报告），私聊投递周报给管理员。支持 /日志诊断 手动诊断（可筛选）、/日志周报 回看、/日志状态 目录速查、/日志搜索 原文关键词搜索；扫描覆盖 .gz 压缩归档。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -19120,7 +19122,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "xiaocutedog.maibot-sing",
-      "version": "1.1.0",
+      "version": "1.1.2",
       "name": "让麦麦说话和唱歌",
       "description": "用 RVC 克隆音色翻唱歌曲和说话，内嵌音乐搜索（网易云/QQ）与 MiMo TTS",
       "author": {
@@ -19223,15 +19225,15 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.4.0",
+      "version": "0.7.9",
       "name": "MaiWork",
-      "description": "MaiBot 群聊生产力 Agent：和 MaiBot 并行运行，理解群、主动找资讯、提构想、追目标，接群友派的活并交付。默认关闭。",
+      "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
       "author": {
         "name": "CharTyr",
         "url": "https://github.com/CharTyr"
       },
-      "license": "GPL-3.0-or-later",
+      "license": "AGPL-3.0-or-later",
       "host_application": {
         "min_version": "1.0.0",
         "max_version": "1.99.99"
@@ -19240,7 +19242,23 @@
         "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9"
+        }
+      ],
       "capabilities": [
         "config.get",
         "message.get_by_time_in_chat",
@@ -19262,8 +19280,9 @@
       },
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "briefcase"
+          "type": "local",
+          "value": "maiwork/console/static/assets/logo.png",
+          "fallback": "briefcase"
         }
       },
       "urls": {
@@ -19272,6 +19291,9 @@
         "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
         "issues": "https://github.com/CharTyr/MaiWork/issues"
       }
+    },
+    "assets": {
+      "icon_64": "icons/chartyr.maiwork.webp"
     }
   },
   {
@@ -19279,9 +19301,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.mai.set_avatar",
-      "version": "0.1.0",
+      "version": "1.0.2",
       "name": "麦麦要换头像",
-      "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率，提供 /msa add 命令收集头像、LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（提供 set_qq_avatar 接口，无硬性插件依赖）。",
+      "description": "让 bot 每天定时从头像库随机抽取一张更换 QQ 头像：支持触发时间随机漂移与跳过概率；首次运行自动捕获 bot 当前头像入库；/msa bot 捕获当前头像、/msa list [组号] 合并转发按序号浏览（单张压缩至 500KB 内，每组 20 张，增删后序号紧凑重排）、/msa remove 序号 移除、/msa add 收集头像；管理员 = 宿主操作员 ∪ 插件配置（自动去重）；更换头像后可向 planner / replyer 注入带时间戳的提醒（保留时长可配置）；LLM 工具换头像（每日上限 + 冷却，不可用时自动隐藏工具）。需要安装 SnowLuma 或 NapCat 适配器之一（无硬性插件依赖）。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -19311,6 +19333,11 @@
           "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "yarl",
+          "version_spec": ">=1.0"
         }
       ],
       "plugin_type": "extension",
@@ -19323,9 +19350,11 @@
       },
       "capabilities": [
         "send.text",
+        "send.forward",
         "message.get_by_id",
         "api.call",
         "api.get",
+        "config.get",
         "component.enable",
         "component.disable"
       ],
@@ -19344,7 +19373,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
-      "name": "麦麦生活",
+      "name": "麦生活",
       "version": "1.14.11",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
@@ -19395,6 +19424,51 @@
         "repository": "https://github.com/octmicy/Mai_life",
         "homepage": "https://github.com/octmicy/Mai_life",
         "documentation": "https://docs.mai-mai.org"
+      }
+    }
+  },
+  {
+    "id": "Mai-with-u.qq-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "Mai-with-u.qq-adapter",
+      "version": "0.4.0",
+      "name": "QQ 官方机器人适配器",
+      "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
+      "author": {
+        "name": "MaiBot Team",
+        "url": "https://github.com/Mai-with-u"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.14.3"
+        }
+      ],
+      "capabilities": [
+        "component.disable",
+        "component.enable",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   }
