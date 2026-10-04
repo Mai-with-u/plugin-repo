@@ -10351,15 +10351,6 @@
       "rejected_releases": []
     },
     {
-      "id": "taskmemz.wemai-adapter",
-      "manifest_id": "taskmemz.wemai-adapter",
-      "repositoryUrl": "https://github.com/taskmemz/wemai-adaptor",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "deepseek-v4-pro.maimaidx-prober",
       "manifest_id": "deepseek-v4-pro.maimaidx-prober",
       "repositoryUrl": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
@@ -13732,8 +13723,61 @@
       "id": "deepseek-v4-pro.maimai-group-admin",
       "manifest_id": "deepseek-v4-pro.maimai-group-admin",
       "repositoryUrl": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "2.7.1",
+          "tag": "v2.7.1",
+          "commit": "542b3c766148e3dfcbdd1efaf8c22392da1f6d6a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T06:03:11Z",
+          "release_url": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin/releases/tag/v2.7.1",
+          "release_notes": "**权限与提示词**\n- Bot 为当前群群主时，工具、快捷命令和自动审批跳过保护/豁免名单、管理员保护、禁言时长配置、冷却、每日次数、处罚阶梯与踢人前置查询；保留 QQ 平台限制及人类命令授权规则。\n- 重写 Replyer/Planner 默认提示词，补全群主可用功能，删除固定一小时禁言和群主请示要求；动态提示词按 Bot 身份说明权限与执行结果约束。\n- `/admin status` 展示群主不限次数状态。\n\n**修复与兼容性**\n- 对照 MaiBot 1.3.2 + SnowLuma 1.1.0 合并适配器核对全部调用，继续使用其兼容的 `adapter.napcat.*` 接口名。\n- Bot QQ 尚未缓存时通过登录信息接口获取自身账号，恢复角色检测。\n- 修复踢人成功后确认缓存不存在导致报错；查询成员成功后才记录目标确认。\n- API 空结果、失败状态与非零 retcode 不再被当作成功；入群审批支持 `sub_type=add/invite`，修复自动审批同时存在申请和邀请时遗漏邀请。\n- 注入优先绑定被回复消息的发言者身份；避免 extra_prompt 重复注入，守门保留接口失败说明且不再承诺未执行操作。\n- 新增工具/命令模拟回归、权限边界与适配器契约检查；更新 README 与完整排查报告。\n\n验证：14 项模拟回归通过（覆盖 18 个工具、29 个命令与 SnowLuma 1.1.0 接口契约），未对真实群成员执行管理测试。\n\n升级：保留已有 config.toml；将默认 Replyer/Planner 提示词重置为新版，或调整自定义提示词中的旧权限限制。重载插件或重启 MaiBot 生效。完整排查与部署限制见 AUDIT.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.7.1",
+            "name": "群管理助手",
+            "description": "QQ 群的自动小管理员：自动识别群主/管理员，广告、刷屏、辱骂自动警告、禁言、踢出；群公告、撤回消息、设精华、入群审批全支持，权限决策链可逐步排查；内置 /mute、/kick、/warn 等 29 个命令，配置群号即可开箱即用。",
+            "author": {
+              "name": "DeepSeek-V4",
+              "url": "https://github.com/DeepSeek-V4-Pro"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin",
+              "homepage": "https://github.com/DeepSeek-V4-Pro/maimai_group_admin"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.11.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.text",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "deepseek-v4-pro.maimai-group-admin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -18958,6 +19002,1260 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.isaac.item",
+      "manifest_id": "github.cateye.isaac.item",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_isaac_item",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "riesa.anthropic-provider",
+      "manifest_id": "riesa.anthropic-provider",
+      "repositoryUrl": "https://github.com/riesaexe/riesa-anthropic-provider",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mizuku003.galgame",
+      "manifest_id": "mizuku003.galgame",
+      "repositoryUrl": "https://github.com/mizuku003/maibot-galgame",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "0bd2be425ef67bd7a79b527317fba33e6ff42a34",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-01T12:38:31Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.1",
+          "release_notes": "按官方 AI 复审的意见更新。\n\n- config.toml 不再随仓库发布：由宿主在首次加载时按配置模型的默认值生成（文件缺失时宿主会自动写入），避免仓库里的默认值和本地的改动互相覆盖。\n- 贴吧话术：README 补充说明写入的是宿主哪两张表、什么时候会删、删哪些行，以及删除/写回失败会在日志里留痕。\n- 删掉 gl_vndb.py 里签名已损坏、无人调用的 query() 方法。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.1",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "gamepad-2",
+                "fallback": "gamepad"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "e145ea6309370a78e91a18e354eb25cfa250367e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-01T11:44:17Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.0",
+          "release_notes": "首个版本。\n\n- 多源查询：月幕 YMGal / VNDB / 批评空间 EGS / BugBug\n- 资料卡出图、条件推荐、/锐评\n- gal 圈情报、预定与新作\n- 贴吧话术学习（默认关闭）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.0",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "gamepad-2",
+                "fallback": "gamepad"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "polarbear.twitter-forwarder",
+      "manifest_id": "polarbear.twitter-forwarder",
+      "repositoryUrl": "https://github.com/niconieryr/maibot-twitter-forwarder",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.ciallo",
+      "manifest_id": "github.cateye.ciallo",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_ciallo",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.mai-personality-swap",
+      "manifest_id": "github.cateye.mai-personality-swap",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_mai_personality_swap",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.0-hz.side-reply-channel",
+      "manifest_id": "com.0-hz.side-reply-channel",
+      "repositoryUrl": "https://github.com/yufei-pan/maibot-side-reply-channel",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "068cb989a7eb0ac5ef71ac956b52cc9e536f2346",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-02T21:11:26Z",
+          "release_url": "https://github.com/yufei-pan/maibot-side-reply-channel/releases/tag/v0.2.0",
+          "release_notes": "## 新增\n\n- 旁路发送增加全局冷却，默认 60 秒。冷却未结束时拒绝发送，并把剩余等待秒数返回给规划器\n- 可在 `channel.cooldown_seconds` 调整间隔；设为 `0` 关闭冷却\n\n弱规划器模型仍可能把旁路当成日常发言、在聊天里刷屏。冷却只能限频，请至少使用还算聪明的规划器模型。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.side-reply-channel",
+            "version": "0.2.0",
+            "name": "恕我直言（Side Reply Channel）",
+            "description": "为 Maisaka 规划器提供常驻的 side_reply 旁路发言工具：绕过回复生成器，把规划器写好的文字直接发到当前聊天，并以 ※ 前缀标记。仅供 reply 工具失败时告知故障、报告错误与调试使用。成功发送后有全局冷却（默认 60 秒），冷却中会把剩余等待秒数返回给规划器。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-side-reply-channel",
+              "homepage": "https://github.com/yufei-pan/maibot-side-reply-channel",
+              "documentation": "https://github.com/yufei-pan/maibot-side-reply-channel/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-side-reply-channel/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "riesa.today-eat",
+      "manifest_id": "riesa.today-eat",
+      "repositoryUrl": "https://github.com/riesaexe/maibot-today-eat",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "4b005de4ab3bb1a1298c809c81ad3f7360bab96f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-18T07:50:06Z",
+          "release_url": "https://github.com/riesaexe/maibot-today-eat/releases/tag/v1.1.1",
+          "release_notes": "## v1.1.1 —— 安全加固（市场反馈）\n\n针对插件市场 review 指出的问题修复。\n\n### 修复：搜索站地址未校验（SSRF）\n\n`images.search_base_url` 是可配置 URL，但发请求前没有校验 scheme 或内网地址，且 aiohttp 开着\n自动重定向。把搜索站配成 `http://127.0.0.1:8000`，或让它跳转到 `169.254.169.254`，就能让 bot\n去读内网服务或云元数据端点。\n\n改动：\n\n- 新增地址安全校验：**强制 https**、拒绝带用户名密码的地址、拒绝内网/回环/链路本地/保留/\n  组播/未指定地址与云元数据主机名；域名解析出的**每一个** IP 都必须是公网地址（防止用域名\n  解析到内网绕过字面量检查）。\n- 搜索请求改为**手动逐跳跟转并对每一跳重新校验**（跳转上限 4 次），不再交给 aiohttp 自动跟跳；\n  搜索页响应体加 2MB 上限。\n- 搜索站地址在发请求前先校验，不合格直接放弃且**不发任何请求**。\n\n图片地址（`i2.chuimg.com` 白名单）的原有校验保持不变。\n\n### 依赖声明\n\n`aiohttp` 与 `pillow` 已在 MaiBot 依赖基线内，按市场规则不再重复声明；manifest 的\n`dependencies` 现为空数组，无需额外安装任何包。\n\n### 验证\n\n新增 `_verify/test_market_security_fixes.py`：13 类应拒地址（含 `169.254.169.254`、\n`metadata.google.internal`、IPv6 回环、DNS 解析到内网）、逐跳复校（重定向到内网被拦下且不\n访问内网）、响应体上限、以及正常路径仍能解析出图片地址。联网抓图实测正常（800x800 拼图）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.today-eat",
+            "version": "1.1.1",
+            "name": "今天吃什么",
+            "description": "群内输入「前缀 + 吃什么」由模型推荐 4 道菜，前缀可自定义（默认 /rs）。按会话去重、支持忌口与地区菜系偏好，可选附菜品拼图。",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-today-eat",
+              "homepage": "https://github.com/riesaexe/maibot-today-eat",
+              "documentation": "https://github.com/riesaexe/maibot-today-eat/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-today-eat/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "utensils"
+              }
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "llm.generate",
+              "knowledge.search",
+              "person.get_id",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "12588aef64853ecec52d464a72db369f403f9026",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-18T03:39:28Z",
+          "release_url": "https://github.com/riesaexe/maibot-today-eat/releases/tag/v1.1.0",
+          "release_notes": "## 今天吃什么 v1.1.0\n\n首个发布版本。群友纠结吃什么时，让麦麦按约束推荐一餐菜品，可选附一张菜品拼图。\n\n### 功能\n\n- **命令前缀可自定义**：默认 `/rs`，可在配置里改成任意前缀（`/eat`、中文前缀皆可），也能完全不要前缀直接说「吃什么」。支持配置多个额外前缀。\n- **情景词自由**：`今天` / `中午` / `夜宵` / `明年今天` 等原样交给模型理解，插件不维护时段词表。\n- **忌口与分类**：`不要香菜`、`川菜`、`外卖` 等会解析成硬约束；模型违反时带纠正提示重试。\n- **按会话去重**：同一个群最近推荐过的菜不重复出现，跨群互不干扰。\n- **地区菜系**：按用户或全体配置地区，推导菜系倾向。\n- **长期记忆个性化**：经知识库检索口味、忌口、家乡线索作为软约束。\n- **菜品配图（旁路）**：搜图 → 裁剪 → 拼图，任何一步失败都只是不发图，文字菜单照常。\n- **麦麦主动推荐**：可注册成工具，由麦麦自己决定是否推荐（默认关闭）。\n\n### 安装\n\n在 MaiBot Dashboard 的插件市场搜索「今天吃什么」，或手动放入 `plugins/` 目录：\n\n```bash\ncd MaiBot/plugins\ngit clone https://github.com/riesaexe/maibot-today-eat.git riesa_today-eat\n```\n\n依赖 `aiohttp>=3.9.0`、`pillow>=10.0.0`。要求 MaiBot >= 1.2.0、maibot-plugin-sdk >= 2.5.0。\n\n### 注意\n\n**改前缀后必须重载插件**：命令正则由宿主在装载插件时收集，之后不再更换。插件会在配置更新时打警告日志提醒。配置改了但未重载时，旧前缀会立即失效（放行给正常聊天），避免出现「配置写着 /eat、实际却在响应 /rs」的中间状态。\n\n完整说明见 [README](https://github.com/riesaexe/maibot-today-eat#readme)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.today-eat",
+            "version": "1.1.0",
+            "name": "今天吃什么",
+            "description": "群内输入「前缀 + 吃什么」由模型推荐 4 道菜，前缀可自定义（默认 /rs）。按会话去重、支持忌口与地区菜系偏好，可选附菜品拼图。",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-today-eat",
+              "homepage": "https://github.com/riesaexe/maibot-today-eat",
+              "documentation": "https://github.com/riesaexe/maibot-today-eat/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-today-eat/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "utensils"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "llm.generate",
+              "knowledge.search",
+              "person.get_id",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "lgv-h.mimo-asr-bridge",
+      "manifest_id": "lgv-h.mimo-asr-bridge",
+      "repositoryUrl": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "926566a91ac744e188592ae5fb5d114c1a792385",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T03:44:31Z",
+          "release_url": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge/releases/tag/1.0.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "lgv-h.mimo-asr-bridge",
+            "version": "1.0.0",
+            "name": "MiMo ASR 桥接服务",
+            "description": "在插件内部直接调用小米 MiMo 语音识别 API（Chat Completions + base64 音频），自行完成音频编码与 HTTP 请求，把语音消息转成文字交给 MaiBot",
+            "author": {
+              "name": "Lgv-H",
+              "url": "https://github.com/Lgv-H"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge",
+              "homepage": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge",
+              "documentation": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge/blob/main/README.md",
+              "issues": "https://github.com/Lgv-H/lgv-h.mimo-asr-bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "media",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🎧",
+                "background": "#E8F1FD"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "xiaocutedog.maibot_private_chat_tool_plus",
+      "manifest_id": "xiaocutedog.maibot_private_chat_tool_plus",
+      "repositoryUrl": "https://github.com/xiaocutedog/maibot_private_chat_tool_plus",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "wows-battle-push",
+      "manifest_id": "wows-battle-push",
+      "repositoryUrl": "https://github.com/Rcsit-D4/wows-battle-push",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "kumatea.telegram-full",
+      "manifest_id": "kumatea.telegram-full",
+      "repositoryUrl": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "0.2.0",
+          "commit": "58799cd356ad69f2b3b3cfb2e04c0ea5c59489fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-03T15:56:31Z",
+          "release_url": "https://github.com/KumaTea/MaiBot-Telegram-Full/releases/tag/0.2.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.2.0",
+            "name": "Telegram Full Adapter",
+            "description": "基于 Telethon (MTProto) 的 Telegram 全功能适配器，支持 Bot 与用户账号",
+            "author": {
+              "name": "KumaTea",
+              "url": "https://github.com/KumaTea"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "homepage": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "documentation": "https://github.com/KumaTea/MaiBot-Telegram-Full/blob/main/README.md",
+              "issues": "https://github.com/KumaTea/MaiBot-Telegram-Full/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "telethon",
+                "version_spec": ">=1.45,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptg",
+                "version_spec": ">=0.4"
+              },
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socks",
+                "version_spec": ">=2.4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=12"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "chat.get_all_streams",
+              "maisaka.context.append",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "kumatea.telegram-full",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.2",
+          "tag": "0.1.2",
+          "commit": "be0ec98ea7c53657a7e84164d8059084e0ecca1f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-02T17:34:27Z",
+          "release_url": "https://github.com/KumaTea/MaiBot-Telegram-Full/releases/tag/0.1.2",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.2",
+            "name": "Telegram Full Adapter",
+            "description": "基于 Telethon (MTProto) 的 Telegram 全功能适配器，支持 Bot 与用户账号",
+            "author": {
+              "name": "KumaTea",
+              "url": "https://github.com/KumaTea"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "homepage": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "documentation": "https://github.com/KumaTea/MaiBot-Telegram-Full/blob/main/README.md",
+              "issues": "https://github.com/KumaTea/MaiBot-Telegram-Full/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "telethon",
+                "version_spec": ">=1.45,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptg",
+                "version_spec": ">=0.4"
+              },
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socks",
+                "version_spec": ">=2.4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=12"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "chat.get_all_streams",
+              "maisaka.context.append",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "kumatea.telegram-full",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.1",
+          "tag": "0.1.1",
+          "commit": "08726d059ea09f7f894b215475744aa4773dc959",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-02T01:50:17Z",
+          "release_url": "https://github.com/KumaTea/MaiBot-Telegram-Full/releases/tag/0.1.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.1",
+            "name": "Telegram Full Adapter",
+            "description": "基于 Telethon (MTProto) 的 Telegram 全功能适配器，支持 Bot 与用户账号",
+            "author": {
+              "name": "KumaTea",
+              "url": "https://github.com/KumaTea"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "homepage": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "documentation": "https://github.com/KumaTea/MaiBot-Telegram-Full/blob/main/README.md",
+              "issues": "https://github.com/KumaTea/MaiBot-Telegram-Full/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "telethon",
+                "version_spec": ">=1.45,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptg",
+                "version_spec": ">=0.4"
+              },
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socks",
+                "version_spec": ">=2.4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=12"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "chat.get_all_streams",
+              "maisaka.context.append",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "kumatea.telegram-full",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "0.1.0",
+          "commit": "fb148d26d0a739c1cc0acd3a314deca7cfd93475",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-01T19:57:58Z",
+          "release_url": "https://github.com/KumaTea/MaiBot-Telegram-Full/releases/tag/0.1.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.0",
+            "name": "Telegram Full Adapter",
+            "description": "基于 Telethon (MTProto) 的 Telegram 全功能适配器，支持 Bot 与用户账号",
+            "author": {
+              "name": "KumaTea",
+              "url": "https://github.com/KumaTea"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "homepage": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "documentation": "https://github.com/KumaTea/MaiBot-Telegram-Full/blob/main/README.md",
+              "issues": "https://github.com/KumaTea/MaiBot-Telegram-Full/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "telethon",
+                "version_spec": ">=1.45,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptg",
+                "version_spec": ">=0.4"
+              },
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socks",
+                "version_spec": ">=2.4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "chat.get_all_streams",
+              "maisaka.context.append",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "kumatea.telegram-full",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.orge-8.better-diary",
+      "manifest_id": "org.orge-8.better-diary",
+      "repositoryUrl": "https://github.com/orge-8/better-diary",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "valleywinds.sleep-manager",
+      "manifest_id": "valleywinds.sleep-manager",
+      "repositoryUrl": "https://github.com/ValleyWinds/Sleep-Manager",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "6f551a168ceea8026365762d65f3604c1448449e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-30T04:02:59Z",
+          "release_url": "https://github.com/ValleyWinds/Sleep-Manager/releases/tag/v1.3.1",
+          "release_notes": "## 修复\n\n- **管理入睡命令默认对所有人开放**：此前任何群成员都能执行 `/sleep_force_all` 让 Bot 在全部聊天流静默最长 480 分钟。现在 `管理员用户 ID` 留空时管理命令（`/sleep_now`、`/sleep_force`、`/sleep_force_all`）**默认不可用**，需在插件配置中显式填写允许的用户 ID 后才能启用。（回应插件中心 review 意见）\n\n## 需要注意的变更\n\n- 升级后如果你的 `管理员用户 ID` 列表是空的，管理入睡命令会失效——这是本次修复的预期行为。需要使用的话，请在插件配置的\"管理员用户 ID\"里填入你的用户 ID。\n- 睡醒回顾文件包含完整聊天记录与用户 ID（敏感数据），README 已加注备份/分享时的注意事项。\n- 同时关闭\"允许控制命令\"和\"自然到点醒来\"会导致睡眠期间无法干预，README 已加注说明。\n\n## 更新方式\n\n在插件目录内 `git pull` 后重启主程序；或通过插件中心更新到 v1.3.1。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.1",
+            "name": "睡眠管理Next",
+            "description": "当 Bot 在合适时间主动说出晚安或准备睡觉时，进入临时睡眠状态，并在睡眠期间暂停新消息、表达学习、Planner 结果和出站消息",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Sleep-Manager",
+              "homepage": "https://github.com/ValleyWinds/Sleep-Manager",
+              "documentation": "https://github.com/ValleyWinds/Sleep-Manager",
+              "issues": "https://github.com/ValleyWinds/Sleep-Manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "valleywinds.sleep-manager"
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "ec31223de979e62d41377a7b2819584238a8f304",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T16:51:45Z",
+          "release_url": "https://github.com/ValleyWinds/Sleep-Manager/releases/tag/v1.3.0",
+          "release_notes": "## 破坏性变更\n\n- **插件改名**：`晚安睡眠管理` → `睡眠管理Next`（manifest、i18n、README、代码内全部文本同步更新）\n- **插件 ID 改为全小写**：`next.sleep-manager` → `valleywinds.sleep-manager`，符合插件中心规范\n- **最低主程序版本上调**：`host_application.min_version` 从 `1.0.0` 改为 `1.2.5`（低于此版本插件无法运行——`state_storage` 未注入数据目录会直接报错）\n- **配置版本升至 3.0.0**：加载后会触发一次配置重建，自动清理已废弃字段，保留已有设置\n\n## 清理\n\n- 删除 `confirmation_judge` 里的死代码：`_load_host_prompt_loader`（`src.*` 越界 import，插件独立进程里永远失败）、`ensure_sleep_confirmation_prompt_files`（拷贝目标路径指向插件仓库而非主程序目录）、`_copy_default_file` 及相关常量\n- 删除 `prompts/` 目录（同步逻辑已移除，文件无人读取）\n- AI 入睡判定模板内置在代码中，不依赖主程序 Prompt 目录\n\n## 已验证环境\n\nMaiBot 1.3.1 + 插件 SDK 2.8.2\n\n## 更新方式\n\n在插件目录内 `git pull` 即可。由于插件 ID 变更，数据目录会从 `data/plugins/next.sleep-manager/` 变为 `data/plugins/valleywinds.sleep-manager/`，如需保留旧睡眠状态或回顾记录，请手动拷贝。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.0",
+            "name": "睡眠管理Next",
+            "description": "当 Bot 在合适时间主动说出晚安或准备睡觉时，进入临时睡眠状态，并在睡眠期间暂停新消息、表达学习、Planner 结果和出站消息",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Sleep-Manager",
+              "homepage": "https://github.com/ValleyWinds/Sleep-Manager",
+              "documentation": "https://github.com/ValleyWinds/Sleep-Manager",
+              "issues": "https://github.com/ValleyWinds/Sleep-Manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "valleywinds.sleep-manager"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.touristh.helldivers2-patch-feed",
+      "manifest_id": "github.touristh.helldivers2-patch-feed",
+      "repositoryUrl": "https://github.com/TouristH/HelldiversPatchFeed",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "7fa507ccbd291f100893951f746d3c6baeebf1cc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T17:40:59Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.2.1",
+          "release_notes": "## 插件仓库复核修正\n\n- 加固可配置数据源：拒绝本机、私网、链路本地、元数据地址、凭据 URL 和非 HTTP(S) 协议；首跳与每次重定向均复验 DNS 结果。\n- 仅为三个固定官方上游域名保留 Clash/Mihomo Fake-IP 兼容，自定义域名不继承该豁免。\n- 缺少 MaiBot SDK 时明确记录测试桩警告，不再静默降级。\n- 修正 raw/typed 两条渲染路径的参数一致性，统一传入 selector、viewport、render_timeout_ms 与 allow_network=false。\n- 将最低 MaiBot Plugin SDK 版本调整为 2.7.1，确保 RPC 超时和 Command 自定义元数据均按文档生效。\n- 保留 v0.2.0 的完整中文配装数据库：216 项装备、216 个图标，以及逐项来源与校验信息。\n\n来源和许可边界详见 THIRD_PARTY_NOTICES.md。验证结果：137 项测试全部通过，真实 Steam/Wiki 网络请求冒烟测试通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.2.1",
+            "name": "Helldivers 2 更新推送",
+            "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "satellite"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "68985beccbc794e2e0d357a72e6358c57abc86d7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T17:09:16Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.2.0",
+          "release_notes": "## 全新中文装备数据库\n\n- 完整收录当前 Wiki 目录中的 216 项可配装内容：55 件主武器、25 件副武器、23 件投掷物、20 项强化资源和 93 项战略配备。\n- 所有最终显示名均为中文；10 个中文 Wiki 尚无可用中文标题的新项目使用明确标记的社区译名。\n- 为每项装备增加稳定 ID、英文规范名、中英文 Wiki 页面、翻译来源、图标文件和源 SHA-1。\n- 通过 Helldivers Wiki 中文站 API 重新获取并内嵌全部 216 个最新版图标；当前卡片不再有缺图条目。\n- 新增可复现的 Wiki 刷新工具、网络重试，以及目录数量、中文名、图标覆盖和 SHA-256 完整性校验。\n- 更新 Xenfo-LC、中文/英文 Wiki、游戏素材和 OpenAI Codex AI 辅助贡献声明；项目作者、仓库所有者与维护者仍为 TouristH。\n\n来源与许可边界详见 THIRD_PARTY_NOTICES.md。验证结果：133 项测试全部通过，并完成真实 Chromium 八格配装卡渲染抽检。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.2.0",
+            "name": "Helldivers 2 更新推送",
+            "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "satellite"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "50c13cc7fcd625cc7753eed76fb789bbe61b53aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T12:04:00Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.1.1",
+          "release_notes": "## 随机配装目录更新\n\n- 依据 Helldivers Wiki 当前中文《武器》《战略配备》目录修正过时或错误译名，并补全最新装备。\n- 中文目录尚未覆盖的新品使用同站英文规范名；GL-28 使用中文 Wiki 已提供的名称。\n- 配装池现含 55 件主武器、25 件副武器、23 件投掷物、20 项强化资源和 93 项战略配备，共 216 项。\n- 迁移 199 个既有图标的名称键；17 个没有可靠可复用图标的新品仅显示名称。\n- Wiki 中文站衍生内容依 CC BY-SA 4.0，英文站衍生内容依 CC BY-NC-SA 4.0；完整来源、修订号和许可边界见 THIRD_PARTY_NOTICES.md。\n- 增加 OpenAI Codex AI 辅助贡献声明；项目作者、仓库所有者与维护者仍为 TouristH。\n\n验证：132 项测试全部通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.1.1",
+            "name": "Helldivers 2 更新推送",
+            "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "satellite"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "f073e6845cb8aa4918bf6a07deff79c878b3a8ff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-29T11:13:07Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.1.0",
+          "release_notes": "## HelldiversPatchFeed 0.1.0\n\n- 首次公开发行，适配 MaiBot 插件系统。\n- 自治检查 HELLDIVERS 2 官方 Steam 更新，并按群幂等推送。\n- 支持官方中文增强、Wiki 最近更改与数值摘要。\n- 支持权限、限流、订阅管理以及可单格重抽的随机配装。\n- 随机配装参考项目、资源来源和许可边界已完整记录在 THIRD_PARTY_NOTICES.md。\n\n验证：131 项测试全部通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.1.0",
+            "name": "Helldivers 2 更新推送",
+            "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "satellite"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "ezrart.magnet-downloads",
+      "manifest_id": "ezrart.magnet-downloads",
+      "repositoryUrl": "https://github.com/EzraRT/MaiBot-Aria2-Download",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.netajuutilainen.immersive-control",
+      "manifest_id": "github.netajuutilainen.immersive-control",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin",
+      "mode": "branch",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
