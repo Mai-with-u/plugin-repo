@@ -46,6 +46,18 @@ test("all inline workflow JavaScript parses", () => {
   }
 });
 
+test("every review comment uses the Mai App identity, including failure paths", () => {
+  for (const name of ["Check reviewer permission", "Reserve review and announce start", "Post review comment", "Post review failure"]) {
+    const step = workflow.split(`      - name: ${name}\n`)[1].split("\n      - name:")[0];
+    assert.match(step, /github-token: \$\{\{ steps\.(?:result-app-token|app-token)\.outputs\.token/);
+  }
+  assert.ok(workflow.indexOf("id: app-token") < workflow.indexOf("id: review-start"));
+  const refresh = workflow.split("      - name: Refresh Mai GitHub App token for result\n")[1].split("\n      - name:")[0];
+  assert.match(refresh, /if: always\(\) && steps\.review-start\.outputs\.should_run == 'true'/);
+  assert.match(refresh, /secrets\.MAI_REVIEW_APP_ID/);
+  assert.match(refresh, /secrets\.MAI_REVIEW_APP_PRIVATE_KEY/);
+});
+
 test("the eighth review reserves its count and announces immediately", async () => {
   const comments = Array.from({ length: 7 }, () => ({ user: { type: "Bot" }, body: "<!-- codex-mai-review -->" }));
   const { posted, outputs } = await runScript("Reserve review and announce start", comments);
