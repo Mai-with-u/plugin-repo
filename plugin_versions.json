@@ -16407,6 +16407,114 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.4",
+          "tag": "v1.7.4",
+          "commit": "87e80e3165b802a68541a628aa32b2d2d5a210bd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T09:04:47Z",
+          "release_url": "https://github.com/tidain/maibot-platform-parser/releases/tag/v1.7.4",
+          "release_notes": "**update**\r\n- 修复了一些已知问题",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "tidain.maibot-platform-parser",
+            "version": "1.7.4",
+            "name": "万能链接解析器",
+            "description": "自动解析抖音、小红书、B站等20个平台链接，并把图文/视频发送到QQ群。基于 Zhalslar/astrbot_plugin_parser 解析核心和 Color2333/maibot-multi-platform-parser 移植框架改进。",
+            "author": {
+              "name": "tidain",
+              "url": "https://github.com/tidain"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tidain/maibot-platform-parser"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiofiles",
+                "version_spec": ">=25.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "msgspec",
+                "version_spec": ">=0.21.0"
+              },
+              {
+                "type": "python_package",
+                "name": "yt-dlp",
+                "version_spec": ">=2026.3.17"
+              },
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": ">=17.4.1"
+              },
+              {
+                "type": "python_package",
+                "name": "curl_cffi",
+                "version_spec": ">=0.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tqdm",
+                "version_spec": ">=4.66.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "apilmoji",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "gallery-dl",
+                "version_spec": ">=1.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "json5",
+                "version_spec": ">=0.9.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.7.3",
           "tag": "v1.7.3",
           "commit": "2d29f6e86e1a57de865fae3e84b4de1397272093",
@@ -18898,6 +19006,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "12a319450f29ef5b7701a28e91e9ca58a3275756",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T09:35:34Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter/releases/tag/v0.4.1",
+          "release_notes": "### 新增\n\n- 界面：新增低饱和灰蓝配色的抽象企鹅适配器图标，用于插件列表、详情和配置页面。\n- 头像：新增 `adapter.avatar.get` 用户和群头像查询接口，与 SnowLuma 协议一致，支持数字 ID 及已绑定数字 ID 的 OpenID，返回资源 URL 与有效期供宿主统一缓存。\n\n### 修复\n\n- 禁言、撤回工具默认启用，未填写 `allowed_groups` 或留空时允许所有群使用；保留显式关闭开关与非空群白名单限制。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Mai-with-u.qq-adapter",
+            "version": "0.4.1",
+            "name": "QQ 官方机器人适配器",
+            "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "plug",
+                "background": "#E5EAEC"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              }
+            ],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.0",
           "tag": "v0.4.0",
           "commit": "c01baa1fe1619ffae73f773625c0bfe4ede708ad",
@@ -20256,6 +20424,301 @@
       "repositoryUrl": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin",
       "mode": "branch",
       "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.cateye.scp-article",
+      "manifest_id": "github.cateye.scp-article",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_scp_article",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.4",
+          "tag": "v0.2.4",
+          "commit": "b256126982099720a92ec12d58432ec9bffb85cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-28T00:33:14Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_scp_article/releases/tag/v0.2.4",
+          "release_notes": "## 修复\n\n- 修复合并转发「超时假阴性」触发的回退抢跑：一条查询不再返回三份重复内容（文字版 + 单图 + 完整图片版）。\n- 部分送达不再补文字版：单张失败记录告警并继续发送其余图片，仅当一张都没发出时才回退文字版。\n- `send.forward` 改用 `return_details=True`，投递成败判定更可靠（sent / message_id 任一为真即成功）。\n- 降低超时假阴性概率：渲染缩放默认降为 1.0（配置字段更名 `render.image_scale` → `render.render_scale`，旧配置值随 config_version 重建自动失效），图片体积约缩小一半以上；字号放大（1.5 倍）保持不变。\n\n## 兼容性\n\n- 宿主：MaiBot ≥ 1.0.0（含 1.2.x / 1.3.0）\n- SDK：maibot_plugin-sdk ≥ 2.5.0\n- 依赖：httpx ≥ 0.25.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.scp-article",
+            "version": "0.2.4",
+            "name": "SCP 条目查询",
+            "description": "【非商业插件：SCP 基金会各分部维基的文本内容依 CC BY-SA 3.0 授权，插件仅做只读抓取与展示，不缓存不转载；代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_scp_article",
+              "homepage": "https://github.com/cateyemizuki/cateye_scp_article",
+              "documentation": "https://github.com/cateyemizuki/cateye_scp_article/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "file-search",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "riesa.reason",
+      "manifest_id": "riesa.reason",
+      "repositoryUrl": "https://github.com/riesaexe/maibot-riesa-reason",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "f7557d0843650986e879e734f1c47175689264a5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-18T07:50:08Z",
+          "release_url": "https://github.com/riesaexe/maibot-riesa-reason/releases/tag/v1.1.1",
+          "release_notes": "## v1.1.1 —— 安全加固（市场反馈）\n\n针对插件市场 review 指出的一处风险与两处问题修复。\n\n### 修复 1：链接抓取未做 SSRF 防护\n\n`rs_url.py` 的通用抓取把用户消息里的 URL 直接交给 httpx 且 `follow_redirects=True`，没有拦截\n内网、回环、链路本地或云元数据地址，也没有响应体大小限制。群成员可以让 bot 去访问\n`127.0.0.1`、`169.254.169.254` 等地址，再通过模型链路把内容带出来。\n\n改动：\n\n- 只允许 http/https，拒绝带用户名密码的地址；\n- 拒绝内网、回环、链路本地、保留、组播、未指定地址，以及云元数据服务的常见主机名；\n- 域名解析出的**每一个** IP 都必须是公网地址（防止 DNS 绕过）；\n- **每一次重定向跳转都重新校验**目标地址（跳转上限 5 次），不再交给 httpx 自动跟跳；\n- 响应体加字节上限（默认 2MB）；\n- 新增 `link.allowed_hosts` 配置，可进一步只允许指定域名；\n- NGA 抓取同样改走该路径，并限死主机白名单。\n\n### 修复 2：提问写库改为默认关闭\n\n`memory.writeback_enabled` 默认值由 `true` 改为 **`false`**。该功能直接向宿主核心 `Messages`\n表增删记录，并手工用 msgpack 构造消息体，依赖的不是宿主承诺的公开接口，宿主表结构调整时\n可能失效甚至写坏聊天/记忆数据。插件没有可替代的官方写入接口，因此选择默认关闭、由用户明确\n了解风险后自行开启。关闭时问答流程完全不受影响，只是麦麦事后记不住这次提问。\n\n### 修复 3：依赖声明与宿主基线对齐\n\n`httpx`、`pillow`、`msgpack`、`aiohttp` 已在宿主依赖基线内，不再重复声明；而直接使用的\n`markdown-it-py` 与 `pygments` 不在基线内，必须声明——现声明为\n`markdown-it-py>=3.0.0`、`pygments>=2.17.0`。\n\n### 验证\n\n新增 `_verify/test_market_security_fixes.py`：12 类应拒地址、DNS 绕过、逐跳复校、跳转成环、\n响应体上限、写库默认关闭与显式开启仍可用、依赖声明与宿主 `pyproject.toml` 基线核对。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.reason",
+            "version": "1.1.1",
+            "name": "深度问答 · 图片版",
+            "description": "群内输入「前缀 + 问题」触发（前缀默认 /rs，可自定义），调用宿主模型深度思考并联网查证，把思考过程与详细回答渲染成卡片图片回复。支持纯前缀、@机器人 + 前缀、引用消息 + 前缀三种触发形态；回答过长自动按空白带安全分页，思考区按版面预算自适应保留或折叠。",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-riesa-reason",
+              "homepage": "https://github.com/riesaexe/maibot-riesa-reason",
+              "documentation": "https://github.com/riesaexe/maibot-riesa-reason/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-riesa-reason/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-square-quote"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pygments",
+                "version_spec": ">=2.17.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "llm.generate",
+              "render.html2png",
+              "database.save",
+              "database.delete",
+              "chat.get_stream_by_user_id",
+              "config.get",
+              "config.get_plugin",
+              "api.call",
+              "component.get_all_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "2d9cf9f273a4407237d93d2710fda2d1c7427fa0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-18T04:07:08Z",
+          "release_url": "https://github.com/riesaexe/maibot-riesa-reason/releases/tag/v1.1.0",
+          "release_notes": "## 深度问答 · 图片版 v1.1.0\n\n群内输入「前缀 + 问题」（前缀默认 `/rs`，可自定义），插件调用模型深度思考、可选联网查证，\n把思考过程与详细回答渲染成卡片图片回复。\n\n### 新增：命令前缀可自定义\n\n- `plugin.command_prefix`（默认 `/rs`，可改成 `/ask`、`/问` 等任意写法）\n- `plugin.command_prefix_aliases`（额外前缀，可配多个）\n\n本插件走 Hook 而非 `@Command`，前缀是每条消息**现读**的，所以改完**立即生效，无需重载插件**。\n\n> ⚠️ 前缀是唯一的触发判据（命中前缀后后面全部内容都当问题），请用带斜杠等明确标记的写法。\n> 留空、含空格、超长（>16 字符）或只有斜杠的值都会回退默认 `/rs`——特别是空前缀会被拒绝，\n> 否则群里每句话都会被当成提问。\n\n### 主要能力\n\n- 三种触发形态：直接发前缀、`@机器人` + 前缀、引用一条消息后只发前缀\n- 回答渲染成卡片图片，Markdown + 代码高亮；长回答按「纯背景色横带」找切点安全分页，不截断文字\n- 思考区按版面预算自适应：能同页就同页，放不下则单独成页或整块省略\n- 联网搜索可选：`host` 后端接第三方搜索，或 `deepseek_anthropic` 后端由服务端原生联网并带回来源\n- 长期记忆写回、多轮上下文、贴表情反馈（默认关闭）\n\n### 安装\n\n在 MaiBot Dashboard 的插件市场搜索「深度问答」，或手动放入 `plugins/` 目录：\n\n```bash\ncd MaiBot/plugins\ngit clone https://github.com/riesaexe/maibot-riesa-reason.git riesa_reason\n```\n\n依赖 `httpx>=0.27.0`。要求 MaiBot >= 1.2.0、maibot-plugin-sdk >= 2.5.0。\n\n完整说明见 [README](https://github.com/riesaexe/maibot-riesa-reason#readme)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.reason",
+            "version": "1.1.0",
+            "name": "深度问答 · 图片版",
+            "description": "群内输入「前缀 + 问题」触发（前缀默认 /rs，可自定义），调用宿主模型深度思考并联网查证，把思考过程与详细回答渲染成卡片图片回复。支持纯前缀、@机器人 + 前缀、引用消息 + 前缀三种触发形态；回答过长自动按空白带安全分页，思考区按版面预算自适应保留或折叠。",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-riesa-reason",
+              "homepage": "https://github.com/riesaexe/maibot-riesa-reason",
+              "documentation": "https://github.com/riesaexe/maibot-riesa-reason/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-riesa-reason/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-square-quote"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "llm.generate",
+              "render.html2png",
+              "database.save",
+              "database.delete",
+              "chat.get_stream_by_user_id",
+              "config.get",
+              "config.get_plugin",
+              "api.call",
+              "component.get_all_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "codex-reset.watcher",
+      "manifest_id": "codex-reset.watcher",
+      "repositoryUrl": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.13",
+          "tag": "v0.1.13",
+          "commit": "90174ae7d59ab75d7a6fe6e6c5f826063ac7ccd6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T09:16:24Z",
+          "release_url": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/releases/tag/v0.1.13",
+          "release_notes": "",
+          "manifest": {
+            "author": {
+              "name": "野生的金属乌帕",
+              "url": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+            },
+            "capabilities": [
+              "chat.get_stream_by_group_id",
+              "chat.open_session",
+              "llm.generate",
+              "send.text"
+            ],
+            "description": "自动监控 OpenAI Codex 全局额度重置、Banked Reset 与相关告警，翻译成中文并发送到指定 QQ 群",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bell-ring"
+              }
+            },
+            "host_application": {
+              "max_version": "1.2.99",
+              "min_version": "1.0.0"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "codex-reset.watcher",
+            "license": "MIT",
+            "manifest_version": 2,
+            "name": "Codex 额度重置提醒",
+            "sdk": {
+              "max_version": "2.99.99",
+              "min_version": "2.8.0"
+            },
+            "urls": {
+              "documentation": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+              "homepage": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+              "issues": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/issues",
+              "repository": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+            },
+            "version": "0.1.13"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }

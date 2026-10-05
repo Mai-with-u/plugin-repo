@@ -16788,9 +16788,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "tidain.maibot-platform-parser",
-      "version": "1.7.3",
+      "version": "1.7.4",
       "name": "万能链接解析器",
-      "description": "自动解析抖音、小红书、B站等17个平台链接，并把图文/视频发送到QQ群。基于 Zhalslar/astrbot_plugin_parser 解析核心和 Color2333/maibot-multi-platform-parser 移植框架改进。",
+      "description": "自动解析抖音、小红书、B站等20个平台链接，并把图文/视频发送到QQ群。基于 Zhalslar/astrbot_plugin_parser 解析核心和 Color2333/maibot-multi-platform-parser 移植框架改进。",
       "author": {
         "name": "tidain",
         "url": "https://github.com/tidain"
@@ -16867,6 +16867,11 @@
           "type": "python_package",
           "name": "httpx",
           "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "json5",
+          "version_spec": ">=0.9.0"
         }
       ],
       "capabilities": [
@@ -17466,7 +17471,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -19178,7 +19183,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19385,7 +19390,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Mai-with-u.qq-adapter",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "name": "QQ 官方机器人适配器",
       "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
       "author": {
@@ -19397,6 +19402,14 @@
         "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
       },
       "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "plug",
+          "background": "#E5EAEC"
+        }
+      },
       "host_application": {
         "min_version": "1.3.0",
         "max_version": "1.3.99"
@@ -19423,6 +19436,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/Mai-with-u.qq-adapter.webp"
     }
   },
   {
@@ -20290,6 +20306,182 @@
     },
     "assets": {
       "icon_64": "icons/github.netajuutilainen.immersive-control.webp"
+    }
+  },
+  {
+    "id": "github.cateye.scp-article",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.cateye.scp-article",
+      "version": "0.3.1",
+      "name": "SCP 条目查询",
+      "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_scp_article",
+        "homepage": "https://github.com/cateyemizuki/cateye_scp_article",
+        "documentation": "https://github.com/cateyemizuki/cateye_scp_article/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.25.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "send.image",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "file-search",
+          "fallback": "package"
+        }
+      },
+      "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "riesa.reason",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "riesa.reason",
+      "version": "1.1.1",
+      "name": "深度问答 · 图片版",
+      "description": "群内输入「前缀 + 问题」触发（前缀默认 /rs，可自定义），调用宿主模型深度思考并联网查证，把思考过程与详细回答渲染成卡片图片回复。支持纯前缀、@机器人 + 前缀、引用消息 + 前缀三种触发形态；回答过长自动按空白带安全分页，思考区按版面预算自适应保留或折叠。",
+      "author": {
+        "name": "RiESA",
+        "url": "https://github.com/riesaexe"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/riesaexe/maibot-riesa-reason",
+        "homepage": "https://github.com/riesaexe/maibot-riesa-reason",
+        "documentation": "https://github.com/riesaexe/maibot-riesa-reason/blob/main/README.md",
+        "issues": "https://github.com/riesaexe/maibot-riesa-reason/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "message-square-quote"
+        }
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "markdown-it-py",
+          "version_spec": ">=3.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pygments",
+          "version_spec": ">=2.17.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "llm.generate",
+        "render.html2png",
+        "database.save",
+        "database.delete",
+        "chat.get_stream_by_user_id",
+        "config.get",
+        "config.get_plugin",
+        "api.call",
+        "component.get_all_plugins"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/riesa.reason.webp"
+    }
+  },
+  {
+    "id": "codex-reset.watcher",
+    "manifest": {
+      "author": {
+        "name": "野生的金属乌帕",
+        "url": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+      },
+      "capabilities": [
+        "chat.get_stream_by_group_id",
+        "chat.open_session",
+        "llm.generate",
+        "send.text"
+      ],
+      "description": "自动监控 OpenAI Codex 全局额度重置、Banked Reset 与相关告警，翻译成中文并发送到指定 QQ 群",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bell-ring"
+        }
+      },
+      "host_application": {
+        "max_version": "1.2.99",
+        "min_version": "1.0.0"
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "codex-reset.watcher",
+      "license": "MIT",
+      "manifest_version": 2,
+      "name": "Codex 额度重置提醒",
+      "sdk": {
+        "max_version": "2.99.99",
+        "min_version": "2.8.0"
+      },
+      "urls": {
+        "documentation": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+        "homepage": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+        "issues": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/issues",
+        "repository": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+      },
+      "version": "0.1.13"
     }
   }
 ]
