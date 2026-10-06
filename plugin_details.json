@@ -8563,7 +8563,7 @@
           {
             "type": "command",
             "name": "merchant_rewrite",
-            "description": "临时开关播报 LLM 重写（仅管理员）"
+            "description": "临时开关播报 LLM ��写（仅管理员）"
           },
           {
             "type": "command",
@@ -16165,7 +16165,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.skland.sign",
-      "version": "1.1.1",
+      "version": "1.1.3",
       "name": "森空岛签到",
       "description": "森空岛（Skland）游戏自动签到插件：支持明日方舟与终末地，用户可通过指令或 LLM 工具绑定 token、手动签到、查看状态与开启每日自动签到。",
       "author": {
@@ -16214,7 +16214,8 @@
       },
       "capabilities": [
         "send.text",
-        "send.forward"
+        "send.forward",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -16932,9 +16933,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.set-msg-emoji-like",
-      "version": "0.2.3",
+      "version": "0.3.1",
       "name": "表情回应",
-      "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。必需依赖 NapCat 适配器（maibot-team.napcat-adapter）提供 set_msg_emoji_like API；缺失时插件不会被加载。",
+      "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -16948,7 +16949,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.2.99"
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -16957,8 +16958,8 @@
       "dependencies": [
         {
           "type": "plugin",
-          "id": "maibot-team.napcat-adapter",
-          "version_spec": ">=1.0.0"
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=1.0.0,<2.0.0"
         }
       ],
       "plugin_type": "tool",
@@ -17115,7 +17116,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.filter-assistant",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "name": "不要只说不干",
       "description": "修复 DeepSeek V4 flash（测试时使用的提供方含 Command Code、阿里云百炼）Planner 工具调用失败问题（详见 https://github.com/Mai-with-u/MaiBot/issues/2017 ）：在 Planner 构造发送给 LLM 的请求体之前，自动过滤掉 messages/Context Items 中所有 role 为 assistant 的纯文本消息（仅保留 system、user、tool 角色），消除「不调用工具」坏示例对模型的污染。支持配置开关 strip_assistant_messages（默认开启）与 strip_reasoning_messages（默认关闭），仅影响临时请求体，不回写聊天历史。如果你发现 planner 决策声明回复而没有任何 reply 的调用，可以尝试使用该插件解决。",
       "author": {
@@ -17134,7 +17135,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.8.1",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -17149,7 +17150,8 @@
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en"
         ]
       },
       "changelog": "CHANGELOG.md"
@@ -17160,7 +17162,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.api-balance",
-      "version": "1.0.3",
+      "version": "1.0.5",
       "name": "麦麦钱包",
       "description": "查询指定 API Key 的账户余额：通过配置的余额接口获取 JSON 数据，并使用 LLM 总结为清晰的中文报告；提供 /wallet 指令与 get_api_balance 工具。查询与总结分别配置 API Key（只配一个时自动复用）。",
       "author": {
@@ -17204,7 +17206,8 @@
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en"
         ]
       }
     },
@@ -17525,7 +17528,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.mai-forward",
-      "version": "0.1.1",
+      "version": "0.1.3",
       "name": "麦麦转发",
       "description": "消息打包转发/复读/收藏分享：内容从 NapCat/宿主数据库原样读取（不从 LLM 文本构造）；提供 forward_messages（转发到其他聊天，群聊注入 [转发工具] 标注记录、私聊只真发不入库）、repeat_message（复读）、pack_chat_messages（把感兴趣的消息打包到本地，返回 pack_id）、list_message_packs（列包+概括）、share_message_pack（把打包内容以合并转发分享到当前聊天，受名单限制，支持分享后销毁/最大分享次数）。",
       "author": {
@@ -18033,7 +18036,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.maimai-recall",
-      "version": "0.1.1",
+      "version": "0.1.3",
       "name": "麦麦撤回",
       "description": "为机器人提供消息撤回能力：LLM 工具按消息 ID 撤回指定消息；引用一条消息发送「/撤回」即可撤回被引用的消息；失败时返回具体原因（权限不足、超过时间限制、消息不存在等）。",
       "author": {
@@ -18059,7 +18062,8 @@
       "capabilities": [
         "send.text",
         "api.call",
-        "message.get_by_id"
+        "message.get_by_id",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -18078,9 +18082,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.machine-crisis",
-      "version": "1.2.2",
+      "version": "1.2.4",
       "name": "智械危机",
-      "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文紧随头部系统提示词之后（默认以 SystemMessageItem 形式）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于消息ID→发送者追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词。仅改写本次临时请求体，不回写聊天历史。",
+      "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文紧随头部系统提示词之后（默认以 SystemMessageItem 形式）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于（会话,消息ID,发送者）三元组追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词；支持 dry-run 观察模式（只计数不拦截）与按用户/按群的拦截计数统计。仅改写本次临时请求体，不回写聊天历史。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -18097,12 +18101,13 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.3.0",
+        "min_version": "2.8.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -18259,7 +18264,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.custom-filter",
-      "version": "1.0.4",
+      "version": "1.0.6",
       "name": "麦麦不要再看那个了！",
       "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，另支持按关键词屏蔽纯文本消息（带总开关，可配置多个关键词），命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
       "author": {
@@ -18278,11 +18283,11 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.8.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "plugin_type": "tool",
+      "plugin_type": "extension",
       "display": {
         "icon": {
           "type": "lucide",
@@ -18290,12 +18295,14 @@
         }
       },
       "capabilities": [
-        "send.text"
+        "send.text",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en"
         ]
       }
     }
@@ -18860,7 +18867,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.8.4",
+      "version": "2.10.0",
       "name": "中V歌词识别 · 歌曲库",
       "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
@@ -18878,7 +18885,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.1.0",
         "max_version": "2.99.99"
       },
       "capabilities": [
@@ -18895,9 +18902,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "1.1.0",
+      "version": "1.1.3",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」与「丰富回复」时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @；宿主关闭「启用引用回复」与「丰富回复」时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）。",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」与「丰富回复」时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主关闭「启用引用回复」与「丰富回复」时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」）；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -19183,7 +19190,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.8.0",
+      "version": "0.9.2",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19446,7 +19453,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.isaac.item",
-      "version": "0.2.8",
+      "version": "0.2.10",
       "name": "以撒道具图鉴",
       "description": "【非商业插件：整包按 CC BY-NC-SA 4.0 发布，含 wiki 来源的需署名 / 非商业 / 相同方式共享数据，禁止商用；代码与非 CC 数据另按 MIT 提供，详见仓库 README 开头的许可声明】《以撒的结合》道具图鉴与存档解析插件：既能按中文名、英文名、编号、标签或效果关键词查询道具的品质、效果与协同（数据为打包在插件内的离线快照），也能让用户把游戏存档 .dat 传到群文件后由插件按 QQ 号缓存并解析出进度解析图、成就 / 图鉴 / 挑战完成度与全局统计（全程只读，不修改存档）。",
       "author": {
@@ -19668,7 +19675,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.ciallo",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "name": "Ciallo～(∠・ω< )⌒★",
       "description": "让麦麦可爱地打个招呼，发送 Ciallo～(∠・ω< )⌒★。提供 LLM 工具 send_ciallo（可传入 message_id 对指定消息引用回复）与命令 /ciallo（任何人可用，仅当整条消息为 /ciallo 时触发并发送一条 Ciallo），以及可选的关键词自动回复（默认关闭，配置启用后命中关键词的消息自动收到一条 Ciallo 引用回复）。另支持可选语音输出（默认关闭）：开启后每条 Ciallo 按 [voice].probability（0~1，默认 1.0 = 全部语音）的概率独立替换为语音直接发出，未替换时仍按正常文本逻辑发送；插件自带默认语音 assets/ciallo.wav（安装即用，无需手动放置），如需自定义可在插件数据目录放同名文件覆盖（数据目录优先）。",
       "author": {
@@ -19687,7 +19694,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.8.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -19700,7 +19707,8 @@
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
-          "zh-CN"
+          "zh-CN",
+          "en"
         ]
       },
       "plugin_type": "tool",
@@ -19716,9 +19724,10 @@
     "id": "github.cateye.mai-personality-swap",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.5",
+      "version": "1.4.7",
       "name": "夺舍麦麦",
-      "description": "把当前人格设定保存为预设，按条件/概率/权重自动或手动切换各聊天流的人格。v1.4.5：修复私聊场景下 mps_receive_observer 每轮抛 AttributeError 的缺陷——group_info 的判空守卫写错了变量（判 message_info 而非 message_info.get(\"group_info\")，恒为真），私聊时宿主给的 group_info 就是 None（host/message_utils.py:398-407），导致 .get() 崩溃；该 hook 后续的 stream 映射记录、脚本 message 事件派发、关键词命中收集与自动替换评估在私聊中全部被跳过。v1.4.4：提交插件中心前自查修复——非有限权重（inf/nan/1e400）不再导致自动抽取每轮抛异常（含总和溢出归一）；/mps status 对非管理员只显示当前聊天流、不再列出其它会话标识；替换式注入增加健全性检查（结构异常即回退追加，绝不误删官方内容）与昵称整词匹配；预设与状态文件改为原子写、随包预设导入改为复制（不再改写插件安装目录）。v1.4.3：/mps swap 手动切人格纳入管理员权限（防群成员随意改人格）；配置页「预设权重表」由对象改为 JSON 文本输入（原对象控件在 WebUI 显示为 [object Object]），并兼容旧 TOML 表、支持一行一条「名字=权重」；/mps status 增列生效预设权重便于核对。v1.4.2 及以前：/mps delete 删除预设（删前自动备份、激活流回退主人格、清权重，v1.4.1）；预设激活时以覆盖式注入改写请求 system 中的官方人格/表达/行为段落（替换而非叠加，避免被模型当作提示注入忽视），配 persona_name 时 replyer 追加、planner 改写宿主末位提醒为\"你现在是{人格名}…\"当前身份说明（v1.4.0），planner 外壳 {bot_name} 随 persona_name 人格化（v1.3.9）；持久化记录替换状态，重启不丢；命令结果主动回显（短文本直发、长文本合并转发）；/mps debug 开关开启后每次人格变换通知触发的聊天流；插件根 preset/ 随包预设加载时自动导入数据目录；脚本侧提供跨重载/重启保留的持久 KV 与 @/bot 身份判定（ctx.kv_*、ctx.at_*、ctx.bot_*、ctx.is_at_me，v1.3.7 起）。",
+      "description": "把当前人格设定保存为预设，按条件/概率/权重自动或手动切换各聊天流的人格；预设激活期间以覆盖式注入改写请求 system 中的官方人格/表达/行为段落（替换而非叠加），锚点未命中自动回退追加式，绝不误删官方内容。支持 maips 自定义脚本（与插件同信任级别）、切换状态持久化（重启不丢）、黑白名单与管理员鉴权。版本历史见 CHANGELOG.md。",
+      "changelog": "CHANGELOG.md",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -19728,7 +19737,7 @@
         "repository": "https://github.com/cateyemizuki/cateye_mai_personality_swap"
       },
       "host_application": {
-        "min_version": "1.2.0",
+        "min_version": "1.0.0",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -20313,7 +20322,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.scp-article",
-      "version": "0.3.1",
+      "version": "0.3.3",
       "name": "SCP 条目查询",
       "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
       "author": {
@@ -20346,7 +20355,8 @@
         "send.text",
         "send.forward",
         "send.image",
-        "render.html2png"
+        "render.html2png",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -20482,6 +20492,305 @@
         "repository": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
       },
       "version": "0.1.13"
+    }
+  },
+  {
+    "id": "valleywinds.self-identity",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.4.3",
+      "name": "自我信息插件 (Self Identity)",
+      "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+      "author": {
+        "name": "ValleyWinds",
+        "url": "https://github.com/ValleyWinds"
+      },
+      "license": "GPL-3.0-or-later",
+      "plugin_type": "chat",
+      "urls": {
+        "repository": "https://github.com/ValleyWinds/Self-Identity",
+        "homepage": "https://github.com/ValleyWinds/Self-Identity",
+        "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+        "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get"
+      ],
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🪞",
+          "background": "#E8F0F7"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "valleywinds.self-identity"
+    }
+  },
+  {
+    "id": "com.0-hz.maifetch",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.0-hz.maifetch",
+      "version": "0.1.0",
+      "name": "maifetch（麦麦状态）",
+      "description": "让麦麦了解自己：版本、平台、插件与工具、模型用量、在线时长（可选硬件信息）。提供规划器工具、规划器自身信息注入与 /maifetch 状态卡片图。",
+      "author": {
+        "name": "kes",
+        "url": "https://github.com/yufei-pan"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yufei-pan/maibot-maifetch",
+        "homepage": "https://github.com/yufei-pan/maibot-maifetch",
+        "documentation": "https://github.com/yufei-pan/maibot-maifetch/blob/main/README.md",
+        "issues": "https://github.com/yufei-pan/maibot-maifetch/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.1",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.2",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "database.get",
+        "component.get_all_plugins",
+        "llm.get_available_models",
+        "statistics.local.models",
+        "statistics.local.message_trend",
+        "render.html2png",
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "org.orge-8.life-frequency",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.orge-8.life-frequency",
+      "version": "1.8.1",
+      "name": "生活频率",
+      "description": "为麦麦维护一份持续的小生活（作息活动由 LLM 依人设与近/中/远三层近期经历生成、情绪体力、身体、日期节日、经济），按当前状态缩放每个会话的发言频率，并自动适配宿主的两种回复触发模式；含工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（工作日、上下班时段、午休、岗位职责），由强制层守住作息一致性；经济维度经只读 API 读取 budget-pacer 的真实月度预算，手头紧时让她省着花但不参与倍率（避免与预算插件双重压制）；与其它写频率的插件做乘性合成而不是互相覆盖；可选把 better-diary 的选材摘要（谁、做了什么、原话）与「有人找我」接成她的近期经历（默认关闭，睡眠中只记录不产生情绪增量）；可选按素材主动开口（默认关闭）；睡眠中被 @ 会临时醒来回一句（默认开，可关）；可选把「外面的世界」接成她的经历（v1.8.0，默认开、每个源可单独关）：经只读 API 读 bilibili-live-gateway 的开播状态、bilibili-dynamic-push 的最近推送与订阅、group-welcome 的最近入群新人、cv_lyric_context 的最近命中歌曲，只加经历与情绪、不参与倍率，每源独立降级且每日有情绪与条数上限。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/orge-8/life-frequency"
+      },
+      "host_application": {
+        "min_version": "1.2.3",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "chat.get_all_streams",
+        "frequency.set_adjust",
+        "frequency.get_adjust",
+        "frequency.get_current_talk_value",
+        "maisaka.proactive.trigger",
+        "llm.generate",
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "extension"
+    }
+  },
+  {
+    "id": "com.local.mai-affection",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.local.mai-affection",
+      "version": "1.0.3",
+      "name": "麦麦好感度",
+      "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+      "author": {
+        "name": "GPT-6.1 Sol Ultra",
+        "url": "https://github.com/MoonlyCake"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/MoonlyCake/maibot-affection",
+        "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+        "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.3",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "heart"
+        }
+      },
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "send.hybrid"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "cssqy.token-usage-report",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "cssqy.token-usage-report",
+      "version": "1.8.0",
+      "name": "Token 用量统计与播报",
+      "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+      "author": {
+        "name": "CSSQY",
+        "url": "https://github.com/CSSQY"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/CSSQY/token_usage_report",
+        "homepage": "https://github.com/CSSQY/token_usage_report",
+        "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+        "issues": "https://github.com/CSSQY/token_usage_report/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=12.3.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.get_all_streams",
+        "chat.open_session",
+        "config.get",
+        "llm.generate",
+        "render.html2png",
+        "statistics.local.token_trend",
+        "statistics.local.model_trend",
+        "statistics.local.models",
+        "statistics.local.token_distribution",
+        "statistics.local.message_trend",
+        "statistics.local.tool_trend",
+        "statistics.local.online_time_trend",
+        "database.get",
+        "database.count"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.FleetingEternity-qyt.qq-like",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.FleetingEternity-qyt.qq-like",
+      "version": "0.2.5",
+      "name": "QQ 名片点赞",
+      "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+      "author": {
+        "name": "FleetingEternity-qyt",
+        "url": "https://github.com/FleetingEternity-qyt"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+        "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+        "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+        "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.napcat-adapter",
+          "version_spec": ">=1.0.0,<2.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "changelog": "CHANGELOG.md"
     }
   }
 ]

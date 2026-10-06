@@ -16079,8 +16079,81 @@
       "id": "github.cateye.skland.sign",
       "manifest_id": "github.cateye.skland.sign",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_skland_sign",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "a4fb9f425f60efa5faef0dc5725c388fa7414075",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:32:33Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_skland_sign/releases/tag/v1.1.3",
+          "release_notes": "1.1.2：兼容 1.3.0 + sdk 2.8.2（未用 1.3.0 独有能力）；配置字段/分组补英文 i18n。\n\n1.1.3：LLM 工具权限收紧——bind/sign/status/auto 的 user_id 默认绑定当前发送者，代他人操作仅限超级管理员；对外错误文案脱敏（完整异常进日志）；HTTP 层校验状态码并细化重试策略；签到状态查询失败不再误报「未签到」；users.json 0600 权限；清理源码树残留运行期 JSON；管理员判定统一（宿主 ∪ 插件配置，fail-closed）。\n\n含 manifest 变更（config.get 能力声明）。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.skland.sign",
+            "version": "1.1.3",
+            "name": "森空岛签到",
+            "description": "森空岛（Skland）游戏自动签到插件：支持明日方舟与终末地，用户可通过指令或 LLM 工具绑定 token、手动签到、查看状态与开启每日自动签到。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_skland_sign",
+              "homepage": "https://github.com/cateyemizuki/cateye_skland_sign",
+              "documentation": "https://github.com/cateyemizuki/cateye_skland_sign/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_skland_sign/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pycryptodome",
+                "version_spec": ">=3.19.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "calendar-check"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17261,6 +17334,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "ca308ea8a4425fb70a35387a770f1ddfbecf7057",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:32:11Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/releases/tag/v0.3.1",
+          "release_notes": "⚠️ 破坏性变更（0.3.0 起）：适配器依赖由 maibot-team.napcat-adapter 切换为 maibot-team.snowluma-adapter（MaiBot 1.3.0 合并版适配器）。仅装旧版 NapCat 适配器的环境无法加载本版本，请继续使用 v0.2.3。\n\n0.3.1：「群友是🐷」现在真正无视黑白名单（与配置描述一致的行为修正）；修复冷却秒数配 0 无法禁用冷却；新增 emoji_like 工具频控 emoji_reaction.tool_cooldown_seconds（默认 10 秒，0 不限）；冷却状态每小时清理防内存增长；描述库匹配收紧、emoji_id 全链路 int32 校验、空 session_id 提前拒绝等健壮性打磨。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.set-msg-emoji-like",
+            "version": "0.3.1",
+            "name": "表情回应",
+            "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji）；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+              "homepage": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify",
+              "documentation": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "smile-plus"
+              }
+            },
+            "capabilities": [
+              "api.call",
+              "maisaka.context.append",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.0",
           "tag": "v0.3.0",
           "commit": "fc48033f578e03336a1e4eeec21a9e36dcbd579c",
@@ -17492,8 +17626,62 @@
       "id": "github.cateye.filter-assistant",
       "manifest_id": "github.cateye.filter-assistant",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_filter_assistant",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "0b119fba7b00eb3cea8947cc4df239110a421a2d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:29:22Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_filter_assistant/releases/tag/v1.0.4",
+          "release_notes": "1.0.3：sdk.min_version 修正为 2.8.1；全部配置字段/分组补英文 i18n 元数据。\n\n1.0.4：filter_core.strip_assistant_items 默认值与产品配置对齐（消除直接调用语义漂移）；成功过滤日志降为 DEBUG；禁用态启动提示明确；README 补充 strip_reasoning_messages 说明与 FAQ。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.filter-assistant",
+            "version": "1.0.4",
+            "name": "不要只说不干",
+            "description": "修复 DeepSeek V4 flash（测试时使用的提供方含 Command Code、阿里云百炼）Planner 工具调用失败问题（详见 https://github.com/Mai-with-u/MaiBot/issues/2017 ）：在 Planner 构造发送给 LLM 的请求体之前，自动过滤掉 messages/Context Items 中所有 role 为 assistant 的纯文本消息（仅保留 system、user、tool 角色），消除「不调用工具」坏示例对模型的污染。支持配置开关 strip_assistant_messages（默认开启）与 strip_reasoning_messages（默认关闭），仅影响临时请求体，不回写聊天历史。如果你发现 planner 决策声明回复而没有任何 reply 的调用，可以尝试使用该插件解决。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_filter_assistant",
+              "homepage": "https://github.com/cateyemizuki/cateye_filter_assistant",
+              "documentation": "https://github.com/cateyemizuki/cateye_filter_assistant/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_filter_assistant/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser"
+              }
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17501,8 +17689,71 @@
       "id": "github.cateye.api-balance",
       "manifest_id": "github.cateye.api-balance",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_api_balance",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "0da5608fbfd80d6bb404b670108bdb300ffbbfaa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:27:42Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_api_balance/releases/tag/v1.0.5",
+          "release_notes": "1.0.4：适配 MaiBot 1.3.0 插件市场规范——全部配置字段/分组补英文 i18n 元数据，manifest supported_locales 增加 en；功能与行为无变化。\n\n1.0.5：安全加固——summary.llm_url 接入出站 URL 护栏（仅 https、拒绝内网/环回/云元数据地址，新增可选主机白名单 llm_allowed_hosts）；DNS 校验移入线程池不再阻塞事件循环；/wallet 与工具失败时错误回显脱敏；wallet_cache.json 0600 权限 + 原子写入；默认 summary.summary_model 由示例占位更正为真实模型 deepseek-chat。\n\n兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.api-balance",
+            "version": "1.0.5",
+            "name": "麦麦钱包",
+            "description": "查询指定 API Key 的账户余额：通过配置的余额接口获取 JSON 数据，并使用 LLM 总结为清晰的中文报告；提供 /wallet 指令与 get_api_balance 工具。查询与总结分别配置 API Key（只配一个时自动复用）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_api_balance",
+              "homepage": "https://github.com/cateyemizuki/cateye_api_balance",
+              "documentation": "https://github.com/cateyemizuki/cateye_api_balance/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_api_balance/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "wallet"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17627,8 +17878,69 @@
       "id": "github.cateye.mai-forward",
       "manifest_id": "github.cateye.mai-forward",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_mai_forward",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "5986a9a4d4abe759e2e4ee9cae2ebb46bf04f117",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:30:41Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_mai_forward/releases/tag/v0.1.3",
+          "release_notes": "0.1.2：全部配置字段/分组补英文 i18n 元数据（WebUI 英文界面不再显示字段名）。\n\n0.1.3 安全加固：名单检查 fail-closed（聊天类型未知或缺 ID 一律拒绝）；NapCat 候选平台消息 ID 命中后做发送者/时间/会话一致性校验；注入聊天记录改用「工具转发存档」分隔符包裹并附免责标注，相似行自动转义防二次提示注入；私聊转发补 data_dir/audit.jsonl 本地审计（不含消息内容）；新增 forward.max_items_per_call（默认 20）限频。\n\n兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.mai-forward",
+            "version": "0.1.3",
+            "name": "麦麦转发",
+            "description": "消息打包转发/复读/收藏分享：内容从 NapCat/宿主数据库原样读取（不从 LLM 文本构造）；提供 forward_messages（转发到其他聊天，群聊注入 [转发工具] 标注记录、私聊只真发不入库）、repeat_message（复读）、pack_chat_messages（把感兴趣的消息打包到本地，返回 pack_id）、list_message_packs（列包+概括）、share_message_pack（把打包内容以合并转发分享到当前聊天，受名单限制，支持分享后销毁/最大分享次数）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_mai_forward",
+              "homepage": "https://github.com/cateyemizuki/cateye_mai_forward",
+              "documentation": "https://github.com/cateyemizuki/cateye_mai_forward/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_mai_forward/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "send.hybrid",
+              "send.forward",
+              "message.get_by_id",
+              "chat.get_all_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "forward",
+                "fallback": "mai-forward"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17783,8 +18095,62 @@
       "id": "github.cateye.maimai-recall",
       "manifest_id": "github.cateye.maimai-recall",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_maimai_recall",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "82563d94947d65239fe12d4ae16d06bbaef7c7ed",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:31:11Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_maimai_recall/releases/tag/v0.1.3",
+          "release_notes": "0.1.2：全部配置项补英文 i18n；README 同步兼容区间。\n\n0.1.3：非管理员仅可撤回当前会话内消息（群聊校验群号一致、私聊比对会话流，查不到一律拒绝 fail-closed）；status=async 不再误报撤回成功；协议端错误只进日志、聊天侧给分类原因；新增每会话冷却 limits.cooldown_sec（默认 10 秒，0 不限）；管理员判定统一（宿主 ∪ 插件配置）。\n\n含 manifest 变更（config.get 能力声明）。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.maimai-recall",
+            "version": "0.1.3",
+            "name": "麦麦撤回",
+            "description": "为机器人提供消息撤回能力：LLM 工具按消息 ID 撤回指定消息；引用一条消息发送「/撤回」即可撤回被引用的消息；失败时返回具体原因（权限不足、超过时间限制、消息不存在等）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_maimai_recall",
+              "homepage": "https://github.com/cateyemizuki/cateye_maimai_recall",
+              "documentation": "https://github.com/cateyemizuki/cateye_maimai_recall/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_maimai_recall/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "message.get_by_id",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "undo-2"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17792,8 +18158,65 @@
       "id": "github.cateye.machine-crisis",
       "manifest_id": "github.cateye.machine-crisis",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_machine_crisis",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.4",
+          "tag": "v1.2.4",
+          "commit": "1b2f6a8504713fce6e227d75ab487d919d7f3f52",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:30:08Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_machine_crisis/releases/tag/v1.2.4",
+          "release_notes": "1.2.3：sdk.min_version 修正为 2.8.0；四个配置分组补 __ui_i18n__ 英文标题说明。\n\n1.2.4：屏蔽模式可观测——新增 block_dry_run（命中只计数不拦截）与按用户/群拦截计数落盘 block_stats.json，/智械危机 状态新增累计拦截 Top 榜；条件注入防伪造（发送者缓存键改三元组、只识别宿主 planner 前缀格式）；user 属性匹配改为默认关闭的显式配置；管理员判定统一（宿主 ∪ 插件配置，fail-closed）；README 新增信任边界说明。\n\n含 manifest 变更（能力声明/新配置项），登记市场侧如有需要可 /recheck。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.machine-crisis",
+            "version": "1.2.4",
+            "name": "智械危机",
+            "description": "配置一份同类名单（其他机器人/AI 的 QQ 号），在 Planner 与回复器的上下文紧随头部系统提示词之后（默认以 SystemMessageItem 形式）注入一条可修改的提示词：名单里的用户是你的同类，你们都是 Bot/AI，要更倾向肯定与保护同类。支持条件注入（仅当本次上下文出现名单用户的消息时才注入，省 token，基于（会话,消息ID,发送者）三元组追踪）。另含屏蔽模式开关：开启后改为拦截名单用户的消息（不入库、不入站），且不再注入提示词；支持 dry-run 观察模式（只计数不拦截）与按用户/按群的拦截计数统计。仅改写本次临时请求体，不回写聊天历史。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_machine_crisis",
+              "homepage": "https://github.com/cateyemizuki/cateye_machine_crisis",
+              "documentation": "https://github.com/cateyemizuki/cateye_machine_crisis/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_machine_crisis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bot"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17828,8 +18251,64 @@
       "id": "github.cateye.custom-filter",
       "manifest_id": "github.cateye.custom-filter",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_custom_filter",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "47f898357823e988515ad9cb89c1fe23796bf12c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:28:46Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_custom_filter/releases/tag/v1.0.6",
+          "release_notes": "1.0.5：WebUI 元数据补全与 sdk.min_version 修正（2.8.0）。\n\n1.0.6：修复 user_blacklist 混填「all + 具体用户」时的漏拦（改为并集语义）；归档内容哈希去重、同名文件自动加序号不再覆盖；跨天时段「归属日」语义明确（按时段开始时间归属）；/过滤状态 限管理员可用；入站 Hook 显式 timeout_ms=3000 并缓存时段解析；manifest plugin_type 修正为 extension 并补声明 config.get。\n\n含 manifest 变更，登记市场侧如有需要可 /recheck。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.custom-filter",
+            "version": "1.0.6",
+            "name": "麦麦不要再看那个了！",
+            "description": "精准过滤指定群/用户的消息（仅黑名单）：支持每日时间段 + 每周星期的时间窗口，并可按消息类型（戳一戳/表情包/合并转发/图片/文字）分别开关是否拦截，另支持按关键词屏蔽纯文本消息（带总开关，可配置多个关键词），命中规则的消息不入库、不入站。支持把当前过滤配置归档为 JSON（可命名或时间戳兜底），配置可多版定制。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_custom_filter",
+              "homepage": "https://github.com/cateyemizuki/cateye_custom_filter",
+              "documentation": "https://github.com/cateyemizuki/cateye_custom_filter/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_custom_filter/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "filter"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -18069,8 +18548,51 @@
       "id": "org.mai-mai.cv-lyric-context",
       "manifest_id": "org.mai-mai.cv-lyric-context",
       "repositoryUrl": "https://github.com/orge-8/cv_lyric_context",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "2.9.0",
+          "tag": "v2.9.0",
+          "commit": "14c52098cf7a908265066f31e92069c215ec7acf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T12:50:49Z",
+          "release_url": "https://github.com/orge-8/cv_lyric_context/releases/tag/v2.9.0",
+          "release_notes": "??????? API `get_recent_songs`;`sdk.min_version` 2.0.0 ? 2.1.0?",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.cv-lyric-context",
+            "version": "2.9.0",
+            "name": "中V歌词识别 · 歌曲库",
+            "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "urls": {
+              "repository": "https://github.com/orge-8/cv_lyric_context",
+              "homepage": "https://github.com/orge-8/cv_lyric_context",
+              "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.1.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -18078,8 +18600,84 @@
       "id": "github.cateye.better-post-processing",
       "manifest_id": "github.cateye.better-post-processing",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_better_post-processing",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "75f53627abb47a7d8507e38ff86f334ea74b7af8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:28:08Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_better_post-processing/releases/tag/v1.1.3",
+          "release_notes": "1.1.1：错别字接管门控放宽——宿主开启「回复后处理」但关闭「错别字」时也接管错别字，分段与错别字按宿主参数复刻执行。\n\n1.1.2：安全加固四处（表情包 hash 64 位校验、含义注入剔除方括号防注入、fallback 用户名截断清洗、含义库过期分批淘汰）；README 拆分出 docs/CONFIG.md、docs/BPP_COMMAND.md、docs/COEXISTENCE.md；/bpp 一图流按状态卡片截取修复底部空白；[plugin] at_trailing_space 默认开启。\n\n1.1.3：新增「私聊禁用撤回」（chinese_typo.private_no_recall，默认开启）、「空回复兜底」（empty_reply_fallback，默认关闭）、「错字黑名单」（chinese_typo.blacklist）三项能力；修复「打了错字却没纠正」的日志假阳性并补充可区分计数。\n\n兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.better-post-processing",
+            "version": "1.1.3",
+            "name": "更好的消息后处理",
+            "description": "出站消息增强：宿主关闭「回复后处理总开关」与「丰富回复」时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主关闭「启用引用回复」与「丰富回复」时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」）；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_better_post-processing"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jieba",
+                "version_spec": ">=0.42.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pypinyin",
+                "version_spec": ">=0.54.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "emoji.get_by_description",
+              "emoji.get_random",
+              "emoji.get_count",
+              "database.query",
+              "llm.generate",
+              "send.emoji",
+              "send.text",
+              "send.image",
+              "send.forward",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -18186,6 +18784,246 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.9.2",
+          "tag": "v0.9.2",
+          "commit": "0796a4169e09c0b68bd271214f4e3482e348db82",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T16:05:25Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.2",
+          "release_notes": "这一版改的是「群友派的活」被打回之后怎么办：不再从零重来，而是像真人团队一样接着改。\n\n## 新增：打回了接着改\n\n以前验收没过，下一轮是全新的子 agent，前面查过、做过的全忘了。现在：\n\n- **第 1 次没过**：交回给**同一个**子 agent。它记得自己上一轮查过什么、做过什么，只改被指出的地方。\n- **第 2 次还没过**：先把前情压成一段提要，换一个更强的模型接着改。用哪个模型在网页「设置 → 专岗」的「做不动时换用」里选，没选就用主模型的模型。\n- **第 3 次还没过**：停下来，说明原因，不再白烧 token。\n\n主模型仍然只负责排计划和验收，不亲自干活。\n\n## 新增：一步一步派\n\n主模型看了子 agent 交回的结果，可以让它接着做下一步（比如先调研，看完结果再做页面）。这不算打回，每轮最多 2 步。\n\n## 新增：子 agent 可以提异议\n\n子 agent 觉得要求本身有问题（做不到、前后矛盾、有更好的做法）时，先做能做的，再把理由和建议交上来。主模型验收时必须对异议表态。\n\n## 改进：主模型记得自己排过什么\n\n同一个任务里，主模型排计划、验收的对话会一直接着往下写，下一轮带着它想；需求改过会明说是从哪一版改的。对话只往后加，开头不改，所以支持前缀缓存的模型能省下重复的输入；太长了会先压成提要。\n\n## 网页\n\n- 设置 → 专岗：每个岗位多一项「做不动时换用」（主模型岗没有）。\n- 任务详情多一节「返工和换手」：每次接着改、换模型、派下一步、异议都看得到。\n\n## 升级提醒\n\n- 先备份插件和数据目录，覆盖插件时保留自己的 `config.toml`。\n- 数据库会自动升一级（库号 34 → 35，新加一张表存任务里的对话，任务结束就清空）。配置版本仍是 0.4.6，不用改配置。\n- 回滚到 0.9.1 不用恢复数据库（旧版本不碰这张新表）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.2",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.9.1",
+          "tag": "v0.9.1",
+          "commit": "7bf746adb87aa1c393a4c267db8aa9364d6877e6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T08:36:15Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.1",
+          "release_notes": "0.9.0 的跟进小版本：让「自动找好来源」更好用，并让搜索参考成绩。\n\n## 改进：取订阅源时安全地跟着跳转\n\n很多网站会把地址跳到另一个地址（比如从 `example.com` 跳到 `www.example.com`）。0.9.0 为了安全一律不跟，结果不少好来源因此没订上。\n\n- 现在最多跟着跳 3 次。\n- 每跳一次都重新检查目标地址，确保不会跳进本机或内网。\n- 总时间和下载大小的上限照旧。\n- 找订阅地址时会跳过只有评论的那种订阅源。\n\n## 新增：每周专门搜一次来源\n\n每周列来源地图时，模型会顺带给出 1~2 个「找博客 / 找 newsletter」的搜索词。程序拿去搜，搜到的网站进入来源地图候选。\n\n- 照样要验证：能找到 RSS、14 天内有更新、是真文章、不是大平台。\n- 不占平时找资讯的搜索次数。\n- 网页的来源地图里，这类网站会标「搜到的」。\n\n## 新增：搜索参考成绩\n\n- 如果接了好几家搜索服务，最近 30 天成绩明显差的那家（进网页的比例不到主力那家的一半）平时不再补搜，每周仍给它一次机会。只接一家时这条不起作用。\n- 最近 14 天中文搜和英文搜（分资讯 / 文章）各自的成绩，会写给模型参考，让它多用效果好的搜法。只是参考，不硬性分配次数。\n\n## 新增：看好来源占了多少\n\n设置 → 资讯来源 → 优质来源，每个群多一行：近 14 天入选的资讯里，来自优质来源几条、订阅 RSS 带来几条、其他几条。\n\n## 升级提醒\n\n- 从 0.9.0 升级：没有数据库结构变化（库号仍 34），配置版本仍是 0.4.6，不需要改配置。\n- 从更早版本升级，请看 [v0.9.0 的升级提醒](https://github.com/CharTyr/MaiWork/releases/tag/v0.9.0)。\n- 更新插件文件时，**保留自己的 `config.toml` 和数据目录**。\n\n## 验证\n\n- 新功能都先写了失败的测试，再实现。\n- 公开仓库副本完整测试：**5418 通过、1 跳过**。跳过的那条只适用于「没接扩展管理」的环境。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.9.0",
+          "tag": "v0.9.0",
+          "commit": "a73647f1f0bfedc2668911f009f19835f91f10f9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T06:20:05Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.0",
+          "release_notes": "## 新增：资讯来源更多样（自动订阅 RSS）\n\nMaiWork 会按**群里的真实反应**挑出好来源，自动订阅它们的 RSS。\n\n- **门槛**：近 30 天里，这个来源至少有 4 条 4 分以上的资讯上了网页，分布在至少 3 个不同的日子，并且至少 1 条有群里的反应（有人回复、接着聊、点开或点「有用」）。有净「没用」的不订。RSS 自己带来的条目不算成绩，避免越订越偏。\n- **整站排除大平台和聚合站**（GitHub、YouTube、B 站、Steam 商店、arXiv 等）。Substack、Medium 和 dev.to 可以按作者订阅。\n- **来源地图**：每个群的画像成形后，每周让模型列出本领域的一手来源和值得关注的作者，再由代码逐个验证：能找到 RSS、14 天内有更新、条目是真文章。验证通过的才订阅。\n- **名额与试用**：门槛来的和来源地图来的各最多 3 个，内置固定清单不占名额。新订的源有 14 天试用期，每轮最多给 2 条候选。\n- **自动退订**：满足任一条就退订，以后也不再推荐。\n  - 两周内给过 10 条以上候选，一条都没进资讯\n  - 净「没用」达到 2 次\n  - 试用期结束时一条都没进资讯\n- **网页**：在 设置 → 资讯来源 → RSS 里，自动订阅的源标着「自动」，并写出订阅原因和试用截止日。每个源显示「近 30 天给了几条、进资讯几条」。每个群可以展开查看自动订阅记录和来源地图（哪些能订、哪些没订上、为什么）。\n- 删除自动订阅的源只需一键，删除后不会再被推荐。没通过体检的（比如对方网站暂时限流）只记为「没订上」，以后还会再试。\n\n## 新增：构想先评估能不能做\n\nMaiWork 会先对照子 agent 实际拥有的工具来判断构想。做不到的，或者需要群友亲自参与的，不再进入构想列表。管理员可以在构想页看到「最近 7 天拦下了几条」以及原因。已有的旧构想保持不变。\n\n## 调整：文章少一点、新一点\n\n- 每轮最多收 1 篇文章，其余名额留给资讯。\n- 文章只收 60 天内发布的（原来是 180 天）。\n- 找料时，文章最多占一个方向。\n- 群里的资讯卡片对文章不再显示发布日期。\n\n## 改进：来源与日期更准\n\n- 来源名统一成「域名」或「域名/作者」，同一个站不再因为写法不同被当成多个来源。\n- 代码直接从网页读取发布日期，资讯「7 天内」和候选「48 小时内」两条规则都会参考它。\n- RSS 来的条目也会经过内容核验。\n\n## 一并包含 0.8.0（此前已推送，但没有单独发 Release）\n\n- 往群里发什么、发多少、几点不打扰、谁能批本群的活，从全局一份改成**每个群一份**，在群页设置。\n- 开场白、资讯卡片、构想提一嘴统一走发件箱，每群开关、每日总上限、睡觉时段统一生效。\n- 新增本群规矩与做法，任务和目标合并到一页。\n- 修复资讯 JSON 解析问题，以及备用模型切换的问题。\n\n## 升级提醒\n\n- 更新插件文件时，**保留自己的 `config.toml` 和数据目录**。\n- **从 0.7.9 直接升级**：会跑 0.8.0 的数据库升级（库号 31 → 34），并把旧的全局推送 / 批准设置迁移成每群一份。迁移成功后会改写 `config.toml`，删掉 9 个旧的全局键，这可能再触发一次插件重载。如果日志里出现两次启动撞车（`No module named '_maibot_plugin_chartyr_maiwork'`），touch 一下 `_manifest.json` 让它再加载一次即可。升级前请先备份数据库，升级后不能再退回 0.7.9 继续用新库。\n- **从 0.8.0 升级**：没有数据库结构变化，库号仍是 34。配置版本仍是 0.4.6，不需要改配置。自动订阅用到的新数据都存在已有的键值表里。\n- 自动订阅默认就会运行（每天检查一次、每周列一次来源地图），不会往群里发消息。不想要某个源，在网页上删掉即可。\n\n## 验证\n\n- 新功能都先写了失败的测试，再实现。\n- 公开仓库副本完整测试：**5351 通过、1 跳过**。跳过的那条只适用于「没接扩展管理」的环境。\n- 宿主契约测试在真实 MaiBot 环境里 8 项全部通过。\n- 已在作者自己的线上环境运行：热重载正常，其他插件和记忆存盘不受影响，自动订阅首轮按预期订上了源。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.7.9",
           "tag": "v0.7.9",
@@ -19177,8 +20015,67 @@
       "id": "github.cateye.isaac.item",
       "manifest_id": "github.cateye.isaac.item",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_isaac_item",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.10",
+          "tag": "v0.2.10",
+          "commit": "32ac7ec66d7fa519057ec36c1fb9bd15f8f62b95",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:29:55Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_isaac_item/releases/tag/v0.2.10",
+          "release_notes": "0.2.9：全部 5 个配置分组与 37 个字段补 i18n/分组元数据（中文文案不变，不增删字段、不改默认值）。\n\n0.2.10 安全加固：存档下载校验改走统一 SSRF 护栏 url_guard（scheme 白名单、内网/保留段黑名单、拒凭据内嵌、重定向逐跳复验）；三个路径配置项收紧（解析结果必须落在插件/数据目录内）；/以撒 指令触发面锚定消息开头（闲聊不再拉起帮助）；下载/解析异常不再回显聊天；存档位超出 1~3 明确报错不再取模覆盖。\n\n许可：整包 CC BY-NC-SA 4.0（wiki 数据非商业），代码部分另以 MIT。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.isaac.item",
+            "version": "0.2.10",
+            "name": "以撒道具图鉴",
+            "description": "【非商业插件：整包按 CC BY-NC-SA 4.0 发布，含 wiki 来源的需署名 / 非商业 / 相同方式共享数据，禁止商用；代码与非 CC 数据另按 MIT 提供，详见仓库 README 开头的许可声明】《以撒的结合》道具图鉴与存档解析插件：既能按中文名、英文名、编号、标签或效果关键词查询道具的品质、效果与协同（数据为打包在插件内的离线快照），也能让用户把游戏存档 .dat 传到群文件后由插件按 QQ 号缓存并解析出进度解析图、成就 / 图鉴 / 挑战完成度与全局统计（全程只读，不修改存档）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "CC BY-NC-SA 4.0",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_isaac_item",
+              "homepage": "https://github.com/cateyemizuki/cateye_isaac_item",
+              "documentation": "https://github.com/cateyemizuki/cateye_isaac_item/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_isaac_item/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "gamepad-2",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -19354,8 +20251,66 @@
       "id": "github.cateye.ciallo",
       "manifest_id": "github.cateye.ciallo",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_ciallo",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "8a68fe444f2c98a3b7167d931827bc43a5477d9e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:28:24Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_ciallo/releases/tag/v1.0.3",
+          "release_notes": "1.0.2：1.3.0 兼容性修订——配置模型补齐 WebUI 元数据（字段 i18n + 分组 __ui_i18n__），sdk.min_version 修正为实际最低 2.8.0。\n\n1.0.3：安全与规范加固——引用注入认领收紧（按会话多槽存放 + 随机 token + 60 秒 TTL + 发送者一致性校验）；关键词自动回复发送链后台化，不再阻塞入站处理；语音文件名白名单校验（拒绝 ADS 形态与路径分隔符）；昵称获取失败仅首次告警后续静默重试。\n\n兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.ciallo",
+            "version": "1.0.3",
+            "name": "Ciallo～(∠・ω< )⌒★",
+            "description": "让麦麦可爱地打个招呼，发送 Ciallo～(∠・ω< )⌒★。提供 LLM 工具 send_ciallo（可传入 message_id 对指定消息引用回复）与命令 /ciallo（任何人可用，仅当整条消息为 /ciallo 时触发并发送一条 Ciallo），以及可选的关键词自动回复（默认关闭，配置启用后命中关键词的消息自动收到一条 Ciallo 引用回复）。另支持可选语音输出（默认关闭）：开启后每条 Ciallo 按 [voice].probability（0~1，默认 1.0 = 全部语音）的概率独立替换为语音直接发出，未替换时仍按正常文本逻辑发送；插件自带默认语音 assets/ciallo.wav（安装即用，无需手动放置），如需自定义可在插件数据目录放同名文件覆盖（数据目录优先）。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_ciallo",
+              "homepage": "https://github.com/cateyemizuki/cateye_ciallo",
+              "documentation": "https://github.com/cateyemizuki/cateye_ciallo/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_ciallo/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "chat.get_all_streams",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "sparkles"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -19363,8 +20318,59 @@
       "id": "github.cateye.mai-personality-swap",
       "manifest_id": "github.cateye.mai-personality-swap",
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_mai_personality_swap",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.7",
+          "tag": "v1.4.7",
+          "commit": "42cb2ae73910131909d1934ccb1602e9d59f1dba",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:30:54Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_mai_personality_swap/releases/tag/v1.4.7",
+          "release_notes": "1.4.6：修复脚本 LLM 调用路由（llm_generate 改显式 task_name 传参，1.2.x 与 1.3.0 行为一致）；全部 23 字段补 i18n；host 下限放宽 1.0.0。\n\n1.4.7：安全——随包自检脚本改名 _maips_selfcheck.py 默认不加载，触发需 debug 开启且发送者为管理员（防任意成员翻动人格/消耗 token）；/mps weight 清零走预设白名单校验；黑白名单覆盖脚本事件派发与脚本外发；persona 外壳替换收窄到官方模板固定句式；官方临时风格文本判定改为前缀+长度；BLOCKING hook 内 TOML 解析移入线程池。\n\n规范：manifest description 精简并新增 changelog 字段；管理员匹配两侧统一 strip+lower、判定统一（宿主 ∪ 插件配置）。\n\n含 manifest 变更，登记市场侧如有需要可 /recheck。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.7",
+            "name": "夺舍麦麦",
+            "description": "把当前人格设定保存为预设，按条件/概率/权重自动或手动切换各聊天流的人格；预设激活期间以覆盖式注入改写请求 system 中的官方人格/表达/行为段落（替换而非叠加），锚点未命中自动回退追加式，绝不误删官方内容。支持 maips 自定义脚本（与插件同信任级别）、切换状态持久化（重启不丢）、黑白名单与管理员鉴权。版本历史见 CHANGELOG.md。",
+            "changelog": "CHANGELOG.md",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_mai_personality_swap"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "config.get",
+              "chat.get_all_streams",
+              "llm.generate",
+              "message.get_recent",
+              "message.build_readable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.cateye.mai-personality-swap"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -20434,6 +21440,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.3",
+          "tag": "v0.3.3",
+          "commit": "3b036e429712881e39806fd454c0f824d5d24ccb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T14:31:50Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_scp_article/releases/tag/v0.3.3",
+          "release_notes": "0.3.2：新增管理员体系（admins.admin_users，支持 qq:123456 前缀；admin_bypass_refresh_cooldown 管理员刷新免冷却）；PNG 解压炸弹防护（像素总数上限）；抓取错误聚合两站原因。\n\n0.3.3：manifest 补声明 config.get；抓取重定向逐跳复验（url_guard 统一护栏：https、官方域白名单、DNS 不落内网/元数据段）；页头资源 data URI 白名单；PNG 解压输出上限（分块解压防高压缩比绕过）；全部字段/分组补英文 i18n；刷新冷却可配置（refresh_cooldown_minutes/refresh_fail_cooldown_seconds，失败不再吃全量冷却）；目录刷新改「重建单飞+快照原子替换」，刷新中搜索/随机直接用旧目录。\n\n许可：代码 MIT；SCP 维基文本与页头素材依 CC BY-SA 3.0（见 NOTICE.md）。含 manifest 变更，登记市场侧如有需要可 /recheck。兼容 MaiBot 1.2.x 与 1.3.0（host 1.0.0~1.99.99）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.scp-article",
+            "version": "0.3.3",
+            "name": "SCP 条目查询",
+            "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_scp_article",
+              "homepage": "https://github.com/cateyemizuki/cateye_scp_article",
+              "documentation": "https://github.com/cateyemizuki/cateye_scp_article/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.image",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "file-search",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.2.4",
           "tag": "v0.2.4",
           "commit": "b256126982099720a92ec12d58432ec9bffb85cf",
@@ -20721,6 +21792,846 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "valleywinds.self-identity",
+      "manifest_id": "valleywinds.self-identity",
+      "repositoryUrl": "https://github.com/ValleyWinds/Self-Identity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.3",
+          "tag": "v1.4.3",
+          "commit": "a95cb7e3ae3fd3224292e7b313a8e6deed5941aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T13:28:26Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.3",
+          "release_notes": "## 本版本说明\n\n安全加固版本，响应插件中心审核意见的三项修复：\n\n- **路径穿越防护**：`image_dir` / `thumbnail_dir` 的相对路径解析后强制限制在插件目录内（`../../` 之类越界配置会告警并回退默认目录）；绝对路径仍支持（数据盘等场景，配置页有可信位置提示）\n- **压缩炸弹防御**：缩略图生成在解码前校验图片像素总数（上限 4000 万像素），恶意超大尺寸图不再可能造成内存耗尽\n- **依赖声明放宽**：`pillow` 声明下限从 `>=12.3.0` 放宽为 `>=10.0.0`——插件所用 API 在 Pillow 10 即可用，主程序基线（`>=12.3.0`）恒满足，避免版本声明对宿主环境产生约束\n\n## 从 1.4.1 / 1.4.2 升级\n\n直接更新即可，配置结构无变化，无需迁移。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.3",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "plugin_type": "chat",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        },
+        {
+          "version": "1.4.2",
+          "tag": "v1.4.2",
+          "commit": "886d1911a5113f6036f470fc6f49af497fcfcf81",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T12:57:31Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.2",
+          "release_notes": "## 本版本说明\r\n\r\n按插件中心审核建议做的两项小改进，功能无变化：\r\n\r\n- manifest `dependencies` 显式声明 `pillow>=12.3.0`（Pillow 由主程序基线提供，此为自描述声明，安装行为无变化）\r\n- 人设图库路径配置项（`image_dir` / `thumbnail_dir`）在配置页增加「请确保指向可信位置」提示\r\n\r\n## 从 1.4.1 升级\r\n\r\n直接更新即可，配置结构无变化，无需迁移。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.2",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "plugin_type": "chat",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        },
+        {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "ad214b8300bce2a40446f16392133ed7ddae3911",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T11:55:11Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.1",
+          "release_notes": "# 自我信息插件 v1.4.1\r\n\r\n## 本版本说明\r\n\r\n这是接手上游 [self_identity_plugin](https://github.com/SengokuCola/self_identity_plugin)（已停止维护）后的**首个发布版本**，版本线接续上游的 1.3.1：\r\n\r\n- **适配 MaiBot 1.3.x**，版本上界放开（`999.999.999`），后续 MaiBot 升级不再被版本校验挡住\r\n- **插件 ID 变更**：`sengokucola.self-identity-plugin` → `valleywinds.self-identity`，两者是独立插件\r\n- 移除上游遗留的图片比对功能死代码约 500 行，插件更精简\r\n- 工具名拼写更正：`search_self_infomation` → `search_self_information`\r\n- 稳定性修复：QQ 头像下载异步化（不再阻塞插件进程）、本地图片读取 5MB 上限、工具参数类型兜底\r\n- **WebUI 配置页全中文化**，自我信息可在配置页直接增删编辑\r\n- 开源协议变更为 **GPL-3.0-or-later**\r\n\r\n## 从旧版迁移\r\n\r\n> ⚠️ **新版配置文件与旧版不兼容**（`infos` 从顶层移到了 `infos_section` 节内），且迁移自我信息需要参考旧版配置。**请先不要卸载旧插件**，等迁移完成后再卸载。\r\n\r\n1. 安装本插件（此时旧插件暂时保留）\r\n2. 参考**旧插件** `config.toml` 里你写的 `[[infos]]` 内容，把自我信息填到新插件配置页（或新配置的 `[[infos_section.infos]]`）；人设图片复制到新插件目录的 `self_image` 文件夹\r\n3. 确认新插件工作正常后，**禁用或卸载**旧插件 `sengokucola.self-identity-plugin`（新旧版本三个工具同名，同时启用会冲突）\r\n\r\n## 致谢与协议\r\n\r\n本项目基于 SengokuCola 的 [self_identity_plugin](https://github.com/SengokuCola/self_identity_plugin) 修改而来，感谢原作者的原始工作。本项目以 GPL-3.0-or-later 发布。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.1",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "plugin_type": "chat",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.0-hz.maifetch",
+      "manifest_id": "com.0-hz.maifetch",
+      "repositoryUrl": "https://github.com/yufei-pan/maibot-maifetch",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "f6007b5cbda1bcc4bd2b6f110afd2eea14b36a58",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T20:31:24Z",
+          "release_url": "https://github.com/yufei-pan/maibot-maifetch/releases/tag/v0.1.0",
+          "release_notes": "## 新增\n\n- 模型用量提供两个可分别关闭的排行：按调用次数（默认）与按花费；合计覆盖全部模型并注明只列出前 N 个。\n- 规划器工具 `maifetch`：查询版本、接入平台、已加载插件与工具、已配置模型任务、近 N 天模型用量、本次在线时长（可选硬件信息）；`section` 参数筛选部分，`send_card=true` 直接发状态卡片。\n- 规划器注入：每次规划前在系统提示词末尾追加一段只含慢变事实的自身信息摘要（后台定时刷新，不影响提示词缓存）。\n- `/maifetch` 命令：发送状态卡片图（`文字` 参数发文字版；可用 `dashboard` / `terminal` / `sheet` 指定内置模板）；同一聊天有冷却。\n- 三个内置模板：dashboard（默认紧凑仪表盘）、terminal（neofetch 风格 + 呆萌像素麦麦）、sheet（素净信息单）；支持自定义 HTML 模板与 `data_json`。\n- 可见性开关（账号 / 插件列表 / 花费）统一作用于工具、注入与卡片；花费默认显示、账号默认隐藏。硬件信息默认显示（可整体或逐项关闭），仅用标准库采集，绝不采集主机名、IP、用户名、路径、序列号。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.maifetch",
+            "version": "0.1.0",
+            "name": "maifetch（麦麦状态）",
+            "description": "让麦麦了解自己：版本、平台、插件与工具、模型用量、在线时长（可选硬件信息）。提供规划器工具、规划器自身信息注入与 /maifetch 状态卡片图。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-maifetch",
+              "homepage": "https://github.com/yufei-pan/maibot-maifetch",
+              "documentation": "https://github.com/yufei-pan/maibot-maifetch/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-maifetch/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.1",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "database.get",
+              "component.get_all_plugins",
+              "llm.get_available_models",
+              "statistics.local.models",
+              "statistics.local.message_trend",
+              "render.html2png",
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.orge-8.life-frequency",
+      "manifest_id": "org.orge-8.life-frequency",
+      "repositoryUrl": "https://github.com/orge-8/life-frequency",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.8.0",
+          "tag": "v1.8.0",
+          "commit": "45d20cd2523bad2084c5053ac0db65f0c5e022cb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T12:50:51Z",
+          "release_url": "https://github.com/orge-8/life-frequency/releases/tag/v1.8.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.life-frequency",
+            "version": "1.8.0",
+            "name": "生活频率",
+            "description": "为麦麦维护一份持续的小生活（作息活动由 LLM 依人设与近/中/远三层近期经历生成、情绪体力、身体、日期节日、经济），按当前状态缩放每个会话的发言频率，并自动适配宿主的两种回复触发模式；含工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（工作日、上下班时段、午休、岗位职责），由强制层守住作息一致性；经济维度经只读 API 读取 budget-pacer 的真实月度预算，手头紧时让她省着花但不参与倍率（避免与预算插件双重压制）；与其它写频率的插件做乘性合成而不是互相覆盖；可选把 better-diary 的选材摘要（谁、做了什么、原话）与「有人找我」接成她的近期经历（默认关闭，睡眠中只记录不产生情绪增量）；可选按素材主动开口（默认关闭）；睡眠中被 @ 会临时醒来回一句（默认开，可关）；可选把「外面的世界」接成她的经历（v1.8.0，默认开、每个源可单独关）：经只读 API 读 bilibili-live-gateway 的开播状态、bilibili-dynamic-push 的最近推送与订阅、group-welcome 的最近入群新人、cv_lyric_context 的最近命中歌曲，只加经历与情绪、不参与倍率，每源独立降级且每日有情绪与条数上限。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/life-frequency"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "chat.get_all_streams",
+              "frequency.set_adjust",
+              "frequency.get_adjust",
+              "frequency.get_current_talk_value",
+              "maisaka.proactive.trigger",
+              "llm.generate",
+              "config.get",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.7.1",
+          "tag": "v1.7.1",
+          "commit": "6ca5f6bb4c6825323efc943a92269218cce9cfa4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T10:40:19Z",
+          "release_url": "https://github.com/orge-8/life-frequency/releases/tag/v1.7.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.life-frequency",
+            "version": "1.7.1",
+            "name": "生活频率",
+            "description": "为麦麦维护一份持续的小生活（作息活动由 LLM 依人设与近/中/远三层近期经历生成、情绪体力、身体、日期节日、经济），按当前状态缩放每个会话的发言频率，并自动适配宿主的两种回复触发模式；含工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（工作日、上下班时段、午休、岗位职责），由强制层守住作息一致性；经济维度经只读 API 读取 budget-pacer 的真实月度预算，手头紧时让她省着花但不参与倍率（避免与预算插件双重压制）；与其它写频率的插件做乘性合成而不是互相覆盖；可选把 better-diary 的选材摘要（谁、做了什么、原话）与「有人找我」接成她的近期经历（默认关闭，睡眠中只记录不产生情绪增量）；可选按素材主动开口（默认关闭）；睡眠中被 @ 会临时醒来回一句（默认开，可关）。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/life-frequency"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "chat.get_all_streams",
+              "frequency.set_adjust",
+              "frequency.get_adjust",
+              "frequency.get_current_talk_value",
+              "maisaka.proactive.trigger",
+              "llm.generate",
+              "config.get",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.local.mai-affection",
+      "manifest_id": "com.local.mai-affection",
+      "repositoryUrl": "https://github.com/MoonlyCake/maibot-affection",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "99559fe03f845021e4f0aefdb56d5b8d41f80e3e",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-06T03:50:33Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.0.3",
+          "release_notes": "旧版仅按少量感谢、夸奖和辱骂完整短句记分，正常 @ 麦麦聊天可能始终保持 0。\r\n\r\n- 私聊、群聊 @ 麦麦或以昵称开头的普通交流默认 +1，与夸奖共用 300 秒正向冷却。\r\n- 明确负面优先扣分；查询、空消息、其他 / 命令、语音转录失败占位和默认未指向麦麦的群消息不加基础分。\r\n- 新增 `affection.interaction_step`，默认 1，设为 0 可关闭基础交流分。已有配置缺少此字段时使用新默认值。\r\n- 记分仍全程本地执行，不增加模型调用；保留现有数据库、插件 ID、90 秒模型 RPC 时限和所有查询的引用回复。\r\n\r\n更新：将本页 ZIP 的 `affection/` 覆盖到 `plugins/affection/`，保留 `config.toml` 和数据库，再重载插件。\r\n\r\n验证：真实 SDK 2.9.0 下 39 项测试、Ruff 检查通过，覆盖普通交流、冷却持久、去重、负面优先及原有超时和引用回复。更新后可 @ 麦麦发送“今天过得怎么样”，再查询分数；成功记分会产生“好感度已记分”日志。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.0.3",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "7b9fcc4a945b5343787cf8fcfde4ac61152f6c33",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-05T08:18:09Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.0.2",
+          "release_notes": "修复好感度查询在原生 LLM RPC 默认 30 秒时限下提前超时的问题，并让所有查询回复引用原提问。\r\n\r\n- `reply.timeout_seconds` 默认 90 秒，同时传给模型 RPC 与回复任务。\r\n- 日常询问与 `@麦麦 查询好感度` 均通过原生 `send.hybrid` 的 reply + text 段回复原消息 ID。\r\n- 每次查询仍只调用一次 `replyer`，默认输出预算 160 Token。\r\n\r\n更新：用本页 ZIP 中的 `affection/` 覆盖现有插件文件，保留 `config.toml` 和数据目录。在 WebUI 或 `[reply]` 配置中把 `timeout_seconds` 改为 `90`，再重载插件。已保存的 30 秒配置不会被新默认值覆盖。\r\n\r\n验证：真实 maibot-plugin-sdk 2.9.0 下 32 项测试、Ruff 检查通过，包含 RPC 时限传递与并发查询引用目标。实际部署的模型和平台发送仍需在用户服务器上验证。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.0.2",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "a689bc9fded3f88ea3105293d999e4a0119fbd39",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-05T06:59:53Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.0.1",
+          "release_notes": "开发者：GPT-6.1 Sol Ultra。\r\n\r\n- 修正未包装语音文本末尾 ] 被误删的问题，仅剥除完整的 Host ASR 包装。\r\n- 补充 Hook 消息改写合约、必填字段与 send.text 历史同步的官方源码依据。\r\n- 修正源码 ZIP 与安装 ZIP 的安装目录说明，明确公开 API 的调用范围、事件去重保留和配置格式标识。\r\n\r\nPyPI SDK 2.9.0／Python 3.12 下 31 项测试与 Ruff 检查通过；新增回归测试确认修复前失败、修复后通过。真实平台与在线模型完整联调尚未执行。\r\n\r\n下载附件 ZIP，将 affection 目录复制到 MaiBot 的 plugins/。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.0.1",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "88c3fba33fa6c399c6e5ba57dd23376e6682cce7",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-05T05:24:07Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.0.0",
+          "release_notes": "开发者：GPT-6.1 Sol Ultra。\r\n\r\n- SQLite 持久记录好感度，支持事件去重和独立冷却。\r\n- 日常自然语言询问按麦麦人设随意回复；@麦麦 查询好感度使用认真明确的回复。\r\n- 本地识别与记分无需模型调用；每次获准查询调用一次原生 replyer，默认输出预算 160 Token。\r\n- Python 3.12，MaiBot 1.3.3，SDK 2.8.1+。\r\n\r\n验证：PyPI SDK 2.9.0 下 30 项单元测试与 Ruff 检查通过；官方 Host manifest 与组件加载检查通过。首版预发布，真实平台与在线模型完整联调尚未执行。\r\n\r\n下载附件 ZIP，将 affection 目录放入 MaiBot 的 plugins 目录；配置与示例见 README。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.0.0",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "cssqy.token-usage-report",
+      "manifest_id": "cssqy.token-usage-report",
+      "repositoryUrl": "https://github.com/CSSQY/token_usage_report",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.8.0",
+          "tag": "1.8.0",
+          "commit": "d165bc1efc699d9f59a418886e869069d4599a5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T22:59:41Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.8.0",
+          "release_notes": "### 主要功能\r\n\r\n- 配置：默认值收紧为「安全开箱」——`command.permission_mode` 默认 `whitelist`（只有白名单内的群可用指令）、`render.anonymize` 默认 `true`（群名 / 昵称默认匿名化）。\r\n- LLM 工具：`query_token_usage` 与 `/token` 共用同一套黑白名单判定，并新增 `command.tool_allowed_scopes`（默认仅 `current`）限制工具可查范围。\r\n\r\n### 细节\r\n\r\n- 权限：`query_token_usage` 的 `scope` 默认值由 `all` 改为 `current`，并删除 `stream_id` 参数声明——会话上下文完全由宿主注入，模型无法自行指定要读哪个会话。\r\n- 权限：范围白名单未包含 `group` / `user` / `all` 时，工具直接拒绝并提示改由管理员使用 `/token`。\r\n- 加固：会话视图新增宿主表结构守卫，取到行却读不到已知字段时明确报错（「宿主 ModelUsage 表结构与插件不兼容」），不再用 `row.get(...) or 0` 静默兜成 0。\r\n- 文档：补充 `render.allow_network` / `font_services` 的安全说明、`render.html2png` 兼容写法对应的最低 SDK 版本，以及「会话视图依赖宿主内部表结构」的契约说明。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.8.0",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "statistics.local.online_time_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.7.1'\n- '1.0.0'\n     ^"
+        }
+      ]
+    },
+    {
+      "id": "github.FleetingEternity-qyt.qq-like",
+      "manifest_id": "github.FleetingEternity-qyt.qq-like",
+      "repositoryUrl": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.5",
+          "tag": "v0.2.5",
+          "commit": "f54ea6fa56231fb759ddcb673181bddff6e6a206",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T10:49:56Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.2.5",
+          "release_notes": "### 🐛 修复\r\n- 修复命令路径返回长文本导致宿主与显式回复可能重复发送消息的问题（用户不会再看到两条相同的点赞结果）。\r\n- 修复 AI Tool 路径绕过 `allow_raw_qq` 开关的问题，现在命令路径和 AI 工具路径的配置语义完全一致。\r\n\r\n### 🛡️ 安全\r\n- 当 `admin_only = true` 但 `admins` 列表为空时，插件加载会在控制台输出明确的警告日志，引导用户配置管理员，避免出现“所有人都无法使用”的困惑。\r\n\r\n### 🛠️ 优化\r\n- “点满”指令的返回值改为动态读取 `max_times` 配置项，提升代码自洽性与灵活性。\r\n- 更新 `enable_llm_tool` 的配置描述，明确关闭后需重启插件生效。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "0.2.5",
+            "name": "QQ 名片点赞",
+            "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.napcat-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.2.4",
+          "tag": "v0.2.4",
+          "commit": "daf4b6e335baa905b181445d24772ee18065f9f7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-04T10:30:19Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.2.4",
+          "release_notes": "### 🛡️ 安全\r\n- 将 `admin_only` 默认值调整为 `true`，新安装插件默认仅允许管理员使用。\r\n- 在 README 中补充普通用户指定任意 QQ 号点赞可能导致 QQ 侧限流或风控的风险说明。\r\n\r\n### 🐛 修复\r\n- 修复 AI Tool 传入非数字 `times` 参数时可能触发 `ValueError` 的问题。\r\n- 优化 `/赞 1234` 等 3-4 位纯数字参数的错误提示，不再仅返回通用的目标识别失败信息。\r\n\r\n### 🛠️ 兼容性\r\n- 保留 `/赞`、`/点赞`、`/zan` 命令。\r\n- 保留 @、回复消息、指定 QQ 号等目标识别方式。\r\n- 保留 AI Tool `like_qq_profile`。\r\n- 保留原有 `like_state.json` 数据结构。\r\n- 保留 `plugin_type: \"tool\"`。\r\n- 不改变现有点赞额度、冷却及并发预占机制。\r\n- 不改变现有 Tool 注册机制。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "0.2.4",
+            "name": "QQ 名片点赞",
+            "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.napcat-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.2.3",
+          "tag": "v0.2.3",
+          "commit": "b933d23399ac76e7571a7f8af0a544f5b5d799cb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-09-25T08:16:52Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.2.3",
+          "release_notes": "\r\n✨ v0.2.3\r\n\r\n\r\n本次版本主要针对 QQ 名片点赞的\r\n稳定性、并发控制和异常处理\r\n进行了优化。\r\n\r\n\r\n🛠️ 优化\r\n\r\n\r\n\r\n\r\n优化点赞请求的状态管理流程。\r\n\r\n\r\n增加并发点赞额度预占机制，避免多个请求同时执行时突破每日点赞上限。\r\n\r\n\r\n优化 AI 点赞次数解析，用户明确指定的点赞次数优先于 AI Tool 参数。\r\n\r\n\r\n优化 NapCat API 异常处理。\r\n\r\n\r\n优化机器人 QQ 号获取逻辑，减少适配器异常时的重复请求。\r\n\r\n\r\n优化点赞状态文件写入方式，降低异常退出导致状态文件损坏的风险。\r\n\r\n\r\n减少正常运行时的调试日志输出。\r\n\r\n\r\n\r\n\r\n🐛 修复\r\n\r\n\r\n\r\n\r\n修复 NapCat API 调用失败后仍可能消耗 cooldown 的问题。\r\n\r\n\r\n修复点赞请求失败后临时额度没有正确释放的问题。\r\n\r\n\r\n修复多个点赞请求并发执行时可能突破每日点赞额度的问题。\r\n\r\n\r\n修复 AI Tool 已传入点赞次数后，无法根据用户原话进一步修正的问题。\r\n\r\n\r\n修复点赞状态文件异常时可能产生不完整状态的问题。\r\n\r\n\r\n\r\n\r\n🔄 兼容性\r\n\r\n\r\n\r\n\r\n保留 \r\n/赞\r\n、\r\n/点赞\r\n、\r\n/zan\r\n 命令。\r\n\r\n\r\n保留 @用户、回复消息、QQ 号等目标识别方式。\r\n\r\n\r\n保留 AI Tool \r\nlike_qq_profile\r\n。\r\n\r\n\r\n保留原有 \r\nlike_state.json\r\n 数据结构。\r\n\r\n\r\n保持现有默认配置行为不变。\r\n\r\n\r\n\r\n\r\n📦 配置\r\n\r\n\r\n本版本配置版本：\r\n\r\n\r\n\r\n0.2.3\r\n\r\n\r\n\r\n\r\n现有用户升级后无需修改原有配置即可继续使用。\r\n\r\n\r\n\r\n\r\n\r\n完整更新记录：\r\n \r\nCHANGELOG.md\r\n\r\n\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "0.2.3",
+            "name": "QQ 名片点赞",
+            "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.napcat-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.2.2",
+          "version": "0.2.2",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.2.0'\n- '0.2.2'\n       ^"
+        }
+      ]
     }
   ]
 }
