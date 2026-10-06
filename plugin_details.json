@@ -1712,43 +1712,6 @@
     }
   },
   {
-    "id": "Unreal.My_Fucked_turtle_soup",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "海龟汤",
-      "version": "1.6.2",
-      "description": "支持游戏模式的海龟汤题目生成和互动。0.10+请移步 https://github.com/Heximiao/turtlesoup_plugin",
-      "author": {
-        "name": "Unreal"
-      },
-      "license": "MIT",
-      "keywords": [
-        "海龟汤",
-        "推理游戏",
-        "AI",
-        "娱乐"
-      ],
-      "categories": [
-        "Entertainment & Interaction"
-      ],
-      "host_application": {
-        "min_version": "0.10.0"
-      },
-      "homepage_url": "https://github.com/svila-ylym/My_Fucked_turtle_soup-Maimbot",
-      "repository_url": "https://github.com/svila-ylym/My_Fucked_turtle_soup-Maimbot",
-      "plugin_info": {
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "HaiTurtleSoupCommand",
-            "description": "处理 /hgt 命令，生成海龟汤题目或进行游戏互动。用法: /hgt [问题|提示|整理线索|猜谜|退出|帮助|汤面|揭秘]"
-          }
-        ]
-      }
-    }
-  },
-  {
     "id": "Windpicker-owo.maibot-screen-monitor-plugin",
     "manifest": {
       "manifest_version": 1,
@@ -1906,43 +1869,6 @@
     }
   },
   {
-    "id": "Unreal.My_Fucked_100_People",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "MY_FUCKED_100_PEOPLE",
-      "version": "1.3.3",
-      "description": "群U群U，让我c一下，就一下，好不好嘛~",
-      "author": {
-        "name": "Unreal",
-        "url": "https://github.com/svila-ylym"
-      },
-      "license": "MIT",
-      "keywords": [
-        "qq",
-        "娱乐",
-        "哈基米",
-        "command"
-      ],
-      "categories": [
-        "Entertainment & Interaction"
-      ],
-      "host_application": {
-        "min_version": "0.10.0"
-      },
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "general",
-        "components": [
-          {
-            "type": "command",
-            "name": "CcbLoadQQCommand",
-            "description": "懂的都懂"
-          }
-        ]
-      }
-    }
-  },
-  {
     "id": "Ghost-chu.maiplug_message_react",
     "manifest": {
       "manifest_version": 1,
@@ -1982,116 +1908,6 @@
         ],
         "features": [
           "消息反应表情功能"
-        ]
-      }
-    }
-  },
-  {
-    "id": "Unreal.World_War_Simulator",
-    "manifest": {
-      "manifest_version": 1,
-      "name": "World War Simulator",
-      "version": "1.1.0",
-      "description": "“丞相，这一次还会败吗” - 一个战争的插件，玩家可以加入国家、战斗、结盟、拥有军衔和领土。使用此插件前需要阅读README",
-      "author": {
-        "name": "Unreal and 何夕",
-        "url": "https://github.com/svila-ylym"
-      },
-      "license": "GPLv3",
-      "keywords": [
-        "game",
-        "world war",
-        "simulation",
-        "nation",
-        "war",
-        "alliance",
-        "strategy"
-      ],
-      "categories": [
-        "Entertainment & Interaction"
-      ],
-      "homepage_url": "https://github.com/svila-ylym/World_War_Simulator",
-      "repository_url": "https://github.com/svila-ylym/World_War_Simulator",
-      "host_application": {
-        "min_version": "0.10.0"
-      },
-      "plugin_info": {
-        "components": [
-          {
-            "type": "command",
-            "name": "join_command",
-            "description": "加入或创建一个国家"
-          },
-          {
-            "type": "command",
-            "name": "my_command",
-            "description": "查看自己的信息"
-          },
-          {
-            "type": "command",
-            "name": "friends_command",
-            "description": "查看当前的友军列表"
-          },
-          {
-            "type": "command",
-            "name": "pvp_command",
-            "description": "对指定国家发起战斗"
-          },
-          {
-            "type": "command",
-            "name": "conquer_command",
-            "description": "对指定国家发起掠夺领土"
-          },
-          {
-            "type": "command",
-            "name": "ally_command",
-            "description": "与指定国家结盟"
-          },
-          {
-            "type": "command",
-            "name": "withdraw_command",
-            "description": "解除与指定国家的盟友关系"
-          },
-          {
-            "type": "command",
-            "name": "deploy_command",
-            "description": "在自己的领土上驻军"
-          },
-          {
-            "type": "command",
-            "name": "transfer_command",
-            "description": "(领袖) 将国家兵力转移给同国玩家"
-          },
-          {
-            "type": "command",
-            "name": "appoint_command",
-            "description": "(领袖) 任命官职"
-          },
-          {
-            "type": "command",
-            "name": "set_ideology_command",
-            "description": "(领袖) 设置国家制度"
-          },
-          {
-            "type": "command",
-            "name": "help_command",
-            "description": "显示帮助菜单"
-          },
-          {
-            "type": "command",
-            "name": "nation_command",
-            "description": "查看自己国家的信息"
-          },
-          {
-            "type": "command",
-            "name": "world_command",
-            "description": "查看世界现状"
-          },
-          {
-            "type": "action",
-            "name": "random_event_action",
-            "description": "触发随机世界事件"
-          }
         ]
       }
     }
@@ -8332,14 +8148,22 @@
     "id": "sengokucola.better-image",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.1",
+      "version": "1.1.5",
       "name": "Better Image",
-      "description": "提供互联网搜图、历史消息图片提取、裁切、放大、翻转、旋转和缩放工具。",
+      "description": "提供互联网搜图、历史消息图片提取、裁切和放大工具。",
       "author": {
         "name": "SengokuCola",
         "url": "https://github.com/SengokuCola"
       },
       "license": "MIT",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "image",
+          "background": "#1C272C"
+        }
+      },
       "urls": {
         "repository": "https://github.com/SengokuCola/better_image",
         "homepage": "https://github.com/SengokuCola/better_image",
@@ -8347,18 +8171,23 @@
         "issues": "https://github.com/SengokuCola/better_image/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.0.0"
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.9.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "httpx",
-          "version_spec": ">=0"
+          "version_spec": ">=0.28.1"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=11.3.0"
         }
       ],
       "capabilities": [
@@ -8372,6 +8201,9 @@
         ]
       },
       "id": "sengokucola.better-image"
+    },
+    "assets": {
+      "icon_64": "icons/sengokucola.better-image.webp"
     }
   },
   {
@@ -9688,54 +9520,6 @@
     }
   },
   {
-    "id": "skyunreal.harmonyunreal",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "next.skyunreal.harmonyunreal",
-      "version": "1.1.0",
-      "name": "HarmonyUnreal",
-      "description": "AstrBot → MaiBot 深度转译适配器。让 AstrBot 插件在 MaiBot 生态中原生运行，支持指令、事件、会话控制、Agent 工具链等完整 API 桥接。",
-      "author": {
-        "name": "SkyUnreal",
-        "url": "https://github.com/svila-ylym"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/svila-ylym/HarmonyUnreal",
-        "homepage": "https://github.com/svila-ylym/HarmonyUnreal",
-        "issues": "https://github.com/svila-ylym/HarmonyUnreal/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "watchdog",
-          "version_spec": ">=3.0.0"
-        }
-      ],
-      "capabilities": [
-        "send_message",
-        "receive_message",
-        "llm_hook",
-        "command",
-        "storage"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
     "id": "Emilia-awa.maibot-moepix",
     "manifest": {
       "manifest_version": 2,
@@ -10850,7 +10634,7 @@
     "id": "github.sengokucola.statistics-chart-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.1",
+      "version": "0.1.3",
       "name": "麦麦统计图表！",
       "description": "绘制MaiBot消息、token、模型、工具、在线时长、交互消息和 Prompt Cache 命中等统计图。",
       "author": {
@@ -10865,11 +10649,11 @@
         "issues": "https://github.com/SengokuCola/statistics-chart-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
+        "min_version": "2.9.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -10887,8 +10671,10 @@
       "plugin_type": "data",
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "bar-chart-3"
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "bar-chart-3",
+          "background": "#1C272C"
         }
       },
       "capabilities": [
@@ -10903,6 +10689,9 @@
         ]
       },
       "id": "github.sengokucola.statistics-chart-plugin"
+    },
+    "assets": {
+      "icon_64": "icons/github.sengokucola.statistics-chart-plugin.webp"
     }
   },
   {
@@ -13843,7 +13632,7 @@
     "id": "maibot_plugin.keywords_reply",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.5",
+      "version": "1.2.6",
       "name": "关键词回复",
       "description": "支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复。如无法发送音乐卡片请关注napcat本体issue",
       "author": {
@@ -14527,7 +14316,7 @@
     "id": "maibot_plugin.redirect_err",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "错误输出重定向",
       "description": "当 Bot 出站文本包含指定关键词时拦截并重定向/抑制；可分别配置对触发消息与对会话的沉默秒数。",
       "author": {
@@ -14552,7 +14341,6 @@
       "dependencies": [],
       "capabilities": [
         "send.text",
-        "chat.get_all_streams",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "chat.open_session",
@@ -15341,7 +15129,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.3.0",
+      "version": "3.3.1",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -20611,7 +20399,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.8.1",
+      "version": "1.8.2",
       "name": "生活频率",
       "description": "为麦麦维护一份持续的小生活（作息活动由 LLM 依人设与近/中/远三层近期经历生成、情绪体力、身体、日期节日、经济），按当前状态缩放每个会话的发言频率，并自动适配宿主的两种回复触发模式；含工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（工作日、上下班时段、午休、岗位职责），由强制层守住作息一致性；经济维度经只读 API 读取 budget-pacer 的真实月度预算，手头紧时让她省着花但不参与倍率（避免与预算插件双重压制）；与其它写频率的插件做乘性合成而不是互相覆盖；可选把 better-diary 的选材摘要（谁、做了什么、原话）与「有人找我」接成她的近期经历（默认关闭，睡眠中只记录不产生情绪增量）；可选按素材主动开口（默认关闭）；睡眠中被 @ 会临时醒来回一句（默认开，可关）；可选把「外面的世界」接成她的经历（v1.8.0，默认开、每个源可单独关）：经只读 API 读 bilibili-live-gateway 的开播状态、bilibili-dynamic-push 的最近推送与订阅、group-welcome 的最近入群新人、cv_lyric_context 的最近命中歌曲，只加经历与情绪、不参与倍率，每源独立降级且每日有情绪与条数上限。",
       "author": {
@@ -20638,6 +20426,8 @@
         "frequency.get_adjust",
         "frequency.get_current_talk_value",
         "maisaka.proactive.trigger",
+        "maisaka.context.append",
+        "message.get_by_time_in_chat",
         "llm.generate",
         "config.get",
         "api.call"
@@ -20759,7 +20549,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "name": "QQ 名片点赞",
       "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
@@ -20798,8 +20588,53 @@
           "zh-CN"
         ]
       },
-      "plugin_type": "tool",
+      "plugin_type": "extension",
       "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "local.simple-search-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.simple-search-plugin",
+      "name": "简单联网搜索",
+      "version": "0.2.1",
+      "description": "通过 Tavily 为麦麦提供简单的联网搜索工具。",
+      "author": {
+        "name": "SengokuCola",
+        "url": "https://github.com/SengokuCola"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SengokuCola/simple_search_plugin",
+        "documentation": "https://github.com/SengokuCola/simple_search_plugin/blob/main/README.md",
+        "issues": "https://github.com/SengokuCola/simple_search_plugin/issues"
+      },
+      "changelog": "changelog.md",
+      "host_application": {
+        "min_version": "1.3.4",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1"
+        }
+      ],
+      "capabilities": [
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]

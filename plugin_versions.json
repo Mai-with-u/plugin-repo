@@ -1382,7 +1382,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/svila-ylym/My_Fucked_turtle_soup-Maimbot/releases?per_page=100&page=1"
     },
     {
       "id": "Windpicker-owo.maibot-screen-monitor-plugin",
@@ -1439,7 +1440,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/svila-ylym/My_Fucked_100_People-Maimbot/releases?per_page=100&page=1"
     },
     {
       "id": "Ghost-chu.maiplug_message_react",
@@ -1509,7 +1511,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/svila-ylym/World_War_Simulator/releases?per_page=100&page=1"
     },
     {
       "id": "CharTyr.MaiBot-DetailedExplanation-Plugin",
@@ -5685,8 +5688,141 @@
       "id": "sengokucola.better-image",
       "manifest_id": "sengokucola.better-image",
       "repositoryUrl": "https://github.com/SengokuCola/better_image",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.5",
+          "tag": "v1.1.5",
+          "commit": "03c8eed30e0c7c55f62dce767e488d22e8607a6a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T14:27:16Z",
+          "release_url": "https://github.com/SengokuCola/better_image/releases/tag/v1.1.5",
+          "release_notes": "## 1.1.5\r\n\r\n- 配置发布：只分发 `config.template.toml` 模板，实际 `config.toml` 从 Git 跟踪中移除并忽略。\r\n- 主程序兼容：支持 MaiBot `1.3.0–1.3.99`。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.5",
+            "name": "Better Image",
+            "description": "提供互联网搜图、历史消息图片提取、裁切和放大工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "image",
+                "background": "#1C272C"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/better_image",
+              "homepage": "https://github.com/SengokuCola/better_image",
+              "documentation": "https://github.com/SengokuCola/better_image",
+              "issues": "https://github.com/SengokuCola/better_image/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "sengokucola.better-image"
+          }
+        },
+        {
+          "version": "1.1.4",
+          "tag": "v1.1.4",
+          "commit": "8392748a079400b96e1cc5384ce5d984af24049f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T14:22:11Z",
+          "release_url": "https://github.com/SengokuCola/better_image/releases/tag/v1.1.4",
+          "release_notes": "# 更新记录\n\n## 1.1.4\n\n### 主要功能\n\n- 图片工具：适配 MaiBot 1.3.4 和插件 SDK 2.9.0，支持工具简要描述与详细说明。\n- 互联网搜图：新增 Safebooru 动漫标签图源，支持指定 DuckDuckGo、Bing 或 Safebooru。\n- 工具调整：工具更名为 `image_search`、`image_crop`，移除图片变换工具。\n\n### 细节\n\n- 图片处理：解析、裁切和放大在线程中执行，避免阻塞插件事件循环。\n- 消息取图：消息查询失败时保留具体错误。\n- 插件展示：增加本地图标。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.4",
+            "name": "Better Image",
+            "description": "提供互联网搜图、历史消息图片提取、裁切和放大工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "image",
+                "background": "#1C272C"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/better_image",
+              "homepage": "https://github.com/SengokuCola/better_image",
+              "documentation": "https://github.com/SengokuCola/better_image",
+              "issues": "https://github.com/SengokuCola/better_image/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "sengokucola.better-image"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -9405,7 +9541,8 @@
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "GitHub 404：/repos/svila-ylym/HarmonyUnreal/releases?per_page=100&page=1"
     },
     {
       "id": "Emilia-awa.maibot-moepix",
@@ -10384,8 +10521,145 @@
       "id": "github.sengokucola.statistics-chart-plugin",
       "manifest_id": "github.sengokucola.statistics-chart-plugin",
       "repositoryUrl": "https://github.com/SengokuCola/statistics-chart-plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "24664a1cc17e44412dd24229e7fc95a33eb7ae60",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T14:27:21Z",
+          "release_url": "https://github.com/SengokuCola/statistics-chart-plugin/releases/tag/v0.1.3",
+          "release_notes": "## 0.1.3\r\n\r\n- 主程序兼容：支持 MaiBot `1.3.0–1.3.99`。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.3",
+            "name": "麦麦统计图表！",
+            "description": "绘制MaiBot消息、token、模型、工具、在线时长、交互消息和 Prompt Cache 命中等统计图。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/statistics-chart-plugin",
+              "homepage": "https://github.com/SengokuCola/statistics-chart-plugin",
+              "documentation": "https://github.com/SengokuCola/statistics-chart-plugin/blob/master/README.md",
+              "issues": "https://github.com/SengokuCola/statistics-chart-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11.3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "bar-chart-3",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.sengokucola.statistics-chart-plugin"
+          }
+        },
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "b228e164b3a6cf2e0b2a91b50afebc10b9b72005",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T14:22:38Z",
+          "release_url": "https://github.com/SengokuCola/statistics-chart-plugin/releases/tag/v0.1.2",
+          "release_notes": "# 更新记录\n\n## 0.1.2\n\n### 主要功能\n\n- 统计绘图：适配 MaiBot 1.3.4 和插件 SDK 2.9.0。\n- 图表渲染：发布包自带预编译 React/Recharts 脚本，普通安装环境也能直接绘图。\n\n### 细节\n\n- 异步运行：数据库查询、图表脚本读取和图片编码在线程中执行，避免阻塞插件事件循环。\n- 浏览器：支持 Playwright Chromium 和 `MAIBOT_CHART_BROWSER` 指定路径，保留具体错误信息。\n- 插件展示：增加本地图标。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.2",
+            "name": "麦麦统计图表！",
+            "description": "绘制MaiBot消息、token、模型、工具、在线时长、交互消息和 Prompt Cache 命中等统计图。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/statistics-chart-plugin",
+              "homepage": "https://github.com/SengokuCola/statistics-chart-plugin",
+              "documentation": "https://github.com/SengokuCola/statistics-chart-plugin/blob/master/README.md",
+              "issues": "https://github.com/SengokuCola/statistics-chart-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11.3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "bar-chart-3",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.sengokucola.statistics-chart-plugin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -22516,6 +22790,61 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.6",
+          "tag": "v0.2.6",
+          "commit": "2bd1f4e209d4c94a3c5ebf156f64369eb5575c34",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T11:50:41Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.2.6",
+          "release_notes": "### 🐛 核心修复\r\n- **彻底告别“双重回复”**：修复了发送 `/赞` 命令时，插件和AI主流程同时回复的问题，现在群友只会收到一条干净利落的回复。\r\n- **拒绝“虚假次数”**：当每日点赞额度不足时，不再盲目报出用户请求的次数，而是精准显示实际点成功的次数。\r\n- **避免闲聊误触**：命令强制要求 `/` 前缀（如 `/赞`），杜绝了群友聊天时突然被触发点赞插件的尴尬。\r\n- **恢复 AI 口语化能力**：重新启用了 `core_tool=True`，确保“帮我点个赞”这类口语化触发能正常运行。\r\n\r\n### 🛠️ 细节优化\r\n- `plugin_type` 调整为 `extension`，更准确反映插件的功能构成。\r\n- 补充了管理员配置缺失时的警告提示。\r\n- 优化跨天状态清理逻辑，让每日额度管理更严谨。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "0.2.6",
+            "name": "QQ 名片点赞",
+            "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.napcat-adapter",
+                "version_spec": ">=1.0.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.2.5",
           "tag": "v0.2.5",
           "commit": "f54ea6fa56231fb759ddcb673181bddff6e6a206",
@@ -22689,6 +23018,68 @@
           "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.2.0'\n- '0.2.2'\n       ^"
         }
       ]
+    },
+    {
+      "id": "local.simple-search-plugin",
+      "manifest_id": "local.simple-search-plugin",
+      "repositoryUrl": "https://github.com/SengokuCola/simple_search_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "65bfe99f3452b8dc9fe680b82d95a30dbf5dc15e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T15:22:18Z",
+          "release_url": "https://github.com/SengokuCola/simple_search_plugin/releases/tag/v0.2.1",
+          "release_notes": "# 更新日志\n\n## 0.2.1\n\n### 主要功能\n\n- 联网搜索：使用 Tavily 搜索，最多返回 5 条结果。\n- 结果总结：通过 `fast_model` 总结搜索材料，保留来源链接。\n- 搜索参数：支持时间范围及 `basic`、`fast`、`advanced`，`fast` 映射为 `ultra-fast`。\n\n### 细节\n\n- 补齐插件清单与配置版本，明确返回参数和总结错误。\n- 排除实际配置、配置备份和 Python 缓存。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.simple-search-plugin",
+            "name": "简单联网搜索",
+            "version": "0.2.1",
+            "description": "通过 Tavily 为麦麦提供简单的联网搜索工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/simple_search_plugin",
+              "documentation": "https://github.com/SengokuCola/simple_search_plugin/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/simple_search_plugin/issues"
+            },
+            "changelog": "changelog.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<1"
+              }
+            ],
+            "capabilities": [
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
