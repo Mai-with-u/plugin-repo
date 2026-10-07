@@ -23646,6 +23646,757 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot-plugin-qq-group-daily-analysis",
+      "manifest_id": "maibot-plugin-qq-group-daily-analysis",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "8368d9c4cca046f8a60fb1fd10f616c04489c02f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T19:21:58Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.0.0",
+          "release_notes": "# 群聊每日分析 1.0.0\n\n每天自动生成群聊日报：话题总结 / 群友称号 / 金句摘录 / 聊天质量锐评，9 套主题，支持 QQ 群相册上传。\n\n## 功能\n\n- 每日自动生成并发送日报（可手动 `/日报` 触发，支持按群指定主题）\n- 四个分析模块：话题总结、群友称号、金句摘录、聊天质量锐评\n- 9 套主题模板：atri / bluearchive / hatsunemiku / hack / retro_futurism / scrapbook / spring_festival / simple / format\n- 生成后自动上传 QQ 群相册（按群指定相册名）\n- 支持本地 / 云端渲染，渲染失败自动降级\n\n## 本版要点\n\n- 运行时缓存（头像 / 人格水印图 / 相册上传临时文件）落在宿主 `data/plugins/<插件>/cache/`，\n  与 stats.json 同区 —— 插件目录更新/只读挂载都不受影响；\n- 云端渲染默认关闭；开启即代表把群聊数据交给第三方 t2i 服务，README 有明确隐私说明；\n- 群相册上传走本地文件路径，绕开协议端请求体上限；上传超时自动核对相册、不再重复上传；\n- LLM 输出解析宽容（裸换行 / 尾随逗号 / 中文包装键等），称号/话题不会因格式毛病整段消失；\n- LLM 输出上限显式控制并在重试时翻倍、RPC 超时放宽到 7 分钟，适配思考型慢模型；\n- 定时日报按群去重 + 自动清理历史残留 stream，同一群不会一天发两份；\n- config_version 1.2.0：归档 llm_max_tokens / prune_stale_stream_days 等字段。\n\n## 兼容声明\n\n- host_application: 1.0.0 ~ 114.514.810（作者条例）\n- sdk: 2.5.1 ~ 2.99.99",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.0.0",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "114.514.810"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "Alcpare.identity",
+      "manifest_id": "Alcpare.identity",
+      "repositoryUrl": "https://github.com/Alcpare/maibot_identity_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "1.0.5",
+          "commit": "add584e57dfd4ca4f664d93cdef7aa419148b454",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:34:49Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.5",
+          "release_notes": "## v1.0.5 · 清除个人化字符串\n\n上一版（v1.0.4）只清理了号码，复查又发现测试文件里还留着我的**昵称**、一位**群友的昵称**，\n以及一处**真实会话哈希**。本版一并清除。\n\n### 变更\n- 名单示例注释里的昵称 → `Alcpare`\n- 测试夹具里的群友昵称 → `某群友`\n- 真实 32 位会话哈希 → 全零假哈希（`0123456789abcdef...`）\n- **发布闸门升级**：从\"只查号码\"变为三重检查（号码 + 个人昵称 + 32 位会话哈希），命中即中止发布\n\n### 兼容性\n仅测试文件与文档变更，**插件本体与配置零改动**，实测环境仍为 MaiBot 1.3.4 / SDK 2.9.0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.5",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "1.0.4",
+          "commit": "202a85a9a293b0b4e07c83dfdb01fe95d9729348",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:33:42Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.4",
+          "release_notes": "## v1.0.4 · 清除测试文件里的真实号码\n\n第四轮 AI 审核指出：`tests/` 里的自测脚本还带着真实 QQ 与群号，而插件本身的卖点是\n「号码不进日志、不泄露」—— 姿态不一致，也确实是一次真实的隐私疏漏\n（v1.0.3 把 `tests/` 纳入仓库时没有重跑隐私审计，这次一并改正流程）。\n\n### 变更\n- `tests/` 三个脚本里的真实号码全部换成 `10000000x` / `90000000x` 这类假号，\n  位数保持一致，不影响「遮蔽后不得出现完整号码」这类断言\n- 工作副本同步清洗，避免以后复制回来再次带入\n- 复查：仓库内所有文件（含 `tests/`）**已无任何真实号码**\n\n### 兼容性\n仅测试文件变更，**插件本体与配置零改动**，实测环境仍为 MaiBot 1.3.4 / SDK 2.9.0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.4",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "1.0.3",
+          "commit": "efaa4bffe5fdf92c28d3539215720c16e147fa7a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:28:31Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.3",
+          "release_notes": "## v1.0.3 · 修复启动炸弹\n\n按插件中心第三轮 AI 审核的建议修改。\n\n### 修复\n- **启动炸弹**：`_load_persisted` 中解析时间戳的语句原先在 `try` 之外 ——\n  `speakers.json` 被写坏或手改过（`ts` 不是数字）时会让 `on_load` 抛异常、**插件加载失败**。\n  现在整段恢复逻辑都有保护，坏数据一律按\"无记录\"处理，写入路径同样加固（新增 `_safe_ts`）。\n- **`default_label` 校验**：填了未支持的档位（如「群主」）时，此前只有档位文案静默回落，\n  而 `（你的{label}）` 里的无效值仍会进入提示词。现在回落为默认档并记 WARNING。\n\n### 文档\n- 落盘表格补上 `group`（明文群号），并说明坏文件会被整体忽略\n- 新增「三个钩子都是 SDK 正式内置 Hook」的证据（官方文档清单 / Host 校验规则 / 同批钩子已被市场插件使用）\n\n### 自测\n- 仓库纳入 `tests/`：三个离线自测脚本，用 `__file__` 定位插件目录，克隆即可运行\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0，无需改配置即可升级。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.3",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "1.0.2",
+          "commit": "125b8c1e24c3864e0d67a84c3e3897e24d114634",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:23:14Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.2",
+          "release_notes": "## v1.0.2 · 显示名过滤加固\n\n按插件中心第二轮 AI 审核的两条建议修改，**功能无变化**。\n\n### 变更\n- **显示名过滤改为按 Unicode 类别剔除**：任何文字的括号（含全角 `（）`、书名号《》）、\n  弯引号、控制字符、零宽字符、数学/修饰符号、下划线、星号与直引号一律剔除。\n  原先的枚举黑名单实测**漏掉了全角括号** —— 枚举一定会漏，故改为类别判定。\n  正常昵称不受影响（`awa`、`·小萤·` 这类照旧保留）。\n- **DEBUG 日志里的群号也做遮蔽**（此前只遮了 QQ 与会话 ID）。\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0，无需改配置即可升级。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "7c5e416ae31f3da26de39d1c1881670f8b5b0f81",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:12:19Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.1",
+          "release_notes": "## v1.0.1 · 隐私加固\n\n本次为审核建议的修复版本，**功能无变化**，只做加固与文档补全。\n\n### 变更\n- **日志号码遮蔽**：名单 / 入口记录 / 跳过原因里的 QQ 与会话 ID 一律打印为 `137***257`\n- **显示名防注入**：群名片是用户可控输入，现在限长 24 字并过滤换行、控制字符与结构标记\n- **文档**：补「隐私与落盘」（磁盘上留什么、留多久）与「长消息 ID 的降级行为」\n- **manifest**：兼容区间按实测收紧为 `host >= 1.3.4`、`sdk >= 2.9.0`；`documentation` 指向插件 README\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0。升级到本版本无需改配置。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "169ac49be901c7ac0df773e5d7e5ef813ba0f244",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:00:59Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.0",
+          "release_notes": "## 身份认知 Alcpare.identity v1.0.0\n\n让她知道**当前跟她说话的人是谁**（主人 / 朋友 / 普通群友），从而用对态度。\n纯手动白名单：不调用任何 LLM、不写数据库、没有定时任务；名单为空时完全不注入。\n\n### 功能\n- 名单格式「QQ号 = 档位」，显示名实时取自群名片/昵称，改名不用维护名单\n- QQ 号只存在于插件内部映射（msg_id → user_id），**永不进入提示词**；注入文本另有「长数字自检」兜底\n- 按消息 ID 精确定位当前说话者，兼容宿主两种格式与超长 ID 的短别名 → 同名、改名都不怕\n- 同一轮只注入一次（阶段 + 会话 + 消息 ID 去重 + 抬头自检）\n- 通知类事件（入群/退群/戳一戳等）不会被当成「有人在说话」\n- 三档的语气与关心程度都在配置里，可在 WebUI 面板直接改、保存即生效\n- 映射落盘，重启后仍能定位被频率调度延迟处理的消息\n\n### 配置\n`plugins/Alcpare_identity/config.toml`（面板可改）\n- `roster`：`QQ号 = 档位`\n- `owner_style` / `friend_style` / `member_style`：三档语气与关心程度\n- `inject_to_planner` / `inject_to_replyer` / `inject_for_others` / `log_injections`\n\n### 实测环境\nMaiBot 1.3.4 / SDK 2.9.0；本地加载、注入、跳过、去重、通知过滤、落盘恢复均已验证。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://docs.mai-mai.org",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot.menu",
+      "manifest_id": "maibot.menu",
+      "repositoryUrl": "https://github.com/SiriusFzh/maibot-menu",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "15157f06a049ddccedc1996a73f6feb4cd3870cc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:32:13Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.2",
+          "release_notes": "完善菜单管理员白名单、容量限制、串行读改写和原子文件替换；按 SDK 文档读取图片渲染结果。默认普通聊天用户不可修改共用菜单。通过权限隔离、50 条并发新增、容量限制、损坏数据保护及写入失败保留原数据测试；未进行真实 MaiBot 宿主端到端测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.2",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 生成菜单图片，展示手动配置的功能分组和指令，渲染失败时降级为文本。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "f37d6ffc49676b4370a75d104ef15931ff1af0cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:13:30Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.1",
+          "release_notes": "- 运行配置由 MaiBot 生成，保留 config.example.toml 示例。\r\n- commands.json 改存 SDK 持久化目录，首次加载可迁移旧数据。\r\n- 移除跨插件字体依赖和未使用的插件扫描代码，改用系统字体。\r\n- 菜单中的用户输入在渲染 HTML 前进行转义。\r\n- README 说明管理命令开放范围。\r\n\r\n最低 SDK 版本更新为 2.6.0。数据迁移、保留已有数据和 HTML 转义检查通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.1",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 生成菜单图片，展示手动配置的功能分组和指令，渲染失败时降级为文本。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "34c9a73397c1cf8a76af5702a7fa6ad91fcd88b9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:03:28Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.0",
+          "release_notes": "首次发布。\r\n\r\n- 通过 /菜单 展示手动配置的功能和指令。\r\n- 支持 WebUI 配置和菜单管理命令。\r\n- 图片渲染失败时降级为文本。\r\n\r\n适配 MaiBot 1.x / SDK 2.x，使用 MIT 许可证。安装与配置见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.0",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 即可生成一张菜单图片，列出当前麦麦所有可用功能和指令。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "user.tarot-card-plugin",
+      "manifest_id": "user.tarot-card-plugin",
+      "repositoryUrl": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "37aecc272300229061838cf8f3d7a900bb24cfa8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:33:01Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.2",
+          "release_notes": "自然语言触发改为整句匹配，避免引用及长消息误触发；移除用户消息正文日志；缺少会话 ID 不再中断处理。明确 entertainment 分类，同步 README。通过精确触发、引用不触发、缺少会话与发送失败分支的隔离测试；未进行真实 MaiBot 宿主端到端测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.2",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "entertainment"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "7258669ee810c1b50c4df3d6c2abe3381b32a9cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:10:04Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.1",
+          "release_notes": "- 将运行配置 config.toml 改为参考文件 config.example.toml，并忽略生成的配置。\r\n- README 明确说明自然语言触发的子串匹配和中断下游消息处理行为。\r\n- 保留现有抽牌功能与稳定插件 ID。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.1",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "182dab72c316aeb427034f8e5e84d2c59c9766b3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:04:59Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.0",
+          "release_notes": "首次发布。\r\n\r\n- /塔罗 随机抽取一张大阿卡那牌。\r\n- 支持自然语言触发、22 张牌面图片和中文解读。\r\n- 补齐 MIT LICENSE、作者与仓库元信息。\r\n\r\n适配 MaiBot 1.x / SDK 2.x。安装与配置见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.0",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.mai-mai.self-identity",
+      "manifest_id": "org.mai-mai.self-identity",
+      "repositoryUrl": "https://github.com/orge-8/self-identity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "2f15c0b60fa15ba7ad8b91ebbd8a9939fc0cb73f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T01:04:51Z",
+          "release_url": "https://github.com/orge-8/self-identity/releases/tag/v1.3.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.self-identity",
+            "version": "1.3.3",
+            "name": "自我身份档案",
+            "description": "为 Bot 提供结构化身份中枢：档案检索、多套装扮人设图库（按服饰/风格标签选图）与原图、QQ 头像，以及 verify_self_claim 声明校验（防人设漂移）与 compare_with_self_image 视觉比对（不同服饰不算冲突）。另外提供 /人设卡片，把身份档案渲染成可直接粘贴进宿主配置的文本。运行时完全被动：插件不改写任何模型请求，身份由宿主 [personality]（replyer 的 personality / planner 的 behavior_style）承载，插件负责结构化档案、图库与检索。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/self-identity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "bff123ea43ac6888a22ef3bc6505b41ff19b5223",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T00:42:09Z",
+          "release_url": "https://github.com/orge-8/self-identity/releases/tag/v1.3.2",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.self-identity",
+            "version": "1.3.2",
+            "name": "自我身份档案",
+            "description": "为 Bot 提供结构化身份中枢：档案检索、多套装扮人设图库（按服饰/风格标签选图）与原图、QQ 头像，以及 verify_self_claim 声明校验（防人设漂移）与 compare_with_self_image 视觉比对（不同服饰不算冲突）。另外提供 /人设卡片，把身份档案渲染成可直接粘贴进宿主配置的文本。运行时完全被动：插件不改写任何模型请求，身份由宿主 [personality]（replyer 的 personality / planner 的 behavior_style）承载，插件负责结构化档案、图库与检索。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/self-identity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
