@@ -4222,8 +4222,71 @@
       "id": "SengokuCola.maimai-birdwatching-plugin",
       "manifest_id": "SengokuCola.maimai-birdwatching-plugin",
       "repositoryUrl": "https://github.com/SengokuCola/maimai_birdwatching_plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "854c6800d22355fc127f315ae06ceb809fa81f71",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T16:45:14Z",
+          "release_url": "https://github.com/SengokuCola/maimai_birdwatching_plugin/releases/tag/v1.2.3",
+          "release_notes": "# 更新记录\n\n## 1.2.3\n\n### 主要功能\n\n- 图片识别：适配 MaiBot `1.3.0–1.3.99` 和插件 SDK 2.9.0，正确读取消息中的图片二进制数据与新版消息查询结果。\n- 工具声明：为动物、鸟类、植物、菜品识别与鸟类百科查询提供简要描述和详细说明。\n\n### 细节\n\n- 图片处理：同步文件读取与图片下载交给线程执行，避免阻塞插件事件循环。\n- 配置发布：只提供密钥留空的 `config.template.toml`，忽略实际配置与备份目录。\n- 使用说明：修正文档中的插件 ID。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.3",
+            "name": "麦麦观鸟插件 (MaiMai Birdwatching Plugin)",
+            "description": "提供基于百度智能云图像识别接口的鸟类、动物、植物、菜品识别工具，以及鸟类百科知识查询工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "plugin_type": "knowledge",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/maimai_birdwatching_plugin",
+              "homepage": "https://github.com/SengokuCola/maimai_birdwatching_plugin",
+              "documentation": "https://cloud.baidu.com/doc/IMAGERECOGNITION/s/Zk3bcxdfr",
+              "issues": "https://github.com/SengokuCola/maimai_birdwatching_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14"
+              }
+            ],
+            "capabilities": [
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.jpg",
+                "fallback": "book-open",
+                "background": "#F0E1C7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "SengokuCola.maimai-birdwatching-plugin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -5069,6 +5132,51 @@
       "repositoryUrl": "https://github.com/CSSQY/RunTime_Tracker_Plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.2.1",
+          "tag": "1.2.1",
+          "commit": "06059ccc0995bf237ff081b35fba6814a3e7bfbe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T03:11:48Z",
+          "release_url": "https://github.com/CSSQY/RunTime_Tracker_Plugin/releases/tag/1.2.1",
+          "release_notes": "### 主要功能\r\n\r\n- 配置模型化：新增 `config_model`（基于 SDK `PluginConfigBase`），配置改由 `self.config` 强类型读取，并在 WebUI 插件配置页生成中文表单（标签 / 说明 / 占位符，API 密钥以密码框显示）。\r\n\r\n### 细节\r\n\r\n- SDK 适配：移除 `config.get_plugin` 能力调用（配置改由 Runner 本地注入），`_manifest.json` 的 `capabilities` 收敛为 `send.text`。\r\n- 兼容范围：`_manifest.json` 的 `host_application` 调整为 `1.3.0 ~ 1.3.99`、`sdk` 调整为 `2.9.0 ~ 2.99.99`；`config.toml` 与 README 的 `config_version` 同步为 `1.2.1`。\r\n- 文档：新增独立 CHANGELOG.md（自 1.2.0 起），README 变更记录改为指向本文件。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "CSSQY.RunTime_Tracker_Plugin",
+            "name": "Run Time Tracker Plugin",
+            "version": "1.2.1",
+            "description": "一个对接时间跟踪应用程序的插件，用于麦麦监控您的设备使用时间。",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY/"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/CSSQY/RunTime_Tracker_Plugin/"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "llm_providers": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.1.0",
           "tag": "v1.1.0",
@@ -11541,6 +11649,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "e32481e006db8cc9aca93803289321a810f0933e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:19:33Z",
+          "release_url": "https://github.com/yufei-pan/maibot-fetch-url-plugin/releases/tag/v0.4.2",
+          "release_notes": "## 修复\n\n- `fetch_url` 工具、公开 API 与 LRS `invoke_procedure` 声明 Host RPC 超时（默认 195 秒）。未声明时 Host 对 `plugin.invoke_tool` 只等 60 秒；jina 超时回退后再做 LLM 总结会被掐成 `[E_TIMEOUT]`",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.fetch-url",
+            "version": "0.4.2",
+            "name": "网页抓取 (Fetch URL)",
+            "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+              "homepage": "https://github.com/yufei-pan/maibot-fetch-url-plugin",
+              "documentation": "https://github.com/yufei-pan/maibot-fetch-url-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-fetch-url-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "markdownify",
+                "version_spec": ">=0.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pypdf",
+                "version_spec": ">=4.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.4.1",
           "tag": "v0.4.1",
           "commit": "3712c56aa0db65f571d07452a4d2bf23669d65e6",
@@ -13334,6 +13513,78 @@
       "repositoryUrl": "https://github.com/yufei-pan/maibot-impression-card-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.3.4",
+          "tag": "v0.3.4",
+          "commit": "2c2b254d1c4f36c28d3d425b7bebc8dc5cb6451a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:20:15Z",
+          "release_url": "https://github.com/yufei-pan/maibot-impression-card-plugin/releases/tag/v0.3.4",
+          "release_notes": "## 修复\n\n- `nudge_impression` 改为立即返回，LLM 微调在后台完成。Host 的 `plugin.invoke_tool` 默认 60 秒就会超时，而本插件 LLM 超时是 120 秒，正文调用会在模型还没返回时被记成 `[E_TIMEOUT]`\n- 仍会在返回前等待 LLM 的工具和命令（`refresh_impression`、`get_impression_detail`、`send_impression_card`、`/卡片`、`/刷新印象`）向 Host 声明调用上限为 `llm_rpc_timeout_ms + 10` 秒。改该配置后需重载插件，Host 才会采用新上限",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.impression-card",
+            "version": "0.3.4",
+            "name": "印象卡片 (Impression Card)",
+            "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+              "homepage": "https://github.com/yufei-pan/maibot-impression-card-plugin",
+              "documentation": "https://github.com/yufei-pan/maibot-impression-card-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibot-impression-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_id_by_name",
+              "person.get_value",
+              "message.build_readable",
+              "render.html2png",
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "chat.get_all_streams",
+              "message.count_new",
+              "message.get_recent",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
         {
           "version": "0.3.3",
           "tag": "v0.3.3",
@@ -21759,8 +22010,59 @@
       "id": "github.netajuutilainen.immersive-control",
       "manifest_id": "github.netajuutilainen.immersive-control",
       "repositoryUrl": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "92c08f21f96f236ac15982f26c93c2f7517d47d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T16:57:55Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/releases/tag/v1.0.0",
+          "release_notes": "# 麦麦我真得控制你了 v1.0.0\n\n移植自 AstrBot 插件 [astrbot_plugin_immersive_control](https://github.com/muyouzhi6/astrbot_plugin_immersive_control)（原作者：木有知 / Zhalslar，MIT），针对 MaiBot 1.2.x + maibot-plugin-sdk 2.x 重写，沿用原版\"沉浸式互动\"提示词风格，默认模板保持全年龄可读。\n\n- **适配 MaiBot**：1.0.0 ~ 1.99.99（maibot-plugin-sdk 2.5.0+）\n- **能力声明**：send.text、maisaka.proactive.trigger、maisaka.context.append——无网络请求、无远程执行\n- 纯代码实现，无额外数据文件；下方自动生成的 Source code (zip) 即为完整安装包\n\n## 功能\n\n- @机器人 + 关键词进入\"被遥控\"状态（私聊免 @），静默激活，可配置时长后自动结束，支持冷却与并发上限\n- 六档敏感度（0-120，100-120 档仅限指令设置）；`/强度 <0-120>`、`/强度 max`、`/强度 自动`（30→100 爬升后 50↔100 往复，速度可调）、`/强度 全局`、`/强度` 查询\n- 阈值主动表达（`proactive_threshold`，每次激活限一次）\n- 顶点效果（`climax_threshold` + 持续秒数 + 每次激活次数上限 + emoji 暗号，均可在 WebUI 调整）\n- 隐蔽模式：状态变更回执替换为无察觉日常语句，群聊场景不暴露操作\n- 状态持久化：MaiBot 重启后自动恢复\n\n## 数据与隐私\n\n会话状态（会话 ID、触发者 user_id、敏感度与计时信息）仅保存在插件本地 data 目录的 `state.json`，不上传到任何服务器；卸载或删除该文件即全部清除。\n\n## 安装\n\n1. **插件市场**：选择 v1.0.0 安装（即本 Release 的 Source code 包）；\n2. **手动安装**：下载 Source code (zip) 解压到 MaiBot 的 `plugins/` 目录，WebUI 中启用；\n3. 首次安装因 manifest 能力声明需**完整重启一次 MaiBot**，之后改配置走热更新。\n\n## 离线验证\n\n无需启动 MaiBot：`python tests/verify.py`，覆盖组件声明、manifest/配置校验、状态机全路径与钩子端到端等 128 项检查。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.immersive-control",
+            "version": "1.0.0",
+            "name": "麦麦我真得控制你了",
+            "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "remote"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -22705,6 +23007,210 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.8.5",
+          "tag": "1.8.5",
+          "commit": "2e55e43f32866db92fb77f7482e60dff3869a645",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:03:23Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.8.5",
+          "release_notes": "## [1.8.5]\r\n\r\n### 细节\r\n\r\n- 修复发送结果判读：宿主的 `send.text` / `send.image` 在失败时**不抛异常**，而是返回 `{\"success\": False, \"error\": ...}`，而此前用 `bool(返回值)` 判断——失败字典同样为 True，导致失败被当成成功。现改为读 `success` 字段并记录宿主给出的失败原因。\r\n- 修复范围：定时播报此前把发送失败计入「成功」，某个群失效后报告会**静默停止到达、日志却显示全部成功**；现正确计入失败并逐目标打印原因。`/token` 指令在什么都没发出去时也不再误报「已发送」，改为返回「统计结果发送失败」。`图片发送失败` / `文本发送失败` 两条 warning 恢复生效（此前为不可达代码）。\r\n- 加固：发送能力返回结构不符合预期（不是带 `success` 字段的字典）时直接报错并记 warning，不用兜底掩盖契约变化。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.8.5",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.8.4",
+          "tag": "1.8.4",
+          "commit": "59e10eef1b2c652ef2fa5c79610500e854633936",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T22:00:59Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.8.4",
+          "release_notes": "## [1.8.4]\r\n\r\n### 细节\r\n\r\n- 修复单位名留空：此前 `token_unit.unit_name` 没有兜底，清空后会渲染出「1.23 万 」「35.27 万 /小时」「模型排行（按  排序）」「<h1> 消耗统计</h1>」这类残缺文案，图表图例名也会变成空串。现新增校验：值会先去除首尾空白，留空（含全空白）时回退为默认值 `Token` 并记一条 warning 日志，便于发现配置漏填。\r\n\r\n## [1.8.3]\r\n\r\n### 细节\r\n\r\n- 修复单位名替换不彻底：此前只有报告标题、窗口卡片与部分文字用了 `token_unit.unit_name`，图片报告的「输入/输出 Token」「Token/时间」「缓存命中 Token」「聊天链路 Token」、图表标题（Token 趋势 / 模块 Token 占比 / 模型 Token 占比）、模型排行表头、Token 条形图的图例，以及文本报告的「模型排行（按 Token 排序）」「模块 Token 占比」「详细数据表头」、会话视图脚注、失败区块标签、工具权限提示、命令回执都写死了「Token」。现全部改为读取配置的单位名。\r\n- 新增：`report.llm_prompt` 支持 `{unit_name}` 占位符，转述提示词里可直接引用当前单位名；默认提示词改为「用量统计数据」并提示模型照用数据里的单位名，避免 LLM 转述时又冒回「Token」。\r\n- 文案：配置页「Token 单位」分节改名「用量单位」，图表开关的标签/说明（条形图：用量趋势、扇形图：模块/模型用量占比等）由「Token」改为「用量」，与报告标题保持一致。\r\n- 文档：README 补充「替换范围」说明，列出单位名会覆盖的全部位置。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.8.4",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.8.2",
+          "tag": "1.8.2",
+          "commit": "397f0ca67019cd28872b379d1ca3cd379eb622a9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:14:15Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.8.2",
+          "release_notes": "- 修复在线时长：此前取宿主的 `statistics.local.online_time_trend` 能力，它返回 `SUM(duration_minutes)`——该字段只在建记录时写死为 5、之后心跳只更新 `end_timestamp`，所以既算不准时长（每条记录恒 5 分钟），又按 `start_timestamp` 分桶，跨越窗口起点的那条记录会被整条裁掉（长跑进程在「今日」窗口因此显示 **0 秒**）。现改为直读宿主 `online_time` 明细，按每条记录的 `end - start` 与统计区间求交集累加，与宿主 WebUI 算法一致，单窗口模式也能正确算出窗口内的那一段。\r\n- 取数：`_manifest.json` 移除已不再使用的 `statistics.local.online_time_trend` 能力声明。\r\n- 文档：删除「在线时长明显偏低、仅供参考」的脚注与 README 说明。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.8.2",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.8.0",
           "tag": "1.8.0",
           "commit": "d165bc1efc699d9f59a418886e869069d4599a5a",
@@ -23025,6 +23531,66 @@
       "repositoryUrl": "https://github.com/SengokuCola/simple_search_plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "f2657ce283809ac69072b10f82edcc539db4bbf7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T15:44:11Z",
+          "release_url": "https://github.com/SengokuCola/simple_search_plugin/releases/tag/v0.2.2",
+          "release_notes": "新增地球与放大镜图标，显示于插件管理和插件商店。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.simple-search-plugin",
+            "name": "简单联网搜索",
+            "version": "0.2.2",
+            "description": "通过 Tavily 为麦麦提供简单的联网搜索工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/simple_search_plugin",
+              "documentation": "https://github.com/SengokuCola/simple_search_plugin/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/simple_search_plugin/issues"
+            },
+            "changelog": "changelog.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<1"
+              }
+            ],
+            "capabilities": [
+              "llm.generate"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "search",
+                "background": "#123C38"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
