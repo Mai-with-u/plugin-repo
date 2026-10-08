@@ -9046,7 +9046,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -17277,7 +17277,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.2",
+      "version": "1.3.3",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -19361,7 +19361,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.galgame",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "name": "galgame领域大神",
       "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
       "author": {
@@ -19412,11 +19412,15 @@
       "plugin_type": "tool",
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "gamepad-2",
-          "fallback": "gamepad"
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "gamepad-2",
+          "background": "#0d1323"
         }
       }
+    },
+    "assets": {
+      "icon_64": "icons/mizuku003.galgame.webp"
     }
   },
   {
@@ -20863,6 +20867,52 @@
         "default_locale": "zh-CN"
       },
       "plugin_type": "extension"
+    }
+  },
+  {
+    "id": "mai-play-ygo",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.5",
+      "id": "mai-play-ygo",
+      "name": "麦麦玩游戏王",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+      "author": {
+        "name": "erhan111119",
+        "url": "https://github.com/erhan111119"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/erhan111119/mai-play-ygo",
+        "homepage": "https://github.com/erhan111119/mai-play-ygo",
+        "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+        "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.0"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "maisaka.context.append",
+        "chat.get_all_streams",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "game"
     }
   }
 ]

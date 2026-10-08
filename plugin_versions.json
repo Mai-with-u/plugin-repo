@@ -20677,6 +20677,148 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "cba7b41f65b064f68ca6497280a823d474068fbe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T18:53:34Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.3",
+          "release_notes": "这一版主要是修 bug，没有新增功能，**配置和依赖都不用动**，覆盖安装即可。\n\n### 修掉的问题\n- `/gal <条件>` 翻页翻到底之后不再返回空列表：同一组条件最多往后翻到第 60 条，到顶会直接说「已经翻到底了」。\n- 几处会直接报错的边界情况：详情命令里一个未定义的 `logger`（会中断整条详情）、月幕的角色顺序字段遇到非数字、发布时间是超长年份、VNDB 票数字段异常；现在都退化成按缺省处理。\n- 检索排序在「条目名称全空」时不再中断整次搜索。\n- 贴吧话术：访客 Cookie 播种失败时贴吧对任何页面都返回 403，之前被当成被风控拦截、直接冷却 15 分钟；现在会先重播一次 Cookie 再判断。另外帖子正文缓存不再 30 天后失效重抓（正文页最容易触发安全验证）。\n- 写进麦麦「表达方式 / 黑话表」时，去重总是基于最新写入的行，表变大后不会再插重复行；关掉插件撤出时，不会再误删「本来就没有 id」的留档条目。\n- 配置面板：回复数上下限、回复字数上下限写反了会直接报错，而不是悄悄出空结果。\n\n### 已知的取舍\n- 纯汉字、没有假名的日文正文不会自动翻译（判据只看假名；加上汉字会把中文正文误翻成日文）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.3",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "d125bb6aed0d2146478f2301139204505a7b0f5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T18:43:21Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.2",
+          "release_notes": "给插件加上了头像。\n\n- 新增 `assets/icon.png`（256×256 PNG，106 KB），manifest 的 `display.icon` 由 `lucide/gamepad-2` 改为 `local/assets/icon.png`，并补上 `background: #0d1323`。\n- 头像同时服务两处：麦麦面板走 `/api/webui/plugins/icon/<插件ID>`（上限 512 KB），官方插件市场由 plugin-index 自动抓取并压成 64×64 的 webp，不需要另外传图。\n- 原来的 `fallback` 写的是 `gamepad`，宿主图标表里没有这个名字（只有 `gamepad-2`），已改回有效的名字。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.2",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "0bd2be425ef67bd7a79b527317fba33e6ff42a34",
@@ -24390,6 +24532,334 @@
             ],
             "i18n": {
               "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mai-play-ygo",
+      "manifest_id": "mai-play-ygo",
+      "repositoryUrl": "https://github.com/erhan111119/mai-play-ygo",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "c48c5c67c2b304cbb2225f3f7a05f3fca95e4103",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T23:48:32Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.5",
+          "release_notes": "群友反馈的\"**怎么打伤害**\"这条，查实后落成一个通用层修复。\n\n## 改了什么\n\n**问题**：各卡组执行器的 `LethalAvailable()` 在**对面空场**时要求\"一击斩杀\"（能打出的伤害 ≥ 对面 LP）才肯进战斗阶段，于是\"打不到斩杀就整局不进攻\"。本机日志按卡组统计我方攻击宣言次数：\n\n| 卡组 | 我方攻击宣言 |\n| --- | --- |\n| 杀调 | 1 |\n| 虫惑魔蕾祸 / 魔女术（商标女巫版）/ 耀圣 | **0** |\n\n伤害那一栏整局是空的（`0 got damage` 一条都没有），对面可以放心做场。\n\n**改法**（落在通用层，所有卡组与投稿卡组共用）：`DoEverythingExecutor` 新增 `BattlePressureWorthIt()` 并注册成 `GoToBattlePhase` 规则——只在自己回合、内核允许进战阶、**对面怪兽区为空**、且我方有表侧攻击表示的怪能打出伤害时进战阶。对面**有怪**时这条通用规则不抢（各执行器自己的\"能不能拆掉一只已知怪\"判据比它懂得多）；\"打不打某一只\"仍由 `OnSelectAttackTarget` 判（它会拒绝打不过的）。\n\n开关：环境变量 **`AI_BATTLE_PRESSURE=0`** 回到旧口径（只有一击斩杀才进战阶），给 A/B 用。\n\n## 顺带核实：三条\"看着像 bug、其实不是\"的\n\n- **「点唱机酒吧③」的\"加入手卡 / 特殊召唤\"不是随机**：`OnSelectOption` 里有按线路的专属规则（混音手线取\"加入手卡\"——教程那一步是\"解放混音手 → 提示员加手\"，因为提示员① 只认**召唤**），其余情况走通用口径\"取另一支\"（＝特殊召唤，对应教程的\"解放音轨制作人拉唱片师\"）。探针里的\"未登记\"只表示没进**按值登记**那张表，不代表掷骰子。\n- **「红印鉴唱片师」出场少是设计**：它和「再混音手」抢同一对素材（唱片师 3★ + 混音手 2★ = 5 星），计划进行中封它的开关是 `KT_ALLOW_PLAN_EXTRA=1`；要改默认先跑 A/B（实测最近 6 局「杀调」它出场 0 次）。\n- **「锁缚龙」不发效果是卡文限制**：② 要求\"连锁卡的效果的发动\"＝对面那个效果得是链上第 2 环以上；被「解放」也不吃\"不会被破坏 / 不能取对象\"这类保护。\n\n## 其他\n\n随包 `clients/windbot/WindBot.exe` 重新编译（含上述改动）；`executors/DoEveryThingExecutor.patch` 已更新（含新规则），`executors/EnemyTargeting.cs` 里新增 `BattlePressure` 开关；四份补丁都验证过能干净 `git apply` 到上游 HEAD（`7acd93d`）。测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.5",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "1e47b922f4447852a0739f05e4e2676899a21ee5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T17:25:12Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.4",
+          "release_notes": "群友实测反馈的几条（\"效果点不对对象\"、\"他上来炸我黑森林\"、\"我白阿发效果他无效我玻璃\"）**不是某一副牌的问题**，而是所有卡组共用的两条兜底逻辑。这个版本改在共用层，十副自带牌与全部投稿卡组一起受益。\n\n## 改了什么\n\n### 一、\"该炸/该弹/该除外对面哪张\"（通用判据，新增 `executors/EnemyTargeting.cs`）\n\n上游对\"该选哪张卡\"的兜底是**按内核给的候选顺序取**（`DoEverythingExecutor.OnSelectCard` 直接取候选尾部、`GameAI` 的最后兜底取前 N 张），等于把选择权交给报文的排列顺序。\n\n实测（`logs/app_20261008_005046.log.jsonl` 00:33:32 那局）：bot 的「落胤与圣女」用它\"以场上 1 张表侧卡为对象，那张卡破坏\"，炸掉了对面刚用「黑魔导的幕帘」拉出来的「黑森林的魔女」——那张卡写着\"这张卡从场上送去墓地的场合发动，从卡组把 1 只守备力 1500 以下的怪兽加入手卡\"，**炸掉＝白送对面一次检索**，而我们同时付了额外卡组 1 只「阿不思」名怪兽当费用。群友原话：**\"他上来炸我黑森林\"**。\n\n现在的挑法（只按卡文，不猜战术）：\n\n1. **排除\"弄掉它反而帮对面\"的卡**——带卡文出处的表，第一条就是「黑森林的魔女」；\n2. 破坏类**排除\"弄不动\"的目标**：不吃战斗/效果破坏的、不能被效果选为对象的（例如对面的「超魔导龙骑士-真红眼龙骑士」写着\"不会被效果破坏，双方不能把这张卡作为效果的对象\"，对着它发动就是白费一张牌）；\n3. **先挑对面的表侧魔陷**（场地/永续/装备＝对面的引擎件与贴纸），再按攻击力挑怪。\n\n### 二、\"该无效对面哪只怪\"（`DefaultExecutor.DefaultGetDisableMonsterTarget()` 判定顺序）\n\n上游先问\"最值得预防性废掉的那只\"（靠 WindBot 的卡表登记猜），只有它给不出答案时才看链上最后一张卡。实测对手「白龙之落胤」在场上发 ②（从卡组特召 1 只「艾克莉西娅」），我们的「效果遮蒙者」却点在对面的「魔女术师傅·玻璃女巫」身上——刚发的那只照常结算，等于白扔一张手坑。群友原话：**\"我白阿发效果他无效我玻璃\"**。\n\n卡文口径（`c97268402.lua` / `c10045474.lua`）：遮蒙者与泡影都是\"以对方场上 1 只效果怪兽为对象才能发动，那只对方怪兽的效果直到回合结束时无效\"——**要无效的就是正在发效果的那只**，链上那一刻目标是确定的。现在\"刚发效果的那只\"排在前面，它不合法（已被无效过 / 不能被选为目标）时才退回启发式。\n\n### 三、其他\n\n- `DoEveryThingExecutor.OnSelectCard`（通用脚本 `Test` 的兜底，**投稿卡组全吃这条**）接上判据，其余保持上游口径，并修掉 `max` 大于候选数时的数组越界。\n- 升辉月执行器里那段\"候选含双方时先选对面\"的旧实现改为调用共享判据，不再各写一份。\n- 加了两条可核对的行为日志，**只在这条规则推翻旧口径时**才打，不刷屏：\n  - `[目标] 弄掉对面的卡：跳过「X」，改选「Y」`\n  - `[手坑] 无效目标＝刚发效果的「X」（旧口径会点「Y」）`\n- 随包 `clients/windbot/WindBot.exe` 重新编译（含上述改动）；`executors/` 新增\n  `EnemyTargeting.cs` 与两份补丁（`DefaultExecutor-targeting.patch`、`DoEveryThingExecutor.patch`），\n  四份补丁都验证过能干净 `git apply` 到上游 HEAD（`7acd93d`）。\n\n测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.4",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "ecbd5371cafced5c0876bb3a8c8e71cc6cffea09",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T17:01:21Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.3",
+          "release_notes": "第五轮的收尾（没有阻断项，两条小改动 + 顺手清掉合并前的旧插件名）。\n\n## 改动\n\n- **测试不再依赖不入库的 `config.toml`**：`tests/test_manifest.py` 里那条\"对局配置的可见面只有群主要用的十项\"的守卫，原来无条件 `open(\"config.toml\")` —— 而 `config.toml` 恰恰是 gitignore 的那份，新克隆的仓库与 CI 上会直接 `FileNotFoundError`。现在**模板 `config.toml.example` 一份必查、本机 `config.toml` 存在时再加查一份**（与四个 `tools/` 的\"没有就回落模板\"同一口径），并打印核对的是哪几份。\n- **看门狗的分类规则改回真实日志名**：`tools/room_watch.py` 原来按 `plugin.yugioh.duel-arena` 前缀挑\"插件报错 / 插件警告\"，而宿主现在把本插件的日志挂在 `plugin.mai-play-ygo` 下（实测本机 `logs/` 里插件自己的消息与两个子进程的转发全在这个名字下）。对不上就意味着这两类**永远不落账**——本机日志里有 43 条该被归为「插件警告」的记录，旧前缀一条都认不出。前缀现在提成常量 `PLUGIN_LOGGER_PREFIXES`，并加了 `test_plugin_logger_prefix_matches_manifest_id` 拿 `_manifest.json` 的 id 钉住，改名时会被测试拦住。\n- **合并前的旧插件名清干净**：`_append_to_planner` 写进机器人上下文的来源标签从 `plugin:yugioh-duel-arena` 改成 `plugin:mai-play-ygo`；`tools/analyze_replay.py` 导出的 `.ydk` 注释头、测试里的模块别名与合成包名、`room_watch` 测试里的 fixture 一起换上现在的名字。\n- 文档把两处口径说得更死：**随包是默认形态**（仓库与每个 Release 都带着 `cards.cdb` / `expansions/`，\"部署者可以不带\"是选项而不是缺省）；`/查房` 的跨群可见性注明是**明确的设计选择**（公共牌局，同部署下换个群照样看得到战况）以及想改的话改哪里。\n\n测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.3",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "f22174b9e0e0acecb3182d7e424448f3ca3e36a6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T16:01:31Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.2",
+          "release_notes": "上架评审**第四轮**的三条都处理了。1.0.2 相对 1.0.1 只有这一轮的内容。\n\n## 发行结论（评审要的\"结论\"）\n\n**继续随包分发**两个客户端与卡库，理由与处置写进 README 的「许可与随包内容」：\n\n- **GPL-2.0**（`ygopro.exe`、`script/` 卡牌脚本）：随包分发并附上游源码地址，满足源码可获取要求；\n- **MIT**（`WindBot.exe`、`executors/`）：随包分发，许可证随包；\n- **上游从未声明许可**（`cards.cdb`、`expansions/`、卡图）：作为社区资料**原样**随包，不主张任何权利、不单独收费，来源逐项写在 `clients/README.md`。\n\n因为插件的主打能力就是\"开箱即用\"——没有 `cards.cdb`，投稿时的缺卡核对和麦麦出牌都做不了。同时给出两条出口：**权利方在仓库开 Issue 说一声即刻删除**（不要求举证）；不想带第三类的部署者删掉那两个路径，让使用者用 `tools/setup_clients.py --from <自己的 ygopro 环境>` 自行同步。\n\n## 平台声明\n\n这是个 **Windows-only** 插件（对局内核与出牌引擎都是 Windows 可执行文件），现在 README 开头与 `_manifest.json` 描述各写明一次；代码里 `_check_ready()` 在非 Windows 上直接拒绝开房、`on_load` 启动日志给一条警告——不再让人只看到\"麦麦一声不响\"。\n\n## 修复\n\n- **`DeckPool.delete_all()` 改成先删记录、再清文件**：原来 unlink 全排在 SQL 之前，Windows 上 `.ydk` 被别的进程占着时 `PermissionError` 会中断删除，留下\"文件没了、记录还在\"的悬空引用（正是 1.0.1 修掉的那个坑的另一个入口）。现在最坏只剩几个没人引用的孤儿文件，删不掉只记一条日志。\n- **README 两处失实描述**：出网响应体上限不是 512 KiB（那是 `netguard` 的默认值），查卡接口是 2 MiB、在线卡图是 4 MiB；目录结构里的 `config.toml` 改为 `config.toml.example`。\n- **`duel/netguard.py` 文档**：删掉\"确实要连内网服务时调用方显式传 `allow_private_host=True`\"——生产代码没有任何调用方传 `True`，也没有配置项能放开内网。\n\n测试 181 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包、不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "f7bb6d048fb520ce54d0da3a6a0a53566f1ba5d5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T16:09:05Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.1",
+          "release_notes": "1.0.0 是上架评审**之前**的那份代码；这个版本收三轮评审的全部修复（插件市场按 Release 归档安装，已收录的版本不改 tag/commit，所以修复发新版本号）。\n\n## 修复了什么\n\n### 数据安全\n\n- **`/清空卡组` 跨群误删（静默出错）**：以前按\"全池投稿\"删 `.ydk` 文件、却只删本群的数据库行，别群的记录会变成指向已删文件的悬空引用——之后随机抽到那副牌，机器人一张都出不了牌、而且不报错。现在**文件与记录按同一范围删**，只清本群投稿，回执里写明范围。\n- **`/删卡组` 加管理员权限**：卡组池是共享的（列表里看得见别群的投稿就删得掉），原来任何群友都能删掉别群投的牌。\n- **群号口径对齐**：入库时群号会过一遍白名单（防 `..`、路径分隔符），但删除路径原来拿的是**原始**群号 —— 群号带 `/`、`:`、`..` 时 `/清空卡组` 会静默报\"已清空 0 副\"。现在入库、删除、回执统一走同一套归一。\n\n### 出网边界\n\n- **连接时校验目标 IP**：解析与连接之间的换址窗口（DNS rebinding）堵上了 —— 校验的就是马上要连的那个 IP；走代理隧道的连接直接拒绝（那一步校验不到目标）。\n- 报错文案不再提示早已删除的配置项。\n\n### 出牌脚本（杀调执行器，来自群友实测）\n\n- **锁缚龙②按连锁归属选支**：它的两个分支分别指向\"我连锁的那个效果\"和\"被连锁的那张卡的效果\"，原来写死\"先康链根\"——锁缚龙直接连锁对手效果时会康到自己的牌（实测：对手的「结晶魔术 光之泪」照常结算，自己的「再混音手」被无效）。现在按链条上每一环的控制者来选。\n- **手坑预算**：本家下级写着\"场上的这张卡为素材作同调召唤的场合，手卡 1 只调整也能作为同调素材\"，于是引擎会把**手牌的调整**（幽鬼兔、屋敷童）列为素材；实测一回合连做三次同调把三张手坑全烧掉、手里零阻抗被反杀。现在\"最后一张手坑不当素材\"，并加了额外召唤闸门（能斩杀时不省）。\n\n### 其他\n\n- **配置只放模板**：仓库里是 `config.toml.example`，本机的 `config.toml` 进 `.gitignore`；读配置的工具也改成\"没 `config.toml` 就用模板默认值\"，并修掉了\"把行尾注释当路径\"的解析 bug。\n- **统一 SDK 写法**：`ToolParameterInfo(param_type=…)` 与 `@Tool(brief_description=…)`（旧写法是静默失效的），加了护栏测试。\n- **`plugin_type` 改为 `game`**；补根目录 `LICENSE`（MIT）；`clients/README.md` 写明随包客户端的**来源、许可与 GPL-2.0 对应源码的获取方式**。\n- 测试 178 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包的客户端与卡库来自 ygopro / WindBot 社区：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT，cards.cdb 与卡图上游未声明许可，来源与许可详见 clients/README.md，不想随包分发可用 tools/setup_clients.py 让部署者自行同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "27009318d8998f336510924eae0481747f0b902e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T13:40:34Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.0",
+          "release_notes": "第一个版本（manifest 里声明的 version 就是 1.0.0）。\n\n## 这个版本做什么\n\n- **开房对打**：群里 `@麦麦 想打牌` 或发 `/开房` → 插件起一局，把服务器地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战；打完把胜负与过程播报回群里（可交给模型润色成一段人话）。\n- **查房出图**：`/查房` 出一张棋盘图（双方 LP、回合与阶段、场上每张卡，里侧的卡只画卡背），在哪个群问都出图。\n- **卡组池**：`/加卡组` 用卡组码导入（YDK / ydke / 萌卡链接）、`/加入随机` 放进随机池、`/固定卡组` 指定某一副；开局按\"自带执行器 → 卡表相似度 → 通用脚本\"的顺序挑出牌脚本。\n- **百科检索**：`ygo_card_search` 查卡、`ygo_card_image` 发卡图（本机卡图优先，缺了才走 CDN）。\n- **两个虚拟客户端随插件自带**（`clients/`：对局内核 ygopro + 出牌大脑 WindBot），路径默认相对插件目录，整个插件目录拷到哪台机器都能跑。\n\n## 配置面\n\n`[duel]` 只有群主要用的十项（bot 名字、地址与端口、开房等人超时、总结开关与提示词、挑衅开关与台词池），`[wiki]` 只有两项（查卡接口地址、超时）。其余内部参数写在代码里，不在配置页显示。\n\n## 说明\n\n- 卡组码只能用指令导入，模型不会自动识别群里贴的卡组码；房间只在\"叫麦麦打牌\"或发指令时开。\n- 想出牌更强，可以给某副牌写一个专属出牌脚本，做法见 `executors/README.md`（推荐让 AI agent 多轮迭代着写）。\n- `clients/` 里的第三方组件许可见 `clients/README.md`（ygopro 与卡牌脚本 GPL-2.0、WindBot MIT；卡库与卡图上游未声明许可，是否随包分发请自行判断）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
             },
             "plugin_type": "extension"
           }
