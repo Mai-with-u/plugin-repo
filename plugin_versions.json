@@ -26785,7 +26785,73 @@
       "manifest_id": "maibot.opencode-session-header",
       "repositoryUrl": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "f4adea2625a815bf31d48793c0a97093590f0c38",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T07:45:46Z",
+          "release_url": "https://github.com/deepseekv41flash/maibot-opencode-session-header/releases/tag/v1.1.0",
+          "release_notes": "## OpenCode 会话头注入 v1.1.0\n\n命中 `opencode.ai`（含子域）端点时，向请求注入稳定的 `X-OpenCode-Session` 请求头，规避网关返回 `400 MissingSessionID`。\n\n### 功能\n\n- **仅对 `opencode.ai` 生效**：Base URL 不属于该域时不加任何请求头，其他 Provider 完全不受影响\n- **会话 ID 不出网**：令牌由常见会话头（`Session-Id`、`X-Session-Id`、`X-Client-Request-Id` 等）经 **SHA-256 截断哈希**派生；找不到会话头时使用持久化随机种子兜底，保证同一部署始终得到同一令牌\n- **两种线上协议**：同时支持 `chat_completions` 与 `responses`，带自动回退\n- **以 LLM Provider 形式实现**（`client_type = opencode-session`）：MaiBot 的 Hook 只能改写消息内容、无法改 HTTP 头，内置 `client_type` 也不允许插件覆盖，因此由插件注册自己的 Provider，用户把 opencode 服务商指向它\n\n### 安装\n\n1. 通过 WebUI 插件市场安装本插件（或把仓库放入 `plugins/` 目录）\n2. 启用插件\n3. 把 opencode 服务商的 `client_type` 设为 `opencode-session`\n\n`config.toml` 由 Runner 自动生成，无需手工拷贝。\n\n### 兼容性\n\n| 项 | 要求 |\n|---|---|\n| MaiBot | `>= 1.3.0`（上界按官方建议置 `999.999.999`，只认真约束下界） |\n| maibot-plugin-sdk | `>= 2.10.0` |\n| Python 包依赖 | `httpx >= 0.27` |\n\n### 验证\n\n- **34 项离线单元测试全过**：`python -m unittest discover -s tests`\n- **交付包完整性**：`opencode-session-header-v1.1.0.tar.gz` sha256 `18a07d36d1d2fbe3b6fcc81dbc7b0f317a83a8cee521c035489b780024901cf0`，\n  逐文件 sha256 与签发清单逐行一致；本仓库中 6 个未修改文件与交付包内文件**字节一致**\n- **实测宿主环境**：MaiBot 1.3.5 / maibot-plugin-sdk 2.10.0 / Python 3.13\n- **实测效果**：上线后 `MissingSessionID` 出现次数 **0**；planner 缓存命中率 47.7% → **65.7%**，replyer 36.9% → **43.3%**\n\n### 许可\n\nMIT，见 [LICENSE](https://github.com/deepseekv41flash/maibot-opencode-session-header/blob/main/LICENSE)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.opencode-session-header",
+            "version": "1.1.0",
+            "name": "OpenCode 会话头注入",
+            "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；支持 chat_completions 与 responses 两种协议，会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+            "author": {
+              "name": "deepseekv41flash",
+              "url": "https://github.com/deepseekv41flash"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+              "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "opencode-session",
+                "name": "OpenCode 会话头注入",
+                "description": "转发 OpenAI 兼容请求，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.1.0"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "key-round"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
