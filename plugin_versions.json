@@ -14706,7 +14706,7 @@
       "id": "qxy871sda.llm_model_health",
       "manifest_id": "qxy871sda.llm_model_health",
       "repositoryUrl": "https://github.com/qxy871sda/llm_model_health",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -18152,8 +18152,62 @@
       "id": "mailife.mai-life",
       "manifest_id": "mailife.mai-life",
       "repositoryUrl": "https://github.com/tsuiraku9/mai-life",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "64fbd743c8e8c02102323da78bcc66b680124d27",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T06:22:31Z",
+          "release_url": "https://github.com/tsuiraku9/mai-life/releases/tag/v1.3.0",
+          "release_notes": "## 用户功能\n\n- 自动生活分享与自主定时任务统一管理，支持在当前对话安排单次提醒、分享、继续话题或询问进展。\n- 保留 `mai_life_query` 与 `mai_life_modify`；任务支持查询、新增、改期和取消，使用完整日期时间或相对分钟数安排跨日任务。\n- 精简规划器工具描述，说明可在 `[tools]` 中直接编辑；查询与管理描述分别使用 2 行、4 行输入框，留空恢复默认，保存后需重载插件或重启 MaiBot。\n- 修复午夜后当天日程尚未生成时，昨日仍进行的跨天活动无法注入的问题；今日查询与聊天注入使用一致的活动视图。\n- 保持自动分享的生成逻辑、数量和静默过滤；自主任务不受自动生成静默窗口限制，但仍遵守聊天流权限、巡检、冷却与 30 分钟补触发宽限。\n\n## 开发与修复\n\n- 统一任务来源、完整到期时间与生命周期状态，兼容读取旧日文件，并通过可重建索引支持跨日期查询和调度。\n- 新增确定性任务管理、精确去重和可选 `request_id` 幂等键；改期后的请求重试不会撤销修改或重复创建任务。\n- 自动分享重新生成只替换可再生成的自动待处理项，保留自主任务、已接管任务、其他聊天流与终态。\n- 使用原子读改写、重新读取后合并和状态快照校验，避免异步生成或唤醒结果覆盖并发修改。\n- 对中断或结果未知的唤醒请求保守消费，避免重启后盲目重复提交；提交成功仅表示 Host 接受规划器唤醒，不代表消息已发送。\n- 强化当前聊天流边界、日期时间与日程输出校验，补充任务、跨午夜、并发、工具配置及 SDK 元数据的离线回归测试。\n\n## 兼容说明\n\n- 要求 MaiBot **1.3.1 或更新的 1.x 版本**；SDK 范围为 **2.7.1–2.x**。\n- `target=share` 不再使用旧的自由文本 `request` 修改方式，改用 `list/add/update/delete` 和结构化任务参数；`target=schedule` 仍使用自然语言 `request`。\n- 新增任务填写 `title`、`intent`，并在 `run_at` 与 `delay_minutes` 中二选一；修改或取消前先查询 `task_id`，只可操作待处理任务。\n- 仅支持单次任务，不支持周期、cron、任意代码或跨聊天流调度；不承诺秒级准点或消息必然发送。\n- 发布源码不包含个人配置、配置备份、运行数据或本机维护文档；安装和升级时请保留自己的配置与数据。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mailife.mai-life",
+            "version": "1.3.0",
+            "name": "麦麦生活",
+            "description": "自动生成每日日程与生活分享，统一管理当前聊天流的单次定时意图，注入跨天活动并在到期时唤醒规划器。",
+            "author": {
+              "name": "mailife",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/mai-life",
+              "homepage": "https://github.com/tsuiraku9/mai-life",
+              "documentation": "https://github.com/tsuiraku9/mai-life/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/mai-life/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.1",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "chat.get_all_streams",
+              "maisaka.proactive.trigger",
+              "message.get_by_time_in_chat",
+              "message.build_readable",
+              "knowledge.search",
+              "config.get",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -23996,13 +24050,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.2.2",
-          "version": "0.2.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.2.0'\n- '0.2.2'\n       ^"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "local.simple-search-plugin",
@@ -26729,6 +26777,15 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot.opencode-session-header",
+      "manifest_id": "maibot.opencode-session-header",
+      "repositoryUrl": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
