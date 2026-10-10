@@ -9046,7 +9046,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -13777,9 +13777,9 @@
     "id": "qxy871sda.llm_model_health",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.5",
+      "version": "1.2.0",
       "name": "LLM 模型健康度/成功率统计",
-      "description": "总结并展示 MaiBot 使用的 LLM 模型的请求数、成功数与历史累计总量。",
+      "description": "统计并展示 MaiBot 使用的 LLM 模型健康度：窗口内请求成功率（成功取自宿主 llm_usage、失败取自宿主 WARNING 日志）、按需开启的失败原因与模型自身耗时，以及可选的历史请求数、token 用量与费用汇总。",
       "author": {
         "name": "qxy871sda",
         "url": "https://github.com/qxy871sda"
@@ -13796,7 +13796,7 @@
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.6.0",
+        "min_version": "2.10.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
@@ -13804,6 +13804,7 @@
         "send.text",
         "send.forward",
         "config.get",
+        "database.query",
         "statistics.local.models"
       ],
       "i18n": {
@@ -17232,9 +17233,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mailife.mai-life",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "name": "麦麦生活",
-      "description": "自动生成每日日程与聊天分享任务，在聊天时注入规划器，并在提醒时间唤醒规划器。",
+      "description": "自动生成每日日程与生活分享，统一管理当前聊天流的单次定时意图，注入跨天活动并在到期时唤醒规划器。",
       "author": {
         "name": "mailife",
         "url": "https://github.com/tsuiraku9"
@@ -17247,7 +17248,7 @@
         "issues": "https://github.com/tsuiraku9/mai-life/issues"
       },
       "host_application": {
-        "min_version": "1.2.3",
+        "min_version": "1.3.1",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -19031,6 +19032,7 @@
       "capabilities": [
         "config.get",
         "message.get_by_time_in_chat",
+        "message.get_by_id",
         "knowledge.search",
         "person.get_id",
         "person.get_value",
@@ -20360,7 +20362,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maifetch",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "name": "maifetch（麦麦状态）",
       "description": "让麦麦了解自己：版本、平台、插件与工具、模型用量、在线时长（可选硬件信息）。提供规划器工具、规划器自身信息注入与 /maifetch 状态卡片图。",
       "author": {
@@ -20559,9 +20561,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.2.6",
+      "version": "0.2.8",
       "name": "QQ 名片点赞",
-      "description": "通过 NapCat 适配器给 QQ 好友名片点赞，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
         "name": "FleetingEternity-qyt",
         "url": "https://github.com/FleetingEternity-qyt"
@@ -20581,13 +20583,7 @@
         "min_version": "2.5.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [
-        {
-          "type": "plugin",
-          "id": "maibot-team.napcat-adapter",
-          "version_spec": ">=1.0.0,<2.0.0"
-        }
-      ],
+      "dependencies": [],
       "capabilities": [
         "send.text",
         "api.call"
@@ -21192,6 +21188,64 @@
         "supported_locales": [
           "zh-CN"
         ]
+      }
+    }
+  },
+  {
+    "id": "maibot.opencode-session-header",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.opencode-session-header",
+      "version": "1.1.3",
+      "name": "OpenCode 会话头注入",
+      "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；支持 chat_completions 与 responses 两种协议，会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+      "author": {
+        "name": "deepseekv41flash",
+        "url": "https://github.com/deepseekv41flash"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+        "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "999.999.999"
+      },
+      "plugin_type": "provider",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27"
+        }
+      ],
+      "llm_providers": [
+        {
+          "client_type": "opencode-session",
+          "name": "OpenCode 会话头注入",
+          "description": "转发 OpenAI 兼容请求，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+          "version": "1.1.3"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "key-round"
+        }
       }
     }
   }

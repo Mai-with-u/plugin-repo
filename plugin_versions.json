@@ -14999,7 +14999,7 @@
       "id": "qxy871sda.llm_model_health",
       "manifest_id": "qxy871sda.llm_model_health",
       "repositoryUrl": "https://github.com/qxy871sda/llm_model_health",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -18445,7 +18445,7 @@
       "id": "mailife.mai-life",
       "manifest_id": "mailife.mai-life",
       "repositoryUrl": "https://github.com/tsuiraku9/mai-life",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -24289,13 +24289,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.2.2",
-          "version": "0.2.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.2.0'\n- '0.2.2'\n       ^"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "local.simple-search-plugin",
@@ -27022,6 +27016,15 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot.opencode-session-header",
+      "manifest_id": "maibot.opencode-session-header",
+      "repositoryUrl": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
