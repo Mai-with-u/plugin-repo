@@ -7826,7 +7826,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.1",
+      "version": "1.1.4",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -17277,7 +17277,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.2",
+      "version": "1.3.4",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -18396,9 +18396,9 @@
     "id": "ggsfly.stellasora-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "星塔旅人攻略查询",
-      "description": "星塔旅人（Stella Sora）游戏攻略查询：角色/技能/素材信息、配队/纹章/秘纹/技能优先度指南、游戏术语中英查词、当期排行榜（联合讨伐/终焉绝响 国服 Top100）。数据来自 stelladb 攻略站与游戏解包中英字典（4.8 万余条官方译名映射），输出为官方中文。",
+      "description": "星塔旅人（Stella Sora）游戏攻略查询：角色/技能/素材信息、配队/纹章/秘纹/技能优先度指南、游戏术语中英查词、当期排行榜（联合讨伐/终焉绝响 国服 Top100）。数据来自 stelladb 攻略站与游戏解包中英字典（官方译名映射），输出为官方中文。",
       "author": {
         "name": "ggsfly",
         "url": "https://github.com/ggsfly"
@@ -18431,7 +18431,8 @@
         "config.get",
         "send.text",
         "send.forward",
-        "llm.generate"
+        "llm.generate",
+        "component.reload_plugin"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -18993,7 +18994,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.9.2",
+      "version": "0.9.3",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19361,7 +19362,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.galgame",
-      "version": "1.0.1",
+      "version": "1.0.6",
       "name": "galgame领域大神",
       "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
       "author": {
@@ -19412,11 +19413,15 @@
       "plugin_type": "tool",
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "gamepad-2",
-          "fallback": "gamepad"
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "gamepad-2",
+          "background": "#0d1323"
         }
       }
+    },
+    "assets": {
+      "icon_64": "icons/mizuku003.galgame.webp"
     }
   },
   {
@@ -19884,9 +19889,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.4.4",
+      "version": "1.5.1",
       "name": "better-diary 日记插件",
-      "description": "两阶段生成的睡前日记：先从当天聊天里选材打分，再基于精选事件成文，强制引用聊天原话，反 AI 腔。日记只发布到QQ空间（cookie 三级来源自动获取：adapter → NapCat HTTP → 手动兜底），聊天内仅回报状态。发布前有语义闸：模型拒答/空输出/残句一律不发布。引用用「」且只包别人的原话，自己的话在引号外。成文规则含「写完一段自检」三条：动作后必须跟具体内容（不许「我问了她没答」这种空转）、同一意思只写一次、全篇最多一段以感受收尾。日期行会**规范化**：识别模型自写的日期行（含漏逗号/缺句号/短式/重复行），就地统一成「<日期>，<天气>。」并**保留模型观察到的天气**；模型写了**别的日期**时改写成正确日期（不再留下第二行日期），原文记入存档 model_date_line 并打日志、天气不采用。缺档自动补写（启动与次日兜底各扫一次，只存档不发布），存档含选材事件证据链与跨天连续性。支持定时生成、白/黑名单过滤与日记存档。/问日记 与 /那年今日 为本地零 LLM 检索（纯字符串匹配与日期比对）。可选静默阈值：到点若还在聊就等人停下再写（默认关闭）。篇幅目标 350 字、上下浮动 150（即 200~500），是「最舒服的长度」而非硬指标。成文遇网络超时会自动重试一次，补跑按天隔离、不会因单天失败而中断。httpx 仅发布时按需使用（已在 dependencies 声明），缺失时插件照常加载、日记照常生成存档，只跳过空间发布。权限默认关闭（fail-closed）：[security].admin_ids 未配置时只有管理员/本机操作者可触发，需要全员可用须显式打开 [security].allow_all_users。升级 MaiBot 后若报「插件初始化失败」，删掉插件目录里的 config.toml 重生成即可（Host 1.2.3 起 config_version 为硬性要求）。",
+      "description": "两阶段生成的睡前日记：先从当天聊天里选材打分，再基于精选事件成文，反 AI 腔。**v1.5.0「去 AI 味」**：不再要求每篇都引用原话（素材给了就顺口引一句、没给就不引），成文规则从 10 条压到 6 条，视角从「复盘聊天记录的书记员」改成「过完了一天的人」，开场骨架按日期哈希在 4 种之间确定性轮换，篇幅按素材丰富度分短/中/长三档（默认 140±75 / 245±105 / 350±150），新增 AI 腔检测器（**非阻断**，命中标签落盘 + 日志留痕）。**v1.5.1 引用回复拆分**：时间线构建时解析 raw_message 里回查成功的 reply 段，把被引原文按**真实说话人**独立成行、回复行只留回复者自己的话——治掉「被引原文黏在 bot 消息里被记成『我』说的」这一引号归属病的上游根因（Host 对引用回复是裸拼接、无前缀）；剥离失败或回查失败时保守回退旧行为，绝不丢消息。引用边界这些硬约束一条没松：只能放别人原话、一字不改、自己的话在引号外、一对「」只装一个人、引用后回复只引被引句。日记只发布到QQ空间（cookie 三级来源自动获取：adapter → NapCat HTTP → 手动兜底），聊天内仅回报状态。发布前有语义闸：模型拒答/空输出/残句一律不发布。引用用「」且只包别人的原话，自己的话在引号外——**素材侧不再把作者自己的话标成「原话」**，选材也限定 quote 必须是同一个人、单条消息的原话（不许把两个人的话拼在一起），避免「引用后回复」被焊进同一对引号。新增两类引用体检（均非阻断，只留痕）：①「引号越界」——某对「」里除了一条素材原话还混进别的内容；②「「」里装了作者自己说过的话」——拿时间线里标了说话人的行核对，**选材路径与降级路径（timeline_tail）都查**。另在成文日志留痕本次素材摘要（事件 ID + 自身原话件数，**不含聊天原话**）。降级用时间线末尾时，素材会附上格式说明，点明每行「说话人: 内容」、其中「我」= 作者本人。v1.5.0 起这三条改成一句话的点拨：删掉只有动作没内容的空转句、同一个意思不写两遍、别每段都拿感受收尾。日期行会**规范化**：识别模型自写的日期行（含漏逗号/缺句号/短式/重复行/写在结尾当签名的），就地统一成「<日期>，<天气>。」并**保留模型观察到的天气**；模型写了**别的日期**时改写成正确日期（不再留下第二行日期），原文记入存档 model_date_line 并打日志、天气不采用。缺档自动补写（启动与次日兜底各扫一次，只存档不发布），存档含选材事件证据链与跨天连续性。支持定时生成、白/黑名单过滤与日记存档。/问日记 与 /那年今日 为本地零 LLM 检索（纯字符串匹配与日期比对）。可选静默阈值：到点若还在聊就等人停下再写（默认关闭）。篇幅目标按素材丰富度分短/中/长三档（配置里的 word_target 作长档基准，默认 140±75 / 245±105 / 350±150），是「最舒服的长度」而非硬指标。成文遇网络超时会自动重试一次，补跑按天隔离、不会因单天失败而中断。httpx 仅发布时按需使用（已在 dependencies 声明），缺失时插件照常加载、日记照常生成存档，只跳过空间发布。权限默认关闭（fail-closed）：[security].admin_ids 未配置时只有管理员/本机操作者可触发，需要全员可用须显式打开 [security].allow_all_users。升级 MaiBot 后若报「插件初始化失败」，删掉插件目录里的 config.toml 重生成即可（Host 1.2.3 起 config_version 为硬性要求）。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -20079,7 +20084,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.netajuutilainen.immersive-control",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "麦麦我真得控制你了",
       "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
       "author": {
@@ -20091,8 +20096,8 @@
         "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.3.0",
+        "max_version": "114.514.810"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -20125,7 +20130,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.scp-article",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "name": "SCP 条目查询",
       "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
       "author": {
@@ -20449,7 +20454,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.local.mai-affection",
-      "version": "1.0.3",
+      "version": "1.1.2",
       "name": "麦麦好感度",
       "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
       "author": {
@@ -20493,7 +20498,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.token-usage-report",
-      "version": "1.8.5",
+      "version": "1.10.0",
       "name": "Token 用量统计与播报",
       "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
       "author": {
@@ -20651,6 +20656,543 @@
     },
     "assets": {
       "icon_64": "icons/local.simple-search-plugin.webp"
+    }
+  },
+  {
+    "id": "maibot-plugin-qq-group-daily-analysis",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-plugin-qq-group-daily-analysis",
+      "version": "1.0.0",
+      "name": "群聊每日分析",
+      "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+      "author": {
+        "name": "NetaJuutilainen",
+        "url": "https://github.com/NetaJuutilainen"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+        "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "114.514.810"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "data",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "jinja2",
+          "version_spec": ">=3.1"
+        }
+      ],
+      "capabilities": [
+        "send.image",
+        "send.text",
+        "llm.generate",
+        "llm.get_available_models",
+        "render.html2png",
+        "message.get_by_time_in_chat"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "./assets/icon.svg",
+          "fallback": "newspaper"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-plugin-qq-group-daily-analysis.webp"
+    }
+  },
+  {
+    "id": "Alcpare.identity",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.5",
+      "name": "身份认知",
+      "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+      "author": {
+        "name": "Alcpare",
+        "url": "https://github.com/Alcpare"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+        "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+        "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+        "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+      },
+      "changelog": "README.md",
+      "host_application": {
+        "min_version": "1.3.4",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "Alcpare.identity"
+    }
+  },
+  {
+    "id": "maibot.menu",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.menu",
+      "version": "1.0.2",
+      "plugin_type": "tool",
+      "name": "菜单插件",
+      "description": "发送 /菜单 生成菜单图片，展示手动配置的功能分组和指令，渲染失败时降级为文本。",
+      "author": {
+        "name": "SiriusFzh",
+        "url": "https://github.com/SiriusFzh"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SiriusFzh/maibot-menu",
+        "homepage": "https://github.com/SiriusFzh/maibot-menu"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.image",
+        "send.text",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "user.tarot-card-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "user.tarot-card-plugin",
+      "version": "1.0.2",
+      "name": "塔罗牌插件",
+      "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+      "author": {
+        "name": "SiriusFzh",
+        "url": "https://github.com/SiriusFzh"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+        "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+        "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+        "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "entertainment"
+    }
+  },
+  {
+    "id": "org.mai-mai.self-identity",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.mai-mai.self-identity",
+      "version": "1.3.3",
+      "name": "自我身份档案",
+      "description": "为 Bot 提供结构化身份中枢：档案检索、多套装扮人设图库（按服饰/风格标签选图）与原图、QQ 头像，以及 verify_self_claim 声明校验（防人设漂移）与 compare_with_self_image 视觉比对（不同服饰不算冲突）。另外提供 /人设卡片，把身份档案渲染成可直接粘贴进宿主配置的文本。运行时完全被动：插件不改写任何模型请求，身份由宿主 [personality]（replyer 的 personality / planner 的 behavior_style）承载，插件负责结构化档案、图库与检索。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/orge-8/self-identity"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "send.text",
+        "llm.generate",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "extension"
+    }
+  },
+  {
+    "id": "mai-play-ygo",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.2.4",
+      "id": "mai-play-ygo",
+      "name": "麦麦玩游戏王",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页��看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+      "author": {
+        "name": "erhan111119",
+        "url": "https://github.com/erhan111119"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/erhan111119/mai-play-ygo",
+        "homepage": "https://github.com/erhan111119/mai-play-ygo",
+        "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+        "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.0"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "llm.generate_with_tools",
+        "maisaka.context.append",
+        "chat.get_all_streams",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "game"
+    }
+  },
+  {
+    "id": "github.morphieendless.shuyushi-slayer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.morphieendless.shuyushi-slayer",
+      "version": "1.0.1",
+      "name": "属于是猎杀者",
+      "description": "在出站消息发送前按概率随机清除「属于是 / 了属于是」口癖，打断自我强化的复读回路。",
+      "author": {
+        "name": "MorphieEndless",
+        "url": "https://github.com/MorphieEndless"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+        "homepage": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+        "documentation": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/blob/main/README.md",
+        "issues": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "3.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "scissors"
+        }
+      }
+    }
+  },
+  {
+    "id": "tom.listen-audio-file",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.1.4",
+      "name": "听音频文件",
+      "description": "让麦麦能听聊天里的音频文件（mp3、m4a、wav 等）和语音条：听写歌词、点评唱歌、说出内容",
+      "author": {
+        "name": "Tom",
+        "url": "https://github.com/Tom20200112"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+        "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+        "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+        "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.7.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "message.get_by_id",
+        "llm.transcribe_audio",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "tom.listen-audio-file"
+    }
+  },
+  {
+    "id": "github.sodacodesave.birthday-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.sodacodesave.birthday-plugin",
+      "version": "1.1.0",
+      "name": "生日快乐，麦麦",
+      "description": "在配置的生日当天向回复提示词注入「今天是你的生日」提醒",
+      "author": {
+        "name": "Soda",
+        "url": "https://github.com/SodaCodeSave"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+        "homepage": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+        "documentation": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/#readme",
+        "issues": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "cake"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "org.mai-mai.file-reader",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.mai-mai.file-reader",
+      "version": "1.2.0",
+      "name": "文件读取（File Reader）",
+      "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/csv/代码/文本等），分块向量化后按语义检索，把最相关内容注入 LLM 上下文，实现低开销的文件问答。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/orge-8/file-reader"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "numpy",
+          "version_spec": ">=1.24"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24"
+        },
+        {
+          "type": "python_package",
+          "name": "pdfminer.six",
+          "version_spec": ">=20221105"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "llm.embed",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.netajuutilainen.payqr",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.netajuutilainen.payqr",
+      "version": "1.3.0",
+      "name": "麦麦赛博讨口子",
+      "description": "当 LLM 觉得自己没钱、想收打钱/转账/赞助/红包时，自动发送你配置的收款码图片",
+      "author": {
+        "name": "NetaJuutilainen",
+        "url": "https://github.com/NetaJuutilainen"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.hybrid",
+        "send.image",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🤑"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.fiatlux2333.hd2-helper",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.fiatlux2333.hd2-helper",
+      "version": "1.1.0",
+      "name": "绝地潜兵2情报助手",
+      "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
+      "author": {
+        "name": "牡蛎 (fiatlux2333)",
+        "url": "https://github.com/fiatlux2333"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+        "homepage": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+        "documentation": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md",
+        "issues": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "plugin_type": "game",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]

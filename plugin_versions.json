@@ -4601,6 +4601,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.4",
+          "tag": "v1.1.4",
+          "commit": "44019e91c3fa1a7deb79e463942fa41d2b0b50e6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T11:43:02Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.4",
+          "release_notes": "## 1.1.4\n\n### 细节\n\n- 消息引用：丢弃无法定位的出站引用及查询不到原消息的入站引用，保留正文，避免发送 `[unsupported:reply]` 占位文本。\n\n## 1.1.3\n\n### 细节\n\n- 临时私聊：按消息类型区分群聊与群临时私聊，避免来源群号导致误入群聊会话及回复错发群公屏。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.4",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.1.1",
           "tag": "v1.1.1",
           "commit": "746de2452d336c3a2b0a22ce4ba2ca46309ce316",
@@ -18952,8 +19016,67 @@
       "id": "ggsfly.stellasora-plugin",
       "manifest_id": "ggsfly.stellasora-plugin",
       "repositoryUrl": "https://github.com/ggsfly/stellasora-plugin",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "9fe42f3f299b9555232981c096d5df71cd10222f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T13:19:35Z",
+          "release_url": "https://github.com/ggsfly/stellasora-plugin/releases/tag/v1.4.1",
+          "release_notes": "**Full Changelog**: https://github.com/ggsfly/stellasora-plugin/commits/v1.4.1",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.1",
+            "name": "星塔旅人攻略查询",
+            "description": "星塔旅人（Stella Sora）游戏攻略查询：角色/技能/素材信息、配队/纹章/秘纹/技能优先度指南、游戏术语中英查词、当期排行榜（联合讨伐/终焉绝响 国服 Top100）。数据来自 stelladb 攻略站与游戏解包中英字典（官方译名映射），输出为官方中文。",
+            "author": {
+              "name": "ggsfly",
+              "url": "https://github.com/ggsfly"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ggsfly/stellasora-plugin",
+              "homepage": "https://stelladb.pages.dev/",
+              "documentation": "https://github.com/ggsfly/stellasora-plugin#readme",
+              "issues": "https://github.com/ggsfly/stellasora-plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "compass"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "component.reload_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "ggsfly.stellasora-plugin"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -19366,6 +19489,86 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.9.3",
+          "tag": "v0.9.3",
+          "commit": "4c6fb945158fcde03db6346e93a8ed488b692b50",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T11:11:05Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.3",
+          "release_notes": "这一版把 10 月 6 日到 9 日之间的修复一起收齐：派活不容易被漏掉、任务盯得更细、交付和资讯卡片更好用、长对话更稳。\n\n## 群友派的活\n\n- **先放进 MaiBot 看得见的备忘，并明确说清楚**：以前 MaiWork 把「有人派了活」记进 MaiBot 每轮的备忘，但话题接龙备忘一多，这一行会被挤掉；就算它看到了，也可能自己动手重复做。现在这类「派活 / 任务状态」行优先占预算——预算还有余量时，太长的行按句截断而不是整条丢掉；一次要说的太多、总预算不够时，排在后面的这一轮仍可能不进。措辞也改成「已由 MaiWork 接手，你不用答应，不要自己做」。\n- **个人提议先核实需求**：不再空泛追问，先弄清你到底要什么、自己具体能帮上什么。\n\n## 任务\n\n- **锁定你的原话逐条验收**：任务开工前把需求拆成清单锁住，之后每轮照原话逐条判过没过，主模型不能悄悄改标准。\n- **步骤各归各的目录**：分步任务的中间产物分开存，不再互相覆盖；上一步的成果可以复用。\n- **卡住会停下等人**：缺信息、客观做不到、或必须要真人参与时，任务停下来问你（第一次就会问），而不是硬编一个结果。\n- **目标打勾要证据**：给目标打勾必须带上已完成的任务或群里原话，由程序核对。\n- **止损**：同一个地址反复失败、或连续多次没有新进展时，先提醒子 agent，必要时收工交回。\n- **简短答复的小问题不铺开**：计划阶段判为「简短答复」的小问题只保留一件活、要求一段简短文字结果，不会为一句闲聊开一个大工程。\n\n## 交付\n\n- **交付说明先给结论并 @ 你本人**：一眼看到「东西好了、在哪」。\n- **发不出去也能拿**：群文件发不出去时，给一个能点开的成品网页或手机页。\n\n## 资讯卡片\n\n- 卡片改成短摘要；「值得看」只放头条；配图统一画框、不裁剪、按图取色；滤掉 logo、带字横幅这类封面；末尾加本群网页二维码，扫码就进本群页面。\n- 画图前最多等 150 秒让 MaiWork 先画出自己的图解，有图解就不再用抓来的封面；一批里名额先给要发卡片的条目。\n- 打分失败只留痕，不当作内容否决：某条「没评上」不会因此被判成「没用」而进 14 天去重名单。\n\n## 网页\n\n- 构想和任务可以一键「交给我的 agent」，直接把交接材料带走。\n- 全站文案改成人话，少用内部名词。\n\n## 长对话和长任务更稳\n\n- 原始对话和工作用的视图分开存：压缩只改工作视图，原始记录只增不改；摘要失败就保留原来的工作视图，压缩后的工具长输出仍可从归档分页回读。\n- 主模型和子 agent 各有自己的输入预算，并按实际用量校正。\n\n## 升级提醒\n\n- 先备份插件和数据目录，覆盖插件时保留自己的 `config.toml`。\n- 数据库会自动升到**库号 37**（比 v0.9.2 多两步：给已有的资讯条目加一个短摘要字段；新建一张表存任务对话的原始记录和压缩提要，任务结束清空）。配置版本仍是 `0.4.6`，不用改配置。\n- **回滚请连同升级前的数据备份一起恢复**：旧版本不认这些新增内容，只换回旧代码不等于能继续用。\n\n## 还需要真实运行才知道的\n\n- 派活备忘的措辞改动能不能真的让 MaiBot 不再自己接单、重复做，要等之后群里的真实轮次才能确认（线上已部署，观察中）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.3",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.9.2",
           "tag": "v0.9.2",
@@ -20676,6 +20879,290 @@
       "repositoryUrl": "https://github.com/mizuku003/maibot-galgame",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "f501b8b8089f4fe19a75bf93ee107e5453d36439",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T13:18:52Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.6",
+          "release_notes": "v1.0.6：工具出图交给模型决定，面板改完立即生效\r\n\r\n- 新增「允许工具出图」（默认关）。关着时模型调用工具只回文字资料，\r\n  卡片只由你敲的 `/gal` 指令发；打开后模型可以传 `send_card=true` 出图。\r\n- 修掉一个「开关打开了却没用」的问题：工具的参数字段只在插件加载时\r\n  收集一次，面板保存配置不会重收，所以旧写法下打开开关模型仍看不到参数。\r\n  现在 `send_card` 常驻参数表，开关改为运行时读取 —— **改完保存即生效，不用重载**。\r\n- README 的 `output` 配置表补全到 8 项（原来只列了 3 项）。\r\n\r\n配置和依赖都不用动。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.6",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "d760dfbfbe4b8963a1fc4fe88a4e5a92772e9fb1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T10:22:42Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.5",
+          "release_notes": "## 修掉的坑\r\n\r\n- **批评空间索引损坏后会自己重铺**：以前索引文件一旦被写坏，内置的 1.8 万条数据就永远读不出来，插件会转去全量重爬（几百页）。现在坏文件会删掉重铺，索引也改成原子写入。\r\n- **贴吧 403 不再被误判成封禁**：访客 Cookie 没拿到时的 403 以前会被当成反爬，然后白等 15 分钟冷却；现在会先重新播种一次。另外请求失败也会歇间隔，不再连续硬打。\r\n- **贴吧话术不会重复插行**：同一个吧、同一个会话的语料以前会认到同一个表行；黑话去重以前只看最近 5000 行，表一大就判成「没有这条」从而插重复。现在都按精确条件查。「清理」现在会连花名册里的留档一起清，不会再被下一轮刷新写回。\r\n- **新作情报里月幕的中文条目不再整源消失**：月幕的条目没有发布日期，排序时全部沉底，配额又被别的源占满，于是整个源静默消失。现在截断前会保底给每个抓到的源留一条。\r\n- **用法卡上的时长示例是错的**：`/gal 85-90 6-20h` 里的 `6-20h` 会被当成关键词，时长条件静默失效。已改成 `h5-20`。\r\n- 封面并发渲染时会重复下载同一张图，现在只发一次请求。\r\n- 作品名归一化不再把 `HDR` 误删成 `r`，`FHD`/`HD` 后缀仍能正确去掉。\r\n- 批评空间短评正文里不再混入「長文感想(185)(ネタバレ注意)」这类入口文字；属性表缺 `<th>` 或 id 不带引号时也能解析出来。\r\n- 缓存淘汰改成按到期时间淘汰，不再误删最该留下的长缓存。\r\n- 本地索引和榜单都读不到、只能拿 VNDB 分近似筛选时，会明确提示口径不同，不再静默降级。\r\n- `锐评篇幅`、`强调色` 等配置项说明与代码行为对齐（强调色现在只收 `#RGB` / `#RRGGBB`）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.5",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "cba7b41f65b064f68ca6497280a823d474068fbe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T18:53:34Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.3",
+          "release_notes": "这一版主要是修 bug，没有新增功能，**配置和依赖都不用动**，覆盖安装即可。\n\n### 修掉的问题\n- `/gal <条件>` 翻页翻到底之后不再返回空列表：同一组条件最多往后翻到第 60 条，到顶会直接说「已经翻到底了」。\n- 几处会直接报错的边界情况：详情命令里一个未定义的 `logger`（会中断整条详情）、月幕的角色顺序字段遇到非数字、发布时间是超长年份、VNDB 票数字段异常；现在都退化成按缺省处理。\n- 检索排序在「条目名称全空」时不再中断整次搜索。\n- 贴吧话术：访客 Cookie 播种失败时贴吧对任何页面都返回 403，之前被当成被风控拦截、直接冷却 15 分钟；现在会先重播一次 Cookie 再判断。另外帖子正文缓存不再 30 天后失效重抓（正文页最容易触发安全验证）。\n- 写进麦麦「表达方式 / 黑话表」时，去重总是基于最新写入的行，表变大后不会再插重复行；关掉插件撤出时，不会再误删「本来就没有 id」的留档条目。\n- 配置面板：回复数上下限、回复字数上下限写反了会直接报错，而不是悄悄出空结果。\n\n### 已知的取舍\n- 纯汉字、没有假名的日文正文不会自动翻译（判据只看假名；加上汉字会把中文正文误翻成日文）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.3",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "d125bb6aed0d2146478f2301139204505a7b0f5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T18:43:21Z",
+          "release_url": "https://github.com/mizuku003/maibot-galgame/releases/tag/v1.0.2",
+          "release_notes": "给插件加上了头像。\n\n- 新增 `assets/icon.png`（256×256 PNG，106 KB），manifest 的 `display.icon` 由 `lucide/gamepad-2` 改为 `local/assets/icon.png`，并补上 `background: #0d1323`。\n- 头像同时服务两处：麦麦面板走 `/api/webui/plugins/icon/<插件ID>`（上限 512 KB），官方插件市场由 plugin-index 自动抓取并压成 64×64 的 webp，不需要另外传图。\n- 原来的 `fallback` 写的是 `gamepad`，宿主图标表里没有这个名字（只有 `gamepad-2`），已改回有效的名字。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.galgame",
+            "version": "1.0.2",
+            "name": "galgame领域大神",
+            "description": "多源 galgame 资料查询：中文名与汉化、通关时长与标签、评分与玩家锐评，支持别名检索、条件推荐、资料卡出图与 /锐评；附带 gal 圈情报与贴吧话术学习。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-galgame",
+              "homepage": "https://github.com/mizuku003/maibot-galgame",
+              "documentation": "https://github.com/mizuku003/maibot-galgame/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-galgame/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "chat.get_all_streams",
+              "database.query",
+              "database.get",
+              "database.save",
+              "database.delete"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "gamepad-2",
+                "background": "#0d1323"
+              }
+            }
+          }
+        },
         {
           "version": "1.0.1",
           "tag": "v1.0.1",
@@ -22013,6 +22500,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "3f953fb07745896c30a5e2533a95520d948d64a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T13:04:27Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/releases/tag/v1.0.1",
+          "release_notes": "# 麦麦我真得控制你了 v1.0.1\n\n适配 MaiBot **1.3.0 及以上**。上一个版本声明过宽（1.0.0+），部分老版本宿主缺少 `maisaka.*` 注入钩子，导致开启控制后“激活了但无反应”；本次将兼容下限提升到 1.3.0，挡掉会静默失效的旧宿主。\n\n移植自 AstrBot 插件 [astrbot_plugin_immersive_control](https://github.com/muyouzhi6/astrbot_plugin_immersive_control)（原作者：木有知 / Zhalslar，MIT）。本移植针对 MaiBot + maibot-plugin-sdk 2.x，沿用原版“沉浸式互动”提示词风格，默认模板保持全年龄可读。\n\n- **适配 MaiBot**：1.3.0 ~ 114.514.810（maibot-plugin-sdk 2.5.0+）\n- **能力声明**：send.text、maisaka.proactive.trigger、maisaka.context.append——无网络请求、无远程执行\n- 纯代码实现，无额外数据文件；下方自动生成的 Source code (zip) 即为完整安装包\n\n## 本版本变更（v1.0.1）\n\n- `host_application.min_version` 提升至 **1.3.0**（README 已注明）\n- 兼容性与排查说明写入 README：若激活后无反应，先排查 ① 群聊是否 @ 了麦麦 ② 关键词是否为完整句（如 `控制`，而非“控制一下”）③ 默认静默激活，状态体现在**下一条回复**里\n\n## 功能\n\n- @机器人 + 关键词进入“被遥控”状态（私聊免 @），静默激活，可配置时长后自动结束，支持冷却与并发上限\n- 六档敏感度（0-120，100-120 档仅限指令设置）；`/强度 <0-120>`、`/强度 max`、`/强度 自动`（30→100 爬升后 50↔100 往复，速度可调）、`/强度 全局`、`/强度` 查询\n- 阈值主动表达（`proactive_threshold`，每次激活限一次）\n- 顶点效果（`climax_threshold` + 持续秒数 + 每次激活次数上限 + emoji 暗号，均可在 WebUI 调整）\n- 隐蔽模式：状态变更回执替换为无察觉日常语句\n- 状态持久化：MaiBot 重启后自动恢复\n\n## 数据与隐私\n\n会话状态（会话 ID、触发者 user_id、敏感度与计时信息）仅保存在插件本地 data 目录的 `state.json`，不上传到任何服务器；卸载或删除该文件即全部清除。\n\n## 安装\n\n1. **插件市场**：选择 v1.0.1 安装（即本 Release 的 Source code 包）；\n2. **手动安装**：下载 Source code (zip) 解压到 MaiBot 的 `plugins/` 目录，WebUI 中启用；\n3. 首次安装因 manifest 能力声明需**完整重启一次 MaiBot**，之后改配置走热更新。\n\n## 离线验证\n\n无需启动 MaiBot：`python tests/verify.py`，覆盖组件声明、manifest/配置校验、状态机全路径与钩子端到端等 128 项检查。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.immersive-control",
+            "version": "1.0.1",
+            "name": "麦麦我真得控制你了",
+            "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "114.514.810"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "remote"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "92c08f21f96f236ac15982f26c93c2f7517d47d2",
@@ -22072,6 +22609,71 @@
       "repositoryUrl": "https://github.com/cateyemizuki/cateye_scp_article",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.3.4",
+          "tag": "v0.3.4",
+          "commit": "404159e68a6ce183c2f5ecc664f35102a2e52a1f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T16:38:28Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_scp_article/releases/tag/v0.3.4",
+          "release_notes": "## 紧急修复：0.3.3 引入的抓取回归（全部条目抓取失败）\n\n0.3.3 的「重定向逐跳复验」加固把页面抓取改走 `ALLOWED_SITE_HOSTS`，但该常量只定义在 `scp_core.py`，没有随 `plugin.py` 的导入清单一起带入。该名字只在函数体内求值，模块加载期不报错（日志仍显示「v0.3.3 加载成功」），跑到抓取那一行才抛 `name 'ALLOWED_SITE_HOSTS' is not defined`：\n\n- `/scp <编号>`、`/scp cn <编号>` 全部报「抓取失败」；\n- `/scp刷新目录` 全部索引页抓取失败（旧目录缓存继续服务，所以搜索 / 随机看似正常，实际目录无法更新）；\n- 页头资源走 `ALLOWED_ASSET_HOSTS`（定义在 plugin.py 内），不受影响。\n\n**修复**：两个导入块均补齐 `ALLOWED_SITE_HOSTS`；并新增离线回归测试（静态扫描 plugin.py 引用的 `scp_core` 导出名是否都已导入），这类「加固改动静默漏导入」不再能通过自测。\n\n### 升级说明\n\n- `config_version` 同步升至 `0.3.4`：Runner 会用默认值重建配置骨架，**同类型字段保留你已有的值**，配置项无增减。\n- 升级后请重载插件或重启机器人（已导入的旧模块不会自动重载，仅覆盖文件无效）。\n- 已经停留在 0.3.3 的用户建议直接升级到本版本。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.scp-article",
+            "version": "0.3.4",
+            "name": "SCP 条目查询",
+            "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_scp_article",
+              "homepage": "https://github.com/cateyemizuki/cateye_scp_article",
+              "documentation": "https://github.com/cateyemizuki/cateye_scp_article/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.image",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "file-search",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
         {
           "version": "0.3.3",
           "tag": "v0.3.3",
@@ -22793,6 +23395,108 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "8521a6ec16e84db9923aa341ae558f85af24d8bc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T16:21:16Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.1.2",
+          "release_notes": "新增直接评价结构规则：未命中已有情绪模板的‘你 + 程度词／是 + 词’记 0，保留已知正负情绪模板，不再逐词追加敷衍说法。\r\n\r\n沿用本地 SQLite、独立冷却与消息去重；评分不增加模型调用或 Token。\r\n\r\n词表外的负面说法可能得到基础分，受冷却限制。\r\n\r\n安装：将附件 ZIP 中的 affection/ 复制到 MaiBot 的 plugins/，重载或重启。原配置和好感度数据库继续使用。目标 MaiBot 1.3.3、SDK 2.8.1+（2.x）、Python 3.12+。\r\n\r\n本轮结构修订按维护者要求未重跑本地测试；此前留出结果不视为修订后的验收结果。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.1.2",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "31831bf9ab049b680d7f3ea25439fb0d826521f4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T14:20:00Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-affection/releases/tag/v1.1.0",
+          "release_notes": "本地规则评分：先确认评价对象，再按明确态度分句计分；不确定、疑似反讽和未覆盖表达记 0，自动评分每条消息最多增减 3，不新增模型调用或 Token。\r\n\r\n- 基础交流冷却与正向、负向情绪冷却拆开，闲聊不再挡住后续感谢或插件上报。\r\n- SQLite 启动迁移保留已有分数和配置；事件仅存分类标签，旧理由匿名化，保留期为 30 天。\r\n- 保留日常／正式两套查询和引用原消息回复。\r\n\r\n适配 MaiBot 1.3.3、SDK 2.9.0（最低 2.8.1）、Python 3.12+。\r\n\r\n验证：59 项测试及 Ruff 通过，覆盖 250 条人造样例。用户提供的 130 条样例按不对称验收：安全失败 0，保守漏判 72，明确情绪方向覆盖 34/72，强度差异 2。报告见 tests/scoring_report.json；真实平台与在线模型完整联调尚未执行。\r\n\r\n下载下方安装 ZIP，将其中 affection/ 覆盖到 MaiBot 的 plugins/，随后重载或重启。包内不含 config.toml 或数据库，原设置与好感度继续使用。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.local.mai-affection",
+            "version": "1.1.0",
+            "name": "麦麦好感度",
+            "description": "记录好感度，按麦麦人设回应日常关系询问与严肃的正式查询。",
+            "author": {
+              "name": "GPT-6.1 Sol Ultra",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-affection",
+              "documentation": "https://github.com/MoonlyCake/maibot-affection/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-affection/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "heart"
+              }
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.3",
           "tag": "v1.0.3",
           "commit": "99559fe03f845021e4f0aefdb56d5b8d41f80e3e",
@@ -23006,6 +23710,74 @@
       "repositoryUrl": "https://github.com/CSSQY/token_usage_report",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.10.0",
+          "tag": "1.10.0",
+          "commit": "199ff3786223cbbffeb81f82d577a2aee388be15",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T18:01:26Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.10.0",
+          "release_notes": "## [1.10.0]\r\n\r\n### 主要功能\r\n\r\n- **配置拆分**：把原先混在 `[report]` 里的「文本呈现」拆成两个独立分节 —— `[text_template]`（模板文本，只放 `template`）与 `[llm_rewrite]`（LLM 风格化转述：提示词、人格注入、模型来源）。改一个不影响另一个。\r\n- **发送方式统一**：`[command]` 与 `[report]` 各新增 `send_mode`（三选一）—— `template` 按模板文本发送、`llm` 发 LLM 风格化转述、`image` 发图片报告；两者共用同一个发送实现，图片渲染失败或 LLM 调用失败都会自动回退为模板文本并记一条 error 日志。\r\n- **自定义 LLM 服务**：`[llm_rewrite].provider` 可选 `host`（复用宿主模型组）或 `custom`（任意 [OI] Chat Completions 兼容服务）。选 `custom` 时可配置接口地址、API Key、模型名、温度、额外请求参数（JSON）、重试次数、超时时间、重试间隔；新增 `llm_client.py` 承载调用与重试。\r\n\r\n### 细节\r\n\r\n- 新增分节 `[text_template]`（原 `report.template`）、`[llm_rewrite]`（原 `report.llm_task_name` / `use_persona` / `persona_template` / `persona_extra` / `llm_prompt`）；`[report]` 只保留 `enabled` / `schedule_times` / `platform` / `target_groups` / `target_users` / `send_mode`。**旧值不会自动迁移，升级后需在两个新分节重新填写。**\r\n- `[command]` 的 `use_image` 移除，改为 `send_mode`；`[report]` 的 `mode` + `send_image` 移除，改为 `send_mode`。默认值 `image`，与旧默认行为（发图片、失败回退文字）等价。\r\n- 自定义服务调用：地址会去掉尾部 `/` 后拼 `/chat/completions`；`api_key` 留空则不发送 `Authorization` 头（便于本地免鉴权服务）；`extra_body` 与默认参数合并，同名时以 `extra_body` 为准，格式非法只记 warning 并忽略。\r\n- 重试策略：网络异常与 5xx / `429` / `408` / `409` / `425` 会按「重试次数」与「重试间隔」重试；其余 4xx（鉴权、参数错误）直接失败不重试，避免无效请求打爆对方。每次重试记一条 warning，最终失败记一条 error 并回退模板文本。\r\n- 响应解析兼容三种形态：`choices[0].message.content` 为字符串、为内容片段数组（多模态 / 推理模型）、旧式 `choices[0].text`。\r\n- 新增 `llm_client.py`；`text_report.py` 移除 `build_report_text`（改为按 `send_mode` 分发），`plugin.py` 新增 `_build_delivery` 统一指令与定时播报的发送路径（移除 `_text_for_delivery`）。\r\n- `config_version` 递增至 `1.10.0`。\r\n\r\n## [1.9.0]\r\n\r\n### 主要功能\r\n\r\n- 权限拆成**两组互相独立**的配置：`[llm_tool_permission]` 管 LLM 工具 `query_token_usage`，`[command_permission]` 管 `/token` 指令；改一组不影响另一组。\r\n- 每组都含三层：**对话流黑白名单**（`whitelist` / `blacklist`，默认 `whitelist`）→ **全局默认可查询范围 / 可查询窗口**（各用一组布尔开关，可点选）→ **每对话范围覆盖**（`scope_overrides`，格式 `聊天流类型|号码|可查询范围|可查询窗口`，例如 `群聊|123456|当前对话,全部会话|今日,本周`）。\r\n- 新增「**可查询窗口**」维度：此前无法限制「能查哪个时间段」，现在每组都能限制到具体窗口（今日 / 本周 / 本月 / 最近 24 / 7×24 / 30×24 小时，以及「全部窗口」）。\r\n- 新增 `permissions.py`：两组权限的解析与判定（纯函数、不依赖宿主 SDK），`plugin.py` 的两条回调各自调用。\r\n\r\n### 细节\r\n\r\n- 移除 `[command]` 的 `permission_mode`、`whitelist_groups`、`whitelist_users`、`blacklist_groups`、`blacklist_users`、`tool_allowed_scopes`；`[command]` 只保留 `enabled` / `notify_no_permission` / `deny_message` / `use_image`。**旧权限值不会自动迁移，升级后需在两个新分节重新填写。**\r\n- `permission_mode` 由 `all` / `whitelist` / `blacklist` 三档收敛为 `whitelist` / `blacklist` 两档（原 `all` ≡ `blacklist` + 名单留空，能力不丢）。\r\n- 默认值保持不变式：LLM 工具仍只放行「当前对话」（等价旧 `tool_allowed_scopes = [\"current\"]`），`/token` 指令四范围与七窗口默认全放行（等价旧「指令无范围限制」）。\r\n- 用户白名单语义明确为「只绕开对话流名单」：命中白名单的用户仍受该对话的范围 / 窗口放行列表约束。\r\n- 指令被范围 / 窗口拦下时统一回复 `deny_message`，精确原因记 `info` 日志；工具被拦下时返回失败结果并记 `info` 日志（含请求值与本对话实际放行的值）。\r\n- 覆盖项解析对非法条目（段数不对、类型不认识、号码为空）整条跳过并记 `warning`；段内取值写错只忽略该取值并记 `warning`；重复对话后一条覆盖前一条。\r\n- `config_version` 递增至 `1.9.0`。\r\n\r\n## [1.8.6]\r\n\r\n### 细节\r\n\r\n- 修复图片报告条形图横轴标签重叠：横轴抽稀此前按「标签个数」取步长（`len(labels) // 12`），标签数在 12~23 个时整除结果恒为 1，等于不抽稀——「今日 / 本周」这类按小时聚合的单窗口报告会画出 15~23 个 `10-08 20:00` 形式的标签，间距仅约 40px 而标签本身约 55px 宽，互相重叠无法辨认。现改为按最长标签的估算像素宽度反推最多可画几个，再据此取步长，保证间距不小于标签宽度；按天/按月的图（标签本来就宽裕）密度维持不变。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.10.0",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.8.5",
           "tag": "1.8.5",
@@ -23634,6 +24406,2612 @@
             ],
             "capabilities": [
               "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-plugin-qq-group-daily-analysis",
+      "manifest_id": "maibot-plugin-qq-group-daily-analysis",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "8368d9c4cca046f8a60fb1fd10f616c04489c02f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T19:21:58Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.0.0",
+          "release_notes": "# 群聊每日分析 1.0.0\n\n每天自动生成群聊日报：话题总结 / 群友称号 / 金句摘录 / 聊天质量锐评，9 套主题，支持 QQ 群相册上传。\n\n## 功能\n\n- 每日自动生成并发送日报（可手动 `/日报` 触发，支持按群指定主题）\n- 四个分析模块：话题总结、群友称号、金句摘录、聊天质量锐评\n- 9 套主题模板：atri / bluearchive / hatsunemiku / hack / retro_futurism / scrapbook / spring_festival / simple / format\n- 生成后自动上传 QQ 群相册（按群指定相册名）\n- 支持本地 / 云端渲染，渲染失败自动降级\n\n## 本版要点\n\n- 运行时缓存（头像 / 人格水印图 / 相册上传临时文件）落在宿主 `data/plugins/<插件>/cache/`，\n  与 stats.json 同区 —— 插件目录更新/只读挂载都不受影响；\n- 云端渲染默认关闭；开启即代表把群聊数据交给第三方 t2i 服务，README 有明确隐私说明；\n- 群相册上传走本地文件路径，绕开协议端请求体上限；上传超时自动核对相册、不再重复上传；\n- LLM 输出解析宽容（裸换行 / 尾随逗号 / 中文包装键等），称号/话题不会因格式毛病整段消失；\n- LLM 输出上限显式控制并在重试时翻倍、RPC 超时放宽到 7 分钟，适配思考型慢模型；\n- 定时日报按群去重 + 自动清理历史残留 stream，同一群不会一天发两份；\n- config_version 1.2.0：归档 llm_max_tokens / prune_stale_stream_days 等字段。\n\n## 兼容声明\n\n- host_application: 1.0.0 ~ 114.514.810（作者条例）\n- sdk: 2.5.1 ~ 2.99.99",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.0.0",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "114.514.810"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "Alcpare.identity",
+      "manifest_id": "Alcpare.identity",
+      "repositoryUrl": "https://github.com/Alcpare/maibot_identity_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "1.0.5",
+          "commit": "add584e57dfd4ca4f664d93cdef7aa419148b454",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:34:49Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.5",
+          "release_notes": "## v1.0.5 · 清除个人化字符串\n\n上一版（v1.0.4）只清理了号码，复查又发现测试文件里还留着我的**昵称**、一位**群友的昵称**，\n以及一处**真实会话哈希**。本版一并清除。\n\n### 变更\n- 名单示例注释里的昵称 → `Alcpare`\n- 测试夹具里的群友昵称 → `某群友`\n- 真实 32 位会话哈希 → 全零假哈希（`0123456789abcdef...`）\n- **发布闸门升级**：从\"只查号码\"变为三重检查（号码 + 个人昵称 + 32 位会话哈希），命中即中止发布\n\n### 兼容性\n仅测试文件与文档变更，**插件本体与配置零改动**，实测环境仍为 MaiBot 1.3.4 / SDK 2.9.0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.5",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "1.0.4",
+          "commit": "202a85a9a293b0b4e07c83dfdb01fe95d9729348",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:33:42Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.4",
+          "release_notes": "## v1.0.4 · 清除测试文件里的真实号码\n\n第四轮 AI 审核指出：`tests/` 里的自测脚本还带着真实 QQ 与群号，而插件本身的卖点是\n「号码不进日志、不泄露」—— 姿态不一致，也确实是一次真实的隐私疏漏\n（v1.0.3 把 `tests/` 纳入仓库时没有重跑隐私审计，这次一并改正流程）。\n\n### 变更\n- `tests/` 三个脚本里的真实号码全部换成 `10000000x` / `90000000x` 这类假号，\n  位数保持一致，不影响「遮蔽后不得出现完整号码」这类断言\n- 工作副本同步清洗，避免以后复制回来再次带入\n- 复查：仓库内所有文件（含 `tests/`）**已无任何真实号码**\n\n### 兼容性\n仅测试文件变更，**插件本体与配置零改动**，实测环境仍为 MaiBot 1.3.4 / SDK 2.9.0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.4",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "1.0.3",
+          "commit": "efaa4bffe5fdf92c28d3539215720c16e147fa7a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:28:31Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.3",
+          "release_notes": "## v1.0.3 · 修复启动炸弹\n\n按插件中心第三轮 AI 审核的建议修改。\n\n### 修复\n- **启动炸弹**：`_load_persisted` 中解析时间戳的语句原先在 `try` 之外 ——\n  `speakers.json` 被写坏或手改过（`ts` 不是数字）时会让 `on_load` 抛异常、**插件加载失败**。\n  现在整段恢复逻辑都有保护，坏数据一律按\"无记录\"处理，写入路径同样加固（新增 `_safe_ts`）。\n- **`default_label` 校验**：填了未支持的档位（如「群主」）时，此前只有档位文案静默回落，\n  而 `（你的{label}）` 里的无效值仍会进入提示词。现在回落为默认档并记 WARNING。\n\n### 文档\n- 落盘表格补上 `group`（明文群号），并说明坏文件会被整体忽略\n- 新增「三个钩子都是 SDK 正式内置 Hook」的证据（官方文档清单 / Host 校验规则 / 同批钩子已被市场插件使用）\n\n### 自测\n- 仓库纳入 `tests/`：三个离线自测脚本，用 `__file__` 定位插件目录，克隆即可运行\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0，无需改配置即可升级。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.3",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "1.0.2",
+          "commit": "125b8c1e24c3864e0d67a84c3e3897e24d114634",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:23:14Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.2",
+          "release_notes": "## v1.0.2 · 显示名过滤加固\n\n按插件中心第二轮 AI 审核的两条建议修改，**功能无变化**。\n\n### 变更\n- **显示名过滤改为按 Unicode 类别剔除**：任何文字的括号（含全角 `（）`、书名号《》）、\n  弯引号、控制字符、零宽字符、数学/修饰符号、下划线、星号与直引号一律剔除。\n  原先的枚举黑名单实测**漏掉了全角括号** —— 枚举一定会漏，故改为类别判定。\n  正常昵称不受影响（`awa`、`·小萤·` 这类照旧保留）。\n- **DEBUG 日志里的群号也做遮蔽**（此前只遮了 QQ 与会话 ID）。\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0，无需改配置即可升级。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "7c5e416ae31f3da26de39d1c1881670f8b5b0f81",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:12:19Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.1",
+          "release_notes": "## v1.0.1 · 隐私加固\n\n本次为审核建议的修复版本，**功能无变化**，只做加固与文档补全。\n\n### 变更\n- **日志号码遮蔽**：名单 / 入口记录 / 跳过原因里的 QQ 与会话 ID 一律打印为 `137***257`\n- **显示名防注入**：群名片是用户可控输入，现在限长 24 字并过滤换行、控制字符与结构标记\n- **文档**：补「隐私与落盘」（磁盘上留什么、留多久）与「长消息 ID 的降级行为」\n- **manifest**：兼容区间按实测收紧为 `host >= 1.3.4`、`sdk >= 2.9.0`；`documentation` 指向插件 README\n\n### 兼容性\n实测 MaiBot 1.3.4 / SDK 2.9.0。升级到本版本无需改配置。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_identity_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.4",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "169ac49be901c7ac0df773e5d7e5ef813ba0f244",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T21:00:59Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.0",
+          "release_notes": "## 身份认知 Alcpare.identity v1.0.0\n\n让她知道**当前跟她说话的人是谁**（主人 / 朋友 / 普通群友），从而用对态度。\n纯手动白名单：不调用任何 LLM、不写数据库、没有定时任务；名单为空时完全不注入。\n\n### 功能\n- 名单格式「QQ号 = 档位」，显示名实时取自群名片/昵称，改名不用维护名单\n- QQ 号只存在于插件内部映射（msg_id → user_id），**永不进入提示词**；注入文本另有「长数字自检」兜底\n- 按消息 ID 精确定位当前说话者，兼容宿主两种格式与超长 ID 的短别名 → 同名、改名都不怕\n- 同一轮只注入一次（阶段 + 会话 + 消息 ID 去重 + 抬头自检）\n- 通知类事件（入群/退群/戳一戳等）不会被当成「有人在说话」\n- 三档的语气与关心程度都在配置里，可在 WebUI 面板直接改、保存即生效\n- 映射落盘，重启后仍能定位被频率调度延迟处理的消息\n\n### 配置\n`plugins/Alcpare_identity/config.toml`（面板可改）\n- `roster`：`QQ号 = 档位`\n- `owner_style` / `friend_style` / `member_style`：三档语气与关心程度\n- `inject_to_planner` / `inject_to_replyer` / `inject_for_others` / `log_injections`\n\n### 实测环境\nMaiBot 1.3.4 / SDK 2.9.0；本地加载、注入、跳过、去重、通知过滤、落盘恢复均已验证。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "身份认知",
+            "description": "手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "documentation": "https://docs.mai-mai.org",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot.menu",
+      "manifest_id": "maibot.menu",
+      "repositoryUrl": "https://github.com/SiriusFzh/maibot-menu",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "15157f06a049ddccedc1996a73f6feb4cd3870cc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:32:13Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.2",
+          "release_notes": "完善菜单管理员白名单、容量限制、串行读改写和原子文件替换；按 SDK 文档读取图片渲染结果。默认普通聊天用户不可修改共用菜单。通过权限隔离、50 条并发新增、容量限制、损坏数据保护及写入失败保留原数据测试；未进行真实 MaiBot 宿主端到端测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.2",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 生成菜单图片，展示手动配置的功能分组和指令，渲染失败时降级为文本。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "f37d6ffc49676b4370a75d104ef15931ff1af0cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:13:30Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.1",
+          "release_notes": "- 运行配置由 MaiBot 生成，保留 config.example.toml 示例。\r\n- commands.json 改存 SDK 持久化目录，首次加载可迁移旧数据。\r\n- 移除跨插件字体依赖和未使用的插件扫描代码，改用系统字体。\r\n- 菜单中的用户输入在渲染 HTML 前进行转义。\r\n- README 说明管理命令开放范围。\r\n\r\n最低 SDK 版本更新为 2.6.0。数据迁移、保留已有数据和 HTML 转义检查通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.1",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 生成菜单图片，展示手动配置的功能分组和指令，渲染失败时降级为文本。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "34c9a73397c1cf8a76af5702a7fa6ad91fcd88b9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:03:28Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-menu/releases/tag/v1.0.0",
+          "release_notes": "首次发布。\r\n\r\n- 通过 /菜单 展示手动配置的功能和指令。\r\n- 支持 WebUI 配置和菜单管理命令。\r\n- 图片渲染失败时降级为文本。\r\n\r\n适配 MaiBot 1.x / SDK 2.x，使用 MIT 许可证。安装与配置见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.menu",
+            "version": "1.0.0",
+            "plugin_type": "tool",
+            "name": "菜单插件",
+            "description": "发送 /菜单 即可生成一张菜单图片，列出当前麦麦所有可用功能和指令。",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-menu",
+              "homepage": "https://github.com/SiriusFzh/maibot-menu"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "user.tarot-card-plugin",
+      "manifest_id": "user.tarot-card-plugin",
+      "repositoryUrl": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "37aecc272300229061838cf8f3d7a900bb24cfa8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:33:01Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.2",
+          "release_notes": "自然语言触发改为整句匹配，避免引用及长消息误触发；移除用户消息正文日志；缺少会话 ID 不再中断处理。明确 entertainment 分类，同步 README。通过精确触发、引用不触发、缺少会话与发送失败分支的隔离测试；未进行真实 MaiBot 宿主端到端测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.2",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "entertainment"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "7258669ee810c1b50c4df3d6c2abe3381b32a9cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:10:04Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.1",
+          "release_notes": "- 将运行配置 config.toml 改为参考文件 config.example.toml，并忽略生成的配置。\r\n- README 明确说明自然语言触发的子串匹配和中断下游消息处理行为。\r\n- 保留现有抽牌功能与稳定插件 ID。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.1",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "182dab72c316aeb427034f8e5e84d2c59c9766b3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T04:04:59Z",
+          "release_url": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/releases/tag/v1.0.0",
+          "release_notes": "首次发布。\r\n\r\n- /塔罗 随机抽取一张大阿卡那牌。\r\n- 支持自然语言触发、22 张牌面图片和中文解读。\r\n- 补齐 MIT LICENSE、作者与仓库元信息。\r\n\r\n适配 MaiBot 1.x / SDK 2.x。安装与配置见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "user.tarot-card-plugin",
+            "version": "1.0.0",
+            "name": "塔罗牌插件",
+            "description": "随机抽取一张大阿卡那塔罗牌，查看今日运势和建议",
+            "author": {
+              "name": "SiriusFzh",
+              "url": "https://github.com/SiriusFzh"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "homepage": "https://github.com/SiriusFzh/maibot-tarot-card-plugin",
+              "documentation": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/blob/master/README.md",
+              "issues": "https://github.com/SiriusFzh/maibot-tarot-card-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.mai-mai.self-identity",
+      "manifest_id": "org.mai-mai.self-identity",
+      "repositoryUrl": "https://github.com/orge-8/self-identity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "2f15c0b60fa15ba7ad8b91ebbd8a9939fc0cb73f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T01:04:51Z",
+          "release_url": "https://github.com/orge-8/self-identity/releases/tag/v1.3.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.self-identity",
+            "version": "1.3.3",
+            "name": "自我身份档案",
+            "description": "为 Bot 提供结构化身份中枢：档案检索、多套装扮人设图库（按服饰/风格标签选图）与原图、QQ 头像，以及 verify_self_claim 声明校验（防人设漂移）与 compare_with_self_image 视觉比对（不同服饰不算冲突）。另外提供 /人设卡片，把身份档案渲染成可直接粘贴进宿主配置的文本。运行时完全被动：插件不改写任何模型请求，身份由宿主 [personality]（replyer 的 personality / planner 的 behavior_style）承载，插件负责结构化档案、图库与检索。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/self-identity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "bff123ea43ac6888a22ef3bc6505b41ff19b5223",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T00:42:09Z",
+          "release_url": "https://github.com/orge-8/self-identity/releases/tag/v1.3.2",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.self-identity",
+            "version": "1.3.2",
+            "name": "自我身份档案",
+            "description": "为 Bot 提供结构化身份中枢：档案检索、多套装扮人设图库（按服饰/风格标签选图）与原图、QQ 头像，以及 verify_self_claim 声明校验（防人设漂移）与 compare_with_self_image 视觉比对（不同服饰不算冲突）。另外提供 /人设卡片，把身份档案渲染成可直接粘贴进宿主配置的文本。运行时完全被动：插件不改写任何模型请求，身份由宿主 [personality]（replyer 的 personality / planner 的 behavior_style）承载，插件负责结构化档案、图库与检索。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/self-identity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mai-play-ygo",
+      "manifest_id": "mai-play-ygo",
+      "repositoryUrl": "https://github.com/erhan111119/mai-play-ygo",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "ae860118ee234ed2231091125f26bd68accd7dda",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T19:45:37Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.2.3",
+          "release_notes": "1.2.3\n\n### 写完脚本**真打两局**自检（用户问\"你确定编译的脚本有基础的运作吗，真的可以打吗\"）\n\n- **编译通过 ≠ 能打**：WindBot 对\"`Deck=` 的名字没在注册表里\"**不报错**——它会静默换一个通用\n  执行器顶上，对局照打、看着正常，但打出来的不是这副牌的脚本。所以「编写脚本」现在写完紧接着\n  **拿同一份卡表跟通用脚本对打 2 局**（`tools/style_ab.py`），读两件事：\n  * `A侧['AI_<style>']` / \"两侧脚本核对不通过的局数：0\" —— 这份脚本**真的上场了**；\n  * `回合=N` —— 对局**真的在推进**（全是 0 就是没动起来）。\n  结果写进记录的 `summary.smoke`，并进明文结果，例如：\n  `写脚本｜星辰 → Gen107｜1731 行 / 41 个处理函数｜第 1 轮编译通过｜联网资料 5351 字（6 次检索）｜自检通过：脚本上场、对局推进到 9 回合｜Gen107 0 : Test 2`。\n- 自检**失败或跳过都不影响写脚本任务成功**，但会如实写明（看到了哪个执行器、回合数是多少）；\n  有房间在打时跳过（自检要再起一套内核 + 两个 WindBot，不能抢真人那局的资源）。\n- ⚠ 两局**不判强弱**（项目纪律：判强弱要 ≥80 局/腿，见 `docs/training.md`）——它只回答\n  \"这份脚本能不能上场、能不能动\"。要判强不强用「卡组互打」。\n\n### 修复：训练页\"发一次显示两条\"\n\n- 病根：`/api/training` 把**正在跑的那条**同时放在 `runs`（store 里本来就有一条 running）与\n  `active` 里，面板两边各画一次 → 一条是带实时日志与「停止」的，另一条是\"（没有输出）\"的僵尸，\n  跑完或切换页签才恢复（用户报的正是这个）。现在服务端把 active 从 `runs` 里摘掉，\n  前端再兜一道（同一个 run_id 只画一次）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.3",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "24946441e8eb206c7dd1f478a547bc86fb449c06",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T19:11:24Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.2.2",
+          "release_notes": "1.2.2\n\n### 编写脚本：把\"编译器看到的枚举成员\"喂进提示词（修 107 那种\"3 轮都没编译过\"）\n\n用户报\"生成 3 轮都没能编译通过\"，失败原因是模型写的\n`AI.SelectPosition(CardPosition.FaceUpDefense)` —— 而 WindBot 的枚举是**英式拼写** `FaceUpDefence`，\nC# 直接 CS0117（\"CardPosition 未包含 FaceUpDefense 的定义\"），连着两轮同一个错。\n\n- **根治**：写脚本的提示词不再靠手写的枚举清单，而是**从源码树读**（`scriptgen.read_enums`）：\n  扫 `YGOSharp.OCGWrapper.Enums/*.cs` 与 `Game/AI/*.cs`，把 `CardPosition` / `CardLocation` /\n  `CardRace` / `CardAttribute` / `CardType` / `DuelPhase` / `ExecutorType` 的成员原样附在速查表末尾\n  （\"枚举成员（**从源码树读的，拼写就按这些抄**）\"）。读不到就退回原来的固定清单，不影响生成。\n  顺带纠正了几处旧速查表漏写的值（如 `DuelPhase.BattleStart/BattleStep/Damage/DamageCal`）。\n- 速查表里点名那条拼写坑（守备是英式 `Defence`）；`_COMPILE_HINTS` 的 CS0117 也写具体了，\n  重试时会把\"该改成什么\"直接告诉模型。\n- 顺手补两条同一次真机里新冒出来的编译错（各卡住一轮）：\n  * **`AI.SelectCard(卡1, 卡2)` 不能并列传卡**——那个重载只收卡号（`params int[]`），\n    两张卡并列会报 CS1503\"参数 1/2 无法从 ClientCard 转换为 int\"；多张卡要装进 `List<ClientCard>`；\n  * **`c.Attribute == CardAttribute.Light` 是错的**（CS0019：数值不能和枚举比），一律用\n    `c.HasAttribute(...)` / `c.HasRace(...)` / `c.HasType(...)`。\n- **验证**：卡组 #107 重跑一次「编写脚本」——**2235 行 / 41 个处理函数，第 3 轮编译通过**\n  （联网资料 4848 字 / 6 次检索），且过程里没再出现 CS0117 那一类错。\n\n### 细节\n\n- 新增回归用例：枚举从源码树读（含\"源码树里没有那两处就退回固定速查表\"）、美式拼写只允许出现在警告里。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.2",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "5f94d73ef2db78efc9df36b872131681f4cac4cb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T16:26:34Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.2.1",
+          "release_notes": "1.2.1\n\n### 修复：面板\"载入不进去\"（JS 转义被 Python 先吃掉了）\n\n- **病根**：面板那一大段 JS 是**被 Python 字符串求值**过的。1.2.0 里新加的那行\n  `const reply = ... .join(\"\n\n\")` 在 Python 源码里写成了**单反斜杠** → Python 求值时先把\n  `\n` 变成真换行 → JS 字符串跨行（JS 不允许）→ **整页脚本语法错误** → 面板打开是空白、\n  \"载入不进去\"。Python 自己的语法检查、ruff、单元测试都看不出这类错（源码本身是合法的 Python）。\n- **修法**：源码里写成 `\\n\\n`（两个反斜杠，求值后才是 JS 要的 `\n\n`），并在那行上方\n  写了注释说明\"这里有两层转义、写单反斜杠会把整页脚本弄坏\"。\n- **加一道防线**：新增回归用例 `test_page_js_has_no_bare_newline_inside_strings`——把**求值后**的\n  页面里那段 `<script>` 扫一遍（状态机处理单/双引号、模板串、`//` 与 `/* */` 注释、正则字面量），\n  一旦出现\"行尾还停在字符串里\"就报错；并钉住 reply 那行求值后必须是字面量的反斜杠 + n。\n  这类\"被宿主语言吃掉转义\"的错，只有这样扫求值结果才抓得住。\n- **验证**：真机重新拉面板页面 → `node --check` 通过；修复前同一个检查报的是\n  `SyntaxError: Invalid or unexpected token`。页面本来就走 `Cache-Control: no-store`，\n  浏览器不会把坏页面留在缓存里。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.1",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "61783ea761c1282b89bd7c037cafc747ce7fc8ee",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T15:54:08Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.2.0",
+          "release_notes": "1.2.0\n\n### 三处显示/结果问题（用户报）+ README 精简\n\n**一、训练任务结束时给一段明文结果**（用户口径：\"卡组迭代和复盘优化还有卡组对打之类的，结束后给我一个明文的结果\"）\n\n- 四类任务（卡组互打 / 编写脚本 / 卡组迭代 / 复盘优化）跑完，记录里都多一个 `summary.result_text`：\n  数字是插件从工具输出与记录字段里**抄下来的确定事实**（局数与胜负、胜率与 Wilson 区间、脚本行数与\n  处理函数数、补丁数/落地数/编译结果……），模型的结论仍单独放在 `summary.conclusion`。\n  这样\"模型那一步失败\"也不会让用户看不到结果。面板的气泡里明文结果排在最前、结论跟在后面\n  （按用户偏好：`result_text` 在 `conclusion` 之前；之前的实现是\"模型没写结论就显示（没有输出）\"）。\n- 解析不出来时如实写\"没解析出统计（点开看日志尾巴）\"，不编数字。\n\n**二、对局页：魔陷/灵摆/装备怪兽不再显示攻守，盖卡重新可见**（用户报\"魔法陷阱卡和放在灵摆区的怪兽\n以及放置在魔陷区的怪兽也有显示攻击力这些数值，而且盖卡在这里不显示\"）\n\n- 攻守只给**怪兽区**（`_slot_json(..., monster_zone=)`）：魔陷区 5 格（含最左/最右两个灵摆格）与\n  场地区一律不发 `atk`/`def_`/`level`。之前所有格位都发，于是\"当装备用的怪兽\"和贴纸都会显示数字。\n- **盖卡消失的病根**：对手盖卡内核不报卡号（`ZoneCard.card_id == 0`），而 `_slot_json` 先判\n  \"没卡号就返回 None\"——那一格被当成空格。现在改为\"没卡号/里侧一律返回里侧那一格\"，\n  面板照旧只画卡背（不公开卡号，与出图同一口径）。\n\n**三、查房图：怪兽攻守取内核当前值，场地魔法终于画得出来**（用户报\"攻击力数值不是实际数值\n而是原始数值，而且场地魔法不会显示\"）\n\n- `to_card_view` 的攻守改为**内核下发过的当前值优先**（`ZoneCard.attack/defense`，来自\n  `MSG_UPDATE_CARD`），没下发过才退回卡库卡面值——装备/场地/指示物加成之后图上的数字才跟对局一致。\n- 魔陷行/场地区（`monster_zone=False`）不再带攻守。\n- 场地区原来查 `(FIELD_ZONE=256, 0)`，而内核把它报在**魔陷区的第 6 格** `(SPELL_ZONE, 5)`——\n  所以场地魔法从来没显示过。现在按内核的位号查。\n\n**四、README 精简 + 代码体检**\n\n- README 从 160 行压到 132 行：训练功能的细则（复盘的四层材料、补丁格式与落地语义、联网写脚本、\n  擂台纪律、落盘位置）整体搬进新建的 `docs/training.md`，README 只留\"四件事\"的表格与一句话指引。\n- `ruff check plugins/mai-play-ygo/` **清零**（原来 26 条）：修掉 webui 里闭包绑定循环变量的 B023\n  （`slot`/`spell_slot` 改成把这一轮的 `seat_zones`/`details`/`detail_map` 绑成默认参数）、\n  几处未用导入/未用变量/`lambda` 赋值、`zip()` 缺 `strict=`、`analyze_replay` 的 `l` 变量名等。\n  这些都是既有的小问题，不是重构（改动逐处可核）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.0",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.9",
+          "tag": "v1.1.9",
+          "commit": "7008273044e131550b2444f559a322c3d622ac58",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T13:28:37Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.9",
+          "release_notes": "1.1.9\n\n### 复盘优化升级：能点到\"哪一行\"，并可选地落地补丁（用户口径：把这次排查的能力做进复盘）\n\n用户问\"刚刚查到的问题和修复，在复盘优化中可以做到吗\"——原来的答案是\"只能看到症状\"：\n复盘只吃记录器的统计（回合数、动作数、用过的卡、落位），既拿不到脚本源码、也拿不到内核的\n决策日志，而这次的三个病根（缺 `HintMsg.Target` 分支 / `desc=-1` 把闸门变成死代码 /\n战阶抢跑）**只有看那两样才能定位**。现在补齐：\n\n- **材料加了三层**（`train/review_material.py`）：\n  * **当前脚本的结构摘要**：规则注册顺序（＝优先级）、`OnSelectCard` 已处理了哪些 `HintMsg`\n    （**没列的＝会掉进 default**）、override 与规则函数签名、卡号常量。按\"排查时最有用\"排序，\n    每段各自截断、不整段丢（第一版把 `HintMsg` 列表整段吞掉，模型只能回\"这里被截断、无法判断\"）。\n  * **脚本源码片段**（补丁要照它抄原文）。\n  * **最近那一局的 WindBot 决策日志**：按那一局的时间窗从宿主日志里切（`duel.bot_debug = true` 时才有），\n    过滤掉手牌 dump/血量这类噪声。⚠ 两个实测坑：①对局记录是**打完那一刻**建的\n    （三个时间戳完全一样），窗口要往前推 `duration_seconds`，算反了只切到 2 行；②不能只扫最新的\n    几个日志文件——插件每热更新一次就换一个 `app_*.log.jsonl`，那一局的日志早落到更早的文件里了。\n- **产出多了补丁**：提示词要求给 `<<<PATCH 文件:… 原因:… 原文:… 改成:… PATCH>>>`，\n  并明确\"抄不准、说不清就别给\"（实测模型会自己写\"看不到具体分支，不给补丁\"，这是想要的行为）。\n- **可选落地**（面板「复盘优化」多了「落地补丁」勾选框，默认不勾）：`train/patchwork.py` 负责\n  全有或全无地写进 WindBot 源码树 → 编译。原文必须一字不差且只出现一次；先留 `.bak-` 备份；\n  **编译不过自动回滚**；**有房间在打时只写不编译**（正在跑的 WindBot 锁着 exe，今天实测过）。\n  写文件按字节保真（BOM 与换行都不动）——否则\"落地一次\"就会让\"留档 vs 源码树\"的哈希对不上。\n- 顺带修：`tools/check_windbot_sources.py` 的留档目录原来指向 `train/windbot/`（**那个目录根本没建过**），\n  `--sync` 一跑就 FileNotFoundError，等于 13 个执行器长期没被哈希跟踪；现在指向仓库的 `executors/`，\n  并把 `NegateDecision.cs` / `RaiseMoonExecutor.cs` 早就漂了的两处注释同步过来。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.9",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.8",
+          "tag": "v1.1.8",
+          "commit": "e9cc257242411844f3cad56241bd8a72d23c841e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T12:36:52Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.8",
+          "release_notes": "1.1.8\n\n### 「刻魔异响鸣」执行器：三处让主线断掉的毛病（用户口径：\"是不是有严重问题\"）\n\n症状（真机）：那局 3 回合里我方 通常召唤 1 / 特殊召唤 3 / 发动 8 / **攻击 0**，被 9200 打死；\n插件日志里存着 WindBot 的完整决策日志，显示它**做到「刻魔 落泪之日」就掉头去打**，\n后面 R4 油电双动机 → 大圣棺 → 赫赫君王 → 阎摩 → 哥布林 → 狮鹫 → 大怒涛 → 死旋爆震机\n一条都没出来。三个病根都在 `executors/KezmoYixiangmingExecutor.cs`：\n\n- **① `OnSelectCard` 少了 `HintMsg.Target` 分支**（最重）：这条选择掉进 `default`（按丢弃偏好挑），\n  于是「刻魔 落泪之日」① 去拉了「刻魔的镇魂棺」而不是 4 星身体「红泪之魔 落泪」——\n  后面的 R4 / 大圣棺 / 赫赫君王 全都在等这只 4 星，链条当场断。\n  现在补了 Target 分支：红泪 → 落泪之日 → 锻冶师 → 路里 → 镇魂棺（排最后）。\n- **② 触发型效果的 `ActivateDescription` 是 `-1`**（用新加的 `KZ_DIAG=1` 诊断实测到），\n  而镇魂棺②／大圣棺②／落泪之日③ 三个闸门都写成 `desc == Util.GetStringId(...)` → **全是死代码**。\n  其中 ③ 的后果最重：它会把墓地的镇魂棺洗回额外卡组，大圣棺① 当场没融合素材。\n  现在统一走 `IsEffect(desc, 卡号, 序号)`（\"-1 也算\"），并且 ③ 改为按**卡在哪**判定\n  （在墓地＝③进墓、在场上＝①融合），只在\"墓地里躺着便宜的光恶魔\"时才换那 1200。\n- **③ 战阶闸门只要求\"能拆对面一只怪\"就进战阶**（不是斩杀）→ 主线做到一半就掉头打；\n  另外**通召规则压在规则表最后一节**，实测选姬的通召被推到\"贴 P → 发选择 → 发邀请 →\n  出镇魂棺 → 特召内燃\"之后，而教程二/三/四节的第一步都是「通召选姬 / 通召恶魔之声」。\n  现在：战阶闸门加一档\"**主线还有下一步 → 先不进战阶**\"（真斩杀照样进，保证不会被 0 攻墙钉死），\n  起手件的通召排到链接/超量段之前。\n\n**验证**：同一副卡表对通用脚本 20 局 **15:5**、两侧脚本核对通过、无异常；决策日志里已经能看到\n`落泪之日 → 拉回红泪 → R4 油电双动机 → LINK2 大圣棺`（这半条之前从来没出现）。\n诊断开关 `KZ_DIAG=1` 留在执行器里（默认关）：它打\"内核问的是哪个效果 / 分支选项 / 取了谁\"，\n下次再遇到\"某张卡不发\"这类问题先开它。\n\n⚠ 顺带说明：这份执行器是**按操作方给的教程手写**的（`docs/tutorials/刻魔异响鸣.md`），\n跟 §「自动写的脚本」不是一回事；这次没用训练功能重写它。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.8",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "76d542dba1d4f362248d4a362c09f2e4f63410fd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T11:22:10Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.7",
+          "release_notes": "1.1.7\n\n### 写脚本能自己联网查了：给模型一个 `web_search` 工具（配置版本 → 1.7.0）\n\n- **从\"问一次联网模型\"升级成\"检索 agent\"**：原来只是把卡表丢给一只带检索的模型问一遍；\n  现在写作模型会拿到一个 `web_search` 工具，**自己决定查什么、查几次**——观察到的实际顺序是\n  \"查卡组名 → 查到系列再查 combo → 再查关键卡用法 → 收口\"（生僻卡组/社区译名也能靠点名卡名查下去）。\n  最多几轮由 `llm.search_rounds` 控制（默认 4；0＝退回原来那次单次问答）。\n  实现上：宿主 `llm.generate_with_tools` 透工具定义、**工具由插件执行**（`TrainingRunner._web_search`\n  把查询交给 `llm.search_model` 那只模型），⚠ 插件要在 `_manifest.json` 里声明\n  `llm.generate_with_tools`，否则运行时报 `E_CAPABILITY_DENIED`（这个坑已经踩过并锁进用例）。\n- **检索原文一定留档**：agent 写出来的\"资料\"可能整篇按记忆写、还带一句\"未经联网核对\"\n  （真机实测：查了 6 次、拿到了真 combo，正文却全是记忆）。所以每次检索的**原始结果**会附在\n  资料末尾一起给写手，同时连\"实际查了什么\"一起存进 `train/research/`。\n- **没\"小作文\"就先开联网再写**（README 里写明了）：手上没有一整篇几千字的打法要求时，推荐开联网写。\n- **实测：联网 ≠ 更强**。拿**码丽丝(OCG)** 做对照（同一副卡表、同一套提示词、同一只写作模型、同一份\n  combo 推演，只差\"开不开联网检索\"），两份脚本编译进同一个 exe 正面对打 40 局：\n  **联网检索版 16 : 不联网版 24（40.0%，区间 26.3%~55.4%，跨 50%）**——这一批分不出高下。\n  检索那一侧本身没问题（6 次查询按\"卡组名 → 系列 → 关键卡\"推进，也拿回了真 combo），\n  问题在\"资料变成脚本动作\"这一步。读数与复现命令记在 `executors/README.md` §3.7。\n\n### 细节\n\n- 面板「编写脚本」默认生成→编译轮数 3 → 5（见 1.1.6）；`search_rounds` 与 `search_model` 都是热更新项。\n- 记录里多两项：`research_rounds`（最多几轮）与 `research_queries`（实际查了什么）；\n  不联网时会把上一次的检索词清掉（原来会显示\"这一版查了 6 次\"其实一次没查，实测被自己误导过）。\n- 文档清理：README 与 `config.toml.example` 不再出现某台机器的模型名/供应商名与实测数字，\n  改成通用说法（\"另挂一只带检索的模型\"+怎么试它能不能联网）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.7",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "3a4075cd12ce5668e005caa1e2816f5d9a7af5fe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T10:32:36Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.6",
+          "release_notes": "1.1.6\n\n### 写脚本的提示词按真机报错补齐（第一次写不出来、联网查空，都在真机上跑了一遍才发现）\n\n- **联网那段问句改成\"点名卡名\"**：原来只把卡组名（`异解`）丢给联网模型，它回了 32 字节的\n  「不确定／没查到」；现在把卡表里的卡名一起写进问句（\"这套牌的主要卡片：…\"），并明确\n  \"按卡组名查不到就改用卡名逐张查\"。改完同一条提问取回 438 字（本次写脚本实际用上）。\n  ⚠ 实测结论：**异解△ 这套牌在网上查不到**——联网模型逐个核对了卡表，回的是\n  \"「异解△」系列在公开数据库里查不到，额外的拓扑零日、W：P、S：P 等确实是实卡但分属别的系列\"。\n  也就是说这副牌的脚本只能按卡文写，联网这一步对它帮不上忙（这不是插件的问题，是牌本身没公开资料）。\n- **速查表补两条硬约束**（都是这次重写真机栽出来的编译错）：\n  * **不许发明辅助函数**（`IsYiJieCard()` 这类没有地方定义 → CS0103，连着两轮报同一个错）；\n    本家判断给成可用的写法：`c.Name.Contains(\"前缀\")`（`ClientCard.Name` 补进速查表）或 `c.IsCode(卡号)`；\n  * **不许对 `IList<ClientCard>` 调 `FindAll`/`Where`/`Sort`/`ConvertAll`**（CS1061），\n    筛选一律 `foreach` + `if` 自己塞进 `new List<ClientCard>()`。\n- **编译报错按特征回喂提示**（`_compile_hint`）：把 msbuild 原文整段丢回去，模型常常照着原样再写一遍\n  ——现在按 `CS1061/CS0103/CS1503/CardAttribute/CardRace/CardType/CS0117` 命中一句\"该改哪里\"\n  （例如\"`HasAttribute` 只接枚举值，不能写数字\"），排在报错原文前面一起回喂。\n- 面板「编写脚本」的默认生成→编译轮数 **3 → 5**：重试只重问编译报错的那几批，多两轮很便宜，\n  而 3 轮常常刚好差一轮（这次实测：加提示后 3 轮通过、1722 行 / 39 个处理函数）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.6",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时先联网查一遍这套牌现实里怎么打，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.5",
+          "tag": "v1.1.5",
+          "commit": "f6b7c257d8a1be7653ccffba889f66ef826876ff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T10:12:35Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.5",
+          "release_notes": "## 1.1.5\n\n### 写脚本能联网查资料了（用户口径：给写脚本加一只联网模型）\n\n- **先说清楚一件事**：DeepSeek 官方 API **没有联网版**——`deepseek-chat` / `deepseek-flash` /\n  `deepseek-reasoner` 都是纯生成，\"联网搜索\"只存在于 DeepSeek App 里。所以\"加装一只联网的\n  deepseek-flash\"这条路本身不通；能做的是**另挂一只带检索的模型当资料员**：宿主\n  `model_config.toml` 新登记 `name = \"联网搜索\"`（DMX1 的 `qwen3-max-search`，实测单次 7~12 秒、\n  零思考 token）。⚠ DMX 目录里的 `Tencent-Search` / `jina-deepsearch-v1` / `perplexity-*`\n  **不是 chat 模型**（对 `/chat/completions` 直接 404），别拿它们填 `model_identifier`。\n- 新增配置项 `llm.search_model`（配置版本 → **1.6.0**，默认留空＝不联网）。写脚本 / 卡组迭代会\n  先用这只模型查一遍\"这套牌现实里怎么打、哪些卡要留着、常见失误\"，资料存进 `train/research/`\n  再喂给写手模型（`training_model`）。提示词里写明**卡文与卡表是唯一依据**、网上资料只作参考\n  ——两台联网模型对同一个问题的卡表明细已经对不上过一次，不能让它覆盖卡文。\n- 联网那一路**失败不拖垮写脚本**：搜索 provider 超时/欠费时照旧按卡文与 combo 推演写，\n  但失败原因会写进任务记录与面板（「联网资料：X 没取到（原因）」），不静默咽掉。\n- 面板：总览的训练卡片多一行「联网资料」（配了显示模型名，没配显示\"（关：写脚本不联网）\"）；\n  写脚本任务的回复下面标出这一次取到多少字。\n\n### 修复\n\n- `tools/style_ab.py` / `tools/brain_ab.py` 的 `--deck-file` 现在**解析成绝对路径**再交给 WindBot。\n  原来传相对路径不会报错：`DeckFile=` 是按 WindBot 的工作目录（`clients/windbot`）解析的，\n  卡表加载不出来 → 两个 bot 一收到 JoinGame 就 `System.NullReferenceException`\n  （`GameBehavior.OnJoinGame` 里读 `Deck.Cards`），每一局都空转满 `--max-duel-seconds` 才收摊\n  ——今天就这样白跑了 7 局 × 2 分钟，胜负全是 draw、回合 0。现在按 MaiBot 根目录写\n  `plugins/mai-play-ygo/clients/...` 也能正常跑（改完实测正常收官）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.5",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时先联网查一遍这套牌现实里怎么打，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.4",
+          "tag": "v1.1.4",
+          "commit": "6e212566d5d428f247a23e373351b61d1ef3d61e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T08:57:02Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.4",
+          "release_notes": "麦麦玩游戏王 **1.1.4**：决策层与训练功能改用关思考的 `deepseek-flash`。\n\n- **模型换人**（用户口径：不用 `deepseek-chat` 了）：在宿主 `model_config.toml` 里新登记一条 `name = \"deepseek-flash\"`（`model_identifier` 同为 `deepseek-flash`、`api_provider = DeepSeek`、`thinking = {type = \"disabled\"}`），插件的 `summary_model` / `decision_model` / `training_model` 都指向它。\n- **实测**（走宿主 LLM 服务 + 插件自带决策提示词）：`deepseek-flash`（关思考）**2.0~2.2 秒、零思考 token、答复就是干净的序号**；对照组是原来那条**开着**思考的 `deepseekV4.1flash`（同名标识符）——2.21 秒、思考 937 字、**答复是空串**（额度被思考吃光）。这条再次印证：开关是模型条目里的 `thinking`，不是 `max_tokens`。\n- **`llm.decision_timeout_ms` 默认 2500 → 4000**（配置版本 → 1.5.0）：原来那档是配 0.6~0.9 秒的模型用的，而新模型约 2 秒，2500（Python 侧 2100）会让它**卡在边缘、频繁超时**。这个值只是上限，快模型不受影响。\n- `tools/brain_channel_check.py` 新增 `--brain-timeout-ms`（它那局自测固定用紧张的 2500ms 专门暴露\"答复太慢\"，现在可按插件实际口径再量一遍）；`tools/brain_ab.py` 的 `--real-model` 默认值跟着换。\n- 文档同步：`config.toml.example`、README 模型表、插件字段说明、`executors/README.md §3.5` 实测表都改成新模型的数字，并写明\"等待上限要跟模型配\"。\n\n（真机链路自测：`tools/brain_channel_check.py --real-model deepseek-flash` 三种问答都真的答上了。）",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.4",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "126f3fc310176686a446de022e8e8da001586d8c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T03:40:29Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.3",
+          "release_notes": "## 1.1.3\n\n> 补记：这个版本发布时**漏了升 `_manifest.json` 的版本号**（清单里还写着 1.1.2），\n> 插件市场的校验因此报\"Git Tag 与清单声明的版本不一致\"。这里与清单一起补正，\n> 并把当时漏写的更新日志补齐（代码内容与当时发布的 v1.1.3 完全一致）。\n\n### 复盘能看到那一局的事实了（用户报\"复盘优化不能看到该对局的日志吗\"）\n\n- **复盘任务原来不写任务日志**：面板「详情」永远是\"（没有输出）\"。现在把\"依据的这几局事实 +\n  模型结论\"一起写进 run log。\n- **更关键的一处**：`_duel_brief` 读对局记录的键名是想当然写的（`self` / `opponent` / `card_usage`），\n  而记录里实际是 `players`（按对局座位号做键）+ `top_cards` + `placements`——于是每条记录只剩一行\n  \"第 N 局：我方输｜回合 4\"，模型只能回\"记录里没有给出动作数，无法指出具体问题\"。\n  现在按真实结构读：双方动作台账（召唤/特召/发动/盖放/抽牌/攻击/直击/伤害/最大一击/回复）、\n  用过的卡、逐次落位、胜负原因与时长。\n- 每局打完的 `kind=duel` 记录也补上日志正文（过程复述 + 结构化 JSON）——以前只建文件不写内容。\n\n### 迭代写脚本：API 名与重试次数（用户问\"为什么刚刚迭代脚本出错了\"）\n\n- 那次失败的直接原因：模型写了 `CardLocation.Graveyard`（不存在的枚举成员，正确是 `Grave`）与\n  `ExecutorType == ...`（当前类型是继承来的 `Type`）。速查表补上这两条并写明\"写成 X 就是编译错误\",\n  同时补 `Card` / `ActivateDescription` / `CurrentTiming`。\n- `_generate_script` 原来借 `params[\"rounds\"]` 当\"生成 → 编译\"的重试次数，而迭代的 `rounds` 是\"迭代几轮\"\n  → 写脚本那一步白重试好几遍，失败信息还会写成\"生成 N 轮都没能编译通过\"，把真正的原因盖住。\n  现在 `DEFAULT_SCRIPT_ATTEMPTS = 3` 独立于面板参数。\n\n---\n\n> 说明：这个 tag 原先指向的提交里 `_manifest.json` 还写着 1.1.2（发布时漏升），\n> 插件市场的版本校验因此报不一致。现已把 `v1.1.3` 指向一个**只改这两件事**的提交\n> （清单版本 1.1.3 + 上面这段补记），代码与当时发布的 v1.1.3 完全一致；主分支不受影响。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.3",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "c91de8f456050f0e4d17f4f82cb02c5671b2b969",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T03:19:34Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.2",
+          "release_notes": "麦麦玩游戏王 **1.1.2**：修一条真机反馈。\n\n## 卡组详情把额外卡组与副卡组分开\n\n- **病根**：面板读 `.ydk` 分区时，`!side` 的判断被写在\"以 `#` 开头即注释\"那一支**里面**——而 `!side` 不以 `#` 开头，于是永远认不出来。副卡组的卡全被算进额外卡组，真机上就是「额外卡组 30 张 / 副卡组 0 张」（那副牌其实是 主 54 / 额 15 / 副 15）。\n- 现在按**标记行**分区：`#main` / `#extra` / `!side` 三种写法都认（去掉前导 `#`/`!` 之后看名字）。抽屉里三个区各自成段——真机验证：主卡组 54 张/24 种、额外卡组 15 张/15 种（融合·超量）、副卡组 15 张/9 种。\n- 同一个毛病在 `duel/windbot_decks.py` 里也有：读自带卡表时 `!side` 落到\"保持原区\"，副卡组的 5~15 张被算进额外卡组，拿这份集合去比\"哪份自带卡表最像\"会偏。现在副卡组单独成区、不计入任何一侧（与 WindBot 自己的 `Deck.Load` 同口径：副卡组收进 `SideCards`，整局用不上）。\n- 两条回归用例：分区计数（含\"老格式只写 `#main` + `!side`\"那种）+ 副卡组不进额外集合。\n\n全套 20 个测试文件通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.2",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "8a0f9ca978905e3fec5553f4283df0448e8be7bd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T02:37:02Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.1",
+          "release_notes": "麦麦玩游戏王 **1.1.1**：修两条真机反馈。\n\n## 对局页显示怪兽的**实际**攻守\n\n- **病根**：场上怪兽的当前攻守走 `MSG_UPDATE_CARD`，而我只接了 `MSG_UPDATE_DATA`——后者的**怪兽区**数据块只带\"卡号 + 位置\"、**不带攻守**（真机抓包：141+141 条怪兽区报文全是 `flag=0x3`）。所以面板一直只有卡面数值，装备/场地加成之后就对不上。现在两条都接，取内核下发的当前值（角标实心；只有卡面数值时标「·卡面」）。\n- 顺带修 `MSG_UPDATE_DATA` 的两处解析：`len=4` 是\"这一格这次没数据\"的空条目（真报文里占大多数），原来当坏包提前收手，会把同一条报文里后面真有数据的格一起丢掉；数据块里 `code` 在位置字段之前，忘了跳过就会把卡号的低字节当\"控制者/区域/序号\"读。\n- **新增抓帧开关 `YGO_DUMP_FRAMES=<文件>`**：每条对局报文按「游戏消息号 十六进制payload」落盘。这次就是靠它 + 卡库对账定位的（解出的 攻300/守250/1星/光/龙 与卡号 79814787「传说的白石」卡面完全一致）。以后面板上哪个数字不对，先抓一份真报文，不用猜。\n- 回归测试直接用**真报文**：特召 → 移动 → 当前攻守 → 对手盖牌 四条串起来喂记录器，断言那一格拿到 3000/2500 且表侧。\n\n## 卡组页又能点开详情了\n\n- 上一版给卡片加\"随机池开关 / AI 决策档位\"时，把整张卡的 `onclick` 挪到了卡名那一行——卡片本身还留着 `cursor:pointer`，于是\"看着能点、点了没反应\"。\n- 现在恢复整卡可点，卡上两个控件自己 `stopPropagation`（点开关/下拉不会顺带弹详情抽屉）；真面板上实点验证过：点卡图/卡名打开详情，点开关和下拉都不打开。\n\n## 训练台的「对手卡组」看得见了\n\n- **其实渲染了 97 项，只是看不见**：随种类出现的三个字段（对手卡组 / 局数 / 轮数）原来排在「额外要求」文本框**之后**，真机上量下来它的 `top` 正好是 999px（视口 1000px）——整块落在折叠线以外。现在挪进「卡组 / 要写的东西 / 开始」那一行，紧跟在种类下拉后面。\n- 顺带给下拉**限宽**（`max-width: 260px`）：卡组下拉原来被最长的卡组名撑到 427px，四个字段排不下就换行，「对手卡组」又掉回第二行。限宽后一行放得下五件：卡组 / 要写的东西 / 对手卡组 / 局数 / 开始。\n- 内容区高度预留 `100vh-330px` → `100vh-370px`，加高后的输入区整体落在视口内（实测 802~996px，落地即可见，无需滚动）。\n\n## 其它\n\n- 插件清单 `description` 改成现状（五页面板 / 训练台四件事 / 每副牌的 AI 决策档位 / 对局页给当前攻守）。\n- 全套 20 个测试文件通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.1",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读这副牌最近的对局记录指出该改哪里）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "d43dd4659998a316c1109cc344b018321df3c938",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T01:53:56Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.1.0",
+          "release_notes": "麦麦玩游戏王 **1.1.0**：插件自带面板 + 训练功能（给卡组写与练出牌脚本），对局监控能看整张牌桌。\n\n> 从这一版起，**新功能都不再往群里加命令**——面板（默认 `http://127.0.0.1:17911/`）里管卡组、看对局、跑训练。\n\n## 新增：插件自带面板\n\n零第三方依赖（`http.server` + 一个守护线程），五页：**总览 / 卡组 / 对局 / 训练台 / 日志**。\n\n- **鉴权**：每个接口都要密钥（没带/带错一律 401）。密钥按「配置 `webui.api_key` → 环境变量 `YGO_WEBUI_KEY` → 自动生成」取，自动生成的写进数据目录的 `webui_key.txt`，登录页会告诉你去哪找；带 `?key=` 进首页会立刻换成 cookie 并跳到干净地址。\n- **卡组页**：卡片栅格（卡图 + 卡名 + 随机池开关 + **每副牌自己的 AI 决策档位** + 它那份脚本），抽屉里看分区卡表、加入/移出随机池、删除（二次确认；内置卡组删不掉）。\n- **对局监控页**：每 2 秒刷新，画双方**整张牌桌**——主怪兽区 5 + 额外怪兽区 2、魔陷区 5（最左/最右即灵摆区）、场地魔法、墓地/除外/额外计数；每张牌给卡图、卡名与**攻守**，盖牌画卡背 +「里侧 · 攻/守」。**里侧的卡不公开卡号**，与 `/查房` 出图同一口径。\n- **日志页**：按级别与关键词过滤宿主与插件的日志。\n\n## 新增：训练功能（面板里的四件事）\n\n同一时刻只跑一个任务；**房间里有人在打时拒绝启动会打牌的任务**（会抢进程与端口，把真人那局打坏）；停任务连子孙进程一起杀（Windows `taskkill /F /T`，不然会留下孤儿内核占着端口）。\n\n| 任务 | 干什么 | 会起对局 |\n| --- | --- | --- |\n| 卡组互打 | 选**另一副卡组**对打，两边各用自己那份脚本，逐局交替座位 | **会** |\n| 编写脚本 | 读卡文写真脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量 | 不会（会改源码树） |\n| 卡组迭代 | 推演 → 写脚本 → 跟另一副牌打 → 对着**脚本源码 + 逐局战况**说下一版改哪几个函数 → 再改一轮 | **会** |\n| 复盘优化 | 读这副牌最近打过的对局记录（每局结束自动记），指出具体该改哪里 | 不会 |\n\n**出牌脚本这一版变化最大**：骨架（`CardId` 常量表、登记表、兜底行为）由代码拼，处理函数分批让模型写（每批 8 张卡、一次调用一批）。宿主对插件的单次模型调用有 30 秒硬超时，一次让它写完四十张卡必然被掐断——分批之后脚本长度＝批数 × 每批，第一次就能写足量。真机实测同一副牌：**160 行 / 17 条规则 → 1422 行 / 39 个处理函数 / 96 处选卡逻辑**。迭代的结论也改成对着代码与逐局战况说话（「第 2 局在 opponent 位拖到 23 回合才输 → 后手/长局处理有问题」），样本少于 80 局时不许说\"这版更强\"。\n\n## 新增：每副牌一个 AI 决策档位\n\n阻抗决策层（对手回合问\"这张无效卡该指哪只怪 / 要不要交\"）现在可以按卡组设：**跟随全局 / 不问 / 只问目标 / 目标+要不要交**，在卡组页每张卡上直接选，开房时按这一局用的那副牌决定。\n\n## 修掉的真问题（都是\"看着没事、真机上出事\"）\n\n- **场上看不到盖卡**：盖放只发 `MSG_SET`（不是 `MSG_MOVE`），局面跟踪只处理了移动 → 盖着的怪兽/魔陷整片进不了格位表。\n- **看不到怪兽攻守**：面板读的 `detail.atk` 字段根本不存在 → 攻守角标永远为空。现在卡库按数值另存，并且**优先用内核下发的当前值**（装备/场地加成后与卡面不同，会标「·卡面」区分）。\n- **每副牌的 AI 档位\"设了没用\"**：`brain_scope` 这条链断在三处——建表与迁移没这列、`StoredDeck` 没这字段（读的是 `getattr(...)` 的回落）、面板自己的列名表也漏了。\n- **复盘优化永远说\"还没有对局记录\"**：对局记录没带卡组编号，而复盘是按编号筛的。\n- **\"录像格式变了\"的假警报**：额外卡组 0 张的卡表段被判成\"不是卡号\"整段跳过（本机真有 60 张主卡组、无额外的牌）。\n- **跑完一个任务后开始按钮点不动**：`runner.active()` 只看最近一次任务编号，跑完不清它。\n- **改配置后这局的 AI 决策不动了**：`on_config_update` 当场关掉旧卡库，而正在打的那局的会话与决策层直接引用着它；现在有房间时先留着，这局结束再关。\n- 另外两处：训练台卡组下拉每副牌都显示\"还没脚本\"；编译产物路径数少一级（面板上看不到 exe 什么时候编的）。\n\n## 配置\n\n- 配置版本 **1.3.0 → 1.4.0**：`[llm]` 新增 `training_script_max_tokens`（写脚本每批的输出上限，别超 8000）；`llm.decision_model` 的出厂默认从 `deepseek-chat` 改成空串（跟宿主的 `utils` 任务走）。\n- **模型要填宿主 `model_config.toml` 里那个模型的 `name`**（可随意命名的那个），不是 `model_identifier`（发给供应商的标识符）——填错会被宿主拒掉（`未找到名为 'xxx' 的模型`）。留空＝跟宿主的默认插件任务 `utils` 那一组走。\n- README 精简、`config.toml.example` 的注释逐节补齐。\n\n**平台：只支持 Windows**（对局内核与出牌引擎都是 Windows 程序；别的系统上插件照常加载，但开房会被明确拒绝，只有查卡与发卡图可用）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.0",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（卡组池、实时对局牌桌、日志、配置——配置可直接在面板里改，保存即热更新且保留文件注释；卡组可加入随机池或删除）：卡组码导入、为投稿卡组写 combo 推演（支持额外提示词）、按推演为卡组自写 C# 出牌脚本并编译、自动迭代（推演→写脚本→擂台实测→把结论回喂下一轮）、擂台 A/B、卡表×执行器体检与录像复盘，全部在面板里发起，不在群里加命令。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "c48c5c67c2b304cbb2225f3f7a05f3fca95e4103",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T23:48:32Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.5",
+          "release_notes": "群友反馈的\"**怎么打伤害**\"这条，查实后落成一个通用层修复。\n\n## 改了什么\n\n**问题**：各卡组执行器的 `LethalAvailable()` 在**对面空场**时要求\"一击斩杀\"（能打出的伤害 ≥ 对面 LP）才肯进战斗阶段，于是\"打不到斩杀就整局不进攻\"。本机日志按卡组统计我方攻击宣言次数：\n\n| 卡组 | 我方攻击宣言 |\n| --- | --- |\n| 杀调 | 1 |\n| 虫惑魔蕾祸 / 魔女术（商标女巫版）/ 耀圣 | **0** |\n\n伤害那一栏整局是空的（`0 got damage` 一条都没有），对面可以放心做场。\n\n**改法**（落在通用层，所有卡组与投稿卡组共用）：`DoEverythingExecutor` 新增 `BattlePressureWorthIt()` 并注册成 `GoToBattlePhase` 规则——只在自己回合、内核允许进战阶、**对面怪兽区为空**、且我方有表侧攻击表示的怪能打出伤害时进战阶。对面**有怪**时这条通用规则不抢（各执行器自己的\"能不能拆掉一只已知怪\"判据比它懂得多）；\"打不打某一只\"仍由 `OnSelectAttackTarget` 判（它会拒绝打不过的）。\n\n开关：环境变量 **`AI_BATTLE_PRESSURE=0`** 回到旧口径（只有一击斩杀才进战阶），给 A/B 用。\n\n## 顺带核实：三条\"看着像 bug、其实不是\"的\n\n- **「点唱机酒吧③」的\"加入手卡 / 特殊召唤\"不是随机**：`OnSelectOption` 里有按线路的专属规则（混音手线取\"加入手卡\"——教程那一步是\"解放混音手 → 提示员加手\"，因为提示员① 只认**召唤**），其余情况走通用口径\"取另一支\"（＝特殊召唤，对应教程的\"解放音轨制作人拉唱片师\"）。探针里的\"未登记\"只表示没进**按值登记**那张表，不代表掷骰子。\n- **「红印鉴唱片师」出场少是设计**：它和「再混音手」抢同一对素材（唱片师 3★ + 混音手 2★ = 5 星），计划进行中封它的开关是 `KT_ALLOW_PLAN_EXTRA=1`；要改默认先跑 A/B（实测最近 6 局「杀调」它出场 0 次）。\n- **「锁缚龙」不发效果是卡文限制**：② 要求\"连锁卡的效果的发动\"＝对面那个效果得是链上第 2 环以上；被「解放」也不吃\"不会被破坏 / 不能取对象\"这类保护。\n\n## 其他\n\n随包 `clients/windbot/WindBot.exe` 重新编译（含上述改动）；`executors/DoEveryThingExecutor.patch` 已更新（含新规则），`executors/EnemyTargeting.cs` 里新增 `BattlePressure` 开关；四份补丁都验证过能干净 `git apply` 到上游 HEAD（`7acd93d`）。测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.5",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "1e47b922f4447852a0739f05e4e2676899a21ee5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T17:25:12Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.4",
+          "release_notes": "群友实测反馈的几条（\"效果点不对对象\"、\"他上来炸我黑森林\"、\"我白阿发效果他无效我玻璃\"）**不是某一副牌的问题**，而是所有卡组共用的两条兜底逻辑。这个版本改在共用层，十副自带牌与全部投稿卡组一起受益。\n\n## 改了什么\n\n### 一、\"该炸/该弹/该除外对面哪张\"（通用判据，新增 `executors/EnemyTargeting.cs`）\n\n上游对\"该选哪张卡\"的兜底是**按内核给的候选顺序取**（`DoEverythingExecutor.OnSelectCard` 直接取候选尾部、`GameAI` 的最后兜底取前 N 张），等于把选择权交给报文的排列顺序。\n\n实测（`logs/app_20261008_005046.log.jsonl` 00:33:32 那局）：bot 的「落胤与圣女」用它\"以场上 1 张表侧卡为对象，那张卡破坏\"，炸掉了对面刚用「黑魔导的幕帘」拉出来的「黑森林的魔女」——那张卡写着\"这张卡从场上送去墓地的场合发动，从卡组把 1 只守备力 1500 以下的怪兽加入手卡\"，**炸掉＝白送对面一次检索**，而我们同时付了额外卡组 1 只「阿不思」名怪兽当费用。群友原话：**\"他上来炸我黑森林\"**。\n\n现在的挑法（只按卡文，不猜战术）：\n\n1. **排除\"弄掉它反而帮对面\"的卡**——带卡文出处的表，第一条就是「黑森林的魔女」；\n2. 破坏类**排除\"弄不动\"的目标**：不吃战斗/效果破坏的、不能被效果选为对象的（例如对面的「超魔导龙骑士-真红眼龙骑士」写着\"不会被效果破坏，双方不能把这张卡作为效果的对象\"，对着它发动就是白费一张牌）；\n3. **先挑对面的表侧魔陷**（场地/永续/装备＝对面的引擎件与贴纸），再按攻击力挑怪。\n\n### 二、\"该无效对面哪只怪\"（`DefaultExecutor.DefaultGetDisableMonsterTarget()` 判定顺序）\n\n上游先问\"最值得预防性废掉的那只\"（靠 WindBot 的卡表登记猜），只有它给不出答案时才看链上最后一张卡。实测对手「白龙之落胤」在场上发 ②（从卡组特召 1 只「艾克莉西娅」），我们的「效果遮蒙者」却点在对面的「魔女术师傅·玻璃女巫」身上——刚发的那只照常结算，等于白扔一张手坑。群友原话：**\"我白阿发效果他无效我玻璃\"**。\n\n卡文口径（`c97268402.lua` / `c10045474.lua`）：遮蒙者与泡影都是\"以对方场上 1 只效果怪兽为对象才能发动，那只对方怪兽的效果直到回合结束时无效\"——**要无效的就是正在发效果的那只**，链上那一刻目标是确定的。现在\"刚发效果的那只\"排在前面，它不合法（已被无效过 / 不能被选为目标）时才退回启发式。\n\n### 三、其他\n\n- `DoEveryThingExecutor.OnSelectCard`（通用脚本 `Test` 的兜底，**投稿卡组全吃这条**）接上判据，其余保持上游口径，并修掉 `max` 大于候选数时的数组越界。\n- 升辉月执行器里那段\"候选含双方时先选对面\"的旧实现改为调用共享判据，不再各写一份。\n- 加了两条可核对的行为日志，**只在这条规则推翻旧口径时**才打，不刷屏：\n  - `[目标] 弄掉对面的卡：跳过「X」，改选「Y」`\n  - `[手坑] 无效目标＝刚发效果的「X」（旧口径会点「Y」）`\n- 随包 `clients/windbot/WindBot.exe` 重新编译（含上述改动）；`executors/` 新增\n  `EnemyTargeting.cs` 与两份补丁（`DefaultExecutor-targeting.patch`、`DoEveryThingExecutor.patch`），\n  四份补丁都验证过能干净 `git apply` 到上游 HEAD（`7acd93d`）。\n\n测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.4",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "ecbd5371cafced5c0876bb3a8c8e71cc6cffea09",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T17:01:21Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.3",
+          "release_notes": "第五轮的收尾（没有阻断项，两条小改动 + 顺手清掉合并前的旧插件名）。\n\n## 改动\n\n- **测试不再依赖不入库的 `config.toml`**：`tests/test_manifest.py` 里那条\"对局配置的可见面只有群主要用的十项\"的守卫，原来无条件 `open(\"config.toml\")` —— 而 `config.toml` 恰恰是 gitignore 的那份，新克隆的仓库与 CI 上会直接 `FileNotFoundError`。现在**模板 `config.toml.example` 一份必查、本机 `config.toml` 存在时再加查一份**（与四个 `tools/` 的\"没有就回落模板\"同一口径），并打印核对的是哪几份。\n- **看门狗的分类规则改回真实日志名**：`tools/room_watch.py` 原来按 `plugin.yugioh.duel-arena` 前缀挑\"插件报错 / 插件警告\"，而宿主现在把本插件的日志挂在 `plugin.mai-play-ygo` 下（实测本机 `logs/` 里插件自己的消息与两个子进程的转发全在这个名字下）。对不上就意味着这两类**永远不落账**——本机日志里有 43 条该被归为「插件警告」的记录，旧前缀一条都认不出。前缀现在提成常量 `PLUGIN_LOGGER_PREFIXES`，并加了 `test_plugin_logger_prefix_matches_manifest_id` 拿 `_manifest.json` 的 id 钉住，改名时会被测试拦住。\n- **合并前的旧插件名清干净**：`_append_to_planner` 写进机器人上下文的来源标签从 `plugin:yugioh-duel-arena` 改成 `plugin:mai-play-ygo`；`tools/analyze_replay.py` 导出的 `.ydk` 注释头、测试里的模块别名与合成包名、`room_watch` 测试里的 fixture 一起换上现在的名字。\n- 文档把两处口径说得更死：**随包是默认形态**（仓库与每个 Release 都带着 `cards.cdb` / `expansions/`，\"部署者可以不带\"是选项而不是缺省）；`/查房` 的跨群可见性注明是**明确的设计选择**（公共牌局，同部署下换个群照样看得到战况）以及想改的话改哪里。\n\n测试 182 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.3",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "f22174b9e0e0acecb3182d7e424448f3ca3e36a6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T16:01:31Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.2",
+          "release_notes": "上架评审**第四轮**的三条都处理了。1.0.2 相对 1.0.1 只有这一轮的内容。\n\n## 发行结论（评审要的\"结论\"）\n\n**继续随包分发**两个客户端与卡库，理由与处置写进 README 的「许可与随包内容」：\n\n- **GPL-2.0**（`ygopro.exe`、`script/` 卡牌脚本）：随包分发并附上游源码地址，满足源码可获取要求；\n- **MIT**（`WindBot.exe`、`executors/`）：随包分发，许可证随包；\n- **上游从未声明许可**（`cards.cdb`、`expansions/`、卡图）：作为社区资料**原样**随包，不主张任何权利、不单独收费，来源逐项写在 `clients/README.md`。\n\n因为插件的主打能力就是\"开箱即用\"——没有 `cards.cdb`，投稿时的缺卡核对和麦麦出牌都做不了。同时给出两条出口：**权利方在仓库开 Issue 说一声即刻删除**（不要求举证）；不想带第三类的部署者删掉那两个路径，让使用者用 `tools/setup_clients.py --from <自己的 ygopro 环境>` 自行同步。\n\n## 平台声明\n\n这是个 **Windows-only** 插件（对局内核与出牌引擎都是 Windows 可执行文件），现在 README 开头与 `_manifest.json` 描述各写明一次；代码里 `_check_ready()` 在非 Windows 上直接拒绝开房、`on_load` 启动日志给一条警告——不再让人只看到\"麦麦一声不响\"。\n\n## 修复\n\n- **`DeckPool.delete_all()` 改成先删记录、再清文件**：原来 unlink 全排在 SQL 之前，Windows 上 `.ydk` 被别的进程占着时 `PermissionError` 会中断删除，留下\"文件没了、记录还在\"的悬空引用（正是 1.0.1 修掉的那个坑的另一个入口）。现在最坏只剩几个没人引用的孤儿文件，删不掉只记一条日志。\n- **README 两处失实描述**：出网响应体上限不是 512 KiB（那是 `netguard` 的默认值），查卡接口是 2 MiB、在线卡图是 4 MiB；目录结构里的 `config.toml` 改为 `config.toml.example`。\n- **`duel/netguard.py` 文档**：删掉\"确实要连内网服务时调用方显式传 `allow_private_host=True`\"——生产代码没有任何调用方传 `True`，也没有配置项能放开内网。\n\n测试 181 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包、不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "f7bb6d048fb520ce54d0da3a6a0a53566f1ba5d5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T16:09:05Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.1",
+          "release_notes": "1.0.0 是上架评审**之前**的那份代码；这个版本收三轮评审的全部修复（插件市场按 Release 归档安装，已收录的版本不改 tag/commit，所以修复发新版本号）。\n\n## 修复了什么\n\n### 数据安全\n\n- **`/清空卡组` 跨群误删（静默出错）**：以前按\"全池投稿\"删 `.ydk` 文件、却只删本群的数据库行，别群的记录会变成指向已删文件的悬空引用——之后随机抽到那副牌，机器人一张都出不了牌、而且不报错。现在**文件与记录按同一范围删**，只清本群投稿，回执里写明范围。\n- **`/删卡组` 加管理员权限**：卡组池是共享的（列表里看得见别群的投稿就删得掉），原来任何群友都能删掉别群投的牌。\n- **群号口径对齐**：入库时群号会过一遍白名单（防 `..`、路径分隔符），但删除路径原来拿的是**原始**群号 —— 群号带 `/`、`:`、`..` 时 `/清空卡组` 会静默报\"已清空 0 副\"。现在入库、删除、回执统一走同一套归一。\n\n### 出网边界\n\n- **连接时校验目标 IP**：解析与连接之间的换址窗口（DNS rebinding）堵上了 —— 校验的就是马上要连的那个 IP；走代理隧道的连接直接拒绝（那一步校验不到目标）。\n- 报错文案不再提示早已删除的配置项。\n\n### 出牌脚本（杀调执行器，来自群友实测）\n\n- **锁缚龙②按连锁归属选支**：它的两个分支分别指向\"我连锁的那个效果\"和\"被连锁的那张卡的效果\"，原来写死\"先康链根\"——锁缚龙直接连锁对手效果时会康到自己的牌（实测：对手的「结晶魔术 光之泪」照常结算，自己的「再混音手」被无效）。现在按链条上每一环的控制者来选。\n- **手坑预算**：本家下级写着\"场上的这张卡为素材作同调召唤的场合，手卡 1 只调整也能作为同调素材\"，于是引擎会把**手牌的调整**（幽鬼兔、屋敷童）列为素材；实测一回合连做三次同调把三张手坑全烧掉、手里零阻抗被反杀。现在\"最后一张手坑不当素材\"，并加了额外召唤闸门（能斩杀时不省）。\n\n### 其他\n\n- **配置只放模板**：仓库里是 `config.toml.example`，本机的 `config.toml` 进 `.gitignore`；读配置的工具也改成\"没 `config.toml` 就用模板默认值\"，并修掉了\"把行尾注释当路径\"的解析 bug。\n- **统一 SDK 写法**：`ToolParameterInfo(param_type=…)` 与 `@Tool(brief_description=…)`（旧写法是静默失效的），加了护栏测试。\n- **`plugin_type` 改为 `game`**；补根目录 `LICENSE`（MIT）；`clients/README.md` 写明随包客户端的**来源、许可与 GPL-2.0 对应源码的获取方式**。\n- 测试 178 条全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包的客户端与卡库来自 ygopro / WindBot 社区：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT，cards.cdb 与卡图上游未声明许可，来源与许可详见 clients/README.md，不想随包分发可用 tools/setup_clients.py 让部署者自行同步。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "27009318d8998f336510924eae0481747f0b902e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T13:40:34Z",
+          "release_url": "https://github.com/erhan111119/mai-play-ygo/releases/tag/v1.0.0",
+          "release_notes": "第一个版本（manifest 里声明的 version 就是 1.0.0）。\n\n## 这个版本做什么\n\n- **开房对打**：群里 `@麦麦 想打牌` 或发 `/开房` → 插件起一局，把服务器地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战；打完把胜负与过程播报回群里（可交给模型润色成一段人话）。\n- **查房出图**：`/查房` 出一张棋盘图（双方 LP、回合与阶段、场上每张卡，里侧的卡只画卡背），在哪个群问都出图。\n- **卡组池**：`/加卡组` 用卡组码导入（YDK / ydke / 萌卡链接）、`/加入随机` 放进随机池、`/固定卡组` 指定某一副；开局按\"自带执行器 → 卡表相似度 → 通用脚本\"的顺序挑出牌脚本。\n- **百科检索**：`ygo_card_search` 查卡、`ygo_card_image` 发卡图（本机卡图优先，缺了才走 CDN）。\n- **两个虚拟客户端随插件自带**（`clients/`：对局内核 ygopro + 出牌大脑 WindBot），路径默认相对插件目录，整个插件目录拷到哪台机器都能跑。\n\n## 配置面\n\n`[duel]` 只有群主要用的十项（bot 名字、地址与端口、开房等人超时、总结开关与提示词、挑衅开关与台词池），`[wiki]` 只有两项（查卡接口地址、超时）。其余内部参数写在代码里，不在配置页显示。\n\n## 说明\n\n- 卡组码只能用指令导入，模型不会自动识别群里贴的卡组码；房间只在\"叫麦麦打牌\"或发指令时开。\n- 想出牌更强，可以给某副牌写一个专属出牌脚本，做法见 `executors/README.md`（推荐让 AI agent 多轮迭代着写）。\n- `clients/` 里的第三方组件许可见 `clients/README.md`（ygopro 与卡牌脚本 GPL-2.0、WindBot MIT；卡库与卡图上游未声明许可，是否随包分发请自行判断）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "id": "mai-play-ygo",
+            "name": "麦麦玩游戏王",
+            "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-play-ygo",
+              "homepage": "https://github.com/erhan111119/mai-play-ygo",
+              "documentation": "https://github.com/erhan111119/mai-play-ygo/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-play-ygo/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.0"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "maisaka.context.append",
+              "chat.get_all_streams",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.morphieendless.shuyushi-slayer",
+      "manifest_id": "github.morphieendless.shuyushi-slayer",
+      "repositoryUrl": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "3547ba6093206f26da53d219064efa470825f085",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-08T07:18:33Z",
+          "release_url": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/releases/tag/1.0.1",
+          "release_notes": "针对插件市场审核意见的修复版本。\n\n## 变更\n\n**配置改为模板化分发**\n\n不再提交 `config.toml`，改为提交 `config.example.toml` 仅作对照。实际配置由 Runner 依据 `plugin.py` 的 `config_model` 在首次运行时生成，用户改过配置后再更新插件不会撞 git 冲突。`.gitignore` 同步覆盖 `config.toml`、`config_back/`、`*.backup.*`。\n\n**改写通道统一到返回值**\n\n去掉了对传入 `message` 的就地改写，只通过返回值 `modified_kwargs` 交回结果。宿主会先把消息 serialize 再交给插件，而插件运行在独立进程里，就地修改入参无法跨进程生效。原先同时做两件事，会让改写看起来依赖副作用。\n\n**补充边界说明**\n\nREADME 新增一条说明。净化落库文本依赖主程序的写库时序，这属于宿主链路行为而非 SDK 承诺。如果将来主程序调整发送链路，插件会静默停止净化入库文本，发出去的消息仍然正常清理。`log_kills` 打开时日志有记录，可以用它确认插件是否仍然生效。\n\n## 验证\n\n- 50 项行为测试全部通过，含入参不被改动、兜底回滚、分组开关、多组件与引用消息不被触碰\n- manifest 经 MaiBot `ManifestValidator` 校验，零错误零警告\n- `config.example.toml` 与 Runner 生成的默认配置逐字段一致\n- 实测环境为 MaiBot `1.2.5` 搭配 plugin-sdk `2.8.1`\n\n## 兼容性\n\n| 项 | 区间 |\n| --- | --- |\n| Host | `1.0.0` ~ `3.99.99` |\n| SDK | `2.5.1` ~ `2.99.99` |\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.morphieendless.shuyushi-slayer",
+            "version": "1.0.1",
+            "name": "属于是猎杀者",
+            "description": "在出站消息发送前按概率随机清除「属于是 / 了属于是」口癖，打断自我强化的复读回路。",
+            "author": {
+              "name": "MorphieEndless",
+              "url": "https://github.com/MorphieEndless"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+              "homepage": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+              "documentation": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/blob/main/README.md",
+              "issues": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "3.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scissors"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "16fa3d945736ba07a041316618e82b14cae6db82",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T15:11:33Z",
+          "release_url": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/releases/tag/1.0.0",
+          "release_notes": "MaiBot 会把 bot 自己的历史回复当作 few-shot 上下文回灌给模型。模型说过一次「属于是」，下一次请求里就多了一条「我自己平时就是这么说话」的示范。口癖于是自我强化，光靠 prompt 约束压不住，因为示范样本每轮都躺在上下文里。\n\n这个插件挂在 `send_service.before_send` 的最后一环，按概率清除最终可见文本里的口癖。\n\n写库发生在 Hook 之后，所以数据库里留下的也是净化后的文本。这一点是关键，落库文本正是下一轮上下文的来源。\n\n## 主要能力\n\n- 按概率清除「属于是 / 了属于是」，默认 0.7，即杀掉七成\n- 同时净化发出去的消息与落库文本，两个视图的清除位置保持一致\n- 只处理 text 组件，不碰被引用群友的原话\n- 清空兜底，整条消息不再含文字时回滚，不会发出空消息\n- 支持 dry_run 观察命中率、按群开关、自定义正则\n\n## 配置\n\n安装后在 WebUI 插件配置页可直接调整，共 11 项。常用几项如下。\n\n| 配置项 | 默认 | 说明 |\n| --- | --- | --- |\n| `kill_ratio` | `0.7` | 每处口癖被清除的概率 |\n| `patterns` | `[\"了?属于是\"]` | 猎杀用正则 |\n| `dry_run` | `false` | 只记录不修改 |\n| `only_groups` | `[]` | 只在这些群生效 |\n| `guard_empty` | `true` | 清空时整条回滚 |\n\n## 实际效果\n\n```\n耳机一摘谁也不爱了属于是                   → 耳机一摘谁也不爱\nRLHF刻进骨髓了属于是，底层总想跳出来教人做事🤔  → RLHF刻进骨髓，底层总想跳出来教人做事🤔\n防御性编程拉满了属于是                     → 防御性编程拉满\nUI设计师梦回2018了属于是                   → UI设计师梦回2018\n```\n\n## 兼容性\n\n| 项 | 区间 |\n| --- | --- |\n| Host | `1.0.0` ~ `3.99.99` |\n| SDK | `2.5.1` ~ `2.99.99` |\n\n实测环境为 MaiBot `1.2.5` 搭配 plugin-sdk `2.8.1`。\n\n## 许可\n\nMIT\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.morphieendless.shuyushi-slayer",
+            "version": "1.0.0",
+            "name": "属于是猎杀者",
+            "description": "在出站消息发送前按概率随机清除「属于是 / 了属于是」口癖，打断自我强化的复读回路。",
+            "author": {
+              "name": "MorphieEndless",
+              "url": "https://github.com/MorphieEndless"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+              "homepage": "https://github.com/MorphieEndless/maibot-shuyushi-slayer",
+              "documentation": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/blob/main/README.md",
+              "issues": "https://github.com/MorphieEndless/maibot-shuyushi-slayer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "3.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scissors"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "tom.listen-audio-file",
+      "manifest_id": "tom.listen-audio-file",
+      "repositoryUrl": "https://github.com/Tom20200112/maibot-listen-audio-file",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.4",
+          "tag": "v1.1.4",
+          "commit": "e14f861818e5cc4531a7a2a3b20a23ac57f536b8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T05:28:21Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.1.4",
+          "release_notes": "安全修复，建议升级：聊天文字里的链接一律不用。以前 QQ 端查不到原消息时（适配器没响应，或者消息太老），插件会退回去用聊天文字里的那个链接，有人手打一行「[文件] …，链接: …」就可能让麦麦去下载任意公网地址；现在确认不了就不下载，等要听时再确认一次（插件中心第五轮审核指出）。QQ 端用字符串消息格式（CQ 码）时，下载链接也从 CQ 码里取。其余同 v1.1.3。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.4",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里的音频文件（mp3、m4a、wav 等）和语音条：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        },
+        {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "26438416991cfaafc6d143ca3f9858d993a1806a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T04:45:31Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.1.3",
+          "release_notes": "重取语音时，适配器返回的本机路径要扩展名和文件头都是音频才会去读（插件中心第四轮审核建议）。其余同 v1.1.2。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.3",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里的音频文件（mp3、m4a、wav 等）和语音条：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        },
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "bb314f9465ac4995238732278eb28a7d575edf90",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T03:54:46Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.1.2",
+          "release_notes": "只改说明文字：简介里的格式举例挪到「音频文件」后面，之前读起来像是在说语音条是 mp3 等格式；工具说明、配置说明和几条报错改写得更清楚。功能同 v1.1.1。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.2",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里的音频文件（mp3、m4a、wav 等）和语音条：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        },
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "f1622f7f6a14e5bd81d4f349377879ae9aeadaaf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T03:13:57Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.1.1",
+          "release_notes": "采纳插件中心第二轮审核建议：群文件重取拿到的地址只认 http(s) 网址，免得适配器返回怪东西时去读本机文件。其余同 v1.1.0（也能听语音条）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.1",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里的音频文件和语音条（mp3/m4a/wav 等）：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "6755ad3420aa88726663e9360d35462f5ffad3a2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T03:09:30Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.1.0",
+          "release_notes": "**也能听语音条了。** 收到语音条时插件先存一份；有人让麦麦听、或者她自己想细听时调同一个工具，能听出唱的是什么、唱得怎么样、男声女声和语气。`/听音频` 也认语音条。新增配置项 `include_voice`（默认开）。\n\nMaiBot 自带的语音识别（`[voice] enable_asr`）只把语音转成文字；这个插件是按需细听，两个可以同时开。\n\n其他改动：\n- 采纳插件中心审核的两条建议：下载时连接用的就是检查过的地址（防 DNS 重绑定）；说明里提醒 `base_url` 别填不可信的地址。\n- 下载出网络错误时给出看得懂的提示。\n\n升级：把旧的插件文件夹里除 `config.toml` 以外的文件换成新的，重启 MaiBot。安装和配置见 [README](https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.0",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里的音频文件和语音条（mp3/m4a/wav 等）：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "83d7865f597e8dc50b7023bbcbf1f5e43fee4e3a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T02:43:35Z",
+          "release_url": "https://github.com/Tom20200112/maibot-listen-audio-file/releases/tag/v1.0.2",
+          "release_notes": "让麦麦能听聊天里别人发的**音频文件**（mp3/m4a/wav/amr/flac 等，不是语音条）：说出内容、逐句听写歌词、点评唱歌。\n\n- 支持 MaiBot 1.2.x / 1.3.x；QQ 端 NapCat、SnowLuma 都行（官方 NapCat 适配器、SnowLuma 适配器均已测试）。\n- 填阿里云百炼 Key 用 `qwen3.5-omni-flash` 完整地听；不填就用 MaiBot 自己配的语音识别模型（只转文字）。\n- 安装和配置见 [README](https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md)。\n\n**1.0.2 更新**（安全加固，建议升级）\n- 只认 QQ 端确认过的真文件消息。以前有人在聊天里手打一行「[文件] …，链接: …」，插件会照着去下载那个链接。\n- 下载只走公网地址，跳转也逐跳检查，不会被引去访问本机、内网或云服务器的元数据地址。\n- ffmpeg 只读本地文件。\n- 新增配置项 `allow_private_network`，默认关，只在本机测试时打开。\n\n**1.0.1**：支持 MaiBot 1.3 和 SnowLuma；麦麦把「想重点听什么」错填进消息编号时照样能听；修了负数消息编号在链接过期后无法从群文件重取的问题。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.2",
+            "name": "听音频文件",
+            "description": "让麦麦能听聊天里发的音频文件（mp3/m4a/wav 等）：听写歌词、点评唱歌、说出内容",
+            "author": {
+              "name": "Tom",
+              "url": "https://github.com/Tom20200112"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "homepage": "https://github.com/Tom20200112/maibot-listen-audio-file",
+              "documentation": "https://github.com/Tom20200112/maibot-listen-audio-file/blob/main/README.md",
+              "issues": "https://github.com/Tom20200112/maibot-listen-audio-file/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "message.get_by_id",
+              "llm.transcribe_audio",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "tom.listen-audio-file"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.sodacodesave.birthday-plugin",
+      "manifest_id": "github.sodacodesave.birthday-plugin",
+      "repositoryUrl": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "1.1.0",
+          "commit": "f6a9cb489595a29ad10ea3827923cf94b4d4d06f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T05:29:04Z",
+          "release_url": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/releases/tag/1.1.0",
+          "release_notes": "**Full Changelog**: https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/commits/1.1.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.sodacodesave.birthday-plugin",
+            "version": "1.1.0",
+            "name": "生日快乐，麦麦",
+            "description": "在配置的生日当天向回复提示词注入「今天是你的生日」提醒",
+            "author": {
+              "name": "Soda",
+              "url": "https://github.com/SodaCodeSave"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+              "homepage": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+              "documentation": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/#readme",
+              "issues": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cake"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "53771937ed13e437d176a2150fcb54ee562f9540",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-09T04:34:41Z",
+          "release_url": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/releases/tag/1.0.0",
+          "release_notes": "**Full Changelog**: https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/commits/1.0.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.sodacodesave.birthday-plugin",
+            "version": "1.0.0",
+            "name": "生日快乐，麦麦",
+            "description": "在配置的生日当天向回复提示词注入「今天是你的生日」提醒",
+            "author": {
+              "name": "Soda",
+              "url": "https://github.com/SodaCodeSave"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+              "homepage": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin",
+              "documentation": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/#readme",
+              "issues": "https://github.com/SodaCodeSave/MaiBot-Birthday-Plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cake"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.mai-mai.file-reader",
+      "manifest_id": "org.mai-mai.file-reader",
+      "repositoryUrl": "https://github.com/orge-8/file-reader",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "db1defa080f3ebdff51e813c0f3513d3e0331e32",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-07T11:28:32Z",
+          "release_url": "https://github.com/orge-8/file-reader/releases/tag/v1.2.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.file-reader",
+            "version": "1.2.0",
+            "name": "文件读取（File Reader）",
+            "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/csv/代码/文本等），分块向量化后按语义检索，把最相关内容注入 LLM 上下文，实现低开销的文件问答。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/file-reader"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "pdfminer.six",
+                "version_spec": ">=20221105"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "llm.embed",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.netajuutilainen.payqr",
+      "manifest_id": "github.netajuutilainen.payqr",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "f7145151feae8e6a2e98f8ee5d6f73a6ca99e6dc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T17:01:03Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr/releases/tag/v1.3.1",
+          "release_notes": "## v1.3.1\n\n### 加固（AI 评审建议落实）\n- **工具错误文案不再泄漏宿主路径**：发送失败/文件为空的提示只保留文件名与错误类型，避免绝对路径进入 Planner 上下文被复述到群里\n- **默认触发提示词收敛**：去掉\"没有任何风险，大胆使用\"，改为要求按聊天氛围判断、场合不合适时不要调用\n- **README**：「安全与使用须知」前置到安装之前，标注默认 `list_mode=off` 为最宽松档并建议公开群使用者收紧为白名单\n- Hook 注释标注为 MaiBot 1.2.x 经验行为（非官方接口承诺）\n\n**Full Changelog**: https://github.com/NetaJuutilainen/Maibot_plugin_payqr/compare/v1.3.0...v1.3.1\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.payqr",
+            "version": "1.3.1",
+            "name": "麦麦赛博讨口子",
+            "description": "当 LLM 觉得自己没钱、想收打钱/转账/赞助/红包时，自动发送你配置的收款码图片",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🤑"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "38ffbb4abf16ca4e2a691f16b3bc73079f7d55f3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-06T16:36:30Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr/releases/tag/v1.3.0",
+          "release_notes": "## v1.3.0\n\n### Features\n- feat: 统一会话黑白名单——`list_mode`（off / blacklist / whitelist）三档模式切换，`chat_list` 名单中群号与 QQ 号共用：群聊按群号匹配，私聊按对方 QQ 号匹配；白名单模式对无法识别身份的会话按拒绝处理（fail closed）\n\n### 修复与加固\n- 收款码路径限制加固：`qr_filename` 仅接受插件数据目录/临时目录内的相对路径，绝对路径与 `..` 穿越一律拒绝（v1.2.0）\n- 触发提示词可通过 WebUI 配置自定义，经 `maisaka.planner.before_request` Hook 每轮动态注入并即时生效（v1.1.0）\n\n**Full Changelog**: https://github.com/NetaJuutilainen/Maibot_plugin_payqr/compare/v1.0.0...v1.3.0\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.payqr",
+            "version": "1.3.0",
+            "name": "麦麦赛博讨口子",
+            "description": "当 LLM 觉得自己没钱、想收打钱/转账/赞助/红包时，自动发送你配置的收款码图片",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_payqr"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🤑"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.fiatlux2333.hd2-helper",
+      "manifest_id": "github.fiatlux2333.hd2-helper",
+      "repositoryUrl": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "ee6c1603ad2be6b325f5b107d5c85a24680d5d4d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-05T05:25:42Z",
+          "release_url": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/releases/tag/v1.1.0",
+          "release_notes": "## 变更内容\n\n### v1.1.0（2026-09-29）\n- **Companion 截图默认关闭**（`enable_companion_screenshots=false`）：该功能依赖 playwright 与 Chromium 浏览器，默认开启会让开箱用户直接命中\"未安装\"降级路径。新版下 /hd2news、/companion、/dss、/planet 未启用时会返回明确的安装与开启指引\n- README（中/英）新增显著提示：安装步骤（`pip install playwright && playwright install --with-deps chromium`）与开启方式（WebUI 保存后约 3 秒自动热生效）\n- `companion_browserless_url` 配置说明补充\"仅限可信内网或可信服务\"\n- 修复：/map 等图文合并发送（manifest 补声明 `send.hybrid` 能力）；WebUI 保存配置后自动热应用（约 3 秒防抖重建组件，无需重载插件）；Companion 页面加载超时默认 20s→40s\n\n### 兼容性\n- Host：MaiBot 1.0.0 ～ 1.99.99\n- SDK：maibot-plugin-sdk 2.0.0 ～ 2.99.99\n- Python 依赖：aiohttp、Pillow（由依赖管线安装）；Companion 截图可选依赖 playwright\n\n## 安装\n\n通过 MaiBot 插件中心安装，或将仓库克隆/解压到 MaiBot 的 `plugins/` 目录。详见 [README](https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.fiatlux2333.hd2-helper",
+            "version": "1.1.0",
+            "name": "绝地潜兵2情报助手",
+            "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
+            "author": {
+              "name": "牡蛎 (fiatlux2333)",
+              "url": "https://github.com/fiatlux2333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "homepage": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "documentation": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md",
+              "issues": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid"
             ],
             "i18n": {
               "default_locale": "zh-CN",
