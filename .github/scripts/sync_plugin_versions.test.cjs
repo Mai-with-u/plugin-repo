@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { compareVersions, skipConflictingPlugins, syncPlugin, validateManifest } = require('./sync_plugin_versions.cjs');
+const { compareVersions, skipConflictingPlugins, syncPlugin: syncWithGate, validateManifest } = require('./sync_plugin_versions.cjs');
+// 发布格式校验用例使用明确的准入许可。
+const syncPlugin = (...args) => syncWithGate(...[args[0], args[1], args[2], args[3], async () => true]);
 
 const plugin = { id: 'legacy.demo', repositoryUrl: 'https://github.com/example/demo' };
 const commit = 'a'.repeat(40);
@@ -32,6 +34,29 @@ function client(releases, options = {}) {
 test('版本按数字排序，不按字符串或发布时间排序', () => {
   assert.ok(compareVersions('1.10.0', '1.9.0') > 0);
   assert.throws(() => compareVersions('01.0.0', '1.0.0'));
+});
+
+test('未提供准入许可的新 Release 不收录，也不能退回分支模式', async () => {
+  const result = await syncWithGate(plugin, undefined, client([release()]));
+  assert.equal(result.mode, 'releases');
+  assert.deepEqual(result.versions, []);
+});
+
+test('待审新版不影响旧版，已有版本无需重复准入', async () => {
+  const old = await syncPlugin(plugin, undefined, client([release()]));
+  const requested = [];
+  const request = async url => {
+    if (url.includes('/releases?')) return [release('2.0.0'), release()];
+    if (url.includes('/contents/')) return { type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify(manifest('2.0.0'))).toString('base64') };
+    return client([])(url);
+  };
+  const result = await syncWithGate(plugin, old, request, undefined, async (_, candidate) => {
+    requested.push(candidate.version);
+    return false;
+  });
+  assert.deepEqual(requested, ['2.0.0']);
+  assert.deepEqual(result.versions.map(item => item.version), ['1.0.0']);
+  assert.equal(result.versions[0].yanked, false);
 });
 test('从注解 Tag 解析完整 commit 并读取该 commit 的 manifest', async () => {
   const result = await syncPlugin(plugin, undefined, client([release()], { annotated: true }), 'example.demo');

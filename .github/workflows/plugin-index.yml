@@ -7,6 +7,8 @@ on:
     paths:
       - 'plugins.json'
       - '.github/scripts/sync_plugin_versions.cjs'
+      - '.github/scripts/release_review.cjs'
+      - 'trusted_developers.json'
       - '.github/workflows/plugin-index.yml'
   schedule:
     - cron: '0 0 * * *'
@@ -14,6 +16,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   sync-index:
@@ -34,7 +37,7 @@ jobs:
         run: npm install --no-save --no-package-lock sharp@0.33.5
 
       - name: Test version synchronization
-        run: node --test .github/scripts/sync_plugin_versions.test.cjs
+        run: node --test .github/scripts/*.test.cjs
 
       - name: Generate plugin details
         run: |
@@ -332,9 +335,31 @@ jobs:
           main();
           EOL
 
+      - name: Create Mai GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
+          private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
+
+      - name: Ensure release review label
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            try {
+              await github.rest.issues.getLabel({ ...context.repo, name: 'plugin-release' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                ...context.repo, name: 'plugin-release', color: '0366d6', description: '插件发布版本审核',
+              });
+            }
+
       - name: Synchronize releases
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          MAI_REVIEW_BOT_LOGIN: ${{ steps.app-token.outputs.app-slug }}[bot]
         run: node .github/scripts/sync_plugin_versions.cjs
 
       - name: Commit and push plugin index

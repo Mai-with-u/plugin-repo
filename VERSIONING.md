@@ -26,17 +26,31 @@
 
 ## 同步与故障处理
 
-同步脚本只读取 GitHub API，不检出或执行第三方插件代码。Release 列表按分页完整读取，manifest 通过解析后的 commit 获取。已收录版本复用原始 manifest 快照并重新检查 Tag 指向。
+每日北京时间 08:00 的 **Sync Plugin Index** 工作流巡视已登记插件的 Release。新版本通过格式校验后自动创建带有 `plugin-release` 标签的待审核 Issue，麦麦检查该 Release 的固定 commit。维护者在 Issue 中发送独立的 `/approve` 评论后，该版本才写入 `plugin_versions.json`；`/reject 原因` 拒绝收录。待审期间继续提供已收录版本，同一插件、版本、Tag 和 commit 不重复开单，关闭 Issue 不代表批准。
 
-每个插件独立处理，同步失败保留上次索引并写入 `sync_error`；其他插件继续同步。工作流会发布成功结果和明确错误，并保持失败状态，方便维护者修复后重跑。撤回标记只在成功获取完整 Release 列表后计算。
+`trusted_developers.json` 配置可直接更新发布版的授信开发者。每项使用 GitHub 仓库所有者的数字 ID 和具体仓库名，例如：
+
+```json
+[
+  { "owner_id": 123456, "repositories": ["developer/plugin-repository"] }
+]
+```
+
+所有者身份由 GitHub API 确认，不使用 manifest 作者字段。名单由维护者管理；授信版本仍须通过格式、插件身份和 Tag/commit 一致性检查。组织仓库按组织数字 ID 和具体仓库授权。默认名单为空。
+
+同步和发布审批使用现有 `MAI_REVIEW_APP_ID`、`MAI_REVIEW_APP_PRIVATE_KEY`，GitHub App 需要读取插件市场内容及写入 Issue 的权限；麦麦审核还需要 `STEP_API_KEY`。
+
+同步脚本通过 GitHub API 获取发布信息和创建审核 Issue，不检出或执行第三方插件代码。Release 列表按分页完整读取，manifest 通过解析后的 commit 获取。已收录版本复用原始 manifest 快照并重新检查 Tag 指向。
+
+每个插件独立处理，同步失败保留上次索引并写入 `sync_error`；其他插件继续同步。异常原因公开在索引中，维护者修复后可重跑。撤回标记只在成功获取完整 Release 列表后计算。
 
 本地验证：
 
 ```powershell
-node --test .github/scripts/sync_plugin_versions.test.cjs
+node --test .github/scripts/*.test.cjs
 ```
 
-配置 `GITHUB_TOKEN` 后同步：
+配置 GitHub App 的 `GITHUB_TOKEN`、市场仓库 `GITHUB_REPOSITORY` 和 App 的机器人登录名 `MAI_REVIEW_BOT_LOGIN`（如 `app-name[bot]`）后同步：
 
 ```powershell
 node .github/scripts/sync_plugin_versions.cjs

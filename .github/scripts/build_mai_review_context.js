@@ -60,6 +60,16 @@ function parseRepoUrl(issueBody, requestType) {
 function resolveRepoUrl(issue) {
   const body = issue.body || "";
   const labels = (issue.labels || []).map((label) => label.name);
+  if (labels.includes('plugin-release')) {
+    const { parseReleaseIssue } = require('./release_review.cjs');
+    const release = parseReleaseIssue(issue);
+    const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
+    const registered = plugins.find(plugin => plugin.id === release.id);
+    if (!registered || registered.repositoryUrl.replace(/\/$/, '').replace(/\.git$/, '') !== release.repositoryUrl) {
+      throw new Error('发布审核与插件登记信息不一致');
+    }
+    return { requestType: 'release', repoUrl: release.repositoryUrl, releaseCommit: release.commit };
+  }
   const requestType = labels.includes("plugin-modification")
     ? "modify"
     : labels.includes("plugin-removal")
@@ -151,7 +161,7 @@ async function main() {
     },
   });
 
-  const { requestType, repoUrl } = resolveRepoUrl(issue);
+  const { requestType, repoUrl, releaseCommit } = resolveRepoUrl(issue);
   const pluginRepo = toRepoSlug(repoUrl);
 
   const maintainerComments = comments.filter((comment) => comment.author_association === "MEMBER");
@@ -165,10 +175,17 @@ async function main() {
   if (pluginRepo) {
     try {
       pluginRepoInfo = await gh(`/repos/${pluginRepo}`);
-      const manifestResult = await fetchManifestAndBranch(repoUrl, pluginRepoInfo.default_branch);
-      manifestBranch = manifestResult.branch || pluginRepoInfo.default_branch;
-      manifestText = manifestResult.manifestText || "";
-      manifestErrors = manifestResult.manifestErrors || [];
+      if (releaseCommit) {
+        manifestBranch = releaseCommit;
+        const file = await gh(`/repos/${pluginRepo}/contents/_manifest.json?ref=${releaseCommit}`);
+        if (file.type !== 'file' || file.encoding !== 'base64') throw new Error('发布 manifest 无效');
+        manifestText = Buffer.from(file.content, 'base64').toString('utf8');
+      } else {
+        const manifestResult = await fetchManifestAndBranch(repoUrl, pluginRepoInfo.default_branch);
+        manifestBranch = manifestResult.branch || pluginRepoInfo.default_branch;
+        manifestText = manifestResult.manifestText || "";
+        manifestErrors = manifestResult.manifestErrors || [];
+      }
       latestCommit = await gh(`/repos/${pluginRepo}/commits/${encodeURIComponent(manifestBranch)}`);
 
       try {

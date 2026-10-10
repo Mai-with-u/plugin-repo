@@ -16,11 +16,13 @@ jobs:
        github.event.label.name == 'validated' &&
        (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
-        contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
+        contains(github.event.issue.labels.*.name, 'plugin-removal') ||
+        contains(github.event.issue.labels.*.name, 'plugin-release'))) ||
       (github.event_name == 'issue_comment' &&
        (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
-        contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
+        contains(github.event.issue.labels.*.name, 'plugin-removal') ||
+        contains(github.event.issue.labels.*.name, 'plugin-release')) &&
        contains(github.event.issue.labels.*.name, 'validated') &&
        contains(github.event.comment.body, '/mai_review'))
     runs-on: ubuntu-latest

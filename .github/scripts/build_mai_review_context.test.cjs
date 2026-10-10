@@ -4,6 +4,15 @@ const test = require("node:test");
 const { resolveRepoUrl } = require("./build_mai_review_context.js");
 const [registeredPlugin] = require("../../plugins.json");
 
+test('发布审核固定到 Issue 的 commit，并验证登记仓库', () => {
+  const release = { id: registeredPlugin.id, repositoryUrl: registeredPlugin.repositoryUrl,
+    version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40) };
+  const issue = { labels: [{ name: 'plugin-release' }], body: `<!-- plugin-release: ${JSON.stringify(release)} -->` };
+  assert.deepEqual(resolveRepoUrl(issue), { requestType: 'release', repoUrl: release.repositoryUrl, releaseCommit: release.commit });
+  release.repositoryUrl = 'https://github.com/other/repo';
+  assert.throws(() => resolveRepoUrl({ ...issue, body: `<!-- plugin-release: ${JSON.stringify(release)} -->` }), /不一致/);
+});
+
 test("new plugin reviews use the submitted repository", () => {
   const issue = {
     labels: [{ name: "plugin-submission" }],

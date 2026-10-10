@@ -43,12 +43,14 @@ function validateManifest(manifest, version, expectedId) {
 }
 
 function createGithubClient(token = process.env.GITHUB_TOKEN) {
-  return async function request(resource) {
+  return async function request(resource, init = {}) {
     const response = await fetch(`https://api.github.com${resource}`, {
+      ...init,
       headers: {
         Accept: 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(init.body ? { 'Content-Type': 'application/json' } : {}),
       },
       signal: AbortSignal.timeout(30000),
     });
@@ -61,7 +63,7 @@ function createGithubClient(token = process.env.GITHUB_TOKEN) {
   };
 }
 
-async function syncPlugin(plugin, previous, request, expectedId) {
+async function syncPlugin(plugin, previous, request, expectedId, admit = async () => false) {
   const match = plugin.repositoryUrl.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+?)\/?$/);
   assert.ok(match, `不支持的仓库地址：${plugin.repositoryUrl}`);
   const base = `/repos/${match[1]}/${match[2].replace(/\.git$/, '')}`;
@@ -120,16 +122,17 @@ async function syncPlugin(plugin, previous, request, expectedId) {
       continue;
     }
     if (manifest.manifest_version === 2) manifestId = manifest.id;
-    versions.set(version, {
+    const candidate = {
       version, tag: release.tag_name, commit: object.sha,
       prerelease: Boolean(release.prerelease), yanked: false,
       published_at: release.published_at, release_url: release.html_url,
       release_notes: release.body || '', manifest,
-    });
+    };
+    if (old || await admit(plugin, candidate)) versions.set(version, candidate);
   }
   return {
     id: plugin.id, manifest_id: manifestId || plugin.id, repositoryUrl: plugin.repositoryUrl,
-    mode: versions.size || rejectedReleases.length ? 'releases' : 'branch',
+    mode: versions.size || rejectedReleases.length || seenVersions.size ? 'releases' : 'branch',
     versions: [...versions.values()].sort((a, b) => compareVersions(b.version, a.version)),
     ignored_tags: ignoredTags,
     rejected_releases: rejectedReleases,
@@ -160,6 +163,8 @@ async function main() {
   const previous = fs.existsSync(output) ? JSON.parse(fs.readFileSync(output, 'utf8')) : { schema_version: 1, plugins: [] };
   assert.equal(previous.schema_version, 1, '不支持的版本索引协议');
   const request = createGithubClient();
+  const { createReleaseGate } = require('./release_review.cjs');
+  const admit = await createReleaseGate({ root, request });
   const result = [];
   let warnings = 0;
   const ids = new Set();
@@ -179,7 +184,7 @@ async function main() {
     }
     try {
       const expectedId = details.find(item => item.id === plugin.id)?.manifest?.id;
-      const synced = await syncPlugin(plugin, old, request, expectedId);
+      const synced = await syncPlugin(plugin, old, request, expectedId, admit);
       result.push(synced);
       if (synced.rejected_releases.length) {
         warnings++;
@@ -203,5 +208,5 @@ async function main() {
   if (warnings) console.warn(`同步完成：${warnings} 个插件的异常已跳过，详情已写入版本索引`);
 }
 
-module.exports = { compareVersions, skipConflictingPlugins, syncPlugin, validateManifest };
+module.exports = { compareVersions, createGithubClient, skipConflictingPlugins, syncPlugin, validateManifest };
 if (require.main === module) main().catch(error => { console.error(error); process.exitCode = 1; });
