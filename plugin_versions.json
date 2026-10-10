@@ -26787,6 +26787,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "87e9f7e5d9deecc8aeee51ae897d92734fb9092f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T08:12:44Z",
+          "release_url": "https://github.com/deepseekv41flash/maibot-opencode-session-header/releases/tag/v1.1.2",
+          "release_notes": "## OpenCode 会话头注入 v1.1.2\n\n本版回应插件中心 AI 审核第二轮建议（[Mai-with-u/plugin-repo#742](https://github.com/Mai-with-u/plugin-repo/issues/742)）。\n\n### 变更内容\n\n- **工具返回瘦身**：`opencode_session_token` 工具的返回体移除 `seed_source` 字段，不再把部署配置细节（`fallback:tool|<host>`、`env:XXX` 等）暴露给模型。该信息在 `verbose` 日志中**仍然保留**，排障不受影响。\n- **重定向行为说明**（README 第 7 节）：明确 HTTP 传输沿用 httpx 默认行为（`follow_redirects=True`）——\n  - 重定向目标与原地址**不同源**（协议 / 主机 / 端口任一不同）时，httpx 会剥离标准 `Authorization` 头（同主机 `http → https` 升级除外）；\n  - 但**自定义鉴权头不会被剥离**：`auth_type = \"header\"` 时配置的 `auth_header_name` 会被带到重定向目标；\n  - `307` / `308` 还会把请求体重发到新主机。\n\n  因此建议自建 / 中转网关直接返回结果，不要做跨域重定向。本版**未改动传输层逻辑**，仅把既有行为写清楚。\n- **版本号同步**：`_manifest.json` 的 `version`、`llm_providers[].version` 与 `@LLMProvider` 的 `version` 均为 `1.1.2`。\n\n### 兼容性\n\n- 工具返回体字段减少属**向后兼容**变更（模型侧少看到一个排障字段）；\n- HTTP 传输层、配置结构与其余代码逻辑未变，`config_version` 保持 `1.1.0`，升级无需改 `config.toml`。\n\n### 验证\n\n- 34 项离线单元测试全过：`python -m unittest discover -s tests`\n- `python -m py_compile plugin.py` 通过\n- manifest 结构校验通过：`manifest_version=2`、`id` 未变、版本三段式、`urls.repository` 为公开 HTTPS 且无 `.git` 后缀、无 legacy 字段\n\n### 环境要求\n\n| 项 | 要求 |\n|---|---|\n| MaiBot | `>= 1.3.0` |\n| maibot-plugin-sdk | `>= 2.10.0` |\n| Python 包依赖 | `httpx >= 0.27` |\n\n### 许可\n\nMIT，见 [LICENSE](https://github.com/deepseekv41flash/maibot-opencode-session-header/blob/main/LICENSE)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.opencode-session-header",
+            "version": "1.1.2",
+            "name": "OpenCode 会话头注入",
+            "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；支持 chat_completions 与 responses 两种协议，会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+            "author": {
+              "name": "deepseekv41flash",
+              "url": "https://github.com/deepseekv41flash"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+              "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "opencode-session",
+                "name": "OpenCode 会话头注入",
+                "description": "转发 OpenAI 兼容请求，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.1.2"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "key-round"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "f4adea2625a815bf31d48793c0a97093590f0c38",
