@@ -8,7 +8,7 @@ test('发布审核固定到 Issue 的 commit，并验证登记仓库', () => {
   const release = { id: registeredPlugin.id, repositoryUrl: registeredPlugin.repositoryUrl,
     version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40) };
   const issue = { labels: [{ name: 'plugin-release' }], body: `<!-- plugin-release: ${JSON.stringify(release)} -->` };
-  assert.deepEqual(resolveRepoUrl(issue), { requestType: 'release', repoUrl: release.repositoryUrl, releaseCommit: release.commit });
+  assert.deepEqual(resolveRepoUrl(issue), { requestType: 'release', repoUrl: release.repositoryUrl, releaseCommit: release.commit, releaseBatch: { id: release.id, repositoryUrl: release.repositoryUrl, releases: [{ version: release.version, tag: release.tag, commit: release.commit }], discarded: [], base_commit: null } });
   release.repositoryUrl = 'https://github.com/other/repo';
   assert.throws(() => resolveRepoUrl({ ...issue, body: `<!-- plugin-release: ${JSON.stringify(release)} -->` }), /不一致/);
 });

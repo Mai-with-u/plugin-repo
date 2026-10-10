@@ -82,7 +82,7 @@
 1. 在目标提交的 `_manifest.json` 中设置三段式 `version`，如 `2.3.0`，准确声明该版本的 `host_application` 和 `sdk` 范围。
 2. 保持插件 `id` 不变；历史版本需要修复时，可从维护分支发布新的版本号。
 3. 提交代码，创建 `v2.3.0` 或 `2.3.0` Tag，再发布对应 GitHub Release。版本号必须与该提交的 manifest 完全一致。
-4. 等待每日 **Sync Plugin Index** 工作流巡视。新版会自动创建待审核 Issue，麦麦审核对应 Release 的固定 commit；维护者确认并发送 `/approve` 或 `/ap` 后收录。授信开发者在授权仓库发布的合规版本可直接收录。
+4. 等待每日 **Sync Plugin Index** 工作流巡视。新版按插件合并为待审核批次，每批最多审核最新的 5 个 Release，较早版本跳过；待审期间的新发布另开批次，麦麦检查各版本固定 commit 的源码和变更并输出结构化结论，无风险版本自动收录，有风险或结论不确定的版本交给维护者。授信开发者在授权仓库发布的合规版本可直接收录。
 
 同一版本首次收录后，其 Tag 和 commit 不允许改变。修复代码应发布新的版本号，不要删除并重打同版本 Tag。删除已收录的 Release 会将该版本标记为撤回，历史记录仍然保留。
 
@@ -113,6 +113,8 @@
 | `rejected` | 被维护者拒绝 |
 
 ### 可用命令
+
+登记请求由 **Mai Review Plugin Registration** 审核，发布版本由 **Mai Review Plugin Release** 审核。两者分别使用 `plugin-issue-*` 和 `plugin-release-*` 提示词，审核执行步骤共用 **Mai Review Runner**。发布审核按版本输出结构化结论，无风险版本自动收录，其他版本标记 `needs-manual-review` 等待维护者处理；登记请求仍由维护者批准。
 
 | 命令 | 谁可以使用 | 说明 |
 |------|-----------|------|

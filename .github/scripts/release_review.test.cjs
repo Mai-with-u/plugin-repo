@@ -47,11 +47,13 @@ test('新发布只创建一次 Issue，再添加 validated 触发审核；伪造
   };
   const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
   assert.equal(await gate(plugin, candidate), false);
+  await gate.flush(plugin);
   assert.equal(await gate(plugin, candidate), false);
+  await gate.flush(plugin);
   assert.equal(posts.length, 2);
   assert.deepEqual(posts[0][1].labels, ['plugin-release']);
   assert.deepEqual(posts[1][1].labels, ['validated']);
-  assert.deepEqual(parseReleaseIssue({ body: posts[0][1].body }), data);
+  assert.deepEqual(parseReleaseIssue({ body: posts[0][1].body }).releases, [candidate]);
 });
 
 test('授信同时要求数字 owner ID 和授权仓库匹配', async t => {
@@ -131,4 +133,88 @@ test('开单后添加标签失败，下次巡视恢复审核触发', async t => 
   const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
   assert.equal(await gate(plugin, candidate), false);
   assert.equal(posts, 1);
+});
+
+test('每次巡视最多合并最新五个，重跑不补开丢弃版本，待审新发布另开批次', async t => {
+  const root = workspace(t);
+  const issues = [];
+  const request = async (url, init) => {
+    if (!init) return url.includes('/issues?') ? issues : { owner: { id: 10 }, full_name: 'example/demo' };
+    const body = JSON.parse(init.body);
+    if (url.endsWith('/issues')) {
+      const created = issue({ number: issues.length + 1, body: body.body, labels: [{ name: 'plugin-release' }] });
+      issues.push(created);
+      return created;
+    }
+    return [];
+  };
+  const candidates = Array.from({ length: 7 }, (_, index) => ({
+    version: `1.0.${index}`, tag: `v1.0.${index}`, commit: String(index + 1).repeat(40),
+    published_at: `2026-10-0${index + 1}T00:00:00Z`,
+  }));
+  const scan = async releases => {
+    const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
+    for (const release of releases) assert.equal(await gate(plugin, release), false);
+    await gate.flush(plugin);
+  };
+  await scan(candidates);
+  assert.equal(issues.length, 1);
+  const batch = parseReleaseIssue(issues[0]);
+  assert.deepEqual(batch.releases.map(item => item.version), ['1.0.6', '1.0.5', '1.0.4', '1.0.3', '1.0.2']);
+  assert.deepEqual(batch.discarded.map(item => item.version), ['1.0.1', '1.0.0']);
+  await scan(candidates);
+  assert.equal(issues.length, 1);
+  const next = { version: '1.0.7', tag: 'v1.0.7', commit: '8'.repeat(40), published_at: '2026-10-08T00:00:00Z' };
+  await scan([...candidates, next]);
+  assert.equal(issues.length, 2);
+  assert.deepEqual(parseReleaseIssue(issues[1]).releases.map(item => item.version), ['1.0.7']);
+  assert.deepEqual(parseReleaseIssue(issues[0]), batch);
+  issues.forEach(item => { item.state = 'closed'; });
+  await scan([...candidates, next]);
+  assert.equal(issues.length, 2);
+});
+
+test('批次按发布时间而非版本号取最新，超过五个目标不能批准', async t => {
+  const root = workspace(t);
+  let created;
+  const request = async (url, init) => {
+    if (!init) return url.includes('/issues?') ? [] : { owner: { id: 10 }, full_name: 'example/demo' };
+    if (url.endsWith('/issues')) created = issue({ body: JSON.parse(init.body).body });
+    return created;
+  };
+  const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
+  await gate(plugin, { ...candidate, version: '9.0.0', tag: 'v9.0.0', published_at: '2026-01-01' });
+  await gate(plugin, { ...candidate, published_at: '2026-10-01' });
+  await gate.flush(plugin);
+  assert.deepEqual(parseReleaseIssue(created).releases.map(item => item.version), ['1.0.0', '9.0.0']);
+  assert.throws(() => parseReleaseIssue(issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin,
+    releases: Array.from({ length: 6 }, () => candidate) })} -->` })), /1 至 5/);
+});
+
+test('批次批准原子收录全部目标，任何成员撤回或改 commit 都不写入', async t => {
+  const root = workspace(t);
+  const second = { version: '2.0.0', tag: 'v2.0.0', commit: 'b'.repeat(40) };
+  const target = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate] })} -->` });
+  const base = releaseClient();
+  const request = async url => {
+    if (url.includes('/releases?')) return [second, candidate].map(item => ({ tag_name: item.tag, draft: false }));
+    if (url.includes('/git/ref/') && url.endsWith(second.tag)) return { object: { type: 'commit', sha: second.commit } };
+    const result = await base(url);
+    if (url.includes('/contents/') && url.endsWith(second.commit)) {
+      const manifest = JSON.parse(Buffer.from(result.content, 'base64').toString());
+      manifest.version = second.version;
+      result.content = Buffer.from(JSON.stringify(manifest)).toString('base64');
+    }
+    return result;
+  };
+  const file = path.join(root, 'plugin_versions.json');
+  const before = fs.readFileSync(file, 'utf8');
+  await assert.rejects(approveRelease({ root, issue: target, botLogin, request: async url =>
+    url.includes('/releases?') ? [{ tag_name: candidate.tag, draft: false }] : request(url) }));
+  assert.equal(fs.readFileSync(file, 'utf8'), before);
+  await assert.rejects(approveRelease({ root, issue: target, botLogin, request: async url =>
+    url.includes('/git/ref/') && url.endsWith(second.tag) ? { object: { type: 'commit', sha: candidate.commit } } : request(url) }));
+  assert.equal(fs.readFileSync(file, 'utf8'), before);
+  await approveRelease({ root, issue: target, botLogin, request });
+  assert.deepEqual(JSON.parse(fs.readFileSync(file)).plugins[0].versions.map(item => item.version), ['2.0.0', '1.0.0']);
 });

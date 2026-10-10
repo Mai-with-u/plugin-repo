@@ -185,6 +185,7 @@ async function main() {
     try {
       const expectedId = details.find(item => item.id === plugin.id)?.manifest?.id;
       const synced = await syncPlugin(plugin, old, request, expectedId, admit);
+      await admit.flush(plugin, old);
       result.push(synced);
       if (synced.rejected_releases.length) {
         warnings++;

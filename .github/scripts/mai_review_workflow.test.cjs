@@ -3,7 +3,32 @@ const fs = require("node:fs");
 const path = require("node:path");
 const test = require("node:test");
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
-const workflow = fs.readFileSync(path.join(__dirname, "../workflows/mai-review.yml"), "utf8").replace(/\r\n/g, "\n");
+const workflow = fs.readFileSync(path.join(__dirname, "../workflows/mai-review-run.yml"), "utf8").replace(/\r\n/g, "\n");
+
+test('登记与 Release 请求只路由到对应审核入口', () => {
+  const sources = ['mai-review.yml', 'mai-release-review.yml'].map(file =>
+    fs.readFileSync(path.join(__dirname, '../workflows', file), 'utf8').replace(/\r\n/g, '\n'));
+  const routes = sources.map(source => {
+    const condition = source.split('    if: >-\n')[1].split('    uses:')[0]
+      .replaceAll('github.event.issue.labels.*.name', 'github.event.issue.labels.map(label => label.name)');
+    return new Function('github', 'contains', `return (${condition});`);
+  });
+  function route(labels, eventName = 'issues', comment = '/mai_review', label = 'validated') {
+    const github = { event_name: eventName, actor: 'maisakagithub[bot]',
+      event: { issue: { labels: labels.map(name => ({ name })) }, comment: { body: comment }, label: { name: label } } };
+    return routes.map(fn => fn(github, (value, target) => value.includes(target)));
+  }
+  for (const label of ['plugin-submission', 'plugin-modification', 'plugin-removal']) {
+    assert.deepEqual(route([label, 'validated']), [true, false]);
+    assert.deepEqual(route([label, 'validated'], 'issue_comment'), [true, false]);
+  }
+  assert.deepEqual(route(['plugin-release', 'validated']), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'plugin-submission', 'validated']), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment'), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '已开始审核'), [false, false]);
+  assert.deepEqual(route(['plugin-release'], 'issues', '', 'plugin-release'), [false, false]);
+  assert.deepEqual(route(['plugin-submission'], 'issue_comment'), [false, false]);
+});
 
 function scriptFor(name) {
   const step = workflow.split(`      - name: ${name}\n`)[1]?.split("\n      - name:")[0];
@@ -26,7 +51,7 @@ async function runScript(name, comments = [], extra = {}) {
   const localRequire = (name) => name === "fs"
     ? { readFileSync: () => "审核文本" }
     : require(path.resolve(__dirname, "../..", name));
-  const process = { env: { GITHUB_RUN_ATTEMPT: "1", GITHUB_SERVER_URL: "https://github.com", ...extra } };
+  const process = { env: { REVIEW_ISSUE_NUMBER: "7", GITHUB_RUN_ATTEMPT: "1", GITHUB_SERVER_URL: "https://github.com", ...extra } };
   // Substitute trusted step outputs as GitHub Actions does before execution.
   const script = scriptFor(name)
     .replaceAll("${{ steps.review-start.outputs.review_run }}", "123:1")

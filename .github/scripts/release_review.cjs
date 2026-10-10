@@ -11,10 +11,17 @@ function parseReleaseIssue(issue) {
   const data = JSON.parse(match[1]);
   assert.ok(typeof data.id === 'string' && /^[\w.-]+$/.test(data.id), '插件 ID 无效');
   assert.match(data.repositoryUrl, /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/);
-  assert.match(data.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
-  assert.ok(data.tag === data.version || data.tag === `v${data.version}`, 'Tag 无效');
-  assert.match(data.commit, /^[0-9a-f]{40}$/);
-  return data;
+  const releases = data.releases || [{ version: data.version, tag: data.tag, commit: data.commit }];
+  assert.ok(Array.isArray(releases) && releases.length > 0 && releases.length <= 5, '每批审核 1 至 5 个发布版本');
+  assert.ok(Array.isArray(data.discarded || []), '跳过版本必须是数组');
+  for (const release of [...releases, ...(data.discarded || [])]) {
+    assert.match(release.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
+    assert.ok(release.tag === release.version || release.tag === `v${release.version}`, 'Tag 无效');
+    assert.match(release.commit, /^[0-9a-f]{40}$/);
+  }
+  assert.equal(new Set(releases.map(item => item.version)).size, releases.length, '批次版本重复');
+  if (data.base_commit) assert.match(data.base_commit, /^[0-9a-f]{40}$/);
+  return { id: data.id, repositoryUrl: data.repositoryUrl, releases, discarded: data.discarded || [], base_commit: data.base_commit || null };
 }
 
 function releaseKey(data) {
@@ -36,12 +43,26 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     const batch = await request(`${base}/issues?state=all&labels=${LABEL}&per_page=100&page=${page}`);
     for (const issue of batch) {
       if (issue.pull_request || issue.user?.login !== botLogin) continue;
-      try { issues.set(releaseKey(parseReleaseIssue(issue)), issue); } catch { /* 非发布审核 Issue */ }
+      try {
+        const data = parseReleaseIssue(issue);
+        for (const release of [...data.releases, ...data.discarded]) {
+          issues.set(releaseKey({ ...data, ...release }), issue);
+        }
+      } catch { /* 非发布审核 Issue */ }
     }
     if (batch.length < 100) break;
   }
   const owners = new Map();
-  return async (plugin, candidate) => {
+  const pending = new Map();
+  async function ensureReviewLabel(issue) {
+    if (issue.state === 'open' && !issue.labels.some(label => label.name === 'validated')) {
+      await request(`${base}/issues/${issue.number}/labels`, {
+        method: 'POST', body: JSON.stringify({ labels: ['validated'] }),
+      });
+      issue.labels.push({ name: 'validated' });
+    }
+  }
+  const admit = async (plugin, candidate) => {
     const slug = plugin.repositoryUrl.slice('https://github.com/'.length).replace(/\/$/, '').replace(/\.git$/, '');
     if (!owners.has(slug)) owners.set(slug, await request(`/repos/${slug}`));
     const info = owners.get(slug);
@@ -50,35 +71,52 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     const data = { id: plugin.id, repositoryUrl: `https://github.com/${slug}`,
       version: candidate.version, tag: candidate.tag, commit: candidate.commit };
     const key = releaseKey(data);
-    let issue = issues.get(key);
-    if (!issue) {
-      issue = await request(`${base}/issues`, {
-        method: 'POST', body: JSON.stringify({
-          title: `[Release] ${plugin.id} ${candidate.version}`,
-          body: `<!-- plugin-release: ${JSON.stringify(data)} -->\n\n插件新版等待审核与维护者批准。\n\n` +
-            `- 插件：\`${plugin.id}\`\n- 仓库：${data.repositoryUrl}\n` +
-            `- 发布：[${candidate.tag}](${data.repositoryUrl}/releases/tag/${candidate.tag})\n` +
-            `- Commit：\`${candidate.commit}\`\n\n维护者确认后发送独立的 \`/approve\` 或 \`/ap\` 评论；拒绝使用 \`/reject 原因\`。`,
-          labels: [LABEL],
-        }),
-      });
-      issues.set(key, issue);
-    }
-    // App 添加标签会触发麦麦审核；开单后中断也可在下次巡视恢复。
-    if (issue.state === 'open' && !issue.labels.some(label => label.name === 'validated')) {
-      await request(`${base}/issues/${issue.number}/labels`, {
-        method: 'POST', body: JSON.stringify({ labels: ['validated'] }),
-      });
-      issue.labels.push({ name: 'validated' });
+    const issue = issues.get(key);
+    if (issue) await ensureReviewLabel(issue);
+    else {
+      if (!pending.has(plugin.id)) pending.set(plugin.id, new Map());
+      pending.get(plugin.id).set(key, { ...data, published_at: candidate.published_at });
     }
     return false;
   };
+  admit.flush = async (plugin, previous) => {
+    const candidates = [...(pending.get(plugin.id)?.values() || [])].sort((a, b) =>
+      (b.published_at || '').localeCompare(a.published_at || '') ||
+      require('./sync_plugin_versions.cjs').compareVersions(b.version, a.version));
+    if (!candidates.length) return;
+    const snapshot = item => ({ version: item.version, tag: item.tag, commit: item.commit });
+    const data = { id: plugin.id, repositoryUrl: candidates[0].repositoryUrl,
+      releases: candidates.slice(0, 5).map(snapshot), discarded: candidates.slice(5).map(snapshot),
+      base_commit: previous?.versions.find(item => !item.yanked)?.commit || null };
+    const rows = data.releases.map(item =>
+      `| [${item.tag}](${data.repositoryUrl}/releases/tag/${item.tag}) | \`${item.commit}\` |`).join('\n');
+    const issue = await request(`${base}/issues`, {
+      method: 'POST', body: JSON.stringify({
+        title: `[Release] ${plugin.id} ${data.releases.map(item => item.version).join(', ')}`,
+        body: `<!-- plugin-release: ${JSON.stringify(data)} -->\n\n插件发布批次等待自动审核。\n\n` +
+          `- 插件：\`${plugin.id}\`\n- 仓库：${data.repositoryUrl}\n\n` +
+          `| 发布版本 | Commit |\n| --- | --- |\n${rows}\n\n` +
+          (data.discarded.length ? `本次跳过较早的 ${data.discarded.length} 个 Release，不收录、不补开审核。\n\n` : '') +
+          `无风险且完整审核的版本自动收录；有风险或结论不确定的版本留给维护者。维护者核实后可发送独立的 \`/approve\` 或 \`/ap\` 批准剩余版本，或使用 \`/reject 原因\` 拒绝。`,
+        labels: [LABEL],
+      }),
+    });
+    for (const release of [...data.releases, ...data.discarded]) {
+      issues.set(releaseKey({ ...data, ...release }), issue);
+    }
+    pending.delete(plugin.id);
+    await ensureReviewLabel(issue);
+  };
+  return admit;
 }
 
-async function approveRelease({ root, issue, request, botLogin }) {
+async function approveRelease({ root, issue, request, botLogin, approvedReleases }) {
   assert.equal(issue.user.login, botLogin, '只能批准市场自动创建的发布审核 Issue');
   assert.equal(issue.state, 'open', 'Issue 已关闭');
   const data = parseReleaseIssue(issue);
+  const targets = approvedReleases || data.releases;
+  assert.ok(targets.length > 0 && targets.every(target => data.releases.some(item =>
+    item.version === target.version && item.tag === target.tag && item.commit === target.commit)), '批准目标不属于当前审核批次');
   const plugins = JSON.parse(fs.readFileSync(path.join(root, 'plugins.json'), 'utf8'));
   const plugin = plugins.find(item => item.id === data.id);
   assert.ok(plugin && plugin.repositoryUrl.replace(/\/$/, '').replace(/\.git$/, '') === data.repositoryUrl, '插件登记信息已改变');
@@ -91,9 +129,9 @@ async function approveRelease({ root, issue, request, botLogin }) {
   const details = fs.existsSync(detailsPath) ? JSON.parse(fs.readFileSync(detailsPath, 'utf8')) : [];
   const expectedId = previous?.manifest_id || details.find(item => item.id === plugin.id)?.manifest?.id;
   const updated = await syncPlugin(plugin, previous, request, expectedId, async (_, candidate) =>
-    candidate.version === data.version && candidate.tag === data.tag && candidate.commit === data.commit);
-  assert.ok(updated.versions.some(item => item.version === data.version && item.tag === data.tag &&
-    item.commit === data.commit && !item.yanked), 'Release 已变更、撤回或校验失败，请重新审核');
+    targets.some(item => item.version === candidate.version && item.tag === candidate.tag && item.commit === candidate.commit));
+  assert.ok(targets.every(release => updated.versions.some(item => item.version === release.version && item.tag === release.tag &&
+    item.commit === release.commit && !item.yanked)), 'Release 已变更、撤回或校验失败，请重新审核');
   if (position < 0) index.plugins.push(updated);
   else index.plugins[position] = updated;
   assert.equal(skipConflictingPlugins(index.plugins).length, index.plugins.length, '插件身份冲突');

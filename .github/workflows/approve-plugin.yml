@@ -73,7 +73,7 @@ jobs:
           script: |
             const params = { ...context.repo, issue_number: context.issue.number };
             await github.rest.issues.addLabels({ ...params, labels: ['approved'] });
-            await github.rest.issues.createComment({ ...params, body: '✅ 维护者已批准，该发布版本已收录到插件版本索引。' });
+            await github.rest.issues.createComment({ ...params, body: '✅ 维护者已批准，该批次的所有发布版本已收录到插件版本索引。' });
             await github.rest.issues.update({ ...params, state: 'closed' });
 
       - name: Report release approval failure
