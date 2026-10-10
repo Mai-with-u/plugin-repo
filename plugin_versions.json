@@ -26787,6 +26787,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "9a69c9f64159a9e5b2176b7f4ea54ab32297f424",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T08:28:35Z",
+          "release_url": "https://github.com/deepseekv41flash/maibot-opencode-session-header/releases/tag/v1.1.3",
+          "release_notes": "## OpenCode 会话头注入 v1.1.3\n\n本版回应插件中心 AI 审核第三轮建议（[Mai-with-u/plugin-repo#742](https://github.com/Mai-with-u/plugin-repo/issues/742)），含两处真实缺陷修复、一处可观测性改进与一处文档纠错。\n\n### 修复\n\n- **`extra_base_url_prefixes` 改为按路径段边界匹配**。此前是纯字符串前缀比较：配置前缀 `https://gw.example.com/opencode` 时，`https://gw.example.com/opencode-evil.example/v1` 也会被判定为命中，从而把会话令牌注入到非预期地址。现在前缀之后必须是路径 / 查询 / 片段分隔符（`/`、`?`、`#`）或字符串结束：\n\n  | 地址 | 旧 | 新 |\n  |---|---|---|\n  | `https://gw.example.com/opencode` | 命中 | 命中 |\n  | `https://gw.example.com/opencode/v1/chat/completions` | 命中 | 命中 |\n  | `https://gw.example.com/opencode?v=1` | 命中 | 命中 |\n  | `https://gw.example.com/opencode-evil.example/v1` | ❌ 误命中 | 不命中 |\n  | `https://gw.example.com/opencodeX` | ❌ 误命中 | 不命中 |\n\n  > ⚠️ 这是**行为变更**：若你此前依赖「`/opencode` 也能命中 `/opencode-xxx`」这类宽松匹配，请把前缀写成完整路径段。\n\n- **排障工具不再写种子文件**。`opencode_session_token` 工具此前用 `tool|<host>` 作键调用 `SessionSeedStore.get()`，而 `get()` 遇到新键就会落盘——模型多问几个域名，`session_seeds.json` 就会无上限增长。现在该路径改为**只读**：新增 `SessionSeedStore.peek()` / `peek_host()`，优先复用真实请求已生成的种子，其次复用既有工具条目；都没有时给出**不落盘的只读预览值**，并在结果里注明。\n\n### 改进\n\n- **未识别 Context Item 不再静默丢弃**：线格式投影（`chat_completions` / `responses`）遇到无法识别的 Item 时会按**数量与类型**记一条 warning，便于发现「宿主新增了插件还不认识的 Item 类型」导致的上下文缺块。原有的纯函数签名保持兼容（新增可选 `stats` 参数）。\n\n### 文档纠错\n\n- `verbose` 日志实际输出的是端点、协议、命中情况、注入的 **头名** 与种子来源（如 `fallback:provider|host`、`env:NAME`），**不输出令牌值**。v1.1.1 起 README 的措辞过宽，本版改正。\n\n### 兼容性\n\n- 配置结构与 `config_version` 未变（保持 `1.1.0`），升级无需改 `config.toml`；\n- 前缀匹配收紧为行为变更（见上）；\n- 其余代码逻辑与 HTTP 传输层未动。\n\n### 验证\n\n- **48 项离线单元测试全过**（`python -m unittest discover -s tests`），其中 14 项为本版新增：前缀边界（含仿冒路径 / 仿冒主机）、只读查询不落盘、预览值稳定性、丢弃计数与类型汇总；\n- 变异验证：旧 `startswith` 实现会命中 `opencode-evil.example`，新实现拒绝；只读路径不创建种子文件，`get()` 仍正常落盘；\n- `python -m py_compile` 通过；manifest 结构校验通过。\n\n### 环境要求\n\n| 项 | 要求 |\n|---|---|\n| MaiBot | `>= 1.3.0` |\n| maibot-plugin-sdk | `>= 2.10.0` |\n| Python 包依赖 | `httpx >= 0.27` |\n\n### 许可\n\nMIT，见 [LICENSE](https://github.com/deepseekv41flash/maibot-opencode-session-header/blob/main/LICENSE)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.opencode-session-header",
+            "version": "1.1.3",
+            "name": "OpenCode 会话头注入",
+            "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；支持 chat_completions 与 responses 两种协议，会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+            "author": {
+              "name": "deepseekv41flash",
+              "url": "https://github.com/deepseekv41flash"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+              "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "opencode-session",
+                "name": "OpenCode 会话头注入",
+                "description": "转发 OpenAI 兼容请求，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.1.3"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "key-round"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.2",
           "tag": "v1.1.2",
           "commit": "87e9f7e5d9deecc8aeee51ae897d92734fb9092f",
