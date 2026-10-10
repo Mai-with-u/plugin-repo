@@ -26,7 +26,7 @@
 
 ## 同步与故障处理
 
-每日北京时间 08:00 的 **Sync Plugin Index** 工作流巡视已登记插件的 Release。新版本通过格式校验后自动创建带有 `plugin-release` 标签的待审核 Issue，麦麦检查该 Release 的固定 commit。维护者在 Issue 中发送独立的 `/approve` 评论后，该版本才写入 `plugin_versions.json`；`/reject 原因` 拒绝收录。待审期间继续提供已收录版本，同一插件、版本、Tag 和 commit 不重复开单，关闭 Issue 不代表批准。
+每日北京时间 08:00 的 **Sync Plugin Index** 工作流巡视已登记插件的 Release。新版本通过格式校验后自动创建带有 `plugin-release` 标签的待审核 Issue，麦麦检查该 Release 的固定 commit。维护者在 Issue 中发送独立的 `/approve` 或 `/ap` 评论后，该版本才写入 `plugin_versions.json`；`/reject 原因` 拒绝收录。待审期间继续提供已收录版本，同一插件、版本、Tag 和 commit 不重复开单，关闭 Issue 不代表批准。
 
 `trusted_developers.json` 配置可直接更新发布版的授信开发者。每项使用 GitHub 仓库所有者的数字 ID 和具体仓库名，例如：
 

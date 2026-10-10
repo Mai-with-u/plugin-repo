@@ -249,7 +249,7 @@ jobs:
             }
 
             if (requestType === 'remove') {
-              const successMessage = `**移除请求验证通过**\n\n| 字段 | 值 |\n|------|----|\n| 插件 ID | ${pluginId} |\n| 当前仓库地址 | ${existingPlugin.repositoryUrl} |\n\n---\n\n**维护者操作:**\n- \`/approve\` - 批准并移除此插件\n- \`/reject 原因\` - 拒绝此请求`;
+              const successMessage = `**移除请求验证通过**\n\n| 字段 | 值 |\n|------|----|\n| 插件 ID | ${pluginId} |\n| 当前仓库地址 | ${existingPlugin.repositoryUrl} |\n\n---\n\n**维护者操作:**\n- \`/approve\` 或 \`/ap\` - 批准并移除此插件\n- \`/reject 原因\` - 拒绝此请求`;
               core.setOutput('status', 'success');
               core.setOutput('message', successMessage);
               return;
@@ -503,7 +503,7 @@ jobs:
                 ? '批准并更新插件仓库信息'
                 : '批准并移除此插件';
 
-            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` - ${approveAction}\n- \`/reject 原因\` - 拒绝此请求\n\n**提交者操作:**\n- 如果修改了插件，可以评论 \`/recheck\` 重新验证并审核`;
+            successMessage += `\n\n---\n\n**维护者操作:**\n- \`/approve\` 或 \`/ap\` - ${approveAction}\n- \`/reject 原因\` - 拒绝此请求\n\n**提交者操作:**\n- 如果修改了插件，可以评论 \`/recheck\` 重新验证并审核`;
 
             core.setOutput('status', 'success');
             core.setOutput('message', successMessage);

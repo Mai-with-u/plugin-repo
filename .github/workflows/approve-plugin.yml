@@ -9,7 +9,7 @@ jobs:
     if: >-
       contains(github.event.issue.labels.*.name, 'plugin-release') &&
       contains(github.event.issue.labels.*.name, 'validated') &&
-      github.event.comment.body == '/approve'
+      (github.event.comment.body == '/approve' || github.event.comment.body == '/ap')
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
@@ -90,7 +90,7 @@ jobs:
        contains(github.event.issue.labels.*.name, 'plugin-modification') ||
        contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
       contains(github.event.issue.labels.*.name, 'validated') &&
-      contains(github.event.comment.body, '/approve')
+      (github.event.comment.body == '/approve' || github.event.comment.body == '/ap')
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
@@ -119,13 +119,13 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 \`/approve\` 命令。`
+                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 \`/approve\` 或 \`/ap\` 命令。`
               });
               core.setFailed(`用户 @${commenter} 没有权限批准插件`);
               return;
             }
             
-            console.log(`✅ @${commenter} (${permission.permission}) 执行 /approve`);
+            console.log(`✅ @${commenter} (${permission.permission}) 执行 ${context.payload.comment.body.trim()}`);
             core.setOutput('approved_by', commenter);
 
       - name: Checkout repository

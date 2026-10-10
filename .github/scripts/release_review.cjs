@@ -58,7 +58,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
           body: `<!-- plugin-release: ${JSON.stringify(data)} -->\n\n插件新版等待审核与维护者批准。\n\n` +
             `- 插件：\`${plugin.id}\`\n- 仓库：${data.repositoryUrl}\n` +
             `- 发布：[${candidate.tag}](${data.repositoryUrl}/releases/tag/${candidate.tag})\n` +
-            `- Commit：\`${candidate.commit}\`\n\n维护者确认后发送独立的 \`/approve\` 评论；拒绝使用 \`/reject 原因\`。`,
+            `- Commit：\`${candidate.commit}\`\n\n维护者确认后发送独立的 \`/approve\` 或 \`/ap\` 评论；拒绝使用 \`/reject 原因\`。`,
           labels: [LABEL],
         }),
       });

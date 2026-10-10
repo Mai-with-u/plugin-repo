@@ -213,7 +213,7 @@ jobs:
             const fs = require('fs');
             const sanitize = (text) =>
               text
-                .replace(/\/approve\b/gi, '"approve"')
+                .replace(/\/(?:approve|ap)\b/gi, '"approve"')
                 .replace(/\/recheck\b/gi, '"recheck"')
                 .replace(/\/mai_review\b/gi, '"mai_review"')
                 .replace(/\/reject\b/gi, '"reject"');
