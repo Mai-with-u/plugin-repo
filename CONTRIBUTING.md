@@ -109,7 +109,8 @@
 | `plugin-release` | 已登记插件的发布版本审核 |
 | `validated` | 验证通过，等待维护者批准 |
 | `validation-failed` | 验证失败，请根据提示修复 |
-| `approved` | 已批准并添加到插件中心 |
+| `approved` | 维护者已批准并添加到插件中心 |
+| `auto-approved` | 发布版本全部通过 AI 审核并自动收录 |
 | `rejected` | 被维护者拒绝 |
 
 ### 可用命令

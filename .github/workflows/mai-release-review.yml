@@ -100,7 +100,13 @@ jobs:
               }
               await github.rest.issues.addLabels({ ...params, labels: ['needs-manual-review'] });
             } else {
-              await github.rest.issues.addLabels({ ...params, labels: ['approved'] });
+              try {
+                await github.rest.issues.getLabel({ ...context.repo, name: 'auto-approved' });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({ ...context.repo, name: 'auto-approved', color: '0e8a16', description: '发布版本全部通过 AI 审核并自动收录' });
+              }
+              await github.rest.issues.addLabels({ ...params, labels: ['auto-approved'] });
               const { data: issue } = await github.rest.issues.get(params);
               if (issue.labels.some(label => label.name === 'needs-manual-review')) {
                 await github.rest.issues.removeLabel({ ...params, name: 'needs-manual-review' });
