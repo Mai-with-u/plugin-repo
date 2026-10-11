@@ -19301,6 +19301,168 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.6",
+          "tag": "v0.9.6",
+          "commit": "0b94acec185b949586f2545df0ef506cc993573f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T03:22:16Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.6",
+          "release_notes": "## 这一版改了什么\n\n群指令更好上手：\n\n- **`/mw 帮助`**：在群里发这个，能看到全部指令。按「大家都能用」和「批准人」分好组，每条都带例子，照着发就行。也认 `/mw help`、`/mw ?`。\n- **回复里告诉你下一步**：\n  - `/mw` 看进度时，末尾会提醒怎么派活、怎么看全部指令。\n  - `/mw do` 派了活：要批准的，告诉批准人发 `/mw 批准 R-12` 就开工；已经开工的，告诉你怎么看进度、怎么取消。\n  - `/mw 批准` 之后，会说清楚已经开工的任务号。\n- **漏写 do 也能接住**：比如发了 `/mw 帮我整理一份清单`，会回一行能直接照抄的 `/mw do 帮我整理一份清单`。只是提示，不会替你派活。打错别的指令，会回常用的几条，并告诉你发 `/mw 帮助` 看全部。\n- **网页群页多了「群指令」**：列出每条指令、谁能用、怎么写。点「复制给群友」就能把整段说明发进群里或贴进群公告。\n\n以上全是固定文字，不调模型，也不会多往群里发消息，只在你发 `/mw` 指令时回复。\n\n## 升级\n- 数据库和配置都没有变化（库号 37，配置版本 0.4.9），直接覆盖升级即可。\n- 升级前照旧备份插件和数据目录；覆盖插件时保留自己的 `config.toml`。\n- 宿主适配范围不变（最高 1.3.99；MaiBot dev 分支目前是 1.3.6）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.6",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.9.5",
+          "tag": "v0.9.5",
+          "commit": "0e032e014235fbfcf189702d38f7562f482536ef",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T01:13:50Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.5",
+          "release_notes": "## 这一版改了什么\n\n把 0.9.4 新加的「没有 Jev 时怎么判断派活」做得更简单、更快：\n\n- **来一条判一条**：群里 @ 机器人的消息不再攒着等十几秒，在后台马上判断。MaiWork 认出是派活后，会给 MaiBot 留一句「这活 MaiWork 接手了，你不用答应」，现在这句话能赶在 MaiBot 回复之前送到。判断全程在后台进行，不耽误 MaiBot 说话。\n- **Jev 也看上下文**：Jev 判断时会参考前面几句群聊，判得更准，需要交给模型的更少。\n- **待批请求写明理由**：模型判成派活时，待批准的请求里会附一句判断依据，方便你决定批不批。\n- **设置更少**：网页「模型 → 快速判断」里这块只留三项：开关、用哪个模型、先用请求词过一遍（默认关）。每天次数上限放进「全部设置」的高级里，默认每群 30 次。\n\n- **新指令 `/mw do`：说了就算**。在群里发 `/mw do 要做的事`，直接派活，不经过任何判断，也不花模型的钱。也可以引用一条消息再发 `/mw do`，被引用的文字和图片会一起交给任务；后面再写几个字，会当作补充说明。之后照常按本群设置：要批准的进待批，免批的直接开工，MaiWork 会回一句任务号和状态。\n\n判断用的提示词和把握门槛还没在真实群聊里验证过，之后会按实际情况调整。\n\n## 升级\n- 数据库没有变化（库号仍是 37）。\n- 配置版本升到 0.4.9，去掉了 `[quick_judge] batch_wait_s`。老配置里留着这个键也能正常读，**不用改配置**。\n- 升级前照旧备份插件和数据目录；覆盖插件时保留自己的 `config.toml`。\n- 宿主适配范围不变（最高 1.3.99；MaiBot dev 分支目前是 1.3.6）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.5",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.4",
           "tag": "v0.9.4",
           "commit": "62dac693964c74db356baef2625615ed2d5a9eb3",
@@ -23235,6 +23397,57 @@
       "repositoryUrl": "https://github.com/orge-8/life-frequency",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.17.2",
+          "tag": "v1.17.2",
+          "commit": "5cdc236bea13d6e53c239d9d58eb6b6c8fb0e95b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T00:11:18Z",
+          "release_url": "https://github.com/orge-8/life-frequency/releases/tag/v1.17.2",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.life-frequency",
+            "version": "1.17.2",
+            "name": "生活频率",
+            "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算。另含主动开口（素材 / 问候 / 关系维护三类动机）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/life-frequency"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "chat.get_all_streams",
+              "frequency.set_adjust",
+              "frequency.get_adjust",
+              "frequency.get_current_talk_value",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "message.get_by_time_in_chat",
+              "llm.generate",
+              "config.get",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        },
         {
           "version": "1.8.0",
           "tag": "v1.8.0",
@@ -27285,6 +27498,472 @@
         }
       ],
       "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.erhan111119.mai-repost-shit",
+      "manifest_id": "github.erhan111119.mai-repost-shit",
+      "repositoryUrl": "https://github.com/erhan111119/mai-repost-shit",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "f4085b29e4bc3285168e984b433bac139a084d6e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:02:26Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.3",
+          "release_notes": "### 修复：插件页只显示英文名\n\n插件页与插件详情渲染的是 manifest 的 `name` 字段——`ManifestDisplay` 只有 `icon`，\n宿主也没有读取插件 `_locales` 做显示名本地化的机制，所以中文名只能写在 `name` 里。\n\n- `name`: `mai repost shit` → **`B站搬史机（mai repost shit）`**\n- 仓库名、插件 id、目录名保持不变（`mai-repost-shit` /\n  `github.erhan111119.mai-repost-shit`）。\n- README 标题同步带上中文名。\n\n验证方式：直接调用 WebUI `/plugins/installed` 接口背后的同一个函数\n（`_collect_installed_plugins`），确认它返回给页面的 `manifest.name`\n已是中文；宿主 ManifestValidator 校验通过，errors/warnings 均为空；\n真机热重载日志确认 `v1.0.3 加载成功`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.3",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "573f80be9dfb5dbd2ecaf7e48573909bc7b836a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T05:07:47Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.2",
+          "release_notes": "按第二轮评审建议做的加固（该轮无阻断项，均属建议）。\n\n- **装载日志单独喊权限模式**：不再混在装载行里；当权限是 `anyone` 且插件与点播都已启用时，\n  额外打一条 warning，说明\"群里任何人一句话就能触发\"以及两种收紧方式。\n- **白名单被拒时清掉该会话的发言者缓存**：缓存存的是\"该会话最近发言者\"，可能不是本次调用者；\n  拒绝时顺手清掉，逼下一次触发重新经过入站钩子，缩短旧条目被蹭到的窗口。\n- **默认分区屏蔽名单填上**：`typename_blacklist` 默认避开片名/IP 类分区\n  （影视、电影、电视剧、番剧、国创、纪录片、预告、资讯、直播）。\n- **`/搬史状态` 群号打码**：该命令任何会话都能调，群号改为只显示首 3 位与末 2 位。\n- **下载文件名清洗**：`bvid` 来自上游接口，拼文件名前只保留字母数字。\n- manifest 补 `plugin_type: media`。\n\n另外说明两点评审提到的取舍：嵌套视频段的写法依赖宿主内部归一化行为（README/NOTES 已明确写出，\n并提供了 `delivery_mode` 换路与三级回退）；`httpx` 未在 `dependencies` 声明，因为它由宿主\nPython 环境提供（插件本身不带独立环境）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.2",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "e76d17ea80b0c07643eb3977c1ba379bd81e31b2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T04:53:12Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.1",
+          "release_notes": "按插件中心评审意见收紧权限边界、投递回退与内容安全。\n\n### 1. 点播权限可以收紧了（评审第 1 点）\n\n- 新增 `[tool].permission`（`anyone` / `whitelist`）与 `[tool].whitelist`。\n- 工具回调在群聊里拿不到发言者 QQ，改为注册入站钩子 `chat.receive.after_process`\n  按会话缓存真实发言者，触发时回查。\n- 白名单模式下列表为空、或认不出发言者，一律拒绝（宁可少搬也不放过）。\n- 默认仍是 `anyone`（群成员都能点播），但 README 显著位置写明了这个默认值与收紧方式。\n\n### 2. 投递改为三级回退并大声失败（评审第 2 点）\n\n- 顺序：转发带视频 → 直接发视频 → 按文件发（最后一级用宿主正式建模的 `FileComponent`，\n  最不依赖内部实现，代价是显示成文件）。\n- 新增 `[target].delivery_mode` 可手动指定路线，宿主更新后改一行配置就能绕开坏掉的那条。\n- 新增 `[target].notify_on_failure`：三条路全失败时记 error 日志并在群里说一句，不再安静失效。\n- README/NOTES 明确写出「嵌套视频段依赖宿主内部实现，不在公开 API 里」。\n\n### 3. 内容安全兜底（评审第 3 点）\n\n- 新增 `[filters].typename_blacklist`（分区屏蔽）与 `[filters].sensitive_words`\n  （默认含擦边/低俗类词，命中标题或标签即跳过）。\n- README 增加「内容安全」章节，明示本插件不做内容审核、转发内容请自行确认群规。\n\n### 4. manifest 修正（评审第 4 点）\n\n- 移除实际未调用的 `chat.open_session`。\n\n### 验证\n\n- 离线桩环境断言：投递回退三种情形、`delivery_mode=file`、白名单五种情形全部通过。\n- 宿主 `ManifestValidator` 校验通过，errors/warnings 均为空。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.1",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "bff98922c9d6a752feb7b299edcc2ead95d485d5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T04:16:15Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.0",
+          "release_notes": "初版。\n\n- 定时（每天 N 次，时刻随机）检索播放 5万~30万、发布 3~30 天前的视频，不限定分区\n- 唯一判据：评论含 @ 比例 ≥ 50% 且评论样本 ≥ 30 条\n- 免登录直下 720P（无需 ffmpeg 转码），带体积与时长上限\n- 以合并转发（聊天记录）投递，节点内嵌视频本体，失败回退为单独发送\n- 命令 `/搬史`、`/搬史测试`、`/搬史状态`，另注册 `repost_shi` 工具支持自然语言点播\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.0",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.ZhaoCang-QWQ.social-state",
+      "manifest_id": "github.ZhaoCang-QWQ.social-state",
+      "repositoryUrl": "https://github.com/ZhaoCang-QWQ/social-state",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.4.7",
+          "tag": "v0.4.7",
+          "commit": "d2825d1cbb557303aacf2f5f6c04df2339754b7a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T16:04:54Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.7",
+          "release_notes": "## 关系状态表 v0.4.7\n\n### 修复（上架评审阻断项）\n- **无目标 `/关系` 的范围是全库**：群内与私聊的兜底分支都落到 `store.top_persons(5)`，而 `person_state` 没有群维度，这个查询是全表按 `last_msg_at` 取前 5——别的群和私聊的联系人（昵称 + QQ 尾号 + 好感档位 + 相对发言时间）都会进到当前会话的回复里；私聊那条更直接，任何能给麦麦发私聊的人都能拿到这份跨会话联系人清单。现按当前会话收窄：\n  - 群内只取 `_group_sessions[session_id]`（本群近期发言者），取不到就回「本群最近还没有足够的互动记录」；\n  - 私聊查不到本人记录时只回「还没有你的记录」，不再退化成全局清单（命令消息在 `on_receive` 里被 `is_command` 提前拦掉、不建 session 映射，所以「私聊第一句就是 `/关系`」或刚重启时会稳定走到这个分支）\n\n### 变更\n- `/关系帮助` 的数据路径由写死的 `data/plugins/social_state/` 改为 `data/plugins/<插件ID>/`\n- `_data_dir()` 兜底路径补上插件 ID，新增 `PLUGIN_ID` 常量与 manifest 对齐\n- README 命令表与隐私说明同步为「本群」\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.7",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.6",
+          "tag": "v0.4.6",
+          "commit": "dd843f108cc8c14f9a508085e42732c2a816c2bc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:51:31Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.6",
+          "release_notes": "## 关系状态表 v0.4.6\n\n### 修复\n- **操作员判据用错，主人被自己的插件挡在门外**：`/关系 <别人>` 原来用 `kwargs[\"is_local_operator\"]` 判断操作员，但该值**只对本地控制台（bot_console）为真**（`core/local_operator.py:17-20`），QQ 上被列入 `plugin.permission` 的操作员永远拿到 `False`——也就是说这条分支实际从未生效，只有本地控制台能查别人。现按官方文档 §7.2「方式一：主程序判定」拆成两条命令：\n  - `/关系`（无参，人人可用：私聊查自己 / 群内 top5，不声明权限）\n  - `/关系 <目标>`（独立的 `permission=\"operator\"` 命令，由宿主按 `plugin.permission` + `command_permissions` 统一鉴权，与 `/ss_set` 同一条路）\n  \n  `_render_query` 内保留兜底拒绝，即使绕过命令层直接调用渲染层也会被拒。\n- 群内 `/关系` top5 的 QQ 尾号被重复脱敏，渲染成 `······3456`，现为 `···3456`。\n\n### 变更\n- README 新增「操作员怎么配」：`[plugin].permission = [\"qq:123456789\"]`；并说明群里想查自己的详细账本请私聊发 `/关系`。\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.6",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.5",
+          "tag": "v0.4.5",
+          "commit": "e9422c37a27d2026af6d6208850a0c2bbe9e69f5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:30:34Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.5",
+          "release_notes": "## 关系状态表 v0.4.5\n\n本版处理上架评审提出的两条阻断项。\n\n### 修复\n- **私聊 /关系 <QQ号或昵称> 越权**：该分支此前没有身份校验，任何能给麦麦发私聊的人都能拿到第三方的完整账号 ID、好感/心情/冷落与线头内容。现与群内一致，仅限**本人**或**操作员**；本人自查同样账号脱敏、不展示线头。\n- **群回味 / 群冲突按昵称认人**：群昵称可重名，LLM 返回昵称后用昵称落账会把印象记到重名的另一个人头上。现改为在本批次给每个说话人打稳定编号（`[P1]/[P2]`）写进 prompt，结果一律按编号落回 person_id；编号无效或昵称重名无法唯一定位时**跳过不计分**，宁可漏记也不记错人。群冲突的 attacker/victim 同样按编号定位。\n\n### 变更\n- manifest 描述去掉与实现不符的「纯旁路观察，不改主程序行为」，改为「不修改主程序代码与数据库，数据全部存在插件自己的目录」。\n- README 补充：/关系 私聊同样受限、群回味按编号认人、person_id 复刻主程序 `md5(platform_user_id)` 算法的耦合与升级注意。\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.5",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "08206ae471c3ae25e3f2de7b192e288f58cedae0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:11:53Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.4",
+          "release_notes": "## 关系状态表 v0.4.4\n\n### 修复\n- **生活日程注入重复**：注入措辞从\"被问到在干嘛就按这个回答\"降级为\"状态背景、不要主动提\"，并按会话跨轮去重——同一会话里同一活动第二次注入时明确要求别再提，修复麦麦反复交代自己在做什么\n- **主动中枢重复发送**：落锤复查改为双判据（账本 last_bot_reply_at + 本会话实际发出的消息），修复重启后同一条主动消息被发两遍\n- `on_sent` / `/关系` 的 session→person 反查回退持久化映射，重启后不再漏记\"我回过了\"\n- 生活日程生成日志的参数与占位符不匹配（空结果分支会触发 logging 格式化错误）\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.4",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度。纯旁路观察，不改主程序行为。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "ji-or-ji.maibot-dsh-bridge",
+      "manifest_id": "ji-or-ji.maibot-dsh-bridge",
+      "repositoryUrl": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [
+        "v0.1.0-bata"
+      ],
       "rejected_releases": []
     }
   ]
