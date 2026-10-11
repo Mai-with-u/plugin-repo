@@ -14707,7 +14707,57 @@
       "manifest_id": "qxy871sda.llm_model_health",
       "repositoryUrl": "https://github.com/qxy871sda/llm_model_health",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "1435af3333ca2fd153031a63532ef0a25048be8a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T10:58:09Z",
+          "release_url": "https://github.com/qxy871sda/llm_model_health/releases/tag/v1.0.5",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.5",
+            "name": "LLM 模型健康度/成功率统计",
+            "description": "总结并展示 MaiBot 使用的 LLM 模型的请求数、成功数与历史累计总量。",
+            "author": {
+              "name": "qxy871sda",
+              "url": "https://github.com/qxy871sda"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/qxy871sda/llm_model_health",
+              "homepage": "https://github.com/qxy871sda/llm_model_health",
+              "documentation": "https://github.com/qxy871sda/llm_model_health/blob/main/README.md",
+              "issues": "https://github.com/qxy871sda/llm_model_health/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "config.get",
+              "statistics.local.models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "qxy871sda.llm_model_health"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
