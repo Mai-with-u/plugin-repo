@@ -128,6 +128,22 @@ jobs:
             core.setOutput('review_run', reviewRun);
             core.setOutput('should_run', 'true');
 
+      - name: Mark review in progress
+        id: review-label
+        if: steps.review-start.outputs.should_run == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            try {
+              await github.rest.issues.getLabel({ ...context.repo, name: 'reviewing' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({ ...context.repo, name: 'reviewing', color: 'fbca04', description: '麦麦正在审核插件' });
+            }
+            await github.rest.issues.addLabels({ ...context.repo,
+              issue_number: Number(process.env.REVIEW_ISSUE_NUMBER), labels: ['reviewing'] });
+
       - name: Setup Node.js
         if: steps.review-start.outputs.should_run == 'true'
         uses: actions/setup-node@v4
@@ -289,3 +305,16 @@ jobs:
               issue_number: Number(process.env.REVIEW_ISSUE_NUMBER),
               body: `<!-- codex-mai-review-failed: ${process.env.REVIEW_RUN} -->\n❌ 本次审核失败或被中止，未能完成审核。请维护者查看[运行日志](${runUrl})排查，修复后可重新请求审核。\n\n已审核：${process.env.REVIEW_COUNT}次 / 8次`,
             });
+
+      - name: Clear review in progress
+        if: always() && (steps.review-label.outcome == 'success' || steps.review-label.outcome == 'failure')
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.result-app-token.outputs.token || steps.app-token.outputs.token }}
+          script: |
+            try {
+              await github.rest.issues.removeLabel({ ...context.repo,
+                issue_number: Number(process.env.REVIEW_ISSUE_NUMBER), name: 'reviewing' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }

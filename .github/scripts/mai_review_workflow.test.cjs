@@ -97,7 +97,7 @@ async function runScript(name, comments = [], extra = {}) {
 
 test("all inline workflow JavaScript parses", () => {
   const scripts = [...workflow.matchAll(/          script: \|\n((?:            .*\n|\n)+)/g)];
-  assert.equal(scripts.length, 4);
+  assert.equal(scripts.length, 6);
   for (const match of scripts) {
     const script = match[1].split("\n").map((line) => line.slice(12)).join("\n")
       .replace(/\$\{\{[^}]+\}\}/g, "trusted-output");
@@ -115,6 +115,27 @@ test("every review comment uses the Mai App identity, including failure paths", 
   assert.match(refresh, /if: always\(\) && steps\.review-start\.outputs\.should_run == 'true'/);
   assert.match(refresh, /secrets\.MAI_REVIEW_APP_ID/);
   assert.match(refresh, /secrets\.MAI_REVIEW_APP_PRIVATE_KEY/);
+});
+
+test('审核中标签按需创建，成功、失败或取消后均清理，404 可忽略', async () => {
+  const calls = [];
+  const github = { rest: { issues: {
+    getLabel: async () => { throw { status: 404 }; },
+    createLabel: async value => calls.push(['create', value.name]),
+    addLabels: async value => calls.push(['add', value.labels]),
+    removeLabel: async value => { calls.push(['remove', value.name]); throw { status: 404 }; },
+  } } };
+  const context = { repo: { owner: 'market', repo: 'plugins' } };
+  const process = { env: { REVIEW_ISSUE_NUMBER: '7' } };
+  for (const name of ['Mark review in progress', 'Clear review in progress']) {
+    await new AsyncFunction('github', 'context', 'process', scriptFor(name))(github, context, process);
+  }
+  assert.deepEqual(calls, [['create', 'reviewing'], ['add', ['reviewing']], ['remove', 'reviewing']]);
+  const cleanup = workflow.split('      - name: Clear review in progress\n')[1];
+  assert.match(cleanup, /if: always\(\) && .*review-label.outcome == 'success'.*review-label.outcome == 'failure'/);
+  assert.match(cleanup, /github-token: \$\{\{ steps.result-app-token.outputs.token/);
+  github.rest.issues.removeLabel = async () => { throw { status: 403 }; };
+  await assert.rejects(new AsyncFunction('github', 'context', 'process', scriptFor('Clear review in progress'))(github, context, process));
 });
 
 test("the eighth review reserves its count and announces immediately", async () => {

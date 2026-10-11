@@ -104,6 +104,7 @@
 | `pending-validation` | 等待自动验证 |
 | `plugin-release` | 已登记插件的发布版本审核 |
 | `validated` | 验证通过，等待维护者批准 |
+| `reviewing` | 麦麦正在审核，结束后自动移除 |
 | `validation-failed` | 验证失败，请根据提示修复 |
 | `needs-manual-review` | 发布版本存在风险或审核依据不足，等待维护者处理 |
 | `approved` | 维护者已批准并添加到插件中心 |
