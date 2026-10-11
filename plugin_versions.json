@@ -2294,6 +2294,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.6.2",
+          "tag": "v2.6.2",
+          "commit": "1105aa0df5db7214683d404fb5ef145b401042fd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T18:22:09Z",
+          "release_url": "https://github.com/TAIY2020/group_muter_plugin/releases/tag/v2.6.2",
+          "release_notes": "## 主要更新\r\n\r\n支持配置 LLM 回复最大 token 数、LLM 回复句末截断、hook 守卫 fail-closed 加固、silence 工具改以 chat_id 定位目标流\r\n\r\n- 支持配置 LLM 回复最大 token 数#19、LLM 回复句末截断：`_sanitize_llm_reply` 超过 100 字时不再硬截，而是在上限内回退到最后一个句末标点，紧跟的闭合引号/括号一并保留；找不到标点或首句不足 25 字时退回硬截\r\n- hook 守卫 fail-closed 加固：`_enter_peek_mode` / `_restore_frequency_adjustment` 的 `wait_for(shield)` 原只捕 `TimeoutError`，内部任务的意外异常会逃进 hook，`ErrorPolicy.SKIP` 下丢弃 abort 并静默放行（fail-open）。补 `except Exception`：前者退回入站拦截，后者记日志并保留恢复值待重试；`CancelledError` 原样抛出\r\n- silence 工具以 `chat_id` 定位目标流：`_resolve_tool_context` 优先采用 Host 注入的 `chat_id`（不在工具 schema 里，模型不会填）；模型填写的 `stream_id` 与之不一致时忽略并记 warning。工具参数描述同步改为\"留空即可\"\r\n- 文档：README 的 SDK 最低版本与 manifest 对齐为 2.8.2，更新 `stream_id` 参数说明、目标校验与输出约束段落",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.6.2",
+            "name": "群聊静音插件 | GroupMuter Plugin",
+            "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/group_muter_plugin",
+              "homepage": "https://github.com/TAIY2020/group_muter_plugin",
+              "documentation": "https://github.com/TAIY2020/group_muter_plugin",
+              "issues": "https://github.com/TAIY2020/group_muter_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "chat.get_group_streams",
+              "api.call",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.webp"
+              }
+            },
+            "id": "TAIY2020.group-muter-plugin"
+          }
+        },
+        {
           "version": "2.6.1",
           "tag": "v2.6.1",
           "commit": "2df991156cb90fc9d188385819467da1c644ad8e",
@@ -2857,7 +2917,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'\n"
         }
       ]
     },
