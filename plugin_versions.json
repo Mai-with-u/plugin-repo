@@ -28239,7 +28239,61 @@
       "manifest_id": "ji-or-ji.maibot-plugin-installer",
       "repositoryUrl": "https://github.com/ji-or-ji/maibot-plugin-installer",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "d64579f6109115afcdac28e6b5eaf11dce3a8ad8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T11:16:16Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-plugin-installer/releases/tag/v0.1.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-plugin-installer",
+            "version": "0.1.0",
+            "name": "插件安装审批器",
+            "description": "把待安装的 MaiBot 插件经管理员批准后自动安装并启用；在发起任务的聊天流里请求审批。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-plugin-installer",
+              "homepage": "https://github.com/ji-or-ji/maibot-plugin-installer",
+              "documentation": "https://github.com/ji-or-ji/maibot-plugin-installer/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-plugin-installer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "ji-or-ji.maibot-dsh-bridge",
+                "version_spec": ">=0.1.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.replace_dynamic"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
