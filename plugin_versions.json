@@ -27507,6 +27507,274 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.8",
+          "tag": "v1.0.8",
+          "commit": "2fdb6751bec416fecebd6acbd26739ab7025f599",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T07:31:04Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.8",
+          "release_notes": "### 修「一直找不到符合条件的」——三处系统性偏差\n\n真机现象：连续 4 轮、36 条候选全部卡在艾特率，一条都没搬出来。\n数据：40 次「艾特率不够」的分布是**中位 8%、均值 11%、最高 37%**——不是差一点点，是候选本身不行。\n当天全部采样（约 70 条）里 ≥50% 的只有 6~7 条，**基础命中率约一成**。\n\n但实际表现比这还差，有三处偏差：\n\n1. **排序挑错人**：原实现按 `min(video_review, 300)` 降序挑候选（想法是\"分母要够\"），\n   而实测艾特率与评论数**反相关**：40~150 条评论中位 33%、150~300 条 21%、300~600 条 23%、\n   600+ 条只 10% —— 等于每轮把最不可能过的先挑出来看。\n   → 改为随机顺序，并新增 `[source].max_video_review`（默认 600）筛掉大热门。\n2. **关键词池被稀释**：A/B 实测泛鬼畜词（鬼畜/抽象/整活/答辩/难绷/绷不住）中位 12%、最高 47%；\n   泛搞笑词（沙雕/搞笑/名场面/迷惑行为/吐槽/社死/破防/离谱）中位 9%、最高 32%。\n   → 默认池只留泛鬼畜类（注意这是关键词，不是分区过滤）。\n3. **候选池被历史检查记录吃光**：搜索会把同一批视频反复捞出来，而「已检查」记录保留 60 天，\n   池子会逐步枯竭 → 改为 14 天（已搬过的仍永久记住，不会重复搬）。\n\n另外 `keywords_per_run` 6 → 8、`max_check_per_run` 12 → 16。\n\n**验证**：用与线上完全相同的参数跑一遍真实流程，**第 3 条检查就命中**\n（BV1Eohz6xEth，艾特率 58%，35/60，播放 24.9 万），整轮耗时 25 秒。\n\n### 想调松紧的话\n\n- 阈值：`at_ratio_threshold = 0.5` 大约十中一；调到 `0.45` 会明显更容易出片\n  （实测候选里 47.5%、49.2% 各有一条就差这一点）。\n- 候选量：`max_check_per_run`（越大越容易出片、请求越多）、`max_video_review`（设 0 表示不限）。\n- 关键词：`keywords` 池子越小越偏（只留鬼畜/抽象会更容易出片，但内容更同质）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.8",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.7",
+          "tag": "v1.0.7",
+          "commit": "cae970ed74a242bf26d13186e69b076349c11940",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:37:59Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.7",
+          "release_notes": "### 只保留「聊天记录」投递 + 点播后机器人不回话\n\n- **投递方式只剩一种**：删掉 `[target].delivery_mode`，以及「直接发视频」「按文件发」两条回退路线\n  （它们会在群里多出消息）。投递失败时**只在本地记 error 日志，不往群里发任何提示**\n  （删掉 `[target].notify_on_failure`）——群里只会看到搬出来的视频。\n- **点播后吞掉这次回话**：新增 `[tool].suppress_reply`（默认开）与\n  `suppress_reply_window_seconds`（默认 120 秒）。走 `maisaka.reply.before_post_process` 钩子\n  把回复文本置空（宿主对空回复的处理是不发送），所以不会出现「搬着呢」「刚给你下了几个」这类话。\n  只吞「点播后的第一条」，之后的正常聊天不受影响。工具描述与返回值也改成\n  「不要调用 reply、不要回任何文字」。\n- 装载自检加防护：目标解析这一步出任何异常都不会再拖垮插件加载（只告警）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.7",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "a216e5db813a5ef857eac30c3f3b263bd236c281",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:32:14Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.6",
+          "release_notes": "### 目标解析：支持 QQ 号（私聊），解析不到时当场告警\n\n真机发现：配置里的两个目标其实都解析不到——`976590202` 是主人的 QQ（私聊），\n`1090512339` 是群号打错（真实群是 `1090532339`）。结果是**定时轮就算找到候选也发不出去**，\n而且只在运行到那一步才打一条 warning，很难发现。\n\n**改动**：\n\n- 目标解析改成两条路：**先当群号找，找不到再当 QQ 号找私聊**。\n  配置里填一个 QQ 号是很自然的事，之前只支持群号会让这种情况静默失效。\n- **装载时把每个目标解析一遍**：成功的记一条 info（带上是群还是私聊），\n  失败的打 warning 并给出排查方向（群号写错了？该群/该人还没产生过消息？）。\n- manifest 增加 `chat.get_stream_by_user_id` 能力声明（与实际调用一致）。\n\n**注意**：聊天流要等该群或该人产生过消息才存在，所以装载自检只告警、不会禁用功能。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.6",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "d61dd9194ca5570acb6cea4195a0e8dd65ccf2f5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:28:32Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.5",
+          "release_notes": "### 修真情实况下的投递失败（视频太大）\n\n真机日志：一条 190 秒的视频被下成 **35.4MB**，结果合并转发 / 直接发视频 / 按文件发\n**三条路全被平台判失败**：\n\n```\n[SendService] Platform IO 发送失败: platform=qq\ndriver=gateway:maibot-team.napcat-adapter:napcat_gateway status=FAILED error=\n```\n\n（`error` 是空的，数据库里也没有成功记录；但群里有可能会出现半条消息——\n上传其实落到了群里、回执却是 FAILED，也是可能的。）\n\n**改动**：\n\n- **体积上限 40MB → 15MB**，并且在下载前用 `playurl` 返回的 `size` 预判，不再先下完再放弃。\n- **超限自动降一档清晰度**（720P → 480P → 360P），而不是直接丢弃候选。\n  实测同一条 190 秒视频：720P 要 35.4MB（超限）→ 降到 360P 只有 11.2MB，能正常发出去；\n  30 秒的短视频仍是 720P（2.7MB）。\n- **投递顺序按体积选**：小文件优先「聊天记录里带视频」（观感最好）；超过 10MB 时优先直接发视频，\n  不再把大视频先塞进最脆的转发节点。\n- 失败提示改准：写明「如果群里已经出现视频就忽略这条」。\n\n### 排查过程中顺带确认的事\n\n- NapCat 适配器本身健康（心跳 `self_id=… online=True`），失败不是适配器掉线。\n- 同期日志里有个没起服务的 SnowLuma 适配器在反复重连，与本次失败无关。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.5",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "2635f4fb838dd20a54158cb7424bedcde39e8653",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:13:44Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.4",
+          "release_notes": "### 去掉内容安全过滤\n\n按你的要求：只搬史，不需要这类内容词表。\n\n- 删除 `[filters].sensitive_words`（v1.0.1 加的\"内容安全底线词\"，默认 7 个：\n  擦边/软色情/性感/福利姬/成人向/露点/未成年）及其判定逻辑。\n- 同时删除同批加入的 `[filters].typename_blacklist`（分区屏蔽名单）。\n- `[filters]` 现在只剩用户自己配的三个屏蔽词：`title_blacklist` / `tag_blacklist` /\n  `up_blacklist`，均为子串匹配、命中即跳过。\n- 与内容无关的硬上限保留：`max_duration_seconds`（时长）、`max_size_mb`（体积）。\n\n### 配置补齐注释\n\n`config.toml.example` 与宿主生成的 `config.toml` 现在每个字段都有中文说明，\n包含\"为什么是这个默认值\"的实测依据，例如：\n\n- `orders` 为什么不给 `click`（它在 5万~30万播放区间的命中率实测为 0）\n- `quality_preference` 为什么 64 就够（免登录最高只给到 720P，无需转码）\n- `delivery_mode` 三条路线的区别与回退顺序\n- `permission` 白名单为什么依赖入站钩子回查发言者\n\n### 验证\n\n宿主 ManifestValidator 校验通过（errors/warnings 均为空）；直接调用 WebUI\n`/plugins/installed` 背后的同一函数确认页面拿到 `name = B站搬史机（mai repost shit）`、\n`version = 1.0.4`，且 `filters` 只剩三个屏蔽词。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.4",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.3",
           "tag": "v1.0.3",
           "commit": "f4085b29e4bc3285168e984b433bac139a084d6e",
