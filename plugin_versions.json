@@ -27782,6 +27782,174 @@
               ]
             }
           }
+        },
+        {
+          "version": "0.4.6",
+          "tag": "v0.4.6",
+          "commit": "dd843f108cc8c14f9a508085e42732c2a816c2bc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:51:31Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.6",
+          "release_notes": "## 关系状态表 v0.4.6\n\n### 修复\n- **操作员判据用错，主人被自己的插件挡在门外**：`/关系 <别人>` 原来用 `kwargs[\"is_local_operator\"]` 判断操作员，但该值**只对本地控制台（bot_console）为真**（`core/local_operator.py:17-20`），QQ 上被列入 `plugin.permission` 的操作员永远拿到 `False`——也就是说这条分支实际从未生效，只有本地控制台能查别人。现按官方文档 §7.2「方式一：主程序判定」拆成两条命令：\n  - `/关系`（无参，人人可用：私聊查自己 / 群内 top5，不声明权限）\n  - `/关系 <目标>`（独立的 `permission=\"operator\"` 命令，由宿主按 `plugin.permission` + `command_permissions` 统一鉴权，与 `/ss_set` 同一条路）\n  \n  `_render_query` 内保留兜底拒绝，即使绕过命令层直接调用渲染层也会被拒。\n- 群内 `/关系` top5 的 QQ 尾号被重复脱敏，渲染成 `······3456`，现为 `···3456`。\n\n### 变更\n- README 新增「操作员怎么配」：`[plugin].permission = [\"qq:123456789\"]`；并说明群里想查自己的详细账本请私聊发 `/关系`。\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.6",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.5",
+          "tag": "v0.4.5",
+          "commit": "e9422c37a27d2026af6d6208850a0c2bbe9e69f5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:30:34Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.5",
+          "release_notes": "## 关系状态表 v0.4.5\n\n本版处理上架评审提出的两条阻断项。\n\n### 修复\n- **私聊 /关系 <QQ号或昵称> 越权**：该分支此前没有身份校验，任何能给麦麦发私聊的人都能拿到第三方的完整账号 ID、好感/心情/冷落与线头内容。现与群内一致，仅限**本人**或**操作员**；本人自查同样账号脱敏、不展示线头。\n- **群回味 / 群冲突按昵称认人**：群昵称可重名，LLM 返回昵称后用昵称落账会把印象记到重名的另一个人头上。现改为在本批次给每个说话人打稳定编号（`[P1]/[P2]`）写进 prompt，结果一律按编号落回 person_id；编号无效或昵称重名无法唯一定位时**跳过不计分**，宁可漏记也不记错人。群冲突的 attacker/victim 同样按编号定位。\n\n### 变更\n- manifest 描述去掉与实现不符的「纯旁路观察，不改主程序行为」，改为「不修改主程序代码与数据库，数据全部存在插件自己的目录」。\n- README 补充：/关系 私聊同样受限、群回味按编号认人、person_id 复刻主程序 `md5(platform_user_id)` 算法的耦合与升级注意。\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.5",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "08206ae471c3ae25e3f2de7b192e288f58cedae0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T15:11:53Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.4",
+          "release_notes": "## 关系状态表 v0.4.4\n\n### 修复\n- **生活日程注入重复**：注入措辞从\"被问到在干嘛就按这个回答\"降级为\"状态背景、不要主动提\"，并按会话跨轮去重——同一会话里同一活动第二次注入时明确要求别再提，修复麦麦反复交代自己在做什么\n- **主动中枢重复发送**：落锤复查改为双判据（账本 last_bot_reply_at + 本会话实际发出的消息），修复重启后同一条主动消息被发两遍\n- `on_sent` / `/关系` 的 session→person 反查回退持久化映射，重启后不再漏记\"我回过了\"\n- 生活日程生成日志的参数与占位符不匹配（空结果分支会触发 logging 格式化错误）\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.4",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度。纯旁路观察，不改主程序行为。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
