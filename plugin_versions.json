@@ -4308,6 +4308,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.5",
+          "tag": "v1.1.5",
+          "commit": "921413c917efd029c2cea5e4889cb06b07098bb1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T09:22:11Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.5",
+          "release_notes": "### 主要功能\r\n\r\n- 合并转发：支持通过 attach_pic 选择上下文或工具返回的图片，以当前机器人身份追加为转发节点。\r\n\r\n### 细节\r\n\r\n- 提及发送：移除重复 @ 的合并操作，保留原生及文本转换生成的重复 @ 和中间空白。\r\n- 消息发送：SnowLuma 群消息及合并转发须核对真实群消息序号，本地合成记录或仅受理的动作不再误报发送成功。\r\n- 消息接收：支持 Markdown 消息段正文，保留格式与换行，并去除 SnowLuma 紧随其后的重复文本兼容段。\r\n- 禁言通知：自然解除禁言的合成通知使用当前已就绪连接的账号和作用域，修复账号归属为空导致 Host 拒绝接收。\r\n- 消息归属：普通消息和通知使用正式 account_id/scope 字段，不再写入扩展身份字段；普通消息不再反向更新网关身份，合并转发使用正式账号构造发送节点。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.5",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.1.4",
           "tag": "v1.1.4",
           "commit": "44019e91c3fa1a7deb79e463942fa41d2b0b50e6",
