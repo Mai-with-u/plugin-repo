@@ -192,17 +192,25 @@ jobs:
         if: steps.review-start.outputs.should_run == 'true'
         env:
           REVIEW_PROMPT: ${{ inputs.review_prompt }}
+          STRUCTURED_RELEASE_REVIEW: ${{ inputs.structured_release_review }}
+          MAX_STRUCTURED_OUTPUT_RETRIES: '3'
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
         run: |
           set -euo pipefail
           PROMPT="$(cat "$REVIEW_PROMPT")"
+          REVIEW_ARGS=()
+          if [ "$STRUCTURED_RELEASE_REVIEW" = 'true' ]; then
+            REVIEW_ARGS+=(--json-schema "$(cat .github/codex/release-review.schema.json)")
+          fi
           claude --bare --restricted -p "$PROMPT" \
+            "${REVIEW_ARGS[@]}" \
             --model "$ANTHROPIC_MODEL" \
             --effort high \
             --tools "Read,Glob,Grep,WebFetch" \
             --allowedTools "Read" "Glob" "Grep" "WebFetch" \
             --permission-mode dontAsk \
-            --output-format json | jq -er 'select(.is_error == false and (.result | type == "string") and (.result | length > 0)) | .result' > codex-review.md
+            --output-format json > claude-review-output.json
+          jq -er 'select(.is_error == false) | if (.structured_output | type) == "object" then .structured_output | tojson else .result | select(type == "string" and length > 0) end' claude-review-output.json > codex-review.md
           test -s codex-review.md
 
       - name: Validate structured release review
@@ -286,6 +294,7 @@ jobs:
           name: release-review-diagnostics-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             codex-review.md
+            claude-review-output.json
             mai-release-targets.json
           if-no-files-found: ignore
           retention-days: 7
