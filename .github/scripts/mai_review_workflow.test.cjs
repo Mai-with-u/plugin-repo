@@ -25,6 +25,8 @@ test('登记与 Release 请求只路由到对应审核入口', () => {
   assert.deepEqual(route(['plugin-release', 'validated']), [false, true]);
   assert.deepEqual(route(['plugin-release', 'plugin-submission', 'validated']), [false, true]);
   assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment'), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '/mai_review_release'), [false, true]);
+  assert.deepEqual(route(['plugin-submission', 'validated'], 'issue_comment', '/mai_review_release'), [false, false]);
   assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '已开始审核'), [false, false]);
   assert.deepEqual(route(['plugin-release'], 'issues', '', 'plugin-release'), [false, false]);
   assert.deepEqual(route(['plugin-submission'], 'issue_comment'), [false, false]);
@@ -37,6 +39,26 @@ function scriptFor(name) {
   assert.ok(script, `Missing script: ${name}`);
   return script.trimEnd().split("\n").map((line) => line.slice(12)).join("\n");
 }
+
+test('发布重审命令仍限维护者，登记 Issue 不接受发布重审命令', async () => {
+  const fn = new AsyncFunction('github', 'context', 'core', scriptFor('Check reviewer permission'));
+  for (const [labels, permission, failed] of [
+    [['plugin-release'], 'write', false], [['plugin-release'], 'read', true], [['plugin-submission'], 'write', true],
+  ]) {
+    const failures = [];
+    const outputs = {};
+    const github = { rest: {
+      repos: { getCollaboratorPermissionLevel: async () => ({ data: { permission } }) },
+      issues: { createComment: async () => {} },
+    } };
+    const context = { repo: {}, payload: { comment: { user: { login: 'user' }, body: '/mai_review_release' },
+      issue: { labels: labels.map(name => ({ name })) } } };
+    const core = { setFailed: value => failures.push(value), setOutput: (key, value) => { outputs[key] = value; } };
+    await fn(github, context, core);
+    assert.equal(failures.length > 0, failed);
+    assert.equal(outputs.commenter, failed ? undefined : 'user');
+  }
+});
 
 async function runScript(name, comments = [], extra = {}) {
   const posted = [];

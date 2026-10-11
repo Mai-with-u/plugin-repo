@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
-const { validateReleaseReview, passedReleases, renderReleaseReview } = require('./release_review_result.cjs');
+const { validateReleaseReview, parseReleaseReview, passedReleases, renderReleaseReview } = require('./release_review_result.cjs');
 const { applyReleaseReview } = require('./apply_release_review.cjs');
 
 const plugin = { id: 'example.demo', repositoryUrl: 'https://github.com/example/demo' };
@@ -46,6 +46,50 @@ test('只有明确通过、源码已检查且风险为空的版本进入自动�
     validateReleaseReview(result, targets);
     assert.deepEqual(passedReleases(result), [first]);
     assert.match(renderReleaseReview(result), /2\.0\.0：需人工处理/);
+  }
+});
+
+test('summary 缺失与空内容仍可定位，长说明和风险不再导致校验失败', () => {
+  for (const [summary, message] of [[undefined, /summary 必须是字符串/], ['   ', /summary 不能为空/]]) {
+    const result = review();
+    result.releases[0].summary = summary;
+    assert.throws(() => validateReleaseReview(result, targets), message);
+  }
+  const result = review();
+  result.releases[0].summary = '字'.repeat(100000);
+  result.releases[0].risks = Array.from({ length: 25 }, () => '风险'.repeat(5000));
+  assert.doesNotThrow(() => validateReleaseReview(result, targets));
+  assert.ok(renderReleaseReview(result).length < 60000);
+  assert.equal(result.releases[0].summary.length, 100000);
+});
+
+test('兼容 BOM、代码块、前后说明和字符串外尾逗号，不改写风险文本', () => {
+  const json = JSON.stringify(review());
+  for (const text of [json, '\uFEFF' + json, '结果如下：\n```json\n' + json + '\n```\n以上是结论。', json.slice(0, -1) + ',}']) {
+    assert.deepEqual(parseReleaseReview(text, targets), review());
+  }
+  const result = review();
+  result.releases[0].risks = ['字符串中的 ,} 和 ,] 及 "引号" 必须保留'];
+  assert.deepEqual(parseReleaseReview(JSON.stringify(result), targets).releases[0].risks, result.releases[0].risks);
+});
+
+test('缺失说明、检查状态或风险列表时该版本降为人工处理', () => {
+  for (const field of ['summary', 'reviewed', 'risks']) {
+    const result = review();
+    delete result.releases[0][field];
+    const parsed = parseReleaseReview(JSON.stringify(result), targets);
+    assert.equal(parsed.releases[0].decision, 'manual_review');
+    assert.deepEqual(passedReleases(parsed), [first]);
+  }
+});
+
+test('截断、多个 JSON、版本缺失及 commit 不匹配不得自动修复放行', () => {
+  const json = JSON.stringify(review());
+  for (const text of [json.slice(0, -1), json + '\n' + json]) assert.throws(() => parseReleaseReview(text, targets));
+  for (const mutate of [result => { result.releases.pop(); }, result => { result.releases[0].commit = 'c'.repeat(40); }]) {
+    const result = review();
+    mutate(result);
+    assert.throws(() => parseReleaseReview(JSON.stringify(result), targets));
   }
 });
 

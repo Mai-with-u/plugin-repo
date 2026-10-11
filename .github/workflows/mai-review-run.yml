@@ -43,6 +43,7 @@ jobs:
       ANTHROPIC_DEFAULT_HAIKU_MODEL: step-5-preview
       ANTHROPIC_DEFAULT_FABLE_MODEL: step-5-preview
       CLAUDE_CODE_SUBAGENT_MODEL: step-5-preview
+      CLAUDE_CODE_MAX_OUTPUT_TOKENS: '64000'
     permissions:
       actions: read
       contents: read
@@ -64,9 +65,11 @@ jobs:
           script: |
             const commenter = context.payload.comment.user.login;
             const command = context.payload.comment.body.trim();
+            const releaseReview = context.payload.issue.labels.some(label => label.name === 'plugin-release');
+            const allowedCommands = releaseReview ? ['/mai_review', '/mai_review_release'] : ['/mai_review'];
 
-            if (command !== '/mai_review') {
-              core.setFailed('评论不是独立的 /mai_review 命令');
+            if (!allowedCommands.includes(command)) {
+              core.setFailed('评论不是该审核类型支持的独立重审命令');
               return;
             }
 
@@ -82,9 +85,9 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: Number(process.env.REVIEW_ISSUE_NUMBER),
-                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 \`/mai_review\` 命令。`,
+                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 ${allowedCommands.map(value => `\`${value}\``).join(' 或 ')} 命令。`,
               });
-              core.setFailed(`用户 @${commenter} 没有权限使用 /mai_review`);
+              core.setFailed(`用户 @${commenter} 没有权限使用 ${command}`);
               return;
             }
 
@@ -231,7 +234,7 @@ jobs:
               text
                 .replace(/\/(?:approve|ap)\b/gi, '"approve"')
                 .replace(/\/recheck\b/gi, '"recheck"')
-                .replace(/\/mai_review\b/gi, '"mai_review"')
+                .replace(/\/mai_review(?:_release)?\b/gi, '"mai_review"')
                 .replace(/\/reject\b/gi, '"reject"');
 
             const review = sanitize(fs.readFileSync('codex-review.md', 'utf8').trim());
@@ -261,6 +264,17 @@ jobs:
             release-review.json
             mai-release-targets.json
           if-no-files-found: error
+          retention-days: 7
+
+      - name: Save failed release review diagnostics
+        if: failure() && inputs.structured_release_review && steps.review-start.outputs.should_run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-review-diagnostics-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            codex-review.md
+            mai-release-targets.json
+          if-no-files-found: ignore
           retention-days: 7
 
       - name: Post review failure
