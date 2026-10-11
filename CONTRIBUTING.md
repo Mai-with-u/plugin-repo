@@ -1,10 +1,8 @@
 # 如何向麦麦（MaiBot）插件中心贡献插件
 
-感谢您愿意为麦麦（MaiBot）生态贡献插件。本指南说明当前推荐的插件提交流程，以及插件仓库需要满足的 `_manifest.json` v2 规范。
+感谢您为麦麦分享插件！本指南介绍提交流程和 `_manifest.json` v2 要求。
 
 ## 准备工作：插件仓库规范
-
-在提交插件之前，请确保您的插件仓库满足以下要求：
 
 ### 必需文件
 
@@ -17,11 +15,11 @@
 
 ### 发布要求
 
-新增或修改插件前，仓库必须至少有一个已发布的 GitHub Release。草稿和仅创建 Tag 不算；预发布版本可以，GitHub 自动生成的源码包即可，无需额外上传附件。移除请求不受此限制。
+提交新增或修改请求前，请先发布至少一个 GitHub Release。支持预发布版本，使用 GitHub 自动生成的源码包即可；草稿和仅创建 Tag 不满足发布要求。移除请求不受此限制。
 
 ### `_manifest.json` v2 规范
 
-当前新插件应使用 `manifest_version: 2`。下面是一个最小可用示例：
+`_manifest.json` 示例：
 
 ```json
 {
@@ -64,12 +62,12 @@
 > - `manifest_version` 必须为 `2`。
 > - `id` 应使用稳定、唯一的插件 ID，例如 `github.username.my-plugin`，不要使用空格或路径字符。
 > - `version`、`host_application.min_version`、`host_application.max_version`、`sdk.min_version`、`sdk.max_version` 都应使用三段式版本号，例如 `1.0.0`。
-> - `author` 必须是包含 `name` 和 `url` 的对象，不能是字符串。
+> - `author` 包含 `name` 和 `url`。
 > - `urls.repository` 必须是公开 GitHub 仓库的 HTTPS 地址。
 > - `capabilities` 只声明插件实际需要的能力；没有额外能力时填写空数组。
 
 > [!NOTE]
-> `categories`、`keywords`、`repository_url`、`homepage_url` 等旧字段属于早期 manifest 或展示侧元数据，不属于当前 Host 严格校验的 manifest v2 字段。新插件不要把这些字段写入 `_manifest.json`，否则可能无法被新版 MaiBot 加载。
+> `_manifest.json` 中的 `categories`、`keywords`、`repository_url`、`homepage_url` 等未定义字段可能导致 Host 校验失败。
 
 详细文档：[_manifest.json 字段说明](https://docs.mai-mai.org/develop/plugin-dev/manifest)
 
@@ -82,22 +80,20 @@
 1. 在目标提交的 `_manifest.json` 中设置三段式 `version`，如 `2.3.0`，准确声明该版本的 `host_application` 和 `sdk` 范围。
 2. 保持插件 `id` 不变；历史版本需要修复时，可从维护分支发布新的版本号。
 3. 提交代码，创建 `v2.3.0` 或 `2.3.0` Tag，再发布对应 GitHub Release。版本号必须与该提交的 manifest 完全一致。
-4. 等待每日 **Sync Plugin Index** 工作流巡视。新版按插件合并为待审核批次，每批最多审核最新的 5 个 Release，较早版本跳过；待审期间的新发布另开批次，麦麦检查各版本固定 commit 的源码和变更并输出结构化结论，无风险版本自动收录，有风险或结论不确定的版本交给维护者。授信开发者在授权仓库发布的合规版本可直接收录。
+4. 等待每日同步和版本审核。无风险版本自动收录，有风险或结论不确定的版本交给维护者；授信仓库的合规版本直接收录。
 
-同一版本首次收录后，其 Tag 和 commit 不允许改变。修复代码应发布新的版本号，不要删除并重打同版本 Tag。删除已收录的 Release 会将该版本标记为撤回，历史记录仍然保留。
+同一版本首次收录后，其 Tag 和 commit 必须保持不变。修复代码时，请发布新的版本号。删除已收录的 Release 会将该版本标记为撤回，并保留历史记录。
 
 历史已登记且没有可识别 Release 的插件继续使用分支安装；新增和修改请求必须满足上述 Release 发布要求。如果已有三段式 Release，但它们全部校验失败，不会转回分支安装。
 
-完整的数据结构、兼容规则与上线顺序见 [多版本插件索引说明](./VERSIONING.md)。
+批次规则、授信配置和客户端行为见 [多版本插件索引说明](./VERSIONING.md)。
 
 ## 提交方式：Issue 提交
 
 ### 步骤
 
 1. **创建 Issue**：点击 [New Issue](../../issues/new/choose)，选择 **"Add Plugin / 添加插件"** 模板。
-2. **填写信息**：
-   - **插件 ID**：建议与 `_manifest.json` 中的 `id` 保持一致。
-   - **仓库地址**：填写完整的公开 GitHub HTTPS URL，例如 `https://github.com/username/my-plugin`。
+2. 填写插件 ID 和公开 GitHub 仓库地址。插件 ID 建议与 `_manifest.json` 的 `id` 一致。
 3. **等待验证**：CI 会自动读取插件仓库根目录的 `_manifest.json` 并进行校验，结果会评论在 Issue 中。
 4. **等待批准**：验证通过后，维护者会审核并使用 `/approve` 或 `/ap` 批准。
 
@@ -109,13 +105,12 @@
 | `plugin-release` | 已登记插件的发布版本审核 |
 | `validated` | 验证通过，等待维护者批准 |
 | `validation-failed` | 验证失败，请根据提示修复 |
+| `needs-manual-review` | 发布版本存在风险或审核依据不足，等待维护者处理 |
 | `approved` | 维护者已批准并添加到插件中心 |
 | `auto-approved` | 发布版本全部通过 AI 审核并自动收录 |
 | `rejected` | 被维护者拒绝 |
 
 ### 可用命令
-
-登记请求由 **Mai Review Plugin Registration** 审核，发布版本由 **Mai Review Plugin Release** 审核。两者分别使用 `plugin-issue-*` 和 `plugin-release-*` 提示词，审核执行步骤共用 **Mai Review Runner**。发布审核按版本输出结构化结论，无风险版本自动收录，其他版本标记 `needs-manual-review` 等待维护者处理；登记请求仍由维护者批准。
 
 | 命令 | 谁可以使用 | 说明 |
 |------|-----------|------|
@@ -124,13 +119,9 @@
 | `/approve` 或 `/ap` | 仅维护者 | 批准插件请求，或收录待审核的发布版本 |
 | `/reject 原因` | 仅维护者 | 拒绝插件并说明原因 |
 
-### 验证失败怎么办？
+请将命令单独发送为一条新评论。验证失败时，您可以按 Issue 提示修复后发送 `/recheck`。
 
-1. 根据 Issue 中的错误提示修改插件仓库。
-2. 修改完成后，在 Issue 中评论 `/recheck`。
-3. CI 会重新验证 manifest 和 Release，结果会再次评论在 Issue 中，并展示 `host_application` 声明的 MaiBot 适配版本范围；验证通过后会开始 AI 审核。
-
-命令需要单独发送一条新评论，例如评论内容仅为 `/recheck`。审核没有时间冷却，每个 Issue 最多审核 **8 次**，初次审核、重新审核及已开始但失败的审核都计入次数，历史审核也计入。开始审核时会立即发表评论，随后另发审核意见或失败说明，并在末尾显示 `已审核：x次 / 8次`。同一 Issue 的审核串行执行；达到上限后仍可验证 manifest，但不会再进行 AI 审核。
+每个 Issue 最多进行 **8 次** AI 审核，已开始但失败的审核也计入次数。同一 Issue 的审核串行执行；达到上限后仍可验证 manifest。
 
 ---
 
@@ -144,34 +135,8 @@
 - 插件仓库不是公开仓库。
 - `_manifest.json` 不在 main/master/dev/develop 分支的根目录。
 
-### 验证错误：`author` 字段格式错误
-
-正确格式：
-
-```json
-"author": {
-  "name": "作者名",
-  "url": "https://github.com/username"
-}
-```
-
-错误格式：
-
-```json
-"author": "作者名"
-```
-
-### 插件 ID 格式要求
-
-- 推荐：`github.username.my-plugin`
-- 可以：`username.my-plugin`
-- 不要使用：`My Plugin`
-- 不要使用：`../path`
-
 ### 仓库 URL 格式要求
 
-- 推荐：`https://github.com/username/repo-name`
-- 不要使用：`https://github.com/username/repo-name.git`
-- 不要使用：`git@github.com:username/repo-name.git`
+请使用 `https://github.com/username/repo-name`，省略 `.git` 后缀。
 
 ---

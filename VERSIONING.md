@@ -2,8 +2,8 @@
 
 ## 文件职责
 
-- `plugins.json`：人工维护的插件身份和仓库登记信息，继续沿用原有 Issue 审核流程。
-- `plugin_details.json`：分支当前 manifest 和展示资源，保持旧客户端的数据协议。
+- `plugins.json`：人工维护的插件身份和仓库登记信息。
+- `plugin_details.json`：分支当前 manifest 和展示资源。
 - `plugin_versions.json`：工作流生成的版本历史，根对象包含 `schema_version: 1` 和 `plugins`。
 
 每个版本索引条目包含 `id`（登记 ID）、`manifest_id`（稳定的运行时 ID）、`repositoryUrl`、`mode` 和 `versions`。`mode` 为 `releases` 或 `branch`。登记 ID 与 manifest ID 可以不同，后端支持两者查询；不同插件不能共享同一身份。
@@ -22,13 +22,19 @@
 | `release_url` | GitHub Release 页面 |
 | `release_notes` | GitHub Release 发布说明 |
 
-`ignored_tags` 记录不符合版本规范的 Tag；`rejected_releases` 记录各版本的格式校验失败原因；`sync_error` 表示整个插件的同步故障。错误不会被当作空版本列表处理。
+`ignored_tags` 记录不符合版本规范的 Tag；`rejected_releases` 记录各版本的格式校验失败原因；`sync_error` 表示整个插件的同步故障。
 
 ## 同步与故障处理
 
-每日北京时间 08:00 的 **Sync Plugin Index** 工作流巡视已登记插件的 Release。每个插件本次发现、尚未处理的合规版本组成一个带有 `plugin-release` 标签的审核批次，按发布时间选取最新的最多 5 个 Release，较早版本跳过且不补开审核。麦麦一次检查批次内所有固定 commit 的源码和版本变更，输出逐版本 JSON 结论。明确 `pass`、已检查源码且风险列表为空的版本自动写入 `plugin_versions.json`；有风险、不确定或检查不完整的版本保留在 Issue 中，并标记 `needs-manual-review`。全部通过后标记 `auto-approved` 并自动关闭 Issue；人工批准使用 `approved`。解析失败、批次被修改或自动收录失败不会放行，交给维护者处理。自动收录前重新验证批准目标的 Tag、commit 和 manifest。维护者可在核实风险后用 `/approve` 或 `/ap` 批准剩余版本，或用 `/reject 原因` 拒绝。待审期间新发现的 Release 另开批次，待审期间继续提供已收录版本。定时和手动运行共用去重规则，已收录版本、已有 Issue 中的版本及被跳过的版本均不重复开单，关闭 Issue 不代表批准。
+每日北京时间 03:00 和 18:00，**Sync Plugin Index** 检查已登记插件的 Release。每个插件新发现的合规版本组成一个 `plugin-release` 审核批次，按发布时间取最新的最多 5 个，其余跳过。待审期间的新 Release 另开批次。定时和手动同步均跳过已收录、已有 Issue 或已跳过的版本。
 
-维护者可在已验证的审核 Issue 中发送独立的 `/mai_review` 或 `/mr` 重新审核；带 `plugin-release` 标签的 Issue 执行发布版本审核，其他插件请求执行登记审核。解析兼容 JSON 代码块、前后说明和尾逗号；说明、源码检查状态或风险列表缺失时，该版本交给人工，不推断通过。输出额度配置为 64,000 token，审核说明和风险描述不设字符数上限；过长内容在 Issue 中展示摘要，完整结果保留在审核产物中。
+麦麦检查各版本固定 commit 的源码和变更，输出逐版本 JSON 结论。`decision` 为 `pass`、已检查源码且风险列表为空的版本，经 Tag、commit 和 manifest 复核后写入 `plugin_versions.json`。整批通过后标记 `auto-approved` 并关闭 Issue。
+
+有风险或审核依据不足的版本标记 `needs-manual-review`。解析失败、批次被修改或收录失败时保留 Issue，等待维护者处理。维护者可用 `/approve` 或 `/ap` 批准剩余版本，标记为 `approved`；用 `/reject 原因` 拒绝。待审期间，插件中心继续提供已收录版本。
+
+维护者可发送 `/mai_review` 或 `/mr` 重新审核；`plugin-release` 标签选择发布版本审核，其余插件请求进入登记审核。
+
+结果解析支持 JSON 代码块、前后说明和尾逗号。审核说明、源码检查状态或风险列表缺失时转人工。输出额度为 64,000 token；过长内容在 Issue 中展示摘要，完整结果保留在审核产物中。
 
 `trusted_developers.json` 配置可直接更新发布版的授信开发者。每项使用 GitHub 仓库所有者的数字 ID 和具体仓库名，例如：
 
@@ -38,9 +44,9 @@
 ]
 ```
 
-所有者身份由 GitHub API 确认，不使用 manifest 作者字段。名单由维护者管理；授信版本仍须通过格式、插件身份和 Tag/commit 一致性检查。组织仓库按组织数字 ID 和具体仓库授权。默认名单为空。
+名单由维护者管理，按 GitHub API 返回的仓库所有者数字 ID 和具体仓库授权；组织仓库使用组织数字 ID。授信版本须通过格式、插件身份和 Tag/commit 一致性检查。
 
-同步和发布审批使用现有 `MAI_REVIEW_APP_ID`、`MAI_REVIEW_APP_PRIVATE_KEY`，GitHub App 需要读取插件市场内容及写入 Issue 的权限；麦麦审核还需要 `STEP_API_KEY`。
+同步和发布审批使用 `MAI_REVIEW_APP_ID`、`MAI_REVIEW_APP_PRIVATE_KEY`，GitHub App 需要读取插件市场内容及写入 Issue 的权限；麦麦审核需要 `STEP_API_KEY`。
 
 同步脚本通过 GitHub API 获取发布信息和创建审核 Issue，不检出或执行第三方插件代码。Release 列表按分页完整读取，manifest 通过解析后的 commit 获取。已收录版本复用原始 manifest 快照并重新检查 Tag 指向。
 
@@ -66,11 +72,11 @@ node .github/scripts/sync_plugin_versions.cjs --retry-errors
 
 ## 麦麦客户端行为
 
-后端 `GET /api/webui/plugins/releases` 读取索引，调用与插件运行时相同的 manifest、Host、SDK 校验逻辑，为每个版本返回 `compatible`、`reasons`，并给出 `recommended_version`。沿用现有 Host 补丁兼容规则，Python 包及插件依赖在实际安装前验证。
+后端 `GET /api/webui/plugins/releases` 读取索引，通过运行时的 manifest、Host、SDK 校验，为每个版本返回 `compatible`、`reasons`，并给出 `recommended_version`。Python 包及插件依赖在安装前验证。
 
-推荐版本为兼容、未撤回、非预发布版本中版本号最高的一项。排序比较数字版本号，不使用发布时间或字符串排序。没有候选时返回明确的不可安装状态。
+推荐版本为兼容、未撤回的稳定版本中版本号最高的一项，按数字版本号排序。没有候选时返回不可安装状态。
 
-安装和更新请求增加 `version`、`pinned`：
+安装和更新请求示例：
 
 ```json
 {
@@ -81,9 +87,9 @@ node .github/scripts/sync_plugin_versions.cjs --retry-errors
 }
 ```
 
-`version: "latest"` 选择最新兼容稳定版本；明确版本号允许手动选择历史版或兼容预发布。发布安装的仓库和 commit 由后端索引决定，请求中的仓库地址不覆盖索引。省略 `version` 保留原有分支安装接口，但已通过 Release 安装的插件不能再使用分支拉取更新。
+`version: "latest"` 选择最新兼容稳定版本；指定版本号可选择历史版或兼容预发布。Release 安装使用索引中的仓库和 commit。省略 `version` 使用分支安装；已通过 Release 安装的插件须通过 Release 更新。
 
-发布安装会在临时目录下载指定 Tag，核对 HEAD 与索引 commit 完全一致，并验证完整 manifest、入口文件、运行环境和插件依赖。随后停止已加载插件，保留配置及数据、备份原目录并替换代码，再恢复之前加载的插件。替换目录失败会恢复原目录；恢复运行失败会明确报告错误，不宣称运行成功。
+发布安装下载指定 Tag，核对 HEAD 与索引 commit，并验证 manifest、入口文件、运行环境和依赖。随后停止插件，保留配置及数据、备份原目录、替换代码并恢复运行。目录替换失败时恢复原目录；运行恢复失败时报告错误。
 
 安装记录保存在插件目录的 `.maibot-release.json`，包含实际版本、commit、仓库与锁定状态。自动更新不会覆盖锁定版本，也不会降级或重装相同版本。手动选择版本时可同时改变安装后的锁定状态。
 
@@ -96,10 +102,4 @@ node .github/scripts/sync_plugin_versions.cjs --retry-errors
 - 插件目录中的符号链接、目录联接会阻止版本替换。
 - 旧目录保存在插件根目录下的 `.update_backups`；降级只切换代码，不自动撤销数据迁移。作者需自行保证数据格式兼容。
 
-## 上线顺序
-
-1. 先发布插件中心的脚本、工作流和版本索引，运行同步并检查错误项。
-2. 确认插件中心 `main` 分支可读取 `plugin_versions.json`。
-3. 再发布麦麦后端和配套 WebUI。
-
-新 WebUI 依赖后端发布版本接口和远端版本索引；索引不可访问时会明确报错。旧 WebUI 继续读取原来的 `plugin_details.json`，升级后才能使用版本选择。
+版本选择依赖后端发布版本接口和远端 `plugin_versions.json`；索引不可访问时报告错误。使用 `plugin_details.json` 的客户端通过分支安装插件。

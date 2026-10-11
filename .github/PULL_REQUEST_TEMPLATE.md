@@ -6,11 +6,9 @@
 
 ### 核对清单 (Checklist)
 
-在提交前，请确保您已完成以下所有事项。
+请核对以下事项，方便维护者审核您的插件。
 
-(将方括号内的空格删掉改为小写的x)
-
-- [ ] 我已经完整阅读并理解了 **[CONTRIBUTING.md](./CONTRIBUTING.md)** 中的所有指南。
+- [ ] 已阅读 **[CONTRIBUTING.md](./CONTRIBUTING.md)**。
 - [ ] 我的插件仓库是公开的。
 - [ ] 我的仓库根目录下包含了格式正确的 `_manifest.json` 文件。
 - [ ] `_manifest.json` 使用 `manifest_version: 2`，并包含所有 v2 必需字段 (`id`, `name`, `version`, `author`, `license`, `urls`, `host_application`, `sdk`, `capabilities`, `i18n` 等)。
