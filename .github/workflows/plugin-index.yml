@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
+      queue: max
       cancel-in-progress: false
     steps:
       - name: Checkout repository

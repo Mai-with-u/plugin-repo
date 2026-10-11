@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
+      queue: max
       cancel-in-progress: false
     permissions:
       contents: write
@@ -94,6 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
+      queue: max
       cancel-in-progress: false
     permissions:
       contents: write
