@@ -7121,7 +7121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.deskpet-plugin",
-      "version": "0.6.0",
+      "version": "0.6.3",
       "name": "MaiBot Deskpet",
       "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、表情/动作控制、视线追踪、滚轮缩放和拖拽平移。需配合 deskpet-app Electron 前端使用。",
       "author": {
@@ -20283,7 +20283,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.erhan111119.mai-repost-shit",
-      "version": "1.0.3",
+      "version": "1.0.8",
       "name": "B站搬史机（mai repost shit）",
       "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
       "author": {
@@ -20313,6 +20313,7 @@
         "send.forward",
         "send.custom",
         "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
         "maisaka.context.append",
         "config.get"
       ],
@@ -20407,6 +20408,148 @@
         "api.call",
         "api.get",
         "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ji-or-ji.maibot-plugin-installer",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ji-or-ji.maibot-plugin-installer",
+      "version": "0.1.0",
+      "name": "插件安装审批器",
+      "description": "把待安装的 MaiBot 插件经管理员批准后自动安装并启用；在发起任务的聊天流里请求审批。",
+      "author": {
+        "name": "ji-or-ji",
+        "url": "https://github.com/ji-or-ji"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/ji-or-ji/maibot-plugin-installer",
+        "homepage": "https://github.com/ji-or-ji/maibot-plugin-installer",
+        "documentation": "https://github.com/ji-or-ji/maibot-plugin-installer/blob/main/README.md",
+        "issues": "https://github.com/ji-or-ji/maibot-plugin-installer/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "ji-or-ji.maibot-dsh-bridge",
+          "version_spec": ">=0.1.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "api.replace_dynamic"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "local.qwen-bilibili-video-context",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.qwen-bilibili-video-context",
+      "version": "1.4.0",
+      "name": "Qwen B站与QQ视频理解",
+      "description": "使用Qwen-Omni理解B站链接及QQ群、私聊中直接发送的视频，沿用白名单、缓存和完整画面与音轨识别。",
+      "author": {
+        "name": "socialistearth",
+        "url": "https://github.com/socialistearth"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/socialistearth/maibot-qwen-video",
+        "homepage": "https://github.com/socialistearth/maibot-qwen-video",
+        "documentation": "https://github.com/socialistearth/maibot-qwen-video/blob/main/README.md",
+        "issues": "https://github.com/socialistearth/maibot-qwen-video/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.5",
+        "max_version": "1.3.999"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.999.999"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.14,<4"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "video",
+          "fallback": "plug",
+          "background": "#FB7299"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.erhan111119.mai-is-mortis",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.erhan111119.mai-is-mortis",
+      "version": "1.0.1",
+      "name": "mai is mortis（麦麦是多首的怪物）",
+      "description": "麦麦是多首的怪物。加分的唯一来源是模型判定：插件把最近的对话交给模型，按每个人格的一句话「判定条件」回编号，命中就给对应人格加分；某个人格分数顶到阈值就临时换人格、其他人格分数清零，维持一段时间后自动切回原人格，分数还会随时间衰减。人格、判定条件、阈值、时长全部可在 WebUI 里改，支持 /人格 查看分数与手动切换。",
+      "author": {
+        "name": "erhan111119",
+        "url": "https://github.com/erhan111119"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/erhan111119/mai-is-mortis",
+        "homepage": "https://github.com/erhan111119/mai-is-mortis",
+        "documentation": "https://github.com/erhan111119/mai-is-mortis/blob/main/README.md",
+        "issues": "https://github.com/erhan111119/mai-is-mortis/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "extension",
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
