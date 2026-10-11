@@ -21,11 +21,14 @@ test('登记与 Release 请求只路由到对应审核入口', () => {
   for (const label of ['plugin-submission', 'plugin-modification', 'plugin-removal']) {
     assert.deepEqual(route([label, 'validated']), [true, false]);
     assert.deepEqual(route([label, 'validated'], 'issue_comment'), [true, false]);
+    assert.deepEqual(route([label, 'validated'], 'issue_comment', '/mr'), [true, false]);
   }
   assert.deepEqual(route(['plugin-release', 'validated']), [false, true]);
   assert.deepEqual(route(['plugin-release', 'plugin-submission', 'validated']), [false, true]);
   assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment'), [false, true]);
-  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '/mai_review_release'), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '/mr'), [false, true]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '/mr extra'), [false, false]);
+  assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '/mai_review_release'), [false, false]);
   assert.deepEqual(route(['plugin-submission', 'validated'], 'issue_comment', '/mai_review_release'), [false, false]);
   assert.deepEqual(route(['plugin-release', 'validated'], 'issue_comment', '已开始审核'), [false, false]);
   assert.deepEqual(route(['plugin-release'], 'issues', '', 'plugin-release'), [false, false]);
@@ -40,10 +43,19 @@ function scriptFor(name) {
   return script.trimEnd().split("\n").map((line) => line.slice(12)).join("\n");
 }
 
-test('发布重审命令仍限维护者，登记 Issue 不接受发布重审命令', async () => {
+test('统一重审命令在两类 Issue 中均限维护者', async () => {
   const fn = new AsyncFunction('github', 'context', 'core', scriptFor('Check reviewer permission'));
-  for (const [labels, permission, failed] of [
-    [['plugin-release'], 'write', false], [['plugin-release'], 'read', true], [['plugin-submission'], 'write', true],
+  for (const [labels, permission, command, failed] of [
+    [['plugin-release'], 'write', '/mai_review', false],
+    [['plugin-release'], 'read', '/mai_review', true],
+    [['plugin-submission'], 'write', '/mai_review', false],
+    [['plugin-submission'], 'read', '/mai_review', true],
+    [['plugin-release'], 'write', '/mr', false],
+    [['plugin-release'], 'read', '/mr', true],
+    [['plugin-submission'], 'write', '/mr', false],
+    [['plugin-submission'], 'read', '/mr', true],
+    [['plugin-release'], 'write', '/mr extra', true],
+    [['plugin-release'], 'write', '/mai_review_release', true],
   ]) {
     const failures = [];
     const outputs = {};
@@ -51,7 +63,7 @@ test('发布重审命令仍限维护者，登记 Issue 不接受发布重审命�
       repos: { getCollaboratorPermissionLevel: async () => ({ data: { permission } }) },
       issues: { createComment: async () => {} },
     } };
-    const context = { repo: {}, payload: { comment: { user: { login: 'user' }, body: '/mai_review_release' },
+    const context = { repo: {}, payload: { comment: { user: { login: 'user' }, body: command },
       issue: { labels: labels.map(name => ({ name })) } } };
     const core = { setFailed: value => failures.push(value), setOutput: (key, value) => { outputs[key] = value; } };
     await fn(github, context, core);

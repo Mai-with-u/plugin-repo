@@ -27,7 +27,7 @@ jobs:
          contains(github.event.issue.labels.*.name, 'plugin-modification') ||
          contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
         contains(github.event.issue.labels.*.name, 'validated') &&
-        github.event.comment.body == '/mai_review'))
+        (github.event.comment.body == '/mai_review' || github.event.comment.body == '/mr')))
     uses: ./.github/workflows/mai-review-run.yml
     with:
       issue_number: ${{ github.event.issue.number }}

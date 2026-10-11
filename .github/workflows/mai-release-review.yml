@@ -21,7 +21,7 @@ jobs:
         github.event.label.name == 'validated') ||
        (github.event_name == 'issue_comment' &&
         contains(github.event.issue.labels.*.name, 'validated') &&
-        (github.event.comment.body == '/mai_review' || github.event.comment.body == '/mai_review_release')))
+        (github.event.comment.body == '/mai_review' || github.event.comment.body == '/mr')))
     uses: ./.github/workflows/mai-review-run.yml
     with:
       issue_number: ${{ github.event.issue.number }}

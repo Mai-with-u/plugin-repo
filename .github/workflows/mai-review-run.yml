@@ -65,11 +65,8 @@ jobs:
           script: |
             const commenter = context.payload.comment.user.login;
             const command = context.payload.comment.body.trim();
-            const releaseReview = context.payload.issue.labels.some(label => label.name === 'plugin-release');
-            const allowedCommands = releaseReview ? ['/mai_review', '/mai_review_release'] : ['/mai_review'];
-
-            if (!allowedCommands.includes(command)) {
-              core.setFailed('评论不是该审核类型支持的独立重审命令');
+            if (!['/mai_review', '/mr'].includes(command)) {
+              core.setFailed('评论不是独立的 /mai_review 或 /mr 重审命令');
               return;
             }
 
@@ -85,7 +82,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: Number(process.env.REVIEW_ISSUE_NUMBER),
-                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 ${allowedCommands.map(value => `\`${value}\``).join(' 或 ')} 命令。`,
+                body: `⚠️ @${commenter} 只有 **仓库维护者** (admin/write) 可以使用 \`/mai_review\` 或 \`/mr\` 命令。`,
               });
               core.setFailed(`用户 @${commenter} 没有权限使用 ${command}`);
               return;
@@ -234,7 +231,7 @@ jobs:
               text
                 .replace(/\/(?:approve|ap)\b/gi, '"approve"')
                 .replace(/\/recheck\b/gi, '"recheck"')
-                .replace(/\/mai_review(?:_release)?\b/gi, '"mai_review"')
+                .replace(/\/(?:mai_review|mr)\b/gi, '"mai_review"')
                 .replace(/\/reject\b/gi, '"reject"');
 
             const review = sanitize(fs.readFileSync('codex-review.md', 'utf8').trim());
