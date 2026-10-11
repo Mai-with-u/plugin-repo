@@ -27726,7 +27726,64 @@
       "manifest_id": "github.ZhaoCang-QWQ.social-state",
       "repositoryUrl": "https://github.com/ZhaoCang-QWQ/social-state",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.7",
+          "tag": "v0.4.7",
+          "commit": "d2825d1cbb557303aacf2f5f6c04df2339754b7a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T16:04:54Z",
+          "release_url": "https://github.com/ZhaoCang-QWQ/social-state/releases/tag/v0.4.7",
+          "release_notes": "## 关系状态表 v0.4.7\n\n### 修复（上架评审阻断项）\n- **无目标 `/关系` 的范围是全库**：群内与私聊的兜底分支都落到 `store.top_persons(5)`，而 `person_state` 没有群维度，这个查询是全表按 `last_msg_at` 取前 5——别的群和私聊的联系人（昵称 + QQ 尾号 + 好感档位 + 相对发言时间）都会进到当前会话的回复里；私聊那条更直接，任何能给麦麦发私聊的人都能拿到这份跨会话联系人清单。现按当前会话收窄：\n  - 群内只取 `_group_sessions[session_id]`（本群近期发言者），取不到就回「本群最近还没有足够的互动记录」；\n  - 私聊查不到本人记录时只回「还没有你的记录」，不再退化成全局清单（命令消息在 `on_receive` 里被 `is_command` 提前拦掉、不建 session 映射，所以「私聊第一句就是 `/关系`」或刚重启时会稳定走到这个分支）\n\n### 变更\n- `/关系帮助` 的数据路径由写死的 `data/plugins/social_state/` 改为 `data/plugins/<插件ID>/`\n- `_data_dir()` 兜底路径补上插件 ID，新增 `PLUGIN_ID` 常量与 manifest 对齐\n- README 命令表与隐私说明同步为「本群」\n\n完整记录见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.7",
+            "id": "github.ZhaoCang-QWQ.social-state",
+            "name": "关系状态表",
+            "description": "麦麦的社交地基：给每个联系人记一本账（好感、心情、冷落、带有效期的线头、关系边）。感知器用 LLM 语境化评估每轮互动自动打分并挖掘话题钩子；群聊自动回味批量更新印象、抽取冲突记关系边；每天生成麦麦自己的生活日程，回复前注入表达约束与关系温度；主动中枢可经 planner 终审递出主动冲动。不修改主程序代码与数据库，数据全部存在插件自己的目录。",
+            "author": {
+              "name": "昭沧QWQ",
+              "url": "https://github.com/ZhaoCang-QWQ"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ZhaoCang-QWQ/social-state",
+              "homepage": "https://github.com/ZhaoCang-QWQ/social-state",
+              "documentation": "https://github.com/ZhaoCang-QWQ/social-state/blob/main/README.md",
+              "issues": "https://github.com/ZhaoCang-QWQ/social-state/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💞"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
