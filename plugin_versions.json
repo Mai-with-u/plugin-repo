@@ -27343,7 +27343,219 @@
       "manifest_id": "github.erhan111119.mai-repost-shit",
       "repositoryUrl": "https://github.com/erhan111119/mai-repost-shit",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "f4085b29e4bc3285168e984b433bac139a084d6e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:02:26Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.3",
+          "release_notes": "### 修复：插件页只显示英文名\n\n插件页与插件详情渲染的是 manifest 的 `name` 字段——`ManifestDisplay` 只有 `icon`，\n宿主也没有读取插件 `_locales` 做显示名本地化的机制，所以中文名只能写在 `name` 里。\n\n- `name`: `mai repost shit` → **`B站搬史机（mai repost shit）`**\n- 仓库名、插件 id、目录名保持不变（`mai-repost-shit` /\n  `github.erhan111119.mai-repost-shit`）。\n- README 标题同步带上中文名。\n\n验证方式：直接调用 WebUI `/plugins/installed` 接口背后的同一个函数\n（`_collect_installed_plugins`），确认它返回给页面的 `manifest.name`\n已是中文；宿主 ManifestValidator 校验通过，errors/warnings 均为空；\n真机热重载日志确认 `v1.0.3 加载成功`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.3",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "573f80be9dfb5dbd2ecaf7e48573909bc7b836a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T05:07:47Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.2",
+          "release_notes": "按第二轮评审建议做的加固（该轮无阻断项，均属建议）。\n\n- **装载日志单独喊权限模式**：不再混在装载行里；当权限是 `anyone` 且插件与点播都已启用时，\n  额外打一条 warning，说明\"群里任何人一句话就能触发\"以及两种收紧方式。\n- **白名单被拒时清掉该会话的发言者缓存**：缓存存的是\"该会话最近发言者\"，可能不是本次调用者；\n  拒绝时顺手清掉，逼下一次触发重新经过入站钩子，缩短旧条目被蹭到的窗口。\n- **默认分区屏蔽名单填上**：`typename_blacklist` 默认避开片名/IP 类分区\n  （影视、电影、电视剧、番剧、国创、纪录片、预告、资讯、直播）。\n- **`/搬史状态` 群号打码**：该命令任何会话都能调，群号改为只显示首 3 位与末 2 位。\n- **下载文件名清洗**：`bvid` 来自上游接口，拼文件名前只保留字母数字。\n- manifest 补 `plugin_type: media`。\n\n另外说明两点评审提到的取舍：嵌套视频段的写法依赖宿主内部归一化行为（README/NOTES 已明确写出，\n并提供了 `delivery_mode` 换路与三级回退）；`httpx` 未在 `dependencies` 声明，因为它由宿主\nPython 环境提供（插件本身不带独立环境）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.2",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "e76d17ea80b0c07643eb3977c1ba379bd81e31b2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T04:53:12Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.1",
+          "release_notes": "按插件中心评审意见收紧权限边界、投递回退与内容安全。\n\n### 1. 点播权限可以收紧了（评审第 1 点）\n\n- 新增 `[tool].permission`（`anyone` / `whitelist`）与 `[tool].whitelist`。\n- 工具回调在群聊里拿不到发言者 QQ，改为注册入站钩子 `chat.receive.after_process`\n  按会话缓存真实发言者，触发时回查。\n- 白名单模式下列表为空、或认不出发言者，一律拒绝（宁可少搬也不放过）。\n- 默认仍是 `anyone`（群成员都能点播），但 README 显著位置写明了这个默认值与收紧方式。\n\n### 2. 投递改为三级回退并大声失败（评审第 2 点）\n\n- 顺序：转发带视频 → 直接发视频 → 按文件发（最后一级用宿主正式建模的 `FileComponent`，\n  最不依赖内部实现，代价是显示成文件）。\n- 新增 `[target].delivery_mode` 可手动指定路线，宿主更新后改一行配置就能绕开坏掉的那条。\n- 新增 `[target].notify_on_failure`：三条路全失败时记 error 日志并在群里说一句，不再安静失效。\n- README/NOTES 明确写出「嵌套视频段依赖宿主内部实现，不在公开 API 里」。\n\n### 3. 内容安全兜底（评审第 3 点）\n\n- 新增 `[filters].typename_blacklist`（分区屏蔽）与 `[filters].sensitive_words`\n  （默认含擦边/低俗类词，命中标题或标签即跳过）。\n- README 增加「内容安全」章节，明示本插件不做内容审核、转发内容请自行确认群规。\n\n### 4. manifest 修正（评审第 4 点）\n\n- 移除实际未调用的 `chat.open_session`。\n\n### 验证\n\n- 离线桩环境断言：投递回退三种情形、`delivery_mode=file`、白名单五种情形全部通过。\n- 宿主 `ManifestValidator` 校验通过，errors/warnings 均为空。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.1",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "bff98922c9d6a752feb7b299edcc2ead95d485d5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T04:16:15Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.0.0",
+          "release_notes": "初版。\n\n- 定时（每天 N 次，时刻随机）检索播放 5万~30万、发布 3~30 天前的视频，不限定分区\n- 唯一判据：评论含 @ 比例 ≥ 50% 且评论样本 ≥ 30 条\n- 免登录直下 720P（无需 ffmpeg 转码），带体积与时长上限\n- 以合并转发（聊天记录）投递，节点内嵌视频本体，失败回退为单独发送\n- 命令 `/搬史`、`/搬史测试`、`/搬史状态`，另注册 `repost_shi` 工具支持自然语言点播\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.0.0",
+            "name": "mai repost shit",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
