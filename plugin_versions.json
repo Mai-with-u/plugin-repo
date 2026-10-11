@@ -28377,6 +28377,30 @@
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot.mai-recog-self",
+      "manifest_id": "maibot.mai-recog-self",
+      "repositoryUrl": "https://github.com/SengokuCola/MaiSelfPlugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-team.telegram-adapter",
+      "manifest_id": "maibot-team.telegram-adapter",
+      "repositoryUrl": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.1.9",
+          "version": "0.1.9",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Sengoku.telegram-adapter'\n- 'maibot-team.telegram-adapter'"
+        }
+      ]
     }
   ]
 }
