@@ -202,6 +202,7 @@ jobs:
           if [ "$STRUCTURED_RELEASE_REVIEW" = 'true' ]; then
             REVIEW_ARGS+=(--json-schema "$(cat .github/codex/release-review.schema.json)")
           fi
+          REVIEW_STATUS=0
           claude --bare --restricted -p "$PROMPT" \
             "${REVIEW_ARGS[@]}" \
             --model "$ANTHROPIC_MODEL" \
@@ -209,7 +210,12 @@ jobs:
             --tools "Read,Glob,Grep,WebFetch" \
             --allowedTools "Read" "Glob" "Grep" "WebFetch" \
             --permission-mode dontAsk \
-            --output-format json > claude-review-output.json
+            --verbose --output-format stream-json > claude-review-events.jsonl || REVIEW_STATUS=$?
+          jq -s 'map(select(.type == "result")) | last // error("CLI 未返回最终结果，详情见 claude-review-events.jsonl")' claude-review-events.jsonl > claude-review-output.json
+          if [ "$REVIEW_STATUS" -ne 0 ]; then
+            jq -r '.errors[]?' claude-review-output.json >&2
+            exit "$REVIEW_STATUS"
+          fi
           jq -er 'select(.is_error == false) | if (.structured_output | type) == "object" then .structured_output | tojson else .result | select(type == "string" and length > 0) end' claude-review-output.json > codex-review.md
           test -s codex-review.md
 
@@ -295,6 +301,7 @@ jobs:
           path: |
             codex-review.md
             claude-review-output.json
+            claude-review-events.jsonl
             mai-release-targets.json
           if-no-files-found: ignore
           retention-days: 7

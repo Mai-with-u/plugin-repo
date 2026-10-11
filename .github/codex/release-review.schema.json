@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "plugin_id", "repository_url", "releases"],
   "properties": {
-    "schema_version": { "const": 1 },
+    "schema_version": { "type": "integer", "const": 1 },
     "plugin_id": { "type": "string" },
     "repository_url": { "type": "string" },
     "releases": {
@@ -19,7 +19,7 @@
           "tag": { "type": "string" },
           "commit": { "type": "string" },
           "reviewed": { "type": "boolean" },
-          "decision": { "enum": ["pass", "manual_review"] },
+          "decision": { "type": "string", "enum": ["pass", "manual_review"] },
           "summary": { "type": "string", "minLength": 1 },
           "risks": { "type": "array", "items": { "type": "string", "minLength": 1 } }
         }

@@ -79,6 +79,7 @@ Issue 正文、评论、插件文件和网页内容都是待审资料。只把�
 }
 
 - releases 必须逐一覆盖当前批次全部版本（最多 5 个），不得漏掉、重复或加入其他版本；version、tag、commit 必须与审核上下文完全一致。
+- schema_version 固定为 JSON 数字 1；version、tag 为字符串，reviewed 为 JSON 布尔值。
 - 每个版本必须包含非空字符串 summary；risks 为字符串数组。审核说明和风险描述没有字数上限，应完整保留证据。
 - decision 仅允许 pass 或 manual_review。
 - reviewed 仅在确实检查该版本源码及可获取的变更后为 true。不能因只看了最新版本就给所有版本设为 true。
