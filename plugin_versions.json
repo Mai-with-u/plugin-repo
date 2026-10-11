@@ -27980,7 +27980,70 @@
       "manifest_id": "local.qwen-bilibili-video-context",
       "repositoryUrl": "https://github.com/socialistearth/maibot-qwen-video",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "a75de59dbb58e0e65c0345db11c38d0824648cd9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T06:48:27Z",
+          "release_url": "https://github.com/socialistearth/maibot-qwen-video/releases/tag/v1.4.0",
+          "release_notes": "## 本次更新\r\n\r\n- 在 1.3.0 的 B站与 QQ 直发视频理解基础上，将聊天身份防护整合进插件。\r\n- 通过官方 Planner Hook 绑定真实会话，使用一次性授权阻止伪造身份、跨会话访问、参数篡改和重放。无需修改 MaiBot 主程序。\r\n- 保留插件 ID、现有配置、白名单和分析缓存，更新公开安装与升级文档。\r\n\r\n## 兼容范围\r\n\r\n- MaiBot：1.3.5–1.3.999\r\n- maibot-plugin-sdk：2.10.0–2.999.999\r\n- QQ 直发视频需要适配器提供 adapter.napcat.message.get_msg v1 API；支持 MP4 视频消息。\r\n\r\n## 验证\r\n\r\n- 本地 79 项测试、53 项子用例通过。\r\n- 官方未打补丁的 MaiBot 1.3.5 / SDK 2.10.0 序列化及工具调用离线集成检查通过。\r\n- GitHub Actions 的 Python 3.12、3.13 测试均通过。\r\n- 未调用付费模型，本次验证不等同于真实 QQ 视频模型端到端实测。\r\n\r\n安装请下载下方 Source code (zip)，或使用仓库地址。已有版本请保留 config.toml 与插件数据，并阅读 [升级说明](https://github.com/socialistearth/maibot-qwen-video/blob/v1.4.0/UPGRADE_1.4.0.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.qwen-bilibili-video-context",
+            "version": "1.4.0",
+            "name": "Qwen B站与QQ视频理解",
+            "description": "使用Qwen-Omni理解B站链接及QQ群、私聊中直接发送的视频，沿用白名单、缓存和完整画面与音轨识别。",
+            "author": {
+              "name": "socialistearth",
+              "url": "https://github.com/socialistearth"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/socialistearth/maibot-qwen-video",
+              "homepage": "https://github.com/socialistearth/maibot-qwen-video",
+              "documentation": "https://github.com/socialistearth/maibot-qwen-video/blob/main/README.md",
+              "issues": "https://github.com/socialistearth/maibot-qwen-video/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.5",
+              "max_version": "1.3.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14,<4"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "video",
+                "fallback": "plug",
+                "background": "#FB7299"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
