@@ -19301,6 +19301,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.4",
+          "tag": "v0.9.4",
+          "commit": "62dac693964c74db356baef2625615ed2d5a9eb3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T17:21:45Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.4",
+          "release_notes": "## 这一版改了什么\n\n### 快速判断可以接多家服务\n「快速判断」用的是 Jev 这类判断模型：一两秒内答出「是不是、选哪个」，比主模型快，也更便宜。现在可以在网页「模型 → 快速判断」里选用下面任意一家，也能测试连接：\n\n- 预设：TypeSafe 官方、OpenRouter、OpenCode、Command Code、Vercel AI Gateway、Upstage（Solar Decide）、Inception（Mercury Decide）、Liquid AI（d1）、Cloudflare Workers AI（Clef）、OpenAI Decisions。\n- 也可以自己添加：凡是兼容 System One 或 OpenAI Decisions 格式的服务都行。本机部署的服务可以用 http，其他一律用 https。\n- 密钥只能填进去，网页上不会再显示出来。原来的 Jev 密钥照常用。\n\n预设的地址和模型名都是照各家官方文档填的，作者没有逐家用真密钥测过。接上以后请先在网页上点一次「测试」。\n\n### 没有 Jev 时，也能及时认出派的活\n以前没配 Jev、或者 Jev 拿不准时，群里 @ 机器人的消息要等几小时后「读群」时才会被判断。现在改成：\n\n- 先在后台攒十几秒，把几条一起交给模型判断一次，不耽误 MaiBot 说话。判断时会带上前面几句群聊，判得更准。\n- 判断用的模型可以单独指定一个便宜的，每群每天有次数上限，默认 30 次。\n- 「先用请求词过一遍」**默认关**。打开后，没有「帮我、整理、查一下、提醒我」这类词的 @ 直接当闲聊，不花模型的钱，但说法含糊的派活可能会漏掉。\n- 拿不准的还会留给读群时再判，不会漏掉。\n\n在网页「模型 → 快速判断」最下面可以设置这一块。\n\n## 升级\n- 数据库没有变化（库号仍是 37）。\n- 配置版本升到 0.4.8，新加的设置都有默认值，**不用改配置**。\n- 升级前照旧备份插件和数据目录；覆盖插件时保留自己的 `config.toml`。\n- 宿主最高适配版本改成 1.3.99（MaiBot dev 分支目前是 1.3.6）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.4",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.3",
           "tag": "v0.9.3",
           "commit": "4c6fb945158fcde03db6346e93a8ed488b692b50",
