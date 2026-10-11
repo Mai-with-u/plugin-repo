@@ -19301,6 +19301,168 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.6",
+          "tag": "v0.9.6",
+          "commit": "0b94acec185b949586f2545df0ef506cc993573f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T03:22:16Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.6",
+          "release_notes": "## 这一版改了什么\n\n群指令更好上手：\n\n- **`/mw 帮助`**：在群里发这个，能看到全部指令。按「大家都能用」和「批准人」分好组，每条都带例子，照着发就行。也认 `/mw help`、`/mw ?`。\n- **回复里告诉你下一步**：\n  - `/mw` 看进度时，末尾会提醒怎么派活、怎么看全部指令。\n  - `/mw do` 派了活：要批准的，告诉批准人发 `/mw 批准 R-12` 就开工；已经开工的，告诉你怎么看进度、怎么取消。\n  - `/mw 批准` 之后，会说清楚已经开工的任务号。\n- **漏写 do 也能接住**：比如发了 `/mw 帮我整理一份清单`，会回一行能直接照抄的 `/mw do 帮我整理一份清单`。只是提示，不会替你派活。打错别的指令，会回常用的几条，并告诉你发 `/mw 帮助` 看全部。\n- **网页群页多了「群指令」**：列出每条指令、谁能用、怎么写。点「复制给群友」就能把整段说明发进群里或贴进群公告。\n\n以上全是固定文字，不调模型，也不会多往群里发消息，只在你发 `/mw` 指令时回复。\n\n## 升级\n- 数据库和配置都没有变化（库号 37，配置版本 0.4.9），直接覆盖升级即可。\n- 升级前照旧备份插件和数据目录；覆盖插件时保留自己的 `config.toml`。\n- 宿主适配范围不变（最高 1.3.99；MaiBot dev 分支目前是 1.3.6）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.6",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.9.5",
+          "tag": "v0.9.5",
+          "commit": "0e032e014235fbfcf189702d38f7562f482536ef",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T01:13:50Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.5",
+          "release_notes": "## 这一版改了什么\n\n把 0.9.4 新加的「没有 Jev 时怎么判断派活」做得更简单、更快：\n\n- **来一条判一条**：群里 @ 机器人的消息不再攒着等十几秒，在后台马上判断。MaiWork 认出是派活后，会给 MaiBot 留一句「这活 MaiWork 接手了，你不用答应」，现在这句话能赶在 MaiBot 回复之前送到。判断全程在后台进行，不耽误 MaiBot 说话。\n- **Jev 也看上下文**：Jev 判断时会参考前面几句群聊，判得更准，需要交给模型的更少。\n- **待批请求写明理由**：模型判成派活时，待批准的请求里会附一句判断依据，方便你决定批不批。\n- **设置更少**：网页「模型 → 快速判断」里这块只留三项：开关、用哪个模型、先用请求词过一遍（默认关）。每天次数上限放进「全部设置」的高级里，默认每群 30 次。\n\n- **新指令 `/mw do`：说了就算**。在群里发 `/mw do 要做的事`，直接派活，不经过任何判断，也不花模型的钱。也可以引用一条消息再发 `/mw do`，被引用的文字和图片会一起交给任务；后面再写几个字，会当作补充说明。之后照常按本群设置：要批准的进待批，免批的直接开工，MaiWork 会回一句任务号和状态。\n\n判断用的提示词和把握门槛还没在真实群聊里验证过，之后会按实际情况调整。\n\n## 升级\n- 数据库没有变化（库号仍是 37）。\n- 配置版本升到 0.4.9，去掉了 `[quick_judge] batch_wait_s`。老配置里留着这个键也能正常读，**不用改配置**。\n- 升级前照旧备份插件和数据目录；覆盖插件时保留自己的 `config.toml`。\n- 宿主适配范围不变（最高 1.3.99；MaiBot dev 分支目前是 1.3.6）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.5",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.4",
           "tag": "v0.9.4",
           "commit": "62dac693964c74db356baef2625615ed2d5a9eb3",
