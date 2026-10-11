@@ -24017,6 +24017,55 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.8",
+          "tag": "v0.2.8",
+          "commit": "aad91fb1350d36b6cbfd7d930298028e970ff452",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-10T11:56:29Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.2.8",
+          "release_notes": "✨ 新增与优化\r\n\r\n双适配器兼容：\r\n 优化 NapCat 与 SnowLuma 两种适配器的 API 调用兼容逻辑。\r\n\r\n自动选择可用接口：\r\n 优先尝试 SnowLuma 接口，并在符合回退条件时尝试 NapCat 接口。\r\n\r\n完善异常处理：\r\n 优化 API 调用失败时的处理逻辑，降低异常情况下误报点赞成功的风险。\r\n\r\n优化依赖声明：\r\n 不再强制要求安装某一种适配器，便于在不同 MaiBot 环境中使用。\r\n\r\n🛠️ 修复与维护\r\n\r\n优化点赞 API 的调用与返回结果处理。\r\n\r\n改进接口失败时的回退逻辑，避免业务失败后盲目重复执行点赞。\r\n\r\n保留原有点赞命令、目标识别、AI 口语化触发、每日额度及冷却机制。\r\n\r\n⚠️ 注意事项\r\n\r\n本版本旨在兼容 NapCat 与 SnowLuma，不需要同时安装两种适配器。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "0.2.8",
+            "name": "QQ 名片点赞",
+            "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.2.6",
           "tag": "v0.2.6",
           "commit": "2bd1f4e209d4c94a3c5ebf156f64369eb5575c34",
