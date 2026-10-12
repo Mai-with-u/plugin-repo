@@ -29292,6 +29292,174 @@
             },
             "id": "houlong5071.redeem-code-distributor"
           }
+        },
+        {
+          "version": "1.3.2",
+          "tag": "1.3.2",
+          "commit": "12639aff47645ca8211aad476a4214a476ad0007",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:58:26Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.2",
+          "release_notes": "## 修复\r\n\r\n- **配置页陈旧保存会让已发出的兑换码「复活」。** 管理员先打开配置页 → 插件在这期间发放并写盘 → 管理员随后保存页面上的任意字段。若宿主按页面里的旧模型整份写回，`available_codes` 会连已发出的码一起回来、`used_codes` 被旧值覆盖，「一个码只发一次」和发放记录会同时报废。现在装载池子时加了一道**单调保护**，不依赖宿主的保存语义：已使用记录**只增不减**（新旧求并集），待发放池**剔除**所有已发放过的码。代价是在配置页里手动删掉某条已使用记录，不会让那个码回到待发放池——这是有意的取舍。\r\n- **兑换码含 `|` 或 `:` 时单调保护会失效。** 已使用记录原先是裸文本，按 `|` 切分会把这类码截断，保护认不出它。现在记录里的码用 JSON 字符串包裹并用正则精确定位；未加引号的旧格式记录同样兼容。\r\n- **来自未来的时间戳会被当成「刚发生的消息」放行。** 原先 `max(now - ts, 0)` 会把未来时间戳压成 0 秒，恰好落进时间窗被采信。现在超出 30 秒容差的未来时间戳视为不可读，保守拒绝。\r\n\r\n## 优化\r\n\r\n- `expose_status_tool` 关闭时，余量查询工具直接从组件列表摘掉，而不是留着「调用即报错」白占大模型的工具列表。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.2",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.1",
+          "tag": "1.3.1",
+          "commit": "df387069fa88ea2e6b3d79378dc5237d29e4d143",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:44:06Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.1",
+          "release_notes": "## 修复\r\n\r\n- **身份兜底会把麦麦自己的回复当成请求者。** 宿主 `message.get_recent` 的 `filter_mai` 参数默认是 `False`，即麦麦自己发的消息也会被查出来；而兜底逻辑取的是「最后一条消息的发送者」——麦麦刚回复过的话取到的就是麦麦自己（其 QQ 不在管理员白名单里），于是只要麦麦在群里说过话，兜底就会稳定失败、形同虚设。现在显式传 `filter_mai=True` 排除麦麦自己的消息；宿主或 SDK 不支持该参数时自动退回不传。\r\n- **「最近发言人」内存记录无上限。** 每个见过的会话都会在里面留一条，未被再次查询过的会话永远不会被清理。现在超过 512 条时先清理过期的，仍超限则淘汰最旧的。\r\n- **`get_components()` 就地改写了 SDK 返回的对象。** 该结构可能被 SDK 缓存复用，就地改写会污染 SDK 侧状态。现在先深拷贝再改。\r\n\r\n## 关于钩子时机\r\n\r\n`chat.receive.after_process` 在 `bot.py` 中于 `chat_manager.register_message()` **之前**触发，而工具调用发生在之后的 `heartflow_message_receiver.process_message()` 链路里。因此内存里的「最近发言人」在发码工具被调用时是最新的，不存在读到过期发言人的问题。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.1",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "1.3.0",
+          "commit": "bbc7faa1c142d2eaa0648fe985321f7176afbd40",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:20:06Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.0",
+          "release_notes": "## 安全修复\r\n\r\n修复插件中心审核提出的三个阻断问题。\r\n\r\n- **余量查询工具此前没有权限校验，会把已发出的兑换码明文泄露给任何人。** 发码工具认真校验了群白名单与管理员白名单，余量查询却只看 `expose_status_tool`（默认为开），导致任意群、任意成员的「还剩多少兑换码」都能拿到最近 5 条发放记录——里面有兑换码明文、群号与领取人 QQ。兑换码本身就是凭据，这等于把发出去的码再送人一次。现在余量查询走与发码完全相同的身份确认 + 群白名单 + 管理员白名单校验，并且**只返回数量，不再回显任何发放记录**。\r\n- **身份兜底可能认错人。** 插件重启后内存里的「最近发言人」为空，此时会回退到「该会话最后一条消息的发送者」，而多人群里最后一条未必是当前请求者。现在兜底加了时间窗（新增配置项 `identity_fallback_window_seconds`，默认 90 秒），最后一条消息不够新就保守拒绝；时间戳缺失或不可读同样拒绝。设为 `0` 可完全禁用兜底。\r\n- **写盘失败仍会发码，导致同一个码发两次。** 现在写盘失败会回滚内存状态并拒绝本次发放。\r\n\r\n## 优化\r\n\r\n- 写回兑换码池时优先在磁盘上已有的 `config.toml` 文档上就地修改，保留用户在配置页里写的注释与排版；仅在文件缺失或内容损坏时，才退回用内存配置重建整份文档。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.0",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
         }
       ],
       "ignored_tags": [],
