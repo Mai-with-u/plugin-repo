@@ -2917,7 +2917,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'\n"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
         }
       ]
     },
@@ -28747,6 +28747,15 @@
           "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Sengoku.telegram-adapter'\n- 'maibot-team.telegram-adapter'"
         }
       ]
+    },
+    {
+      "id": "Qhzy1411.deepseek-web-searcher",
+      "manifest_id": "Qhzy1411.deepseek-web-searcher",
+      "repositoryUrl": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
