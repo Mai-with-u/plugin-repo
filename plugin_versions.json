@@ -28036,6 +28036,279 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "0ce69ff516e6909935ce2f79de8f6101714a3b87",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:57:32Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.2.0",
+          "release_notes": "### 修「定时自动发送没生效」——两个真 bug 叠在一起\n\n真机现象：定时轮的日志写着「本轮已搬」，群里却什么都没有。\n\n**bug 1：发送用到了过期聊天流**\n\n宿主 `chat.get_stream_by_group_id` 是 `next(...)` 取第一个匹配，而同一群存在**多条历史会话**。\n查 `chat_sessions` 表：四个目标（1 私聊 + 3 群）**每个都有两条**——一条今天活跃、一条 2026-09-19。\n于是定时发送全部发到了 9 月那批上：\n\n```\n17:50:47 发送到 c1223fac...、c045968b...、83027b25...、4d5c3167...\n         Platform IO 发送失败: driver=legacy.send.qq status=FAILED error=旧链发送失败\n17:43:45 手动那次成功: drivers: gateway:maibot-team.napcat-adapter:napcat_gateway\n```\n\n手动发送用的是消息自带的活动流，所以一直正常——这正是\"手动能发、自动发不出去\"的原因。\n\n**修法（插件侧，不动宿主）**：三层解析\n1. 入站消息里学习「群/人 → 当前活动聊天流」，落盘持久化；\n2. 缓存为空时枚举同目标的多条会话，用 `message.get_recent` 挑\"最近有消息\"的那条；\n3. 都拿不到才回退宿主的 `get_stream_by_group_id` / `get_stream_by_user_id`。\n\n**bug 2：失败被误报成成功**\n\n投递失败时 `Deliverer` 仍返回 `method=\"forward\"`，而调用方用\n`bool(sent or method == \"forward\")` 判成功 → 四个目标全失败也记成「本轮已搬」并写入已搬记录，\n记录里混进了根本没发出去的条目。现在**只看 `sent`**。\n\n新增能力声明：`chat.get_all_streams`、`message.get_recent`。实测三条解析路径断言通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.2.0",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get",
+              "chat.get_all_streams",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.8",
+          "tag": "v1.1.8",
+          "commit": "03769443222f4f7f292e326f097c4b5c06b0d7e1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:49:02Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.8",
+          "release_notes": "### 没找到就继续找\n\n原来一轮没挑到候选就直接返回\"本轮没有通过判据的候选\"，现在改成继续找：\n\n- 新增 `[retry].rounds`（默认 **3**）与 `[retry].gap_seconds`（默认 15 秒）。\n- 一轮没挑到就**换关键词/翻页重新搜**，最多试 `rounds` 轮；全都没找到才报\n  「找了 N 轮都没找到符合条件的候选」。定时轮与点播都适用。\n- 好看的 picker 会把被规则否掉的候选标记已检查，所以重试会自然往下走、不会原地打转。\n\n**代价**：搬史一轮最多 8 次搜索 + 16 次\"1 详情 + 3 页评论\"（约 70 个请求），三轮约 200 个；\n好看一轮约 6 次搜索，便宜。嫌吵就把 `rounds` 设成 1（退回原行为）或只调大 `gap_seconds`。\n\n实测：前两轮为空、第三轮命中（日志逐轮记录\"第 1/3 轮没找到…继续找\"）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.8",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "7348caebd28d4080d264bf8edd16f4cbac488b1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:47:30Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.7",
+          "release_notes": "### 点播改成不限次数，只留最小间隔护栏\n\n- **去掉冷却与每日次数**：删掉 `cooldown_minutes`（原 10 分钟）与 `daily_limit_per_group`\n  （原每群每天 3 次）——口语触发命令、搬史工具、好看工具都不再消耗每日次数、也没有冷却。\n- **只留一个最小间隔**：`min_gap_seconds`（默认 60 秒，设 0 = 完全不挡）。\n  它只挡\"刚搬完又来一条\"的贴脸连点，会回一句「刚搬过（3 秒前），间隔太短，过 57 秒再来」。\n- 搬史与好看的最小间隔**分开记**，互不影响；并发忙锁与 `permission` 权限照旧。\n- 工具**是否被调用仍由模型自己决定**（描述与权限没变），命令链保持确定性命中。\n\n实测：口语触发不再受次数限制；同群立刻重复时只被最小间隔拦下。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.7",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "53adcb7108a8019058390e125e0e4ce43bf72ec1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:32:26Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.6",
+          "release_notes": "### 完全去掉 LLM 复核\n\n删掉 1.1.4 加的那层 LLM 语义复核（按用户要求）：\n\n- 删除 `llm_review` / `llm_review_attempts` / `llm_model` 三个配置项、提示词模板与复核代码。\n- manifest 去掉 `llm.generate` 能力声明（现在声明与实现一致）。\n- 好看频道**只看规则**：关键词池 + 子分区白名单 + 屏蔽词（教程/讲解、低创剧集、直播切片）\n  + 剧集编号正则 + 时长与收藏率阈值。\n\n**为什么去掉**：它在真机上判定不稳——同一轮里一边以「标签含虚拟偶像」为由否掉候选，\n一边又放行了一条 Hololive 的 MMD；还有一轮连否三条（含 13.9 万播放的动画剪辑）后本轮空手。\n频道行为不该随模型口味飘，要收紧就改列表，不用验证模型判得对不对。\n\n实测：去掉后仍正常选出候选（鸣潮 MMD，收藏率 121%）并下载 14.6MB 720P。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.6",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.5",
+          "tag": "v1.1.5",
+          "commit": "4633c7d577abd3d99cae23040f9c9beabe4ca5e5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:29:57Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.5",
+          "release_notes": "### 按确认后的口径收敛「来点好看的」\n\n| 要 | 不要 |\n|---|---|\n| MMD/3D 纸片人舞蹈 | 低创自制动画 |\n| 动漫剪辑 MAD/AMV | 剧情/配音向短片 |\n| 手书/同人动画 | （原有）教程/讲解 |\n| **虚拟主播本身的 MMD 可以** | 但直播切片/会限/杂谈不要 |\n\n**改动**：\n\n- 关键词池换成这三类的词（MMD/手书/同人动画/MAD/AMV/动漫混剪/踩点剪辑/纸片人/虚拟主播/二创）；\n  子分区白名单去掉 **插画·绘画**（静态图向，不在你要的三类里）。\n- 屏蔽词补直播切片类：会限/直播切片/切片/录播/回放。\n- LLM 复核判据按上面这套口径重写。上一版它在真机上判定不稳——一边说\"不要，标签含虚拟偶像\"，\n  一边又放行了一条 Hololive 的 MMD；所以提示词里把\"虚拟主播本体不算问题\"写清楚了。\n\n实测：新口径选出「Hang\"tight\"」（手书，20 秒，收藏率 200%）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.5",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.8",
           "tag": "v1.0.8",
           "commit": "2fdb6751bec416fecebd6acbd26739ab7025f599",
