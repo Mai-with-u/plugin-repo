@@ -6354,6 +6354,90 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.12.5",
+          "tag": "v1.12.5",
+          "commit": "1b891ec09d1e82a84f9ff61619b475030ff557d4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:56:00Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.5",
+          "release_notes": "## 新增功能\n\n- 精简阿里百炼默认模型列表：保留千问 Image 3.0 Pro、3.0、2.0 Pro、2.0，Z-Image Turbo、可灵 v3/Omni 和当前 Vidu 图像模型，共 11 项；移除默认列表中的日期快照、早期千问和 Vidu Q2，仍支持手动添加，已有用户配置不变。\n\n## 修复功能\n\n- 修复插件扩展 WebUI 无法打开的问题：火山输出格式、提示词优化、背景模式的空字符串枚举会触发 Select.Item 异常，现改为可留空的文本输入，并保留合法值校验和平台默认行为。\n- 清理智谱生成质量字段的空选项元数据，补齐可选参数提示、英文/日文/韩文说明与 README。\n- 新增配置 Schema 空选项回归检查，覆盖顶层及嵌套字段；144 项测试全部通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.5",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "1.12.2",
           "tag": "v1.12.2",
           "commit": "e96e29127f1e89e8f30d17381fd0f2d095f03fdb",
