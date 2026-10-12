@@ -28593,7 +28593,56 @@
       "manifest_id": "github.erhan111119.mai-is-mortis",
       "repositoryUrl": "https://github.com/erhan111119/mai-is-mortis",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "c26d1f721cf077454357832d2f8b2a065fb23139",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T07:04:59Z",
+          "release_url": "https://github.com/erhan111119/mai-is-mortis/releases/tag/v1.0.2",
+          "release_notes": "**麦麦是多首的怪物。**\n\n- `config.toml` 不再进版本库：宿主首次加载插件时会按配置模型自动生成它，WebUI 保存配置也会重写它，\n  提交进去只会在保存后造成 git 冲突。改为提交模板 `config.toml.example`（同样由配置模型生成）。\n- 生成工具 `tools/generate_default_config.py` 的产物改为该模板文件，并带上一段使用说明。\n\n1.0.1：显示名改为 `mai is mortis（麦麦是多首的怪物）`；状态文件损坏不再拦插件加载；\n删掉无效的「启用指令」配置项；「详细日志」补充隐私提醒。\n\n1.0.0：模型判定加分（一次调用判完所有条件、模型只回编号）、分数满即临时换人格、到点自动切回、\n分数随时间衰减；切换时只改写本次请求的人设/说话风格/规划行为风格，不写宿主配置；\n`/人格` 支持查询、切换与重置。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-is-mortis",
+            "version": "1.0.2",
+            "name": "mai is mortis（麦麦是多首的怪物）",
+            "description": "麦麦是多首的怪物。加分的唯一来源是模型判定：插件把最近的对话交给模型，按每个人格的一句话「判定条件」回编号，命中就给对应人格加分；某个人格分数顶到阈值就临时换人格、其他人格分数清零，维持一段时间后自动切回原人格，分数还会随时间衰减。人格、判定条件、阈值、时长全部可在 WebUI 里改，支持 /人格 查看分数与手动切换。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-is-mortis",
+              "homepage": "https://github.com/erhan111119/mai-is-mortis",
+              "documentation": "https://github.com/erhan111119/mai-is-mortis/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-is-mortis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
