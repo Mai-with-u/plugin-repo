@@ -24850,6 +24850,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "3c146d96f08a3c74d6ea76c58eceac2df57f27a2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:02:09Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.0.1",
+          "release_notes": "### 修复：日报「美术素材缺失」\n\n**现象**：日报里的主题装饰图全部破图（显示成 ATRI main、TIDE CHART 等文字占位），头像和人格水印图正常。\n\n**原因**：开启云端渲染时，程序送的是一份「装饰素材仍走外链」的精简版 HTML。第三方渲染服务取不到那些素材时会**照样出图**，于是画出没有美术素材的日报；又因为拿到了图，程序不会回退到素材完整的内联版本。\n\n**修复**：云端渲染也改用素材全内联的 HTML，不再依赖第三方站点能否访问素材。\n代价是提交内容稍微变大、云端渲染略慢一点。\n\n---\n\n版本 1.0.0 以来的完整改动见仓库 `CHANGELOG.md`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.0.1",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "114.514.810"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "8368d9c4cca046f8a60fb1fd10f616c04489c02f",
