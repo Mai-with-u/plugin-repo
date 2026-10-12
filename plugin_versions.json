@@ -28753,7 +28753,121 @@
       "manifest_id": "Qhzy1411.deepseek-web-searcher",
       "repositoryUrl": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "73a287721d38f5b59e9fdc9176603252d9d73925",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T17:40:46Z",
+          "release_url": "https://github.com/Qhzy1411/Maibot-Deepseek-Web-Searcher/releases/tag/1.0.1",
+          "release_notes": "## 更新\r\n\r\n- 修正 GitHub 仓库链接并补充版权与授权说明\r\n- 修复类型标注和配置校验，消除 Pyright 诊断\r\n- 删除搜索测试命令及相关配置、说明。\r\n- 精简权限声明，补充 integration 插件类型。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Qhzy1411.deepseek-web-searcher",
+            "version": "1.0.1",
+            "name": "Deepseek联网搜索",
+            "description": "提供 DeepSeek 联网搜索与指定网页检索能力",
+            "author": {
+              "name": "Qhzy1411",
+              "url": "https://github.com/Qhzy1411"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher",
+              "homepage": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher",
+              "documentation": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher/blob/main/README.md",
+              "issues": "https://github.com/Qhzy1411/Maibot_Deepseek_Web_Searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "anthropic",
+                "version_spec": ">=0.104.0,<1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "maibot-plugin-sdk",
+                "version_spec": ">=2.5.2,<3.0.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "73a22f41327b74edf7d78c9424603e2efbf1465a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-11T16:51:55Z",
+          "release_url": "https://github.com/Qhzy1411/Maibot-Deepseek-Web-Searcher/releases/tag/1.0.0",
+          "release_notes": "### 功能\r\n- 提供 `search_and_summarize` 工具，用于联网搜索并整理结果。\r\n- 提供 `fetch_page` 工具，用于检索指定网页并返回摘要。\r\n- 支持搜索深度、搜索次数上限和搜索范围偏好。\r\n- 提供 `/deepseek_search_test` 命令，用于验证搜索功能。\r\n\r\n### 配置与注意事项\r\n- 需要配置 DeepSeek API 密钥；API 调用可能产生费用。\r\n- 网页查看通过搜索检索，不保证获取网页全文。\r\n- 支持选择网页搜索工具版本，并配置并发数和请求超时。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Qhzy1411.deepseek-web-searcher",
+            "version": "1.0.0",
+            "name": "Deepseek联网搜索",
+            "description": "提供 DeepSeek 联网搜索与指定网页检索能力",
+            "author": {
+              "name": "Qhzy1411",
+              "url": "https://github.com/Qhzy1411/Maibot_Deepseek-Web-Searcher"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Qhzy1411/Maibot_Deepseek-Web-Searcher",
+              "homepage": "https://github.com/Qhzy1411/Maibot_Deepseek-Web-Searcher",
+              "documentation": "https://github.com/Qhzy1411/Maibot_Deepseek-Web-Searcher/blob/main/README.md",
+              "issues": "https://github.com/Qhzy1411/Maibot_Deepseek-Web-Searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "anthropic",
+                "version_spec": ">=0.104.0,<1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "maibot-plugin-sdk",
+                "version_spec": ">=2.5.2,<3.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
