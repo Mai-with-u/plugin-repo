@@ -7121,25 +7121,26 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.deskpet-plugin",
-      "version": "0.6.3",
+      "version": "1.0.1",
       "name": "MaiBot Deskpet",
-      "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、表情/动作控制、视线追踪、滚轮缩放和拖拽平移。需配合 deskpet-app Electron 前端使用。",
+      "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
       "author": {
-        "name": "MaboroshiNatsu / DeepSeek-V4PRO",
+        "name": "MaboroshiNatsu",
         "url": "https://github.com/Maboroshinatsu"
       },
-      "license": "GPL-3.0",
+      "license": "MIT",
       "urls": {
         "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
-        "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin"
+        "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+        "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "999.999.999"
       },
       "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "min_version": "1.0.0",
+        "max_version": "999.999.999"
       },
       "dependencies": [
         {
@@ -7151,24 +7152,11 @@
           "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.8"
-        },
-        {
-          "type": "python_package",
-          "name": "numpy",
-          "version_spec": ">=1.24"
-        },
-        {
-          "type": "python_package",
-          "name": "sherpa-onnx",
-          "version_spec": ">=1.10"
-        },
-        {
-          "type": "python_package",
-          "name": "pynput",
-          "version_spec": ">=1.7"
         }
       ],
       "capabilities": [
+        "emoji.get_by_description",
+        "emoji.get_random",
         "llm.generate"
       ],
       "i18n": {
@@ -7309,7 +7297,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.12.3",
+      "version": "1.12.5",
       "name": "麦麦绘图",
       "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
       "author": {
@@ -8075,7 +8063,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -18023,7 +18011,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.9.6",
+      "version": "0.9.7",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18173,7 +18161,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.20.0",
+      "version": "1.20.1",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -19687,7 +19675,8 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.0.0",
+      "version": "1.0.1",
+      "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
       "author": {
@@ -20282,7 +20271,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.erhan111119.mai-repost-shit",
-      "version": "1.0.8",
+      "version": "1.2.0",
       "name": "B站搬史机（mai repost shit）",
       "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
       "author": {
@@ -20314,7 +20303,9 @@
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "maisaka.context.append",
-        "config.get"
+        "config.get",
+        "chat.get_all_streams",
+        "message.get_recent"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -20522,7 +20513,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.erhan111119.mai-is-mortis",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "name": "mai is mortis（麦麦是多首的怪物）",
       "description": "麦麦是多首的怪物。加分的唯一来源是模型判定：插件把最近的对话交给模型，按每个人格的一句话「判定条件」回编号，命中就给对应人格加分；某个人格分数顶到阈值就临时换人格、其他人格分数清零，维持一段时间后自动切回原人格，分数还会随时间衰减。人格、判定条件、阈值、时长全部可在 WebUI 里改，支持 /人格 查看分数与手动切换。",
       "author": {
@@ -20740,6 +20731,100 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "YukiSakiko.report_to_admin_plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "YukiSakiko.report_to_admin_plugin",
+      "name": "小报告",
+      "version": "1.2.0",
+      "description": "遇到不良言论、威胁或骚扰时，向指定管理员私聊或管理群转发原消息，再由麦麦通过正常回复流程汇报，支持同时发送到两处。",
+      "author": {
+        "name": "YukiSakiko",
+        "url": "https://github.com/YukiSakiko"
+      },
+      "urls": {
+        "repository": "https://github.com/YukiSakiko/report_to_admin_plugin",
+        "documentation": "https://github.com/Mai-with-u/maibot-plugin-sdk/blob/main/docs/guide.md"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "message.get_by_id",
+        "chat.open_session",
+        "send.forward",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger"
+      ],
+      "changelog": "changelog.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "houlong5071.redeem-code-distributor",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.3.4",
+      "name": "兑换码发放",
+      "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+      "author": {
+        "name": "houlong5071",
+        "url": "https://github.com/houlong5071"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/houlong5071/redeem-code-distributor",
+        "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+        "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+        "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.5.2",
+        "max_version": "999.999.999"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "puzzle",
+          "background": "#1C272C"
+        }
+      },
+      "capabilities": [
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "houlong5071.redeem-code-distributor"
+    },
+    "assets": {
+      "icon_64": "icons/houlong5071.redeem-code-distributor.webp"
     }
   }
 ]

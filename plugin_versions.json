@@ -28965,6 +28965,30 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "YukiSakiko.report_to_admin_plugin",
+      "manifest_id": "YukiSakiko.report_to_admin_plugin",
+      "repositoryUrl": "https://github.com/YukiSakiko/report_to_admin_plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.0'\n- '1.0.0'\n     ^"
+        }
+      ]
+    },
+    {
+      "id": "houlong5071.redeem-code-distributor",
+      "manifest_id": "houlong5071.redeem-code-distributor",
+      "repositoryUrl": "https://github.com/houlong5071/redeem-code-distributor",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
