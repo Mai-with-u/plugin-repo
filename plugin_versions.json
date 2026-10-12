@@ -21907,6 +21907,101 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "0.3.0",
+          "commit": "ccf4ddc430c1385349a1c575738cc4209875ac8c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T03:20:53Z",
+          "release_url": "https://github.com/KumaTea/MaiBot-Telegram-Full/releases/tag/0.3.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "name": "Telegram Full Adapter",
+            "description": "基于 Telethon (MTProto) 的 Telegram 全功能适配器，支持 Bot 与用户账号",
+            "author": {
+              "name": "KumaTea",
+              "url": "https://github.com/KumaTea"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "homepage": "https://github.com/KumaTea/MaiBot-Telegram-Full",
+              "documentation": "https://github.com/KumaTea/MaiBot-Telegram-Full/blob/main/README.md",
+              "issues": "https://github.com/KumaTea/MaiBot-Telegram-Full/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "telethon",
+                "version_spec": ">=1.45,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptg",
+                "version_spec": ">=0.4"
+              },
+              {
+                "type": "python_package",
+                "name": "markdown-it-py",
+                "version_spec": ">=3.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socks",
+                "version_spec": ">=2.4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=12"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "chat.get_all_streams",
+              "maisaka.context.append",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "kumatea.telegram-full",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "0.2.0",
           "commit": "58799cd356ad69f2b3b3cfb2e04c0ea5c59489fb",
