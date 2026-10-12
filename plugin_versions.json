@@ -6438,6 +6438,90 @@
           }
         },
         {
+          "version": "1.12.4",
+          "tag": "v1.12.4",
+          "commit": "c092496bdf0a2256d372f03ddbf8dda893d8a7c9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:46:51Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.4",
+          "release_notes": "## 新增功能\n\n- 合并 1.12.3 的 RinkoAI NAI 专用兼容、New API Chat Completion 绘图与自动端点路由能力。\n- 火山引擎方舟图片平台支持可配置 BaseURL，同一组 api_key 与 base_url 可用于普通按量调用、Token Plan、Agent Plan 或兼容网关。\n- 默认支持 Doubao-Seedream-5.0-flash、Doubao-Seedream-5.0-pro 与 Doubao-Seedream-5.0-lite 图片模型，并补齐 Seedream 4.0/4.5/5.0 的模型能力参数；本版本不接入 Seedance 视频模型。\n- OpenAI 兼容平台支持以 /v1、/api/v3、/api/plan/v3 等完整版本路径作为 API 根地址，适配方舟 OpenAI 兼容接口且不会重复拼接 /v1。\n- 火山引擎统一使用单一 models 列表；旧 unified_models、t2i_models、i2i_models 配置会自动去重合并。\n\n## 修复功能\n\n- 对齐方舟图片生成 API 请求体：移除不支持的 n 与流式参数，图生图统一使用官方 image 字段，并按模型过滤 seed、guidance_scale、输出格式、组图、提示词优化、联网搜索、透明背景与图层拆分参数。\n- 按模型限制参考图数量和组图总数，组图部分失败时保留成功图片并返回可定位的简要错误。\n- 火山图片任务能力改由模型名中的 t2i/i2i 标记和全局文生图、图生图黑名单统一判断，避免分组列表之间自动切换到非预期模型。\n- 修复 1.12.3 新增 RinkoAI 回归测试的静态检查问题，并更新 README、配置国际化与回归测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.4",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "1.12.2",
           "tag": "v1.12.2",
           "commit": "e96e29127f1e89e8f30d17381fd0f2d095f03fdb",
