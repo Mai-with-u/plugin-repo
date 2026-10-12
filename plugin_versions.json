@@ -6354,6 +6354,90 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.12.6",
+          "tag": "v1.12.6",
+          "commit": "821c031c4b78da4e87f188f5f0e0d064bf310db9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T15:48:12Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.6",
+          "release_notes": "## 新增功能\n\n- Google Gemini 增加图片分辨率档位配置，可设置宽高比与 1K、2K、4K 等输出规格；默认模型改为正式版 Gemini 图片模型。\n- 硅基流动新增 Qwen Image CFG 配置，并支持 Qwen Image Edit 2509 的三张参考图输入。\n- 补充阿里百炼 Qwen Image 2.1 系列的任务能力与参考图限制识别，可在模型列表中手动添加。\n- README 恢复原有“平台 / 文生图 / 图生图 / 说明”表格，补齐各平台、OpenAI 多实例、New API、RinkoAI、风格、NAI、ComfyUI、代理和权限额度的配置与使用说明。\n\n## 修复功能\n\n- 修复 OpenAI 图片编辑漏传审核强度的问题，统一生成与编辑的可选参数处理，正确传递布尔和复合参数，并清理 GPT Image 不支持的旧参数。\n- 清理 Google 配置中不适用于 Gemini 图片模型的 Imagen 参数，保留反向提示词内容；每个任务独立使用并关闭客户端，不发送模型内部思考图片。\n- 移除硅基流动已停用的 batch_size 和不受支持的输出格式参数，按模型区分 Kolors 引导强度与 Qwen CFG，避免向 Qwen Image Edit 传入不支持的尺寸设置。\n- 修复阿里百炼部分模型不支持独立反向字段时丢失反向内容的问题，改为合并到普通提示词。\n- 各绘图入口和备选模型统一校验参考图数量；NovelAI、ComfyUI 等单图流程不再静默忽略多余源图。\n- 修复 NovelAI 在鉴权等错误后仍换尺寸重复请求的问题，明确报告无效尺寸配置，并更新不同模型的质量增强标签。\n- 修复 ComfyUI 上传 JPEG 等源图时始终标记为 PNG 的问题，保留实际图片格式。\n- 加强火山方舟组图数量校验，扩展参数也不能突破参考图与输出图总数限制。\n- 工作流读取、大图 JSON/Base64 解析和图片校验移出事件循环，减少对其他会话绘图的影响；统一加强错误信息中密钥、图片数据和签名链接的脱敏。\n- 165 项本地回归测试全部通过，15 组 README 配置示例通过校验；Ruff、语法与差异检查通过。\n\n升级后请检查 Google 模型列表：原 Imagen 模型需要改用 Gemini 图片模型，旧的自定义模型列表不会自动替换。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.6",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "1.12.5",
           "tag": "v1.12.5",
           "commit": "1b891ec09d1e82a84f9ff61619b475030ff557d4",
