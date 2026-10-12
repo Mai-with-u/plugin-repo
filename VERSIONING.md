@@ -26,7 +26,7 @@
 
 ## 同步与故障处理
 
-每日北京时间 03:15 和 18:15，**Sync Plugin Index** 检查已登记插件的 Release。每个插件新发现的合规版本组成一个 `plugin-release` 审核批次，按发布时间取最新的最多 5 个，其余跳过。待审期间的新 Release 另开批次。定时和手动同步均跳过已收录、已有 Issue 或已跳过的版本。
+每日北京时间 02:00 和 15:00，**Sync Plugin Index** 检查已登记插件的 Release。每个插件新发现的合规版本组成一个 `plugin-release` 审核批次，按发布时间取最新的最多 5 个，其余跳过。待审期间的新 Release 另开批次。定时和手动同步均跳过已收录、已有 Issue 或已跳过的版本。
 
 麦麦检查各版本固定 commit 的源码和变更，输出逐版本 JSON 结论。`decision` 为 `pass`、已检查源码且风险列表为空的版本，经 Tag、commit 和 manifest 复核后写入 `plugin_versions.json`。整批通过后标记 `auto-approved` 并关闭 Issue。
 

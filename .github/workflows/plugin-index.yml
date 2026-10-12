@@ -11,7 +11,7 @@ on:
       - 'trusted_developers.json'
       - '.github/workflows/plugin-index.yml'
   schedule:
-    - cron: '15 10,19 * * *'
+    - cron: '0 7,18 * * *'
   workflow_dispatch:
 
 permissions:
