@@ -29096,7 +29096,120 @@
       "manifest_id": "houlong5071.redeem-code-distributor",
       "repositoryUrl": "https://github.com/houlong5071/redeem-code-distributor",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.3.4",
+          "tag": "1.3.4",
+          "commit": "8f0e306a960b6b709349985e8eba2a5a177a2ee3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:29:05Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.4",
+          "release_notes": "## 修复\r\n\r\n- **配置页「群白名单」的提示文案与实际行为矛盾。** hint 里写着「改完需要重载插件才生效」，但群白名单是发码工具在每次调用时实时读取配置判定的，改完立即生效、无需重载。这句是早期用组件 `allowed_session` 实现白名单时留下的陈旧文案，会误导用户去做无谓的重载排查。现已改正，管理员白名单也补上了同样的说明。\r\n- 顺带统一了 README 里几处生效时机的说法：「工具」分区里的余量查询开关其实是注册期行为（1.3.2 起关闭时会直接从组件列表摘掉该工具），此前被与群白名单并列为「即时生效」，现已更正；「已使用记录上限 1000 条（不影响已发出的兑换码）」也按实际语义改写。\r\n\r\n## 测试\r\n\r\n新增一组回归测试，把配置页 hint 与实际生效时机绑起来断言（群/管理员白名单必须说明立即生效、激发信号必须说明需重载），并实际验证「改完白名单不重载也生效」，防止这类文案再次漂移。测试增至 68 个用例。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.4",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.3",
+          "tag": "1.3.3",
+          "commit": "827d37ad83e1296afb03ca4949a477c4bb595b18",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:16:00Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.3",
+          "release_notes": "## 修复\r\n\r\n- **1000 条记录上限会让单调保护对最早的码失效。** 展示用的已使用记录只保留最近 1000 条，被裁掉的那些码就不在「已发集合」里了，此时把它们塞回 `available_codes` 保护认不出来。现在单独维护一份**不随展示记录裁剪**的已发码集合，并落盘保存（`[pool] issued_code_hashes`，存 sha256 前 16 位，不含明文）。这同时补上了「插件重载」缺口——此前集合只在内存里，而「重载 + 配置页陈旧保存」正是最容易复活已发码的组合。\r\n- **内存身份窗口比兜底宽三倍。** `speaker_ttl_seconds` 原为 300 秒，兜底时间窗只有 90 秒。内存路径不经过时间窗校验，可信度只押在钩子时序上。现在收敛到 90 秒与兜底同量级；窗口明显宽于兜底（>3 倍）时装载会打 warning。\r\n- **回声抑制只比对 `available_codes`。** 池子恰好没变化时，一次「只改了 `used_codes`」的真实配置更新会被误判成回声跳过。现在同时比对 `used_codes`。\r\n- **`get_components` 依赖 SDK 组件键名**，键名一变群聊限定与激发信号注入会静默失效。现在统计实际改写到的组件数，为 0 时打 warning。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.3",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
