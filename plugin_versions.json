@@ -1402,7 +1402,92 @@
       "manifest_id": "namchengwuqiu.gemini_drawer",
       "repositoryUrl": "https://github.com/namchengwuqiu/gemini_drawer",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.13.0",
+          "tag": "v1.13.0",
+          "commit": "73f4779dd6729cf7d473752fd10ede781a128e91",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T06:54:39Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.13.0",
+          "release_notes": "### 发布流程\n\n- 补齐插件市场多版本发布流程：推送 `vX.Y.Z` 或 `X.Y.Z` Tag 后，GitHub Actions 校验 Tag 与 manifest 版本一致、插件身份及必需文件，并从本更新日志提取说明创建正式 Release；已有 Tag 支持手动触发发布。README 补充市场安装、发版和历史版本发布要求，版本需经市场同步与审核收录后才会出现在安装列表中。\n\n### 新增\n\n- **渠道显式协议 `protocol`**：渠道用哪种请求格式不再只靠 URL / 模型名猜。新增 `core/protocols.py` 作为协议目录，绘图协议 `openai_chat` / `gpt_image` / `images_json` / `gemini` / `agnes_image` / `tsai`，视频协议 `openai_chat` / `seedance_video` / `agnes_video` / `tsai_video` / `gemini`，并支持 `doubao`、`openai`、`seedance` 等常见别名。`Endpoint` 新增 `protocol` 字段，`resolve_provider()` 与视频侧 `describe_video_protocol()` 都是\"显式协议优先、未设置或非法时回退自动识别\"。没写 `protocol` 的老渠道行为与之前完全一致。\n- **`/渠道设置协议 <渠道> <协议|自动>`**：为单个渠道显式指定协议，填 `自动` 清除；会校验协议与渠道类型（绘图 / 视频）是否匹配，参数缺失时列出全部可选协议。\n- **`/渠道列表` 显示协议**：每个渠道下方显示「协议: xxx」（显式）或「协议: xxx(自动)」（自动识别），识别不到的渠道提示用 `/渠道设置协议` 指定。绘图与视频的尝试日志同样带上协议及来源。\n\n### 重构\n\n- 各 provider 类增加 `protocol` 属性，注册表额外导出 `PROTOCOL_PROVIDERS` / `detect_provider()` / `describe_protocol()`，并在导入时断言与协议目录一致。\n- `core/video.py` 的 if/elif URL 判断链收敛为 `detect_video_protocol()`，分支改按协议 id 判定，判定顺序不变。\n- `core/endpoints.py` 的渠道字段元组改为 `ChannelFields` NamedTuple，`protocol` 在端点构建时即归一为规范 id。\n\n### 修复\n\n- **修复 `/images/generations` 中转返回 400 `private_media_required`**：`grok-imagine-image-2.0` 这类模型名不含 `gpt-image`、也不是 `agnes-image-` 系列，配在 `/v1/images/generations` 地址上会按注册表顺序落到豆包协议，而豆包协议把 `response_format` 写死为 `url`；部分中转（如 welfare.darkforger.com）只接受 `b64_json`，于是每次请求都被拒绝。现在 `Endpoint` 新增可选的 `response_format` 字段，由渠道配置透传到豆包协议；未配置的渠道行为不变，仍然发 `url`。响应解析与发图路径本来就支持 `data[].b64_json`，无需其他改动。\n\n### 新增\n\n- **`/渠道设置输出格式 <渠道> <url|b64_json|默认>`**：为单个渠道设置 `response_format` 覆盖，填 `默认` 清除覆盖回到协议默认值。`/渠道列表` 会在设置了覆盖的渠道后显示 `[b64_json]` 之类的标签。\n\n### 测试\n\n- 新增协议目录归一化与别名、视频协议识别、显式协议覆盖 / 回退、端点构建透传、`/渠道设置协议` 命令与 `/渠道列表` 协议标签测试。\n- 新增豆包协议输出格式默认值与渠道级覆盖、端点构建透传（绘图 / 视频）、以及 `/渠道设置输出格式` 命令的参数校验与持久化测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.13.0",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.video",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "send.command",
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
