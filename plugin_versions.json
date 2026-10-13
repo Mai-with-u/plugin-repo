@@ -2379,6 +2379,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.7.0",
+          "tag": "v2.7.0",
+          "commit": "d70c2e6277853c7c18a47e5c0f31b9f7fde158ac",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T16:31:29Z",
+          "release_url": "https://github.com/TAIY2020/group_muter_plugin/releases/tag/v2.7.0",
+          "release_notes": "## 主要更新\r\n\r\n新增斜杠静音命令与 Maisaka 上下文同步（PR #22）\r\n\r\n- 斜杠命令：使用 `@Command` 正式注册 `/muteon`、`/muteoff`，受 `mute.enable_slash_commands` 控制，组件同步失败自动回退 Hook 路径\r\n- Maisaka 上下文同步：静音/续期/解除事件（含触发者）及插件回复写入上下文，受 `mute.maisaka_context_sync_enabled` 控制\r\n- 人设占位符：LLM 回复提示词新增 `{personality}`、`{reply_style}`，读取全局人设与回复风格\r\n- 工具状态同步：`tool.enabled` 关闭时从 Planner 禁用 silence 工具，配置热更新同步组件状态",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.7.0",
+            "name": "群聊静音插件 | GroupMuter Plugin",
+            "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/group_muter_plugin",
+              "homepage": "https://github.com/TAIY2020/group_muter_plugin",
+              "documentation": "https://github.com/TAIY2020/group_muter_plugin",
+              "issues": "https://github.com/TAIY2020/group_muter_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "chat.get_group_streams",
+              "api.call",
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.webp"
+              }
+            },
+            "id": "TAIY2020.group-muter-plugin"
+          }
+        },
+        {
           "version": "2.6.2",
           "tag": "v2.6.2",
           "commit": "1105aa0df5db7214683d404fb5ef145b401042fd",
@@ -3002,7 +3066,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'\n"
         }
       ]
     },
