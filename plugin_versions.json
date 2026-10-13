@@ -9936,6 +9936,61 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.2",
+          "tag": "v1.4.2",
+          "commit": "1595f58dc57bc84e635a7889cbb1b09c698afc98",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T02:12:29Z",
+          "release_url": "https://github.com/Chi8wah/f1-info-plugin/releases/tag/v1.4.2",
+          "release_notes": "## 修复新闻摘要 JSON 格式及解析日志\n\n修复新闻模型返回的 JSON 因正文双引号未转义而无法解析、导致中文摘要降级显示 RSS 原文的问题。比如摘要中的 `称此事\"不可接受\"` 可能破坏 JSON 字符串；生成提示词现在明确要求转义，并提供使用中文引号的合法示例。\n\n- 新闻 JSON 校验失败时，在原有模型等待预算内请求一次格式修正；首次生成和修正共用预算，不延长组件总超时。\n- 补充解析失败日志：错误原因、JSON 行列位置、最多 160 字符的出错片段，以及空响应、无有效条目和模型调用失败的说明。\n- 校验 `summary` 和 `url` 必须是字符串。修正后仍失败时继续显示 RSS 原文，且不缓存失败结果。\n\n## 验证\n\n- 82 项自动化测试通过，包含未转义引号、格式修正、失败不缓存和超时预算回归；Ruff 检查通过。\n- 使用两份此前失败请求的原始新闻候选，真实调用 MiMo-Pro：分别生成并解析 8 条和 10 条中文摘要；两次首次返回均为合法 JSON，无需修正重试。\n- 当前 RSS 新闻也完成了一次真实调用验证，生成并解析 10 条摘要。\n\n更新插件后请重载插件，使新生成提示词和解析逻辑生效。\n\n**Full Changelog**: https://github.com/Chi8wah/f1-info-plugin/compare/v1.4.1...v1.4.2\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chi8wah.f1-info-plugin",
+            "version": "1.4.2",
+            "name": "F1 资讯插件",
+            "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
+            "author": {
+              "name": "chi8wah",
+              "url": "https://github.com/Chi8wah"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Chi8wah/f1-info-plugin",
+              "homepage": "https://github.com/Chi8wah/f1-info-plugin",
+              "documentation": "https://github.com/Chi8wah/f1-info-plugin/blob/main/README.md",
+              "issues": "https://github.com/Chi8wah/f1-info-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./poleposition.png"
+              }
+            }
+          }
+        },
+        {
           "version": "1.4.1",
           "tag": "v1.4.1",
           "commit": "394cfbea5c5b986782907bf2b9bc3e85c8ed11f3",
