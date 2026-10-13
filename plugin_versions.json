@@ -29626,6 +29626,166 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.13",
+          "tag": "v0.1.13",
+          "commit": "3ac6cf355281c50ddb1c7d0606f38a6bdcfe3550",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T12:29:53Z",
+          "release_url": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/releases/tag/v0.1.13",
+          "release_notes": "### 细节\r\n\r\n- 输入状态：按 SDK 解包后的聊天流列表读取真实会话，修复选择 reply 后触发输入状态 Hook 时出现 `list indices must be integers or slices, not str` 的错误。\r\n- 消息表态：同步修正聊天流与单条消息查询的返回值处理，保留查询失败原因与跨会话、账号、话题校验。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.telegram-adapter",
+            "version": "0.1.13",
+            "name": "Telegram 适配器",
+            "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "homepage": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "documentation": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/blob/main/README.md",
+              "issues": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.6,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3"
+              },
+              {
+                "type": "python_package",
+                "name": "rlottie-python",
+                "version_spec": ">=1.3.7,<2"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.12",
+          "tag": "v0.1.12",
+          "commit": "2bbdec6b9c108cafe9d61e6cc9a1face06a30889",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T10:01:19Z",
+          "release_url": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/releases/tag/v0.1.12",
+          "release_notes": "### 主要功能\r\n\r\n- 输入状态：选中 reply 并开始生成回复时显示“正在输入”，按聊天和论坛话题刷新，实际发送前停止刷新，Telegram 收到回复后清除提示；断开连接或刷新超过 180 秒时结束任务。\r\n- 消息表态：新增插件工具 `telegram_react_message`，供麦麦自主设置、替换或撤销表态；通过 SDK 查询真实聊天流和目标消息，校验账号、聊天和已记录的话题归属，保留 Telegram 原始失败原因。\r\n\r\n### 细节\r\n\r\n- 工具作用域：表态工具声明 `platforms=\"telegram\"`，支持作用域的宿主仅在 Telegram 聊天展示和执行。\r\n- 输入状态：每 4 秒刷新一次，状态接口失败记录警告，不影响实际消息收发。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.telegram-adapter",
+            "version": "0.1.12",
+            "name": "Telegram 适配器",
+            "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "homepage": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "documentation": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/blob/main/README.md",
+              "issues": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.6,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3"
+              },
+              {
+                "type": "python_package",
+                "name": "rlottie-python",
+                "version_spec": ">=1.3.7,<2"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.11",
           "tag": "v0.1.11",
           "commit": "5a537144d76eb5741cde22a7635f071493e12f14",
@@ -29782,7 +29942,7 @@
         {
           "tag": "v0.1.9",
           "version": "0.1.9",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Sengoku.telegram-adapter'\n- 'maibot-team.telegram-adapter'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Sengoku.telegram-adapter'\n- 'maibot-team.telegram-adapter'\n"
         }
       ]
     },
