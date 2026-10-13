@@ -8063,7 +8063,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -15399,7 +15399,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maitu.photo-studio",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "name": "麦麦写真",
       "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
       "author": {
@@ -15414,11 +15414,11 @@
         "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
       },
       "host_application": {
-        "min_version": "1.1.4",
+        "min_version": "1.3.6",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.7.1",
+        "min_version": "2.12.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -15441,6 +15441,7 @@
         "message.get_recent",
         "config.get",
         "llm.generate",
+        "webui.claim_upload",
         "maisaka.context.append",
         "maisaka.proactive.trigger"
       ],
@@ -19516,7 +19517,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.token-usage-report",
-      "version": "1.10.0",
+      "version": "1.10.1",
       "name": "Token 用量统计与播报",
       "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
       "author": {
@@ -20739,7 +20740,7 @@
       "manifest_version": 2,
       "id": "YukiSakiko.report_to_admin_plugin",
       "name": "小报告",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "遇到不良言论、威胁或骚扰时，向指定管理员私聊或管理群转发原消息，再由麦麦通过正常回复流程汇报，支持同时发送到两处。",
       "author": {
         "name": "YukiSakiko",
@@ -20750,6 +20751,12 @@
         "documentation": "https://github.com/Mai-with-u/maibot-plugin-sdk/blob/main/docs/guide.md"
       },
       "license": "MIT",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.webp"
+        }
+      },
       "host_application": {
         "min_version": "1.3.6",
         "max_version": "1.3.99"
@@ -20773,6 +20780,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/YukiSakiko.report_to_admin_plugin.webp"
     }
   },
   {
