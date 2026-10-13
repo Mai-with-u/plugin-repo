@@ -24425,6 +24425,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.10.1",
+          "tag": "1.10.1",
+          "commit": "3da19a52917cc8216eb9a9e3a0594d219091e7b3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T23:27:28Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.10.1",
+          "release_notes": "## [1.10.1]\r\n\r\n### 细节\r\n\r\n- 文档：把「指令词 `/token`」的等价事实写清楚 —— `/token` 与 `/tokens` 一直是**同一个指令的两个写法**（正则 `^/(?:token|tokens)`），但此前多处只写了 `/token`，容易被误读成只支持一种。现已在 `/token` 用法提示（`_USAGE_TEXT`）、`@Command` 的指令说明、配置页「启用指令」的 hint、README §3.1 / §4.7 与模块注释里统一标注「`/tokens` 等效」，README 示例表新增一行 `/tokens all 今日`。\r\n- 无行为变更：命令正则、权限判定、发送逻辑一律未动；纯文案修正。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.10.1",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.10.0",
           "tag": "1.10.0",
           "commit": "199ff3786223cbbffeb81f82d577a2aee388be15",
@@ -24771,7 +24839,7 @@
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.7.1'\n- '1.0.0'\n     ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'1.7.1' !== '1.0.0'\n"
         }
       ]
     },
