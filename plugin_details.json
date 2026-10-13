@@ -1721,7 +1721,7 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.6.2",
+      "version": "2.7.0",
       "name": "群聊静音插件 | GroupMuter Plugin",
       "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
@@ -1750,8 +1750,12 @@
         "frequency.set_adjust",
         "chat.get_group_streams",
         "api.call",
+        "config.get",
+        "component.enable",
+        "component.disable",
         "llm.generate",
-        "message.get_recent"
+        "message.get_recent",
+        "maisaka.context.append"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8078,7 +8082,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
