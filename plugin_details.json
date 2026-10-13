@@ -1464,7 +1464,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.13.0",
+      "version": "1.14.1",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -6855,7 +6855,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.5",
+      "version": "1.1.7",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -7134,6 +7134,7 @@
         "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
         "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
       },
+      "plugin_type": "adapter",
       "host_application": {
         "min_version": "1.0.0",
         "max_version": "999.999.999"
@@ -7152,12 +7153,26 @@
           "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.8"
+        },
+        {
+          "type": "python_package",
+          "name": "numpy",
+          "version_spec": ">=1.24"
+        },
+        {
+          "type": "python_package",
+          "name": "sherpa-onnx",
+          "version_spec": ">=1.10"
+        },
+        {
+          "type": "python_package",
+          "name": "pynput",
+          "version_spec": ">=1.7"
         }
       ],
       "capabilities": [
         "emoji.get_by_description",
-        "emoji.get_random",
-        "llm.generate"
+        "emoji.get_random"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8776,7 +8791,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
       "author": {
@@ -17689,7 +17704,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.10.0",
+      "version": "2.11.0",
       "name": "中V歌词识别 · 歌曲库",
       "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
@@ -20068,7 +20083,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.file-reader",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "文件读取（File Reader）",
       "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/csv/代码/文本等），分块向量化后按语义检索，把最相关内容注入 LLM 上下文，实现低开销的文件问答。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
       "author": {
@@ -20272,7 +20287,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.erhan111119.mai-repost-shit",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "B站搬史机（mai repost shit）",
       "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
       "author": {
@@ -20620,7 +20635,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-team.telegram-adapter",
-      "version": "0.1.11",
+      "version": "0.1.13",
       "name": "Telegram 适配器",
       "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
       "author": {
@@ -20676,7 +20691,10 @@
           "version_spec": ">=1.3.7,<2"
         }
       ],
-      "capabilities": [],
+      "capabilities": [
+        "chat.get_all_streams",
+        "message.get_by_id"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -20835,6 +20853,174 @@
     },
     "assets": {
       "icon_64": "icons/houlong5071.redeem-code-distributor.webp"
+    }
+  },
+  {
+    "id": "mizuku003.tieba-share",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mizuku003.tieba-share",
+      "version": "1.0.9",
+      "name": "麦麦贴吧搬石",
+      "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+      "author": {
+        "name": "mizuku003",
+        "url": "https://github.com/mizuku003"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/mizuku003/maibot-tieba-share",
+        "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+        "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+        "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.26.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "render.html2png",
+        "send.image",
+        "send.text",
+        "send.forward",
+        "send.custom",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "hammer"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/mizuku003.tieba-share.webp"
+    }
+  },
+  {
+    "id": "top.launchpadx.maibot.xchat_adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.2.0",
+      "name": "XChat Adapter",
+      "description": "通过 X Chat API 接入 MaiBot 的加密私信适配器",
+      "author": {
+        "name": "启动台LaunchPad",
+        "url": "https://github.com/launchpad001"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/launchpad001/MaiBot-XChat-Adapter",
+        "documentation": "https://github.com/launchpad001/MaiBot-XChat-Adapter"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "chatxdk",
+          "version_spec": ">=0.1.0"
+        }
+      ],
+      "capabilities": [
+        "chat.open_session"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US",
+          "ja-JP",
+          "ko-KR"
+        ]
+      },
+      "id": "top.launchpadx.maibot.xchat_adapter"
+    }
+  },
+  {
+    "id": "cssqy.mai-meal-card",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "cssqy.mai-meal-card",
+      "version": "1.4.0",
+      "plugin_type": "automation",
+      "name": "麦麦饭卡",
+      "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+      "author": {
+        "name": "CSSQY",
+        "url": "https://github.com/CSSQY"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/CSSQY/mai_meal_card",
+        "homepage": "https://github.com/CSSQY/mai_meal_card",
+        "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+        "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.99.99"
+      },
+      "changelog": "CHANGELOG.md",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=12.3.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "config.get",
+        "llm.generate",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]

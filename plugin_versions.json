@@ -1401,7 +1401,7 @@
       "id": "namchengwuqiu.gemini_drawer",
       "manifest_id": "namchengwuqiu.gemini_drawer",
       "repositoryUrl": "https://github.com/namchengwuqiu/gemini_drawer",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -24913,7 +24913,7 @@
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\n\n'1.7.1' !== '1.0.0'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.7.1'\n- '1.0.0'\n     ^"
         }
       ]
     },
@@ -29891,7 +29891,7 @@
         {
           "tag": "1.2.0",
           "version": "1.2.0",
-          "error": "Tag 与 manifest.version 不一致\n\n'1.2.1' !== '1.2.0'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.1'\n- '1.2.0'\n       ^"
         }
       ]
     },
@@ -30182,6 +30182,33 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mizuku003.tieba-share",
+      "manifest_id": "mizuku003.tieba-share",
+      "repositoryUrl": "https://github.com/mizuku003/maibot-tieba-share",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "top.launchpadx.maibot.xchat_adapter",
+      "manifest_id": "top.launchpadx.maibot.xchat_adapter",
+      "repositoryUrl": "https://github.com/launchpad001/MaiBot-XChat-Adapter",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "cssqy.mai-meal-card",
+      "manifest_id": "cssqy.mai-meal-card",
+      "repositoryUrl": "https://github.com/CSSQY/mai_meal_card",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
