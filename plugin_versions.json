@@ -17221,7 +17221,81 @@
       "manifest_id": "maitu.photo-studio",
       "repositoryUrl": "https://github.com/tsuiraku9/maitu-photo-studio",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "04545920a61a9c27e5552ddad9ba308e6f6996aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T17:45:13Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.2.0",
+          "release_notes": "## 麦麦写真 v0.2.0\n\n- 新增官方 WebUI“麦麦写真”工作区，提供参考图库和参考任务管理页面。\n- 支持人物、服装、场景参考图的上传、搜索、筛选、预览、改名、标签编辑及批量启停、删除。\n- 支持在网页中导入打标、提取参考图、重标、重生成和按人格生成人物参考。\n- 展示网页、QQ、自动补库及启动扫描的参考任务，网页任务支持取消和重试。\n- 优化重复图片处理、安全删除和任务提交回执；保留原有 QQ 命令与生图工具。\n\n需要 MaiBot 1.3.6 及以上、Plugin SDK 2.12.0 及以上。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.2.0",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
