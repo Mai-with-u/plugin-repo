@@ -1401,8 +1401,93 @@
       "id": "namchengwuqiu.gemini_drawer",
       "manifest_id": "namchengwuqiu.gemini_drawer",
       "repositoryUrl": "https://github.com/namchengwuqiu/gemini_drawer",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.13.0",
+          "tag": "v1.13.0",
+          "commit": "73f4779dd6729cf7d473752fd10ede781a128e91",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T06:54:39Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.13.0",
+          "release_notes": "### 发布流程\n\n- 补齐插件市场多版本发布流程：推送 `vX.Y.Z` 或 `X.Y.Z` Tag 后，GitHub Actions 校验 Tag 与 manifest 版本一致、插件身份及必需文件，并从本更新日志提取说明创建正式 Release；已有 Tag 支持手动触发发布。README 补充市场安装、发版和历史版本发布要求，版本需经市场同步与审核收录后才会出现在安装列表中。\n\n### 新增\n\n- **渠道显式协议 `protocol`**：渠道用哪种请求格式不再只靠 URL / 模型名猜。新增 `core/protocols.py` 作为协议目录，绘图协议 `openai_chat` / `gpt_image` / `images_json` / `gemini` / `agnes_image` / `tsai`，视频协议 `openai_chat` / `seedance_video` / `agnes_video` / `tsai_video` / `gemini`，并支持 `doubao`、`openai`、`seedance` 等常见别名。`Endpoint` 新增 `protocol` 字段，`resolve_provider()` 与视频侧 `describe_video_protocol()` 都是\"显式协议优先、未设置或非法时回退自动识别\"。没写 `protocol` 的老渠道行为与之前完全一致。\n- **`/渠道设置协议 <渠道> <协议|自动>`**：为单个渠道显式指定协议，填 `自动` 清除；会校验协议与渠道类型（绘图 / 视频）是否匹配，参数缺失时列出全部可选协议。\n- **`/渠道列表` 显示协议**：每个渠道下方显示「协议: xxx」（显式）或「协议: xxx(自动)」（自动识别），识别不到的渠道提示用 `/渠道设置协议` 指定。绘图与视频的尝试日志同样带上协议及来源。\n\n### 重构\n\n- 各 provider 类增加 `protocol` 属性，注册表额外导出 `PROTOCOL_PROVIDERS` / `detect_provider()` / `describe_protocol()`，并在导入时断言与协议目录一致。\n- `core/video.py` 的 if/elif URL 判断链收敛为 `detect_video_protocol()`，分支改按协议 id 判定，判定顺序不变。\n- `core/endpoints.py` 的渠道字段元组改为 `ChannelFields` NamedTuple，`protocol` 在端点构建时即归一为规范 id。\n\n### 修复\n\n- **修复 `/images/generations` 中转返回 400 `private_media_required`**：`grok-imagine-image-2.0` 这类模型名不含 `gpt-image`、也不是 `agnes-image-` 系列，配在 `/v1/images/generations` 地址上会按注册表顺序落到豆包协议，而豆包协议把 `response_format` 写死为 `url`；部分中转（如 welfare.darkforger.com）只接受 `b64_json`，于是每次请求都被拒绝。现在 `Endpoint` 新增可选的 `response_format` 字段，由渠道配置透传到豆包协议；未配置的渠道行为不变，仍然发 `url`。响应解析与发图路径本来就支持 `data[].b64_json`，无需其他改动。\n\n### 新增\n\n- **`/渠道设置输出格式 <渠道> <url|b64_json|默认>`**：为单个渠道设置 `response_format` 覆盖，填 `默认` 清除覆盖回到协议默认值。`/渠道列表` 会在设置了覆盖的渠道后显示 `[b64_json]` 之类的标签。\n\n### 测试\n\n- 新增协议目录归一化与别名、视频协议识别、显式协议覆盖 / 回退、端点构建透传、`/渠道设置协议` 命令与 `/渠道列表` 协议标签测试。\n- 新增豆包协议输出格式默认值与渠道级覆盖、端点构建透传（绘图 / 视频）、以及 `/渠道设置输出格式` 命令的参数校验与持久化测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.13.0",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.video",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "send.command",
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -2294,6 +2379,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.7.0",
+          "tag": "v2.7.0",
+          "commit": "d70c2e6277853c7c18a47e5c0f31b9f7fde158ac",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T16:31:29Z",
+          "release_url": "https://github.com/TAIY2020/group_muter_plugin/releases/tag/v2.7.0",
+          "release_notes": "## 主要更新\r\n\r\n新增斜杠静音命令与 Maisaka 上下文同步（PR #22）\r\n\r\n- 斜杠命令：使用 `@Command` 正式注册 `/muteon`、`/muteoff`，受 `mute.enable_slash_commands` 控制，组件同步失败自动回退 Hook 路径\r\n- Maisaka 上下文同步：静音/续期/解除事件（含触发者）及插件回复写入上下文，受 `mute.maisaka_context_sync_enabled` 控制\r\n- 人设占位符：LLM 回复提示词新增 `{personality}`、`{reply_style}`，读取全局人设与回复风格\r\n- 工具状态同步：`tool.enabled` 关闭时从 Planner 禁用 silence 工具，配置热更新同步组件状态",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.7.0",
+            "name": "群聊静音插件 | GroupMuter Plugin",
+            "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/group_muter_plugin",
+              "homepage": "https://github.com/TAIY2020/group_muter_plugin",
+              "documentation": "https://github.com/TAIY2020/group_muter_plugin",
+              "issues": "https://github.com/TAIY2020/group_muter_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "chat.get_group_streams",
+              "api.call",
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.webp"
+              }
+            },
+            "id": "TAIY2020.group-muter-plugin"
+          }
+        },
+        {
           "version": "2.6.2",
           "tag": "v2.6.2",
           "commit": "1105aa0df5db7214683d404fb5ef145b401042fd",
@@ -2917,7 +3066,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'\n"
         }
       ]
     },
@@ -4367,6 +4516,134 @@
       "repositoryUrl": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "a93a0ad1e27e75e699a4e10571a2cda2884a81cd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T12:33:30Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.7",
+          "release_notes": "### 细节\r\n\r\n- 工具作用域：全部 9 个 QQ 工具声明 `platforms=\"qq\"`，支持平台作用域的宿主仅在 QQ 聊天展示和执行，包含主动私聊、消息查询、戳一戳、撤回、禁言、表态、聊天流列表与合并转发。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.7",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "e6337f8e08950ddec57151dc5f673ea5a10850f3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T09:51:32Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.6",
+          "release_notes": "### 细节\r\n\r\n- 提及发送：合并群聊中相邻的同目标 @，包含中间仅有空格或制表符的情况；真实 @ 去重不受文本转换开关影响，正文、换行和不同目标保持原样。\r\n- 禁言通知：查询全体禁言状态时强制刷新群信息，避免旧缓存导致误报解除；查询失败、状态字段缺失或格式无效时保留禁言记录，仅确认解除后发送通知。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.6",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
         {
           "version": "1.1.5",
           "tag": "v1.1.5",
@@ -6353,6 +6630,258 @@
       "repositoryUrl": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.12.6",
+          "tag": "v1.12.6",
+          "commit": "821c031c4b78da4e87f188f5f0e0d064bf310db9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T15:48:12Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.6",
+          "release_notes": "## 新增功能\n\n- Google Gemini 增加图片分辨率档位配置，可设置宽高比与 1K、2K、4K 等输出规格；默认模型改为正式版 Gemini 图片模型。\n- 硅基流动新增 Qwen Image CFG 配置，并支持 Qwen Image Edit 2509 的三张参考图输入。\n- 补充阿里百炼 Qwen Image 2.1 系列的任务能力与参考图限制识别，可在模型列表中手动添加。\n- README 恢复原有“平台 / 文生图 / 图生图 / 说明”表格，补齐各平台、OpenAI 多实例、New API、RinkoAI、风格、NAI、ComfyUI、代理和权限额度的配置与使用说明。\n\n## 修复功能\n\n- 修复 OpenAI 图片编辑漏传审核强度的问题，统一生成与编辑的可选参数处理，正确传递布尔和复合参数，并清理 GPT Image 不支持的旧参数。\n- 清理 Google 配置中不适用于 Gemini 图片模型的 Imagen 参数，保留反向提示词内容；每个任务独立使用并关闭客户端，不发送模型内部思考图片。\n- 移除硅基流动已停用的 batch_size 和不受支持的输出格式参数，按模型区分 Kolors 引导强度与 Qwen CFG，避免向 Qwen Image Edit 传入不支持的尺寸设置。\n- 修复阿里百炼部分模型不支持独立反向字段时丢失反向内容的问题，改为合并到普通提示词。\n- 各绘图入口和备选模型统一校验参考图数量；NovelAI、ComfyUI 等单图流程不再静默忽略多余源图。\n- 修复 NovelAI 在鉴权等错误后仍换尺寸重复请求的问题，明确报告无效尺寸配置，并更新不同模型的质量增强标签。\n- 修复 ComfyUI 上传 JPEG 等源图时始终标记为 PNG 的问题，保留实际图片格式。\n- 加强火山方舟组图数量校验，扩展参数也不能突破参考图与输出图总数限制。\n- 工作流读取、大图 JSON/Base64 解析和图片校验移出事件循环，减少对其他会话绘图的影响；统一加强错误信息中密钥、图片数据和签名链接的脱敏。\n- 165 项本地回归测试全部通过，15 组 README 配置示例通过校验；Ruff、语法与差异检查通过。\n\n升级后请检查 Google 模型列表：原 Imagen 模型需要改用 Gemini 图片模型，旧的自定义模型列表不会自动替换。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.6",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.12.5",
+          "tag": "v1.12.5",
+          "commit": "1b891ec09d1e82a84f9ff61619b475030ff557d4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:56:00Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.5",
+          "release_notes": "## 新增功能\n\n- 精简阿里百炼默认模型列表：保留千问 Image 3.0 Pro、3.0、2.0 Pro、2.0，Z-Image Turbo、可灵 v3/Omni 和当前 Vidu 图像模型，共 11 项；移除默认列表中的日期快照、早期千问和 Vidu Q2，仍支持手动添加，已有用户配置不变。\n\n## 修复功能\n\n- 修复插件扩展 WebUI 无法打开的问题：火山输出格式、提示词优化、背景模式的空字符串枚举会触发 Select.Item 异常，现改为可留空的文本输入，并保留合法值校验和平台默认行为。\n- 清理智谱生成质量字段的空选项元数据，补齐可选参数提示、英文/日文/韩文说明与 README。\n- 新增配置 Schema 空选项回归检查，覆盖顶层及嵌套字段；144 项测试全部通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.5",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.12.4",
+          "tag": "v1.12.4",
+          "commit": "c092496bdf0a2256d372f03ddbf8dda893d8a7c9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:46:51Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v1.12.4",
+          "release_notes": "## 新增功能\n\n- 合并 1.12.3 的 RinkoAI NAI 专用兼容、New API Chat Completion 绘图与自动端点路由能力。\n- 火山引擎方舟图片平台支持可配置 BaseURL，同一组 api_key 与 base_url 可用于普通按量调用、Token Plan、Agent Plan 或兼容网关。\n- 默认支持 Doubao-Seedream-5.0-flash、Doubao-Seedream-5.0-pro 与 Doubao-Seedream-5.0-lite 图片模型，并补齐 Seedream 4.0/4.5/5.0 的模型能力参数；本版本不接入 Seedance 视频模型。\n- OpenAI 兼容平台支持以 /v1、/api/v3、/api/plan/v3 等完整版本路径作为 API 根地址，适配方舟 OpenAI 兼容接口且不会重复拼接 /v1。\n- 火山引擎统一使用单一 models 列表；旧 unified_models、t2i_models、i2i_models 配置会自动去重合并。\n\n## 修复功能\n\n- 对齐方舟图片生成 API 请求体：移除不支持的 n 与流式参数，图生图统一使用官方 image 字段，并按模型过滤 seed、guidance_scale、输出格式、组图、提示词优化、联网搜索、透明背景与图层拆分参数。\n- 按模型限制参考图数量和组图总数，组图部分失败时保留成功图片并返回可定位的简要错误。\n- 火山图片任务能力改由模型名中的 t2i/i2i 标记和全局文生图、图生图黑名单统一判断，避免分组列表之间自动切换到非预期模型。\n- 修复 1.12.3 新增 RinkoAI 回归测试的静态检查问题，并更新 README、配置国际化与回归测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "1.12.4",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
         {
           "version": "1.12.2",
           "tag": "v1.12.2",
@@ -9598,6 +10127,61 @@
       "repositoryUrl": "https://github.com/Chi8wah/f1-info-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.4.2",
+          "tag": "v1.4.2",
+          "commit": "1595f58dc57bc84e635a7889cbb1b09c698afc98",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T02:12:29Z",
+          "release_url": "https://github.com/Chi8wah/f1-info-plugin/releases/tag/v1.4.2",
+          "release_notes": "## 修复新闻摘要 JSON 格式及解析日志\n\n修复新闻模型返回的 JSON 因正文双引号未转义而无法解析、导致中文摘要降级显示 RSS 原文的问题。比如摘要中的 `称此事\"不可接受\"` 可能破坏 JSON 字符串；生成提示词现在明确要求转义，并提供使用中文引号的合法示例。\n\n- 新闻 JSON 校验失败时，在原有模型等待预算内请求一次格式修正；首次生成和修正共用预算，不延长组件总超时。\n- 补充解析失败日志：错误原因、JSON 行列位置、最多 160 字符的出错片段，以及空响应、无有效条目和模型调用失败的说明。\n- 校验 `summary` 和 `url` 必须是字符串。修正后仍失败时继续显示 RSS 原文，且不缓存失败结果。\n\n## 验证\n\n- 82 项自动化测试通过，包含未转义引号、格式修正、失败不缓存和超时预算回归；Ruff 检查通过。\n- 使用两份此前失败请求的原始新闻候选，真实调用 MiMo-Pro：分别生成并解析 8 条和 10 条中文摘要；两次首次返回均为合法 JSON，无需修正重试。\n- 当前 RSS 新闻也完成了一次真实调用验证，生成并解析 10 条摘要。\n\n更新插件后请重载插件，使新生成提示词和解析逻辑生效。\n\n**Full Changelog**: https://github.com/Chi8wah/f1-info-plugin/compare/v1.4.1...v1.4.2\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chi8wah.f1-info-plugin",
+            "version": "1.4.2",
+            "name": "F1 资讯插件",
+            "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
+            "author": {
+              "name": "chi8wah",
+              "url": "https://github.com/Chi8wah"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Chi8wah/f1-info-plugin",
+              "homepage": "https://github.com/Chi8wah/f1-info-plugin",
+              "documentation": "https://github.com/Chi8wah/f1-info-plugin/blob/main/README.md",
+              "issues": "https://github.com/Chi8wah/f1-info-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./poleposition.png"
+              }
+            }
+          }
+        },
         {
           "version": "1.4.1",
           "tag": "v1.4.1",
@@ -16968,8 +17552,82 @@
       "id": "maitu.photo-studio",
       "manifest_id": "maitu.photo-studio",
       "repositoryUrl": "https://github.com/tsuiraku9/maitu-photo-studio",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "04545920a61a9c27e5552ddad9ba308e6f6996aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T17:45:13Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.2.0",
+          "release_notes": "## 麦麦写真 v0.2.0\n\n- 新增官方 WebUI“麦麦写真”工作区，提供参考图库和参考任务管理页面。\n- 支持人物、服装、场景参考图的上传、搜索、筛选、预览、改名、标签编辑及批量启停、删除。\n- 支持在网页中导入打标、提取参考图、重标、重生成和按人格生成人物参考。\n- 展示网页、QQ、自动补库及启动扫描的参考任务，网页任务支持取消和重试。\n- 优化重复图片处理、安全删除和任务提交回执；保留原有 QQ 命令与生图工具。\n\n需要 MaiBot 1.3.6 及以上、Plugin SDK 2.12.0 及以上。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.2.0",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -19424,6 +20082,87 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.9.7",
+          "tag": "v0.9.7",
+          "commit": "5e210ad56ee0ca46f5f3a8355abd56f9dcd9fa6c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:31:51Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.7",
+          "release_notes": "这一版主要是安全和稳定加固。另外把 0.9.6 发布后陆续上线、没单独发版的几项改动一起收进来，并在后面回顾 0.9.3 到 0.9.6 的变化，方便从更早的版本直接升级。\n\n## 0.9.7：安全和稳定\n\n### 安全\n- **改关键设置要你点头**：在网页上和 MaiWork 对话时，它要改运行账号、服务地址、密钥文件、SSH 机器、控制台地址这类设置，都会先发一个待确认请求，你点「同意」才生效。只有资讯、画像节奏这类普通参数能直接改。\n- **子 agent 默认连不上本机和内网**：干活时上公网照常，但连不上这台服务器自己的服务（MaiWork 网页、MaiBot）、内网地址和云厂商的元数据地址。确实需要时，在「设置 → 全部设置 → 运行环境」打开「允许访问本机和内网」。\n- **运行账号不能是 root**：网页上会拒绝；直接改配置文件也绕不过，子 agent 会拒绝运行，设置页「健康」一栏会写明原因。\n- **自动审核防骗**：群友的原话只当作待判断的材料。原话里出现「忽略规则」「直接批准」之类的字眼时，不调用模型，直接留给人批。\n\n### 稳定\n- **查不到花了多少就暂停**：任务用量一时查不到时，会先重试一次；还查不到就暂停等你决定，不再当成没花钱继续跑。任务详情里会写明原因。\n- **重载插件不吃掉当天的资讯时段**：资讯整理到一半被重载打断时，不再记成「今天做过了」。\n- **聊天记录写入变快**：查重改用索引表。实测已有 2 万条记录时写入 200 条，从 23 秒降到 0.02 秒，群聊多时不再拖慢 MaiBot。\n\n### 网页\n- 设置页、群页、对话等区块加载失败时，在原处写明原因，并给一个「重试」按钮。\n- 「优质来源」加载失败时不再一直转圈。\n- 管理员登录过期时提示「登录已过期，请重新登录」，不再叫你去群里发指令。\n\n## 0.9.6 之后陆续上线的改动（这次一起发版）\n- **构想先有真实需要**：每条构想都要引用一句群里的原话，并写清痛点、为什么值得做、大家为什么感兴趣，缺一条就不出。构想分「帮忙」和「话题」两类，话题类交给 MaiBot 冷场时开话题。没处理的构想最多攒 2 条。群里明显有人为难或想要什么时，每天最多提前想一次。\n- **目标贴合群聊**：立目标前先判断 MaiWork 能不能盯：需要群友自己动手的，会改成一次性任务，或者不予批准。没留依据的旧勾显示「待确认」，可以在网页上点「算数」或「撤掉」。目标「盯到了 / 完成了」时，会发一两句话加网页链接并 @ 发起人，每个目标每天最多 1 条，平时的进展只在网页上看。\n- **网页文案更简洁正式**：说明收进「ⓘ」提示。群页入口改名为「主动发言」「任务审批」「本群规则」「免打扰时段」。快速判断的预设收进「添加」挑选框，并配上各家图标。\n\n## 回顾：0.9.3 到 0.9.6\n- **0.9.6**：在群里发 `/mw 帮助` 能看到全部指令，每条都带例子。指令回复会告诉你下一步怎么做。漏写 `do` 时会回一行能直接照抄的正确写法。网页群页多了「群指令」卡片。\n- **0.9.5**：派活判断更快：群里 @ 的消息来一条马上判，Jev 判断时会看前面几句群聊，待批准的请求里写明判断依据。新指令 `/mw do 要做的事` 可以直接派活，引用一条消息再发 `/mw do`，会把引用的文字和图片一起交给任务。\n- **0.9.4**：快速判断可以接多家服务（TypeSafe、OpenRouter、OpenCode、Cloudflare 等都有预设，也能自己加）。没配 Jev、或 Jev 拿不准时，用模型快速判断 @ 的消息是不是派活。\n- **0.9.3**：任务按你的原话逐条验收，卡住会停下来问你，不硬做。交付说明先给结论并 @ 你本人，文件发不出去时给能点开的网页。资讯卡片更短更干净，带本群二维码。长任务和长对话更稳：原始记录和压缩提要分开存。\n\n## 升级\n- 数据库会自动升到库号 40。从 0.9.6 升上来最多连跑三步：\n  - 给构想加「类型」；\n  - 给请求和目标加「能不能做成」的判断；\n  - 新建一张聊天记录查重表，并把已有记录登记进去。\n\n  这三步都只加不删。\n- 配置版本升到 0.5.0，新加的 `[environments] local_network` 默认关，不用改配置。\n- **如果你的 `run_as` 写的是 `root`，升级后子 agent 会拒绝运行**，请改成专用账号（例如 `maiwork`）。\n- 升级前请备份插件和整个数据目录，覆盖插件时保留自己的 `config.toml`。**回滚请连同升级前的数据备份一起恢复**。\n- 宿主适配范围不变（最高 1.3.99）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.7",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.9.6",
           "tag": "v0.9.6",
@@ -24092,6 +24831,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.10.1",
+          "tag": "1.10.1",
+          "commit": "3da19a52917cc8216eb9a9e3a0594d219091e7b3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T23:27:28Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.10.1",
+          "release_notes": "## [1.10.1]\r\n\r\n### 细节\r\n\r\n- 文档：把「指令词 `/token`」的等价事实写清楚 —— `/token` 与 `/tokens` 一直是**同一个指令的两个写法**（正则 `^/(?:token|tokens)`），但此前多处只写了 `/token`，容易被误读成只支持一种。现已在 `/token` 用法提示（`_USAGE_TEXT`）、`@Command` 的指令说明、配置页「启用指令」的 hint、README §3.1 / §4.7 与模块注释里统一标注「`/tokens` 等效」，README 示例表新增一行 `/tokens all 今日`。\r\n- 无行为变更：命令正则、权限判定、发送逻辑一律未动；纯文案修正。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.10.1",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.10.0",
           "tag": "1.10.0",
           "commit": "199ff3786223cbbffeb81f82d577a2aee388be15",
@@ -24849,6 +25656,67 @@
       "repositoryUrl": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "3c146d96f08a3c74d6ea76c58eceac2df57f27a2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T14:02:09Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.0.1",
+          "release_notes": "### 修复：日报「美术素材缺失」\n\n**现象**：日报里的主题装饰图全部破图（显示成 ATRI main、TIDE CHART 等文字占位），头像和人格水印图正常。\n\n**原因**：开启云端渲染时，程序送的是一份「装饰素材仍走外链」的精简版 HTML。第三方渲染服务取不到那些素材时会**照样出图**，于是画出没有美术素材的日报；又因为拿到了图，程序不会回退到素材完整的内联版本。\n\n**修复**：云端渲染也改用素材全内联的 HTML，不再依赖第三方站点能否访问素材。\n代价是提交内容稍微变大、云端渲染略慢一点。\n\n---\n\n版本 1.0.0 以来的完整改动见仓库 `CHANGELOG.md`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.0.1",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "114.514.810"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
         {
           "version": "1.0.0",
           "tag": "v1.0.0",
@@ -27726,6 +28594,279 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "0ce69ff516e6909935ce2f79de8f6101714a3b87",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:57:32Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.2.0",
+          "release_notes": "### 修「定时自动发送没生效」——两个真 bug 叠在一起\n\n真机现象：定时轮的日志写着「本轮已搬」，群里却什么都没有。\n\n**bug 1：发送用到了过期聊天流**\n\n宿主 `chat.get_stream_by_group_id` 是 `next(...)` 取第一个匹配，而同一群存在**多条历史会话**。\n查 `chat_sessions` 表：四个目标（1 私聊 + 3 群）**每个都有两条**——一条今天活跃、一条 2026-09-19。\n于是定时发送全部发到了 9 月那批上：\n\n```\n17:50:47 发送到 c1223fac...、c045968b...、83027b25...、4d5c3167...\n         Platform IO 发送失败: driver=legacy.send.qq status=FAILED error=旧链发送失败\n17:43:45 手动那次成功: drivers: gateway:maibot-team.napcat-adapter:napcat_gateway\n```\n\n手动发送用的是消息自带的活动流，所以一直正常——这正是\"手动能发、自动发不出去\"的原因。\n\n**修法（插件侧，不动宿主）**：三层解析\n1. 入站消息里学习「群/人 → 当前活动聊天流」，落盘持久化；\n2. 缓存为空时枚举同目标的多条会话，用 `message.get_recent` 挑\"最近有消息\"的那条；\n3. 都拿不到才回退宿主的 `get_stream_by_group_id` / `get_stream_by_user_id`。\n\n**bug 2：失败被误报成成功**\n\n投递失败时 `Deliverer` 仍返回 `method=\"forward\"`，而调用方用\n`bool(sent or method == \"forward\")` 判成功 → 四个目标全失败也记成「本轮已搬」并写入已搬记录，\n记录里混进了根本没发出去的条目。现在**只看 `sent`**。\n\n新增能力声明：`chat.get_all_streams`、`message.get_recent`。实测三条解析路径断言通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.2.0",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get",
+              "chat.get_all_streams",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.8",
+          "tag": "v1.1.8",
+          "commit": "03769443222f4f7f292e326f097c4b5c06b0d7e1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:49:02Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.8",
+          "release_notes": "### 没找到就继续找\n\n原来一轮没挑到候选就直接返回\"本轮没有通过判据的候选\"，现在改成继续找：\n\n- 新增 `[retry].rounds`（默认 **3**）与 `[retry].gap_seconds`（默认 15 秒）。\n- 一轮没挑到就**换关键词/翻页重新搜**，最多试 `rounds` 轮；全都没找到才报\n  「找了 N 轮都没找到符合条件的候选」。定时轮与点播都适用。\n- 好看的 picker 会把被规则否掉的候选标记已检查，所以重试会自然往下走、不会原地打转。\n\n**代价**：搬史一轮最多 8 次搜索 + 16 次\"1 详情 + 3 页评论\"（约 70 个请求），三轮约 200 个；\n好看一轮约 6 次搜索，便宜。嫌吵就把 `rounds` 设成 1（退回原行为）或只调大 `gap_seconds`。\n\n实测：前两轮为空、第三轮命中（日志逐轮记录\"第 1/3 轮没找到…继续找\"）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.8",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "7348caebd28d4080d264bf8edd16f4cbac488b1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:47:30Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.7",
+          "release_notes": "### 点播改成不限次数，只留最小间隔护栏\n\n- **去掉冷却与每日次数**：删掉 `cooldown_minutes`（原 10 分钟）与 `daily_limit_per_group`\n  （原每群每天 3 次）——口语触发命令、搬史工具、好看工具都不再消耗每日次数、也没有冷却。\n- **只留一个最小间隔**：`min_gap_seconds`（默认 60 秒，设 0 = 完全不挡）。\n  它只挡\"刚搬完又来一条\"的贴脸连点，会回一句「刚搬过（3 秒前），间隔太短，过 57 秒再来」。\n- 搬史与好看的最小间隔**分开记**，互不影响；并发忙锁与 `permission` 权限照旧。\n- 工具**是否被调用仍由模型自己决定**（描述与权限没变），命令链保持确定性命中。\n\n实测：口语触发不再受次数限制；同群立刻重复时只被最小间隔拦下。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.7",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "53adcb7108a8019058390e125e0e4ce43bf72ec1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:32:26Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.6",
+          "release_notes": "### 完全去掉 LLM 复核\n\n删掉 1.1.4 加的那层 LLM 语义复核（按用户要求）：\n\n- 删除 `llm_review` / `llm_review_attempts` / `llm_model` 三个配置项、提示词模板与复核代码。\n- manifest 去掉 `llm.generate` 能力声明（现在声明与实现一致）。\n- 好看频道**只看规则**：关键词池 + 子分区白名单 + 屏蔽词（教程/讲解、低创剧集、直播切片）\n  + 剧集编号正则 + 时长与收藏率阈值。\n\n**为什么去掉**：它在真机上判定不稳——同一轮里一边以「标签含虚拟偶像」为由否掉候选，\n一边又放行了一条 Hololive 的 MMD；还有一轮连否三条（含 13.9 万播放的动画剪辑）后本轮空手。\n频道行为不该随模型口味飘，要收紧就改列表，不用验证模型判得对不对。\n\n实测：去掉后仍正常选出候选（鸣潮 MMD，收藏率 121%）并下载 14.6MB 720P。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.6",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.1.5",
+          "tag": "v1.1.5",
+          "commit": "4633c7d577abd3d99cae23040f9c9beabe4ca5e5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:29:57Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.1.5",
+          "release_notes": "### 按确认后的口径收敛「来点好看的」\n\n| 要 | 不要 |\n|---|---|\n| MMD/3D 纸片人舞蹈 | 低创自制动画 |\n| 动漫剪辑 MAD/AMV | 剧情/配音向短片 |\n| 手书/同人动画 | （原有）教程/讲解 |\n| **虚拟主播本身的 MMD 可以** | 但直播切片/会限/杂谈不要 |\n\n**改动**：\n\n- 关键词池换成这三类的词（MMD/手书/同人动画/MAD/AMV/动漫混剪/踩点剪辑/纸片人/虚拟主播/二创）；\n  子分区白名单去掉 **插画·绘画**（静态图向，不在你要的三类里）。\n- 屏蔽词补直播切片类：会限/直播切片/切片/录播/回放。\n- LLM 复核判据按上面这套口径重写。上一版它在真机上判定不稳——一边说\"不要，标签含虚拟偶像\"，\n  一边又放行了一条 Hololive 的 MMD；所以提示词里把\"虚拟主播本体不算问题\"写清楚了。\n\n实测：新口径选出「Hang\"tight\"」（手书，20 秒，收藏率 200%）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.1.5",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.8",
           "tag": "v1.0.8",
           "commit": "2fdb6751bec416fecebd6acbd26739ab7025f599",
@@ -28593,7 +29734,56 @@
       "manifest_id": "github.erhan111119.mai-is-mortis",
       "repositoryUrl": "https://github.com/erhan111119/mai-is-mortis",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "c26d1f721cf077454357832d2f8b2a065fb23139",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T07:04:59Z",
+          "release_url": "https://github.com/erhan111119/mai-is-mortis/releases/tag/v1.0.2",
+          "release_notes": "**麦麦是多首的怪物。**\n\n- `config.toml` 不再进版本库：宿主首次加载插件时会按配置模型自动生成它，WebUI 保存配置也会重写它，\n  提交进去只会在保存后造成 git 冲突。改为提交模板 `config.toml.example`（同样由配置模型生成）。\n- 生成工具 `tools/generate_default_config.py` 的产物改为该模板文件，并带上一段使用说明。\n\n1.0.1：显示名改为 `mai is mortis（麦麦是多首的怪物）`；状态文件损坏不再拦插件加载；\n删掉无效的「启用指令」配置项；「详细日志」补充隐私提醒。\n\n1.0.0：模型判定加分（一次调用判完所有条件、模型只回编号）、分数满即临时换人格、到点自动切回、\n分数随时间衰减；切换时只改写本次请求的人设/说话风格/规划行为风格，不写宿主配置；\n`/人格` 支持查询、切换与重置。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-is-mortis",
+            "version": "1.0.2",
+            "name": "mai is mortis（麦麦是多首的怪物）",
+            "description": "麦麦是多首的怪物。加分的唯一来源是模型判定：插件把最近的对话交给模型，按每个人格的一句话「判定条件」回编号，命中就给对应人格加分；某个人格分数顶到阈值就临时换人格、其他人格分数清零，维持一段时间后自动切回原人格，分数还会随时间衰减。人格、判定条件、阈值、时长全部可在 WebUI 里改，支持 /人格 查看分数与手动切换。",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-is-mortis",
+              "homepage": "https://github.com/erhan111119/mai-is-mortis",
+              "documentation": "https://github.com/erhan111119/mai-is-mortis/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-is-mortis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "extension",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -28682,6 +29872,166 @@
       "repositoryUrl": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.1.13",
+          "tag": "v0.1.13",
+          "commit": "3ac6cf355281c50ddb1c7d0606f38a6bdcfe3550",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T12:29:53Z",
+          "release_url": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/releases/tag/v0.1.13",
+          "release_notes": "### 细节\r\n\r\n- 输入状态：按 SDK 解包后的聊天流列表读取真实会话，修复选择 reply 后触发输入状态 Hook 时出现 `list indices must be integers or slices, not str` 的错误。\r\n- 消息表态：同步修正聊天流与单条消息查询的返回值处理，保留查询失败原因与跨会话、账号、话题校验。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.telegram-adapter",
+            "version": "0.1.13",
+            "name": "Telegram 适配器",
+            "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "homepage": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "documentation": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/blob/main/README.md",
+              "issues": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.6,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3"
+              },
+              {
+                "type": "python_package",
+                "name": "rlottie-python",
+                "version_spec": ">=1.3.7,<2"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.12",
+          "tag": "v0.1.12",
+          "commit": "2bbdec6b9c108cafe9d61e6cc9a1face06a30889",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T10:01:19Z",
+          "release_url": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/releases/tag/v0.1.12",
+          "release_notes": "### 主要功能\r\n\r\n- 输入状态：选中 reply 并开始生成回复时显示“正在输入”，按聊天和论坛话题刷新，实际发送前停止刷新，Telegram 收到回复后清除提示；断开连接或刷新超过 180 秒时结束任务。\r\n- 消息表态：新增插件工具 `telegram_react_message`，供麦麦自主设置、替换或撤销表态；通过 SDK 查询真实聊天流和目标消息，校验账号、聊天和已记录的话题归属，保留 Telegram 原始失败原因。\r\n\r\n### 细节\r\n\r\n- 工具作用域：表态工具声明 `platforms=\"telegram\"`，支持作用域的宿主仅在 Telegram 聊天展示和执行。\r\n- 输入状态：每 4 秒刷新一次，状态接口失败记录警告，不影响实际消息收发。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.telegram-adapter",
+            "version": "0.1.12",
+            "name": "Telegram 适配器",
+            "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "homepage": "https://github.com/Mai-with-u/Maibot-telegram-adaptor",
+              "documentation": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/blob/main/README.md",
+              "issues": "https://github.com/Mai-with-u/Maibot-telegram-adaptor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.6,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3"
+              },
+              {
+                "type": "python_package",
+                "name": "rlottie-python",
+                "version_spec": ">=1.3.7,<2"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.1.11",
           "tag": "v0.1.11",
@@ -28963,6 +30313,461 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "YukiSakiko.report_to_admin_plugin",
+      "manifest_id": "YukiSakiko.report_to_admin_plugin",
+      "repositoryUrl": "https://github.com/YukiSakiko/report_to_admin_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "bf1edc28715c04bfb9d7c9d6fbec9be1f7cc52ea",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T17:03:17Z",
+          "release_url": "https://github.com/YukiSakiko/report_to_admin_plugin/releases/tag/v1.2.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "YukiSakiko.report_to_admin_plugin",
+            "name": "小报告",
+            "version": "1.2.1",
+            "description": "遇到不良言论、威胁或骚扰时，向指定管理员私聊或管理群转发原消息，再由麦麦通过正常回复流程汇报，支持同时发送到两处。",
+            "author": {
+              "name": "YukiSakiko",
+              "url": "https://github.com/YukiSakiko"
+            },
+            "urls": {
+              "repository": "https://github.com/YukiSakiko/report_to_admin_plugin",
+              "documentation": "https://github.com/Mai-with-u/maibot-plugin-sdk/blob/main/docs/guide.md"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "message.get_by_id",
+              "chat.open_session",
+              "send.forward",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "changelog": "changelog.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.2.0",
+          "version": "1.2.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.1'\n- '1.2.0'\n       ^"
+        }
+      ]
+    },
+    {
+      "id": "houlong5071.redeem-code-distributor",
+      "manifest_id": "houlong5071.redeem-code-distributor",
+      "repositoryUrl": "https://github.com/houlong5071/redeem-code-distributor",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.4",
+          "tag": "1.3.4",
+          "commit": "8f0e306a960b6b709349985e8eba2a5a177a2ee3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:29:05Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.4",
+          "release_notes": "## 修复\r\n\r\n- **配置页「群白名单」的提示文案与实际行为矛盾。** hint 里写着「改完需要重载插件才生效」，但群白名单是发码工具在每次调用时实时读取配置判定的，改完立即生效、无需重载。这句是早期用组件 `allowed_session` 实现白名单时留下的陈旧文案，会误导用户去做无谓的重载排查。现已改正，管理员白名单也补上了同样的说明。\r\n- 顺带统一了 README 里几处生效时机的说法：「工具」分区里的余量查询开关其实是注册期行为（1.3.2 起关闭时会直接从组件列表摘掉该工具），此前被与群白名单并列为「即时生效」，现已更正；「已使用记录上限 1000 条（不影响已发出的兑换码）」也按实际语义改写。\r\n\r\n## 测试\r\n\r\n新增一组回归测试，把配置页 hint 与实际生效时机绑起来断言（群/管理员白名单必须说明立即生效、激发信号必须说明需重载），并实际验证「改完白名单不重载也生效」，防止这类文案再次漂移。测试增至 68 个用例。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.4",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.3",
+          "tag": "1.3.3",
+          "commit": "827d37ad83e1296afb03ca4949a477c4bb595b18",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T09:16:00Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.3",
+          "release_notes": "## 修复\r\n\r\n- **1000 条记录上限会让单调保护对最早的码失效。** 展示用的已使用记录只保留最近 1000 条，被裁掉的那些码就不在「已发集合」里了，此时把它们塞回 `available_codes` 保护认不出来。现在单独维护一份**不随展示记录裁剪**的已发码集合，并落盘保存（`[pool] issued_code_hashes`，存 sha256 前 16 位，不含明文）。这同时补上了「插件重载」缺口——此前集合只在内存里，而「重载 + 配置页陈旧保存」正是最容易复活已发码的组合。\r\n- **内存身份窗口比兜底宽三倍。** `speaker_ttl_seconds` 原为 300 秒，兜底时间窗只有 90 秒。内存路径不经过时间窗校验，可信度只押在钩子时序上。现在收敛到 90 秒与兜底同量级；窗口明显宽于兜底（>3 倍）时装载会打 warning。\r\n- **回声抑制只比对 `available_codes`。** 池子恰好没变化时，一次「只改了 `used_codes`」的真实配置更新会被误判成回声跳过。现在同时比对 `used_codes`。\r\n- **`get_components` 依赖 SDK 组件键名**，键名一变群聊限定与激发信号注入会静默失效。现在统计实际改写到的组件数，为 0 时打 warning。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.3",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.2",
+          "tag": "1.3.2",
+          "commit": "12639aff47645ca8211aad476a4214a476ad0007",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:58:26Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.2",
+          "release_notes": "## 修复\r\n\r\n- **配置页陈旧保存会让已发出的兑换码「复活」。** 管理员先打开配置页 → 插件在这期间发放并写盘 → 管理员随后保存页面上的任意字段。若宿主按页面里的旧模型整份写回，`available_codes` 会连已发出的码一起回来、`used_codes` 被旧值覆盖，「一个码只发一次」和发放记录会同时报废。现在装载池子时加了一道**单调保护**，不依赖宿主的保存语义：已使用记录**只增不减**（新旧求并集），待发放池**剔除**所有已发放过的码。代价是在配置页里手动删掉某条已使用记录，不会让那个码回到待发放池——这是有意的取舍。\r\n- **兑换码含 `|` 或 `:` 时单调保护会失效。** 已使用记录原先是裸文本，按 `|` 切分会把这类码截断，保护认不出它。现在记录里的码用 JSON 字符串包裹并用正则精确定位；未加引号的旧格式记录同样兼容。\r\n- **来自未来的时间戳会被当成「刚发生的消息」放行。** 原先 `max(now - ts, 0)` 会把未来时间戳压成 0 秒，恰好落进时间窗被采信。现在超出 30 秒容差的未来时间戳视为不可读，保守拒绝。\r\n\r\n## 优化\r\n\r\n- `expose_status_tool` 关闭时，余量查询工具直接从组件列表摘掉，而不是留着「调用即报错」白占大模型的工具列表。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.2",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.1",
+          "tag": "1.3.1",
+          "commit": "df387069fa88ea2e6b3d79378dc5237d29e4d143",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:44:06Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.1",
+          "release_notes": "## 修复\r\n\r\n- **身份兜底会把麦麦自己的回复当成请求者。** 宿主 `message.get_recent` 的 `filter_mai` 参数默认是 `False`，即麦麦自己发的消息也会被查出来；而兜底逻辑取的是「最后一条消息的发送者」——麦麦刚回复过的话取到的就是麦麦自己（其 QQ 不在管理员白名单里），于是只要麦麦在群里说过话，兜底就会稳定失败、形同虚设。现在显式传 `filter_mai=True` 排除麦麦自己的消息；宿主或 SDK 不支持该参数时自动退回不传。\r\n- **「最近发言人」内存记录无上限。** 每个见过的会话都会在里面留一条，未被再次查询过的会话永远不会被清理。现在超过 512 条时先清理过期的，仍超限则淘汰最旧的。\r\n- **`get_components()` 就地改写了 SDK 返回的对象。** 该结构可能被 SDK 缓存复用，就地改写会污染 SDK 侧状态。现在先深拷贝再改。\r\n\r\n## 关于钩子时机\r\n\r\n`chat.receive.after_process` 在 `bot.py` 中于 `chat_manager.register_message()` **之前**触发，而工具调用发生在之后的 `heartflow_message_receiver.process_message()` 链路里。因此内存里的「最近发言人」在发码工具被调用时是最新的，不存在读到过期发言人的问题。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.1",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "1.3.0",
+          "commit": "bbc7faa1c142d2eaa0648fe985321f7176afbd40",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T08:20:06Z",
+          "release_url": "https://github.com/houlong5071/redeem-code-distributor/releases/tag/1.3.0",
+          "release_notes": "## 安全修复\r\n\r\n修复插件中心审核提出的三个阻断问题。\r\n\r\n- **余量查询工具此前没有权限校验，会把已发出的兑换码明文泄露给任何人。** 发码工具认真校验了群白名单与管理员白名单，余量查询却只看 `expose_status_tool`（默认为开），导致任意群、任意成员的「还剩多少兑换码」都能拿到最近 5 条发放记录——里面有兑换码明文、群号与领取人 QQ。兑换码本身就是凭据，这等于把发出去的码再送人一次。现在余量查询走与发码完全相同的身份确认 + 群白名单 + 管理员白名单校验，并且**只返回数量，不再回显任何发放记录**。\r\n- **身份兜底可能认错人。** 插件重启后内存里的「最近发言人」为空，此时会回退到「该会话最后一条消息的发送者」，而多人群里最后一条未必是当前请求者。现在兜底加了时间窗（新增配置项 `identity_fallback_window_seconds`，默认 90 秒），最后一条消息不够新就保守拒绝；时间戳缺失或不可读同样拒绝。设为 `0` 可完全禁用兜底。\r\n- **写盘失败仍会发码，导致同一个码发两次。** 现在写盘失败会回滚内存状态并拒绝本次发放。\r\n\r\n## 优化\r\n\r\n- 写回兑换码池时优先在磁盘上已有的 `config.toml` 文档上就地修改，保留用户在配置页里写的注释与排版；仅在文件缺失或内容损坏时，才退回用内存配置重建整份文档。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.0",
+            "name": "兑换码发放",
+            "description": "在指定群的指定成员触发关键词时，从其管理的兑换码池中随机发放一个未使用的兑换码，并记录使用时间。",
+            "author": {
+              "name": "houlong5071",
+              "url": "https://github.com/houlong5071"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/houlong5071/redeem-code-distributor",
+              "homepage": "https://github.com/houlong5071/redeem-code-distributor",
+              "documentation": "https://github.com/houlong5071/redeem-code-distributor#readme",
+              "issues": "https://github.com/houlong5071/redeem-code-distributor/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "houlong5071.redeem-code-distributor"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mizuku003.tieba-share",
+      "manifest_id": "mizuku003.tieba-share",
+      "repositoryUrl": "https://github.com/mizuku003/maibot-tieba-share",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.9",
+          "tag": "v1.0.9",
+          "commit": "564b20b458c474ae598409c9a711b1e5839222de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T07:10:56Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.0.9",
+          "release_notes": "- 正文图和视频只在贴吧自己的图库、视频域名上取：页面里出现的外链图床一律不请求。\n- 渲染改走宿主的裸调用通道，长图能拿到更长的渲染超时；SDK 若换掉该内部接口，会自动退回公开的渲染包装。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.0.9",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "top.launchpadx.maibot.xchat_adapter",
+      "manifest_id": "top.launchpadx.maibot.xchat_adapter",
+      "repositoryUrl": "https://github.com/launchpad001/MaiBot-XChat-Adapter",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "cssqy.mai-meal-card",
+      "manifest_id": "cssqy.mai-meal-card",
+      "repositoryUrl": "https://github.com/CSSQY/mai_meal_card",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
