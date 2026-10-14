@@ -3234,7 +3234,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'\n"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
         }
       ]
     },
@@ -6184,17 +6184,17 @@
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.2'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.3.0' !== '0.3.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
         }
       ]
     },
@@ -31396,6 +31396,15 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "org.civetc.char-recog",
+      "manifest_id": "org.civetc.char-recog",
+      "repositoryUrl": "https://github.com/orge-8/char-recog",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
