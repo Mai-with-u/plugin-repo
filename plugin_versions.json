@@ -31541,7 +31541,77 @@
       "manifest_id": "org.civetc.char-recog",
       "repositoryUrl": "https://github.com/orge-8/char-recog",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.3.2",
+          "tag": "v0.3.2",
+          "commit": "e8e1743f4c677d6b7c8f31389f270fbc58ab91d0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T07:02:44Z",
+          "release_url": "https://github.com/orge-8/char-recog/releases/tag/v0.3.2",
+          "release_notes": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。\n\n需要 **MaiBot 1.3.6+**、**SDK 2.11.0+**，以及支持 `custom_pages`、`image_upload` 的 WebUI。\n\n### 0.3.2 · 提交官方插件中心前整改\n\n本版为文档 / 测试 / 健壮性改动，**训练与推理链路（`recog/model.py`）零改动**。\n\n**修复**\n\n- Hook 在 `on_load` 完成前被派发时抛 `AttributeError`：宿主先注册组件、再调用 `on_load`，而 `on_load` 内部会 await 线程化 IO，这段窗口里消息钩子可能被触发。现在先在 `on_load` 开头初始化钩子状态，并在钩子首行判定 `self.service is None`。\n- `tests/test_cpu_acceptance.py` 仍按单角色旧签名调用 `submit` / `activate` / `rollback` / `infer`，导致 `python -m pytest tests` 必红。已按当前签名重写；3 个需要 PyTorch 的测试模块在缺依赖时自动跳过，`python -m pytest tests` 现在可正常全绿。\n\n**文档**\n\n- README 全面对齐当前实现（插件目录、`characters` 配置、`recognize_character_image` 签名、`ctx.paths.data_dir` 数据位置、上传体积上限），新增「依赖模型」与「数据流向与网络访问」两节，并把原「上游 README 原文」改为「与上游的差异」对照表，避免旧配置名与旧路径继续误导。\n- `VALIDATION.md` 删除开发者本机临时目录路径，更正「SDK 2.11.0 尚未发布」这一过期结论。\n- 清理残留命名：`webui/build.py`、`tools/migrate_from_maiself.py`（旧 id / 旧目录名）、`pyproject.toml` 工程名；迁移工具的 `--character` 改为必填。\n\n### 安装\n\n1. 把插件目录放入 `plugins/`（例如 `plugins/char-recog`），完整重启 MaiBot。\n2. WebUI 插件管理页启用，出现「角色识别」工作区。\n3. 首次加载由宿主生成 `config.toml`；角色名单通过 `characters` 配置。\n4. 在「运行环境」页安装 PyTorch（CPU 或 GPU 版，装入插件自己的依赖覆盖层，不改动 MaiBot 主环境），然后为每个角色上传并标注图片后训练。\n\n网络访问：不使用 `httpx`/`requests`/`aiohttp`，不上传聊天记录、用户 ID、群号、图片、配置或 token；唯一出站访问是安装依赖时的 `download.pytorch.org` 官方索引（SHA256 强校验，由管理员点击触发）。用户数据只落宿主 SDK 授予的插件数据目录。\n\n详见 [README](https://github.com/orge-8/char-recog#readme) 与 [CHANGELOG](https://github.com/orge-8/char-recog/blob/main/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.2",
+            "name": "角色识别",
+            "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/orge-8/char-recog",
+              "homepage": "https://github.com/orge-8/char-recog",
+              "documentation": "https://github.com/orge-8/char-recog#readme",
+              "issues": "https://github.com/orge-8/char-recog/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.11.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<13"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=2,<3"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "org.civetc.char-recog",
+            "plugin_type": "media",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "scan-face",
+                "background": "#F7F1E4"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
