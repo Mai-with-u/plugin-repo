@@ -20324,6 +20324,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.8",
+          "tag": "v0.9.8",
+          "commit": "6024daa1b9f1490726a2f9ba478e8d86ba2029cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T10:53:03Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.9.8",
+          "release_notes": "## v0.9.8 · 派活可靠性与资讯核验\n\n这次主要解决两类问题：群友交给 MaiWork 的请求不能悄悄搁置，发布的资讯必须有实际读到的正文依据。\n\n### 派活不再悄悄搁置\n- 待判请求的判断结论、落地进度和失败重试时间写入数据库，不再只存在内存里。\n- 落地失败会按间隔逐次加长的方式补办；补办不依赖下一次读群，同一条原消息不会重复创建请求。\n- 超过 48 小时仍没办成的请求进入“待复核”，停止自动重试，但保留原话。\n- 管理员可在“任务 → 待复核”查看并转为任务请求、目标请求或忽略。转换后始终需要人工审批，不会直接开工；忽略也不删除原话。\n\n### 资讯要有真实正文依据\n- 只有本轮程序实际打开并读到了正文，且引用内容确实在正文里，资讯才会发布。模型自称“打开过了”不再算依据。\n- 只有标题、导航或登录墙的页面不能作为正文证据；摘要明确说“只核对了标题”的条目直接拦下。\n- 展示自检回复缺字段或格式不对时，改写内容退回已核对的版本，不再误当作全部通过。\n- 引文比对忽略空格、全半角与装饰标点，但保留小数点、百分号、负号、数字区间和分数，不能因此改变数字事实。\n\n### 收消息入口更轻\n- MaiWork 在收消息钩子里等待判断服务的时间上限降到 600ms；被 @ 的消息先保存，再进行判断。\n- 回复资讯卡片的反馈改到后台记录，使用独立数据库连接，并限制同时处理数量。\n- 快速判断后落地失败的请求交回持久补办路径，不再提前标记成已处理。\n\n### 升级提醒\n- 从正式 v0.9.7 升级时，数据库版本 **40 → 41**。请先备份插件及数据库；启动时自动迁移。已安装本轮跟进修复、数据库已经为 41 的实例不再重复迁移。\n- 配置版本仍为 **0.5.0**，无需新增配置项；保留你原来的配置文件。\n- 更新后刷新网页即可看到“待复核”。对较老的请求，建议先确认现在是否还需要，再转成请求。\n- 只靠 RSS 摘要或未能读到正文的资讯现在不发，产出可能比原来少，这是提高依据要求的取舍。\n- 本次没有修改 MaiBot 宿主。大图传输或宿主事件循环被占导致的偶发钩子超时，以及超大消息帧限制，**不能宣称已根治**。\n\n### 验证\n- 0.9.8 脱敏发行候选完整回归 **7216 通过、1 项按设计跳过、33 条警告，0 失败**；真实宿主契约 **8 项通过**。\n- 真 Chromium 验证了手机、平板和桌面宽度，以及“转换后停在待审批、不直接开工”的操作。\n- 版本契约先在旧标识上失败，更新后通过；元数据、生命周期与宿主边界的针对性回归 **97 项通过**。\n\n未触发群内发送测试、生产任务或真实模型质量测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.9.8",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.7",
           "tag": "v0.9.7",
           "commit": "5e210ad56ee0ca46f5f3a8355abd56f9dcd9fa6c",
