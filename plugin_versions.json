@@ -31273,7 +31273,129 @@
       "manifest_id": "cssqy.mai-meal-card",
       "repositoryUrl": "https://github.com/CSSQY/mai_meal_card",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.4.0",
+          "tag": "1.4.0",
+          "commit": "d07091836b91e0d161ddb220b5db4a7db3edf952",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T00:17:19Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.4.0",
+          "release_notes": "## [1.4.0] - 2026-10-13\r\n\r\n### 新增\r\n\r\n- **`[display].show_raw`「展示原始响应」开关（默认关闭）**：原始响应（平台响应体摘要）\r\n  默认不再进入文本模板（`/饭卡 文字`、播报 / 警报模板）、LLM 转述与 LLM 工具结果，\r\n  与图片渲染的行为保持一致；需要排查接口异常时可在配置里临时打开。\r\n  **失败状态的原始响应始终保留**（它是「查询失败 / 响应解析失败」等失败原因的唯一载体）。\r\n\r\n### 安全\r\n\r\n- **原始响应出站脱敏**：三个适配器产出 `raw` 前会按键名做启发式脱敏\r\n  （键名含 `key` / `token` / `secret` / `password` / `credential` / `authorization` /\r\n  `cookie` / `session` 的字段值替换为 `***`，递归 6 层），\r\n  防止响应体恰好回显密钥时的极端外泄。脱敏只作用于展示，不影响任何业务取值。\r\n- **字体服务地址加字符校验**：字体服务组的 `css` / `static` 基地址除要求 `http(s)://` 外，\r\n  还限制为 URL 合法字符，避免引号、尖括号等字符被拼进渲染用的 HTML；`static` 校验后允许缺省。\r\n\r\n### 变更\r\n\r\n- `_manifest.json` 补 `\"plugin_type\": \"automation\"`（此前缺省被宿主按 `extension` 处理）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.4.0",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "1.3.0",
+          "commit": "21e6d6cb13d60a56ac8111559cc5e0540a22d97b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T23:34:27Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.3.0",
+          "release_notes": "第一个发布版",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.3.0",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
