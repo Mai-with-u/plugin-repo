@@ -5738,6 +5738,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "470eb31bed9c05dc2d88b92638256d4fd142cd96",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-12T11:50:57Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.1",
+          "release_notes": "## MaiBot Deskpet v1.0.1\n\n### 下载方式 / Downloads\n- **安装版 (NSIS Installer)**: `MaiBot-Deskpet-Setup-1.0.1.exe`\n- **免安装便携版 (Portable Archive)**: `MaiBot-Deskpet-Portable-1.0.1-win-x64.zip`\n\n### 更新内容 / Changelog\n- **热键服务修复**：修复打包安装后 `app.getAppPath()` 指向 `app.asar` 文件导致 PTT 热键监听子进程报 `Error: spawn powershell.exe ENOENT` 的问题，并自动补全缺失的 Windows `System32` / `WindowsPowerShell` 环境变量路径。\n- **服务日志复制**：允许在设置面板服务页直接框选复制日志与错误详情，并新增一键「复制」按钮。\n- **表情包与图片下行支持**：在 `plugin.py` 中支持解析 MaiBot 下发的 `emoji` / `image` 消息段（含 `binary_data_base64`）并转发至桌宠气泡渲染。\n- **安装向导与 CI 构建**：新增免安装便携版 `.zip` 分发包与 GitHub Actions 可重现构建流水线。\n\n---\n*Code Signing: Free code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).*",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.1",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.6.0",
           "tag": "v0.6.0",
           "commit": "4f6f1e7dd4df64e9391a6c881aca9e4e10970196",
@@ -5943,17 +6016,17 @@
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.2'\n"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.1'\n"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.3.0' !== '0.3.1'\n"
         }
       ]
     },
