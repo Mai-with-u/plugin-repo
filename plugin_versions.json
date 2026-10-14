@@ -1404,6 +1404,174 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.14.1",
+          "tag": "v1.14.1",
+          "commit": "33ae8a1a2dffe30fb61050bede30efd9d6b7a692",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T10:38:10Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.14.1",
+          "release_notes": "### 主要功能\n\n- 管理页面补充大香蕉独立词库的只读标签页，支持搜索、分页、查看全文，并展示分类、限制级标记和同步时间。\n- 新增“更新词库”按钮，复用现有云端同步逻辑，仅更新 `banana_prompts.json`，保留本地提示词、渠道和 Key 数据。\n\n### 细节\n\n- 同步使用后台任务并显示更新进度、成功和失败结果，重复请求复用当前任务；失败保留已有缓存，插件卸载会取消未完成的任务。\n- 词库解析与文件保存在线程中执行；新增词库只读保护、分页搜索、文件写入归属及后台任务生命周期测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.14.1",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.video",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "send.command",
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.14.0",
+          "tag": "v1.14.0",
+          "commit": "d3de3d181a2f6e2e837e435eddb0112dcd6f3ed5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-13T10:09:50Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.14.0",
+          "release_notes": "### 主要功能\n\n- 新增“Gemini 绘图管理”插件扩展页面，支持渠道、提示词与 Key 的增删改，以及提示词全文搜索、分页和 Key 重置；业务数据继续写回现有 `data.json` / `keys.json`。\n- 渠道和所属 Key 合并展示，保留未匹配渠道的历史 Key 管理入口；新增、编辑改为弹框，渠道下添加 Key 自动填写归属，并支持按渠道加载更多 Key。\n\n### 细节\n\n- 页面默认遮盖 Key，编辑留空保留旧值；单条更新保留未知字段和最新统计，并校验编辑版本以防止覆盖他人的修改。\n- JSON 管理器对页面线程和绘图/聊天指令使用共享锁，修改前重新加载数据，写入失败会向调用方报告；错误上限指令通过管理器更新。\n- 管理页面使用 WebUI v2 自定义页面及受限 API 桥接，需要宿主和 dashboard 支持 `custom_pages`；配置页的只读渠道说明补充管理页面入口。\n- 增加 JSON 写回、并发更新、编辑冲突、密钥遮盖、分页、输入校验和损坏文件保护测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.14.0",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.video",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "send.command",
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.13.0",
           "tag": "v1.13.0",
           "commit": "73f4779dd6729cf7d473752fd10ede781a128e91",
