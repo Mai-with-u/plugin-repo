@@ -28,10 +28,27 @@ function releaseKey(data) {
   return JSON.stringify([data.id, data.repositoryUrl, data.version, data.tag, data.commit]);
 }
 
+function blockedReleaseVersions(root) {
+  const file = path.join(root, 'blocked_release_versions.json');
+  if (!fs.existsSync(file)) return [];
+  const entries = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.ok(Array.isArray(entries), '拒绝版本配置必须是数组');
+  for (const entry of entries) {
+    parseReleaseIssue({ body: `<!-- plugin-release: ${JSON.stringify({ ...entry, tag: entry.version, commit: '0'.repeat(40) })} -->` });
+  }
+  return entries;
+}
+
+function isBlockedRelease(entries, plugin, version) {
+  return entries.some(entry => entry.id === plugin.id &&
+    entry.repositoryUrl.toLowerCase() === plugin.repositoryUrl.replace(/\/$/, '').replace(/\.git$/, '').toLowerCase() && entry.version === version);
+}
+
 async function createReleaseGate({ root, request, repository = process.env.GITHUB_REPOSITORY,
   botLogin = process.env.MAI_REVIEW_BOT_LOGIN }) {
   assert.ok(repository && botLogin, '同步需要 GITHUB_REPOSITORY 和 MAI_REVIEW_BOT_LOGIN');
   const trusted = JSON.parse(fs.readFileSync(path.join(root, 'trusted_developers.json'), 'utf8'));
+  const blocked = blockedReleaseVersions(root);
   assert.ok(Array.isArray(trusted), '授信名单必须是数组');
   for (const entry of trusted) {
     assert.ok(Number.isSafeInteger(entry.owner_id) && entry.owner_id > 0, '授信 owner_id 无效');
@@ -45,6 +62,9 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
       if (issue.pull_request || issue.user?.login !== botLogin) continue;
       try {
         const data = parseReleaseIssue(issue);
+        if (issue.labels.some(label => label.name === 'rejected')) {
+          for (const release of data.releases) blocked.push({ id: data.id, repositoryUrl: data.repositoryUrl, version: release.version });
+        }
         for (const release of [...data.releases, ...data.discarded]) {
           issues.set(releaseKey({ ...data, ...release }), issue);
         }
@@ -55,7 +75,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
   const owners = new Map();
   const pending = new Map();
   async function ensureReviewLabel(issue) {
-    if (issue.state === 'open' && !issue.labels.some(label => label.name === 'validated')) {
+    if (issue.state === 'open' && !issue.labels.some(label => label.name === 'rejected') && !issue.labels.some(label => label.name === 'validated')) {
       await request(`${base}/issues/${issue.number}/labels`, {
         method: 'POST', body: JSON.stringify({ labels: ['validated'] }),
       });
@@ -63,6 +83,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     }
   }
   const admit = async (plugin, candidate) => {
+    if (isBlockedRelease(blocked, plugin, candidate.version)) return false;
     const slug = plugin.repositoryUrl.slice('https://github.com/'.length).replace(/\/$/, '').replace(/\.git$/, '');
     if (!owners.has(slug)) owners.set(slug, await request(`/repos/${slug}`));
     const info = owners.get(slug);
@@ -113,10 +134,13 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
 async function approveRelease({ root, issue, request, botLogin, approvedReleases }) {
   assert.equal(issue.user.login, botLogin, '只能批准市场自动创建的发布审核 Issue');
   assert.equal(issue.state, 'open', 'Issue 已关闭');
+  assert.ok(!issue.labels.some(label => label.name === 'rejected'), '批次已被拒绝');
   const data = parseReleaseIssue(issue);
   const targets = approvedReleases || data.releases;
   assert.ok(targets.length > 0 && targets.every(target => data.releases.some(item =>
     item.version === target.version && item.tag === target.tag && item.commit === target.commit)), '批准目标不属于当前审核批次');
+  const blocked = blockedReleaseVersions(root);
+  assert.ok(targets.every(target => !isBlockedRelease(blocked, data, target.version)), '版本已被永久拒绝');
   const plugins = JSON.parse(fs.readFileSync(path.join(root, 'plugins.json'), 'utf8'));
   const plugin = plugins.find(item => item.id === data.id);
   assert.ok(plugin && plugin.repositoryUrl.replace(/\/$/, '').replace(/\.git$/, '') === data.repositoryUrl, '插件登记信息已改变');
@@ -138,4 +162,4 @@ async function approveRelease({ root, issue, request, botLogin, approvedReleases
   fs.writeFileSync(output, `${JSON.stringify(index, null, 2)}\n`);
 }
 
-module.exports = { createReleaseGate, approveRelease, parseReleaseIssue };
+module.exports = { createReleaseGate, approveRelease, parseReleaseIssue, blockedReleaseVersions, isBlockedRelease };

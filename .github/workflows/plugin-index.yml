@@ -9,6 +9,7 @@ on:
       - '.github/scripts/sync_plugin_versions.cjs'
       - '.github/scripts/release_review.cjs'
       - 'trusted_developers.json'
+      - 'blocked_release_versions.json'
       - '.github/workflows/plugin-index.yml'
   schedule:
     - cron: '0 7,18 * * *'
