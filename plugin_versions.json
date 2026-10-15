@@ -1564,6 +1564,86 @@
           }
         },
         {
+          "version": "1.15.2",
+          "tag": "v1.15.2",
+          "commit": "120e858eecbcb9f45359edfc95cd9179d2a72c80",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T05:44:24Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.2",
+          "release_notes": "### 主要修复\n\n- **QQ 头像下载**：全新安装默认将 `q1.qlogo.cn` 加入媒体主机允许列表，兼容代理 fake-IP 环境；升级保留已有的显式允许列表，包括空列表。\n- **图文消息取图**：保留图片 hash 和内联 Base64，按 hash 读取已保存的图片或表情缓存，支持消息尚未入库的“文字＋多张图”；必要时按消息 ID 补取，保持图片顺序并避免重复计数。\n- **提示词原文**：指令只读取原始文字段，不再混入主程序生成的图片、表情或引用描述；用户自行输入的括号和换行保留，参考图单独传入。\n- **视频渠道轮换**：与图片链路对齐，尚未收到创建成功响应时，503 等 HTTP 错误继续尝试下一个可用端点；服务端故障和限流不误计为 Key 失效。\n- **超时轮换统一**：绘图与视频指令、自然语言绘图、自拍及自拍视频在尚未收到成功响应时，读写超时或单端点等待超时都会在总预算内继续其他可用端点；已接收的任务、结果处理和发送确认仍保留防重复保护。此前只有自拍类工具享受该轮换，命令侧超时后直接失败。\n\n### 使用说明与验证\n\n- 轮换需要其他已启用、用途匹配且有有效 Key 的端点；只有一个可用端点或剩余预算不足时停止。命令、工具和视频渠道使用同一套规则，不再有仅自拍轮换的特例。\n- 超时后原服务仍可能继续生成，切换渠道可能重复生成或计费；已经创建的视频任务继续查询原任务，发送状态不确定时不自动重发。\n- 修复完成后的全量测试为 **695 项通过**，包含 21 项自拍 Tool 入口回归与 1 项命令层超时轮换用例；原消息回放确认两张原图的内容与顺序，以及请求中只保留用户提示词。生成和发送使用模拟接口，原消息验证只读取缓存并构造请求。\n- 上文列出的失败换渠道行为已由回归测试覆盖，包括超时轮换、Key 不误禁、无备用端点停止和已创建任务不重建。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.2",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.14.1",
           "tag": "v1.14.1",
           "commit": "33ae8a1a2dffe30fb61050bede30efd9d6b7a692",
