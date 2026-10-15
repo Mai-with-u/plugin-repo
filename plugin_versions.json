@@ -1404,6 +1404,166 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.4",
+          "tag": "v1.15.4",
+          "commit": "c06a26b463c59a77bc0fe972811420fd508105da",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T08:12:30Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.4",
+          "release_notes": "### 主要修复\n\n- **视频失败后重复生成**：防重复保护扩展到生成失败、发送失败及执行中断；同一会话 10 分钟内即使换提示词再次调用，也在润色和创建视频任务前被拦截。单次调用内部的渠道轮换规则保持原样。\n- **重载后的防重复保护**：任务开始前原子保存保护记录，失败与投递未确认保护跨插件重载和重启保留。成功解除本次失败保护；无法读取或保存记录时暂停新视频任务，避免未知状态下再次付费生成。\n- **视频 HTTP 直发**：视频只调用配置的 SnowLuma / NapCat OneBot HTTP 端口，不进入 SDK / WebSocket 群回执查询链路，不再通过 `get_msg` 拉回视频正文，无需修改适配器或部署服务端扩展。\n- **大视频发送**：新增 `api.video_shared_dir`，视频保存到共享目录后，HTTP 请求只携带文件 URI，避免 SnowLuma 默认 2 MiB 请求体限制触发断连。确认成功后删除临时文件；确认异常时保留，并在后续发送时清理超过 24 小时的遗留文件。\n- **发送结果判定**：成功响应须同时包含 `status=ok`、`retcode=0` 和有效消息 ID；超时、断连、5xx 或矛盾/缺失字段保留投递未确认，不重发，继续拦截后续自动重新生成。\n\n### 配置与使用\n\n- `api.video_shared_dir` 默认留空，保持 Base64 传输并受服务端请求体大小限制。使用共享文件模式时，MaiBot 与 SnowLuma / NapCat 必须能通过同一绝对路径读取同一目录；本仓库 Docker 共享挂载可使用 `/MaiMBot/data/gemini_drawer/video_outbox`。\n- HTTP 成功表示发送接口确认成功，不额外核验群消息序号。共享临时文件的过期清理在后续发送准备时执行，并非定时清理。\n- 视频失败保护独立于普通媒体冷却；保护期内用户主动要求新视频也会被拦截，重复调用不延长期限。任务仍在执行时发生重载，保留最长 20 分钟保护；结束失败后从失败时起保护 10 分钟。\n\n### 验证\n\n- 修复完成后插件全量测试 **722 项通过**，覆盖 HTTP 直发、共享文件、失败后跨轮重复调用、重载恢复保护和原有渠道轮换；跨容器只读验证共享文件内容一致，验证期间未发送聊天消息或创建收费视频任务。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.4",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.15.3",
+          "tag": "v1.15.3",
+          "commit": "76cbb65a0c4465732061ec775d015cb20e404a94",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T07:15:27Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.3",
+          "release_notes": "### 修复\n\n- **视频投递未确认**：SDK 已尝试发送后，即使返回 `False` 或 `sent=False` 且没有消息 ID，也不再回退 NapCat 重发；只有 SDK 发送能力不可用时才使用备用链路。\n- **防止重新生成视频**：将回执异常作为独立的投递未确认状态返回，明确禁止自动重试，不再发送误导性的失败提示。同一会话进入 10 分钟视频保护期，拦截 Planner 随后的重复调用；保护不受普通媒体冷却开关影响，图片和其他会话不受影响。\n- **发送期间超时**：入口期限取消发生在视频发送期间时，保留投递未确认状态与防重复保护，避免重新创建视频任务。\n- **提示词润色重试**：自拍与自拍视频润色失败后增加两次重试，最多三次；异常、超时、失败返回或空白结果均会重试，成功后立即停止，三次失败使用原始提示词。单次最多 60 秒、润色阶段最多 180 秒，均受原有整体时间预算约束。\n\n### 使用说明\n\n- 视频保护期内，用户主动发起的新视频请求同样会被拦截；重复调用不延长保护期，插件重载会清空内存中的保护状态。投递未确认不等于生成失败，也不代表已确认送达。\n- 本版本修复插件侧重复生成与重复发送；SnowLuma 回执超过默认 WebSocket 接收上限的问题属于适配器修复，需要适配器同时更新。\n\n### 验证\n\n- 发布前插件全量测试 **704 项通过**，覆盖润色两次失败后成功、三次失败回退、入口期限取消、视频回执丢失不重发及跨轮重复调用拦截。生成与发送使用模拟接口，未为发版创建收费生成任务或发送聊天消息。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.3",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.14.1",
           "tag": "v1.14.1",
           "commit": "33ae8a1a2dffe30fb61050bede30efd9d6b7a692",
@@ -5905,6 +6065,371 @@
       "repositoryUrl": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.0.7",
+          "tag": "v1.0.7",
+          "commit": "4c15cd30513fcd60a6b36968a158106a93976f82",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T10:20:58Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.7",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.6...v1.0.7",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.7",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "0834d703e507c7fac2c89bf2861a674740fd7aa8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T08:01:43Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.6",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.5...v1.0.6",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.6",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "1bf1bcdc192f710c4ac9dedfc1b09fdab721b711",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T06:54:34Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.5",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.4...v1.0.5",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.5",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "742569ff4e099e890d72ba6c1e30043e18a112fc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T06:09:23Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.4",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.3...v1.0.4",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.4",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "ddc9fd8c38099f911a3e13d2c07c9e427fb0ef3e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T04:13:08Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.3",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.2...v1.0.3",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.3",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.0.1",
           "tag": "v1.0.1",
@@ -20324,6 +20849,168 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.10.1",
+          "tag": "v0.10.1",
+          "commit": "54e046f7394c1f9a51f6481ae030d8a187007736",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T10:24:44Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.1",
+          "release_notes": "## 改进\n\n- 网页上的提示、状态和报错改成更简洁、统一的写法。\n- 机器状态和报错只显示中文原因，服务商的英文原始信息改为记在服务端日志里。\n- 资讯卡片的状态全部用中文显示；手动重发后，卡片不再多出一条「手动重发」的错误记录。\n- 管理员对话里回复的设置路径改正（办公文档组件在「设置 → 工具」，机器相关设置在「设置 → 全部设置 → 运行环境」）。\n- 群里的交付说明改得更简短，例如图片交付只说「<标题>做好了」。\n- 首次引导、可选组件、生图模型设置页的说明同步修改。\n\n## 升级说明\n\n- 只改了文字说明，没有新增设置。配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。\n- 覆盖插件时保留自己的 `config.toml`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.10.0",
+          "tag": "v0.10.0",
+          "commit": "0c8a36e1e886a898a7ca688a049f3f5dc2ee100c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T07:44:41Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.0",
+          "release_notes": "## 新功能\n\n### 生图\n在「设置 → 模型」添加一个用途为「生图」的模型（支持 OpenAI 兼容接口、火山方舟、硅基流动），子 agent 就能画插画、封面和概念图。生成的图片可以放进交付网页，也可以直接发到群里；直接发图失败时改为上传群文件，管理员也可以在网页上重发。\n\n- 数据图表仍由程序绘制，不交给生图模型。\n- 没有配置生图模型时，需要画图的任务会先说明做不到，不会硬做。\n- 每天的生图次数可在「设置 → 用量」查看。\n\n### 调研报告页\n调研、对比、分析类任务统一生成报告网页，支持表格、要点、来源和配图，手机、电脑以及深浅色模式下都能正常阅读。\n\n### 资讯图解\n图解改为由固定组件拼装，图中的每个数字都会和原文核对，网页里直接显示。群里的资讯卡片会完整显示每条图解，不再截掉下半部分。修复了「压到85%」这类数字紧贴汉字时被误判为「原文中找不到」的问题。\n\n### 自带 skill\n插件自带调研报告、资讯核实、通用任务、目标追踪、构想整理和办公文档 6 份 skill，装好即可使用，也可以在「设置 → 工具」里单独停用。\n\n### 办公文档组件改为可选\nWord、Excel、PPT 所需的组件不再随插件安装，改为在「设置 → 工具 → 可选组件」一键安装。组件装在 MaiWork 自己的目录里，不影响 MaiBot 的运行环境。未安装时，任务改用 Markdown、表格或网页交付。\n\n### 管理员对话可以帮你配置环境\n在网页上和 MaiWork 对话时，它可以告诉你现在能做哪些事、还缺什么，也可以从 GitHub 或 zip 链接安装 skill（下载前会先请你确认）。密钥仍需你自己在网页上填写。\n\n### 新增 Freestyle 临时机器\n除 Railway 外，现在还可以开启 Freestyle（需要自己的 API key）。两家可以同时开启，并选择优先使用哪家；优先的一家不可用时会自动换另一家。在网页上修改开关后立即生效，不需要重载插件。\n\n## 改进与修复\n\n- 群里有人 @ MaiWork 时，收消息环节不再等待判断结果，避免因超时被 MaiBot 暂停接收消息约一分钟。\n- 数据库繁忙时，@ 请求会先保存到磁盘，稍后自动补写，不会丢失。\n- 资讯卡片发送失败时会自动改发文字版，并记录失败原因；管理员可以在「设置 → 概况 → 需要你处理」手动重发。卡片图片改为 JPEG，体积减小一半以上。\n- 判断不了的 @ 请求会在概况页提醒，超过 14 天未处理的自动归档。\n- 一次交付多张图片时，如果中途中断，会补发还没发出的图片。\n- 图片过大或格式不适合发送时会自动压缩或转换，转换失败则改发原图。\n- 报告网页里的图片总大小设有上限，避免页面太大打不开。\n- 「图表」「流程图」「思维导图」这类需求不再交给生图模型。\n- 可选组件的安装、卸载状态显示更准确；网页上某一块加载失败时，保留原有内容并提供重试。\n- 设置页横向分栏点击时不再抖动。\n\n## 升级说明\n\n- 升级前先备份插件目录和数据目录，覆盖插件时保留自己的 `config.toml`。\n- 配置版本升到 0.5.1，新增设置都有默认值，不需要修改配置。\n- 数据库版本仍为 41：从 0.9.8 升级不需要迁移；从 0.9.7 升级会自动迁移一次。\n- 资讯图解改用新格式保存。如需回滚到旧版本，请同时恢复升级前的数据备份。\n- 生图和办公文档组件都是可选功能，不配置也不影响其他功能。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.8",
           "tag": "v0.9.8",
           "commit": "6024daa1b9f1490726a2f9ba478e8d86ba2029cf",
@@ -28915,6 +29602,62 @@
       "repositoryUrl": "https://github.com/erhan111119/mai-repost-shit",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "c0b9e0d06ee1ffc9331bf093469793536be0fcb1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T07:16:10Z",
+          "release_url": "https://github.com/erhan111119/mai-repost-shit/releases/tag/v1.2.2",
+          "release_notes": "### 视频内联发送：后端跨文件系统也能发\n\n真机报错（经 SnowLuma 发私聊）：\n\n```\n对端动作返回失败: action=send_private_forward_msg\nmessage=EACCES: permission denied, realpath '/root/maibot/MaiBot/temp/plugins/.../clips/BV1MVpX69EBL_64.mp4'\n```\n\n路径前缀 `/root/maibot/MaiBot/...` 说明**该后端跑在另一个文件系统上**（Linux / 容器），\n给它本机路径它读不到 → 权限错误。NapCat 是同机所以一直正常。\n\n**改法**：转发里的视频段改成带 `binary_data_base64` —— 数据随消息本身走，与后端跑在哪台机器无关。\n\n- 新增 `[download].inline_video_max_mb`（默认 10MB）：不超过就内联；超了才退回路径引用并打 warning\n  （那种情况在跨文件系统后端上必失败，日志里要能看出来）。\n- `[download].max_size_mb` 15 → **10**：内联受「插件↔宿主 RPC 帧 16MB」约束（base64 膨胀 4/3），\n  收到 10MB 可保证载荷约 13MB。\n\n实测：6.3MB 文件的转发载荷 6.3MB（上限 16MB），经 NapCat 与 SnowLuma 编码后都是\n`{\"type\": \"video\", \"data\": {\"file\": \"base64://...\"}}`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.erhan111119.mai-repost-shit",
+            "version": "1.2.2",
+            "name": "B站搬史机（mai repost shit）",
+            "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
+            "author": {
+              "name": "erhan111119",
+              "url": "https://github.com/erhan111119"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/erhan111119/mai-repost-shit",
+              "homepage": "https://github.com/erhan111119/mai-repost-shit",
+              "documentation": "https://github.com/erhan111119/mai-repost-shit/blob/main/README.md",
+              "issues": "https://github.com/erhan111119/mai-repost-shit/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "maisaka.context.append",
+              "config.get",
+              "chat.get_all_streams",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.2.1",
           "tag": "v1.2.1",
