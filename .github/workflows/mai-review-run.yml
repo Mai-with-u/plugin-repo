@@ -36,14 +36,8 @@ jobs:
       cancel-in-progress: false
     env:
       REVIEW_ISSUE_NUMBER: ${{ inputs.issue_number }}
-      ANTHROPIC_BASE_URL: https://api.stepfun.com/step_plan
-      ANTHROPIC_MODEL: step-5-preview
-      ANTHROPIC_DEFAULT_SONNET_MODEL: step-5-preview
-      ANTHROPIC_DEFAULT_OPUS_MODEL: step-5-preview
-      ANTHROPIC_DEFAULT_HAIKU_MODEL: step-5-preview
-      ANTHROPIC_DEFAULT_FABLE_MODEL: step-5-preview
-      CLAUDE_CODE_SUBAGENT_MODEL: step-5-preview
-      CLAUDE_CODE_MAX_OUTPUT_TOKENS: '64000'
+      STEP_BASE_URL: https://api.stepfun.com/step_plan
+      STEP_MODEL: step-5-preview
     permissions:
       actions: read
       contents: read
@@ -182,42 +176,30 @@ jobs:
         if: steps.review-start.outputs.should_run == 'true' && steps.build-context.outputs.release_batch == 'true'
         run: node .github/scripts/checkout_release_reviews.cjs
 
-      - name: Install Claude Code CLI
+      - name: Install Step Code CLI
         if: steps.review-start.outputs.should_run == 'true'
         run: |
-          npm install -g @anthropic-ai/claude-code@2.1.283
-          claude --bare --restricted --version
+          curl --fail --silent --show-error --location --retry 3 \
+            https://static-openapi.stepfun.com/stepcode/0.1.4/step-0.1.4-linux-x64.tar.gz \
+            --output "$RUNNER_TEMP/step-code.tar.gz"
+          echo "58f898db0e65f88c8fe5cd44622538ca8cb687bed38eb82821763c1c8478ccd7  $RUNNER_TEMP/step-code.tar.gz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/step-code"
+          tar -xzf "$RUNNER_TEMP/step-code.tar.gz" --strip-components=1 -C "$RUNNER_TEMP/step-code"
+          echo "$RUNNER_TEMP/step-code" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/step-code/step" --version
 
       - name: Run StepFun review
         if: steps.review-start.outputs.should_run == 'true'
         env:
           REVIEW_PROMPT: ${{ inputs.review_prompt }}
           STRUCTURED_RELEASE_REVIEW: ${{ inputs.structured_release_review }}
-          MAX_STRUCTURED_OUTPUT_RETRIES: '3'
-          ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
+          STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
         run: |
-          set -euo pipefail
-          PROMPT="$(cat "$REVIEW_PROMPT")"
-          REVIEW_ARGS=()
+          MODE=text
           if [ "$STRUCTURED_RELEASE_REVIEW" = 'true' ]; then
-            REVIEW_ARGS+=(--json-schema "$(cat .github/codex/release-review.schema.json)")
+            MODE=structured
           fi
-          REVIEW_STATUS=0
-          claude --bare --restricted -p "$PROMPT" \
-            "${REVIEW_ARGS[@]}" \
-            --model "$ANTHROPIC_MODEL" \
-            --effort high \
-            --tools "Read,Glob,Grep,WebFetch" \
-            --allowedTools "Read" "Glob" "Grep" "WebFetch" \
-            --permission-mode dontAsk \
-            --verbose --output-format stream-json > claude-review-events.jsonl 2> claude-review-stderr.log || REVIEW_STATUS=$?
-          jq -s 'map(select(.type == "result")) | last // error("CLI 未返回最终结果，详情见 claude-review-events.jsonl")' claude-review-events.jsonl > claude-review-output.json
-          if [ "$REVIEW_STATUS" -ne 0 ]; then
-            jq -r '.errors[]?' claude-review-output.json >&2
-            exit "$REVIEW_STATUS"
-          fi
-          jq -er 'select(.is_error == false) | if (.structured_output | type) == "object" then .structured_output | tojson else .result | select(type == "string" and length > 0) end' claude-review-output.json > codex-review.md
-          test -s codex-review.md
+          node .github/scripts/run_step_review.cjs "$REVIEW_PROMPT" codex-review.md step-review "$MODE"
 
       - name: Validate structured release review
         if: steps.review-start.outputs.should_run == 'true' && inputs.structured_release_review
@@ -227,18 +209,9 @@ jobs:
         if: steps.review-start.outputs.should_run == 'true'
         env:
           MAI_COMMENT_PROMPT: ${{ inputs.maimai_prompt }}
-          ANTHROPIC_AUTH_TOKEN: ${{ secrets.STEP_API_KEY }}
+          STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
         run: |
-          set -euo pipefail
-          PROMPT="$(cat "$MAI_COMMENT_PROMPT")"
-          claude --bare --restricted -p "$PROMPT" \
-            --model "$ANTHROPIC_MODEL" \
-            --effort medium \
-            --tools "Read,Glob,Grep" \
-            --allowedTools "Read" "Glob" "Grep" \
-            --permission-mode dontAsk \
-            --output-format json | jq -er 'select(.is_error == false and (.result | type == "string") and (.result | length > 0)) | .result' > codex-maimai.md
-          test -s codex-maimai.md
+          node .github/scripts/run_step_review.cjs "$MAI_COMMENT_PROMPT" codex-maimai.md step-maimai
 
       # Refresh the App token before posting results, including failed reviews.
       # Long reviews may outlive the token used for the start notification.
@@ -300,9 +273,10 @@ jobs:
           name: review-diagnostics-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             codex-review.md
-            claude-review-output.json
-            claude-review-events.jsonl
-            claude-review-stderr.log
+            step-review-events.jsonl
+            step-review-stderr.log
+            step-maimai-events.jsonl
+            step-maimai-stderr.log
             mai-review-input.md
             mai-release-targets.json
             codex-maimai.md

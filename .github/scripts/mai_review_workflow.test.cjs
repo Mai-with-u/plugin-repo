@@ -122,11 +122,12 @@ test('审核诊断在成功、失败或取消后均保存，登记审核也适�
   assert.ok(step);
   const condition = step.match(/        if: (.+)/)[1];
   assert.equal(condition, "always() && steps.review-start.outputs.should_run == 'true'");
-  for (const file of ['claude-review-events.jsonl', 'claude-review-output.json', 'claude-review-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
+  for (const file of ['step-review-events.jsonl', 'step-review-stderr.log', 'step-maimai-events.jsonl', 'step-maimai-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
     assert.ok(step.includes(`            ${file}\n`), `Missing diagnostic: ${file}`);
   }
   assert.match(step, /if-no-files-found: ignore/);
-  assert.match(workflow, /stream-json > claude-review-events\.jsonl 2> claude-review-stderr\.log/);
+  assert.match(workflow, /run_step_review\.cjs "\$REVIEW_PROMPT" codex-review\.md step-review/);
+  assert.doesNotMatch(workflow, /ANTHROPIC_AUTH_TOKEN|claude --bare/);
 });
 
 test('审核中标签按需创建，成功、失败或取消后均清理，404 可忽略', async () => {
