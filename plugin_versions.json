@@ -1404,6 +1404,166 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.4",
+          "tag": "v1.15.4",
+          "commit": "c06a26b463c59a77bc0fe972811420fd508105da",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T08:12:30Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.4",
+          "release_notes": "### 主要修复\n\n- **视频失败后重复生成**：防重复保护扩展到生成失败、发送失败及执行中断；同一会话 10 分钟内即使换提示词再次调用，也在润色和创建视频任务前被拦截。单次调用内部的渠道轮换规则保持原样。\n- **重载后的防重复保护**：任务开始前原子保存保护记录，失败与投递未确认保护跨插件重载和重启保留。成功解除本次失败保护；无法读取或保存记录时暂停新视频任务，避免未知状态下再次付费生成。\n- **视频 HTTP 直发**：视频只调用配置的 SnowLuma / NapCat OneBot HTTP 端口，不进入 SDK / WebSocket 群回执查询链路，不再通过 `get_msg` 拉回视频正文，无需修改适配器或部署服务端扩展。\n- **大视频发送**：新增 `api.video_shared_dir`，视频保存到共享目录后，HTTP 请求只携带文件 URI，避免 SnowLuma 默认 2 MiB 请求体限制触发断连。确认成功后删除临时文件；确认异常时保留，并在后续发送时清理超过 24 小时的遗留文件。\n- **发送结果判定**：成功响应须同时包含 `status=ok`、`retcode=0` 和有效消息 ID；超时、断连、5xx 或矛盾/缺失字段保留投递未确认，不重发，继续拦截后续自动重新生成。\n\n### 配置与使用\n\n- `api.video_shared_dir` 默认留空，保持 Base64 传输并受服务端请求体大小限制。使用共享文件模式时，MaiBot 与 SnowLuma / NapCat 必须能通过同一绝对路径读取同一目录；本仓库 Docker 共享挂载可使用 `/MaiMBot/data/gemini_drawer/video_outbox`。\n- HTTP 成功表示发送接口确认成功，不额外核验群消息序号。共享临时文件的过期清理在后续发送准备时执行，并非定时清理。\n- 视频失败保护独立于普通媒体冷却；保护期内用户主动要求新视频也会被拦截，重复调用不延长期限。任务仍在执行时发生重载，保留最长 20 分钟保护；结束失败后从失败时起保护 10 分钟。\n\n### 验证\n\n- 修复完成后插件全量测试 **722 项通过**，覆盖 HTTP 直发、共享文件、失败后跨轮重复调用、重载恢复保护和原有渠道轮换；跨容器只读验证共享文件内容一致，验证期间未发送聊天消息或创建收费视频任务。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.4",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
+          "version": "1.15.3",
+          "tag": "v1.15.3",
+          "commit": "76cbb65a0c4465732061ec775d015cb20e404a94",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T07:15:27Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.3",
+          "release_notes": "### 修复\n\n- **视频投递未确认**：SDK 已尝试发送后，即使返回 `False` 或 `sent=False` 且没有消息 ID，也不再回退 NapCat 重发；只有 SDK 发送能力不可用时才使用备用链路。\n- **防止重新生成视频**：将回执异常作为独立的投递未确认状态返回，明确禁止自动重试，不再发送误导性的失败提示。同一会话进入 10 分钟视频保护期，拦截 Planner 随后的重复调用；保护不受普通媒体冷却开关影响，图片和其他会话不受影响。\n- **发送期间超时**：入口期限取消发生在视频发送期间时，保留投递未确认状态与防重复保护，避免重新创建视频任务。\n- **提示词润色重试**：自拍与自拍视频润色失败后增加两次重试，最多三次；异常、超时、失败返回或空白结果均会重试，成功后立即停止，三次失败使用原始提示词。单次最多 60 秒、润色阶段最多 180 秒，均受原有整体时间预算约束。\n\n### 使用说明\n\n- 视频保护期内，用户主动发起的新视频请求同样会被拦截；重复调用不延长保护期，插件重载会清空内存中的保护状态。投递未确认不等于生成失败，也不代表已确认送达。\n- 本版本修复插件侧重复生成与重复发送；SnowLuma 回执超过默认 WebSocket 接收上限的问题属于适配器修复，需要适配器同时更新。\n\n### 验证\n\n- 发布前插件全量测试 **704 项通过**，覆盖润色两次失败后成功、三次失败回退、入口期限取消、视频回执丢失不重发及跨轮重复调用拦截。生成与发送使用模拟接口，未为发版创建收费生成任务或发送聊天消息。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.3",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.14.1",
           "tag": "v1.14.1",
           "commit": "33ae8a1a2dffe30fb61050bede30efd9d6b7a692",
