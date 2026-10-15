@@ -20930,6 +20930,87 @@
           }
         },
         {
+          "version": "0.10.0",
+          "tag": "v0.10.0",
+          "commit": "0c8a36e1e886a898a7ca688a049f3f5dc2ee100c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T07:44:41Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.0",
+          "release_notes": "## 新功能\n\n### 生图\n在「设置 → 模型」添加一个用途为「生图」的模型（支持 OpenAI 兼容接口、火山方舟、硅基流动），子 agent 就能画插画、封面和概念图。生成的图片可以放进交付网页，也可以直接发到群里；直接发图失败时改为上传群文件，管理员也可以在网页上重发。\n\n- 数据图表仍由程序绘制，不交给生图模型。\n- 没有配置生图模型时，需要画图的任务会先说明做不到，不会硬做。\n- 每天的生图次数可在「设置 → 用量」查看。\n\n### 调研报告页\n调研、对比、分析类任务统一生成报告网页，支持表格、要点、来源和配图，手机、电脑以及深浅色模式下都能正常阅读。\n\n### 资讯图解\n图解改为由固定组件拼装，图中的每个数字都会和原文核对，网页里直接显示。群里的资讯卡片会完整显示每条图解，不再截掉下半部分。修复了「压到85%」这类数字紧贴汉字时被误判为「原文中找不到」的问题。\n\n### 自带 skill\n插件自带调研报告、资讯核实、通用任务、目标追踪、构想整理和办公文档 6 份 skill，装好即可使用，也可以在「设置 → 工具」里单独停用。\n\n### 办公文档组件改为可选\nWord、Excel、PPT 所需的组件不再随插件安装，改为在「设置 → 工具 → 可选组件」一键安装。组件装在 MaiWork 自己的目录里，不影响 MaiBot 的运行环境。未安装时，任务改用 Markdown、表格或网页交付。\n\n### 管理员对话可以帮你配置环境\n在网页上和 MaiWork 对话时，它可以告诉你现在能做哪些事、还缺什么，也可以从 GitHub 或 zip 链接安装 skill（下载前会先请你确认）。密钥仍需你自己在网页上填写。\n\n### 新增 Freestyle 临时机器\n除 Railway 外，现在还可以开启 Freestyle（需要自己的 API key）。两家可以同时开启，并选择优先使用哪家；优先的一家不可用时会自动换另一家。在网页上修改开关后立即生效，不需要重载插件。\n\n## 改进与修复\n\n- 群里有人 @ MaiWork 时，收消息环节不再等待判断结果，避免因超时被 MaiBot 暂停接收消息约一分钟。\n- 数据库繁忙时，@ 请求会先保存到磁盘，稍后自动补写，不会丢失。\n- 资讯卡片发送失败时会自动改发文字版，并记录失败原因；管理员可以在「设置 → 概况 → 需要你处理」手动重发。卡片图片改为 JPEG，体积减小一半以上。\n- 判断不了的 @ 请求会在概况页提醒，超过 14 天未处理的自动归档。\n- 一次交付多张图片时，如果中途中断，会补发还没发出的图片。\n- 图片过大或格式不适合发送时会自动压缩或转换，转换失败则改发原图。\n- 报告网页里的图片总大小设有上限，避免页面太大打不开。\n- 「图表」「流程图」「思维导图」这类需求不再交给生图模型。\n- 可选组件的安装、卸载状态显示更准确；网页上某一块加载失败时，保留原有内容并提供重试。\n- 设置页横向分栏点击时不再抖动。\n\n## 升级说明\n\n- 升级前先备份插件目录和数据目录，覆盖插件时保留自己的 `config.toml`。\n- 配置版本升到 0.5.1，新增设置都有默认值，不需要修改配置。\n- 数据库版本仍为 41：从 0.9.8 升级不需要迁移；从 0.9.7 升级会自动迁移一次。\n- 资讯图解改用新格式保存。如需回滚到旧版本，请同时恢复升级前的数据备份。\n- 生图和办公文档组件都是可选功能，不配置也不影响其他功能。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.8",
           "tag": "v0.9.8",
           "commit": "6024daa1b9f1490726a2f9ba478e8d86ba2029cf",
