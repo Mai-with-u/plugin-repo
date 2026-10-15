@@ -2258,7 +2258,7 @@
             "name": "chat_summary",
             "description": "生成聊天记录总结",
             "pattern": "/summary",
-            "usage": "/summary [今天|昨天] 或 /summary @用户名/QQ号 [今天|昨天]"
+            "usage": "/summary [今天|昨天] 或 /summary @用户名/QQ号 [今天|��天]"
           },
           {
             "type": "event_handler",
@@ -7312,9 +7312,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "1.12.6",
+      "version": "2.0.0",
       "name": "麦麦绘图",
-      "description": "让麦麦拥有图片创建与图片编辑的能力，支持多平台图片模型",
+      "description": "聊天绘图与可视化工作台一体，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
         "name": "清蒸云鸭",
         "url": "https://github.com/WhiteCloudOL"
@@ -7323,22 +7323,22 @@
       "urls": {
         "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
         "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
-        "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/README.md",
+        "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
         "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.2.0",
+        "min_version": "1.3.6",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.7.1",
+        "min_version": "2.12.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "aiohttp",
-          "version_spec": ">=3.0.0"
+          "version_spec": ">=3.9.0"
         },
         {
           "type": "python_package",
@@ -7349,6 +7349,11 @@
           "type": "python_package",
           "name": "pillow",
           "version_spec": ">=9.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.3"
         }
       ],
       "capabilities": [
@@ -7362,7 +7367,8 @@
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "message.get_recent",
-        "message.get_by_id"
+        "message.get_by_id",
+        "webui.claim_upload"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -18027,7 +18033,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.10.1",
+      "version": "0.10.2",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -21086,6 +21092,85 @@
     },
     "assets": {
       "icon_64": "icons/org.civetc.char-recog.webp"
+    }
+  },
+  {
+    "id": "geffnt.group-meme-nickname",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "geffnt.group-meme-nickname",
+      "version": "1.0.0",
+      "name": "群梗名片 (Group Meme Nickname)",
+      "description": "拿麦麦自己的名字当词根，嫁接群里最近真正在聊的梗，造一个群友外号风格的群名片。读写优先走 napcat-adapter 已连接的 WebSocket（公开 API adapter.napcat.action.call），无需另开 NapCat HTTP 服务器，HTTP 仅作回退",
+      "author": {
+        "name": "geffnt",
+        "url": "https://github.com/geffnt"
+      },
+      "license": "MIT",
+      "plugin_type": "utility",
+      "urls": {
+        "repository": "https://github.com/geffnt/maibot-group-meme-nickname",
+        "documentation": "https://github.com/geffnt/maibot-group-meme-nickname/blob/main/README.md"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.6"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.13.0"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "config.get",
+        "llm.generate",
+        "message.get_recent",
+        "message.build_readable",
+        "chat.get_stream_by_group_id",
+        "chat.get_group_streams",
+        "knowledge.search",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "octmicy.dicky-pk",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "octmicy.dicky-pk",
+      "name": "牛子PK",
+      "version": "1.0.0",
+      "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/Dicky-PK"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
