@@ -20849,6 +20849,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.10.1",
+          "tag": "v0.10.1",
+          "commit": "54e046f7394c1f9a51f6481ae030d8a187007736",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T10:24:44Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.1",
+          "release_notes": "## 改进\n\n- 网页上的提示、状态和报错改成更简洁、统一的写法。\n- 机器状态和报错只显示中文原因，服务商的英文原始信息改为记在服务端日志里。\n- 资讯卡片的状态全部用中文显示；手动重发后，卡片不再多出一条「手动重发」的错误记录。\n- 管理员对话里回复的设置路径改正（办公文档组件在「设置 → 工具」，机器相关设置在「设置 → 全部设置 → 运行环境」）。\n- 群里的交付说明改得更简短，例如图片交付只说「<标题>做好了」。\n- 首次引导、可选组件、生图模型设置页的说明同步修改。\n\n## 升级说明\n\n- 只改了文字说明，没有新增设置。配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。\n- 覆盖插件时保留自己的 `config.toml`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.9.8",
           "tag": "v0.9.8",
           "commit": "6024daa1b9f1490726a2f9ba478e8d86ba2029cf",
