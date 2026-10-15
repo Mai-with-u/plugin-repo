@@ -1464,7 +1464,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.2",
+      "version": "1.15.4",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -10059,7 +10059,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.6",
+      "version": "0.4.7",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -10074,7 +10074,7 @@
         "issues": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.5",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -10227,7 +10227,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "name": "网页抓取 (Fetch URL)",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
       "author": {
@@ -10242,7 +10242,7 @@
         "issues": "https://github.com/yufei-pan/maibot-fetch-url-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.5",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -10732,7 +10732,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.3.4",
+      "version": "0.3.5",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -10747,7 +10747,7 @@
         "issues": "https://github.com/yufei-pan/maibot-impression-card-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.5",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -11528,7 +11528,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibook",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "name": "麦书 (MaiBook)",
       "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
       "author": {
@@ -11543,7 +11543,7 @@
         "issues": "https://github.com/yufei-pan/maibook-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.2.5",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -15111,7 +15111,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.lunagentic-research-swarm",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
       "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
       "author": {
@@ -15123,7 +15123,7 @@
         "repository": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm"
       },
       "host_application": {
-        "min_version": "1.1.0",
+        "min_version": "1.2.5",
         "max_version": "1.99.99"
       },
       "sdk": {
@@ -18027,7 +18027,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.9.8",
+      "version": "0.10.1",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19067,7 +19067,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "ezrart.magnet-downloads",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "name": "Aria2 / qBittorrent 磁链下载",
       "description": "引用聊天消息并发送“给我下”，批量提取普通消息及合并转发中的磁链交给 aria2 或 qBittorrent。",
       "author": {
@@ -19593,7 +19593,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.2.8",
+      "version": "0.2.9",
       "name": "QQ 名片点赞",
       "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
@@ -20287,7 +20287,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.erhan111119.mai-repost-shit",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "name": "B站搬史机（mai repost shit）",
       "description": "定时去B站捡评论区全是艾特的视频，下成 720p，以聊天记录形式搬进群",
       "author": {

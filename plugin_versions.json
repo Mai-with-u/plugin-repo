@@ -6549,17 +6549,17 @@
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.2'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.3.0' !== '0.3.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
         }
       ]
     },
@@ -11854,8 +11854,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "fetch failed"
+      "rejected_releases": []
     },
     {
       "id": "deepseek-v4-pro.prp-prober",
