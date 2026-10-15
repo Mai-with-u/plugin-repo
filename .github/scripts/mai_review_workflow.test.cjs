@@ -117,6 +117,18 @@ test("every review comment uses the Mai App identity, including failure paths", 
   assert.match(refresh, /secrets\.MAI_REVIEW_APP_PRIVATE_KEY/);
 });
 
+test('审核诊断在成功、失败或取消后均保存，登记审核也适用', () => {
+  const step = workflow.split('      - name: Save review diagnostics\n')[1]?.split('\n      - name:')[0];
+  assert.ok(step);
+  const condition = step.match(/        if: (.+)/)[1];
+  assert.equal(condition, "always() && steps.review-start.outputs.should_run == 'true'");
+  for (const file of ['claude-review-events.jsonl', 'claude-review-output.json', 'claude-review-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
+    assert.ok(step.includes(`            ${file}\n`), `Missing diagnostic: ${file}`);
+  }
+  assert.match(step, /if-no-files-found: ignore/);
+  assert.match(workflow, /stream-json > claude-review-events\.jsonl 2> claude-review-stderr\.log/);
+});
+
 test('审核中标签按需创建，成功、失败或取消后均清理，404 可忽略', async () => {
   const calls = [];
   const github = { rest: { issues: {
