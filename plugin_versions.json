@@ -5906,6 +5906,371 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.7",
+          "tag": "v1.0.7",
+          "commit": "4c15cd30513fcd60a6b36968a158106a93976f82",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T10:20:58Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.7",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.6...v1.0.7",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.7",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "0834d703e507c7fac2c89bf2861a674740fd7aa8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T08:01:43Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.6",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.5...v1.0.6",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.6",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "1bf1bcdc192f710c4ac9dedfc1b09fdab721b711",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T06:54:34Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.5",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.4...v1.0.5",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.5",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "742569ff4e099e890d72ba6c1e30043e18a112fc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T06:09:23Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.4",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.3...v1.0.4",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.4",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "ddc9fd8c38099f911a3e13d2c07c9e427fb0ef3e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T04:13:08Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.3",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.2...v1.0.3",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.3",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "470eb31bed9c05dc2d88b92638256d4fd142cd96",
@@ -6184,17 +6549,17 @@
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.2'\n"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.1'\n"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\n\n'0.3.0' !== '0.3.1'\n"
         }
       ]
     },
