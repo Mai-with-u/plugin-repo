@@ -32509,7 +32509,58 @@
       "manifest_id": "geffnt.group-meme-nickname",
       "repositoryUrl": "https://github.com/geffnt/maibot-group-meme-nickname",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "efe35c98269d04f95670ca7cf711192dc2a7165b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T15:31:20Z",
+          "release_url": "https://github.com/geffnt/maibot-group-meme-nickname/releases/tag/v1.0.0",
+          "release_notes": "Cap host/sdk max_version to the environment that was actually run\n\n- host_application.max_version: 1.3.99 -> 1.3.6\n- sdk.max_version: 2.99.99 -> 2.13.0\n\nThe \"99-style\" bounds were placeholders that endorsed versions never tested, and\nreview rejected them: how many accepted plugins use the same placeholder is not\nevidence. The new caps are exactly what this machine runs and what the plugin has\nbeen loading and reloading on, i.e. the host version the validator reads from\nMaiBot/pyproject.toml (1.3.6, see manifest_validator.py:837) and the SDK version\nit reads from the installed maibot-plugin-sdk distribution (2.13.0, see\n_detect_default_sdk_version). README now records both and asks users on other\nversions to report theirs so the range can be widened after a real test.\n\nNote for context: the host itself declares its SDK protocol window as\n[1.0.0, 2.99.99] (protocol/envelope.py), which is where the placeholder habit\ncomes from, and a same-major.minor patch bump is what the host's\nupdate_compatibility_notice is built for. That is background, not a reason to\nkeep endorsing untested versions.\n\n- plugin_type: added as \"utility\". The host only special-cases adapter/trusted;\n  any other value loads as a normal third-party plugin, and review asked for a\n  closer type.\n- README: the notes section now says Planner tool calls are not covered by the\n  operator command permission.\n- Version stays 1.0.0 and tag v1.0.0 moves onto this commit.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "geffnt.group-meme-nickname",
+            "version": "1.0.0",
+            "name": "群梗名片 (Group Meme Nickname)",
+            "description": "拿麦麦自己的名字当词根，嫁接群里最近真正在聊的梗，造一个群友外号风格的群名片。读写优先走 napcat-adapter 已连接的 WebSocket（公开 API adapter.napcat.action.call），无需另开 NapCat HTTP 服务器，HTTP 仅作回退",
+            "author": {
+              "name": "geffnt",
+              "url": "https://github.com/geffnt"
+            },
+            "license": "MIT",
+            "plugin_type": "utility",
+            "urls": {
+              "repository": "https://github.com/geffnt/maibot-group-meme-nickname",
+              "documentation": "https://github.com/geffnt/maibot-group-meme-nickname/blob/main/README.md"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.6"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.13.0"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "message.build_readable",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "knowledge.search",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
