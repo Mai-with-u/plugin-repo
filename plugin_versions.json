@@ -32921,7 +32921,67 @@
       "manifest_id": "shinoyukimiyako.claude-provider",
       "repositoryUrl": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "78af8c58506c9572f1099b7d800b10d9bc437f22",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T14:40:21Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/releases/tag/v1.0.0",
+          "release_notes": "首个公开版本。\n\n为 MaiBot 注册 `claude` 客户端类型，用官方 `anthropic` Python SDK 原生调用 Claude Messages API。\n\n- 提示缓存：system 与聊天历史两处断点，MaiBot 每轮在末尾拼接的一次性内容不影响历史命中\n- 自适应思考与思考摘要，`effort` / `reasoning_effort` 映射为 `output_config.effort`\n- `json_schema` 结构化输出、工具调用续接\n- 支持的模型启用服务端拒答兜底\n- 发送前自动修正会被 API 拒绝的消息形状：中途 system 的位置、tool_result 顺序、别家 Provider 的工具调用 id、纯空白文本\n- Provider 请求头 `anthropic-workspace-id` 格式校验，适配多工作区 API Key；`anthropic-beta` 与兜底 beta 合并\n\n兼容范围：MaiBot 1.3.9，插件 SDK 2.12.0 ~ 2.14.0。已在 Opus 5.5 与 Sonnet 5.5 上通过真实 API 冒烟。\n\n许可证：AGPL-3.0-only。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyukimiyako.claude-provider",
+            "version": "1.0.0",
+            "name": "Claude Provider Support",
+            "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+              "homepage": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+              "documentation": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/blob/main/README.md",
+              "issues": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "anthropic",
+                "version_spec": ">=1.14.0,<2.0.0"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "claude",
+                "name": "Claude Messages API",
+                "description": "通过官方 anthropic SDK 调用 Claude Messages API。",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [],
+            "plugin_type": "provider",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
