@@ -1,0 +1,53 @@
+name: Sync CNB Mirrors
+
+on:
+  push:
+    branches: [main]
+  # Index updates made with GITHUB_TOKEN do not trigger push workflows.
+  workflow_run:
+    workflows: ['Sync Plugin Index', 'Approve or Reject Plugin', 'Mai Review Plugin Release']
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: '30 7,18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cnb-mirror
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: vars.CNB_GROUP != '' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify synchronization script
+        run: node --test .github/scripts/sync_cnb_mirrors.test.cjs
+      - name: Check Git LFS
+        run: git lfs version
+      - name: Sync plugins and registry to CNB
+        env:
+          CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
+          CNB_GROUP: ${{ vars.CNB_GROUP }}
+          CNB_REGISTRY_REPO: ${{ vars.CNB_REGISTRY_REPO }}
+          CNB_SYNC_CONCURRENCY: ${{ vars.CNB_SYNC_CONCURRENCY }}
+        run: node .github/scripts/sync_cnb_mirrors.cjs
+      - name: Upload synchronization status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cnb-mirror-status
+          path: cnb-sync-output/cnb_mirrors.json
+          if-no-files-found: ignore
+          retention-days: 14
