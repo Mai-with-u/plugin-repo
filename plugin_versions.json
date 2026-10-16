@@ -1564,6 +1564,86 @@
           }
         },
         {
+          "version": "1.15.2",
+          "tag": "v1.15.2",
+          "commit": "120e858eecbcb9f45359edfc95cd9179d2a72c80",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T05:44:24Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.2",
+          "release_notes": "### 主要修复\n\n- **QQ 头像下载**：全新安装默认将 `q1.qlogo.cn` 加入媒体主机允许列表，兼容代理 fake-IP 环境；升级保留已有的显式允许列表，包括空列表。\n- **图文消息取图**：保留图片 hash 和内联 Base64，按 hash 读取已保存的图片或表情缓存，支持消息尚未入库的“文字＋多张图”；必要时按消息 ID 补取，保持图片顺序并避免重复计数。\n- **提示词原文**：指令只读取原始文字段，不再混入主程序生成的图片、表情或引用描述；用户自行输入的括号和换行保留，参考图单独传入。\n- **视频渠道轮换**：与图片链路对齐，尚未收到创建成功响应时，503 等 HTTP 错误继续尝试下一个可用端点；服务端故障和限流不误计为 Key 失效。\n- **超时轮换统一**：绘图与视频指令、自然语言绘图、自拍及自拍视频在尚未收到成功响应时，读写超时或单端点等待超时都会在总预算内继续其他可用端点；已接收的任务、结果处理和发送确认仍保留防重复保护。此前只有自拍类工具享受该轮换，命令侧超时后直接失败。\n\n### 使用说明与验证\n\n- 轮换需要其他已启用、用途匹配且有有效 Key 的端点；只有一个可用端点或剩余预算不足时停止。命令、工具和视频渠道使用同一套规则，不再有仅自拍轮换的特例。\n- 超时后原服务仍可能继续生成，切换渠道可能重复生成或计费；已经创建的视频任务继续查询原任务，发送状态不确定时不自动重发。\n- 修复完成后的全量测试为 **695 项通过**，包含 21 项自拍 Tool 入口回归与 1 项命令层超时轮换用例；原消息回放确认两张原图的内容与顺序，以及请求中只保留用户提示词。生成和发送使用模拟接口，原消息验证只读取缓存并构造请求。\n- 上文列出的失败换渠道行为已由回归测试覆盖，包括超时轮换、Key 不误禁、无备用端点停止和已创建任务不重建。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.2",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.14.1",
           "tag": "v1.14.1",
           "commit": "33ae8a1a2dffe30fb61050bede30efd9d6b7a692",
@@ -15742,6 +15822,72 @@
       "repositoryUrl": "https://github.com/yufei-pan/maibook-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.1.4",
+          "tag": "v0.1.4",
+          "commit": "28c76b50e6ca441970b19ac5ae79868eab79f587",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-15T06:57:17Z",
+          "release_url": "https://github.com/yufei-pan/maibook-plugin/releases/tag/v0.1.4",
+          "release_notes": "## 修复\n\n- 移除写手的「固定模型」回退路径：它借用宿主内部 `TaskConfig`/`LLMOrchestrator`，在宿主 1.3.0+ 上因 `TaskConfig` 删除 `slow_threshold` 必然失败，且会用「当前宿主不支持固定具体模型…」覆盖宿主的真实报错。具体模型名本就经公开 `ctx.llm.generate(model_name=…)` 直选，宿主报错现原样返回\n\n## 变更\n\n- 宿主最低版本升至 **1.2.5**（公开 LLM 能力区分 `task_name` 与 `model_name` 的首个版本，0.1.3 起即依赖）；SDK 仍为 **≥2.8.1**\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.maibook",
+            "version": "0.1.4",
+            "name": "麦书 (MaiBook)",
+            "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibook-plugin",
+              "homepage": "https://github.com/yufei-pan/maibook-plugin",
+              "documentation": "https://github.com/yufei-pan/maibook-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibook-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomli",
+                "version_spec": ">=2.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomli-w",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
         {
           "version": "0.1.3",
           "tag": "v0.1.3",
@@ -32355,6 +32501,75 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "geffnt.group-meme-nickname",
+      "manifest_id": "geffnt.group-meme-nickname",
+      "repositoryUrl": "https://github.com/geffnt/maibot-group-meme-nickname",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "efe35c98269d04f95670ca7cf711192dc2a7165b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-14T15:31:20Z",
+          "release_url": "https://github.com/geffnt/maibot-group-meme-nickname/releases/tag/v1.0.0",
+          "release_notes": "Cap host/sdk max_version to the environment that was actually run\n\n- host_application.max_version: 1.3.99 -> 1.3.6\n- sdk.max_version: 2.99.99 -> 2.13.0\n\nThe \"99-style\" bounds were placeholders that endorsed versions never tested, and\nreview rejected them: how many accepted plugins use the same placeholder is not\nevidence. The new caps are exactly what this machine runs and what the plugin has\nbeen loading and reloading on, i.e. the host version the validator reads from\nMaiBot/pyproject.toml (1.3.6, see manifest_validator.py:837) and the SDK version\nit reads from the installed maibot-plugin-sdk distribution (2.13.0, see\n_detect_default_sdk_version). README now records both and asks users on other\nversions to report theirs so the range can be widened after a real test.\n\nNote for context: the host itself declares its SDK protocol window as\n[1.0.0, 2.99.99] (protocol/envelope.py), which is where the placeholder habit\ncomes from, and a same-major.minor patch bump is what the host's\nupdate_compatibility_notice is built for. That is background, not a reason to\nkeep endorsing untested versions.\n\n- plugin_type: added as \"utility\". The host only special-cases adapter/trusted;\n  any other value loads as a normal third-party plugin, and review asked for a\n  closer type.\n- README: the notes section now says Planner tool calls are not covered by the\n  operator command permission.\n- Version stays 1.0.0 and tag v1.0.0 moves onto this commit.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "geffnt.group-meme-nickname",
+            "version": "1.0.0",
+            "name": "群梗名片 (Group Meme Nickname)",
+            "description": "拿麦麦自己的名字当词根，嫁接群里最近真正在聊的梗，造一个群友外号风格的群名片。读写优先走 napcat-adapter 已连接的 WebSocket（公开 API adapter.napcat.action.call），无需另开 NapCat HTTP 服务器，HTTP 仅作回退",
+            "author": {
+              "name": "geffnt",
+              "url": "https://github.com/geffnt"
+            },
+            "license": "MIT",
+            "plugin_type": "utility",
+            "urls": {
+              "repository": "https://github.com/geffnt/maibot-group-meme-nickname",
+              "documentation": "https://github.com/geffnt/maibot-group-meme-nickname/blob/main/README.md"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.6"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.13.0"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "message.build_readable",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "knowledge.search",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "octmicy.dicky-pk",
+      "manifest_id": "octmicy.dicky-pk",
+      "repositoryUrl": "https://github.com/octmicy/Dicky-PK",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
