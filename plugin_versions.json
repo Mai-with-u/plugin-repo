@@ -18427,6 +18427,90 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.3",
+          "tag": "v0.2.3",
+          "commit": "8efecb2e0ca9a16a70f0ad285f6bef44a5c237f3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T19:41:59Z",
+          "release_url": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm/releases/tag/v0.2.3",
+          "release_notes": "## 变更\n\n- manifest 兼容上限改为实际验证过的范围：宿主 `max_version` 1.99.99 → **1.3.99**，SDK `max_version` 2.99.99 → **2.14.99**（宿主 1.3.8 + SDK 2.12.0 上实际运行，SDK 2.14.0 上测试通过）。插件仓库审核不再接受「永远兼容」式的上限（Mai-with-u/plugin-repo#812）\n- manifest 移除未使用的 `message.get_by_time` 能力声明（代码只用 `message.get_by_time_in_chat`）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.lunagentic-research-swarm",
+            "version": "0.2.3",
+            "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
+            "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibot-lunagentic-research-swarm"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.0"
+              },
+              {
+                "type": "python_package",
+                "name": "ddgs",
+                "version_spec": ">=9.14.4,<10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lancedb",
+                "version_spec": ">=0.34.0,<0.35.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "api.list",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "knowledge.search",
+              "llm.embed",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "message.build_readable",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "message.get_recent",
+              "person.get_id",
+              "person.get_id_by_name",
+              "person.get_value",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.1",
           "tag": "v0.2.1",
           "commit": "311c2c62652fa5bb0a3dd4db02704dd2ba914108",
