@@ -2258,7 +2258,7 @@
             "name": "chat_summary",
             "description": "生成聊天记录总结",
             "pattern": "/summary",
-            "usage": "/summary [今天|昨天] 或 /summary @用户名/QQ号 [今天|��天]"
+            "usage": "/summary [今天|昨天] 或 /summary @用户名/QQ号 [今天|昨天]"
           },
           {
             "type": "event_handler",
@@ -7312,7 +7312,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "name": "麦麦绘图",
       "description": "聊天绘图与可视化工作台一体，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -7328,11 +7328,11 @@
       },
       "host_application": {
         "min_version": "1.3.6",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.0"
       },
       "dependencies": [
         {
@@ -7372,7 +7372,6 @@
       ],
       "i18n": {
         "default_locale": "zh-CN",
-        "locales_path": "i18n",
         "supported_locales": [
           "zh-CN",
           "en-US",
@@ -19599,7 +19598,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.2.9",
+      "version": "0.3.0",
       "name": "QQ 名片点赞",
       "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
@@ -19615,7 +19614,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -21114,11 +21113,11 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.3.6"
+        "max_version": "1.3.9"
       },
       "sdk": {
         "min_version": "2.10.0",
-        "max_version": "2.13.0"
+        "max_version": "2.14.0"
       },
       "dependencies": [],
       "capabilities": [
@@ -21143,7 +21142,7 @@
       "manifest_version": 2,
       "id": "octmicy.dicky-pk",
       "name": "牛子PK",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
       "author": {
         "name": "octmicy",
@@ -21159,7 +21158,7 @@
       },
       "sdk": {
         "min_version": "2.6.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "dependencies": [],
       "capabilities": [
