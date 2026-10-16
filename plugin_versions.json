@@ -32539,7 +32539,51 @@
       "manifest_id": "octmicy.dicky-pk",
       "repositoryUrl": "https://github.com/octmicy/Dicky-PK",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "fa4e059f874e7d9b1b17cab5f15f6f60081f0e73",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T06:35:34Z",
+          "release_url": "https://github.com/octmicy/Dicky-PK/releases/tag/v1.0.1",
+          "release_notes": "## 牛子PK v1.0.1\n\n从 nonebot-plugin-dicky-pk 0.7.1（原作者 月ヶ瀬，MIT）移植到 MaiBot Plugin SDK 的群聊小游戏。\n\n### 本版本修订（相对 v1.0.0）\n\n- **sdk.max_version 按实测锚定**：`2.99.99` → `2.13.99`。上限对齐实际验证过的 SDK 版本（2.13.0），不再使用无依据的“永远兼容”式写法。\n- **config.toml 不再纳入版本管理**：配置文件改为首次加载时由 SDK 依据 `config.py` 模型默认值自动生成；仓库仅保留 `config.toml.example` 模板供查阅与手动初始化，避免用户本地改动在版本更新时与 Git 跟踪内容冲突。\n- README 部署与配置说明同步更新。\n\n### 功能\n\n注册牛子 / 牛子信息 / pk / 🔒 / 打胶 / 看他牛子 / 牛子排名 / 牛子转生（5 级）/ 牛子成就（可配置条件与加成）/ 牛子仙境（定时开放修炼）/ 牛友系统（朋友费与加成），共 20 条指令。platform:user_id 复合键，群聊全开 + 私聊只读，开关指令 permission=operator，全量强类型配置（80 字段 / 9 节，WebUI 可编辑），零第三方依赖。\n\n### 兼容范围\n\n- MaiBot 主程序 1.3.0 – 1.4.99\n- Plugin SDK 2.6.0 – 2.13.99（实测 2.13.0）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "octmicy.dicky-pk",
+            "name": "牛子PK",
+            "version": "1.0.1",
+            "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/octmicy/Dicky-PK"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.13.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
