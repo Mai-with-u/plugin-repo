@@ -15916,6 +15916,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "ae8d548497cdd450f641743ffdb471f57c3640f7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T19:51:40Z",
+          "release_url": "https://github.com/yufei-pan/maibook-plugin/releases/tag/v0.1.5",
+          "release_notes": "## 修复\n\n- `publish_deliver`（`format=disk`）落盘文件名中的 `version` 现与书名一样经 `_safe_component` 清洗。`version` 可经 `bookshelf_meta` 写入任意字符串，含 `../` 时编译产物会写到 `compiled/` 之外\n- 文档：`config.default.toml` 去掉已删除的「固定模型路径」说明；README 就绪门禁的工具名更正为 `review_ready`\n\n## 变更\n\n- manifest 兼容上限改为实际验证过的范围：宿主 `max_version` 1.99.99 → **1.3.99**，SDK `max_version` 2.99.99 → **2.14.99**（SDK 2.14.0 上测试通过）。插件仓库审核不再接受「永远兼容」式的上限\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.maibook",
+            "version": "0.1.5",
+            "name": "麦书 (MaiBook)",
+            "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/maibook-plugin",
+              "homepage": "https://github.com/yufei-pan/maibook-plugin",
+              "documentation": "https://github.com/yufei-pan/maibook-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/maibook-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomli",
+                "version_spec": ">=2.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomli-w",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.4",
           "tag": "v0.1.4",
           "commit": "28c76b50e6ca441970b19ac5ae79868eab79f587",
