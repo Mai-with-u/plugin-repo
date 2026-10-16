@@ -12266,6 +12266,51 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.8",
+          "tag": "v0.4.8",
+          "commit": "bc5a56214bac76f43afc03a757fc5f04c0bbdd7c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T19:42:02Z",
+          "release_url": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/releases/tag/v0.4.8",
+          "release_notes": "## 变更\n\n- manifest 兼容上限改为实际验证过的范围：宿主 `max_version` 1.99.99 → **1.3.99**，SDK `max_version` 2.99.99 → **2.14.99**（宿主 1.3.8 + SDK 2.12.0 上实际运行，SDK 2.14.0 上测试通过）。插件仓库审核不再接受「永远兼容」式的上限（Mai-with-u/plugin-repo#808）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.0-hz.plastic-memory",
+            "version": "0.4.8",
+            "name": "塑料内存条 (Plastic Memory)",
+            "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
+            "author": {
+              "name": "kes",
+              "url": "https://github.com/yufei-pan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+              "homepage": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin",
+              "documentation": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/blob/main/README.md",
+              "issues": "https://github.com/yufei-pan/MaiBot-plastic-memory-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.4.6",
           "tag": "v0.4.6",
           "commit": "b12f1ee7eecd86ae488332dd7f0e964c1805c636",
@@ -12932,7 +12977,7 @@
         {
           "tag": "v0.1.0",
           "version": "0.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'com.yufei-pan.plastic-memory'\n- 'com.0-hz.plastic-memory'\n       ^"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'com.yufei-pan.plastic-memory'\n- 'com.0-hz.plastic-memory'\n       ^\n"
         }
       ]
     },
