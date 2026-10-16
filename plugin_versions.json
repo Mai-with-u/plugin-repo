@@ -7402,6 +7402,95 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.0",
+          "tag": "v2.1.0",
+          "commit": "ccef59772330d67660261173f300a1f4e4c8ea81",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-16T07:38:04Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.1.0",
+          "release_notes": "## 新增功能\r\n\r\n- **Agnes AI 独立平台**：接入 Image 2.0 / 2.1 / 2.5 Flash，支持文生图、多参考图编辑、尺寸覆盖及平台专用响应格式。\r\n- **在线获取模型**：支持 OpenAI 兼容、Agnes、Google、阿里百炼、硅基流动和火山方舟；独立弹窗可搜索、多选、批量追加，已有模型保留。\r\n- **统一模型命名**：采用 `平台名称/真实模型ID`，取消模型别名；`/绘图 模型` 返回从 1 开始的列表，可用完整名称或 `/绘图 模型 1` 切换。\r\n- **配置更顺手**：通用、审核、风格拆为三个标签页，切换保留草稿并统一保存；能力限制改为可增删列表，新配置默认最多重试 1 次，已有明确设置继续保留。\r\n- **WebUI优化**：卡片直接切换启用状态；清空密钥按钮紧邻输入框，可撤销并在保存后生效；模型编辑行、恢复按钮与移动端布局一并优化。\r\n\r\n## 修复功能\r\n\r\n- **升级与配置保护**：修复升级时重新生成已迁出 TOML 配置的问题，兼容已知误生成的默认配置；历史平台、审核、额度与风格设置先备份再迁移，真实冲突保留原件并明确提示。\r\n- **自动迁移模型选择**：旧空格名称转换为下划线，OpenAI 默认名称统一为 `OpenAI_Compatible`；首选、备选、能力限制、覆盖参数及会话偏好同步更新，关键写入中断可恢复。\r\n- **会话偏好可靠保存**：平台重命名事务与偏好写入统一协调，写盘失败保留原内存状态；运行时刷新保留在途修改，并发写入串行处理，读取不等待磁盘写锁。\r\n- **取消与状态恢复**：先发出任务取消信号，再等待文件写入和详情查询，保留完成与取消竞争后的实际结果；初始化失败或取消时释放资源，损坏状态文件拒绝被空配置覆盖。\r\n- **界面一致性**：常用平台优先，关闭按钮居中，模型选择使用有界滚动区；恢复、取消与保存按钮同高对齐，审核开关复用整行表单布局。\r\n- **本地验证**：582 项 Python 回归、35 项前端回归与 5 条旧版本完整升级路径通过，Ruff、语法和宿主清单/API 绑定检查通过。平台请求使用本地模拟，未调用真实生图服务。\r\n\r\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.12.0–2.13.0，Python 3.12 及以上。**\r\n\r\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot。模型切换现在需要**完整平台/模型名称或列表索引**；自定义名称保持不变，已知旧名称和关联设置会自动迁移。\r\n\r\n[升级与恢复说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.0/docs/configuration.md#升级迁移与冲突恢复) · [平台配置](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.0/docs/platforms.md) · [使用指南](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.0/docs/usage.md)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "2.1.0",
+            "name": "麦麦绘图",
+            "description": "聊天绘图与可视化工作台一体，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.13.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "1.12.6",
           "tag": "v1.12.6",
           "commit": "821c031c4b78da4e87f188f5f0e0d064bf310db9",
