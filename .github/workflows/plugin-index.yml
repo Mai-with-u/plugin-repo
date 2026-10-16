@@ -7,6 +7,8 @@ on:
     paths:
       - 'plugins.json'
       - '.github/scripts/sync_plugin_versions.cjs'
+      - '.github/scripts/prune_unavailable_plugins.cjs'
+      - '.github/scripts/prune_unavailable_plugins.test.cjs'
       - '.github/scripts/release_review.cjs'
       - 'trusted_developers.json'
       - 'blocked_release_versions.json'
@@ -40,6 +42,11 @@ jobs:
 
       - name: Test version synchronization
         run: node --test .github/scripts/*.test.cjs
+
+      - name: Archive unavailable plugin repositories
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .github/scripts/prune_unavailable_plugins.cjs
 
       - name: Generate plugin details
         run: |
@@ -368,13 +375,13 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add plugin_details.json plugin_versions.json icons
+          git add plugins.json archived_plugins.json plugin_details.json plugin_versions.json icons
           if git diff --staged --quiet; then
             echo "没有变更需要提交"
             exit 0
           fi
 
-          git commit -m "chore: 同步插件详情、图标和版本索引"
+          git commit -m "chore: 清理失效插件并同步详情、图标和版本索引"
           for attempt in 1 2 3; do
             if git push origin HEAD:main; then
               echo "✅ 已提交并推送插件索引更新"
