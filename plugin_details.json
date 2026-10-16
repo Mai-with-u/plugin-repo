@@ -8083,7 +8083,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10064,7 +10064,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.7",
+      "version": "0.4.8",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -10080,11 +10080,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -10232,7 +10232,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "name": "网页抓取 (Fetch URL)",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
       "author": {
@@ -10248,11 +10248,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -10416,11 +10416,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -10458,11 +10458,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "plugin_type": "extension",
@@ -10575,17 +10575,22 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "feedparser",
           "version_spec": ">=6.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
         }
       ],
       "capabilities": [
@@ -10737,7 +10742,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.3.5",
+      "version": "0.3.6",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -10753,11 +10758,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -11533,7 +11538,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibook",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "name": "麦书 (MaiBook)",
       "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
       "author": {
@@ -11549,11 +11554,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -13343,11 +13348,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [],
@@ -14832,11 +14837,11 @@
       "plugin_type": "adapter",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -15116,7 +15121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.lunagentic-research-swarm",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
       "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
       "author": {
@@ -15129,11 +15134,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -15172,7 +15177,6 @@
         "maisaka.proactive.trigger",
         "message.build_readable",
         "message.get_by_id",
-        "message.get_by_time",
         "message.get_by_time_in_chat",
         "message.get_recent",
         "person.get_id",
@@ -18631,11 +18635,11 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -19415,11 +19419,11 @@
       },
       "host_application": {
         "min_version": "1.3.1",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.2",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -19598,7 +19602,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "QQ 名片点赞",
       "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
@@ -19618,7 +19622,7 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.99.99"
+        "max_version": "2.12.0"
       },
       "dependencies": [],
       "capabilities": [
@@ -19911,7 +19915,7 @@
       "version": "1.2.4",
       "id": "mai-play-ygo",
       "name": "麦麦玩游戏王",
-      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页��看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
       "author": {
         "name": "erhan111119",
         "url": "https://github.com/erhan111119"
@@ -21164,6 +21168,104 @@
       "capabilities": [
         "send.text"
       ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "zhengyz233.anti_cliche",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "zhengyz233.anti_cliche",
+      "version": "0.3.7",
+      "name": "口癖净化器",
+      "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+      "author": {
+        "name": "ZhengYZ_233",
+        "url": "https://github.com/zhengyz233"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+        "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+        "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+        "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.9"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.14.0"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "eraser",
+          "background": "#4C6EF5"
+        }
+      },
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "shinoyukimiyako.claude-provider",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "shinoyukimiyako.claude-provider",
+      "version": "1.0.0",
+      "name": "Claude Provider Support",
+      "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
+      "author": {
+        "name": "ShinoyukiMiyako",
+        "url": "https://github.com/ShinoyukiMiyako"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+        "homepage": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+        "documentation": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/blob/main/README.md",
+        "issues": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.9"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.14.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "anthropic",
+          "version_spec": ">=1.14.0,<2.0.0"
+        }
+      ],
+      "llm_providers": [
+        {
+          "client_type": "claude",
+          "name": "Claude Messages API",
+          "description": "通过官方 anthropic SDK 调用 Claude Messages API。",
+          "version": "1.0.0"
+        }
+      ],
+      "capabilities": [],
+      "plugin_type": "provider",
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
