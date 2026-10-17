@@ -32053,7 +32053,108 @@
       "manifest_id": "ji-or-ji.maibot-dsh-bridge",
       "repositoryUrl": "https://github.com/ji-or-ji/maibot-dsh-bridge",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.6.0",
+          "tag": "v0.6.0",
+          "commit": "e9932fcd895fd62bcc16169bc55d7be36ce16a36",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T05:45:42Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-dsh-bridge/releases/tag/v0.6.0",
+          "release_notes": "## 修复\n- 桥现在向 dsh 子进程注入 `DSH_PERMISSION_MODE`，默认 `danger-full-access`。\n- 原因：Windows 上 dsh 的 `workspace-write` 使用 ACL 受限令牌，`git clone` 会因 `git-remote-https` 无法创建命名管道而报 `cannot create standard input pipe ... Permission denied`；headless 模式又没有审批通道，无法临时升权。\n- 新增配置 `[dsh].permission_mode`，可选 `danger-full-access` / `workspace-write` / `read-only`。\n\n## 安全说明\n默认放宽沙箱是为了让 git / npm 这类任务直接可用。任务本身仍受 `[permission]` 名单约束，工作目录按聊天流隔离；需要更严边界时把 `permission_mode` 改回 `workspace-write`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-dsh-bridge",
+            "version": "0.6.0",
+            "name": "麦麦×dsh 桥",
+            "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "homepage": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "documentation": "https://github.com/ji-or-ji/maibot-dsh-bridge/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "api.call",
+              "api.get",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "a2d5efcec7049ed97fca0465a7e112b54a746d57",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T05:34:09Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-dsh-bridge/releases/tag/v0.5.0",
+          "release_notes": "## 变更\n- 新增 `[permission].mode`：`whitelist`（默认）或 `blacklist`。\n- 新增 `allowed_groups` / `blocked_users` / `blocked_groups`。\n- 用户 ID、群 ID 先归一化为纯数字再比较，兼容 `qq:` 前缀。\n- 群聊里取不到发言人 ID 时，按群 ID 兜底。\n- 修复群聊场景下 `dsh_run` 被误判「无权限」的问题。\n\n## 说明\n默认白名单模式，名单留空即拒绝所有人（fail-closed）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-dsh-bridge",
+            "version": "0.5.0",
+            "name": "麦麦×dsh 桥",
+            "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "homepage": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "documentation": "https://github.com/ji-or-ji/maibot-dsh-bridge/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "api.call",
+              "api.get",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [
         "v0.1.0-bata"
       ],
