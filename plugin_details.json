@@ -15372,7 +15372,7 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "2.0.8",
+      "version": "2.0.9",
       "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
       "author": {
         "name": "fulawa",
@@ -15386,14 +15386,15 @@
         "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.6.0",
-        "max_version": "2.99.99"
+        "max_version": "2.8.99"
       },
       "dependencies": [],
+      "plugin_type": "utility",
       "capabilities": [
         "send.forward",
         "send.text",
@@ -16279,7 +16280,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.4",
+      "version": "1.3.5",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -17360,7 +17361,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-repeater",
       "name": "麦麦的本质就是复读机",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "description": "群聊复读插件：当群友复读时，插件会识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
       "author": {
         "name": "octmicy",
@@ -17374,16 +17375,17 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.6.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "plugin_type": "tool",
+      "plugin_type": "extension",
       "capabilities": [
-        "send.text"
+        "send.text",
+        "config.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -17391,7 +17393,17 @@
           "zh-CN",
           "en-US"
         ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.jpg",
+          "fallback": "repeat"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-community.mai-repeater.webp"
     }
   },
   {
@@ -20355,7 +20367,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "ji-or-ji.maibot-dsh-bridge",
-      "version": "0.6.0",
+      "version": "0.6.1",
       "name": "麦麦×dsh 桥",
       "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
       "author": {
@@ -20370,12 +20382,12 @@
         "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.2.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "max_version": "2.8.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -21142,9 +21154,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "zhengyz233.anti_cliche",
-      "version": "0.3.11",
+      "version": "0.4.4",
       "name": "口癖净化器",
-      "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+      "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
       "author": {
         "name": "ZhengYZ_233",
         "url": "https://github.com/zhengyz233"
@@ -21227,6 +21239,151 @@
       ],
       "capabilities": [],
       "plugin_type": "provider",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.hongdougao111.minimax-governor",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hongdougao111.minimax-governor",
+      "version": "1.5.1",
+      "name": "MiniMax 开支管家",
+      "description": "监测 MiniMax 套餐余量与回复消耗，分群独立预算，超限自动降低发言频率，支持管理员专属开关与激进/保守/均衡三档策略",
+      "author": {
+        "name": "hongdougao111",
+        "url": "https://github.com/hongdougao111"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/hongdougao111/maibot-minimax-governor",
+        "homepage": "https://github.com/hongdougao111/maibot-minimax-governor",
+        "documentation": "https://github.com/hongdougao111/maibot-minimax-governor",
+        "issues": "https://github.com/hongdougao111/maibot-minimax-governor/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send_message",
+        "send.text",
+        "chat.get_group_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "dependencies": [],
+      "plugin_type": "plugin"
+    }
+  },
+  {
+    "id": "zhengyz233.qq-persona-manager",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "zhengyz233.qq-persona-manager",
+      "version": "1.8.0",
+      "name": "QQ 人格管理（查询 / 修改 / 优化）",
+      "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
+      "author": {
+        "name": "zhengyz233",
+        "url": "https://github.com/zhengyz233"
+      },
+      "license": "MIT",
+      "changelog": "CHANGELOG.md",
+      "urls": {
+        "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+        "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+        "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
+        "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.14.99"
+      },
+      "dependencies": [],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "user-cog",
+          "fallback": "users",
+          "background": "#5B8DEF"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "llm.generate",
+        "config.get",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "glcoge.deepseek-web-search",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "glcoge.deepseek-web-search",
+      "version": "1.0.0",
+      "name": "DeepSeek 联网搜索",
+      "description": "调用 DeepSeek Search / Fetch API，为模型提供按需联网搜索与网页抓取工具，替代模型自带联网搜索。",
+      "author": {
+        "name": "glcoge",
+        "url": "https://github.com/glcoge"
+      },
+      "license": "GPL-v3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/glcoge/deepseek-web-search",
+        "homepage": "https://github.com/glcoge/deepseek-web-search",
+        "documentation": "https://github.com/glcoge/deepseek-web-search/blob/main/README.md",
+        "issues": "https://github.com/glcoge/deepseek-web-search/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "search"
+        }
+      },
+      "capabilities": [],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [

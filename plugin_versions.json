@@ -6874,17 +6874,17 @@
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.2'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.6.0' !== '0.6.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n\n'0.3.0' !== '0.3.1'\n"
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
         }
       ]
     },
@@ -34596,6 +34596,49 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.hongdougao111.minimax-governor",
+      "manifest_id": "github.hongdougao111.minimax-governor",
+      "repositoryUrl": "https://github.com/hongdougao111/maibot-minimax-governor",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "zhengyz233.qq-persona-manager",
+      "manifest_id": "zhengyz233.qq-persona-manager",
+      "repositoryUrl": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.6.0",
+          "version": "1.6.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        },
+        {
+          "tag": "v1.5.0",
+          "version": "1.5.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        },
+        {
+          "tag": "v1.4.0",
+          "version": "1.4.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        }
+      ]
+    },
+    {
+      "id": "glcoge.deepseek-web-search",
+      "manifest_id": "glcoge.deepseek-web-search",
+      "repositoryUrl": "https://github.com/glcoge/deepseek-web-search",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
