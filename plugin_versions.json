@@ -18940,7 +18940,303 @@
       "manifest_id": "fulawa.maibot-expenses-summary-plus",
       "repositoryUrl": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.0.8",
+          "tag": "v2.0.8",
+          "commit": "9406dcf1e08d43f7bc20915e344cfccdb04951ca",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T11:03:11Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.8",
+          "release_notes": "## 变更\n- /价格刷新 成功应用新牌价后，除文字回报外，再发一张价目表卡片（与 /价格 同款）。\n- 卡片发送失败不影响刷新结果，只记 warning。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.8",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.7",
+          "tag": "v2.0.7",
+          "commit": "75cf7b6fc1abb8f1805b21596c118afb70228853",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:59:00Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.7",
+          "release_notes": "## 新增\n- 记录计费口径指纹：`mode / currency / renew_amount / renew_day / share_daily / exchange_rate`。\n- 任一项变化（如 `usd → cny`、月费调整、续费日变更）时，自动触发一次账本重算，避免历史记录混币种或混订阅口径。\n- 首次记录指纹时不重算，避免新装插件就翻旧账。\n\n## 说明\n按量部分的币种切换仍由 `_compute_cost_range` 按每条价格记录的 currency 处理；本版补齐的是套餐/混合口径的历史重算入口。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.7",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.7 在计费口径（mode/currency/续费额/续费日/汇率）变化时自动重算账本。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.6",
+          "tag": "v2.0.6",
+          "commit": "9528f7336f272c822639b91c272b764d0c437bb4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:56:47Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.6",
+          "release_notes": "## 变更\n- 牌价变更明细会显式标注币种切换，例如 USD → CNY（已按汇率折算比较）。\n- 避免把汇率折算差看成涨价/降价。\n- 覆盖按量计费与混合计费的按量部分；订阅费仍由 [billing].currency 独立控制。\n\n## 验证\nUSD→CNY 与 CNY→USD 双向测试：结构变化 0，数值差异仅汇率折算差（约 7-8%）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.6",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.6 在牌价变更明细里显式标注币种切换（USD↔CNY），避免把汇率差看成涨价/降价。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.5",
+          "tag": "v2.0.5",
+          "commit": "ea62eec7c9c82aa23e765069fa2f1a9b7767a834",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:53:21Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.5",
+          "release_notes": "## 修复\n- /价格刷新 成功后回报文字混用了 {} 与 {models}，触发 KeyError: 'models'，导致抓取已成功但用户看不到结果。\n- /价格 价目表里的 {g} / {d} 占位符改为格式说明 {:g}，避免同类错误。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.5",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.5 修复 /价格刷新 回报文字的占位符混用。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.4",
+          "tag": "v2.0.4",
+          "commit": "dc6e209492c48bbba15c8c67a6837706a72703e3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:48:01Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.4",
+          "release_notes": "## 修复\n- 价带结构签名先换算到 Asia/Shanghai 再比较，避免 `UTC 01:00-04:00` 与 `Asia/Shanghai 09:00-12:00` 这类等价时段被当成「消失 + 新增」的假结构变化。\n- 没有 tzdata 的环境对 UTC 做 +8 兜底。\n\n## 背景\n中文价目页用本地时区表达高峰，英文页用 UTC，价格本身一致，只是坐标系不同。v2.0.4 后两者不会再触发结构性变更。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.4",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.4 起价带结构签名也会先按上海时区归一化，避免 UTC 与本地时区的等价时段被误报为结构变化。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
