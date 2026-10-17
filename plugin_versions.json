@@ -1360,6 +1360,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.5",
+          "tag": "v1.15.5",
+          "commit": "f5e0dd0c8685fd63b63be4e050971c9ce3d9b971",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T07:55:21Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.5",
+          "release_notes": "### 主要变更\n\n- **渠道协议**：移除 TS-AI 绘图和视频协议，包括协议别名、URL 自动识别、请求与轮询实现、管理命令说明及 WebUI 选项。\n\n### 细节与修复\n\n- **WebUI 主题**：修复“未来复古”主题下编辑弹框、放弃修改确认框及固定标题/按钮区域背景透明的问题，使用当前主题底色遮住下方列表与滚动内容。\n- **升级说明**：已有 TS-AI 专用渠道不再支持，请删除或改为服务商实际提供的兼容接口及对应协议；其他渠道、提示词和 Key 数据保留。README 同步更新可用协议和主题说明。\n\n### 验证\n\n- 插件全量测试 **717 项通过**；覆盖其他协议的防重复提交、响应大小限制与渠道轮换。当前管理页已核对协议选项，TS-AI 图片和视频均已移除；验证未创建付费生成任务或发送聊天消息。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.5",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.15.4",
           "tag": "v1.15.4",
           "commit": "c06a26b463c59a77bc0fe972811420fd508105da",
