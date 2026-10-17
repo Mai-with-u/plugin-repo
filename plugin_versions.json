@@ -33219,6 +33219,218 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.11",
+          "tag": "v0.3.11",
+          "commit": "df3827859b31003dc8740c3623d3d52a4e318195",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:25:40Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.3.11",
+          "release_notes": "## [0.3.11] - 2026-10-17\n\n### 新增\n\n- **默认规则「好家伙」（第 10 条）**：正则 `好家伙`，覆盖「好家伙，……」\n  「好家伙！」「好家伙这波……」这类感叹式口头禅。\n\n  字面量匹配即可，不需要前瞻/后顾断言 —— 「好家伙」在中文里几乎只作感叹语使用，\n  不像「是吧」那样有大量正常承接用法。刻意不写成 `好家伙(?=[，,。…]|$)`，\n  因为「好家伙这波属实是」这种**后面直接接正文**的用法同样属于要拦的口癖。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增默认规则，配置结构未变。\n- **老用户注意**：`rules` 是列表字段，只要你自定义过整份列表就会被原样保留，\n  因此新增的默认规则**不会自动进入已有的 `config.toml`**。想用上它有两种做法：\n  手动追加下面这段，或删掉 `config.toml` 让插件重新生成（会丢掉你的自定义）。\n\n  ```toml\n  [[plugin.rules]]\n  name = \"好家伙\"\n  pattern = '好家伙'\n  description = \"用「好家伙」这类感叹式口头禅起头，显得咋咋呼呼、不自然\"\n  enabled = true\n  ```\n\n- 该正则不含量词，不会触发加载时的回溯告警；匹配是字面量扫描，微秒级，\n  不会触及 `match_budget_ms` 预算。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.3.11",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.3.10",
+          "tag": "v0.3.10",
+          "commit": "63c67e03c4ae70b013f761141dd4c64ab933d98c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:19:36Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.3.10",
+          "release_notes": "## [0.3.10] - 2026-10-17\n\n### 新增\n\n- **默认规则「属实是」（第 9 条）**：正则 `属实\\s*是`，覆盖「属实是xxx」与\n  「xxx属实是」两种语序（\"这波属实是有点离谱\"、\"属实是没想到\"）。\n\n  「属实是」与第 1 条的「属于是」是**两个不同的词**，前者不是后者的子集\n  （`属于` ≠ `属实`），所以单独成一条规则，可以分别开关。\n\n  `\\s*` 兼容中间夹空格；夹标点则不命中 —— 例如「经核查情况属实，是本人签字」\n  里的「属实，是」中间是逗号，不会误伤。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增默认规则，配置结构未变。\n- **老用户注意**：`rules` 是列表字段，只要你自定义过整份列表就会被原样保留，\n  因此新增的默认规则**不会自动进入已有的 `config.toml`**。想用上它有两种做法：\n  手动追加下面这段，或删掉 `config.toml` 让插件重新生成（会丢掉你的自定义）。\n\n  ```toml\n  [[plugin.rules]]\n  name = \"属实是\"\n  pattern = '属实\\s*是'\n  description = \"把「属实是」当口头禅连接词使用，会让回复显得敷衍、浮夸\"\n  enabled = true\n  ```\n\n- 该正则不含嵌套量词，不会触发加载时的回溯告警；匹配是字面量扫描，微秒级，\n  不会触及 `match_budget_ms` 预算。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.3.10",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.3.9",
+          "tag": "v0.3.9",
+          "commit": "998249d6735a5a6cdfd81b3df1345e8c7e976a0b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T06:14:14Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.3.9",
+          "release_notes": "## [0.3.9] - 2026-10-17\n\n### 新增\n\n- **默认规则「……算你赢」（第 7 条）**：正则 `(?<![就不])算你赢`，覆盖\n  「xxxx算你赢」这类打赌式口头禅收尾。与第 6 条「……算我输」同源，只是对象换成对方；\n  同样用负向后顾排除「就算你赢」（让步）与「不算你赢」（否认）。\n- **默认规则「想得美」（第 8 条）**：正则 `想得(?:倒|挺|怪)?美`，覆盖「想得美」\n  及其变体「想得倒美 / 想得挺美 / 想得怪美」。正常表达「想得周到」「想得太多」\n  不含「美」，不受影响。\n\n### 文档\n\n- **README 重写为面向使用者**：功能特性 → 安装 → 适配版本 → 配置 → 默认规则 →\n  添加新规则 → 工作原理 → 日志 → 已知限制。原先堆在 README 里的\"为什么要这么填\"\n  被压缩成一两句结论。\n- **新增 `DESIGN.md`**，收纳从 README 移出的取值依据与实现取舍：兼容区间的逐 tag\n  核对明细、官方文档 `999.999.999` 写法的取舍、`plugin_type` 的实测分布、\n  Hook 超时链与熔断器参数、线程看门狗的设计与降级/自愈逻辑。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增默认规则与文档，配置结构未变。\n- **老用户注意**：`rules` 是列表字段，只要你自定义过整份列表就会被原样保留，\n  因此新增的默认规则**不会自动进入已有的 `config.toml`**。想用上它们有两种做法：\n  手动追加下面两段，或删掉 `config.toml` 让插件重新生成（会丢掉你的自定义）。\n\n  ```toml\n  [[plugin.rules]]\n  name = \"……算你赢\"\n  pattern = '(?<![就不])算你赢'\n  description = \"用「……算你赢」这类打赌式口头禅收尾，像在赌气而不是聊天\"\n  enabled = true\n\n  [[plugin.rules]]\n  name = \"想得美\"\n  pattern = '想得(?:倒|挺|怪)?美'\n  description = \"用「想得美」这类嘲讽式否定口头禅，显得轻蔑\"\n  enabled = true\n  ```\n\n- 两条新规则都不含嵌套量词，不会触发加载时的回溯告警；匹配是字面量扫描（`想得美`\n  那条多一个最多 1 字的可选分支），耗时在微秒级，不会触及 `match_budget_ms` 预算。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.3.9",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.3.8",
+          "tag": "v0.3.8",
+          "commit": "a3bee7a0db37a5f595139347428b15a9848ba8c3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T06:03:45Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.3.8",
+          "release_notes": "## [0.3.8] - 2026-10-17\n\n### 新增\n\n- **默认规则「……算我输」（第 6 条）**：正则 `(?<![就不])算我输`，覆盖\n  「xxxx算我输」这类打赌式口头禅收尾（\"你能找到算我输\"、\"不服算我输\"）。\n\n  `(?<![就不])` 是负向后顾，用来排除两种**正常语义**：`就算我输`\n  （\"就算我输了这局\"是让步）与 `不算我输`（\"这不算我输\"是否认）。\n  二者都不是打赌式口头禅，不该触发重生成。\n\n### 说明\n\n- 本次不改 `config_version`：只新增一条默认规则，配置结构（字段集合）未变。\n- **老用户注意**：`rules` 是列表字段，只要你自定义过整份列表就会被原样保留，\n  因此新增的默认规则**不会自动进入已有的 `config.toml`**。想用上它有两种做法：\n  手动追加下面这段，或删掉 `config.toml` 让插件重新生成（会丢掉你的自定义）。\n\n  ```toml\n  [[plugin.rules]]\n  name = \"……算我输\"\n  pattern = '(?<![就不])算我输'\n  description = \"用「……算我输」这类打赌式口头禅收尾，像在喊话而不是聊天\"\n  enabled = true\n  ```\n\n- 该正则不含任何量词，不会触发 0.3.6 的嵌套量词告警；匹配是字面量扫描，\n  耗时在微秒级，不会触及 0.3.7 的 `match_budget_ms` 预算。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.3.8",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.7",
           "tag": "v0.3.7",
           "commit": "cd7ff082a08fb95f7d67fa155f348864bc3ce386",
