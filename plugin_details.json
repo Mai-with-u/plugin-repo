@@ -1464,7 +1464,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.4",
+      "version": "1.15.5",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -7121,7 +7121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.deskpet-plugin",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "name": "MaiBot Deskpet",
       "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
       "author": {
@@ -7312,9 +7312,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "name": "麦麦绘图",
-      "description": "聊天绘图与可视化工作台一体，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+      "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
         "name": "清蒸云鸭",
         "url": "https://github.com/WhiteCloudOL"
@@ -8083,7 +8083,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10013,9 +10013,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "LowValueTarget.deepseek-anthropic-provider",
-      "version": "0.2.5",
-      "name": "DeepSeek Anthropic Provider",
-      "description": "将 DeepSeek Anthropic API 包装为 MaiBot Tool，让 Bot 可以按需调用联网搜索、网页读取和深度推理能力。",
+      "version": "0.3.0",
+      "name": "Deepseek联网工具",
+      "description": "通过 DeepSeek 官方 Search 与 Fetch API 搜索网页、抓取 Markdown 正文，复用 MaiBot 模型供应商中的 DeepSeek 密钥。",
       "author": {
         "name": "LowValueTarget",
         "url": "https://github.com/LowValueTarget777"
@@ -10038,8 +10038,8 @@
       "dependencies": [
         {
           "type": "python_package",
-          "name": "anthropic",
-          "version_spec": ">=0.104.0,<1.0.0"
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1.0.0"
         },
         {
           "type": "python_package",
@@ -10064,7 +10064,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.plastic-memory",
-      "version": "0.4.7",
+      "version": "0.4.8",
       "name": "塑料内存条 (Plastic Memory)",
       "description": "为麦麦提供自我演化接口（全局 my_memory.md 与按聊天流隔离的 chat_notes），在 planner / 时机判断 / replyer 请求中注入演化指令与剩余空间；麦麦可通过工具向接口写入演化指令，实现写入即自我演化。",
       "author": {
@@ -10080,11 +10080,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -10232,7 +10232,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.fetch-url",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "name": "网页抓取 (Fetch URL)",
       "description": "提供 fetch_url 工具：抓取任意 URL，网页 / PDF 通过 jina.ai Reader（或本地 markdownify / pypdf 兜底）转为 Markdown，图片按入站/VLM 双路径处理后直接回传给麦麦观察。支持抓取结果内存缓存、JSON 友好展示、页面元信息、分页读取、超长内容 LLM 总结、VLM 图片描述替换 alt 文本。同时提供公开 @API fetch_url 供其他插件调用（图片默认返回文字描述，return_image=true 时回传图片），并提供 LRS describe_procedures@1 / invoke_procedure@1 可选集成（procedure_id=fetch_url.fetch）。",
       "author": {
@@ -10248,11 +10248,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -10416,11 +10416,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -10458,11 +10458,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "plugin_type": "extension",
@@ -10575,17 +10575,22 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "feedparser",
           "version_spec": ">=6.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
         }
       ],
       "capabilities": [
@@ -10737,7 +10742,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.impression-card",
-      "version": "0.3.5",
+      "version": "0.3.6",
       "name": "印象卡片 (Impression Card)",
       "description": "为麦麦引入一套欢乐向的好感度 / 印象系统：群友可用 /卡片 查询自己（或他人）的印象卡（顶部 title bar 含头像/昵称/别名与好感度数字，下方横向 0-10 好感量表条可双向越界，主区域左侧多维属性雷达、右侧人物印象笔记）。麦麦可通过工具给某人某项加减分并以【系统通知】RPG 风格播报，也可调用 send_impression_card 主动发送印象卡；维度任意多项（默认 22 项），卡面只显示最极端 5 项；数值无上下限（顶出/凹陷更好玩）。图片支持 webp/动图/apng/png/gif/jpg 多格式，动图首帧即完整信息。数据本地存储、跨私聊/群聊共用。新用户结合 PersonInfo 印象与最近聊天由 LLM 冷启动生成。",
       "author": {
@@ -10753,11 +10758,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -11533,7 +11538,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibook",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "name": "麦书 (MaiBook)",
       "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
       "author": {
@@ -11549,11 +11554,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -13343,11 +13348,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [],
@@ -14832,11 +14837,11 @@
       "plugin_type": "adapter",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -15116,7 +15121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.lunagentic-research-swarm",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "name": "麦麦深度调查组 (Lunagentic Research Swarm)",
       "description": "面向 MaiBot 的深度研究智能体蜂群。~~雷霆大思考~~ + 预算系统。Lunagentic = Luna + agentic：以 agentic research swarm 协调多代专职智能体——拆题、检索证据、互相质疑、压缩上下文，并在时间与 credits 预算下持续产出带统计的中间报告与最终结论。开箱即用：九个内置角色、多引擎网页搜索（ddgs / SearXNG / Tavily / You）、记忆/知识库查询、embedding 索引历史调查与质量反馈（含踩过的坑）以便后续改进；可暂停/继续。适合把有竞争力的快模型与大型知识模型组合使用。架构可扩展（其它插件可注册角色与工具）。推荐搭配 fetch-url 抓取全文。",
       "author": {
@@ -15129,11 +15134,11 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -15172,7 +15177,6 @@
         "maisaka.proactive.trigger",
         "message.build_readable",
         "message.get_by_id",
-        "message.get_by_time",
         "message.get_by_time_in_chat",
         "message.get_recent",
         "person.get_id",
@@ -15368,8 +15372,8 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "2.0.1",
-      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。",
+      "version": "2.0.8",
+      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
       "author": {
         "name": "fulawa",
         "url": "https://github.com/ji-or-ji"
@@ -15582,46 +15586,6 @@
         "supported_locales": [
           "zh-CN"
         ]
-      }
-    }
-  },
-  {
-    "id": "lnrh1.maibot-auto-restart",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "lnrh1.maibot-auto-restart",
-      "name": "MaiBot自动重启插件",
-      "version": "1.1.0",
-      "description": "提供阈值触发重启、定时重启和手动重启功能。",
-      "author": {
-        "name": "lnrh1",
-        "url": "https://github.com/lnrh1"
-      },
-      "urls": {
-        "homepage": "https://github.com/lnrh1/maibot-auto-restart",
-        "repository": "https://github.com/lnrh1/maibot-auto-restart"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.8.0",
-        "max_version": "1.2.0"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "3.0.0"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "psutil",
-          "version_spec": ">=5.9.0"
-        }
-      ],
-      "capabilities": [
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh_CN"
       }
     }
   },
@@ -17709,9 +17673,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.11.0",
+      "version": "2.13.0",
       "name": "中V歌词识别 · 歌曲库",
-      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -17724,15 +17688,16 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.1.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "capabilities": [
         "send.text",
-        "llm.generate"
+        "llm.generate",
+        "declarative_basic"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -18032,7 +17997,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.10.2",
+      "version": "0.10.4",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18046,8 +18011,8 @@
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "min_version": "2.8.1",
+        "max_version": "2.12.0"
       },
       "dependencies": [
         {
@@ -18631,11 +18596,11 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -19415,11 +19380,11 @@
       },
       "host_application": {
         "min_version": "1.3.1",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.2",
-        "max_version": "2.99.99"
+        "max_version": "2.14.99"
       },
       "dependencies": [
         {
@@ -19598,7 +19563,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "QQ 名片点赞",
       "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
       "author": {
@@ -20390,9 +20355,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "ji-or-ji.maibot-dsh-bridge",
-      "version": "0.1.0",
+      "version": "0.6.0",
       "name": "麦麦×dsh 桥",
-      "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。",
+      "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
       "author": {
         "name": "ji-or-ji",
         "url": "https://github.com/ji-or-ji"
@@ -21032,7 +20997,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.2",
+      "version": "0.3.3",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21052,7 +21017,7 @@
       },
       "sdk": {
         "min_version": "2.11.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "dependencies": [
         {
@@ -21164,6 +21129,104 @@
       "capabilities": [
         "send.text"
       ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "zhengyz233.anti_cliche",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "zhengyz233.anti_cliche",
+      "version": "0.3.11",
+      "name": "口癖净化器",
+      "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
+      "author": {
+        "name": "ZhengYZ_233",
+        "url": "https://github.com/zhengyz233"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+        "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+        "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+        "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.9"
+      },
+      "sdk": {
+        "min_version": "2.3.0",
+        "max_version": "2.14.0"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "eraser",
+          "background": "#4C6EF5"
+        }
+      },
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "shinoyukimiyako.claude-provider",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "shinoyukimiyako.claude-provider",
+      "version": "1.0.0",
+      "name": "Claude Provider Support",
+      "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
+      "author": {
+        "name": "ShinoyukiMiyako",
+        "url": "https://github.com/ShinoyukiMiyako"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+        "homepage": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+        "documentation": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/blob/main/README.md",
+        "issues": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.9"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.14.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "anthropic",
+          "version_spec": ">=1.14.0,<2.0.0"
+        }
+      ],
+      "llm_providers": [
+        {
+          "client_type": "claude",
+          "name": "Claude Messages API",
+          "description": "通过官方 anthropic SDK 调用 Claude Messages API。",
+          "version": "1.0.0"
+        }
+      ],
+      "capabilities": [],
+      "plugin_type": "provider",
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
