@@ -21852,6 +21852,168 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.10.4",
+          "tag": "v0.10.4",
+          "commit": "117bcaac784c76855f82b1f6ca4ceb3153256baf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T11:16:34Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.4",
+          "release_notes": "## 改进\n\n- **开话题更贴合群兴趣**：MaiWork 会参考这个群已经看过、聊过和正在跟进的内容，判断候选话题是否适合本群，不再只按通用热度开话题。\n- **开场白更自然**：开场会围绕候选话题里的具体内容说，不再默认用「需要帮忙吗」式揽活话术。\n- **候选判断更明确**：每条候选都有独立编号和标题，减少把几个话题混在一起判断的情况。\n\n## 升级说明\n\n- 配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。覆盖插件时保留自己的 `config.toml`。\n- 本次只调整开话题判断和开场表达，不改群回复频率、任务审批、资讯/构想开关或每日上限。\n- 已验证公开候选全量测试 8066 项通过、1 项按环境条件跳过；45 个前端模块语法检查通过；真实宿主契约 9 项通过。\n- 生产环境已按同一候选部署验证：插件热重载约 19 秒，20 个插件注册正常，网页和变更静态资源正常，A_Memorix 后续存盘正常。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.4",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.10.3",
+          "tag": "v0.10.3",
+          "commit": "c82ba2e7af4ec3d3a57c12b1e3cb78f660e38443",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T02:18:08Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.3",
+          "release_notes": "## 新增\n\n- **社交平台资讯源**：Twitter、小红书、B站、YouTube、Reddit 五个平台，在「设置 → 社交平台」中启用后自动安装组件。需要登录的平台在「设置 → 登录态」填写 Cookie。\n- **网页主题**：默认主题和「复古终端」主题。总管理员在「设置 → 外观」里选全站默认；每个人可以在「外观」抽屉里换自己的主题，只影响本浏览器。\n- **音效包**：总管理员可以上传 zip 或从 GitHub 安装音效包，绑定到主题后，按钮悬停、点击、开关抽屉、成功/出错提示会有声音。默认主题永远无声。\n- **设置页「跳转分栏」下拉**：手机上一眼看到当前在哪一栏，点一下直接跳。桌面端左栏已有完整列表，不重复显示。\n- **首次引导新增「社交平台」一步**：可以勾选要启用的平台，跳过也可以后面再开。\n\n## 改进\n\n- **资讯补搜现在会同时查社交平台**：每个关注点最多补搜三个平台，结果和网页搜索合并去重，失败不影响其他平台。\n- **搜索请求加了预算限制**：一次搜索最多发 12 个请求、同时最多 3 个、总共不超过 20 秒，防止某个搜索服务卡住拖慢整体。\n- **Twitter 网页搜索加了备用通道**：CLI 搜不到时自动用网页版再试一次，20 秒超时，结果和 CLI 合并去重。\n- **修复了 SDK 兼容范围**：从 2.0.0–2.99.99 收窄到实测可用的 2.8.1–2.12.0，避免在不兼容的 SDK 上误装。\n\n## 升级说明\n\n- 配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。覆盖插件时保留自己的 `config.toml`。\n- 社交平台默认全部关闭，需要手动在「设置 → 社交平台」里启用。启用后自动安装组件，安装进度在页面上可见。\n- 需要登录的平台（Twitter、小红书、Reddit）启用后还要在「设置 → 登录态」里填 Cookie，只进不出，不会回显。\n- 主题和音效包是网页端功能，刷新页面后生效。默认主题不能绑定音效包。\n- 音效包支持上传 zip（≤10MB，音频合计 ≤8MB）或从 GitHub 公开仓库安装，只接受 ogg / mp3 / wav。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.3",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.10.2",
           "tag": "v0.10.2",
           "commit": "fe1966a01abae8e002790fc789a080bdfd7d6090",
