@@ -32957,6 +32957,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.3",
+          "tag": "v0.3.3",
+          "commit": "74e276c9ee2d42fe73111340db4722fdf7f7948a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T07:26:41Z",
+          "release_url": "https://github.com/orge-8/char-recog/releases/tag/v0.3.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.3",
+            "name": "角色识别",
+            "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/orge-8/char-recog",
+              "homepage": "https://github.com/orge-8/char-recog",
+              "documentation": "https://github.com/orge-8/char-recog#readme",
+              "issues": "https://github.com/orge-8/char-recog/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.11.0",
+              "max_version": "2.13.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<13"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=2,<3"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "org.civetc.char-recog",
+            "plugin_type": "media",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "scan-face",
+                "background": "#F7F1E4"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.2",
           "tag": "v0.3.2",
           "commit": "e8e1743f4c677d6b7c8f31389f270fbc58ab91d0",
