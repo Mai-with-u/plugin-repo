@@ -18940,7 +18940,303 @@
       "manifest_id": "fulawa.maibot-expenses-summary-plus",
       "repositoryUrl": "https://github.com/jiruiyu330784/maibot-expenses-summary-plus",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.0.8",
+          "tag": "v2.0.8",
+          "commit": "9406dcf1e08d43f7bc20915e344cfccdb04951ca",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T11:03:11Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.8",
+          "release_notes": "## 变更\n- /价格刷新 成功应用新牌价后，除文字回报外，再发一张价目表卡片（与 /价格 同款）。\n- 卡片发送失败不影响刷新结果，只记 warning。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.8",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.7",
+          "tag": "v2.0.7",
+          "commit": "75cf7b6fc1abb8f1805b21596c118afb70228853",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:59:00Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.7",
+          "release_notes": "## 新增\n- 记录计费口径指纹：`mode / currency / renew_amount / renew_day / share_daily / exchange_rate`。\n- 任一项变化（如 `usd → cny`、月费调整、续费日变更）时，自动触发一次账本重算，避免历史记录混币种或混订阅口径。\n- 首次记录指纹时不重算，避免新装插件就翻旧账。\n\n## 说明\n按量部分的币种切换仍由 `_compute_cost_range` 按每条价格记录的 currency 处理；本版补齐的是套餐/混合口径的历史重算入口。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.7",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.7 在计费口径（mode/currency/续费额/续费日/汇率）变化时自动重算账本。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.6",
+          "tag": "v2.0.6",
+          "commit": "9528f7336f272c822639b91c272b764d0c437bb4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:56:47Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.6",
+          "release_notes": "## 变更\n- 牌价变更明细会显式标注币种切换，例如 USD → CNY（已按汇率折算比较）。\n- 避免把汇率折算差看成涨价/降价。\n- 覆盖按量计费与混合计费的按量部分；订阅费仍由 [billing].currency 独立控制。\n\n## 验证\nUSD→CNY 与 CNY→USD 双向测试：结构变化 0，数值差异仅汇率折算差（约 7-8%）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.6",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.6 在牌价变更明细里显式标注币种切换（USD↔CNY），避免把汇率差看成涨价/降价。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.5",
+          "tag": "v2.0.5",
+          "commit": "ea62eec7c9c82aa23e765069fa2f1a9b7767a834",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:53:21Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.5",
+          "release_notes": "## 修复\n- /价格刷新 成功后回报文字混用了 {} 与 {models}，触发 KeyError: 'models'，导致抓取已成功但用户看不到结果。\n- /价格 价目表里的 {g} / {d} 占位符改为格式说明 {:g}，避免同类错误。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.5",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.5 修复 /价格刷新 回报文字的占位符混用。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.4",
+          "tag": "v2.0.4",
+          "commit": "dc6e209492c48bbba15c8c67a6837706a72703e3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:48:01Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.4",
+          "release_notes": "## 修复\n- 价带结构签名先换算到 Asia/Shanghai 再比较，避免 `UTC 01:00-04:00` 与 `Asia/Shanghai 09:00-12:00` 这类等价时段被当成「消失 + 新增」的假结构变化。\n- 没有 tzdata 的环境对 UTC 做 +8 兜底。\n\n## 背景\n中文价目页用本地时区表达高峰，英文页用 UTC，价格本身一致，只是坐标系不同。v2.0.4 后两者不会再触发结构性变更。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.4",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.4 起价带结构签名也会先按上海时区归一化，避免 UTC 与本地时区的等价时段被误报为结构变化。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -21555,6 +21851,168 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.10.4",
+          "tag": "v0.10.4",
+          "commit": "117bcaac784c76855f82b1f6ca4ceb3153256baf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T11:16:34Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.4",
+          "release_notes": "## 改进\n\n- **开话题更贴合群兴趣**：MaiWork 会参考这个群已经看过、聊过和正在跟进的内容，判断候选话题是否适合本群，不再只按通用热度开话题。\n- **开场白更自然**：开场会围绕候选话题里的具体内容说，不再默认用「需要帮忙吗」式揽活话术。\n- **候选判断更明确**：每条候选都有独立编号和标题，减少把几个话题混在一起判断的情况。\n\n## 升级说明\n\n- 配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。覆盖插件时保留自己的 `config.toml`。\n- 本次只调整开话题判断和开场表达，不改群回复频率、任务审批、资讯/构想开关或每日上限。\n- 已验证公开候选全量测试 8066 项通过、1 项按环境条件跳过；45 个前端模块语法检查通过；真实宿主契约 9 项通过。\n- 生产环境已按同一候选部署验证：插件热重载约 19 秒，20 个插件注册正常，网页和变更静态资源正常，A_Memorix 后续存盘正常。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.4",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.10.3",
+          "tag": "v0.10.3",
+          "commit": "c82ba2e7af4ec3d3a57c12b1e3cb78f660e38443",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T02:18:08Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.3",
+          "release_notes": "## 新增\n\n- **社交平台资讯源**：Twitter、小红书、B站、YouTube、Reddit 五个平台，在「设置 → 社交平台」中启用后自动安装组件。需要登录的平台在「设置 → 登录态」填写 Cookie。\n- **网页主题**：默认主题和「复古终端」主题。总管理员在「设置 → 外观」里选全站默认；每个人可以在「外观」抽屉里换自己的主题，只影响本浏览器。\n- **音效包**：总管理员可以上传 zip 或从 GitHub 安装音效包，绑定到主题后，按钮悬停、点击、开关抽屉、成功/出错提示会有声音。默认主题永远无声。\n- **设置页「跳转分栏」下拉**：手机上一眼看到当前在哪一栏，点一下直接跳。桌面端左栏已有完整列表，不重复显示。\n- **首次引导新增「社交平台」一步**：可以勾选要启用的平台，跳过也可以后面再开。\n\n## 改进\n\n- **资讯补搜现在会同时查社交平台**：每个关注点最多补搜三个平台，结果和网页搜索合并去重，失败不影响其他平台。\n- **搜索请求加了预算限制**：一次搜索最多发 12 个请求、同时最多 3 个、总共不超过 20 秒，防止某个搜索服务卡住拖慢整体。\n- **Twitter 网页搜索加了备用通道**：CLI 搜不到时自动用网页版再试一次，20 秒超时，结果和 CLI 合并去重。\n- **修复了 SDK 兼容范围**：从 2.0.0–2.99.99 收窄到实测可用的 2.8.1–2.12.0，避免在不兼容的 SDK 上误装。\n\n## 升级说明\n\n- 配置版本仍为 0.5.1，数据库版本仍为 41，不需要迁移。覆盖插件时保留自己的 `config.toml`。\n- 社交平台默认全部关闭，需要手动在「设置 → 社交平台」里启用。启用后自动安装组件，安装进度在页面上可见。\n- 需要登录的平台（Twitter、小红书、Reddit）启用后还要在「设置 → 登录态」里填 Cookie，只进不出，不会回显。\n- 主题和音效包是网页端功能，刷新页面后生效。默认主题不能绑定音效包。\n- 音效包支持上传 zip（≤10MB，音频合计 ≤8MB）或从 GitHub 公开仓库安装，只接受 ogg / mp3 / wav。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.3",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.10.2",
           "tag": "v0.10.2",
@@ -31595,7 +32053,108 @@
       "manifest_id": "ji-or-ji.maibot-dsh-bridge",
       "repositoryUrl": "https://github.com/ji-or-ji/maibot-dsh-bridge",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.6.0",
+          "tag": "v0.6.0",
+          "commit": "e9932fcd895fd62bcc16169bc55d7be36ce16a36",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T05:45:42Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-dsh-bridge/releases/tag/v0.6.0",
+          "release_notes": "## 修复\n- 桥现在向 dsh 子进程注入 `DSH_PERMISSION_MODE`，默认 `danger-full-access`。\n- 原因：Windows 上 dsh 的 `workspace-write` 使用 ACL 受限令牌，`git clone` 会因 `git-remote-https` 无法创建命名管道而报 `cannot create standard input pipe ... Permission denied`；headless 模式又没有审批通道，无法临时升权。\n- 新增配置 `[dsh].permission_mode`，可选 `danger-full-access` / `workspace-write` / `read-only`。\n\n## 安全说明\n默认放宽沙箱是为了让 git / npm 这类任务直接可用。任务本身仍受 `[permission]` 名单约束，工作目录按聊天流隔离；需要更严边界时把 `permission_mode` 改回 `workspace-write`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-dsh-bridge",
+            "version": "0.6.0",
+            "name": "麦麦×dsh 桥",
+            "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "homepage": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "documentation": "https://github.com/ji-or-ji/maibot-dsh-bridge/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "api.call",
+              "api.get",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "a2d5efcec7049ed97fca0465a7e112b54a746d57",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T05:34:09Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-dsh-bridge/releases/tag/v0.5.0",
+          "release_notes": "## 变更\n- 新增 `[permission].mode`：`whitelist`（默认）或 `blacklist`。\n- 新增 `allowed_groups` / `blocked_users` / `blocked_groups`。\n- 用户 ID、群 ID 先归一化为纯数字再比较，兼容 `qq:` 前缀。\n- 群聊里取不到发言人 ID 时，按群 ID 兜底。\n- 修复群聊场景下 `dsh_run` 被误判「无权限」的问题。\n\n## 说明\n默认白名单模式，名单留空即拒绝所有人（fail-closed）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-dsh-bridge",
+            "version": "0.5.0",
+            "name": "麦麦×dsh 桥",
+            "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "homepage": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "documentation": "https://github.com/ji-or-ji/maibot-dsh-bridge/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "api.call",
+              "api.get",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [
         "v0.1.0-bata"
       ],
