@@ -34613,23 +34613,142 @@
       "manifest_id": "zhengyz233.qq-persona-manager",
       "repositoryUrl": "https://github.com/zhengyz233/maibot-qq-persona-manager",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.8.0",
+          "tag": "v1.8.0",
+          "commit": "51256f990af288e99e80fdc887502e4b68988e04",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T15:28:03Z",
+          "release_url": "https://github.com/zhengyz233/maibot-qq-persona-manager/releases/tag/v1.8.0",
+          "release_notes": "## 1.8.0 — 采纳 AI 审核中「零影响」的改进建议\n\n只做**不改变现有行为**的部分。会改变行为的两条（`modify_allow_group` 默认 `false`、\n`_resolve_scope()` 改「未知即拒绝」）以及 `plugin_type` **均未采纳**，理由写在 CHANGELOG 里。\n\n### 新增\n\n- **`/人格修改` 有了独立的群聊执行开关 `[scope] modify_allow_group`（默认 `true`）。**\n\n  此前 `/人格查询` `/人格优化` 都默认仅私聊，唯独 `/人格修改` 没有群聊关卡——\n  而它恰恰是三条指令里**唯一会写配置**的那条，取向不一致。\n\n  **默认值刻意设为 `true`（开启），行为与 1.7.x 完全一致**，不会让原本在群里改人格的人\n  升级后突然用不了。想收紧就到「限用范围」关掉它：关闭后群聊发 `/人格修改`\n  会收到「暂不支持群聊使用此功能…」，只能在私聊里改。\n\n  老配置无需手工改：加载时 MaiBot 会按配置模型自动补上这个字段（默认 `true`）。\n\n- **加载时新增两条知情日志**（各只打一次，在 `on_load`）：\n\n  | 日志 | 级别 | 触发 | 内容 |\n  |---|---|---|---|\n  | 场景兜底取向 | `warning` | `treat_unknown_scope_as_group` 为默认 `false` 时 | 「判断不出群聊/私聊时按私聊放行」偏松，与权限判定「未知即拒绝」取向不一致；改成 `true` 可收紧 |\n  | 人格写入方式 | `info` | 每次加载 | 为何必须文件级写 `bot_config.toml`（SDK 无任何写宿主配置的接口）、无跨进程锁的已知风险、四道防护 |\n\n- **`[behavior] config_path` 说明补充**：写明「SDK 未提供写宿主全局配置的接口，\n  文件级写入是唯一可行手段」，让这句话在 **WebUI 配置页**也看得见。\n\n### 功能影响\n\n**默认配置下行为零变化** —— 新开关默认开着，新增日志不参与任何指令流程。\n\n### 未采纳（留待后续决定）\n\n- 把 `modify_allow_group` 默认改成 `false`：会让群聊改人格失效，属功能回退；\n- 把 `_resolve_scope()` 兜底改成「未知即拒绝」：适配器上报不全时会导致**所有指令**被拒；\n- `plugin_type`：模型里是自由字符串、Host 不校验取值，填了没有实际收益，还可能改变插件中心分类展示。\n\n### 提交\n\n- commit `51256f990af288e99e80fdc887502e4b68988e04`\n- tag `v1.8.0`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.qq-persona-manager",
+            "version": "1.8.0",
+            "name": "QQ 人格管理（查询 / 修改 / 优化）",
+            "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
+            "author": {
+              "name": "zhengyz233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "changelog": "CHANGELOG.md",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-cog",
+                "fallback": "users",
+                "background": "#5B8DEF"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.7.2",
+          "tag": "v1.7.2",
+          "commit": "404899e8260ca71abf1d9738e35e7cdf79bf96ba",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T15:20:05Z",
+          "release_url": "https://github.com/zhengyz233/maibot-qq-persona-manager/releases/tag/v1.7.2",
+          "release_notes": "## 1.7.2 — 移除配置模板，配置定义收敛为单一真源\n\n采纳插件中心开发者的建议：**插件配置应完全由插件系统的配置管理承载，仓库不再附带配置模板文件。**\n\n### 变更\n\n- **删除 `config.toml.example`**。\n\n这不是换成新做法，而是把冗余复制品删掉。本插件的配置**一直**由 `plugin.py` 里的\n`PersonaManagerConfig`（`PluginConfigBase` 子类 + `Field(...)`，带 `__ui_label__` / `__ui_icon__` /\n`__ui_order__` 与中文 `description`）定义，Runner 在插件首次加载时据此生成 WebUI Schema\n与运行时 `config.toml`，并在配置模型新增字段时自动补齐现有配置。\n\n删掉模板的理由只有一条：**模板是 schema 的手抄复制品，会漂移** —— 加字段忘了同步模板，\n用户照旧模板改就会缺字段、甚至拿到过期的默认值。现在配置的唯一来源就是 `config_model`。\n\n### 功能影响：零\n\n- `plugin.py` **一行未改**，配置模型、WebUI 分组、默认值全部不变\n  （6 节 31 字段，删除前已逐字段比对，与旧模板零差异）；\n- 运行时代码**从不读取** `config.toml.example`（此前只有 README / CHANGELOG 引用它）；\n- 新装：Runner 按 `config_model` 生成 `config.toml`，内容与旧模板完全一致；\n- 已装升级：宿主保留 `config.toml`，只是仓库少一个文件，用户无感知。\n\n### 文档\n\n- README 三处同步：配置模型的定义即唯一真源、本仓库不再提供模板、默认值看 WebUI 或配置表。\n- **顺带修掉一个隐患**：原来「`config.toml` 损坏 → 复制模板覆盖」这条排错建议，\n  因为模板里是 `whitelist = []`，照做会**把白名单清空、导致所有人被拒绝**。\n  现改为：① 手补 `[plugin]` 段（推荐，不动白名单）；② 确实要重建时删掉 `config.toml`\n  让 MaiBot 重新生成，并显著提示**重建会清空白名单**。\n\n### 提交\n\n- commit `404899e8260ca71abf1d9738e35e7cdf79bf96ba`\n- tag `v1.7.2`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.qq-persona-manager",
+            "version": "1.7.2",
+            "name": "QQ 人格管理（查询 / 修改 / 优化）",
+            "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
+            "author": {
+              "name": "zhengyz233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "changelog": "CHANGELOG.md",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-cog",
+                "fallback": "users",
+                "background": "#5B8DEF"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
           "tag": "v1.6.0",
           "version": "1.6.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'\n"
         },
         {
           "tag": "v1.5.0",
           "version": "1.5.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'\n"
         },
         {
           "tag": "v1.4.0",
           "version": "1.4.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'\n"
         }
       ]
     },
