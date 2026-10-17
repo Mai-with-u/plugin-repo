@@ -1709,5 +1709,61 @@
       "rejected_releases": [],
       "sync_error": "GitHub 404：/repos/E33EPUS/c-daily-problem/releases?per_page=100&page=1"
     }
+  },
+  {
+    "id": "lnrh1.maibot-auto-restart",
+    "repositoryUrl": "https://github.com/lnrh1/maibot-auto-restart",
+    "archived_at": "2026-10-17T11:27:26.438Z",
+    "checked_at": "2026-10-17T11:27:26.438Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "lnrh1.maibot-auto-restart",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "lnrh1.maibot-auto-restart",
+        "name": "MaiBot自动重启插件",
+        "version": "1.1.0",
+        "description": "提供阈值触发重启、定时重启和手动重启功能。",
+        "author": {
+          "name": "lnrh1",
+          "url": "https://github.com/lnrh1"
+        },
+        "urls": {
+          "homepage": "https://github.com/lnrh1/maibot-auto-restart",
+          "repository": "https://github.com/lnrh1/maibot-auto-restart"
+        },
+        "license": "MIT",
+        "host_application": {
+          "min_version": "0.8.0",
+          "max_version": "1.2.0"
+        },
+        "sdk": {
+          "min_version": "2.0.0",
+          "max_version": "3.0.0"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "psutil",
+            "version_spec": ">=5.9.0"
+          }
+        ],
+        "capabilities": [
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh_CN"
+        }
+      }
+    },
+    "version_index_snapshot": {
+      "id": "lnrh1.maibot-auto-restart",
+      "manifest_id": "lnrh1.maibot-auto-restart",
+      "repositoryUrl": "https://github.com/lnrh1/maibot-auto-restart",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
   }
 ]

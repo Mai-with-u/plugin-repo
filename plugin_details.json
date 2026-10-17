@@ -1464,7 +1464,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.4",
+      "version": "1.15.5",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -7121,7 +7121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.deskpet-plugin",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "name": "MaiBot Deskpet",
       "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
       "author": {
@@ -7312,9 +7312,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "name": "麦麦绘图",
-      "description": "聊天绘图与可视化工作台一体，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+      "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
         "name": "清蒸云鸭",
         "url": "https://github.com/WhiteCloudOL"
@@ -8083,7 +8083,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -10013,9 +10013,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "LowValueTarget.deepseek-anthropic-provider",
-      "version": "0.2.5",
-      "name": "DeepSeek Anthropic Provider",
-      "description": "将 DeepSeek Anthropic API 包装为 MaiBot Tool，让 Bot 可以按需调用联网搜索、网页读取和深度推理能力。",
+      "version": "0.3.0",
+      "name": "Deepseek联网工具",
+      "description": "通过 DeepSeek 官方 Search 与 Fetch API 搜索网页、抓取 Markdown 正文，复用 MaiBot 模型供应商中的 DeepSeek 密钥。",
       "author": {
         "name": "LowValueTarget",
         "url": "https://github.com/LowValueTarget777"
@@ -10038,8 +10038,8 @@
       "dependencies": [
         {
           "type": "python_package",
-          "name": "anthropic",
-          "version_spec": ">=0.104.0,<1.0.0"
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1.0.0"
         },
         {
           "type": "python_package",
@@ -15372,8 +15372,8 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "2.0.1",
-      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。",
+      "version": "2.0.8",
+      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
       "author": {
         "name": "fulawa",
         "url": "https://github.com/ji-or-ji"
@@ -15586,46 +15586,6 @@
         "supported_locales": [
           "zh-CN"
         ]
-      }
-    }
-  },
-  {
-    "id": "lnrh1.maibot-auto-restart",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "lnrh1.maibot-auto-restart",
-      "name": "MaiBot自动重启插件",
-      "version": "1.1.0",
-      "description": "提供阈值触发重启、定时重启和手动重启功能。",
-      "author": {
-        "name": "lnrh1",
-        "url": "https://github.com/lnrh1"
-      },
-      "urls": {
-        "homepage": "https://github.com/lnrh1/maibot-auto-restart",
-        "repository": "https://github.com/lnrh1/maibot-auto-restart"
-      },
-      "license": "MIT",
-      "host_application": {
-        "min_version": "0.8.0",
-        "max_version": "1.2.0"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "3.0.0"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "psutil",
-          "version_spec": ">=5.9.0"
-        }
-      ],
-      "capabilities": [
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh_CN"
       }
     }
   },
@@ -17713,9 +17673,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.11.0",
+      "version": "2.13.0",
       "name": "中V歌词识别 · 歌曲库",
-      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在 crawler.sync_admin_ids 填入允许触发的QQ号。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -17728,15 +17688,16 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.1.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "capabilities": [
         "send.text",
-        "llm.generate"
+        "llm.generate",
+        "declarative_basic"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -18036,7 +17997,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.10.2",
+      "version": "0.10.4",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18050,8 +18011,8 @@
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "min_version": "2.8.1",
+        "max_version": "2.12.0"
       },
       "dependencies": [
         {
@@ -19622,7 +19583,7 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.12.0"
+        "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -20394,9 +20355,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "ji-or-ji.maibot-dsh-bridge",
-      "version": "0.1.0",
+      "version": "0.6.0",
       "name": "麦麦×dsh 桥",
-      "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。",
+      "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
       "author": {
         "name": "ji-or-ji",
         "url": "https://github.com/ji-or-ji"
@@ -21036,7 +20997,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.2",
+      "version": "0.3.3",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21056,7 +21017,7 @@
       },
       "sdk": {
         "min_version": "2.11.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "dependencies": [
         {
@@ -21181,7 +21142,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "zhengyz233.anti_cliche",
-      "version": "0.3.7",
+      "version": "0.3.11",
       "name": "口癖净化器",
       "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。",
       "author": {
