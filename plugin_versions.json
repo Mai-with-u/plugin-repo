@@ -34156,6 +34156,271 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "0aaa24dbda864730e45f0adeb997fa278c3cb84b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T19:16:57Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.4",
+          "release_notes": "## [0.4.4] - 2026-10-18\n\n### 新增\n\n- **内置默认规则自动合并（`merge_builtin_rules`，默认开启）** —— 解决了\n  「改过 `rules` 之后，插件新增 / 放宽 / 删除的内置口癖都同步不了」的问题。\n\n  背景：宿主的配置文件合并只会补上缺失的**标量键**（像 `dry_run`、`stats_enabled`），\n  遇到 `rules` 这种**列表**就整份原样保留。所以只要你自定义过一次规则，之后插件\n  每次新增默认口癖都到不了你的配置里，只能手动抄或删档重生成。\n\n  现在插件在加载时自己做一次「按名称取并集」：\n\n  | 类别 | 判定条件 | 处理方式 |\n  | --- | --- | --- |\n  | 内置副本 | 名字是内置的，且正则属于内置某个版本（含旧版） | 正则与说明跟随上游，`enabled` 保留你的意图 |\n  | 用户改过 | 名字是内置的，但正则不在历史表里 | 整条用你的，不再补内置那条 |\n  | 用户自建 | 名字不在历史表里 | 原样保留 |\n\n  于是上游的三种变更都能自动同步：\n\n  - **新增**口癖 → 自动补进生效列表\n  - **放宽**某条正则 → 你配置里的旧版本自动跟随更新（并打日志点名）\n  - **删除**某条口癖 → 你配置里的对应副本自动移除（并打日志点名）\n\n  而**你手动改过的正则永远不会被覆盖**，关掉的规则（`enabled = false`）\n  升级后**仍然是关的** —— 正则和说明是上游的资产，开关是你的意图。\n\n- **历史指纹表 `_BUILTIN_HISTORY`**（上一项的实现基础）\n\n  要区分「你从旧版复制来的内置副本」和「你自己写的正则」—— 这两者在文件里\n  **长得一模一样**（都只是「一个名字 + 一个正则」），没有额外信息就无法区分。\n  所以插件内置一张表，记着每条内置规则**曾经用过的所有正则**（最新的在最后），\n  靠正则指纹做判定。\n\n  **维护约定（改内置正则时必须同步登记，否则测试会挂）**：\n\n  1. 修改某条内置规则的 `pattern` 时，把**旧的正则留在元组里**、新的追加到末尾。\n     千万别删旧的 —— 否则老用户那份旧副本会被误判成\"用户原创\"，从此再也同步不了。\n  2. 删除某条内置规则时，**不要**从历史表里删它的名字，让它作为\"已退役\"记录留下，\n     这样老用户配置里的旧副本才会被识别并移除。\n\n  这条约定靠测试强制（断言每条内置规则的正则 == 历史表该项最后一项），不靠自觉。\n\n### 说明\n\n- **唯一改变的行为**：被物理删掉整段的内置规则会被补回来。想屏蔽内置规则请保留整段、\n  只把 `enabled` 改成 `false`；直接删除或改名都无效（改名等于新开一条，原条目仍会被补回）。\n  把 `merge_builtin_rules` 设为 `false` 可完全回归旧行为，代价是以后新口癖要自己抄。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.4",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "8dd569d19778e9115d7bacf3f077362cee13815a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T17:21:27Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.3",
+          "release_notes": "## [0.4.3] - 2026-10-18\n\n### 新增\n\n- **第 11 条默认口癖规则「味太冲」** —— `[^\\s，,。.!！?？]{1,6}味太冲了?`，\n  覆盖「班味太冲了」「爹味太冲」「塑料味太冲了」这类跟风评价口头禅。\n\n  两个正则上的取舍：\n\n  1. **刻意不写成** `味.*太冲`。那样会误伤正常的「味道太冲」——\n     而写成 `味太冲了?` 时，正常的「味道太冲」里\"味\"后面跟的是\"道\"不是\"太\"，\n     三个字不连续，**天然不会命中**，不需要额外的断言去排除。\n  2. 前缀 `[^\\s，,。.!！?？]{1,6}` 是为了让日志里的 `matched` 带上具体是哪个\"味\"。\n     否则只会看到 `matched='味太冲了'`，排查时不知道是\"班味\"还是\"爹味\"在响。\n\n  规则列表仍然完全可配置，不需要这一条的直接 `enabled = false` 即可。\n\n### 说明\n\n- **升级后新规则不会自动出现在你已有的 `config.toml` 里**：`rules` 是一个列表，\n  只要你自定义过，整份列表都会被原样保留。想用上这一条，请把 README\n  「默认规则」里的 `[[plugin.rules]]` 段手动追加进去，或删掉 `config.toml`\n  让它重新生成（**会丢掉你的自定义**）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.3",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "540905e2e51acb72997b2c47c16e8d6206dc92ff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T17:09:22Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.2",
+          "release_notes": "## [0.4.2] - 2026-10-18\n\n### 新增\n\n- **观察模式（`dry_run`，默认关闭）**：命中照常记录，但**不请求重生成**，回复原样\n  放行。用来在新规则上线前空跑一段时间，看命中率和误伤情况再决定留不留 ——\n  此前想评估一条新规则只能直接生效，一旦写宽了就会真的打断用户看到的回复。\n\n  观察模式下命中日志**无条件打印、按规则计数也照样累加，不受 `log_hits` 影响**。\n  这是刻意的：观察的目的就是把命中情况完整留下来，否则空跑两天、卸载时\n  「按规则累计命中」一片空白，而那份分布恰恰是决定规则取舍的依据。\n\n- **判定日志统一为可解析格式**：每次审核结果都打一行，固定以\n  `口癖审核 | verdict=` 开头，后跟 `键=值` 字段、用 ` | ` 分隔：\n\n  ```text\n  口癖审核 | verdict=retry      | rule=属于是 | pattern=属于\\s*是 | matched='属于是' | attempt=1/3 | session=… | reply=…\n  口癖审核 | verdict=limit_pass | rule=属于是 | pattern=属于\\s*是 | attempt=3/3     | session=… | reply=… | 累计命中 3/3\n  口癖审核 | verdict=dry_run    | rule=属于是 | pattern=属于\\s*是 | matched='属于是' | session=… | reply=… | 累计命中 2/2\n  口癖审核 | verdict=timeout    | budget=500ms | 累计超预算 1 次 | session=… | reply=… | 累计命中 0/0 | 疑似灾难性回溯…\n  ```\n\n  现在只需 `grep '口癖审核 | verdict='` 就能把全部判定捞出来，\n  也可以按 `verdict=` 分桶统计。此前四行日志四种写法（有的有片段有的没有、\n  有的带 `第几次` 有的不带），没法统一处理。\n\n### 修复\n\n- **「撞上限带口癖放行」的告警补上累计基准**（`累计命中 M/N`）。这条告警是无条件\n  打印的，所以在 `log_hits` 关闭（默认）时，它是**唯一可见**的命中相关记录 ——\n  一堆孤立异常值，没有分母，单看「今天又放行了 5 次」判断不出规则是太宽还是刚好。\n  把自启动以来的命中数/审核数拼进去后，「500 次里漏 5 次」和「10 次里漏 5 次」\n  一眼可分，这两种情况的处置完全不同。\n\n- **移除一条重复的超时日志**。上一版在 `_audit()` 的超时分支里又补打了一条\n  `verdict=timeout`，而 `_note_match_timeout()` 本来就会打 —— 于是每轮超时输出两行，\n  更要命的是新增那行**没有限频**，把 `_note_match_timeout()` 里 30 秒一条的保护\n  直接绕过了：正则灾难性回溯时每条回复都会超时，日志会被刷爆，真正的异常反而被淹没。\n  现在超时日志只保留 `_note_match_timeout()` 一处，限频继续生效，\n  排查提示（整份规则清单）也仍挂在这一行上，不会因为限频丢失、只是延后到下一个窗口。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增了一个配置项，已有键值的语义未变。\n- 新增 `dry_run` 后，默认行为与 0.4.1 **完全一致**（观察模式默认关）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.2",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "f0700ed4ff0965bf1d96b966818e23b63d6b1cf0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T16:18:08Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.1",
+          "release_notes": "## [0.4.1] - 2026-10-18\n\n### 新增\n\n- **审核/命中总数统计（`stats_enabled`，默认开启）**。背景：`log_hits` 默认关闭之后，\n  默认配置下一次命中都不会留下痕迹，**没有分母也算不出命中率** —— \"2/10（规则没生效）\"\n  和 \"2/2000（规则很好）\"在日志里长得一模一样。此外「撞上限带口癖放行」的告警不受\n  `log_hits` 控制、**始终会打**，导致默认配置下用户只看得见\"坏结果\"、看不见基准，\n  异常值容易被当成全貌。\n\n  现在两者分开：\n\n  | 开关 | 默认 | 干什么 |\n  | --- | --- | --- |\n  | `stats_enabled` | `true` | 内存里两次整数自增；卸载时打一行「审核 N 条，命中 M 条（M/N）」 |\n  | `log_hits` | `false` | 命中明细日志 + **按规则名**的累计计数 |\n\n  未命中也会进分母（一次自增），因此命中率是真率。彻底关掉 `stats_enabled`\n  后则是零状态、零写入。**两个开关互不影响**：`log_hits=false` 也照样统计。\n\n- **启动日志补上可观测性状态**：加载时会打印「明细日志 开/关、命中统计 开/关」；\n  明细关闭时额外提示一句\"撞上限告警仍会打印\"，避免用户处于\"盲飞\"却不自知。\n\n- **命中与放行日志带上宿主的 `reply_message_id`**（`reply=<id>`）。它是宿主自带的\n  \"第几次 reply\"标识：同一 session 在极短时间内出现两次审计时，**id 不同 = 两条不同的\n  回复（正常）**，**id 相同 = 同一条回复被审了两遍（该报宿主的 bug）**。此前这条信息\n  没有出现在插件侧，遇到疑似重复分发时无从判断。\n\n### 变更\n\n- **重生成约束的分段连接符由「，」改为「；」**。规则说明（`description`）里常自带逗号，\n  用逗号拼接会让整句变成一串并列短句、边界模糊。这是纯文案改动，会影响交给模型的\n  `retry_reason` 文本（例如第 1 条规则现在是：\n  「回复里出现了「属于是」这类口癖；把「属于是」当口头禅连接词使用，会让回复生硬；\n  严格禁止再使用「属于是」及同类口癖，请换一种自然、口语化的说法」）。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增了一个配置项，已有键值的语义未变。\n- **版本号规则已更正**（此前把规则理解错了）：本项目的版本每次更新 **+0.0.1，逢 10 进 1**\n  —— `0.4.0 → 0.4.1`、`0.4.9 → 0.5.0`、`0.9.9 → 1.0.0`。`0.3.10` / `0.3.11` / `0.4.0`\n  是规则明确之前发出去的，其 tag 与 commit 已被索引冻结，保留原样；**从 `0.4.1` 起**\n  严格按规则走。详见 [DESIGN.md §5](DESIGN.md#5-版本号规则)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.1",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "54d86312dfb6b51328b53ed74da444a7fba44540",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T13:08:04Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.0",
+          "release_notes": "## [0.4.0] - 2026-10-17\n\n> 从本版本起，版本号**只递增次版本位、最后一位恒为 0**，次版本到 9 则进位到主版本\n> —— `0.3.11` 之后是 `0.4.0`，`0.9.0` 之后是 `1.0.0`。`0.3.11` 是最后一个带非零\n> 补丁位的版本。因此 `0.4.0` 并不代表大改。规则与取舍见\n> [DESIGN.md §5](DESIGN.md#5-版本号规则)。\n\n### 变更\n\n- **「记录命中日志」默认改为关闭**（`log_hits` 默认 `false`）。命中明细与命中计数\n  都受它控制：关闭时不写日志、不积累计数，**零额外开销**；需要排查\n  \"规则到底有没有生效\"时再打开。\n  **老用户注意**：如果你的 `config.toml` 里已经写有 `log_hits = true`，升级后**保持\n  你原来的设置**（配置系统不覆盖已有值）；想省这份开销请手动改成 `false` 或删掉\n  该行让插件按新默认值重新生成。\n- **配置页字段顺序调整**：「匹配耗时预算（毫秒）」移到「最大重生成次数」旁边\n  （两者都是\"审核行为\"参数，原来夹在日志开关后面容易被忽略）。功能不变，\n  只是配置模型里的字段顺序变了 —— 已有 `config.toml` 的键值不受影响，\n  配置页按新顺序展示。\n\n### 其他\n\n- 插件详情（manifest `description`）末尾加上**反馈群 1128368028**：欢迎使用者进群\n  提供口癖进行优化，众人拾柴火焰高。README 同步新增「反馈」一节。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.0",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.11",
           "tag": "v0.3.11",
           "commit": "df3827859b31003dc8740c3623d3d52a4e318195",
