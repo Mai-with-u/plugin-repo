@@ -17,7 +17,7 @@ function extractReview(events) {
 async function runReview({ promptFile, outputFile, prefix, structured = false }) {
   if (!process.env.STEP_API_KEY) throw new Error('缺少 STEP_API_KEY');
   const prompt = fs.readFileSync(promptFile, 'utf8') +
-    `\n\n审核工作目录：${process.cwd()}。工具 read/find/grep/ls 分别用于读取、查找文件、搜索和列目录。仅使用只读工具，不运行插件代码。` +
+    `\n\n审核工作目录：${process.cwd()}。可按审核需要使用所有可用工具，包括联网核验 SDK 文档；不运行插件代码。` +
     (structured ? '\n完成检查后直接输出唯一完整的审核 JSON 对象，不加 Markdown 或其他正文。' : '');
   const eventsFile = `${prefix}-events.jsonl`;
   const stderrFile = `${prefix}-stderr.log`;
@@ -25,7 +25,7 @@ async function runReview({ promptFile, outputFile, prefix, structured = false })
   const stderr = fs.openSync(stderrFile, 'w');
   try {
     const args = ['--print', '--mode', 'json', '--model', process.env.STEP_MODEL || 'step-5-preview',
-      '--thinking', structured ? 'high' : 'medium', '--tools', 'read,grep,find,ls',
+      '--thinking', structured ? 'high' : 'medium',
       '--no-session', '--no-extensions', '--no-skills', '--approval-mode', 'auto', prompt];
     const code = await new Promise((resolve, reject) => {
       const child = spawn(process.env.STEP_BINARY || 'step', args, {
