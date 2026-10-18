@@ -1028,7 +1028,7 @@
     "id": "XXXxx7258.google_search_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.0.3",
+      "version": "4.1.0",
       "name": "麦麦联网插件（search plugin）",
       "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
       "author": {
@@ -5760,7 +5760,7 @@
           "结构化messages请求",
           "真实身份判定assistant角色",
           "相邻同人同角色消息合并",
-          "失败自动回退原始调用"
+          "失败自��回退原始调用"
         ]
       }
     }
@@ -7248,7 +7248,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.11.0",
+      "version": "1.11.1",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -12597,7 +12597,7 @@
       "manifest_version": 2,
       "id": "com.octmicy.vw50",
       "name": "麦麦vw50",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；提供 send_payment_code 工具供群友主动索要收款码；支持管理员用 /vw50 金额 @成员 录入赞助并让麦麦公开感谢。目标群只需填 QQ 群号。",
       "author": {
         "name": "octmicy",
@@ -18169,7 +18169,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.22.1",
+      "version": "1.23.2",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -19343,7 +19343,7 @@
     "id": "valleywinds.self-identity",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.4.3",
+      "version": "1.4.4",
       "name": "自我信息插件 (Self Identity)",
       "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
       "author": {
@@ -19351,7 +19351,6 @@
         "url": "https://github.com/ValleyWinds"
       },
       "license": "GPL-3.0-or-later",
-      "plugin_type": "chat",
       "urls": {
         "repository": "https://github.com/ValleyWinds/Self-Identity",
         "homepage": "https://github.com/ValleyWinds/Self-Identity",
@@ -19360,7 +19359,7 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "999.999.999"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -19447,9 +19446,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.17.2",
+      "version": "1.22.3",
       "name": "生活频率",
-      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算。另含主动开口（素材 / 问候 / 关系维护三类动机）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
+      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -19460,7 +19459,7 @@
       },
       "host_application": {
         "min_version": "1.2.3",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
@@ -19478,6 +19477,7 @@
         "message.get_by_time_in_chat",
         "llm.generate",
         "config.get",
+        "knowledge.search",
         "api.call"
       ],
       "i18n": {
@@ -21172,52 +21172,6 @@
     }
   },
   {
-    "id": "zhengyz233.anti_cliche",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "zhengyz233.anti_cliche",
-      "version": "0.4.4",
-      "name": "口癖净化器",
-      "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
-      "author": {
-        "name": "ZhengYZ_233",
-        "url": "https://github.com/zhengyz233"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
-        "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
-        "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
-        "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.3.9"
-      },
-      "sdk": {
-        "min_version": "2.3.0",
-        "max_version": "2.14.0"
-      },
-      "dependencies": [],
-      "capabilities": [],
-      "plugin_type": "extension",
-      "display": {
-        "icon": {
-          "type": "lucide",
-          "value": "eraser",
-          "background": "#4C6EF5"
-        }
-      },
-      "changelog": "CHANGELOG.md",
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    }
-  },
-  {
     "id": "shinoyukimiyako.claude-provider",
     "manifest": {
       "manifest_version": 2,
@@ -21309,58 +21263,6 @@
       },
       "dependencies": [],
       "plugin_type": "plugin"
-    }
-  },
-  {
-    "id": "zhengyz233.qq-persona-manager",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "zhengyz233.qq-persona-manager",
-      "version": "1.8.0",
-      "name": "QQ 人格管理（查询 / 修改 / 优化）",
-      "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
-      "author": {
-        "name": "zhengyz233",
-        "url": "https://github.com/zhengyz233"
-      },
-      "license": "MIT",
-      "changelog": "CHANGELOG.md",
-      "urls": {
-        "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
-        "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
-        "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
-        "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.14.99"
-      },
-      "dependencies": [],
-      "display": {
-        "icon": {
-          "type": "lucide",
-          "value": "user-cog",
-          "fallback": "users",
-          "background": "#5B8DEF"
-        }
-      },
-      "capabilities": [
-        "send.text",
-        "send.forward",
-        "llm.generate",
-        "config.get",
-        "chat.get_all_streams"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
     }
   },
   {
