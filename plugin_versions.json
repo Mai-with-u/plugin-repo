@@ -6158,6 +6158,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.8",
+          "tag": "v1.0.8",
+          "commit": "c48b609fa2ed53782218ca1a300d189e54d460a8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T04:25:24Z",
+          "release_url": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/releases/tag/v1.0.8",
+          "release_notes": "**Full Changelog**: https://github.com/Maboroshinatsu/maibot-deskpet-plugin/compare/v1.0.7...v1.0.8",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.deskpet-plugin",
+            "version": "1.0.8",
+            "name": "MaiBot Deskpet",
+            "description": "为 MaiBot 接入 Live2D 桌面宠物，支持双向对话（消息管线集成）、状态与情绪预设编排、视线追踪、滚轮缩放和端云双模语音合成/识别。",
+            "author": {
+              "name": "MaboroshiNatsu",
+              "url": "https://github.com/Maboroshinatsu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "homepage": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin",
+              "issues": "https://github.com/Maboroshinatsu/maibot-deskpet-plugin/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "websockets",
+                "version_spec": ">=12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "sherpa-onnx",
+                "version_spec": ">=1.10"
+              },
+              {
+                "type": "python_package",
+                "name": "pynput",
+                "version_spec": ">=1.7"
+              }
+            ],
+            "capabilities": [
+              "emoji.get_by_description",
+              "emoji.get_random"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.7",
           "tag": "v1.0.7",
           "commit": "4c15cd30513fcd60a6b36968a158106a93976f82",
@@ -16771,7 +16844,7 @@
       "id": "com.octmicy.vw50",
       "manifest_id": "com.octmicy.vw50",
       "repositoryUrl": "https://github.com/octmicy/vw50_sponsor",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -21373,7 +21446,7 @@
       "id": "maibot-community.mai-repeater",
       "manifest_id": "maibot-community.mai-repeater",
       "repositoryUrl": "https://github.com/octmicy/Mai_repeater",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -21941,6 +22014,87 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.10.5",
+          "tag": "v0.10.5",
+          "commit": "1edb92c1a0335c01ec568fb94aeaa0d4d9ba8624",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T11:18:02Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.5",
+          "release_notes": "## 本版新增\n\n**按群开关：资讯 / 构想 / 任务**\n- 群页新增「功能启用」，三个开关按群单独设置；关掉只影响本群，历史资讯、构想、任务和目标照常查看。\n- 关掉「任务」会连带暂停本群的目标检查、目标提醒和目标派生任务；正在执行的任务允许做完并正常交付，之后不再接新活。\n- 关闭期间排队的任务会被搁置，重新开启后**不会自动开跑**，要管理员在任务详情逐个点「恢复」。\n- 关闭期间产生的资讯卡片、构想提及、目标提醒不再补发；任务等待计时、目标失联计时从重新开启那一刻重新起算。\n\n**目标详情内嵌对话**\n- 总管理员可以在目标详情里直接对话：改标准、暂停 / 恢复 / 取消、改来源网址、补充说明、设置 1–72 小时的检查间隔。改之前先出确认小票，点了才执行；页面重画不丢草稿。\n\n**任务经验自动沉淀成技能**\n- 任务验收通过后，MaiWork 会把这次的做法整理成一份可复用的技能；下次遇到相似任务先参考它，同类任务在原技能上持续更新。\n\n## 修复\n\n- 目标受阻时在群里通知实际批准人（北京时间每天最多一条，写清原因和网页入口），持续到恢复、暂停、取消或完成。\n- Windows 上改用绝对路径启动 OpenSSH 客户端，修掉子进程找不到 ssh / scp / ssh-keygen 的问题（PR #3，感谢 @dirlit）。\n- 一次性 VM 和专用 SSH 机器共用同一套 OpenSSH 规则，Windows 下两处行为一致（PR #4）。\n\n## 升级提醒\n\n- 从 0.10.4 升级会迁移数据库：第 41 步 → 第 43 步（`goals` 表新增两个字段；第 43 步只是兼容占位，不建新表）。升级前请备份数据目录。\n- 配置版本仍是 0.5.1，不需要改 `config.toml`。\n- 如果要回滚到 0.10.4，请连同升级前的数据库备份一起恢复。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.5",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.10.4",
           "tag": "v0.10.4",
@@ -23879,8 +24033,83 @@
       "id": "maibot-community.mai-life",
       "manifest_id": "maibot-community.mai-life",
       "repositoryUrl": "https://github.com/octmicy/Mai_life",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.22.1",
+          "tag": "v1.22.1",
+          "commit": "c0be421245d50b469c481ac84a77c2167980186c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T06:31:59Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.22.1",
+          "release_notes": "## 变更\n\n- **plugin_type**: `tool` → `extension`（通用扩展）\n- **display.icon**：本地图片 `mailife.png`（麦麦生活吉祥物），lucide `fish` 兜底，水蓝底色 `#BFE3F2`\n- **host_application.max_version**: `1.99.99` → `1.3.99`（与已实测的宿主版本对齐；高于该版本的不同次版本将阻止加载，同次版本内仅告警）\n- 图标由 1254×1254 / 1.7MB 压缩为 512×512 / 363KB（视觉不变，降低插件列表加载开销）\n\n## 本版累计（v1.20.2 起未推送的四版）\n\n- **v1.20.2** 联网搜索质量专项：移除隐私清洗正则（实测为「搜回来不相关」第一根因）、禁词整词边界匹配、入库前弱相关过滤、去重键去 provider_id、freshness 四档贯通、Playwright 路由守卫/content 超时/engine 归一化/Bing 查询整形\n- **v1.21.0** 书柜续写 + 概率做梦：旧书按概率逐日增厚（章节追加进同一文档）、做梦改概率触发（默认 0.35）\n- **v1.22.0** 群闸门生效日程类型 + 夜窗/闸门可诊断性（放行记因、零宽窗告警）\n- **v1.22.1** 本次 manifest 调整\n\n549 个测试全绿。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.22.1",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -27605,7 +27834,7 @@
           "tag": "v0.3.1",
           "commit": "0b20ccecd7de57be57c3a9237e7a4777332d6da2",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T11:04:40Z",
           "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v0.3.1",
           "release_notes": "### 兼容性\r\n\r\n- 支持 MaiBot `1.2.0` 至 `1.3.99`\r\n- SDK 兼容范围调整为 `2.5.0` 至 `2.99.99`\r\n- 继续兼容新版 SnowLuma 适配器和旧版 NapCat 适配器\r\n- 兼容官方启动器安装环境\r\n\r\n### 修复\r\n\r\n- 修复适配器请求超时或断连时可能重复发送点赞的问题\r\n- 修复 SnowLuma API 调用的版本参数问题\r\n- 保持旧版 NapCat API 调用兼容\r\n- 优化适配器接口识别和异常处理\r\n- 修复插件商店兼容性声明问题",
@@ -33821,6 +34050,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "cdfbfeb304b16ea1dc9a3f1708fc53f76f5f7fc4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T08:57:27Z",
+          "release_url": "https://github.com/orge-8/char-recog/releases/tag/v0.4.3",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.3",
+            "name": "角色识别",
+            "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/orge-8/char-recog",
+              "homepage": "https://github.com/orge-8/char-recog",
+              "documentation": "https://github.com/orge-8/char-recog#readme",
+              "issues": "https://github.com/orge-8/char-recog/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.11.0",
+              "max_version": "2.13.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<13"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=2,<3"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "org.civetc.char-recog",
+            "plugin_type": "media",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "scan-face",
+                "background": "#F7F1E4"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.3",
           "tag": "v0.3.3",
           "commit": "74e276c9ee2d42fe73111340db4722fdf7f7948a",
@@ -34037,7 +34335,7 @@
           "yanked": false,
           "published_at": "2026-10-16T06:35:34Z",
           "release_url": "https://github.com/octmicy/Dicky-PK/releases/tag/v1.0.1",
-          "release_notes": "## 牛子PK v1.0.1\n\n从 nonebot-plugin-dicky-pk 0.7.1（原作者 月ヶ瀬，MIT）移植到 MaiBot Plugin SDK 的群聊小游戏。\n\n### 本版本修订（相对 v1.0.0）\n\n- **sdk.max_version 按实测锚定**：`2.99.99` → `2.13.99`。上限对齐实际验证过的 SDK 版本（2.13.0），不再使用无依据的“永远兼容”式写法。\n- **config.toml 不再纳入版本管理**：配置文件改为首次加载时由 SDK 依据 `config.py` 模型默认值自动生成；仓库仅保留 `config.toml.example` 模板供查阅与手动初始化，避免用户本地改动在版本更新时与 Git 跟踪内容冲突。\n- README 部署与配置说明同步更新。\n\n### 功能\n\n注册牛子 / 牛子信息 / pk / 🔒 / 打胶 / 看他牛子 / 牛子排名 / 牛子转生（5 级）/ 牛子成就（可配置条件与加成）/ 牛子仙境（定时开放修炼）/ 牛友系统（朋友费与加成），共 20 条指令。platform:user_id 复合键，群聊全开 + 私聊只读，开关指令 permission=operator，全量强类型配置（80 字段 / 9 节，WebUI 可编辑），零第三方依赖。\n\n### 兼容范围\n\n- MaiBot 主程序 1.3.0 – 1.4.99\n- Plugin SDK 2.6.0 – 2.13.99（实测 2.13.0）",
+          "release_notes": "## 牛子PK v1.0.1\r\n\r\n从 nonebot-plugin-dicky-pk 0.7.1（原作者 月ヶ瀬，MIT）移植到 MaiBot Plugin SDK 的群聊小游戏。\r\n\r\n### 本版本修订（相对 v1.0.0）\r\n\r\n- **sdk.max_version 按实测锚定**：`2.99.99` → `2.13.99`。上限对齐实际验证过的 SDK 版本（2.13.0），不再使用无依据的“永远兼容”式写法。\r\n- **config.toml 不再纳入版本管理**：配置文件改为首次加载时由 SDK 依据 `config.py` 模型默认值自动生成；仓库仅保留 `config.toml.example` 模板供查阅与手动初始化，避免用户本地改动在版本更新时与 Git 跟踪内容冲突。\r\n- README 部署与配置说明同步更新。\r\n\r\n### 功能\r\n\r\n注册牛子 / 牛子信息 / pk / 🔒 / 打胶 / 看他牛子 / 牛子排名 / 牛子转生（5 级）/ 牛子成就（可配置条件与加成）/ 牛子仙境（定时开放修炼）/ 牛友系统（朋友费与加成），共 20 条指令。platform:user_id 复合键，群聊全开 + 私聊只读，开关指令 permission=operator，全量强类型配置（80 字段 / 9 节，WebUI 可编辑），零第三方依赖。\r\n\r\n### 兼容范围\r\n\r\n- MaiBot 主程序 1.3.0 – 1.4.99\r\n- Plugin SDK 2.6.0 – 2.13.99（实测 2.13.0）\r\n\r\n**Full Changelog**: https://github.com/octmicy/Dicky-PK/compare/v1.0.1...v1.0.1",
           "manifest": {
             "manifest_version": 2,
             "id": "octmicy.dicky-pk",
@@ -34082,6 +34380,271 @@
       "repositoryUrl": "https://github.com/zhengyz233/maibot-anti-cliche",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "0aaa24dbda864730e45f0adeb997fa278c3cb84b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T19:16:57Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.4",
+          "release_notes": "## [0.4.4] - 2026-10-18\n\n### 新增\n\n- **内置默认规则自动合并（`merge_builtin_rules`，默认开启）** —— 解决了\n  「改过 `rules` 之后，插件新增 / 放宽 / 删除的内置口癖都同步不了」的问题。\n\n  背景：宿主的配置文件合并只会补上缺失的**标量键**（像 `dry_run`、`stats_enabled`），\n  遇到 `rules` 这种**列表**就整份原样保留。所以只要你自定义过一次规则，之后插件\n  每次新增默认口癖都到不了你的配置里，只能手动抄或删档重生成。\n\n  现在插件在加载时自己做一次「按名称取并集」：\n\n  | 类别 | 判定条件 | 处理方式 |\n  | --- | --- | --- |\n  | 内置副本 | 名字是内置的，且正则属于内置某个版本（含旧版） | 正则与说明跟随上游，`enabled` 保留你的意图 |\n  | 用户改过 | 名字是内置的，但正则不在历史表里 | 整条用你的，不再补内置那条 |\n  | 用户自建 | 名字不在历史表里 | 原样保留 |\n\n  于是上游的三种变更都能自动同步：\n\n  - **新增**口癖 → 自动补进生效列表\n  - **放宽**某条正则 → 你配置里的旧版本自动跟随更新（并打日志点名）\n  - **删除**某条口癖 → 你配置里的对应副本自动移除（并打日志点名）\n\n  而**你手动改过的正则永远不会被覆盖**，关掉的规则（`enabled = false`）\n  升级后**仍然是关的** —— 正则和说明是上游的资产，开关是你的意图。\n\n- **历史指纹表 `_BUILTIN_HISTORY`**（上一项的实现基础）\n\n  要区分「你从旧版复制来的内置副本」和「你自己写的正则」—— 这两者在文件里\n  **长得一模一样**（都只是「一个名字 + 一个正则」），没有额外信息就无法区分。\n  所以插件内置一张表，记着每条内置规则**曾经用过的所有正则**（最新的在最后），\n  靠正则指纹做判定。\n\n  **维护约定（改内置正则时必须同步登记，否则测试会挂）**：\n\n  1. 修改某条内置规则的 `pattern` 时，把**旧的正则留在元组里**、新的追加到末尾。\n     千万别删旧的 —— 否则老用户那份旧副本会被误判成\"用户原创\"，从此再也同步不了。\n  2. 删除某条内置规则时，**不要**从历史表里删它的名字，让它作为\"已退役\"记录留下，\n     这样老用户配置里的旧副本才会被识别并移除。\n\n  这条约定靠测试强制（断言每条内置规则的正则 == 历史表该项最后一项），不靠自觉。\n\n### 说明\n\n- **唯一改变的行为**：被物理删掉整段的内置规则会被补回来。想屏蔽内置规则请保留整段、\n  只把 `enabled` 改成 `false`；直接删除或改名都无效（改名等于新开一条，原条目仍会被补回）。\n  把 `merge_builtin_rules` 设为 `false` 可完全回归旧行为，代价是以后新口癖要自己抄。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.4",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "8dd569d19778e9115d7bacf3f077362cee13815a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T17:21:27Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.3",
+          "release_notes": "## [0.4.3] - 2026-10-18\n\n### 新增\n\n- **第 11 条默认口癖规则「味太冲」** —— `[^\\s，,。.!！?？]{1,6}味太冲了?`，\n  覆盖「班味太冲了」「爹味太冲」「塑料味太冲了」这类跟风评价口头禅。\n\n  两个正则上的取舍：\n\n  1. **刻意不写成** `味.*太冲`。那样会误伤正常的「味道太冲」——\n     而写成 `味太冲了?` 时，正常的「味道太冲」里\"味\"后面跟的是\"道\"不是\"太\"，\n     三个字不连续，**天然不会命中**，不需要额外的断言去排除。\n  2. 前缀 `[^\\s，,。.!！?？]{1,6}` 是为了让日志里的 `matched` 带上具体是哪个\"味\"。\n     否则只会看到 `matched='味太冲了'`，排查时不知道是\"班味\"还是\"爹味\"在响。\n\n  规则列表仍然完全可配置，不需要这一条的直接 `enabled = false` 即可。\n\n### 说明\n\n- **升级后新规则不会自动出现在你已有的 `config.toml` 里**：`rules` 是一个列表，\n  只要你自定义过，整份列表都会被原样保留。想用上这一条，请把 README\n  「默认规则」里的 `[[plugin.rules]]` 段手动追加进去，或删掉 `config.toml`\n  让它重新生成（**会丢掉你的自定义**）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.3",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "540905e2e51acb72997b2c47c16e8d6206dc92ff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T17:09:22Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.2",
+          "release_notes": "## [0.4.2] - 2026-10-18\n\n### 新增\n\n- **观察模式（`dry_run`，默认关闭）**：命中照常记录，但**不请求重生成**，回复原样\n  放行。用来在新规则上线前空跑一段时间，看命中率和误伤情况再决定留不留 ——\n  此前想评估一条新规则只能直接生效，一旦写宽了就会真的打断用户看到的回复。\n\n  观察模式下命中日志**无条件打印、按规则计数也照样累加，不受 `log_hits` 影响**。\n  这是刻意的：观察的目的就是把命中情况完整留下来，否则空跑两天、卸载时\n  「按规则累计命中」一片空白，而那份分布恰恰是决定规则取舍的依据。\n\n- **判定日志统一为可解析格式**：每次审核结果都打一行，固定以\n  `口癖审核 | verdict=` 开头，后跟 `键=值` 字段、用 ` | ` 分隔：\n\n  ```text\n  口癖审核 | verdict=retry      | rule=属于是 | pattern=属于\\s*是 | matched='属于是' | attempt=1/3 | session=… | reply=…\n  口癖审核 | verdict=limit_pass | rule=属于是 | pattern=属于\\s*是 | attempt=3/3     | session=… | reply=… | 累计命中 3/3\n  口癖审核 | verdict=dry_run    | rule=属于是 | pattern=属于\\s*是 | matched='属于是' | session=… | reply=… | 累计命中 2/2\n  口癖审核 | verdict=timeout    | budget=500ms | 累计超预算 1 次 | session=… | reply=… | 累计命中 0/0 | 疑似灾难性回溯…\n  ```\n\n  现在只需 `grep '口癖审核 | verdict='` 就能把全部判定捞出来，\n  也可以按 `verdict=` 分桶统计。此前四行日志四种写法（有的有片段有的没有、\n  有的带 `第几次` 有的不带），没法统一处理。\n\n### 修复\n\n- **「撞上限带口癖放行」的告警补上累计基准**（`累计命中 M/N`）。这条告警是无条件\n  打印的，所以在 `log_hits` 关闭（默认）时，它是**唯一可见**的命中相关记录 ——\n  一堆孤立异常值，没有分母，单看「今天又放行了 5 次」判断不出规则是太宽还是刚好。\n  把自启动以来的命中数/审核数拼进去后，「500 次里漏 5 次」和「10 次里漏 5 次」\n  一眼可分，这两种情况的处置完全不同。\n\n- **移除一条重复的超时日志**。上一版在 `_audit()` 的超时分支里又补打了一条\n  `verdict=timeout`，而 `_note_match_timeout()` 本来就会打 —— 于是每轮超时输出两行，\n  更要命的是新增那行**没有限频**，把 `_note_match_timeout()` 里 30 秒一条的保护\n  直接绕过了：正则灾难性回溯时每条回复都会超时，日志会被刷爆，真正的异常反而被淹没。\n  现在超时日志只保留 `_note_match_timeout()` 一处，限频继续生效，\n  排查提示（整份规则清单）也仍挂在这一行上，不会因为限频丢失、只是延后到下一个窗口。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增了一个配置项，已有键值的语义未变。\n- 新增 `dry_run` 后，默认行为与 0.4.1 **完全一致**（观察模式默认关）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.2",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删，支持观察模式先空跑评估。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "f0700ed4ff0965bf1d96b966818e23b63d6b1cf0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T16:18:08Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.1",
+          "release_notes": "## [0.4.1] - 2026-10-18\n\n### 新增\n\n- **审核/命中总数统计（`stats_enabled`，默认开启）**。背景：`log_hits` 默认关闭之后，\n  默认配置下一次命中都不会留下痕迹，**没有分母也算不出命中率** —— \"2/10（规则没生效）\"\n  和 \"2/2000（规则很好）\"在日志里长得一模一样。此外「撞上限带口癖放行」的告警不受\n  `log_hits` 控制、**始终会打**，导致默认配置下用户只看得见\"坏结果\"、看不见基准，\n  异常值容易被当成全貌。\n\n  现在两者分开：\n\n  | 开关 | 默认 | 干什么 |\n  | --- | --- | --- |\n  | `stats_enabled` | `true` | 内存里两次整数自增；卸载时打一行「审核 N 条，命中 M 条（M/N）」 |\n  | `log_hits` | `false` | 命中明细日志 + **按规则名**的累计计数 |\n\n  未命中也会进分母（一次自增），因此命中率是真率。彻底关掉 `stats_enabled`\n  后则是零状态、零写入。**两个开关互不影响**：`log_hits=false` 也照样统计。\n\n- **启动日志补上可观测性状态**：加载时会打印「明细日志 开/关、命中统计 开/关」；\n  明细关闭时额外提示一句\"撞上限告警仍会打印\"，避免用户处于\"盲飞\"却不自知。\n\n- **命中与放行日志带上宿主的 `reply_message_id`**（`reply=<id>`）。它是宿主自带的\n  \"第几次 reply\"标识：同一 session 在极短时间内出现两次审计时，**id 不同 = 两条不同的\n  回复（正常）**，**id 相同 = 同一条回复被审了两遍（该报宿主的 bug）**。此前这条信息\n  没有出现在插件侧，遇到疑似重复分发时无从判断。\n\n### 变更\n\n- **重生成约束的分段连接符由「，」改为「；」**。规则说明（`description`）里常自带逗号，\n  用逗号拼接会让整句变成一串并列短句、边界模糊。这是纯文案改动，会影响交给模型的\n  `retry_reason` 文本（例如第 1 条规则现在是：\n  「回复里出现了「属于是」这类口癖；把「属于是」当口头禅连接词使用，会让回复生硬；\n  严格禁止再使用「属于是」及同类口癖，请换一种自然、口语化的说法」）。\n\n### 说明\n\n- 本次不改 `config_version`（仍为 `0.1.0`）：只新增了一个配置项，已有键值的语义未变。\n- **版本号规则已更正**（此前把规则理解错了）：本项目的版本每次更新 **+0.0.1，逢 10 进 1**\n  —— `0.4.0 → 0.4.1`、`0.4.9 → 0.5.0`、`0.9.9 → 1.0.0`。`0.3.10` / `0.3.11` / `0.4.0`\n  是规则明确之前发出去的，其 tag 与 commit 已被索引冻结，保留原样；**从 `0.4.1` 起**\n  严格按规则走。详见 [DESIGN.md §5](DESIGN.md#5-版本号规则)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.1",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "54d86312dfb6b51328b53ed74da444a7fba44540",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T13:08:04Z",
+          "release_url": "https://github.com/zhengyz233/maibot-anti-cliche/releases/tag/v0.4.0",
+          "release_notes": "## [0.4.0] - 2026-10-17\n\n> 从本版本起，版本号**只递增次版本位、最后一位恒为 0**，次版本到 9 则进位到主版本\n> —— `0.3.11` 之后是 `0.4.0`，`0.9.0` 之后是 `1.0.0`。`0.3.11` 是最后一个带非零\n> 补丁位的版本。因此 `0.4.0` 并不代表大改。规则与取舍见\n> [DESIGN.md §5](DESIGN.md#5-版本号规则)。\n\n### 变更\n\n- **「记录命中日志」默认改为关闭**（`log_hits` 默认 `false`）。命中明细与命中计数\n  都受它控制：关闭时不写日志、不积累计数，**零额外开销**；需要排查\n  \"规则到底有没有生效\"时再打开。\n  **老用户注意**：如果你的 `config.toml` 里已经写有 `log_hits = true`，升级后**保持\n  你原来的设置**（配置系统不覆盖已有值）；想省这份开销请手动改成 `false` 或删掉\n  该行让插件按新默认值重新生成。\n- **配置页字段顺序调整**：「匹配耗时预算（毫秒）」移到「最大重生成次数」旁边\n  （两者都是\"审核行为\"参数，原来夹在日志开关后面容易被忽略）。功能不变，\n  只是配置模型里的字段顺序变了 —— 已有 `config.toml` 的键值不受影响，\n  配置页按新顺序展示。\n\n### 其他\n\n- 插件详情（manifest `description`）末尾加上**反馈群 1128368028**：欢迎使用者进群\n  提供口癖进行优化，众人拾柴火焰高。README 同步新增「反馈」一节。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.anti_cliche",
+            "version": "0.4.0",
+            "name": "口癖净化器",
+            "description": "给麦麦的回复加一道质检：命中可配置的口癖规则（句末语气词、回怼句式、对举句式等）就请求重新生成，并附上严格禁止条件；连续重试达到上限后自动放行，避免卡死回复。规则为正则列表，可自由增删。反馈群 1128368028：欢迎使用者进群提供口癖进行优化，众人拾柴火焰高。",
+            "author": {
+              "name": "ZhengYZ_233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "homepage": "https://github.com/zhengyz233/maibot-anti-cliche",
+              "documentation": "https://github.com/zhengyz233/maibot-anti-cliche/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-anti-cliche/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.9"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.14.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "eraser",
+                "background": "#4C6EF5"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.3.11",
           "tag": "v0.3.11",
@@ -34523,6 +35086,168 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.hongdougao111.minimax-governor",
+      "manifest_id": "github.hongdougao111.minimax-governor",
+      "repositoryUrl": "https://github.com/hongdougao111/maibot-minimax-governor",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "zhengyz233.qq-persona-manager",
+      "manifest_id": "zhengyz233.qq-persona-manager",
+      "repositoryUrl": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.8.0",
+          "tag": "v1.8.0",
+          "commit": "51256f990af288e99e80fdc887502e4b68988e04",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T15:28:03Z",
+          "release_url": "https://github.com/zhengyz233/maibot-qq-persona-manager/releases/tag/v1.8.0",
+          "release_notes": "## 1.8.0 — 采纳 AI 审核中「零影响」的改进建议\n\n只做**不改变现有行为**的部分。会改变行为的两条（`modify_allow_group` 默认 `false`、\n`_resolve_scope()` 改「未知即拒绝」）以及 `plugin_type` **均未采纳**，理由写在 CHANGELOG 里。\n\n### 新增\n\n- **`/人格修改` 有了独立的群聊执行开关 `[scope] modify_allow_group`（默认 `true`）。**\n\n  此前 `/人格查询` `/人格优化` 都默认仅私聊，唯独 `/人格修改` 没有群聊关卡——\n  而它恰恰是三条指令里**唯一会写配置**的那条，取向不一致。\n\n  **默认值刻意设为 `true`（开启），行为与 1.7.x 完全一致**，不会让原本在群里改人格的人\n  升级后突然用不了。想收紧就到「限用范围」关掉它：关闭后群聊发 `/人格修改`\n  会收到「暂不支持群聊使用此功能…」，只能在私聊里改。\n\n  老配置无需手工改：加载时 MaiBot 会按配置模型自动补上这个字段（默认 `true`）。\n\n- **加载时新增两条知情日志**（各只打一次，在 `on_load`）：\n\n  | 日志 | 级别 | 触发 | 内容 |\n  |---|---|---|---|\n  | 场景兜底取向 | `warning` | `treat_unknown_scope_as_group` 为默认 `false` 时 | 「判断不出群聊/私聊时按私聊放行」偏松，与权限判定「未知即拒绝」取向不一致；改成 `true` 可收紧 |\n  | 人格写入方式 | `info` | 每次加载 | 为何必须文件级写 `bot_config.toml`（SDK 无任何写宿主配置的接口）、无跨进程锁的已知风险、四道防护 |\n\n- **`[behavior] config_path` 说明补充**：写明「SDK 未提供写宿主全局配置的接口，\n  文件级写入是唯一可行手段」，让这句话在 **WebUI 配置页**也看得见。\n\n### 功能影响\n\n**默认配置下行为零变化** —— 新开关默认开着，新增日志不参与任何指令流程。\n\n### 未采纳（留待后续决定）\n\n- 把 `modify_allow_group` 默认改成 `false`：会让群聊改人格失效，属功能回退；\n- 把 `_resolve_scope()` 兜底改成「未知即拒绝」：适配器上报不全时会导致**所有指令**被拒；\n- `plugin_type`：模型里是自由字符串、Host 不校验取值，填了没有实际收益，还可能改变插件中心分类展示。\n\n### 提交\n\n- commit `51256f990af288e99e80fdc887502e4b68988e04`\n- tag `v1.8.0`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.qq-persona-manager",
+            "version": "1.8.0",
+            "name": "QQ 人格管理（查询 / 修改 / 优化）",
+            "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
+            "author": {
+              "name": "zhengyz233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "changelog": "CHANGELOG.md",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-cog",
+                "fallback": "users",
+                "background": "#5B8DEF"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.7.2",
+          "tag": "v1.7.2",
+          "commit": "404899e8260ca71abf1d9738e35e7cdf79bf96ba",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T15:20:05Z",
+          "release_url": "https://github.com/zhengyz233/maibot-qq-persona-manager/releases/tag/v1.7.2",
+          "release_notes": "## 1.7.2 — 移除配置模板，配置定义收敛为单一真源\n\n采纳插件中心开发者的建议：**插件配置应完全由插件系统的配置管理承载，仓库不再附带配置模板文件。**\n\n### 变更\n\n- **删除 `config.toml.example`**。\n\n这不是换成新做法，而是把冗余复制品删掉。本插件的配置**一直**由 `plugin.py` 里的\n`PersonaManagerConfig`（`PluginConfigBase` 子类 + `Field(...)`，带 `__ui_label__` / `__ui_icon__` /\n`__ui_order__` 与中文 `description`）定义，Runner 在插件首次加载时据此生成 WebUI Schema\n与运行时 `config.toml`，并在配置模型新增字段时自动补齐现有配置。\n\n删掉模板的理由只有一条：**模板是 schema 的手抄复制品，会漂移** —— 加字段忘了同步模板，\n用户照旧模板改就会缺字段、甚至拿到过期的默认值。现在配置的唯一来源就是 `config_model`。\n\n### 功能影响：零\n\n- `plugin.py` **一行未改**，配置模型、WebUI 分组、默认值全部不变\n  （6 节 31 字段，删除前已逐字段比对，与旧模板零差异）；\n- 运行时代码**从不读取** `config.toml.example`（此前只有 README / CHANGELOG 引用它）；\n- 新装：Runner 按 `config_model` 生成 `config.toml`，内容与旧模板完全一致；\n- 已装升级：宿主保留 `config.toml`，只是仓库少一个文件，用户无感知。\n\n### 文档\n\n- README 三处同步：配置模型的定义即唯一真源、本仓库不再提供模板、默认值看 WebUI 或配置表。\n- **顺带修掉一个隐患**：原来「`config.toml` 损坏 → 复制模板覆盖」这条排错建议，\n  因为模板里是 `whitelist = []`，照做会**把白名单清空、导致所有人被拒绝**。\n  现改为：① 手补 `[plugin]` 段（推荐，不动白名单）；② 确实要重建时删掉 `config.toml`\n  让 MaiBot 重新生成，并显著提示**重建会清空白名单**。\n\n### 提交\n\n- commit `404899e8260ca71abf1d9738e35e7cdf79bf96ba`\n- tag `v1.7.2`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "zhengyz233.qq-persona-manager",
+            "version": "1.7.2",
+            "name": "QQ 人格管理（查询 / 修改 / 优化）",
+            "description": "白名单鉴权的 QQ 指令插件：/人格查询 以合并转发展示 #人设 / #行为风格 / #表达风格，每段正文最前面自带分类标签（默认仅私聊，可开启群聊开关）；/人格修改 需求 由 replyer/planner 模型判定分类后热更新 bot_config.toml；/人格优化 让模型重新分类并压缩三段人格、保持语义不变以降低 token 开销，成功后再附一张合并转发卡片回显优化后的人格（默认仅私聊，可单独开启群聊开关）。",
+            "author": {
+              "name": "zhengyz233",
+              "url": "https://github.com/zhengyz233"
+            },
+            "license": "MIT",
+            "changelog": "CHANGELOG.md",
+            "urls": {
+              "repository": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "homepage": "https://github.com/zhengyz233/maibot-qq-persona-manager",
+              "documentation": "https://github.com/zhengyz233/maibot-qq-persona-manager/blob/main/README.md",
+              "issues": "https://github.com/zhengyz233/maibot-qq-persona-manager/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-cog",
+                "fallback": "users",
+                "background": "#5B8DEF"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.6.0",
+          "version": "1.6.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        },
+        {
+          "tag": "v1.5.0",
+          "version": "1.5.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        },
+        {
+          "tag": "v1.4.0",
+          "version": "1.4.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'local.qq-persona-manager'\n- 'zhengyz233.qq-persona-manager'"
+        }
+      ]
+    },
+    {
+      "id": "glcoge.deepseek-web-search",
+      "manifest_id": "glcoge.deepseek-web-search",
+      "repositoryUrl": "https://github.com/glcoge/deepseek-web-search",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
