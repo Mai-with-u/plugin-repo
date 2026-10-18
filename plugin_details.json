@@ -8083,7 +8083,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -12597,8 +12597,8 @@
       "manifest_version": 2,
       "id": "com.octmicy.vw50",
       "name": "麦麦vw50",
-      "version": "2.0.2",
-      "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；并提供 send_payment_code 工具供群友主动索要收款码。目标群只需填 QQ 群号。",
+      "version": "2.1.0",
+      "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；提供 send_payment_code 工具供群友主动索要收款码；支持管理员用 /vw50 金额 @成员 录入赞助并让麦麦公开感谢。目标群只需填 QQ 群号。",
       "author": {
         "name": "octmicy",
         "url": "https://github.com/octmicy/vw50_sponsor"
@@ -12609,14 +12609,21 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
-      "plugin_type": "tool",
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "vw50.png",
+          "fallback": "package"
+        }
+      },
       "capabilities": [
         "send.text",
         "send.image",
@@ -12631,6 +12638,9 @@
           "en-US"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/com.octmicy.vw50.webp"
     }
   },
   {
@@ -18009,7 +18019,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.10.4",
+      "version": "0.10.5",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18159,7 +18169,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.20.1",
+      "version": "1.22.1",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -18168,7 +18178,7 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.3.6",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.7.0",
@@ -18181,7 +18191,7 @@
           "version_spec": ">=1.49,<2"
         }
       ],
-      "plugin_type": "tool",
+      "plugin_type": "extension",
       "capabilities": [
         "send.text",
         "send.image",
@@ -18209,7 +18219,18 @@
         "repository": "https://github.com/octmicy/Mai_life",
         "homepage": "https://github.com/octmicy/Mai_life",
         "documentation": "https://docs.mai-mai.org"
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "mailife.png",
+          "fallback": "fish",
+          "background": "#BFE3F2"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-community.mai-life.webp"
     }
   },
   {
@@ -19575,9 +19596,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "0.3.1",
+      "version": "1.0.0",
       "name": "QQ 名片点赞",
-      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持 @ / 回复 / 指定 QQ 号以及 AI 口语化触发",
+      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令和 AI 口语化直接点赞，以及 @ / 回复 / 指定 QQ 号",
       "author": {
         "name": "FleetingEternity-qyt",
         "url": "https://github.com/FleetingEternity-qyt"
@@ -19594,13 +19615,14 @@
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
+        "min_version": "2.7.1",
         "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
         "send.text",
-        "api.call"
+        "api.call",
+        "api.get"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -21009,7 +21031,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.3",
+      "version": "0.4.3",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21134,8 +21156,8 @@
         "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.6.0",
-        "max_version": "2.13.99"
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
