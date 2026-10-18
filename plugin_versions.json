@@ -22015,6 +22015,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.10.5",
+          "tag": "v0.10.5",
+          "commit": "1edb92c1a0335c01ec568fb94aeaa0d4d9ba8624",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T11:18:02Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.10.5",
+          "release_notes": "## 本版新增\n\n**按群开关：资讯 / 构想 / 任务**\n- 群页新增「功能启用」，三个开关按群单独设置；关掉只影响本群，历史资讯、构想、任务和目标照常查看。\n- 关掉「任务」会连带暂停本群的目标检查、目标提醒和目标派生任务；正在执行的任务允许做完并正常交付，之后不再接新活。\n- 关闭期间排队的任务会被搁置，重新开启后**不会自动开跑**，要管理员在任务详情逐个点「恢复」。\n- 关闭期间产生的资讯卡片、构想提及、目标提醒不再补发；任务等待计时、目标失联计时从重新开启那一刻重新起算。\n\n**目标详情内嵌对话**\n- 总管理员可以在目标详情里直接对话：改标准、暂停 / 恢复 / 取消、改来源网址、补充说明、设置 1–72 小时的检查间隔。改之前先出确认小票，点了才执行；页面重画不丢草稿。\n\n**任务经验自动沉淀成技能**\n- 任务验收通过后，MaiWork 会把这次的做法整理成一份可复用的技能；下次遇到相似任务先参考它，同类任务在原技能上持续更新。\n\n## 修复\n\n- 目标受阻时在群里通知实际批准人（北京时间每天最多一条，写清原因和网页入口），持续到恢复、暂停、取消或完成。\n- Windows 上改用绝对路径启动 OpenSSH 客户端，修掉子进程找不到 ssh / scp / ssh-keygen 的问题（PR #3，感谢 @dirlit）。\n- 一次性 VM 和专用 SSH 机器共用同一套 OpenSSH 规则，Windows 下两处行为一致（PR #4）。\n\n## 升级提醒\n\n- 从 0.10.4 升级会迁移数据库：第 41 步 → 第 43 步（`goals` 表新增两个字段；第 43 步只是兼容占位，不建新表）。升级前请备份数据目录。\n- 配置版本仍是 0.5.1，不需要改 `config.toml`。\n- 如果要回滚到 0.10.4，请连同升级前的数据库备份一起恢复。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.10.5",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.12.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.10.4",
           "tag": "v0.10.4",
           "commit": "117bcaac784c76855f82b1f6ca4ceb3153256baf",
