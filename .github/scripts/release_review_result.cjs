@@ -37,7 +37,12 @@ function parseReleaseReview(text, batch) {
       else if (quoted && char === '\\') escaped = true;
       else if (char === '"') quoted = !quoted;
     }
-    return JSON.parse(cleaned);
+    const value = JSON.parse(cleaned);
+    // 仅兼容协议 1 的字符串写法，不推断缺失或未知的协议版本。
+    if (typeof value?.schema_version === 'string' && /^1(?:\.0+)?$/.test(value.schema_version.trim())) {
+      value.schema_version = 1;
+    }
+    return value;
   }
   let result;
   try { result = decode(text); } catch {
@@ -57,7 +62,8 @@ function parseReleaseReview(text, batch) {
         if (char === '}' && --depth === 0) {
           try {
             const value = decode(text.slice(start, end + 1));
-            if (value?.schema_version === 1 && Array.isArray(value.releases)) candidates.push(value);
+            // 先收集完整结论，再统一校验，避免忽略另一份协议错误的结论。
+            if (Array.isArray(value?.releases)) candidates.push(value);
           } catch { /* 非 JSON 文本 */ }
           start = end;
           break;

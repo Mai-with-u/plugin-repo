@@ -73,6 +73,44 @@ test('兼容 BOM、代码块、前后说明和字符串外尾逗号，不改写�
   assert.deepEqual(parseReleaseReview(JSON.stringify(result), targets).releases[0].risks, result.releases[0].risks);
 });
 
+test('兼容协议 1 的字符串写法，纯 JSON、说明文字和代码块保持相同审核结论', () => {
+  const expected = review();
+  expected.releases[0].decision = 'manual_review';
+  expected.releases[0].risks = ['config.toml 已入库，需人工确认'];
+  for (const schema_version of ['1', '1.0', ' 1.00 ']) {
+    const json = JSON.stringify({ ...expected, schema_version });
+    for (const text of [json, '核查完毕。\n\n' + json, '```json\n' + json + '\n```']) {
+      const parsed = parseReleaseReview(text, targets);
+      assert.deepEqual(parsed, expected);
+      assert.deepEqual(passedReleases(parsed), [first]);
+    }
+  }
+});
+
+test('协议容错不放行未知协议、多个结论、身份错误或未经检查的版本', () => {
+  const valid = JSON.stringify(review());
+  for (const schema_version of [undefined, null, true, '01', '1e0', 'v1', '1.1', '2', 2]) {
+    const invalid = JSON.stringify({ ...review(), schema_version });
+    for (const text of [invalid, '结论：\n' + invalid, valid + '\n' + invalid]) {
+      assert.throws(() => parseReleaseReview(text, targets));
+    }
+  }
+  for (const mutate of [
+    result => { result.plugin_id = 'other.demo'; },
+    result => { result.repository_url = 'https://github.com/other/demo'; },
+    result => { result.releases[0].commit = 'c'.repeat(40); },
+    result => { result.releases[0].decision = 'approved'; },
+  ]) {
+    const result = { ...review(), schema_version: '1.0' };
+    mutate(result);
+    assert.throws(() => parseReleaseReview(JSON.stringify(result), targets));
+  }
+  const unchecked = { ...review(), schema_version: '1.0' };
+  unchecked.releases[0].reviewed = 'true';
+  assert.deepEqual(passedReleases(parseReleaseReview(JSON.stringify(unchecked), targets)), [first]);
+  assert.throws(() => parseReleaseReview(valid + '\n' + JSON.stringify(unchecked), targets));
+});
+
 test('缺失说明、检查状态或风险列表时该版本降为人工处理', () => {
   for (const field of ['summary', 'reviewed', 'risks']) {
     const result = review();
