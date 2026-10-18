@@ -16958,7 +16958,64 @@
       "manifest_id": "com.octmicy.vw50",
       "repositoryUrl": "https://github.com/octmicy/vw50_sponsor",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.1.1",
+          "tag": "v2.1.1",
+          "commit": "b354fb2726d74bc3fed4a329d7448e1c54c87086",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T16:36:12Z",
+          "release_url": "https://github.com/octmicy/vw50_sponsor/releases/tag/v2.1.1",
+          "release_notes": "## v2.1.1 — 安全修复：管理命令默认放行 + config.toml 出库\n\n### 修复：管理命令在默认配置下对所有人开放\n\n`admin_qq_ids` 默认为空列表时，`_is_admin()` 原先直接返回 `True`，等于不校验。这导致在**开箱默认状态**下：\n\n| 命令 | 原本谁能用 | 后果 |\n|---|---|---|\n| `/vw50_test` | **任意群成员 / 私聊用户** | 手动触发一次 vw50 自动流程——让模型生成「V我50」文案，并经 `send_payment_code` **发出收款码** |\n| `/vw50_status` | **任意群成员 / 私聊用户** | 读取插件内部状态：目标群 stream_id、重试次数、赞助记录条数等 |\n\n现统一改为 **fail-closed**：\n\n- `admin_qq_ids` 为空 → 所有管理命令一律拒绝，并提示「插件未配置管理员，请让号主先填写管理员 QQ 号」\n- 原本只有赞助指令用的 `_is_admin_strict()` 已合并进 `_is_admin()`，不再存在两套判定\n- 拒绝提示区分两种情况：「未配置管理员」与「你不是插件管理员」，避免用户误以为是自己权限有问题\n\n### 变更：`config.toml` 移出版本控制\n\n依据官方文档 [配置管理](https://docs.mai-mai.org/plugin/config)：\n\n> 插件源码仓库以 `config_model` 为配置定义，`.gitignore` 应包含 `/config.toml`。\n> 用户通过 WebUI 或运行时配置接口修改的值保存在安装目录中的 `config.toml`。\n\n运行时配置入库会让「用户本地配置」与「仓库模板」互相覆盖，并持续产生 git 冲突。现：\n\n- `.gitignore` 加入 `/config.toml`\n- `config.toml` 已从版本控制移除（`git rm --cached`）\n- 新增 **`config.example.toml`** 作为仓库内的配置模板，含字段含义、管理员必填提示与部署说明\n\n### 升级注意\n\n⚠️ **必须先配置管理员**：升级后如果 `plugin.admin_qq_ids` 还是空的，所有管理命令都会拒绝。\n请在 WebUI 的插件配置页填上你的 QQ 号，或把 `config.example.toml` 复制成 `config.toml` 后修改。\n\n### 验证\n\n- 自测新增 8 条权限断言（`/vw50_test` 与 `/vw50_status` × 空管理员 / 非管理员 / 管理员），**共 38 项全绿**\n- 主程序 `ManifestValidator` 通过（2.1.1）\n- `config.example.toml` 可直接实例化配置模型\n- 运行环境：MaiBot 1.3.8 + Plugin SDK 2.13.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.octmicy.vw50",
+            "name": "麦麦vw50",
+            "version": "2.1.1",
+            "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；提供 send_payment_code 工具供群友主动索要收款码；支持管理员用 /vw50 金额 @成员 录入赞助并让麦麦公开感谢。目标群只需填 QQ 群号。",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/vw50_sponsor"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/octmicy/vw50_sponsor"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "vw50.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.proactive.trigger",
+              "chat.get_stream_by_group_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
