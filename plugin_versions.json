@@ -32794,6 +32794,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.6.1",
+          "tag": "v0.6.1",
+          "commit": "78388b1869196912e508a655ef5cd1649781cb65",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T12:26:47Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-dsh-bridge/releases/tag/v0.6.1",
+          "release_notes": "## 修复审核阻断项\n\n- `host_application` 声明范围改为 **1.2.0 ~ 1.2.99**（实测宿主 1.2.3）。\n- `sdk` 声明范围改为 **2.0.0 ~ 2.8.99**（实测 maibot-plugin-sdk 2.8.0）。\n- 不再使用 `1.99.99 / 2.99.99` 这类「永远兼容」的占位上限。\n\n## 其他\n\n- `PluginSectionConfig.config_version` 默认值与 `config.toml.example` 对齐为 0.6.1。\n- README 增加「兼容性」一节，写明实测环境与未验证范围。\n\n## 关于默认沙箱（维护者确认项）\n\n`permission_mode` 默认 `danger-full-access` 是有意选择：Windows 下 `workspace-write` 的 ACL 受限令牌会让 `git clone` 失败。任务仍受 `[permission]` 名单限制、工作区按聊天流隔离；需要更严边界可改为 `workspace-write` 或 `read-only`，README 已写明代价。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-dsh-bridge",
+            "version": "0.6.1",
+            "name": "麦麦×dsh 桥",
+            "description": "把 DeepSeek Harness (dsh) 接入麦麦：用 /dsh 命令或 dsh_run 工具把较重的任务外包给 dsh 在服务器上执行，过程以合并转发回传。权限支持白/黑名单双模式，默认白名单。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "homepage": "https://github.com/ji-or-ji/maibot-dsh-bridge",
+              "documentation": "https://github.com/ji-or-ji/maibot-dsh-bridge/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-dsh-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.2.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.8.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "api.call",
+              "api.get",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.6.0",
           "tag": "v0.6.0",
           "commit": "e9932fcd895fd62bcc16169bc55d7be36ce16a36",
