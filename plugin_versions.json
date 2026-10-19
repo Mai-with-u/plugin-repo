@@ -34810,7 +34810,66 @@
       "manifest_id": "glcoge.deepseek-web-search",
       "repositoryUrl": "https://github.com/glcoge/deepseek-web-search",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "88f1de5a2bc123c1a64b6f09f9119c3719ec4057",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T15:20:20Z",
+          "release_url": "https://github.com/glcoge/deepseek-web-search/releases/tag/v1.0.0",
+          "release_notes": "首个版本。\n\n- 新增 deepseek_search / deepseek_fetch 工具\n- 默认返回 4 条摘要，支持按需抓取网页正文\n- 支持结果缓存、Search/Fetch 独立限速、429/5xx 重试和超时控制\n- WebUI 配置项增加中文标签和说明",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "glcoge.deepseek-web-search",
+            "version": "1.0.0",
+            "name": "DeepSeek 联网搜索",
+            "description": "调用 DeepSeek Search / Fetch API，为模型提供按需联网搜索与网页抓取工具，替代模型自带联网搜索。",
+            "author": {
+              "name": "glcoge",
+              "url": "https://github.com/glcoge"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/glcoge/deepseek-web-search",
+              "homepage": "https://github.com/glcoge/deepseek-web-search",
+              "documentation": "https://github.com/glcoge/deepseek-web-search/blob/main/README.md",
+              "issues": "https://github.com/glcoge/deepseek-web-search/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "search"
+              }
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
