@@ -5760,7 +5760,7 @@
           "结构化messages请求",
           "真实身份判定assistant角色",
           "相邻同人同角色消息合并",
-          "失败自��回退原始调用"
+          "失败自动回退原始调用"
         ]
       }
     }
@@ -14188,7 +14188,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.3.2",
+      "version": "3.4.0",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -14309,7 +14309,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nero-umu.nitter-to-maibot",
-      "version": "1.6.3",
+      "version": "1.7.0",
       "name": "Nitter 推文转发",
       "description": "定期读取 Nitter 订阅账号的新推文，支持按 QQ 群独立订阅，并转发正文、图片和视频附件。",
       "author": {
@@ -14559,7 +14559,7 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.1.4"
+        "max_version": "99.99.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -19446,9 +19446,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.22.3",
+      "version": "1.22.4",
       "name": "生活频率",
-      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
+      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -19463,7 +19463,7 @@
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.99.99"
+        "max_version": "2.13.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -21224,48 +21224,6 @@
     }
   },
   {
-    "id": "github.hongdougao111.minimax-governor",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "github.hongdougao111.minimax-governor",
-      "version": "1.5.1",
-      "name": "MiniMax 开支管家",
-      "description": "监测 MiniMax 套餐余量与回复消耗，分群独立预算，超限自动降低发言频率，支持管理员专属开关与激进/保守/均衡三档策略",
-      "author": {
-        "name": "hongdougao111",
-        "url": "https://github.com/hongdougao111"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/hongdougao111/maibot-minimax-governor",
-        "homepage": "https://github.com/hongdougao111/maibot-minimax-governor",
-        "documentation": "https://github.com/hongdougao111/maibot-minimax-governor",
-        "issues": "https://github.com/hongdougao111/maibot-minimax-governor/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "capabilities": [
-        "send_message",
-        "send.text",
-        "chat.get_group_streams"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "dependencies": [],
-      "plugin_type": "plugin"
-    }
-  },
-  {
     "id": "glcoge.deepseek-web-search",
     "manifest": {
       "manifest_version": 2,
@@ -21313,6 +21271,251 @@
         "supported_locales": [
           "zh-CN"
         ]
+      }
+    }
+  },
+  {
+    "id": "WMX20081122.maibot-qq-monitor",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WMX20081122.maibot-qq-monitor",
+      "version": "1.0.5",
+      "name": "QQ在线监控",
+      "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
+      "author": {
+        "name": "WMX20081122",
+        "url": "https://github.com/WMX20081122"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WMX20081122/maibot-qq-monitor",
+        "homepage": "https://github.com/WMX20081122/maibot-qq-monitor",
+        "documentation": "https://github.com/WMX20081122/maibot-qq-monitor/blob/main/README.md",
+        "issues": "https://github.com/WMX20081122/maibot-qq-monitor/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=0.1.0,<2.0.0"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🛰️",
+          "background": "#00a66a"
+        }
+      }
+    }
+  },
+  {
+    "id": "WMX20081122.maibot-picstatus",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WMX20081122.maibot-picstatus",
+      "version": "2.3.3",
+      "name": "PicStatus-Re",
+      "description": "以图片形式显示当前设备的运行状态（CPU、内存、磁盘、网络、进程等）。MaiBot 移植版，迁移来源：nonebot-plugin-picstatus（作者 yuexps）。",
+      "author": {
+        "name": "WMX20081122",
+        "url": "https://github.com/WMX20081122"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WMX20081122/maibot-picstatus",
+        "homepage": "https://github.com/WMX20081122/maibot-picstatus",
+        "documentation": "https://github.com/WMX20081122/maibot-picstatus/blob/main/README.md",
+        "issues": "https://github.com/WMX20081122/maibot-picstatus/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=0.1.0"
+        },
+        {
+          "type": "python_package",
+          "name": "psutil",
+          "version_spec": ">=5.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "py-cpuinfo",
+          "version_spec": ">=9.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "jinja2",
+          "version_spec": ">=3.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.40.0"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "send.image",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "📊",
+          "background": "#2f5fff"
+        }
+      }
+    }
+  },
+  {
+    "id": "valleywinds.moegirl-wiki",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "2.1.2",
+      "plugin_type": "tool",
+      "name": "萌娘百科插件",
+      "description": "为麦麦提供萌娘百科知识补充：词条摘要、主词条信息及相关语境，支持 generator=search 与 opensearch 双路径回退。",
+      "author": {
+        "name": "ValleyWinds",
+        "url": "https://github.com/ValleyWinds"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/ValleyWinds/Moegirl-Wiki",
+        "homepage": "https://github.com/ValleyWinds/Moegirl-Wiki",
+        "documentation": "https://github.com/ValleyWinds/Moegirl-Wiki#readme",
+        "issues": "https://github.com/ValleyWinds/Moegirl-Wiki/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "valleywinds.moegirl-wiki"
+    }
+  },
+  {
+    "id": "WMX20081122.maibot-qiandao",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WMX20081122.maibot-qiandao",
+      "version": "1.0.1",
+      "name": "签到卡片",
+      "description": "发送「签到」生成精美签到卡片，支持一言、累计/连续签到统计与排行榜。MaiBot 移植版，迁移来源：WMX20081122/astrbot_plugin_qiandao。",
+      "author": {
+        "name": "WMX20081122",
+        "url": "https://github.com/WMX20081122"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WMX20081122/maibot-qiandao",
+        "homepage": "https://github.com/WMX20081122/maibot-qiandao",
+        "documentation": "https://github.com/WMX20081122/maibot-qiandao/blob/main/README.md",
+        "issues": "https://github.com/WMX20081122/maibot-qiandao/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=0.1.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "person.get_id",
+        "person.get_value",
+        "send.image",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "🗓️",
+          "background": "#f2a33c"
+        }
       }
     }
   }
