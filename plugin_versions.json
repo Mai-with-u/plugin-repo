@@ -34986,7 +34986,252 @@
       "manifest_id": "WMX20081122.maibot-qq-monitor",
       "repositoryUrl": "https://github.com/WMX20081122/maibot-qq-monitor",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "065293ddc726c6fec630473c3bfab011d43a3a28",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T07:11:41Z",
+          "release_url": "https://github.com/WMX20081122/maibot-qq-monitor/releases/tag/v1.0.5",
+          "release_notes": "## 新增：僵尸在线识别（活性探针）\n\n**场景**：NapCat 进程活着、`get_status` 返回 `online: true`，但底层 QQ 会话已断开——接口读的全是本地缓存，机器人不收消息也不发告警邮件。\n\n**做法**：探针定期用 `no_cache` 查询机器人自身资料（`adapter.napcat.account.get_stranger_info`），强制一次腾讯服务器往返；连续 `liveness_fail_threshold` 次（默认 2 × 60 秒）失败即判定掉线并邮件告警；探针确认服务器恢复后自动补发上线邮件。僵尸态下主探测的假「在线」不再触发误判上线。\n\n### 新增配置\n\n| 键 | 默认 | 说明 |\n| --- | --- | --- |\n| `monitor.liveness_enabled` | `true` | 活性探针开关 |\n| `monitor.liveness_interval` | `60` | 探针间隔（秒，最小 15） |\n| `monitor.liveness_fail_threshold` | `2` | 连续失败几次判定掉线 |\n\n### 其他\n\n- 删除 `message_info.self_id` 旧字段兜底，self_id 只读消息顶层 `account_id`\n- 发送者识别改用 `message.message_info.user_info.user_id`（文档承诺字段）\n- `cmd_status` 返回值 `response` 由 `None` 改为空串\n\n依赖适配器提供 `adapter.napcat.account.get_stranger_info`（`no_cache` 参数，SnowLuma 适配器已支持）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-qq-monitor",
+            "version": "1.0.5",
+            "name": "QQ在线监控",
+            "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "homepage": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "documentation": "https://github.com/WMX20081122/maibot-qq-monitor/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-qq-monitor/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🛰️",
+                "background": "#00a66a"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "a8af4d55045c0d832144874def27f32578ea119f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T16:23:23Z",
+          "release_url": "https://github.com/WMX20081122/maibot-qq-monitor/releases/tag/v1.0.4",
+          "release_notes": "## 掉线告警更准、更不吵\n\n- 判定状态持久化（`monitor_state.json`）：重启后若本来就掉线，不再重复发一封掉线邮件（此前每次重启都会补发一封）\n- 适配器整体不可用（`未找到 API 提供方插件`）不再被「接口超时」的二次校验压掉，立即判定掉线并告警\n- 邮件日志对收发件地址打码；配置不完整提示降到 debug\n- 删除 `message_info.self_id` 这段已失效的兜底分支\n- `config.example.toml` 不再手写 `config_version`（由 Runner 维护）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-qq-monitor",
+            "version": "1.0.4",
+            "name": "QQ在线监控",
+            "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "homepage": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "documentation": "https://github.com/WMX20081122/maibot-qq-monitor/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-qq-monitor/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🛰️",
+                "background": "#00a66a"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "d6dd0c72db141b917fe8b08a4a9935f9bbdb1277",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T15:41:37Z",
+          "release_url": "https://github.com/WMX20081122/maibot-qq-monitor/releases/tag/v1.0.3",
+          "release_notes": "## 审核二次整改\n\n- 机器人自身 QQ 改从消息顶层 `account_id` 读取（`additional_config.self_id` 为旧版别名，仅作回退）\n- 发送者识别以 `message.message_info.user_info.user_id` 为主、`user_id` 参数兜底\n- `config.example.toml` 的 `http_probe_port` 默认改为 `0`，与 schema / README 一致\n- 适配器依赖补上界 `>=0.1.0,<2.0.0`\n- 统一 manifest / `plugin.py` / `__init__.py` 版本号；README 环境要求改为 MaiBot ≥ 1.3.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-qq-monitor",
+            "version": "1.0.3",
+            "name": "QQ在线监控",
+            "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "homepage": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "documentation": "https://github.com/WMX20081122/maibot-qq-monitor/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-qq-monitor/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0,<2.0.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🛰️",
+                "background": "#00a66a"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "190104701880227c32ab90dc760745ad213e38ad",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T15:16:58Z",
+          "release_url": "https://github.com/WMX20081122/maibot-qq-monitor/releases/tag/v1.0.2",
+          "release_notes": "## 插件市场审核整改\n\n- WebUI 里关闭插件后再打开即时恢复探测，不再需要重载插件\n- 卸载时取消未完成的邮件重试任务，避免残留 pending task 告警\n- 统一触发指令默认值：config.py、config.example.toml、README 三处一致\n- 发送者识别改用命令参数 `user_id` / `message.message_info`，不再依赖未承诺字段\n- `host_application` 收紧为 1.3.0 ~ 1.3.99，`sdk` 为 2.12.0 ~ 2.99.99（MaiBot 1.4 发布后跟进测试与更新）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-qq-monitor",
+            "version": "1.0.2",
+            "name": "QQ在线监控",
+            "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "homepage": "https://github.com/WMX20081122/maibot-qq-monitor",
+              "documentation": "https://github.com/WMX20081122/maibot-qq-monitor/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-qq-monitor/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🛰️",
+                "background": "#00a66a"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
