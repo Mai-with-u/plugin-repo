@@ -7150,6 +7150,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.11.1",
+          "tag": "v1.11.1",
+          "commit": "59ff292b4d912a5cbe5d09cce32381e8497d350f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T13:36:55Z",
+          "release_url": "https://github.com/TAIY2020/smart_poke_plugin/releases/tag/v1.11.1",
+          "release_notes": "## 主要更新\r\n\r\n修复 SnowLuma 适配器下戳一戳回复落进\"影子会话\"的问题（v1.11.1）\r\n\r\n### 修复\r\n\r\n- **被戳后的回复落进\"影子会话\"（#6）**：SnowLuma 适配器把路由身份（`account_id` / `scope`）写在消息顶层，插件此前只从 `additional_config` 读取，拿到的是空串，`chat.open_session` 便另算出一条无账号归属的\"影子会话\"，回复和上下文与真实流分叉。现在改为与 Host 相同口径：优先读消息顶层，取不到再回退 `additional_config`，旧适配器行为不变。感谢 @dirlit 在 #7 中贡献修复。\r\n\r\n### 优化\r\n\r\n- 路由身份相关注释与文档字符串统一更新，明确「顶层优先、兼容回退」口径。\r\n\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.11.1",
+            "name": "智能戳一戳插件 | Smart Poke Plugin",
+            "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/smart_poke_plugin",
+              "homepage": "https://github.com/TAIY2020/smart_poke_plugin",
+              "documentation": "https://github.com/TAIY2020/smart_poke_plugin",
+              "issues": "https://github.com/TAIY2020/smart_poke_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "api.call",
+              "emoji.get_random",
+              "emoji.get_by_description",
+              "emoji.get_emotions",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "message.get_recent",
+              "message.build_readable",
+              "maisaka.context.append",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.webp"
+              }
+            },
+            "id": "TAIY2020.smart_poke_plugin"
+          }
+        },
+        {
           "version": "1.11.0",
           "tag": "v1.11.0",
           "commit": "4061ad6456f5530bc6bcb794ccd1dca92abe8924",
