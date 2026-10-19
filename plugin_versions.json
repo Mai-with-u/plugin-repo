@@ -24372,6 +24372,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.23.4",
+          "tag": "v1.23.4",
+          "commit": "54e18d0a5ff28dc4e1f8d235d794acfb1ebd9144",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T16:19:31Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.23.4",
+          "release_notes": "## 变更（v1.23.4）\n\n- **新增群聊日程工具 `mai_life_get_schedule`**：群轮次本来不注入私聊背景，麦麦在群里被问及自己的日程、安排、现在在做什么时无从回答。新工具把今日时间线、当前段与当前场景交给 LLM（`chat_scope=\"group\"`，仅群聊可见——私聊每轮提示词本就注入完整日程，不需要；在 bot 所在的所有群聊可用）。\n- 载荷为紧凑纯文本：分钟转 HH:MM、当前段打【当前】标记、附当前细化场景，不走图片不落库；插件关闭、服务未初始化、空日程、查询异常均有明确降级文案。\n- 工具描述写死回答约束：只依据返回内容、自然提及当前或接下来一件事、对方没问就不主动报日程、不把麦麦的日程说成对方的安排。\n- 新增 6 条测试用例；plugin-guide 工具清单 2→3 并重算 618 处代码行号（顺手修正 5 处既存漂移引用）。\n\n## 本版累计（v1.23.2 起未推送的两版）\n\n- **v1.23.3** 休息闸门时间窗优先：配了起止不同的夜窗/午休窗后，闸门只按用户配置的时间窗走，日程里的睡眠/午休段不再让闸门提前生效（修复 night_start 设 00:00 而日程 22:30 就寝、22:34 即注入「被叫醒」提示词的实测踩坑）；窗口起止相同（停用）时才回退日程类型兜底，rest 等无对应窗口类型语义不变。同批把 `group_gate_segment_types` 改为 `list[Literal[...]]` 纯选择（8 个段型），拼错类型名不再静默失效。\n- **v1.23.4** 群聊日程工具（见上）。\n\n## 仓库清理\n\n- AGENTS.md 与 CONTRIBUTING.md 转为本地文档不再入库（`git rm --cached` + .gitignore，工作副本保留）；读取 CONTRIBUTING.md 的命令数同步守卫改为文件缺失即跳过，克隆仓库跑测试不受影响。\n- README 删除「实现原理」「常见问题」「开发测试」三节，保留快速配置、联网搜索、主要功能、运行影响、指令与特别感谢。\n\n551 个测试全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.23.4",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.23.2",
           "tag": "v1.23.2",
           "commit": "cfdd0e70c35ae9f75fcbd37695812a280bfb0800",
