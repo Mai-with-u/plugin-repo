@@ -24262,6 +24262,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.23.2",
+          "tag": "v1.23.2",
+          "commit": "cfdd0e70c35ae9f75fcbd37695812a280bfb0800",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T17:30:05Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.23.2",
+          "release_notes": "## 变更（v1.23.2）\n\n- **drawpic Tool 名常量与契约断言**：`DRAWPIC_DRAW_TOOL`/`DRAWPIC_DRAW_STATUS_TOOL` 与 drawpic 2.1.1 注册名逐字对应，测试断言钉住引导文案只引用这两个工具——drawpic 改名时测试先红，不静默漂移。\n- **注入引导新增「draw 工具本轮可见」守卫**：`_drawpic_loaded` 是 10 分钟一复检的内存态，插件中途卸载后的陈旧窗口里旧值会让引导指向不在本轮工具定义里的 draw 工具；现从 Planner 工具定义提取名字（兼容 OpenAI function 结构与平铺 name），零 RPC，被拦轮次不写频控记录、不白耗每日额度。\n- **更正「drawpic 无 @API」过期注释**：drawpic 2.1.1 已暴露 16 个 public @API（integration 7 个 v1 + tasks_v2 6 个 + preferences 3 个），调用方只需 api.call；本联动刻意只走 Tool 通道，不把自己改造成 drawpic 的重型客户端。\n- **[linkage] hint 改为诚实检测语义**：只确认插件已加载，不校验版本与绘图平台 Key；docs/plugin-guide.md §11.5 整节重写并校正十二组 drawpic 引用，AGENTS.md 补联动入口与两条隐性耦合。\n\n## 本版累计（v1.22.1 起未推送的三版）\n\n- **v1.23.0** 移除 Pillow 生图菜单 + 精简指令集 22→11：删除 menu_renderer / command_result_renderer 两个渲染器与 Pillow 依赖，指令菜单与全部指令结果改为纯文本发送；保留 11 条命令（含 6 条无 WebUI 等价入口的写操作命令），移除的 11 条查询类命令由 WebUI 七个页面覆盖，输入旧指令（含 /mai_* 别名）落未识别兜底并显示菜单。\n- **v1.23.1** `mai_life_browse_web` 放开群聊作用域：群聊中被明确要求时也会打开网页、截图并直发当前群会话；同批修复群聊截图路由（透传 group_id，否则会优先解析到触发用户的私聊会话、截图误发 DM）。\n- **v1.23.2** drawpic 联动按 2.1.1 契约重新适配（见上）。\n\n542 个测试全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.23.2",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.22.1",
           "tag": "v1.22.1",
           "commit": "c0be421245d50b469c481ac84a77c2167980186c",
