@@ -7060,6 +7060,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "0e5eaf464bd7da324b16408dbcad1153fb51d85e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-20T18:47:31Z",
+          "release_url": "https://github.com/SengokuCola/better_image/releases/tag/v1.1.6",
+          "release_notes": "## 1.1.6\r\n\r\n- 图片搜索：简化 image_search 的简要描述。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.6",
+            "name": "Better Image",
+            "description": "提供互联网搜图、历史消息图片提取、裁切和放大工具。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "image",
+                "background": "#1C272C"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/better_image",
+              "homepage": "https://github.com/SengokuCola/better_image",
+              "documentation": "https://github.com/SengokuCola/better_image",
+              "issues": "https://github.com/SengokuCola/better_image/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "sengokucola.better-image"
+          }
+        },
+        {
           "version": "1.1.5",
           "tag": "v1.1.5",
           "commit": "03c8eed30e0c7c55f62dce767e488d22e8607a6a",
