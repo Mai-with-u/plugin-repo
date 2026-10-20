@@ -35541,7 +35541,82 @@
       "manifest_id": "WMX20081122.maibot-qiandao",
       "repositoryUrl": "https://github.com/WMX20081122/maibot-qiandao",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "e5854c55603ed5297849ae2c4a5af5394dfdcc84",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T15:17:01Z",
+          "release_url": "https://github.com/WMX20081122/maibot-qiandao/releases/tag/v1.0.1",
+          "release_notes": "## 插件市场审核整改\n\n- `签到重置` / `签到数据` 改为 `permission=\"operator\"`，由主程序统一鉴权（配置 `[plugin].permission = [\"qq:123\"]`）\n- `签到数据` 只输出聚合统计，不再暴露数据库绝对路径与逐条用户记录\n- 昵称优先走 `ctx.person`（`get_id` + `get_value`），失败回退 NapCat 接口\n- manifest 补 `maibot-team.snowluma-adapter` 插件依赖与 `person.*` 能力\n- `plugin.enabled` 总开关真正生效；修正 `card._get` 默认值取值逻辑\n- 发送者识别改用命令参数 `user_id` / `message.message_info`\n- `host_application` 收紧为 1.3.0 ~ 1.3.99，`sdk` 为 2.12.0 ~ 2.99.99",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-qiandao",
+            "version": "1.0.1",
+            "name": "签到卡片",
+            "description": "发送「签到」生成精美签到卡片，支持一言、累计/连续签到统计与排行榜。MaiBot 移植版，迁移来源：WMX20081122/astrbot_plugin_qiandao。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-qiandao",
+              "homepage": "https://github.com/WMX20081122/maibot-qiandao",
+              "documentation": "https://github.com/WMX20081122/maibot-qiandao/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-qiandao/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "person.get_id",
+              "person.get_value",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🗓️",
+                "background": "#f2a33c"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
