@@ -3,7 +3,8 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
-const { validateReleaseReview, parseReleaseReview, passedReleases, renderReleaseReview } = require('./release_review_result.cjs');
+const { execFileSync } = require('node:child_process');
+const { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, passedReleases, renderReleaseReview } = require('./release_review_result.cjs');
 const { applyReleaseReview } = require('./apply_release_review.cjs');
 
 const plugin = { id: 'example.demo', repositoryUrl: 'https://github.com/example/demo' };
@@ -138,6 +139,47 @@ function workspace(t) {
   fs.writeFileSync(path.join(root, 'plugin_versions.json'), JSON.stringify({ schema_version: 1, plugins: [] }));
   return root;
 }
+
+test('非法 JSON、协议错误、身份错误和多份结论整批转人工，不使用部分通过结果', () => {
+  const json = JSON.stringify(review());
+  const invalid = review();
+  invalid.plugin_id = 'placeholder';
+  for (const raw of [json.slice(0, -1), json + json, JSON.stringify(invalid),
+    json.replace('已检查源码与变更，未发现风险。', '返回值 {"success","content"}'),
+    JSON.stringify({ ...review(), schema_version: 99 })]) {
+    const { result, error } = finalizeReleaseReview(raw, targets);
+    assert.ok(error);
+    assert.deepEqual(passedReleases(result), []);
+    assert.deepEqual(result.releases.map(({ version, tag, commit }) => ({ version, tag, commit })), targets.releases);
+    assert.ok(result.releases.every(item => !item.reviewed && item.decision === 'manual_review' && item.risks.length));
+    assert.match(renderReleaseReview(result), /codex-review-raw.md/);
+  }
+  assert.deepEqual(finalizeReleaseReview(json, targets), { result: review(), error: null });
+});
+
+test('格式错误的审核经自动收录链路处理后保留全部版本给人工，索引不变', async t => {
+  const root = workspace(t);
+  const file = path.join(root, 'plugin_versions.json');
+  const before = fs.readFileSync(file, 'utf8');
+  const { result } = finalizeReleaseReview(JSON.stringify(review()).slice(0, -1), targets);
+  const outcome = await applyReleaseReview({ root, issue, result, targets,
+    request: async () => assert.fail('不能请求收录'), botLogin: 'mai[bot]' });
+  assert.deepEqual(outcome, { passed: [], manual: ['2.0.0', '1.0.0'] });
+  assert.equal(fs.readFileSync(file, 'utf8'), before);
+});
+
+test('工作流校验入口保存原始输出并生成可发布的人工处理报告', t => {
+  const root = workspace(t);
+  const raw = JSON.stringify(review()).slice(0, -1);
+  fs.writeFileSync(path.join(root, 'mai-release-targets.json'), JSON.stringify(targets));
+  fs.writeFileSync(path.join(root, 'codex-review.md'), raw);
+  execFileSync(process.execPath, [path.join(__dirname, 'release_review_result.cjs')], { cwd: root, stdio: 'pipe' });
+  assert.equal(fs.readFileSync(path.join(root, 'codex-review-raw.md'), 'utf8'), raw);
+  const result = JSON.parse(fs.readFileSync(path.join(root, 'release-review.json'), 'utf8'));
+  validateReleaseReview(result, targets);
+  assert.deepEqual(passedReleases(result), []);
+  assert.match(fs.readFileSync(path.join(root, 'codex-review.md'), 'utf8'), /需人工处理/);
+});
 
 function request(url) {
   if (url.includes('/releases?')) return Promise.resolve(targets.releases.map(item => ({ tag_name: item.tag, draft: false })));

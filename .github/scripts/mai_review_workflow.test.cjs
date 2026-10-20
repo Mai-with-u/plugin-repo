@@ -122,12 +122,22 @@ test('审核诊断在成功、失败或取消后均保存，登记审核也适�
   assert.ok(step);
   const condition = step.match(/        if: (.+)/)[1];
   assert.equal(condition, "always() && steps.review-start.outputs.should_run == 'true'");
-  for (const file of ['step-review-events.jsonl', 'step-review-stderr.log', 'step-maimai-events.jsonl', 'step-maimai-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
+  for (const file of ['codex-review-raw.md', 'step-review-events.jsonl', 'step-review-stderr.log', 'step-maimai-events.jsonl', 'step-maimai-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
     assert.ok(step.includes(`            ${file}\n`), `Missing diagnostic: ${file}`);
   }
   assert.match(step, /if-no-files-found: ignore/);
   assert.match(workflow, /run_step_review\.cjs "\$REVIEW_PROMPT" codex-review\.md step-review/);
   assert.doesNotMatch(workflow, /ANTHROPIC_AUTH_TOKEN|claude --bare/);
+});
+
+test('CLI 下载覆盖 HTTP/2 断流并限制连接、传输和整体安装时间', () => {
+  const install = workflow.split('      - name: Install Step Code CLI\n')[1].split('\n      - name:')[0];
+  for (const option of ['--http1.1', '--connect-timeout 15', '--max-time 120', '--retry-all-errors', '--retry-max-time 480']) {
+    assert.ok(install.includes(option), `Missing curl option: ${option}`);
+  }
+  assert.match(install, /timeout-minutes: 10/);
+  assert.match(install, /sha256sum --check/);
+  assert.match(workflow.split('      - name: Run StepFun review\n')[1].split('\n      - name:')[0], /timeout-minutes: 30/);
 });
 
 test('审核中标签按需创建，成功、失败或取消后均清理，404 可忽略', async () => {

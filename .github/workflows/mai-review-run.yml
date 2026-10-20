@@ -178,8 +178,10 @@ jobs:
 
       - name: Install Step Code CLI
         if: steps.review-start.outputs.should_run == 'true'
+        timeout-minutes: 10
         run: |
-          curl --fail --silent --show-error --location --retry 3 \
+          curl --fail --silent --show-error --location --http1.1 \
+            --connect-timeout 15 --max-time 120 --retry 3 --retry-all-errors --retry-max-time 480 \
             https://static-openapi.stepfun.com/stepcode/0.1.4/step-0.1.4-linux-x64.tar.gz \
             --output "$RUNNER_TEMP/step-code.tar.gz"
           echo "58f898db0e65f88c8fe5cd44622538ca8cb687bed38eb82821763c1c8478ccd7  $RUNNER_TEMP/step-code.tar.gz" | sha256sum --check
@@ -190,6 +192,7 @@ jobs:
 
       - name: Run StepFun review
         if: steps.review-start.outputs.should_run == 'true'
+        timeout-minutes: 30
         env:
           REVIEW_PROMPT: ${{ inputs.review_prompt }}
           STRUCTURED_RELEASE_REVIEW: ${{ inputs.structured_release_review }}
@@ -207,6 +210,7 @@ jobs:
 
       - name: Run StepFun Mai comment
         if: steps.review-start.outputs.should_run == 'true'
+        timeout-minutes: 10
         env:
           MAI_COMMENT_PROMPT: ${{ inputs.maimai_prompt }}
           STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
@@ -273,6 +277,7 @@ jobs:
           name: review-diagnostics-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             codex-review.md
+            codex-review-raw.md
             step-review-events.jsonl
             step-review-stderr.log
             step-maimai-events.jsonl

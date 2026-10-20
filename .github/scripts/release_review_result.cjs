@@ -103,6 +103,22 @@ function passedReleases(result) {
     .map(({ version, tag, commit }) => ({ version, tag, commit }));
 }
 
+// A malformed model response is evidence of an incomplete review, never approval.
+// Keep strict parsing for consumers; only the workflow converts it to manual work.
+function finalizeReleaseReview(text, batch) {
+  try {
+    return { result: parseReleaseReview(text, batch), error: null };
+  } catch (error) {
+    const reason = `自动审核结果未通过校验，需人工核实：${error.message}`;
+    const result = { schema_version: 1, plugin_id: batch.id, repository_url: batch.repositoryUrl,
+      releases: batch.releases.map(({ version, tag, commit }) => ({ version, tag, commit,
+        reviewed: false, decision: 'manual_review',
+        summary: '模型输出无法作为有效审核结论。原始输出保存在本次运行诊断产物 codex-review-raw.md 中；请核实后重新审核或人工处理。',
+        risks: [reason] })) };
+    return { result: validateReleaseReview(result, batch), error: reason };
+  }
+}
+
 function renderReleaseReview(result) {
   const passed = new Set(passedReleases(result).map(item => item.version));
   const excerpt = value => value.length > 2500 ? `${value.slice(0, 2500)}…（完整内容见审核产物）` : value;
@@ -117,8 +133,11 @@ function renderReleaseReview(result) {
 
 if (require.main === module) {
   const batch = parseReleaseIssue({ body: `<!-- plugin-release: ${fs.readFileSync('mai-release-targets.json', 'utf8')} -->` });
-  const result = parseReleaseReview(fs.readFileSync('codex-review.md', 'utf8'), batch);
+  const raw = fs.readFileSync('codex-review.md', 'utf8');
+  fs.writeFileSync('codex-review-raw.md', raw);
+  const { result, error } = finalizeReleaseReview(raw, batch);
+  if (error) console.warn(error);
   fs.writeFileSync('release-review.json', JSON.stringify(result, null, 2));
   fs.writeFileSync('codex-review.md', renderReleaseReview(result));
 }
-module.exports = { validateReleaseReview, parseReleaseReview, passedReleases, renderReleaseReview };
+module.exports = { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, passedReleases, renderReleaseReview };
