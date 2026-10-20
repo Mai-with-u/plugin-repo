@@ -31585,6 +31585,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "b5bbc61829d487ee5515033388eee3f6af1fd838",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-20T06:36:37Z",
+          "release_url": "https://github.com/deepseekv41flash/maibot-opencode-session-header/releases/tag/v1.2.0",
+          "release_notes": "## OpenCode 会话头注入 v1.2.0\n\n命中 `opencode.ai` 端点时注入稳定的 `X-OpenCode-Session`，避免网关返回 `400 MissingSessionID`；\n令牌由常见会话头经 SHA-256 截断哈希得到，原始会话 ID 不出网，未命中端点时不加任何头。\n\n### 本版要点：两种线上协议拆成两个独立 `client_type`\n\n- **新增** `opencode-session-responses`（`POST /responses`），与 `opencode-session`\n  （`POST /chat/completions`）**并存、可同时注册** —— 同一台机器人上不同模型可以分别走\n  两种协议，不再受单一全局开关限制。\n- **移除** `[wire].wire_protocol`（含 `auto` 自动回退）：协议改由 `client_type` 决定；\n  `[wire]` 只剩 `responses_store`。\n- 两者共用同一套端点识别、种子解析与哈希注入；令牌种子仍按「服务商名|主机」生成，\n  并存的两个服务商各持一枚独立稳定令牌。\n- `opencode_session_token` 工具新增可选参数 `client_type`，并回报两个 client_type 的映射。\n- 端点不支持时的错误提示改为指向两个 `client_type` 的切换建议。\n\n### 升级注意（破坏性配置变更）\n\n- `config_version` 由 `1.1.0` 升到 `1.2.0`，**旧配置会自动迁移**（补 `responses_store`、\n  移除 `wire_protocol`），一般无需手工改 `config.toml`。\n- **迁移行为**：如果原来 `wire_protocol` 是 `responses`（或 `auto` 且已回退到 responses），\n  升级后该服务商默认回到 chat_completions。要保留 responses，请**再建一个 API Provider**，\n  把它的 `client_type` 设为 `opencode-session-responses`（README §5.1）。\n- 插件 `id` 未变（`maibot.opencode-session-header`），插件数据目录与已有令牌种子不受影响。\n\n### 验证\n\n| 项 | 结果 |\n|---|---|\n| 离线自测 | **48/48 通过**（`python -m unittest discover -s tests`） |\n| 交付包 | sha256 `d7a791e7…9584f`，逐文件 8/8 一致 |\n| manifest | plugin-repo CI 规则 ✅；MaiBot 主仓库 `ManifestValidator`（宿主 1.3.5 / SDK 2.10.0）✅ |\n| 真机 | MaiBot 1.3.5 / SDK 2.10.0：已上线运行，`MissingSessionID` 出现次数 0 |\n\n完整说明见 [README](https://github.com/deepseekv41flash/maibot-opencode-session-header#readme)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.opencode-session-header",
+            "version": "1.2.0",
+            "name": "OpenCode 会话头注入",
+            "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+            "author": {
+              "name": "deepseekv41flash",
+              "url": "https://github.com/deepseekv41flash"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+              "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "opencode-session",
+                "name": "OpenCode 会话头注入（Chat Completions）",
+                "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.2.0"
+              },
+              {
+                "client_type": "opencode-session-responses",
+                "name": "OpenCode 会话头注入（Responses）",
+                "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.2.0"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "key-round"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.3",
           "tag": "v1.1.3",
           "commit": "9a69c9f64159a9e5b2176b7f4ea54ab32297f424",
