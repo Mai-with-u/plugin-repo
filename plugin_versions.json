@@ -35582,7 +35582,95 @@
       "manifest_id": "WMX20081122.maibot-picstatus",
       "repositoryUrl": "https://github.com/WMX20081122/maibot-picstatus",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.3.3",
+          "tag": "v2.3.3",
+          "commit": "cc297b9b81e28efa4af76ee999c2c3f9561492fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T15:16:59Z",
+          "release_url": "https://github.com/WMX20081122/maibot-picstatus/releases/tag/v2.3.3",
+          "release_notes": "## 插件市场审核整改\n\n- 背景缓存改写入 `ctx.paths.runtime_dir`，不再往插件安装目录堆文件\n- 触发指令支持配置（读取 `[behavior].ps_command`，改后重载生效）\n- 站点连通性超时配置正确映射到内部 `ps_test_timeout`\n- 新增 `[filter]` 分组：忽略分区 / 磁盘 IO / 网卡 / 进程，配置真正生效\n- `ps_only_su` 默认收紧为 `true`，避免默认向全员暴露宿主机信息\n- 移除不可启用的 `DebugFileWriter` 死代码；`self._ctx` 改为 `self.ctx`\n- 后台头像 / self_id 任务保留引用并在 `on_unload` 取消\n- `host_application` 收紧为 1.3.0 ~ 1.3.99，`sdk` 为 2.12.0 ~ 2.99.99",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WMX20081122.maibot-picstatus",
+            "version": "2.3.3",
+            "name": "PicStatus-Re",
+            "description": "以图片形式显示当前设备的运行状态（CPU、内存、磁盘、网络、进程等）。MaiBot 移植版，迁移来源：nonebot-plugin-picstatus（作者 yuexps）。",
+            "author": {
+              "name": "WMX20081122",
+              "url": "https://github.com/WMX20081122"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WMX20081122/maibot-picstatus",
+              "homepage": "https://github.com/WMX20081122/maibot-picstatus",
+              "documentation": "https://github.com/WMX20081122/maibot-picstatus/blob/main/README.md",
+              "issues": "https://github.com/WMX20081122/maibot-picstatus/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "psutil",
+                "version_spec": ">=5.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "py-cpuinfo",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.40.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "📊",
+                "background": "#2f5fff"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
