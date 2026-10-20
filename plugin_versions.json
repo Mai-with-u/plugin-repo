@@ -36029,6 +36029,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.6.3",
+          "tag": "v0.6.3",
+          "commit": "599881deac78c43570d385f8edf448c53c2ed8c4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-20T14:33:52Z",
+          "release_url": "https://github.com/namchengwuqiu/bilibili_autopilot/releases/tag/v0.6.3",
+          "release_notes": "### 主要功能\n\n- 评论冷却期间继续按原定间隔自主浏览和分析新视频，仅在发送评论时检查冷却；想评论但仍需等待的视频保留草稿，到期后重新读取内容并判断，不直接发送旧草稿。\n- 为明确未发送的临时读取失败、模型调用失败、超时和判断校验失败增加持久化有限重查：首次失败后至少等待 10 分钟，第二次失败后至少等待 20 分钟，最多再查两次；每次重查计入当日分析额度，重启不重置失败次数。\n- 管理页区分首次浏览或收到回复时间、状态更新时间和发送尝试时间，并显示失败次数、最早重查时间与剩余次数；视频与回复记录完整保留 13 列。\n\n### 细节与修复\n\n- 视频信息、AI 摘要、字幕列表和字幕下载分别报告错误阶段；摘要临时失败时尝试字幕，有效字幕仍可用于判断，并保留摘要失败提示。\n- 覆盖 B 站库包装的 HTTP 异常，以及可选 curl_cffi 客户端的连接错误和超时；登录失效及 HTTP 401、403、412、429 等拒绝仍暂停，不绕过风控。\n- 模型超时、空正文或模型服务失败时依次尝试下一候选；评论及跟进判断校验失败时，携带具体错误类别重新生成一次，再次失败则按规则有限重查。\n- 加载时恢复没有发送尝试的中断分析，中断计入失败次数，保留已使用的分析额度；重复加载不重复累计失败。\n- 重查与冷却等待队列先筛选再限制批次，避免被屏蔽、超长或不符合当前条件的视频挡住后续任务。\n- 检查时间已到时，管理页和状态指令显示等待调度或当前任务完成；暂停、非活动时段和固定间隔模式分别显示实际状态。\n- 旧记录只用已有发送记录补入可确认的时间，不推测历史更新时间；实际发送尝试和未知结果继续去重，不自动重发。\n\n### 升级说明\n\n- 插件 ID 与配置格式版本保持不变，沿用已有配置、账号和历史记录；数据库在插件加载时自动补充时间、计数及重查字段。升级前可备份插件数据目录，更新时保留本地 `config.toml` 和数据目录。\n- 横向滚动属于主程序 WebUI 的表格渲染修复，插件升级本身不会更新宿主静态资源。使用包含该修复的 WebUI 后，13 列在表格内左右滚动，长评论与理由换行展示；旧 WebUI 仍可显示完整字段，但可能拥挤。宿主修复见 [MaiBot PR #2208](https://github.com/Mai-with-u/MaiBot/pull/2208)，目前待合并；详见 README 的“记录表格与 WebUI 版本”。\n\n### 验证\n\n- Python 3.13 环境通过 183 项隔离测试；Python 3.10 环境运行 183 项，其中 1 项因未安装可选 curl_cffi 客户端跳过，其余通过。\n- 发布元数据、版本一致性与固定公共文件清单校验通过，ZIP 不含本地配置、账号凭据或运行数据库。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bilibili-autopilot",
+            "name": "B站自主浏览与评论",
+            "version": "0.6.3",
+            "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+              "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "chat.get_group_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "play",
+                "background": "#E7F9FF"
+              }
+            }
+          }
+        },
+        {
           "version": "0.6.2",
           "tag": "v0.6.2",
           "commit": "213d34f0a1fbb689a87998f568545cbef73a0ea5",
