@@ -36473,7 +36473,144 @@
       "manifest_id": "chenxi2542.maibot-codex-subscription",
       "repositoryUrl": "https://github.com/ChenXi2542/maibot-codex-subscription",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.3.7",
+          "tag": "v0.3.7",
+          "commit": "35e10576f7867ede96cf037a58765f4c185ebf9f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T17:44:24Z",
+          "release_url": "https://github.com/ChenXi2542/maibot-codex-subscription/releases/tag/v0.3.7",
+          "release_notes": "# v0.3.7\r\n\r\n第七轮审核的三条收尾建议：\r\n\r\n- 删除实例方法 `get_webui_config_schema` 的覆盖，只保留 SDK 文档承诺的类方法 `build_config_schema`\r\n  （基类实例方法会转发到类方法），不再依赖未文档化入口。\r\n- `sync_model_config` 写 `model_config.toml` 的临时文件加 `try/finally` 清理，失败不会残留 `.tmp-*`。\r\n- README「合规与安全」补充：插件复用 Codex CLI 的 OAuth client id，并以 `originator: codex_cli_rs`\r\n  自报为官方客户端，账号存在被风控标记的风险，需自行判断。\r\n\r\n权限不变：`/codex models` 公开（只读内存快照），其余命令 operator。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chenxi2542.maibot-codex-subscription",
+            "version": "0.3.7",
+            "name": "ChatGPT 订阅 (Codex)",
+            "description": "插件内置 ChatGPT 账号登录与账号库，用 Plus/Pro（Codex）订阅额度作为 MaiBot 的 LLM Provider，无需 OpenAI API Key。",
+            "author": {
+              "name": "ChenXi2542",
+              "url": "https://github.com/ChenXi2542"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ChenXi2542/maibot-codex-subscription",
+              "documentation": "https://docs.mai-mai.org/plugin/llmprovider"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🤖",
+                "fallback": "bot"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.11"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "llm_providers": [
+              {
+                "client_type": "codex_subscription",
+                "name": "ChatGPT 订阅 (Codex)",
+                "description": "ChatGPT 账号登录 + 多账号账号库，Responses API 协议。",
+                "version": "0.3.7"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "0.3.6",
+          "tag": "v0.3.6",
+          "commit": "85a5cd2404a4a3830e86a441d857caf786eb8e07",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T17:23:48Z",
+          "release_url": "https://github.com/ChenXi2542/maibot-codex-subscription/releases/tag/v0.3.6",
+          "release_notes": "# v0.3.6\r\n\r\n第五轮审核：\r\n\r\n- `sync_model_config` 匹配 provider 时增加 `client_type == codex_subscription` 校验：\r\n  同名但类型不同的 provider（例如手写的 openai）会被直接跳过并记日志，不会再误删它的模型。\r\n- README 补充「`provider_name` 不要指向已有 provider」；发布说明文件已移出仓库。\r\n\r\n权限不变：`/codex models` 公开（只读内存快照），其余命令 operator。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chenxi2542.maibot-codex-subscription",
+            "version": "0.3.6",
+            "name": "ChatGPT 订阅 (Codex)",
+            "description": "插件内置 ChatGPT 账号登录与账号库，用 Plus/Pro（Codex）订阅额度作为 MaiBot 的 LLM Provider，无需 OpenAI API Key。",
+            "author": {
+              "name": "ChenXi2542",
+              "url": "https://github.com/ChenXi2542"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ChenXi2542/maibot-codex-subscription",
+              "documentation": "https://docs.mai-mai.org/plugin/llmprovider"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🤖",
+                "fallback": "bot"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.11"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "llm_providers": [
+              {
+                "client_type": "codex_subscription",
+                "name": "ChatGPT 订阅 (Codex)",
+                "description": "ChatGPT 账号登录 + 多账号账号库，Responses API 协议。",
+                "version": "0.3.6"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
