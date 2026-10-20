@@ -6178,7 +6178,8 @@
     "id": "XXXxx7258.moegirl_wiki_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.0.0",
+      "version": "2.1.2",
+      "plugin_type": "tool",
       "name": "萌娘百科插件",
       "description": "为麦麦提供萌娘百科知识补充：词条摘要、主词条信息及相关语境，支持 generator=search 与 opensearch 双路径回退。",
       "author": {
@@ -6194,7 +6195,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -6207,9 +6208,7 @@
           "version_spec": ">=3.8.0"
         }
       ],
-      "capabilities": [
-        "llm.tool"
-      ],
+      "capabilities": [],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -8083,7 +8082,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -20233,9 +20232,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.opencode-session-header",
-      "version": "1.1.3",
+      "version": "1.2.0",
       "name": "OpenCode 会话头注入",
-      "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；支持 chat_completions 与 responses 两种协议，会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+      "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
       "author": {
         "name": "deepseekv41flash",
         "url": "https://github.com/deepseekv41flash"
@@ -20264,9 +20263,15 @@
       "llm_providers": [
         {
           "client_type": "opencode-session",
-          "name": "OpenCode 会话头注入",
-          "description": "转发 OpenAI 兼容请求，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.1.3"
+          "name": "OpenCode 会话头注入（Chat Completions）",
+          "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+          "version": "1.2.0"
+        },
+        {
+          "client_type": "opencode-session-responses",
+          "name": "OpenCode 会话头注入（Responses）",
+          "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+          "version": "1.2.0"
         }
       ],
       "capabilities": [
@@ -21279,7 +21284,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WMX20081122.maibot-qq-monitor",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "name": "QQ在线监控",
       "description": "监测机器人 QQ 上线/掉线状态：状态翻转时通过 QQ 邮箱 SMTP 发送邮件通知，群聊/私聊发送「在线状态」可查看最新登录与掉线记录。",
       "author": {
@@ -21409,50 +21414,6 @@
     }
   },
   {
-    "id": "valleywinds.moegirl-wiki",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "2.1.2",
-      "plugin_type": "tool",
-      "name": "萌娘百科插件",
-      "description": "为麦麦提供萌娘百科知识补充：词条摘要、主词条信息及相关语境，支持 generator=search 与 opensearch 双路径回退。",
-      "author": {
-        "name": "ValleyWinds",
-        "url": "https://github.com/ValleyWinds"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/ValleyWinds/Moegirl-Wiki",
-        "homepage": "https://github.com/ValleyWinds/Moegirl-Wiki",
-        "documentation": "https://github.com/ValleyWinds/Moegirl-Wiki#readme",
-        "issues": "https://github.com/ValleyWinds/Moegirl-Wiki/issues"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.8.0"
-        }
-      ],
-      "capabilities": [],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "valleywinds.moegirl-wiki"
-    }
-  },
-  {
     "id": "WMX20081122.maibot-qiandao",
     "manifest": {
       "manifest_version": 2,
@@ -21517,6 +21478,82 @@
           "background": "#f2a33c"
         }
       }
+    }
+  },
+  {
+    "id": "local.bilibili-autopilot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.bilibili-autopilot",
+      "name": "B站自主浏览与评论",
+      "version": "0.6.2",
+      "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+      "author": {
+        "name": "sakura桜花",
+        "url": "https://github.com/namchengwuqiu"
+      },
+      "urls": {
+        "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+        "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+        "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+        "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.10",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": "==17.4.2"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=8,<9"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10"
+        }
+      ],
+      "capabilities": [
+        "llm.generate",
+        "config.get",
+        "send.text",
+        "send.image",
+        "chat.get_group_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "play",
+          "background": "#E7F9FF"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/local.bilibili-autopilot.webp"
     }
   }
 ]

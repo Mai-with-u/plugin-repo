@@ -4590,7 +4590,7 @@
       "id": "XXXxx7258.moegirl_wiki_plugin",
       "manifest_id": "xxxxx7258.moegirl-wiki-plugin",
       "repositoryUrl": "https://github.com/XXXxx7258/moegirl_wiki_plugin",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -35414,70 +35414,18 @@
       "rejected_releases": []
     },
     {
-      "id": "valleywinds.moegirl-wiki",
-      "manifest_id": "valleywinds.moegirl-wiki",
-      "repositoryUrl": "https://github.com/ValleyWinds/Moegirl-Wiki",
+      "id": "WMX20081122.maibot-qiandao",
+      "manifest_id": "WMX20081122.maibot-qiandao",
+      "repositoryUrl": "https://github.com/WMX20081122/maibot-qiandao",
       "mode": "releases",
-      "versions": [
-        {
-          "version": "2.1.2",
-          "tag": "v2.1.2",
-          "commit": "8a1c4952a832626914480c51fc2f3df9b8f60df2",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-10-19T11:42:42Z",
-          "release_url": "https://github.com/ValleyWinds/Moegirl-Wiki/releases/tag/v2.1.2",
-          "release_notes": "- 按 MaiBot 插件中心审核意见修正版本兼容声明：适配范围收敛到实际验证过的 1.x 版本线\n- 补全插件分类标记，插件中心将按「工具类」插件展示\n- 歧义词条列举候选时，单次查询补全摘要的请求次数独立封顶，减少重复请求、对萌百站点更友好，候选较多时响应也更快\n",
-          "manifest": {
-            "manifest_version": 2,
-            "version": "2.1.2",
-            "plugin_type": "tool",
-            "name": "萌娘百科插件",
-            "description": "为麦麦提供萌娘百科知识补充：词条摘要、主词条信息及相关语境，支持 generator=search 与 opensearch 双路径回退。",
-            "author": {
-              "name": "ValleyWinds",
-              "url": "https://github.com/ValleyWinds"
-            },
-            "license": "GPL-3.0-or-later",
-            "urls": {
-              "repository": "https://github.com/ValleyWinds/Moegirl-Wiki",
-              "homepage": "https://github.com/ValleyWinds/Moegirl-Wiki",
-              "documentation": "https://github.com/ValleyWinds/Moegirl-Wiki#readme",
-              "issues": "https://github.com/ValleyWinds/Moegirl-Wiki/issues"
-            },
-            "host_application": {
-              "min_version": "1.0.0",
-              "max_version": "1.3.99"
-            },
-            "sdk": {
-              "min_version": "2.0.0",
-              "max_version": "2.99.99"
-            },
-            "dependencies": [
-              {
-                "type": "python_package",
-                "name": "aiohttp",
-                "version_spec": ">=3.8.0"
-              }
-            ],
-            "capabilities": [],
-            "i18n": {
-              "default_locale": "zh-CN",
-              "supported_locales": [
-                "zh-CN"
-              ]
-            },
-            "id": "valleywinds.moegirl-wiki"
-          }
-        }
-      ],
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     },
     {
-      "id": "WMX20081122.maibot-qiandao",
-      "manifest_id": "WMX20081122.maibot-qiandao",
-      "repositoryUrl": "https://github.com/WMX20081122/maibot-qiandao",
+      "id": "local.bilibili-autopilot",
+      "manifest_id": "local.bilibili-autopilot",
+      "repositoryUrl": "https://github.com/namchengwuqiu/bilibili_autopilot",
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
