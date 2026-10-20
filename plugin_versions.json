@@ -34381,6 +34381,204 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "a0ffd6efc498770ec80f4cbe3803cf9d746ddd94",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T17:54:51Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.3",
+          "release_notes": "## 更新\n\n- 修复若干渲染与投递问题。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.3",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "161f0faaab9de93715468b102e92dd2863951e9d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T17:10:05Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.2",
+          "release_notes": "## 更新\n\n- 修复若干渲染与投递问题。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.2",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "8d9262fbda99f110fb5fb5dd024b01a66baa827c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-19T16:29:16Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.1",
+          "release_notes": "## 更新\r\n\r\n\r\n- 渲染失败时日志给出缩放档位、耗时与宿主返回的错误。\r\n- 本轮摘要改为按真正发出去的条数报告。\r\n- 修复「可搬石的群」成员被当成管理员。\r\n- 修复 protobuf 翻页没有出口、跨页去重失效、楼层时间为裸时间戳。\r\n- 图片下载改为流式，超过大小上限立即断开。\r\n- 修复视频封面与视频错位。\r\n- protobuf 响应解析改为逐条容错。\r\n- 长图改以本地文件路径写入聊天记录。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.1",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.9",
           "tag": "v1.0.9",
           "commit": "564b20b458c474ae598409c9a711b1e5839222de",
