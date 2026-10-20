@@ -36117,7 +36117,108 @@
       "manifest_id": "com.kilos.zuojia-room",
       "repositoryUrl": "https://github.com/kilo-s/maibot-zuojia-room",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "f34d20d0cdc0f511a413f442e7b6c7c19052b9a6",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-20T13:11:19Z",
+          "release_url": "https://github.com/kilo-s/maibot-zuojia-room/releases/tag/v0.1.1",
+          "release_notes": "# v0.1.1 — 配置说明与插件分类修正\n\n根据插件市场审核建议完善配置展示：\n\n- 插件分类改为 `integration`，更准确地表示作家助手平台集成。\n- 兼容字段 `api_base_url` 在 WebUI 隐藏，并明确注明它不会改变请求地址，留空仍会禁用房间查询。实际请求始终使用阅文官方域名。\n- README 补充相同说明，避免误将旧字段用作自定义 API 地址。\n\n本次不改变命令、自动建房、扫码授权或凭据存储流程。124项离线回归测试通过。\n\n安装和配置见仓库 README；兼容范围和预发布限制与 v0.1.0 一致。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.kilos.zuojia-room",
+            "version": "0.1.1",
+            "name": "作家助手拼字房",
+            "description": "作家助手拼字房助手：管理员私聊扫码授权，通过自然语言或拼字命令获取邀请和成员榜单，默认 LLM 优先、无房自动建房，支持聊天白名单与建房权限控制。",
+            "author": {
+              "name": "kilo-s",
+              "url": "https://github.com/kilo-s"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kilo-s/maibot-zuojia-room"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.48,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_user_id",
+              "llm.generate"
+            ],
+            "plugin_type": "integration",
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "522cdb90c96fca8f26be8beb76744ef39b3badd3",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-18T15:53:33Z",
+          "release_url": "https://github.com/kilo-s/maibot-zuojia-room/releases/tag/v0.1.0",
+          "release_notes": "# v0.1.0 — 作家助手拼字房（预发布）\n\n为 MaiBot 提供作家助手拼字房查询、邀请链接和成员字数榜单，支持管理员私聊扫码授权，默认 LLM 优先判断调用工具，无房时自动建房并分享邀请。\n\n## 安装\n\n下载附件 `maibot-zuojia-room-0.1.0.zip`，在 MaiBot WebUI 插件管理中从 ZIP 安装。按仓库 README 安装 Playwright 与 Chromium，配置管理员、群白名单和私聊访问范围，再由管理员私聊发送 `/拼字登录`，阅读协议后发送 `/拼字登录确认`。SDK 使用宿主提供的版本，插件依赖不会强制降级 SDK。\n\n## 环境\n\n允许加载范围：MaiBot 1.3.9–1.3.99，maibot-plugin-sdk 2.14.0–2.99.99，Python 3.12+。实际验证基线为 MaiBot 1.3.9 / SDK 2.14.0；后续版本允许尝试加载，不代表均已测试。\n\n## 使用与注意事项\n\n- 日常命令：`/拼字房` 获取邀请，`/拼字榜单` 查看榜单。\n- 管理员私聊：`/拼字登录` 阅读协议，`/拼字登录确认` 发起扫码，`/拼字取消登录` 终止，`/拼字授权状态` 查看状态。\n- 全部命令均不接受参数，不注册旧命令或别名；房间时长、字数、人数在 WebUI 配置。完整字段类型、默认值与单位见 README。\n- 默认关键词为“有房吗、码字房、拼字房”，LLM工具处理相关自然语言；关键词与模型工具均受聊天范围控制。\n- 默认 LLM 优先并在静默20秒后兜底，两个无房自动建房开关开启；已开放聊天中的成员可触发建房，可改为仅管理员。空群白名单不响应群，空管理员名单不允许扫码授权。私聊查询默认开启且私聊名单为空时允许所有私聊用户查询，请按需要限制范围。\n- 关键词失败润色默认使用宿主模型服务，会传入触发消息前100个字符；关闭 `keyword_failure_llm_reply` 可使用固定提示。\n- 授权状态及回复去重缓存留在宿主插件数据目录；不要公开该目录、二维码或带凭据的日志。Windows 安装者须自行设置目录 ACL。\n\n## 已知限制\n\n这是首个预发布版本。授权与房间接口依赖 QQ、阅文等第三方服务，不保证永久授权或未来接口稳定。真实到期后的自动续期、Windows 正式凭据目录访问控制及完整宿主扫码组合流程尚未完成全面验收。图片消息可能出现已送达但平台回执中断的情况；遇到不确定的发送状态请先确认收件，避免重复发送。\n\n许可证：MIT。详细安装、配置与隐私说明见仓库 README。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.kilos.zuojia-room",
+            "version": "0.1.0",
+            "name": "作家助手拼字房",
+            "description": "作家助手拼字房助手：管理员私聊扫码授权，通过自然语言或拼字命令获取邀请和成员榜单，默认 LLM 优先、无房自动建房，支持聊天白名单与建房权限控制。",
+            "author": {
+              "name": "kilo-s",
+              "url": "https://github.com/kilo-s"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kilo-s/maibot-zuojia-room"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.48,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_user_id",
+              "llm.generate"
+            ],
+            "plugin_type": "game",
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
