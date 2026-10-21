@@ -36610,7 +36610,66 @@
       "manifest_id": "SengokuCola.steam-browser-plugin",
       "repositoryUrl": "https://github.com/SengokuCola/steam_browser_plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.4",
+          "tag": "v0.1.4",
+          "commit": "2acc724f9ab40620f1dd28ffeb2e6fd28b4494d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-20T19:11:18Z",
+          "release_url": "https://github.com/SengokuCola/steam_browser_plugin/releases/tag/v0.1.4",
+          "release_notes": "## 0.1.4\r\n\r\n支持 Steam 游戏搜索、价格折扣、玩家评价及公开玩家资料查询。\r\n\r\n在 WebUI 插件配置页填写配置后使用。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "SengokuCola.steam-browser-plugin",
+            "name": "Steam 浏览",
+            "version": "0.1.4",
+            "description": "浏览 Steam 游戏、特惠、玩家评价、公开玩家资料、游戏库和最近游玩。",
+            "author": {
+              "name": "SengokuCola",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SengokuCola/steam_browser_plugin",
+              "homepage": "https://github.com/SengokuCola/steam_browser_plugin",
+              "documentation": "https://github.com/SengokuCola/steam_browser_plugin/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/steam_browser_plugin/issues"
+            },
+            "changelog": "changelog.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<1"
+              }
+            ],
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "gamepad-2",
+                "background": "#1b2838"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
