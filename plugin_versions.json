@@ -26412,6 +26412,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "555c3a53df5ff0239be7ab417a1dcf6c0adccf6e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T09:53:18Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.2.2",
+          "release_notes": "本次更新核对了「民主铁壁」与「权威之镜」两组战债装备。\n\n- 随机配装扩充至 221 项：主武器 56、副武器 26、投掷物 24、强化资源 20、战略配备 95。\n- 新增 R-40 视界者、P-44 迷雾、G-11 铁蒺藜、AMW-20 尖峰、LAS-44 新星；两件支援武器归入战略配备池。\n- 复核已收录的「民主铁壁」七项装备，更新 P-34、G-8、G-60 等中文名称与来源记录。\n- 221 项图标全部内嵌，新增五张使用开发者装备 PNG 原图，并保留来源、上传者署名、SHA-1 与 SHA-256。卡片渲染无需外网。\n- 同步更新刷新器、文档和第三方素材声明；Wiki 衍生数据及游戏图像不纳入项目 MIT 许可。\n\n验证：140 项测试通过；两张配装卡实际离线渲染检查通过，涵盖全部新增装备。\n\n安装：使用本 Release 的源码压缩包，或等待 MaiBot 插件中心下一次扫描和版本审核通过后更新。版本与 Tag 均为 `0.2.2` / `v0.2.2`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.2.2",
+            "name": "Helldivers 2 更新推送",
+            "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "satellite"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.1",
           "tag": "v0.2.1",
           "commit": "7fa507ccbd291f100893951f746d3c6baeebf1cc",
