@@ -786,7 +786,7 @@
         ],
         "features": [
           "多种音色支持（小新、妲己、酥心御姐等）",
-          "双模式触发（智能触���和手动触发）",
+          "双模式触发（智能触发和��动触发）",
           "音色别名映射，方便用户使用",
           "仅群聊可用，确保使用场景合适",
           "完善的错误处理和日志记录",
@@ -826,7 +826,7 @@
         "爹系男友": "lucy-voice-m101",
         "暖心姐姐": "lucy-voice-female2",
         "温柔妹妹": "lucy-voice-f36",
-        "书香少���": "lucy-voice-f34"
+        "书香少女": "lucy-voice-f34"
       },
       "configuration": {
         "config_file": "config.toml",
@@ -8896,114 +8896,6 @@
           "zh-CN"
         ]
       }
-    }
-  },
-  {
-    "id": "chinokou.maidock",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "chinokou.maidock",
-      "version": "1.2.0",
-      "name": "MaiDock",
-      "description": "为 MaiBot 提供额外的 OpenAI Responses、Anthropic Messages、阿里云百炼 DashScope/Responses、硅基流动 与 火山方舟 Responses 等端点支持与参数覆写功能。",
-      "author": {
-        "name": "ChinoKou",
-        "url": "https://github.com/ChinoKou"
-      },
-      "license": "GPL-v3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/ChinoKou/MaiDock",
-        "homepage": "https://github.com/ChinoKou/MaiDock",
-        "documentation": "https://github.com/ChinoKou/MaiDock",
-        "issues": "https://github.com/ChinoKou/MaiDock/issues"
-      },
-      "host_application": {
-        "min_version": "0.0.1",
-        "max_version": "0.0.2"
-      },
-      "sdk": {
-        "min_version": "2.7.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0.27.0"
-        },
-        {
-          "type": "python_package",
-          "name": "pydantic",
-          "version_spec": ">=2.11.7"
-        },
-        {
-          "type": "python_package",
-          "name": "json-repair",
-          "version_spec": ">=0.47.6"
-        },
-        {
-          "type": "python_package",
-          "name": "pillow",
-          "version_spec": ">=11.3.0"
-        }
-      ],
-      "llm_providers": [
-        {
-          "client_type": "maidock-openai-responses",
-          "name": "MaiDock OpenAI Responses",
-          "description": "基于 OpenAI Responses API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-anthropic-messages",
-          "name": "MaiDock Anthropic Messages",
-          "description": "基于 Anthropic Messages API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-dashscope",
-          "name": "MaiDock 阿里云百炼 DashScope",
-          "description": "基于阿里云百炼 DashScope API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-bailian-responses",
-          "name": "MaiDock 阿里云百炼 Responses",
-          "description": "基于阿里云百炼 OpenAI Responses API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-siliconflow",
-          "name": "MaiDock SiliconFlow",
-          "description": "基于硅基流动 SiliconFlow API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-volcengine-ark-responses",
-          "name": "MaiDock Volcengine Ark Responses",
-          "description": "基于火山方舟 Responses API 的 LLM Provider。",
-          "version": "1.0.0"
-        },
-        {
-          "client_type": "maidock-xiaomi-mimo",
-          "name": "MaiDock Xiaomi Mimo",
-          "description": "基于小米 Mimo Chat Completions API 的 LLM Provider。",
-          "version": "1.0.0"
-        }
-      ],
-      "capabilities": [],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": "locales",
-        "supported_locales": [
-          "zh-CN",
-          "zh-TW",
-          "en-US",
-          "ja-JP",
-          "ko-KR"
-        ]
-      },
-      "plugin_type": "provider"
     }
   },
   {
@@ -18925,9 +18817,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.5.1",
+      "version": "1.7.0",
       "name": "better-diary 日记插件",
-      "description": "两阶段生成的睡前日记：先从当天聊天里选材打分，再基于精选事件成文，反 AI 腔。**v1.5.0「去 AI 味」**：不再要求每篇都引用原话（素材给了就顺口引一句、没给就不引），成文规则从 10 条压到 6 条，视角从「复盘聊天记录的书记员」改成「过完了一天的人」，开场骨架按日期哈希在 4 种之间确定性轮换，篇幅按素材丰富度分短/中/长三档（默认 140±75 / 245±105 / 350±150），新增 AI 腔检测器（**非阻断**，命中标签落盘 + 日志留痕）。**v1.5.1 引用回复拆分**：时间线构建时解析 raw_message 里回查成功的 reply 段，把被引原文按**真实说话人**独立成行、回复行只留回复者自己的话——治掉「被引原文黏在 bot 消息里被记成『我』说的」这一引号归属病的上游根因（Host 对引用回复是裸拼接、无前缀）；剥离失败或回查失败时保守回退旧行为，绝不丢消息。引用边界这些硬约束一条没松：只能放别人原话、一字不改、自己的话在引号外、一对「」只装一个人、引用后回复只引被引句。日记只发布到QQ空间（cookie 三级来源自动获取：adapter → NapCat HTTP → 手动兜底），聊天内仅回报状态。发布前有语义闸：模型拒答/空输出/残句一律不发布。引用用「」且只包别人的原话，自己的话在引号外——**素材侧不再把作者自己的话标成「原话」**，选材也限定 quote 必须是同一个人、单条消息的原话（不许把两个人的话拼在一起），避免「引用后回复」被焊进同一对引号。新增两类引用体检（均非阻断，只留痕）：①「引号越界」——某对「」里除了一条素材原话还混进别的内容；②「「」里装了作者自己说过的话」——拿时间线里标了说话人的行核对，**选材路径与降级路径（timeline_tail）都查**。另在成文日志留痕本次素材摘要（事件 ID + 自身原话件数，**不含聊天原话**）。降级用时间线末尾时，素材会附上格式说明，点明每行「说话人: 内容」、其中「我」= 作者本人。v1.5.0 起这三条改成一句话的点拨：删掉只有动作没内容的空转句、同一个意思不写两遍、别每段都拿感受收尾。日期行会**规范化**：识别模型自写的日期行（含漏逗号/缺句号/短式/重复行/写在结尾当签名的），就地统一成「<日期>，<天气>。」并**保留模型观察到的天气**；模型写了**别的日期**时改写成正确日期（不再留下第二行日期），原文记入存档 model_date_line 并打日志、天气不采用。缺档自动补写（启动与次日兜底各扫一次，只存档不发布），存档含选材事件证据链与跨天连续性。支持定时生成、白/黑名单过滤与日记存档。/问日记 与 /那年今日 为本地零 LLM 检索（纯字符串匹配与日期比对）。可选静默阈值：到点若还在聊就等人停下再写（默认关闭）。篇幅目标按素材丰富度分短/中/长三档（配置里的 word_target 作长档基准，默认 140±75 / 245±105 / 350±150），是「最舒服的长度」而非硬指标。成文遇网络超时会自动重试一次，补跑按天隔离、不会因单天失败而中断。httpx 仅发布时按需使用（已在 dependencies 声明），缺失时插件照常加载、日记照常生成存档，只跳过空间发布。权限默认关闭（fail-closed）：[security].admin_ids 未配置时只有管理员/本机操作者可触发，需要全员可用须显式打开 [security].allow_all_users。升级 MaiBot 后若报「插件初始化失败」，删掉插件目录里的 config.toml 重生成即可（Host 1.2.3 起 config_version 为硬性要求）。",
+      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、/日记查看 等本地检索。天气与归档术语一律以当天聊天原文为据，不凭空生成。权限 fail-closed：先配 admin_ids 才可用。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -19014,7 +18906,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.touristh.helldivers2-patch-feed",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "Helldivers 2 更新推送",
       "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
       "author": {
@@ -20869,7 +20761,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.tieba-share",
-      "version": "1.1.3",
+      "version": "1.1.5",
       "name": "麦麦贴吧搬石",
       "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
       "author": {
@@ -20885,7 +20777,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -21036,7 +20928,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.3",
+      "version": "0.5.16",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21649,7 +21541,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chenxi2542.maibot-codex-subscription",
-      "version": "0.3.7",
+      "version": "0.3.8",
       "name": "ChatGPT 订阅 (Codex)",
       "description": "插件内置 ChatGPT 账号登录与账号库，用 Plus/Pro（Codex）订阅额度作为 MaiBot 的 LLM Provider，无需 OpenAI API Key。",
       "author": {
@@ -21697,12 +21589,120 @@
           "client_type": "codex_subscription",
           "name": "ChatGPT 订阅 (Codex)",
           "description": "ChatGPT 账号登录 + 多账号账号库，Responses API 协议。",
-          "version": "0.3.7"
+          "version": "0.3.8"
         }
       ],
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "SengokuCola.steam-browser-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "SengokuCola.steam-browser-plugin",
+      "name": "Steam 浏览",
+      "version": "0.1.4",
+      "description": "浏览 Steam 游戏、特惠、玩家评价、公开玩家资料、游戏库和最近游玩。",
+      "author": {
+        "name": "SengokuCola",
+        "url": "https://github.com/SengokuCola"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SengokuCola/steam_browser_plugin",
+        "homepage": "https://github.com/SengokuCola/steam_browser_plugin",
+        "documentation": "https://github.com/SengokuCola/steam_browser_plugin/blob/main/README.md",
+        "issues": "https://github.com/SengokuCola/steam_browser_plugin/issues"
+      },
+      "changelog": "changelog.md",
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1"
+        }
+      ],
+      "capabilities": [],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "gamepad-2",
+          "background": "#1b2838"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "SengokuCola.music-appreciation-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "SengokuCola.music-appreciation-plugin",
+      "name": "音乐赏析",
+      "version": "0.1.0",
+      "description": "让麦麦从网易云获取歌曲（歌名或链接），并通过百炼 Qwen-Omni 真正听歌赏析。",
+      "author": {
+        "name": "SengokuCola",
+        "url": "https://github.com/SengokuCola"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SengokuCola/music_appreciation_plugin",
+        "homepage": "https://github.com/SengokuCola/music_appreciation_plugin",
+        "documentation": "https://github.com/SengokuCola/music_appreciation_plugin/blob/main/README.md",
+        "issues": "https://github.com/SengokuCola/music_appreciation_plugin/issues"
+      },
+      "changelog": "changelog.md",
+      "host_application": {
+        "min_version": "1.3.4",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "music",
+          "background": "#2B1B3D"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/SengokuCola.music-appreciation-plugin.webp"
     }
   }
 ]
