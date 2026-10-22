@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { extractReview } = require('./run_step_review.cjs');
+const { extractReview, runStepWithRetries } = require('./run_step_review.cjs');
 
 function message(text, stopReason = 'stop', extra = {}) {
   return { type: 'message_end', message: { role: 'assistant', stopReason,
@@ -47,4 +47,69 @@ test('结构化提示模板从当前批次读取精确身份且默认不批准',
   assert.equal(template.repository_url, batch.repositoryUrl);
   assert.deepEqual(template.releases[0], { ...batch.releases[0], reviewed: false,
     decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] });
+});
+
+function retryHarness(t, attempts) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'step-retry-test-'));
+  const dirs = [];
+  const delays = [];
+  let calls = 0;
+  t.after(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+    for (const dir of dirs) fs.rmSync(dir, { recursive: true, force: true });
+  });
+  const prefix = path.join(root, 'step-review');
+  const options = { prefix, args: [], random: () => 0,
+    wait: async ms => { delays.push(ms); },
+    run: async ({ eventsFile, stderrFile, agentDir }) => {
+      dirs.push(agentDir);
+      const attempt = attempts[calls++] || attempts.at(-1);
+      fs.writeFileSync(eventsFile, attempt.raw ?? (attempt.events || []).map(JSON.stringify).join('\n'));
+      fs.writeFileSync(stderrFile, attempt.stderr || '');
+      return attempt.code ?? (attempt.code === null ? null : 1);
+    } };
+  return { options, prefix, delays, dirs, calls: () => calls };
+}
+
+const rateError = '429: {"message":"concurrency reached, current: 9, limit: 8","type":"rate_limited"}';
+const limited = { code: 1, events: [message('', 'error', { errorMessage: rateError })] };
+
+test('真实并发限流错误退避重试，保留每次日志且不拼接旧结论', async t => {
+  const h = retryHarness(t, [limited, limited, { code: 0, events: [message('完整结论')] }]);
+  assert.equal(await runStepWithRetries(h.options), '完整结论');
+  assert.deepEqual(h.delays, [30000, 60000]);
+  assert.equal(new Set(h.dirs).size, 3);
+  assert.match(fs.readFileSync(`${h.prefix}-attempt-1-events.jsonl`, 'utf8'), /concurrency reached/);
+  assert.match(fs.readFileSync(`${h.prefix}-events.jsonl`, 'utf8'), /完整结论/);
+});
+
+test('持续限流最多四次，退出码为零的 API 错误也不能当成功', async t => {
+  const h = retryHarness(t, [{ ...limited, code: 0 }]);
+  await assert.rejects(runStepWithRetries(h.options), /尝试 4 次/);
+  assert.equal(h.calls(), 4);
+  assert.deepEqual(h.delays, [30000, 60000, 120000]);
+});
+
+test('无模型启动错误只重试一次，全新初始化仍失败则停止', async t => {
+  const startup = { stderr: 'Error: No models available. Check your installation or add models to models.json.\n' };
+  const h = retryHarness(t, [startup]);
+  await assert.rejects(runStepWithRetries(h.options), /尝试 2 次/);
+  assert.equal(h.calls(), 2);
+  assert.deepEqual(h.delays, [5000]);
+});
+
+test('危险命令、授权错误、输出截断、无效事件和进程信号不重试', async t => {
+  for (const attempt of [
+    { ...limited, stderr: 'Blocked run_command: explicit approval is required' },
+    { ...limited, events: [...limited.events, { type: 'tool_execution_end', result: { terminate: true } }] },
+    { code: 1, events: [message('', 'error', { errorMessage: 'HTTP 403' })] },
+    { code: 0, events: [message('旧结论'), message('', 'length')] },
+    { code: 0, raw: '{' },
+    { ...limited, code: null },
+  ]) {
+    const h = retryHarness(t, [attempt]);
+    await assert.rejects(runStepWithRetries(h.options));
+    assert.equal(h.calls(), 1);
+    assert.deepEqual(h.delays, []);
+  }
 });

@@ -280,8 +280,12 @@ jobs:
             codex-review-raw.md
             step-review-events.jsonl
             step-review-stderr.log
+            step-review-attempt-*-events.jsonl
+            step-review-attempt-*-stderr.log
             step-maimai-events.jsonl
             step-maimai-stderr.log
+            step-maimai-attempt-*-events.jsonl
+            step-maimai-attempt-*-stderr.log
             mai-review-input.md
             mai-release-targets.json
             codex-maimai.md

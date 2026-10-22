@@ -30,30 +30,69 @@ async function runReview({ promptFile, outputFile, prefix, structured = false })
 - 只读检查插件、宿主和 SDK 源码；不执行 git reset --hard、git clean、强制覆盖或其他破坏性操作，不执行下载的代码，不尝试绕过工具安全保护。
 - 工具遇到需要确认或拒绝执行时，若仍能继续，改用读取已有资料、新目录或只读 HTTP 获取。无法核实的事实标为证据不足，按原定输出格式完成审核，不将未完成的检查判为通过。` +
     (structured ? buildStructuredInstructions() : '');
-  const eventsFile = `${prefix}-events.jsonl`;
-  const stderrFile = `${prefix}-stderr.log`;
+  const args = ['--print', '--mode', 'json', '--model', process.env.STEP_MODEL || 'step-5-preview',
+    '--thinking', structured ? 'high' : 'medium',
+    '--no-session', '--no-extensions', '--no-skills', '--approval-mode', 'auto', prompt];
+  const text = await runStepWithRetries({ args, prefix });
+  fs.writeFileSync(outputFile, `${text}\n`);
+}
+
+async function spawnStep({ args, eventsFile, stderrFile, agentDir }) {
   const stdout = fs.openSync(eventsFile, 'w');
   const stderr = fs.openSync(stderrFile, 'w');
   try {
-    const args = ['--print', '--mode', 'json', '--model', process.env.STEP_MODEL || 'step-5-preview',
-      '--thinking', structured ? 'high' : 'medium',
-      '--no-session', '--no-extensions', '--no-skills', '--approval-mode', 'auto', prompt];
-    const code = await new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
       const child = spawn(process.env.STEP_BINARY || 'step', args, {
-        env: { ...process.env, STEP_CODING_AGENT_DIR: path.resolve('.step-review-agent') },
+        env: { ...process.env, STEP_CODING_AGENT_DIR: agentDir },
         stdio: ['ignore', stdout, stderr],
       });
       child.once('error', reject);
       child.once('exit', resolve);
     });
-    if (code !== 0) throw new Error(`Step Code 退出码 ${code}，详见 ${eventsFile} 和 ${stderrFile}`);
   } finally {
     fs.closeSync(stdout);
     fs.closeSync(stderr);
   }
-  const events = fs.readFileSync(eventsFile, 'utf8').split(/\r?\n/).filter(line => line.trim()).map(line => JSON.parse(line));
-  const text = extractReview(events);
-  fs.writeFileSync(outputFile, `${text}\n`);
+}
+
+async function runStepWithRetries({ args, prefix, run = spawnStep,
+  wait = ms => new Promise(resolve => setTimeout(resolve, ms)), random = Math.random }) {
+  const eventsFile = `${prefix}-events.jsonl`;
+  const stderrFile = `${prefix}-stderr.log`;
+  // Four attempts in this one reserved review; never retry safety denials or signals.
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const agentDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mai-step-agent-'));
+    const code = await run({ args, eventsFile, stderrFile, agentDir });
+    const raw = fs.readFileSync(eventsFile, 'utf8');
+    const stderr = fs.readFileSync(stderrFile, 'utf8');
+    fs.copyFileSync(eventsFile, `${prefix}-attempt-${attempt}-events.jsonl`);
+    fs.copyFileSync(stderrFile, `${prefix}-attempt-${attempt}-stderr.log`);
+    const events = [];
+    let parseError;
+    for (const line of raw.split(/\r?\n/).filter(line => line.trim())) {
+      try { events.push(JSON.parse(line)); } catch (error) { parseError = error; }
+    }
+    let failure;
+    try {
+      if (code !== 0) throw new Error(`Step Code 退出码 ${code}`);
+      if (parseError) throw parseError;
+      return extractReview(events);
+    } catch (error) { failure = error; }
+    const messages = events.filter(event => event.type === 'message_end' && event.message?.role === 'assistant');
+    const lastError = messages.at(-1)?.message?.errorMessage || '';
+    const diagnostics = `${stderr}\n${lastError}`;
+    const blocked = events.some(event => event.result?.terminate || event.details?.terminate) ||
+      /Blocked run_command|requires confirmation|explicit approval|no interactive approval/i.test(stderr);
+    const limited = /\b429\b/.test(diagnostics) && /concurrency reached|rate_limited|rate.limit|too many requests/i.test(diagnostics);
+    // A failed model discovery may be transient. Try a clean agent directory once;
+    // persistent installation/configuration errors still fail visibly.
+    const bootstrap = messages.length === 0 && /No models available\./.test(stderr);
+    const retry = code !== null && !blocked && attempt < 4 && (limited || (bootstrap && attempt === 1));
+    if (!retry) throw new Error(`${failure.message}；尝试 ${attempt} 次，详见 ${eventsFile} 和 ${stderrFile}`);
+    const delay = (limited ? 30000 * 2 ** (attempt - 1) : 5000) + Math.floor(random() * 10000);
+    console.warn(`Step Code ${limited ? '触发服务限流' : '模型列表初始化失败'}，${Math.ceil(delay / 1000)} 秒后重试（${attempt}/4）`);
+    await wait(delay);
+  }
 }
 
 function buildStructuredInstructions() {
@@ -74,4 +113,4 @@ if (require.main === module) {
     process.exitCode = 1;
   });
 }
-module.exports = { extractReview, runReview, buildStructuredInstructions };
+module.exports = { extractReview, runReview, buildStructuredInstructions, runStepWithRetries };
