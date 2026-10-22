@@ -37207,7 +37207,110 @@
       "manifest_id": "github.42yoru.maimai-sim-trader",
       "repositoryUrl": "https://github.com/42yoru/maimai_sim_trader",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.6.4",
+          "tag": "v0.6.4",
+          "commit": "76fbf6ba37b3a435c9761c9f997436cf559df12e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T15:24:06Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.6.4",
+          "release_notes": "按第四轮复审（[Issue #905](https://github.com/Mai-with-u/plugin-repo/issues/905)）的可选项做最后收尾。\n\n**细节**\n\n- `config_version` 对齐到插件版本：0.6.2 那次新增 `manual_cooldown_seconds` 属于配置结构变化，\n  当时没跟着滚；之后两者一起走\n- README 补一句：`sim_trader_query` 的 `status` / `orders` 目前不设门槛（模拟盘、钱是假的），\n  若将来把 `[mx]` 指向真实账户，需要先把这两个 action 收进 `[owner] owners`\n- README 文件结构标注 `scripts/` 仅开发者本地自检，不是运行时依赖；\n  插件运行时从不碰宿主数据库，一律走 `chat.get_group_streams` 能力\n\n功能与上一版没有差异，测试 71 项、CI 全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.6.4",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.6.3",
+          "tag": "v0.6.3",
+          "commit": "91147f59573c3a1629126af3a855ad95bad341de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T15:07:49Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.6.3",
+          "release_notes": "按第三轮复审（[Issue #905](https://github.com/Mai-with-u/plugin-repo/issues/905)）的四条建议收尾。\n\n**修复**\n\n- `/股 试跑` 增加 `_busy` 判断：后台循环正在跑的时候不再起第二轮\n- `_run_round` 结束时只恢复自己进来前的 busy 状态，两轮并发时不会互相把标志清掉\n- 腾讯行情快照改走 `https://qt.gtimg.cn`（原先明文 http，只发股票代码、不带密钥，现在连这层也省了）\n- `scripts/preflight.py`：缺 `[mx]` / `[notify]` 段时给一句人话提示，不再抛裸 `KeyError`\n\n**细节**\n\n- README 补「不走系统代理（`trust_env=False`）」的说明，部署在必须走代理的环境里需要另想办法\n- 徽章对齐：Python `3.12+`（MaiBot 本身要求 3.12+）、SDK `2.12.0+`（与 manifest 一致）\n- 测试 69 → 71 项，CI（ruff + unittest）全绿\n\n安装方式与使用前提没有变化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.6.3",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
