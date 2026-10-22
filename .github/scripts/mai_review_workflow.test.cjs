@@ -137,7 +137,7 @@ test('CLI 下载覆盖 HTTP/2 断流并限制连接、传输和整体安装时�
   }
   assert.match(install, /timeout-minutes: 10/);
   assert.match(install, /sha256sum --check/);
-  assert.match(workflow.split('      - name: Run StepFun review\n')[1].split('\n      - name:')[0], /timeout-minutes: 30/);
+  assert.match(workflow.split('      - name: Run StepFun review\n')[1].split('\n      - name:')[0], /timeout-minutes: 60/);
 });
 
 test('审核中标签按需创建，成功、失败或取消后均清理，404 可忽略', async () => {

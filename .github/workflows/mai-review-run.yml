@@ -192,7 +192,8 @@ jobs:
 
       - name: Run StepFun review
         if: steps.review-start.outputs.should_run == 'true'
-        timeout-minutes: 30
+        # Multi-version source reviews can remain active beyond 30 minutes.
+        timeout-minutes: 60
         env:
           REVIEW_PROMPT: ${{ inputs.review_prompt }}
           STRUCTURED_RELEASE_REVIEW: ${{ inputs.structured_release_review }}
