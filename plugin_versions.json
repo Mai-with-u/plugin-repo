@@ -36592,6 +36592,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.8",
+          "tag": "v0.3.8",
+          "commit": "4bd29bbb23fde1219d78058ad30a1f76a20d9585",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T07:35:54Z",
+          "release_url": "https://github.com/ChenXi2542/maibot-codex-subscription/releases/tag/v0.3.8",
+          "release_notes": "# v0.3.8\r\n\r\n修复命令回复发不出去的问题：\r\n\r\n- MaiBot 只接收命令处理函数的返回值，不会替插件发送文本。之前 `/codex login` 等命令只在日志里出现，\r\n  聊天里没有消息；现在所有命令都通过 `ctx.send.text` 主动回复当前聊天。\r\n- 涉及 `/codex login`、`/codex status`、`/codex accounts`、`/codex use`、`/codex sync`、`/codex import`、\r\n  `/codex test`、`/codex models` 与帮助。\r\n\r\n权限不变：`/codex models` 公开（只读内存快照），其余命令 operator。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chenxi2542.maibot-codex-subscription",
+            "version": "0.3.8",
+            "name": "ChatGPT 订阅 (Codex)",
+            "description": "插件内置 ChatGPT 账号登录与账号库，用 Plus/Pro（Codex）订阅额度作为 MaiBot 的 LLM Provider，无需 OpenAI API Key。",
+            "author": {
+              "name": "ChenXi2542",
+              "url": "https://github.com/ChenXi2542"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ChenXi2542/maibot-codex-subscription",
+              "documentation": "https://docs.mai-mai.org/plugin/llmprovider"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🤖",
+                "fallback": "bot"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.11"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "llm_providers": [
+              {
+                "client_type": "codex_subscription",
+                "name": "ChatGPT 订阅 (Codex)",
+                "description": "ChatGPT 账号登录 + 多账号账号库，Responses API 协议。",
+                "version": "0.3.8"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.3.7",
           "tag": "v0.3.7",
           "commit": "35e10576f7867ede96cf037a58765f4c185ebf9f",
