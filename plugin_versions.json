@@ -24958,6 +24958,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "30f19f24febd584e4bdd2a900b5f53bebd993a52",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T16:58:10Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter/releases/tag/v0.4.3",
+          "release_notes": "### 修复\n\n- 消息归属：通过正式 account_id/scope 字段传递机器人身份，保留统一账号映射，不再在 additional_config 或 route_metadata 中写入身份字段。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Mai-with-u.qq-adapter",
+            "version": "0.4.3",
+            "name": "QQ 官方机器人适配器",
+            "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "plug",
+                "background": "#E5EAEC"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.7",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              }
+            ],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.1",
           "tag": "v0.4.1",
           "commit": "12a319450f29ef5b7701a28e91e9ca58a3275756",
