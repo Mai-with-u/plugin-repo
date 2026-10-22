@@ -26417,7 +26417,63 @@
       "manifest_id": "org.orge-8.better-diary",
       "repositoryUrl": "https://github.com/orge-8/better-diary",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.7.1",
+          "tag": "v1.7.1",
+          "commit": "420732ffceca0107819a5542b69929e7ee135b61",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T00:02:23Z",
+          "release_url": "https://github.com/orge-8/better-diary/releases/tag/v1.7.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.better-diary",
+            "version": "1.7.1",
+            "name": "better-diary 日记插件",
+            "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、/日记查看 等本地检索。天气与归档术语一律以当天聊天原文为据，不凭空生成。权限 fail-closed：先配 admin_ids 才可用。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/better-diary"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_all_streams",
+              "message.get_by_time",
+              "message.get_by_time_in_chat",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
