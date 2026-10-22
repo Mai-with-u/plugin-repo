@@ -9975,7 +9975,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -10143,7 +10143,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -10311,7 +10311,7 @@
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -10333,7 +10333,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibot-corpus-callosum",
-      "version": "1.3.4",
+      "version": "1.3.5",
       "name": "神经闭环反馈",
       "description": "给 replyer 一条内部再审通道：当回复器认为规划器的回复请求与聊天流严重不符时，可驳回发送并要求规划器重新思考，再审理由经内部上下文注入回规划器思考循环，全程聊天对象不可见。",
       "author": {
@@ -10353,7 +10353,7 @@
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "plugin_type": "extension",
@@ -10470,7 +10470,7 @@
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -10653,7 +10653,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -11429,7 +11429,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.0-hz.maibook",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "name": "麦书 (MaiBook)",
       "description": "让麦麦在每个聊天中创作并长期维护属于自己的书：按聊天流隔离的「笔记本」内可建立多本书，每本书是一个目录（元信息 book.toml + 创作说明 instructions.md + 正文 manuscript/ + 隐藏设定 bible/ + 滚动摘要 summaries/ + 问答日志 journal/）。由一个可配置的「专职写手模型」生成正文（自动注入麦麦的人格与表达风格），麦麦本人担任主编；信息不足时不动笔，先把问题抛给麦麦自行决定（必要时再问用户）。支持按需写作与可选的后台自动续写、章节修订与历史快照、整书编译/分段发送/长图导出，以及把封面图直接送入上下文供共同打磨。",
       "author": {
@@ -11449,7 +11449,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -13253,7 +13253,7 @@
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "capabilities": [],
@@ -14660,7 +14660,7 @@
       "manifest_version": 2,
       "plugin_type": "media",
       "id": "github.achenjins.runninghub-workflow-adapter",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "name": "麦麦画师 · RunningHub",
       "description": "文档已更新 qwen-image2.1 工作流使用方式，欢迎使用！让麦麦亲手给你画画：从一句话文生图，到多参考图 / 视频生成，统统自动完成并把成品发回聊天。支持自定义工作流、自己优化成本、AI 扩写提示词和限流防刷。仅适配 NapCat / QQ。",
       "author": {
@@ -14742,7 +14742,7 @@
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -15039,7 +15039,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -18129,7 +18129,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Mai-with-u.qq-adapter",
-      "version": "0.4.1",
+      "version": "0.4.2",
       "name": "QQ 官方机器人适配器",
       "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
       "author": {
@@ -18150,7 +18150,7 @@
         }
       },
       "host_application": {
-        "min_version": "1.3.0",
+        "min_version": "1.3.7",
         "max_version": "1.3.99"
       },
       "sdk": {
@@ -18524,7 +18524,7 @@
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -18817,7 +18817,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "name": "better-diary 日记插件",
       "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、/日记查看 等本地检索。天气与归档术语一律以当天聊天原文为据，不凭空生成。权限 fail-closed：先配 admin_ids 才可用。",
       "author": {
@@ -18830,7 +18830,7 @@
       },
       "host_application": {
         "min_version": "1.2.3",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
@@ -18848,6 +18848,8 @@
         "api.call",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
+        "chat.get_group_streams",
+        "chat.get_all_streams",
         "message.get_by_time",
         "message.get_by_time_in_chat",
         "llm.generate",
@@ -19307,7 +19309,7 @@
       },
       "sdk": {
         "min_version": "2.8.2",
-        "max_version": "2.14.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -19337,7 +19339,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.22.4",
+      "version": "1.22.5",
       "name": "生活频率",
       "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
@@ -19369,7 +19371,8 @@
         "llm.generate",
         "config.get",
         "knowledge.search",
-        "api.call"
+        "api.call",
+        "declarative_basic"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -20536,7 +20539,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-team.telegram-adapter",
-      "version": "0.1.13",
+      "version": "0.1.14",
       "name": "Telegram 适配器",
       "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
       "author": {
@@ -20928,7 +20931,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.16",
+      "version": "0.5.18",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21378,7 +21381,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.6.3",
+      "version": "0.7.1",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -21703,6 +21706,313 @@
     },
     "assets": {
       "icon_64": "icons/SengokuCola.music-appreciation-plugin.webp"
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-sim-trader",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.42yoru.maimai-sim-trader",
+      "version": "0.6.4",
+      "plugin_type": "integration",
+      "name": "麦麦模拟盘",
+      "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai_sim_trader",
+        "homepage": "https://github.com/42yoru/maimai_sim_trader",
+        "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "config.get",
+        "llm.generate",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot-team.xiaoheihe-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-team.xiaoheihe-adapter",
+      "version": "0.8.2",
+      "name": "小黑盒社区适配器",
+      "description": "接收小黑盒社区 @ 和回复，主动浏览、评论，并由 Replyer 生成多段浏览总结帖。",
+      "author": {
+        "name": "MaiBot Team",
+        "url": "https://github.com/Mai-with-u"
+      },
+      "urls": {
+        "repository": "https://github.com/SengokuCola/xiaoheihe_adapter",
+        "homepage": "https://github.com/SengokuCola/xiaoheihe_adapter",
+        "issues": "https://github.com/SengokuCola/xiaoheihe_adapter/issues"
+      },
+      "license": "MIT",
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=8,<9"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=9"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.8,<3"
+        }
+      ],
+      "capabilities": [
+        "chat.open_session",
+        "chat.get_group_streams",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "maisaka.reply.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "geffnt.maibot-birthday-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "geffnt.maibot-birthday-plugin",
+      "version": "1.3.2",
+      "name": "麦麦祝你生日快乐呀",
+      "description": "从 NapCat 名片读取好友/群成员的生日并缓存到本地；寿星当天在指定群或私聊主动道贺，同时把生日信息注入麦麦的回复上下文，并提供查询工具与指令。",
+      "author": {
+        "name": "geffnt",
+        "url": "https://github.com/geffnt"
+      },
+      "license": "MIT",
+      "plugin_type": "tool",
+      "urls": {
+        "repository": "https://github.com/geffnt/maibot-birthday-plugin",
+        "homepage": "https://github.com/geffnt/maibot-birthday-plugin",
+        "documentation": "https://github.com/geffnt/maibot-birthday-plugin/blob/main/README.md",
+        "issues": "https://github.com/geffnt/maibot-birthday-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "chat.open_session",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "org.azurlane.blhx-wiki-maibot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.azurlane.blhx-wiki-maibot",
+      "version": "0.1.0",
+      "plugin_type": "tool",
+      "name": "碧蓝航线 wiki",
+      "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
+      "author": {
+        "name": "senhan1337",
+        "url": "https://github.com/senhan1337"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/senhan1337/MaiBot-blhx-wiki"
+      },
+      "host_application": {
+        "min_version": "0.10.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "999.999.999"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lxml",
+          "version_spec": ">=5.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward",
+        "send.hybrid"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.OLDnana1.edge-tts",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "Edge TTS 免费语音",
+      "description": "使用微软 Edge 在线语音合成（edge-tts）把文字转成 QQ 语音，支持音色、语速、音量、音调与代理配置",
+      "author": {
+        "name": "OLDnana1",
+        "url": "https://github.com/OLDnana1"
+      },
+      "license": "MIT",
+      "plugin_type": "provider",
+      "urls": {
+        "repository": "https://github.com/OLDnana1/maibot-edge-tts",
+        "homepage": "https://github.com/OLDnana1/maibot-edge-tts",
+        "documentation": "https://github.com/OLDnana1/maibot-edge-tts/blob/main/README.md",
+        "issues": "https://github.com/OLDnana1/maibot-edge-tts/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "edge-tts",
+          "version_spec": ">=7.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.custom",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.OLDnana1.edge-tts"
+    }
+  },
+  {
+    "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+      "version": "1.5.0",
+      "plugin_type": "media",
+      "name": "GPT-SoVITS 语音插件（优化版）",
+      "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+      "author": {
+        "name": "Lbcheng1145",
+        "url": "https://github.com/Lbcheng1145"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+        "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+        "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+        "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [
+        "send.custom",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
