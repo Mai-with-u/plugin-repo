@@ -21834,7 +21834,73 @@
       "manifest_id": "omsociety.bilicaption",
       "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_bilicaption",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "a8992153651f9dc643cce5d1b21bb5493422a2f5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T18:15:51Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_bilicaption/releases/tag/v1.1.0",
+          "release_notes": "### 新增\n\n- **配置界面多语言（en-US / ja-JP）**：WebUI 配置页的字段标题、提示与占位文本、分区标题与分区描述按界面语言自动切换（宿主界面语言支持中文/英文/日文/韩文，无对应译文时回退中文），manifest 声明 `supported_locales`。\n- 新增配置界面 i18n 回归测试：离线生成配置 Schema，校验各语言覆盖率、数值一致与技术标识符保全。\n\n### Added\n\n- **Multilingual config UI (en-US / ja-JP)**: field labels, hints and placeholder texts, section titles and section descriptions on the WebUI config page switch automatically with the interface language (the host interface language supports Chinese/English/Japanese/Korean, falling back to Chinese when no translation exists), and the manifest declares `supported_locales`.\n- Added a config UI i18n regression test: it generates the config Schema offline and verifies per-language coverage, value consistency and preservation of technical identifiers.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.bilicaption",
+            "version": "1.1.0",
+            "name": "B站字幕提取解读",
+            "description": "提供获取B站视频字幕文本、解读视频内容的 LLM 工具，自动识别消息中的 B 站链接/BV 号/b23 短链",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_bilicaption"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": ">=16.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
