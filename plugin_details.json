@@ -519,39 +519,81 @@
     "id": "1021143806.mais_art_journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.2.1",
+      "version": "4.6.3",
       "name": "麦麦绘卷（Claude MAInet）",
-      "description": "基于 MaiBot 的多模型智能绘图插件。兼容 OpenAI、OpenAI-Chat、豆包（火山方舟）、Gemini、魔搭、硅基流动、砂糖云、梦羽、智谱 GLM、阿里百炼 DashScope（通义千问/万相/Z-Image/可灵）、ComfyUI 等多种 API 格式。提供命令式风格转换、自拍模式、自动自拍发说说、日程感知、模型配置管理、运行时聊天流隔离状态、对外 @API 生图接口等功能。",
+      "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供日程自拍、群聊主动图片、聊天设置持久化、群/私聊额度管理和对外生图 API，与 MaiTrace 双向配合。",
+      "plugin_type": "creative",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "image"
+        }
+      },
       "author": {
         "name": "Ptrel, Rabbit-Jia-Er, saberlights Kiuon",
         "url": "https://github.com/1021143806/mais_art_journal"
       },
-      "license": "GPL-v3.0-or-later",
+      "license": "AGPL-3.0-or-later",
       "urls": {
         "repository": "https://github.com/1021143806/mais_art_journal",
         "homepage": "https://github.com/1021143806/mais_art_journal",
         "issues": "https://github.com/1021143806/mais_art_journal/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.3.11",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.15.0",
         "max_version": "2.99.99"
       },
-      "dependencies": [],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "maibot-plugin-sdk",
+          "version_spec": ">=2.15.0,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.28.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2024.1"
+        }
+      ],
       "capabilities": [
         "send.text",
         "send.image",
-        "send.command",
-        "send.custom",
+        "send.hybrid",
         "config.get",
         "config.get_plugin",
         "llm.generate",
         "message.get_by_time_in_chat",
         "message.get_by_id",
-        "api.call"
+        "message.get_recent",
+        "chat.get_stream_by_group_id",
+        "chat.get_all_streams",
+        "api.call",
+        "api.list"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -560,6 +602,9 @@
         ]
       },
       "id": "1021143806.mais_art_journal"
+    },
+    "assets": {
+      "icon_64": "icons/1021143806.mais_art_journal.webp"
     }
   },
   {
@@ -1464,7 +1509,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.5",
+      "version": "1.15.6",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -2903,25 +2948,32 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Rabbit-Jia-Er.MaiTrace",
-      "version": "3.1.1",
+      "version": "6.2.4",
       "name": "MaiTrace（麦时迹）",
-      "description": "属于 MaiBot 自己的 QQ 空间生活插件。让麦麦自主发说说、刷动态、点赞回复、写日记，留下属于麦麦自己的时间足迹。",
+      "description": "MaiBot 的生活与 QQ 空间插件：让麦麦拥有每日作息、精力心情、睡眠梦境，并在合适的时候分享近况。",
+      "plugin_type": "chat",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png"
+        }
+      },
       "author": {
         "name": "Rabbit-Jia-Er",
         "url": "https://github.com/Rabbit-Jia-Er"
       },
-      "license": "MIT",
+      "license": "AGPL-3.0-only",
       "urls": {
         "repository": "https://github.com/Rabbit-Jia-Er/MaiTrace",
         "homepage": "https://github.com/Rabbit-Jia-Er/MaiTrace",
         "issues": "https://github.com/Rabbit-Jia-Er/MaiTrace/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.3.11",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.15.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -2932,13 +2984,8 @@
         },
         {
           "type": "python_package",
-          "name": "Pillow",
-          "version_spec": ">=9.0.0"
-        },
-        {
-          "type": "python_package",
-          "name": "bs4",
-          "version_spec": ">=0.0.1"
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
         },
         {
           "type": "python_package",
@@ -2947,22 +2994,38 @@
         },
         {
           "type": "python_package",
-          "name": "openai",
-          "version_spec": ">=1.0.0"
+          "name": "tzdata",
+          "version_spec": ">=2024.1"
+        },
+        {
+          "type": "python_package",
+          "name": "chinese-calendar",
+          "version_spec": ">=1.11.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lunar-python",
+          "version_spec": ">=1.4.0"
         }
       ],
       "capabilities": [
         "send.text",
+        "send.image",
         "config.get",
         "config.get_plugin",
         "llm.generate",
-        "message.get_by_time",
         "message.get_by_time_in_chat",
+        "chat.get_all_streams",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "emoji.get_by_description",
         "database.get",
-        "api.call"
+        "api.call",
+        "api.list",
+        "knowledge.search",
+        "render.html2png",
+        "frequency.set_adjust",
+        "maisaka.proactive.trigger"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -2970,6 +3033,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/Rabbit-Jia-Er.mai_clinic_plugin.webp"
     }
   },
   {
@@ -6080,7 +6146,7 @@
           {
             "type": "event_handler",
             "name": "mai_plan_stop_handler",
-            "description": "Mai_Plan 停止时关闭提���调度器"
+            "description": "Mai_Plan 停止时关闭提醒调度器"
           },
           {
             "type": "tool",
@@ -8082,7 +8148,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -14200,7 +14266,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nero-umu.nitter-to-maibot",
-      "version": "1.7.0",
+      "version": "1.8.3",
       "name": "Nitter 推文转发",
       "description": "定期读取 Nitter 订阅账号的新推文，支持按 QQ 群独立订阅，并转发正文、图片和视频附件。",
       "author": {
@@ -14228,14 +14294,22 @@
           "type": "python_package",
           "name": "tomlkit",
           "version_spec": ">=0.13.3,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.4,<13"
         }
       ],
       "capabilities": [
+        "api.call",
+        "api.list",
         "chat.open_session",
         "llm.generate",
         "maisaka.context.append",
         "send.custom",
         "send.forward",
+        "send.hybrid",
         "send.image",
         "send.text"
       ],
@@ -21080,9 +21154,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "shinoyukimiyako.claude-provider",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "name": "Claude Provider Support",
-      "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
+      "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API 及兼容该协议的端点，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
       "author": {
         "name": "ShinoyukiMiyako",
         "url": "https://github.com/ShinoyukiMiyako"
@@ -21096,25 +21170,25 @@
       },
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.9"
+        "max_version": "1.3.14"
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.14.0"
+        "max_version": "2.16.0"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "anthropic",
-          "version_spec": ">=1.14.0,<2.0.0"
+          "version_spec": ">=2.1.0,<3.0.0"
         }
       ],
       "llm_providers": [
         {
           "client_type": "claude",
           "name": "Claude Messages API",
-          "description": "通过官方 anthropic SDK 调用 Claude Messages API。",
-          "version": "1.0.0"
+          "description": "通过官方 anthropic SDK 调用 Claude Messages API 或兼容该协议的端点。",
+          "version": "2.0.0"
         }
       ],
       "capabilities": [],
@@ -21548,7 +21622,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chenxi2542.maibot-codex-subscription",
-      "version": "0.3.8",
+      "version": "0.3.9",
       "name": "ChatGPT 订阅 (Codex)",
       "description": "插件内置 ChatGPT 账号登录与账号库，用 Plus/Pro（Codex）订阅额度作为 MaiBot 的 LLM Provider，无需 OpenAI API Key。",
       "author": {
@@ -21596,7 +21670,7 @@
           "client_type": "codex_subscription",
           "name": "ChatGPT 订阅 (Codex)",
           "description": "ChatGPT 账号登录 + 多账号账号库，Responses API 协议。",
-          "version": "0.3.8"
+          "version": "0.3.9"
         }
       ],
       "i18n": {
@@ -21717,10 +21791,18 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.6.4",
+      "version": "0.7.1",
       "plugin_type": "integration",
       "name": "麦麦模拟盘",
-      "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+      "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "line-chart",
+          "background": "#F3B27A"
+        }
+      },
       "author": {
         "name": "42yoru",
         "url": "https://github.com/42yoru"
@@ -21754,6 +21836,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
     }
   },
   {
@@ -21977,7 +22062,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.5.1",
+      "version": "1.5.4",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
       "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
