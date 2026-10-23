@@ -37787,6 +37787,124 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.1",
+          "tag": "v0.7.1",
+          "commit": "64568daf651c0e75a9eb28133b654707f518f9fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T01:47:30Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.1",
+          "release_notes": "WebUI 的配置页之前是一堆英文键名（`max_position_ratio`、`manual_cooldown_seconds`……），\n对着 `config.toml` 改还行，在网页上点就有点难受。这版把它整个重排了。\n\n**配置页现在是四个页签**\n\n| 页签 | 放什么 |\n|---|---|\n| 常用设置 | 妙想 Key、播报目标、主人白名单——第一次装只填这三块 |\n| 交易 | 账户与风控、胆量档位、看盘节奏 |\n| 模型 | 决策与播报用哪个模型任务 |\n| 高级 | 空转与冷却、模型参数、插件信息（默认折叠） |\n\n每个字段都有中文标签，和一句「填什么、为什么、填错会怎样」的说明。几个细节：\n\n- 妙想 Key 用密码框渲染\n- 配置版本两项只读，防止手改导致宿主误判需要迁移\n- `[risk] profile` 换成了下拉选择\n\n**做法**：新增 `config_ui.py`，只重组 SDK 生成的展示 Schema。配置模型、默认值和 TOML\n里的真实路径**一个字节都没动**——展示分块的 `name` 始终指向真实的配置节，所以网页上\n改完保存，写回去的还是原来那些键。\n\n**加了一条防呆测试**：遍历配置模型，检查每个真实配置节里的每个字段都出现在重排后的\nschema 里。以后加字段忘了登记进展示层，测试会直接红。\n\n测试 80 → 84 项，CI 全绿；配置版本同步到 0.7.1。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.1",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.7.0",
+          "tag": "v0.7.0",
+          "commit": "6c19f9a5ff35a29a9a0d22e86ebee2d5e119cda7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T01:40:34Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.0",
+          "release_notes": "新增一个很多人要的东西：**让它自己决定有多敢赌**。\n\n**三档胆量**\n\n`[risk] profile` 可选 `steady` 稳健 / `aggressive` 激进 / `yolo` 梭哈。\n\n档位不另起一套数字，而是在 `[account]` 里你自己填的基数上按倍数缩放：\n\n| 档位 | 单票上限 | 现金底线 | 每日笔数 | 让价 |\n|---|---|---|---|---|\n| `steady` 稳健（默认） | ×1.0 → 20% | ×1.0 → 20% | ×1.0 → 6 | +0 |\n| `aggressive` 激进 | ×1.4 → 28% | ×0.5 → 10% | ×1.8 → 11 | +0.1% |\n| `yolo` 梭哈 | ×1.8 → 36% | ×0.1 → 2% | ×2.0 → 12 | +0.2% |\n\n- **默认档等于原行为**，老配置升级后数字一个都不变\n- 代码里保留绝对上限（单票 ≤40%、每日 ≤12 笔），档位翻不过去——一把梭到当天归零就没什么好看的了\n- 档位会往决策 prompt 里加一句当轮气质，并把**实际生效的限制数字**写进规则\n- `/股 状态` 多一行当前档位与实际限制\n\n**顺手修掉一个真 bug**\n\n决策 prompt 里原先写死「单票不超过 20%、至少留 20% 现金」，改配置后规则和校验会对不上。\n现在这两个数字由配置 + 档位算出来再填进 prompt。档位写错也会直接报错，不静默退回默认档。\n\n测试 71 → 80 项，CI 全绿。功能与安装方式没有变化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.0",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.6.4",
           "tag": "v0.6.4",
           "commit": "76fbf6ba37b3a435c9761c9f997436cf559df12e",
