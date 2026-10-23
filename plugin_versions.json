@@ -36129,6 +36129,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "36df5b18baa433c101f8a08f3a56372d186e5b7a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T03:01:14Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/releases/tag/v2.0.0",
+          "release_notes": "升级到 anthropic 2.x，并改成可接任何 Anthropic Messages 协议端点的兼容层。\n\n**破坏性变更**\n\n- 依赖改为 `anthropic>=2.1.0,<3.0.0`。SDK 2.x 默认使用 API 版本 `2026-10-21`，Key 改以 `Authorization: Bearer` 发送。\n- 官方 API 在 `2026-10-21` 下对任何模型的 `temperature` / `top_p` / `top_k` 都返回 400。Sonnet 4.6 等旧模型如果开着 `send_temperature`，升级后会开始报错，请关掉。插件仍原样透传，不替你吞掉。\n\n**兼容端点**\n\n- `base_url` 可以填中转站、网关，或 DeepSeek、Kimi、GLM 等厂商的 `/anthropic` 接口。\n- 鉴权沿用 Provider 的 `auth_type`（`bearer` / `header` / `query` / `none`），语义与 MaiBot 内置 OpenAI 兼容客户端一致。只认 `x-api-key` 的端点：`auth_type = \"header\"`、`auth_header_name = \"x-api-key\"`、`auth_header_prefix = \"\"`。\n- 除默认 `bearer` 外，SDK 不会再去读宿主上的 `ANTHROPIC_API_KEY` 等环境变量或本机 profile，避免把它们发给第三方端点。\n- 服务端拒答兜底只发给 `api.anthropic.com`。\n- 只认旧版本号的端点可在 Provider 的 `default_headers` 里写 `anthropic-version = \"2023-06-01\"`。\n\n**插件中心审核意见**\n\n- 兼容范围放宽为 MaiBot 1.3.9 ~ 1.3.14、插件 SDK 2.12.0 ~ 2.16.0，两端都跑过宿主契约测试；README 写明超出范围时宿主的实际处理。\n- `pyproject.toml` 的运行时依赖与 manifest 逐条一致，`maibot-plugin-sdk` 由宿主提供，移到开发依赖。\n\n已在 MaiBot 1.3.9 部署环境中通过 Opus 5.5 真实 API 冒烟（参数组合、缓存命中、工具调用续接）。兼容端点的鉴权与参数取舍由线路级测试覆盖，尚未对接真实第三方端点。\n\n许可证：AGPL-3.0-only。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyukimiyako.claude-provider",
+            "version": "2.0.0",
+            "name": "Claude Provider Support",
+            "description": "用 Anthropic 官方 SDK 原生调用 Claude Messages API 及兼容该协议的端点，支持提示缓存、思考摘要、结构化输出与拒答兜底。",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+              "homepage": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
+              "documentation": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/blob/main/README.md",
+              "issues": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.14"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "anthropic",
+                "version_spec": ">=2.1.0,<3.0.0"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "claude",
+                "name": "Claude Messages API",
+                "description": "通过官方 anthropic SDK 调用 Claude Messages API 或兼容该协议的端点。",
+                "version": "2.0.0"
+              }
+            ],
+            "capabilities": [],
+            "plugin_type": "provider",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "78af8c58506c9572f1099b7d800b10d9bc437f22",
