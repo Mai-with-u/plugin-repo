@@ -7979,6 +7979,95 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.2",
+          "tag": "v2.1.2",
+          "commit": "71fbd8fae5fd78282e15e559433f1cd66084b1fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T14:08:04Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.1.2",
+          "release_notes": "## 新增功能\n\n- **统一 NovelAI 模型列表**：预设与自定义模型在同一组可增删输入行中编辑，支持直接填写 NovelAPI / 兼容服务的模型 ID，不再分成多选框与自定义列表。\n- **默认使用 V5**：新建 NovelAI 平台默认提供 `nai-diffusion-5-full` 和 `nai-diffusion-5-curated`；V4.5、V4、V3 保留在预设目录，按需添加。\n- **预设选择弹窗**：支持搜索、多选和批量追加，已有模型保留。官方当前未公开绘图模型目录接口，因此明确标注预设来源与核对日期，不将预设显示为在线查询结果。\n\n## 修复功能\n\n- **NovelAI 平台无法保存**：修复模型多选控件与工具栏绑定不匹配导致初始化异常、保存事件未绑定的问题。\n- **旧配置自动合并**：将旧 `custom_models` 合并到统一 `models` 列表，保留原有模型顺序并去重；保留已有密钥、模型 ID 和自定义模型，保存后不再写出第二份模型列表。\n- **桌面与移动端操作**：复用现有模型列表和选择弹窗组件，模型区域内部滚动，窄屏保留可见的选择与保存操作；同步配置多语言说明和使用文档。\n- **验证**：622 项 Python 回归通过，前端回归及桌面、移动端表单交互检查通过；源码、客户端及变更测试的 Ruff 检查，以及语法和差异检查通过。验证使用隔离配置与模拟接口，未调用真实收费生图服务。\n\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.12.0–2.13.0，Python 3.12 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。新建平台默认仅添加 V5；已有平台的模型配置保留，旧自定义模型会自动合并。预设可用性仍以账号实际权限为准。\n\n[平台配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.2/docs/platforms.md) · [完整命令用法](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.2/docs/usage.md#聊天命令) · [手动配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.2/docs/manual-configuration.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "2.1.2",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.13.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.1",
           "tag": "v2.1.1",
           "commit": "b676f7d5e884ce77add707baac5baa057b534996",
