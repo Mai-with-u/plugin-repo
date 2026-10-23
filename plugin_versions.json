@@ -21667,7 +21667,7 @@
           "tag": "v1.2.0",
           "commit": "a9d773d201f3bb2bae06073968a21d1da7413b5c",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-09-23T05:58:25Z",
           "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v1.2.0",
           "release_notes": "### ✨ 新增\n\n- **Apple 日历事件提前提醒**：开启日程提醒与 Apple 日历同步后，手机侧新建 / 改期的事件同样在开始前提醒（扫描前触发一次同步，300 秒内的重复拉取走缓存）。\n- **日程工具支持时间区间与全天日程**：创建 / 修改日程可写「明天9点到11点」（区间）、「明天全天」或纯日期（全天）；两端纯日期的区间（「明天到后天」）按全天处理，多日取开始日；全天事件写入 Apple 日历为全天事件，单时间点模式行为不变（Apple 日历按开始后 1 小时）。\n\n### 🐛 修复\n\n- **修复定时扫描空转**：锁获取写法 `asyncio.wait_for(lock.acquire(), timeout=0)` 在该语义下必超时（空闲锁也一样），日程提醒扫描与 Apple 定时同步此前整体不执行；现改为非阻塞抢锁，锁被占用时跳过本轮。\n- 修复提前量窗口漏提醒：判定由「开始前 N 分钟 ±2 分钟」的窄窗口改为「开始前 N 分钟内均触发」（窗口含上边界，扫描间隔不大于提前提醒分钟数时必达）。\n- 修复长提前量下同一事件重复提醒：防重标记此前 1 小时后自动失效，提前量大于约 1 小时时事件会在开始前 5 分钟兜底窗口被再次提醒；现防重标记持续有效（事件改期时重置，改期重新提醒）。\n- 修复全天 / 日期型日程在「查看日程」中被静默跳过的问题。\n- 修复「明天下午3点」这类带时段词的口语时间表达解析失败的问题。\n\n### ⚙️ 变更\n\n- 日程提醒（本地日程与 Apple 日历事件）改为 Maisaka 拟人开口（`maisaka.proactive.trigger`，intent 注入回复生命周期），同一轮的多个事件合并为一次提醒；早安播报保持固定格式直发。\n- 早安播报与日程列表的时间标签支持区间（15:00-16:30）与全天显示。\n- 扫描间隔配置提示补充「建议不大于提前提醒分钟数」。\n\n### 🗑️ 移除\n\n- 配置项「日程提醒模板」（`prompt_schedule`）：日程提醒措辞由 Maisaka 按人格生成。",
@@ -21744,7 +21744,7 @@
       "id": "omsociety.bilicaption",
       "manifest_id": "omsociety.bilicaption",
       "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_bilicaption",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -22319,7 +22319,7 @@
       "id": "omsociety.minecraft-adapter",
       "manifest_id": "omsociety.minecraft-adapter",
       "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []

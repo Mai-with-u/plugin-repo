@@ -7377,7 +7377,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -16570,7 +16570,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "name": "日程提醒助手",
       "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
       "author": {
@@ -16619,6 +16619,7 @@
         "send.custom",
         "chat.get_stream_by_user_id",
         "maisaka.proactive.trigger",
+        "message.get_recent",
         "llm.generate",
         "config.get"
       ],
@@ -22062,10 +22063,17 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.5.4",
+      "version": "1.6.0",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
-      "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "mic"
+        }
+      },
+      "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
       "author": {
         "name": "Lbcheng1145",
         "url": "https://github.com/Lbcheng1145"
@@ -22079,11 +22087,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "999.999.999"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "max_version": "999.999.999"
       },
       "dependencies": [
         {
@@ -22102,6 +22110,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/github.lbcheng1145.gpt-sovits-voice-plugin.webp"
     }
   }
 ]
