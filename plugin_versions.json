@@ -38429,7 +38429,62 @@
       "manifest_id": "github.lbcheng1145.gpt-sovits-voice-plugin",
       "repositoryUrl": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "07e62adaecc55c5f13023afdead0389b4bc06a3e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T19:22:33Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.6.0",
+          "release_notes": "自 v1.5.4 以来的全部变更。\n\n## ✨ 新功能\n\n### 语音对讲\n\n对方发来一条语音，就在这个会话里开启一段「通话」窗口（默认 3 分钟）。窗口内她的每条回复都用语音发出，每条新语音都会续期；超时后自动恢复文字。\n\n和概率语音不同，这里不是逐条掷骰子，而是跟着对方的说话方式走。\n\n- 入站消息**不 abort**，正常入库进长期记忆，改写只在出站钩子做\n- 支持唤醒词、仅私聊（默认）、超长回退文字\n- 语音窗口只存在内存，插件重载后清空\n\n前提：宿主需开启 ASR（`config/bot_config.toml` 的 `[voice] enable_asr = true`）。\n\n### 对外 API\n\n供其他插件调用（版本 `1`，全部公开）：\n\n| API | 用途 |\n|---|---|\n| `is_voice_active` | 查询该会话现在是否会用语音回复 |\n| `set_voice_active` | 强制开关语音窗口 |\n| `list_styles` | 列出可用音色名 |\n\n### 总开关\n\n`[plugin] enabled = false` 一键停用，工具、命令、两条出站钩子全部放行原消息。\n\n---\n\n## 🐛 修复\n\n### 首字静音重整从未生效（影响最大）\n\n采用裁剪的条件写成 `len(trimmed) < len(audio_data)`，但该函数会补 500ms 静音，输出**必然比输入长**，条件恒为假。\n\n实测：服务端原始前导静音 105ms，处理后应为 504ms，旧代码每次都走原样返回。改用身份比较后，这一修复才真正起作用——意味着此前几个版本为吞字问题做的努力其实一直没生效。\n\n### `plugin.enabled` 总开关没有任何代码读取\n\n宿主那层的 `enabled` 是组件注册状态，与配置里的字段不是一回事。此前 WebUI 关掉开关后插件照常工作。现已接入四个入口。\n\n### 带 `at` 段的回复无法转语音\n\n`_extract_plain_text` 把 `at` 当作「非文本」直接放弃。真实数据显示带 `at` 的回复占 0.9%，这部分此前全部失效。\n\n改为把 `reply`/`at`/`face` 视作元数据跳过，改写时**保留 at 段**，语音消息仍然 @ 到对方。\n\n### `_send_help` 空引用崩溃\n\n未判断 `_client is None`，插件未加载完时发 `/tts help` 会抛 `AttributeError`，表现为「命令没反应」。\n\n### `audio_output_dir` 默认值使官方推荐路径不可达\n\n默认值非空导致 `ctx.paths.runtime_dir` 分支永远走不到，临时音频被写进持久化的 `data` 目录。改为默认留空。\n\n### 分段回复重复合成\n\n同一条回复被拆成多段发送时，每段都调一次 GPT-SoVITS。加 15 秒按 stream + 文本的记忆后，实测第二段从 **2322ms 降到 0ms**。\n\n### 临时音频永久残留\n\n热重载会丢弃旧实例的延迟清理任务，文件就留下了。曾在目录里发现残留 9 小时的音频。现于 `on_load` 时扫描清理超过 15 分钟的遗留文件。\n\n### `on_unload` 卸载慢\n\n逐个 `await` 删文件，文件多时拖慢卸载。改并发后，实测 20 个文件 3ms 清空。\n\n### `@昵称` 会被念出来\n\n实测 `@天下第一` 让合成多花 1.06s，`@尼菲谢BOT` 多 1.61s。\n\n只剔除与 `at` 段昵称**精确匹配**的 `@昵称`，不按 `@` 字符猜——真实出站正文里 `@` 仅占 0.14%，且几乎都是说明性文字，按字符删会把「先引用原话再@对方接内容」整句删没。\n\n---\n\n## 🔧 其他改进\n\n- 合并重复的 voice 消息构造与两条出站路径的合成落盘逻辑\n- 版本列表从 4 处收敛到 `utils.MODEL_VERSION_CHOICES`\n- `manifest` 版本上界改为 `999.999.999`，避免麦麦升级后插件被挡\n- `config.example.toml` 补 `[intercom]` 段，`fallback` 与风格名对齐\n- 示例配置补上被注释掉的 `number_style` 等字段\n- README 重构：修正 `min_chunk_length`（32→16）、`fallback`（default→默认）等与代码不符的默认值，补全模块表与测试列表\n\n---\n\n## 📦 升级说明\n\n- `config.toml` 需手动补齐新增的 `[intercom]` 段（参考 `config.example.toml`）\n- `[plugin]` 段的 `config_version` **不可删除或留空**，缺失会导致宿主拒绝加载插件\n\n## ✅ 测试\n\n**386 项**断言全部通过，覆盖语音载荷、对讲窗口、语言检测、底模版本、数字路由、概率语音、文本清洗、音频校验、并发锁等。\n\n测试不依赖 `maibot_sdk`，按文件路径直接加载被测模块：\n\n```bash\npython tests/test_audio_payload.py\npython tests/test_intercom.py\npython tests/test_language.py\npython tests/test_model_version.py\npython tests/test_number_route.py\npython tests/test_number_style.py\npython tests/test_random_voice.py\npython tests/test_units.py\n```\n\n**Full Changelog**: https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/compare/v1.5.4...v1.6.0\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.0",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
