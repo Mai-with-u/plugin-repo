@@ -38233,6 +38233,58 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "c3b7f5808ba069b6ab6a9a923cde4d4c912d5c1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T07:39:45Z",
+          "release_url": "https://github.com/geffnt/maibot-birthday-plugin/releases/tag/v1.3.3",
+          "release_notes": "修改了一些ai文本，SnowLuma没有或者我没找到可以读取生日的方式所以没有适配，有方法可以提issue谢谢喵。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "geffnt.maibot-birthday-plugin",
+            "version": "1.3.3",
+            "name": "麦麦祝你生日快乐呀",
+            "description": "从 NapCat 名片读取好友/群成员的生日并缓存到本地；寿星当天在指定群或私聊主动道贺，同时把生日信息注入麦麦的回复上下文，并提供查询工具与指令。",
+            "author": {
+              "name": "geffnt",
+              "url": "https://github.com/geffnt"
+            },
+            "license": "MIT",
+            "plugin_type": "tool",
+            "urls": {
+              "repository": "https://github.com/geffnt/maibot-birthday-plugin",
+              "homepage": "https://github.com/geffnt/maibot-birthday-plugin",
+              "documentation": "https://github.com/geffnt/maibot-birthday-plugin/blob/main/README.md",
+              "issues": "https://github.com/geffnt/maibot-birthday-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.2",
           "tag": "v1.3.2",
           "commit": "8edbad61584caa76f4d019f1d7bc8d4c45d5a4f0",
