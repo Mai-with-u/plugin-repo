@@ -38799,7 +38799,59 @@
       "manifest_id": "github.SoulString-Dev.maibot-mimo-voice",
       "repositoryUrl": "https://github.com/SoulString-Dev/maibot-mimo-voice",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "5d509ab3425ad483bfd02167399ad197858ef698",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T06:47:22Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.2.0",
+          "release_notes": "## v0.2.0\n\n把麦麦的纯文本回复按策略替换为 MiMo 语音条，音色来自固定的参考音频。\n\n### 本次改动\n- 默认 `random` 触发（5%），只对 60 字以内的短回复生效，长内容自动保留文字\n- 群聊与私聊各自独立的放行规则（`group_mode` / `private_mode`：all / whitelist / blacklist）\n- 默认使用固定参考音频，不需要 ffmpeg；需要自动挑选/拼接素材时仍可用上游的 `best_single` / `balanced` / `full_merge`\n- 采样温度默认 0.15，实测把同句音色的中位音高差从约 11Hz 压到约 2Hz\n- 合成超时 20 秒、单路并发，超时或失败自动回退文字\n\n### 实测（MiMo 官方接口）\n- 克隆耗时 20 次顺序请求：p50 5.1s / p90 28.4s / max 47.6s，全部成功\n- 并发：2 路正常，3 路开始排队，5 路直接 429\n\n### 安装\n1. 把仓库放进 `data/MaiBot/plugins/`（或通过插件商店安装）\n2. 复制 `config.example.toml` 为 `config.toml`，填写 `[mimo] api_key`\n3. 放一段参考音频为 `reference.wav`（建议 5–20 秒干净人声；`tools/build_reference.sh` 可做升调提速）\n4. 重启核心，或直接改插件目录触发重载\n\n需要 MaiBot 1.3.x 与插件 SDK 2.12+。\n\n### License\nMIT，保留上游 ling-tts-bot 的版权声明。\n\n\n### 0.2.0 修订\n- 补上 `import random`（默认 random 触发曾因缺 import 静默失效）\n- 出站 hook 超时收紧到 130s；ffmpeg 预处理改为线程执行，不阻塞事件循环\n- 参考音频缓存改到宿主 runtime 目录\n- `plugin_type` 改为 `media`，`@Tool` 参数改用生效的 `parameters` 字段\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.2.0",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、低温度采样、短句优先、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
