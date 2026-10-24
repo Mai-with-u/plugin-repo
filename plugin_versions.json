@@ -38660,18 +38660,137 @@
       "manifest_id": "github.42yoru.maimai-owner-reminder",
       "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "f8e200733d9062156a8b396d5728e296b6a8d2e1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T03:03:40Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.4",
+          "release_notes": "补掉上一轮复审提到的那一处。\n\n- `handle_owner_reminder` 最后一条 `return … , True` 的第三项改成 `1`，\n  现在全仓库不再有布尔权重，和 0.4.3 changelog 的描述对上\n- 宿主对第三项会做 `bool()`，所以行为没有任何变化，纯口径修正\n- 版本与 config_version 升到 0.4.4；测试 148 项、CI 全绿\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.4",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "5cb28ee2c3ba95d68ba50d869a4d6b50165e2b29",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T02:58:02Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.3",
+          "release_notes": "按插件中心第一轮审核（[Issue #940](https://github.com/Mai-with-u/plugin-repo/issues/940)）的意见改的一版。\n\n**修复**\n\n- **`config.toml` 不再进仓库**：运行时配置由宿主按 `config_model` 生成，提交进仓库会让用户\n  一改配置就和仓库版本打架。已加入 `.gitignore` 并从索引移除\n  - 原来直接读这个文件的两个用例改成验证配置模型的默认值\n  - 另加一条断言：`.gitignore` 必须挡住 `/config.toml`\n- 命令处理函数返回三元组的第三项由 `True` / `False` 改成 `1` / `0`，与文档约定的 int 权重一致\n  （宿主会 `bool()` 它，行为不变）\n\n**细节**\n\n- manifest 补 `plugin_type: \"tool\"`：主体是一条斜杠命令加两个模型可调用工具，比默认的 `extension` 更准\n- 版本与 config_version 升到 0.4.3；测试 147 → 148 项，CI 全绿\n\n功能行为与 0.4.2 一致；已装过的用户，本地 `config.toml` 不受影响（它本来就在本地，从未被覆盖）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.3",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
           "tag": "v0.4.1",
           "version": "0.4.1",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'\n"
         },
         {
           "tag": "v0.4.0",
           "version": "0.4.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'\n"
         }
       ]
     },
