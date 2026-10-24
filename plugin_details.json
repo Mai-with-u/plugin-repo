@@ -17285,8 +17285,8 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-repeater",
       "name": "麦麦的本质就是复读机",
-      "version": "1.3.0",
-      "description": "群聊复读插件：当群友复读时，插件会识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
+      "version": "1.4.1",
+      "description": "群聊复读插件：群友复读文字/表情包/QQ原生表情时，插件识别并通过 SDK 直接发送复读内容，避免分词器自动断句导致复读失败。",
       "author": {
         "name": "octmicy",
         "url": "https://github.com/octmicy/Mai_repeater"
@@ -17309,7 +17309,10 @@
       "plugin_type": "extension",
       "capabilities": [
         "send.text",
-        "config.get"
+        "send.emoji",
+        "send.custom",
+        "config.get",
+        "component.list_loaded_plugins"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -21906,7 +21909,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.azurlane.blhx-wiki-maibot",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "plugin_type": "tool",
       "name": "碧蓝航线 wiki",
       "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
@@ -22012,7 +22015,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
       "display": {
@@ -22178,9 +22181,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "name": "MiMo 语音回复",
-      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、低温度采样、短句优先、超时自动回退文字。",
+      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
