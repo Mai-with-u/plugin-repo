@@ -38789,6 +38789,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.13",
+          "tag": "v0.3.13",
+          "commit": "5f7ee94fa83bc2eed56eeb92dd219018953bd744",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T15:05:32Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.13",
+          "release_notes": "更新了深度搜索",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.13",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.9",
           "tag": "v0.3.9",
           "commit": "fc2530a160b3b69a2a48b5c418972efa90071e5f",
