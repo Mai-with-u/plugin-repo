@@ -1509,7 +1509,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.6",
+      "version": "1.15.7",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -15764,59 +15764,6 @@
     }
   },
   {
-    "id": "omsociety.tavily-search",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "omsociety.tavily-search",
-      "version": "1.2.2",
-      "name": "Tavily 网页搜索",
-      "description": "提供 tavily_search 与 tavily_extract LLM 工具，调用 Tavily API 搜索网页、抓取指定网址正文，支持多 Key 轮询与来源引用显示",
-      "author": {
-        "name": "OMSociety",
-        "url": "https://github.com/OMSociety"
-      },
-      "license": "AGPL-3.0",
-      "urls": {
-        "repository": "https://github.com/OMSociety/maibot_plugin_tavily_search"
-      },
-      "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "aiohttp",
-          "version_spec": ">=3.8.0"
-        }
-      ],
-      "plugin_type": "tool",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "logo.png",
-          "fallback": "package"
-        }
-      },
-      "capabilities": [],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN",
-          "en-US",
-          "ja-JP"
-        ]
-      }
-    },
-    "assets": {
-      "icon_64": "icons/omsociety.tavily-search.webp"
-    }
-  },
-  {
     "id": "com.zhigengniao258.error-notify",
     "manifest": {
       "manifest_version": 2,
@@ -19275,7 +19222,9 @@
         "chat.get_stream_by_group_id",
         "chat.open_session",
         "llm.generate",
-        "send.text"
+        "send.text",
+        "send.image",
+        "render.html2png"
       ],
       "description": "自动监控 OpenAI Codex 全局额度重置、Banked Reset 与相关告警，翻译成中文并发送到指定 QQ 群",
       "display": {
@@ -19285,8 +19234,8 @@
         }
       },
       "host_application": {
-        "max_version": "1.2.99",
-        "min_version": "1.0.0"
+        "max_version": "1.3.5",
+        "min_version": "1.2.2"
       },
       "i18n": {
         "default_locale": "zh-CN",
@@ -19299,7 +19248,7 @@
       "manifest_version": 2,
       "name": "Codex 额度重置提醒",
       "sdk": {
-        "max_version": "2.99.99",
+        "max_version": "2.10.0",
         "min_version": "2.8.0"
       },
       "urls": {
@@ -19308,7 +19257,7 @@
         "issues": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/issues",
         "repository": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
       },
-      "version": "0.1.13"
+      "version": "0.2.0"
     }
   },
   {
@@ -20153,7 +20102,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.fiatlux2333.hd2-helper",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "绝地潜兵2情报助手",
       "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
       "author": {
@@ -21912,7 +21861,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "geffnt.maibot-birthday-plugin",
-      "version": "1.3.2",
+      "version": "1.3.3",
       "name": "麦麦祝你生日快乐呀",
       "description": "从 NapCat 名片读取好友/群成员的生日并缓存到本地；寿星当天在指定群或私聊主动道贺，同时把生日信息注入麦麦的回复上下文，并提供查询工具与指令。",
       "author": {
@@ -21928,7 +21877,7 @@
         "issues": "https://github.com/geffnt/maibot-birthday-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.2.0",
+        "min_version": "1.3.0",
         "max_version": "1.3.99"
       },
       "sdk": {
@@ -22113,6 +22062,310 @@
     },
     "assets": {
       "icon_64": "icons/github.lbcheng1145.gpt-sovits-voice-plugin.webp"
+    }
+  },
+  {
+    "id": "com.fsqhn.image-searcher",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.fsqhn.image-searcher",
+      "version": "0.3.13",
+      "name": "麦麦寻人",
+      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+      "author": {
+        "name": "fsqhn",
+        "url": "https://github.com/fsqhn"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "999.999.999"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.31.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "message.get_by_id",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "scan-search"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-owner-reminder",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.4.4",
+      "plugin_type": "tool",
+      "name": "主人的叮嘱 (Owner Reminder)",
+      "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "bell-ring",
+          "background": "#FFD69A"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai-owner-reminder",
+        "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+        "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.14.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "config.get",
+        "send.text",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.42yoru.maimai-owner-reminder"
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-owner-reminder.webp"
+    }
+  },
+  {
+    "id": "github.SoulString-Dev.maibot-mimo-voice",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.SoulString-Dev.maibot-mimo-voice",
+      "version": "0.2.0",
+      "name": "MiMo 语音回复",
+      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、低温度采样、短句优先、超时自动回退文字。",
+      "author": {
+        "name": "SoulString",
+        "url": "https://github.com/SoulString-Dev"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "urls": {
+        "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+        "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+        "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+        "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.fabiocsa.read-gif",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.fabiocsa.read-gif",
+      "version": "0.1.2",
+      "name": "GIF 动图识别（Read GIF）",
+      "description": "检测聊天里的 GIF / 动态 WebP / APNG，抽取多帧拼成带时间标注的帧板，调用宿主视觉模型生成动图描述并注入消息，让麦麦真正看懂动图。",
+      "author": {
+        "name": "fabiocsa",
+        "url": "https://github.com/fabiocsa"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/fabiocsa/maibot-read-gif",
+        "homepage": "https://github.com/fabiocsa/maibot-read-gif",
+        "documentation": "https://github.com/fabiocsa/maibot-read-gif/blob/main/README.md",
+        "issues": "https://github.com/fabiocsa/maibot-read-gif/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.5",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "999.999.999"
+      },
+      "plugin_type": "media",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "film",
+          "fallback": "images"
+        }
+      },
+      "changelog": "CHANGELOG.md",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        }
+      ],
+      "capabilities": [
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.saltinanon.video-vision",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.saltinanon.video-vision",
+      "version": "1.0.1",
+      "name": "视频识眼",
+      "description": "让麦麦真正看见视频：按需抽帧 + 视觉模型一次理解，把视频压缩成一句摘要注入上下文；兼容 SnowLuma / NapCat 统一 QQ 连接器，默认只花一次视觉调用，重复视频零消耗。",
+      "author": {
+        "name": "Saltin",
+        "url": "https://github.com/SaltinAnon"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/SaltinAnon/maibot-video-vision",
+        "homepage": "https://github.com/SaltinAnon/maibot-video-vision",
+        "documentation": "https://github.com/SaltinAnon/maibot-video-vision/blob/main/README.md",
+        "issues": "https://github.com/SaltinAnon/maibot-video-vision/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "999.999.999"
+      },
+      "plugin_type": "media",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "video"
+        }
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "imageio-ffmpeg",
+          "version_spec": ">=0.4.9"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "llm.generate",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "liccsu.maibot-mimotts-voice",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "liccsu.maibot-mimotts-voice",
+      "name": "MiMo TTS Voice Clone",
+      "version": "2.0.6",
+      "description": "MiMo TTS 语音插件 for MaiBot - 支持预置音色、音色复刻、文本设计音色，修复唱歌与语气/语速/情感控制（fork 维护版）",
+      "author": {
+        "name": "Liccsu",
+        "url": "https://github.com/Liccsu"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Liccsu/maibot-mimotts-voice",
+        "homepage": "https://github.com/Liccsu/maibot-mimotts-voice",
+        "issues": "https://github.com/Liccsu/maibot-mimotts-voice/issues"
+      },
+      "plugin_type": "provider",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.99.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.custom",
+        "send.hybrid",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]

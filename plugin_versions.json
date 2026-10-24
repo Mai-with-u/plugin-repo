@@ -20081,7 +20081,8 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [],
+      "sync_error": "已发布版本 2.0.8 的 commit 被修改\n+ actual - expected\n\n+ '9406dcf1e08d43f7bc20915e344cfccdb04951ca'\n- 'f4dac57acb2b08bedf774315aa36f48afa737028'"
     },
     {
       "id": "maitu.photo-studio",
@@ -21167,15 +21168,6 @@
           }
         }
       ],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "omsociety.tavily-search",
-      "manifest_id": "omsociety.tavily-search",
-      "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_tavily_search",
-      "mode": "branch",
-      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -38599,6 +38591,71 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.fsqhn.image-searcher",
+      "manifest_id": "com.fsqhn.image-searcher",
+      "repositoryUrl": "https://github.com/fsqhn/com.fsqhn.image-searcher",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.42yoru.maimai-owner-reminder",
+      "manifest_id": "github.42yoru.maimai-owner-reminder",
+      "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.4.1",
+          "version": "0.4.1",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+        },
+        {
+          "tag": "v0.4.0",
+          "version": "0.4.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+        }
+      ]
+    },
+    {
+      "id": "github.SoulString-Dev.maibot-mimo-voice",
+      "manifest_id": "github.SoulString-Dev.maibot-mimo-voice",
+      "repositoryUrl": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.fabiocsa.read-gif",
+      "manifest_id": "github.fabiocsa.read-gif",
+      "repositoryUrl": "https://github.com/fabiocsa/maibot-read-gif",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.saltinanon.video-vision",
+      "manifest_id": "github.saltinanon.video-vision",
+      "repositoryUrl": "https://github.com/SaltinAnon/maibot-video-vision",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "liccsu.maibot-mimotts-voice",
+      "manifest_id": "liccsu.maibot-mimotts-voice",
+      "repositoryUrl": "https://github.com/Liccsu/maibot-mimotts-voice",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
