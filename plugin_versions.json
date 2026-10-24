@@ -39121,6 +39121,108 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "de0e79a978bafd3d2122df01bff45e8618e2c157",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T15:06:00Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.2.2",
+          "release_notes": "### 修复\n- `tools/build_reference.sh` 在 ffmpeg 7.1 及以上版本会直接失败：`afade=t=out:st=-0.02` 里的负数 `st` 被新版 ffmpeg 拒绝（`Value -0.020000 for parameter st out of range`）。\n- 淡出改为「反转 → 20ms 淡入 → 再反转」实现，不再依赖负数 `st`，新旧 ffmpeg 都能跑通。\n\n### 说明\n- 本次只修构建脚本，插件运行逻辑与配置项均未变化，`config_version` 仍是 `0.2.1`，无需改配置。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.2.2",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "ae176567952a02bc90fb681e573da02a96b33335",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T14:25:13Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.2.1",
+          "release_notes": "### 新增\n- `trigger.mode = \"random_llm\"`：随机抽签 + 模型可用 `mimo_voice_say` 主动请求语音，两个工具按模式自动显隐。\n\n### 音质\n- 合成前清洗文本：去表情/零宽字符/引号括号，`～`、`……`、重复标点折成正常停顿。\n- 新增 `voice.style_instruction` 朗读风格指令，实测把同句多次合成的音高离散度从 σ≈35Hz 压到 σ≈5.5–13.6Hz。\n\n### 健壮性\n- 空音频/过短音频判定；超时不再重试；429/5xx/网络错误按 `retry_backoff_seconds` 指数退避。\n- 建连超时独立（`mimo.connect_timeout`）。\n- 并发满时默认直接发文字（`delivery.skip_when_busy`），不再无限排队。\n- 参考音频与 `voice_dir` 限制在插件目录内，越界自动回退。\n- 两个工具补 `visibility=\"visible\"`。\n\n### 参考音频\n- `tools/build_reference.sh` 默认裁掉首尾静音并加 20ms 淡入淡出。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.2.1",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "5d509ab3425ad483bfd02167399ad197858ef698",
