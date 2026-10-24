@@ -38808,7 +38808,69 @@
       "manifest_id": "github.fabiocsa.read-gif",
       "repositoryUrl": "https://github.com/fabiocsa/maibot-read-gif",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "b69ed723156fd7a05d2af212c9881cf76602ab42",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T13:52:36Z",
+          "release_url": "https://github.com/fabiocsa/maibot-read-gif/releases/tag/v0.1.2",
+          "release_notes": "### 功能与优化\r\n- 新增帧板像素预算 max_sheet_pixels，大图/多帧自动缩小单帧尺寸，降低视觉模型延迟\r\n- 识别日志补充解析/视觉耗时与帧板尺寸\r\n- 缓存指纹纳入 max_sheet_pixels\r\n\r\n### 修复\r\n- 兼容思考型视觉模型（max_tokens 默认为 4096，空正文时自动提额重试）\r\n- 限制异常大分辨率动图\r\n\r\n### 兼容性\r\n- 插件 ID：github.fabiocsa.read-gif\r\n- Host >= 1.3.5，SDK >= 2.10.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.fabiocsa.read-gif",
+            "version": "0.1.2",
+            "name": "GIF 动图识别（Read GIF）",
+            "description": "检测聊天里的 GIF / 动态 WebP / APNG，抽取多帧拼成带时间标注的帧板，调用宿主视觉模型生成动图描述并注入消息，让麦麦真正看懂动图。",
+            "author": {
+              "name": "fabiocsa",
+              "url": "https://github.com/fabiocsa"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fabiocsa/maibot-read-gif",
+              "homepage": "https://github.com/fabiocsa/maibot-read-gif",
+              "documentation": "https://github.com/fabiocsa/maibot-read-gif/blob/main/README.md",
+              "issues": "https://github.com/fabiocsa/maibot-read-gif/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.5",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "media",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "film",
+                "fallback": "images"
+              }
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
