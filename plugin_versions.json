@@ -38671,6 +38671,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.1",
+          "tag": "v1.6.1",
+          "commit": "9bd641ddb7bab8ded39c66eaee066bfbaf19999e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T15:56:48Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.6.1",
+          "release_notes": "## 🐛 修复：语音听起来几乎没有停顿\n\nv1.6.0 及之前把 `cut1` 作为默认切分方式，还在配置和文档里标注「推荐」。但这个参数的真实行为是「按句号切，**每块尽量凑够 4 句**」——短回复凑不够 4 句就被合并成一整块，**实际根本不切分**，`fragment_interval` 也跟着失效。\n\n表现就是：明明句子有句号，语音听起来却是一口气念完，没有呼吸感。\n\n### 实测数据\n\n同一段 38 字文本（三个句号）：\n\n| 配置 | 时长 | 停顿数 | 发声段长度 |\n|---|---|---|---|\n| `cut1` + `fragment_interval=0.0`（旧默认） | 4.88s | **0** | — |\n| `cut0`（新默认） | 4.76s | 2 | 0.29s |\n| `cut5` + `fragment_interval=0.1` | 7.52s | 4 | 0.29s |\n\n`cut0` 在时长几乎不变的情况下，由模型自己生成了自然停顿。\n\n### 改动\n\n**默认切分方式 `cut1` → `cut0`**\n\n整段一次合成，由模型自己决定在哪停顿，听感最自然。长文本仍可用 `cut5` 配合 `fragment_interval` 获得更明确的停顿。\n\n**重写三处参数说明**\n\n- `text_split_method`：写清每种方式的真实行为，点明 `cut1` 短句不切分的陷阱\n- `speed_factor`：原文档说「0.9 = 慢 10%」，实测该参数**不呈线性**，0.9~1.0 之间几乎听不出差别，1.2 以上才明显加快\n- `fragment_interval`：补充生效前提——只在文本真的被切成多段时才起作用\n\n### 升级建议\n\n**建议所有用户升级。** 如果你之前困惑于「语音没有停顿」，或者试过调 `fragment_interval` 却没效果，就是这个问题。\n\n升级后如果想保留原来的连贯风格，把 `text_split_method` 改回 `cut1` 即可；但更推荐试试 `cut0` 或 `cut5`。\n\n### 兼容性\n\n- 配置文件结构未变，无需迁移\n- 已有 `config.toml` 里的显式设置不会被覆盖（默认值只影响新生成的配置）\n- 全部 386 项测试通过\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.1",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.0",
           "tag": "v1.6.0",
           "commit": "07e62adaecc55c5f13023afdead0389b4bc06a3e",
