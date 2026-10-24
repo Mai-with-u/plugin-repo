@@ -38587,6 +38587,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "265ac63fbe03f4d4efd212e35e91da17c1eebf66",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T13:29:07Z",
+          "release_url": "https://github.com/senhan1337/MaiBot-blhx-wiki/releases/tag/v0.1.1",
+          "release_notes": "fix: \r\n使用 wiki 查询飓风的风帆船时，舰种图标与阵营图标丢失\r\n\r\nadd: \r\nwiki clear 增加管理员白名单",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.azurlane.blhx-wiki-maibot",
+            "version": "0.1.1",
+            "plugin_type": "tool",
+            "name": "碧蓝航线 wiki",
+            "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
+            "author": {
+              "name": "senhan1337",
+              "url": "https://github.com/senhan1337"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/senhan1337/MaiBot-blhx-wiki"
+            },
+            "host_application": {
+              "min_version": "0.10.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=5.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "25cd74dd56135b0103ab1093f2df800c32a56797",
