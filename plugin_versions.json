@@ -27903,6 +27903,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "1c561d4a12afb7a0861eee393149afc8b8fae69d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T07:14:41Z",
+          "release_url": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/releases/tag/v0.2.0",
+          "release_notes": "Codex 额度重置提醒 v0.2.0 正式稳定版。此版本已在生产环境长期运行，本次发布不改变任何运行时代码、配置 schema 或状态格式。\n\n## Tibo 动态推送（可选，默认关闭）\n- 独立的 Tibo discovery（Stage 1）：支持普通帖、长帖、带评论的引用帖以及明确回复自己的续帖。\n- 保守排除：回复他人、归属不明的回复、纯转发（repost）、仅含链接的帖子。\n- Tibo 并发准备、逐群按真实时间投递；同轮与跨轮在途尝试保持 oldest-first，失败/异常/取消释放屏障。\n\n## 通知呈现\n- 默认文字通知；可选 HTML 图片通知覆盖全部车道，截图或发图失败时按群回退文字。\n- Tweet 与系统通知模板分别表达真实来源；整块中文翻译显示在英文上方，正文 URL 正常保留。\n- 主帖与引用正文的结构化投票展示：选项、百分比、比例条、总票数、截止状态与可选选项翻译，包括主帖顶层投票（top-level poll）；保留原文，不推测 viewer 的选择。\n\n## 投递可靠性\n- 多群独立的 receipt / retry / 投递顺序。\n- Reset / Banked / Tibo 跨车道去重。\n\n## 兼容性与升级\n- Host `1.2.2`–`1.3.5`；SDK `2.8.0`–`2.10.0`。\n- `config_version` 仍为 `1.3.0`，配置 schema 无变化。\n- 升级到 0.2.0 不会清空已有的 receipt/state。\n\n安装方式：MaiBot 插件 Marketplace 安装 `ShiinaWhite/Codex-Reset-Watcher`，或按 README 手动 shallow clone `v0.2.0` tag。\n",
+          "manifest": {
+            "author": {
+              "name": "野生的金属乌帕",
+              "url": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+            },
+            "capabilities": [
+              "chat.get_stream_by_group_id",
+              "chat.open_session",
+              "llm.generate",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "description": "自动监控 OpenAI Codex 全局额度重置、Banked Reset 与相关告警，翻译成中文并发送到指定 QQ 群",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bell-ring"
+              }
+            },
+            "host_application": {
+              "max_version": "1.3.5",
+              "min_version": "1.2.2"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "codex-reset.watcher",
+            "license": "MIT",
+            "manifest_version": 2,
+            "name": "Codex 额度重置提醒",
+            "sdk": {
+              "max_version": "2.10.0",
+              "min_version": "2.8.0"
+            },
+            "urls": {
+              "documentation": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+              "homepage": "https://github.com/ShiinaWhite/Codex-Reset-Watcher",
+              "issues": "https://github.com/ShiinaWhite/Codex-Reset-Watcher/issues",
+              "repository": "https://github.com/ShiinaWhite/Codex-Reset-Watcher"
+            },
+            "version": "0.2.0"
+          }
+        },
+        {
           "version": "0.1.13",
           "tag": "v0.1.13",
           "commit": "90174ae7d59ab75d7a6fe6e6c5f826063ac7ccd6",
