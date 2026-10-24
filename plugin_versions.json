@@ -39067,7 +39067,71 @@
       "manifest_id": "github.saltinanon.video-vision",
       "repositoryUrl": "https://github.com/SaltinAnon/maibot-video-vision",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "c479e1cc96a183ab9c3922008c25f97efe557443",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T10:02:21Z",
+          "release_url": "https://github.com/SaltinAnon/maibot-video-vision/releases/tag/v1.0.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.saltinanon.video-vision",
+            "version": "1.0.1",
+            "name": "视频识眼",
+            "description": "让麦麦真正看见视频：按需抽帧 + 视觉模型一次理解，把视频压缩成一句摘要注入上下文；兼容 SnowLuma / NapCat 统一 QQ 连接器，默认只花一次视觉调用，重复视频零消耗。",
+            "author": {
+              "name": "Saltin",
+              "url": "https://github.com/SaltinAnon"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SaltinAnon/maibot-video-vision",
+              "homepage": "https://github.com/SaltinAnon/maibot-video-vision",
+              "documentation": "https://github.com/SaltinAnon/maibot-video-vision/blob/main/README.md",
+              "issues": "https://github.com/SaltinAnon/maibot-video-vision/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "media",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "video"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.4.9"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
