@@ -38543,6 +38543,60 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.5.1",
+          "tag": "v1.5.1",
+          "commit": "2fc1e15676a4a3228f0f568125ffc92a16f53752",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T21:04:47Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.5.1",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.5.1\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分。两者**功能互斥，请勿同时启用**。\n\n---\n\n## 更新日志\n\n### 🔊 修复：句间停顿过长、听起来发「颤」\n\n长文本会被 GPT-SoVITS 按标点切成多段分别合成，再用**纯数字静音**拼接。API 默认 `fragment_interval = 0.3`，于是每两段之间又被额外塞进 0.3 秒绝对静音，叠加模型自带的句末停顿后，停顿明显过长，前后还有衰减尾音与硬起音。\n\n新增配置项 `fragment_interval`，**默认 0**。\n\n实测同一段 6 句文本：\n\n| | `0.3`（API 默认） | `0.0`（本插件默认） |\n|---|---|---|\n| 平均停顿 | 554ms | **325ms** |\n| 最长停顿 | 760ms | 370ms |\n| 静音占比 | 34.5% | **19.6%** |\n| 总时长 | 10.12s | **8.80s** |\n\n停顿变回自然换气长度，整体语速也不再被拖慢。\n\n```toml\n[gpt_sovits]\nfragment_interval = 0.0   # 默认即 0，通常无需改动\n```\n\n### 🔤 新增：底模版本选择\n\n不同 GPT-SoVITS 底模支持的语言并不相同。此前插件把检测到的语言原样透传，遇到不支持的语言会得到一堆看不懂的报错。\n\n新增 `model_version`，在配置页渲染为下拉框：\n\n```\nauto / v1 / v2 / v2Pro / v2ProPlus / v3 / v4 / v5dev / v5turbo\n```\n\n选 `auto`（默认）时按**每个风格自己的**权重路径分别推断，因此不同风格用不同版本的模型也能各自识别；填具体版本则所有风格统一使用。\n\n推断只看**文件名**与**直接父目录**：\n\n```\nSoVITS_weights_v2ProPlus/azuma3_e8_s368.pth   → v2ProPlus\nSoVITS_weights_v1/azuma_e10.pth               → v1\nweights/my_model.pth                          → 推断不出，按 v2ProPlus 处理\n```\n\n> 之所以只看这两段：GPT-SoVITS 的**根目录**本身就常叫 `GPT-SoVITS-v2pro-xxxx`。若对整条路径匹配，一份 v1 权重会被根目录里的 `v2pro` 误判成 v2Pro。\n\n版本名大小写不敏感，手写 `v2proplus` / `V2PROPLUS` 都能识别，不会因校验失败导致整份配置加载失败。\n\n#### 各版本语言支持\n\n| `model_version` | 支持的语言 |\n|---|---|\n| `v1` | 中文 / 英语 / 日语 |\n| `v2`、`v2Pro`、`v2ProPlus`、`v3`、`v4`、`v5dev`、`v5turbo` | 中文 / 英语 / 日语 / 粤语 |\n\n俄语、法语、德语、西班牙语、泰语、阿拉伯语、印地语、希腊语等，**所有版本都不支持**。\n\n### 🛡️ 修复：不支持的语种导致 400 与空白音频\n\n这是本次最容易被撞上的问题：\n\n```\nGPT-SoVITS API 失败[400]: {\"message\":\"tts failed\",\n                           \"Exception\":\"exceptions must derive from BaseException\"}\n```\n\n**韩语（`ko`）在所有版本上都不可用**，且与版本无关：\n\nWindows 下 `text/korean.py` 依赖 `eunjeon`（mecab 的韩语分词绑定）。没装时该模块会自动尝试 `pip install eunjeon`，而这个包需要 MSVC 构建工具才能编译。安装失败后，模块抛出一个**并非 `Exception` 的对象**，Python 于是报出上面那句让人摸不着头脑的话。\n\nv2 / v3 / v4 / v5 共用同一份 `korean.py`，所以全都会这样。插件现在统一拦截。\n\n遇到不支持的语言时，按文本能否朗读分流：\n\n| 情况 | 处理 | 例子 |\n|---|---|---|\n| 中文模型读得出 | 回退 `zh` 合成 | 法语 `Bonjour`、粤语「唔该晒」 |\n| 中文模型读不出 | 跳过合成 | 韩文谚文、俄文西里尔字母 |\n\n> 为什么要区分：用中文音素硬读谚文或西里尔字母，API 不报错，但返回的是**约 0.06 秒的空白音频**——比直接失败更糟，用户会以为插件坏了。\n\n### 🔧 其他修正\n\n- **v1 不支持粤语**：`api_v2.py` 的语言表只有两套，v1 为 `[en, zh, ja, all_zh, all_ja]`，v2 及以上才含 `yue`。此前白名单写错了\n- **语言白名单成员修正**：v3/v4 原被错标为支持韩语，已按实际行为更正\n\n---\n\n## 功能总览\n\n- **自动语气**：未指定风格时按文本内容自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频\n- **底模版本匹配**：选择底模版本后自动匹配语言白名单，拦截不支持的语言\n- **纯数字专用风格**：纯数字文本可指定独立风格\n- **概率语音**：按概率自动把文字回复转成语音\n- **语速控制**：`speed_factor` 全局调节合成语速\n- **分段间隔**：`fragment_interval` 控制分段之间是否插入静音\n- **文本清洗**：剔除零宽字符、BOM 等不可见字符\n- **音频校验**：拦截静音崩坏音频\n- **配置校验**：配置缺失时给出明确指引\n\n---\n\n## 安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n> **参考音频要求**：3~10 秒、单句、干净无背景音乐的人声。\n> `prompt_text` 必须与音频内容逐字对应，否则合成会出现杂音或空白音频。\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nmodel_version = \"auto\"      # 底模版本，决定允许合成哪些语言\nspeed_factor = 0.92\nfragment_interval = 0.0     # 分段间隔，保持 0 让停顿更自然\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\nsovits_weights = \"SoVITS_weights_v2ProPlus/model_e10.pth\"\n```\n\n---\n\n## 升级说明\n\n**从 1.5.0 升级无需改动配置**，`model_version` 与 `fragment_interval` 的默认值都是安全值。\n\n两点行为变化需要知道：\n\n1. **分段间隔变短了**。默认值从 API 的 0.3 秒变为 0，句间停顿更自然。若你之前依赖那个额外停顿，可手动设回去。\n2. **不支持的语言不再静默失败**。以前遇到韩语/俄语会拿到 400，用户不知道发生了什么；现在会跳过并记录日志。若 `send_error_messages = false`，用户不会看到错误信息，只是这条语音不会发出。\n\n---\n\n## 测试\n\n| 测试项 | 结果 |\n|---|---|\n| 语言检测 | 43/43 |\n| 底模版本与语言白名单 | 65/65 |\n| 纯数字判断 | 38/38 |\n| 数字风格路由 | 20/20 |\n| 概率语音 | 29/29 |\n| 单元测试 | 51/51 |\n\n合计 **246 项全部通过**，另做了 25 项端到端验证与真实服务复测。\n\n真实服务验证（绕过插件直接请求后端）：\n\n| `text_lang` | 后端反应 |\n|---|---|\n| `ko` | 400 `exceptions must derive from BaseException` |\n| `ru` | 400 `text_lang: ru is not supported in version v2ProPlus` |\n| `zh` | 200，正常音频 |\n\n经插件拦截后，韩语/俄语/希腊语均不再发出请求；中文、日语、粤语真实合成均正常。\n\n---\n\n## 许可\n\n沿用原版 AGPL-3.0-or-later。原作者 CGl123 署名保留在 README「来源说明」章节与 `description` 字段中。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.5.1",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
