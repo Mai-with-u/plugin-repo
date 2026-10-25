@@ -35402,6 +35402,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "9c12eef80d37bdcd9953850ffd4b46a91a999766",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:54:15Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.6",
+          "release_notes": "## 更新\n\n- 「贴吧原页面」渲不出来时自动改用「自绘卡片」把帖子发出去，不再直接跳过这帖；同一轮里确认走不通之后，剩下的帖不再逐个白等一遍超时，下一轮自动恢复。这主要针对主程序搭配 Playwright 1.60 及更早版本时的已知缺陷（详见上面「注意事项」）。\n- 「自绘卡片」改成贴吧手机版的配色：浅灰底、白色楼层卡、贴吧蓝强调色，与「贴吧原页面」观感一致。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.6",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.5",
           "tag": "v1.1.5",
           "commit": "69d93dee4f2d1a816e21f9883bcccc38bf6b01fa",
