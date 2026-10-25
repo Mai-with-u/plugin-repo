@@ -25336,6 +25336,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.23.7",
+          "tag": "v1.23.7",
+          "commit": "80f025d75dd99fe56e23327cb0f23bffef9e4810",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T17:52:49Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.23.7",
+          "release_notes": "## 修复\r\n\r\n- **emoji 解析失败重试被 duplicate_turn 循环拦截**：配了起止不同的夜窗/午休窗后，日程表情包解析失败触发 Host 重试时， 的轮次锁仍持有旧预留，重试轮被连续抑制约两分钟。现在  时自动释放旧锁并重新预留（plugin.py ）。\r\n- docs/ 目录改为只入库 （maibot.schedule 协议 v1 接口文档），其余文档转为本地文件。\r\n\r\n## 说明\r\n\r\n- 581 项测试通过（+4 重试锁测试：首放/零重试拦/重试释放/不同 anchor 不影响）。\r\n- 版本号 6 处 1.23.7。\r\n\r\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.23.6...v1.23.7",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.23.7",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.23.4",
           "tag": "v1.23.4",
           "commit": "54e18d0a5ff28dc4e1f8d235d794acfb1ebd9144",
