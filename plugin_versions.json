@@ -38358,7 +38358,152 @@
       "manifest_id": "maibot-team.xiaoheihe-adapter",
       "repositoryUrl": "https://github.com/SengokuCola/xiaoheihe_adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.8.2",
+          "tag": "v0.8.2",
+          "commit": "c569c6083e933255d5274757ab3acc0395dcced9",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-21T12:17:49Z",
+          "release_url": "https://github.com/SengokuCola/xiaoheihe_adapter/releases/tag/v0.8.2",
+          "release_notes": "# 0.8.2\r\n\r\n- 配置统一由 `AdapterSettings` schema 生成 WebUI 界面与默认配置，宿主首次加载时自动创建实际配置。\r\n- 移除配置模板文件及文档中的模板使用说明。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.xiaoheihe-adapter",
+            "version": "0.8.2",
+            "name": "小黑盒社区适配器",
+            "description": "接收小黑盒社区 @ 和回复，主动浏览、评论，并由 Replyer 生成多段浏览总结帖。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "homepage": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "issues": "https://github.com/SengokuCola/xiaoheihe_adapter/issues"
+            },
+            "license": "MIT",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8,<3"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "chat.get_group_streams",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.8.1",
+          "tag": "v0.8.1",
+          "commit": "8a2a80c080cf28547932dbbe5ddfae766967d6ed",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-21T12:09:45Z",
+          "release_url": "https://github.com/SengokuCola/xiaoheihe_adapter/releases/tag/v0.8.1",
+          "release_notes": "# 小黑盒社区适配器 0.8.1（实验版）\r\n\r\n接入小黑盒社区的 @ 提及和评论回复，使用麦麦自己的聊天、人格、记忆及回复流程。\r\n\r\n## 主要功能\r\n\r\n- 扩展页面扫码登录，查看账号连接状态和帖子互动时间线。\r\n- 按所选分区主动浏览，由麦麦决定是否发表评论。\r\n- 按数量或时间汇总浏览素材，由 Replyer 生成标题和多段正文并发布总结帖；默认关闭主动发帖。\r\n- 支持评论文字、图片及表情包，按具体消息定位回复目标。\r\n\r\n## 安装与兼容\r\n\r\n- 需要 MaiBot 1.3.6–1.3.99、插件 SDK 2.12.x。\r\n- 将 ZIP 解压到 `plugins/xiaoheihe_adapter`，安装依赖并重载插件后，在扩展页面扫码登录。\r\n- 仅分发 `config.example.toml`；实际配置、登录凭据、数据库、日志、二维码及备份均不在发布包中。\r\n\r\n## 验证与已知限制\r\n\r\n- 89 项自动化测试通过，使用模拟 HTTP/网关和临时数据库。\r\n- 待发布源码经 Gitleaks 扫描未发现泄漏，ZIP 内容已逐文件校验。\r\n- 社区接口属于非官方稳定 API；带图评论尚未完成真实发布联调，完整说明见 README。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.xiaoheihe-adapter",
+            "version": "0.8.1",
+            "name": "小黑盒社区适配器",
+            "description": "接收小黑盒社区 @ 和回复，主动浏览、评论，并由 Replyer 生成多段浏览总结帖。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "homepage": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "issues": "https://github.com/SengokuCola/xiaoheihe_adapter/issues"
+            },
+            "license": "MIT",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8,<3"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "chat.get_group_streams",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
