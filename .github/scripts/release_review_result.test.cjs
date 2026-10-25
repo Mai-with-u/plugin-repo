@@ -46,7 +46,7 @@ test('只有明确通过、源码已检查且风险为空的版本进入自动�
     Object.assign(result.releases[0], change);
     validateReleaseReview(result, targets);
     assert.deepEqual(passedReleases(result), [first]);
-    assert.match(renderReleaseReview(result), /2\.0\.0：需人工处理/);
+    assert.match(renderReleaseReview(result, targets), /2\.0\.0：需人工处理/);
   }
 });
 
@@ -60,7 +60,7 @@ test('summary 缺失与空内容仍可定位，长说明和风险不再导致校
   result.releases[0].summary = '字'.repeat(100000);
   result.releases[0].risks = Array.from({ length: 25 }, () => '风险'.repeat(5000));
   assert.doesNotThrow(() => validateReleaseReview(result, targets));
-  assert.ok(renderReleaseReview(result).length < 60000);
+  assert.ok(renderReleaseReview(result, targets).length < 60000);
   assert.equal(result.releases[0].summary.length, 100000);
 });
 
@@ -152,7 +152,7 @@ test('非法 JSON、协议错误、身份错误和多份结论整批转人工，
     assert.deepEqual(passedReleases(result), []);
     assert.deepEqual(result.releases.map(({ version, tag, commit }) => ({ version, tag, commit })), targets.releases);
     assert.ok(result.releases.every(item => !item.reviewed && item.decision === 'manual_review' && item.risks.length));
-    assert.match(renderReleaseReview(result), /codex-review-raw.md/);
+    assert.match(renderReleaseReview(result, targets), /codex-review-raw.md/);
   }
   assert.deepEqual(finalizeReleaseReview(json, targets), { result: review(), error: null });
 });
@@ -164,7 +164,7 @@ test('格式错误的审核经自动收录链路处理后保留全部版本给�
   const { result } = finalizeReleaseReview(JSON.stringify(review()).slice(0, -1), targets);
   const outcome = await applyReleaseReview({ root, issue, result, targets,
     request: async () => assert.fail('不能请求收录'), botLogin: 'mai[bot]' });
-  assert.deepEqual(outcome, { passed: [], manual: ['2.0.0', '1.0.0'] });
+  assert.deepEqual(outcome, { passed: [], rejected: [], manual: ['2.0.0', '1.0.0'] });
   assert.equal(fs.readFileSync(file, 'utf8'), before);
 });
 
@@ -192,18 +192,16 @@ function request(url) {
   return Promise.resolve({ type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify(manifest)).toString('base64') });
 }
 
-test('混合批次只自动收录安全版本，有风险版本交给人工；全部安全可完成批次', async t => {
+test('只有旧版本通过时保留最新 Release 给人工处理', async t => {
   const root = workspace(t);
   const result = review();
   result.releases[0].decision = 'manual_review';
   result.releases[0].risks = ['用户输入拼接到 shell 命令'];
   const outcome = await applyReleaseReview({ root, issue, result, targets, request, botLogin: 'mai[bot]' });
-  assert.deepEqual(outcome, { passed: [first], manual: ['2.0.0'] });
+  assert.deepEqual(outcome, { passed: [first], rejected: [], manual: ['2.0.0'] });
   const file = path.join(root, 'plugin_versions.json');
   assert.deepEqual(JSON.parse(fs.readFileSync(file)).plugins[0].versions.map(item => item.version), ['1.0.0']);
-  const complete = await applyReleaseReview({ root, issue, result: review(), targets, request, botLogin: 'mai[bot]' });
-  assert.deepEqual(complete.manual, []);
-  assert.deepEqual(JSON.parse(fs.readFileSync(file)).plugins[0].versions.map(item => item.version), ['2.0.0', '1.0.0']);
+  assert.equal(fs.existsSync(path.join(root, 'blocked_release_versions.json')), false);
 });
 
 test('全部不确定时不触碰版本索引，不调用 Release 接口', async t => {
@@ -214,7 +212,65 @@ test('全部不确定时不触碰版本索引，不调用 Release 接口', async
   result.releases.forEach(item => { item.reviewed = false; });
   const outcome = await applyReleaseReview({ root, issue, result, targets, request: async () => assert.fail('不应请求'), botLogin: 'mai[bot]' });
   assert.deepEqual(outcome.passed, []);
+  assert.deepEqual(outcome.rejected, []);
+  assert.deepEqual(outcome.manual, ['2.0.0', '1.0.0']);
   assert.equal(fs.readFileSync(file, 'utf8'), before);
+});
+
+test('最新 Release 以批次发布时间顺序为准，不取最大版本号或模型输出首项', async t => {
+  for (const latestPasses of [true, false]) {
+    const root = workspace(t);
+    const batch = { ...targets, releases: [first, second] };
+    const currentIssue = { ...issue, body: `<!-- plugin-release: ${JSON.stringify(batch)} -->` };
+    const result = review(); // 模型顺序与批次相反。
+    const failed = result.releases.find(item => item.version === (latestPasses ? second.version : first.version));
+    failed.reviewed = false;
+    const outcome = await applyReleaseReview({ root, issue: currentIssue, result, targets: batch, request, botLogin: 'mai[bot]' });
+    assert.deepEqual(outcome, latestPasses
+      ? { passed: [first], rejected: [second.version], manual: [] }
+      : { passed: [second], rejected: [], manual: [first.version] });
+  }
+});
+
+test('更高版本通过后自动拒绝风险低版本，持久化且重复执行不重复记录', async t => {
+  const root = workspace(t);
+  const result = review();
+  Object.assign(result.releases[1], { decision: 'manual_review', risks: ['命令注入风险'] });
+  assert.match(renderReleaseReview(result, targets), /1\.0\.0：未通过，同批次最新 Release 已通过/);
+  for (let i = 0; i < 2; i++) {
+    const outcome = await applyReleaseReview({ root, issue, result, targets, request, botLogin: 'mai[bot]' });
+    assert.deepEqual(outcome, { passed: [second], rejected: ['1.0.0'], manual: [] });
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, 'blocked_release_versions.json'))), [{ ...plugin, version: first.version }]);
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, 'plugin_versions.json'))).plugins[0].versions.map(item => item.version), ['2.0.0']);
+    assert.deepEqual(require('./release_commands.cjs').pendingReleases(root, targets), []);
+  }
+});
+
+test('高版本通过时缺少审核依据的低版本也自动拒绝', async t => {
+  for (const field of ['summary', 'reviewed', 'risks']) {
+    const root = workspace(t);
+    const result = review();
+    delete result.releases[1][field];
+    const outcome = await applyReleaseReview({ root, issue, result: parseReleaseReview(JSON.stringify(result), targets), targets, request, botLogin: 'mai[bot]' });
+    assert.deepEqual(outcome, { passed: [second], rejected: ['1.0.0'], manual: [] });
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, 'blocked_release_versions.json'))), [{ ...plugin, version: first.version }]);
+  }
+});
+
+test('同批次全部直接通过时收录全部版本，不拒绝也不转人工', async t => {
+  const root = workspace(t);
+  const outcome = await applyReleaseReview({ root, issue, result: review(), targets, request, botLogin: 'mai[bot]' });
+  assert.deepEqual(outcome, { passed: [second, first], rejected: [], manual: [] });
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, 'plugin_versions.json'))).plugins[0].versions.map(item => item.version), ['2.0.0', '1.0.0']);
+});
+
+test('高版本收录失败时不会提前永久拒绝低版本', async t => {
+  const root = workspace(t);
+  const result = review();
+  Object.assign(result.releases[1], { decision: 'manual_review', risks: ['命令注入风险'] });
+  await assert.rejects(applyReleaseReview({ root, issue, result, targets, botLogin: 'mai[bot]',
+    request: async () => { throw new Error('请求失败'); } }));
+  assert.equal(fs.existsSync(path.join(root, 'blocked_release_versions.json')), false);
 });
 
 test('审核对象修改、已拒绝或已关闭的批次不会自动放行', async t => {

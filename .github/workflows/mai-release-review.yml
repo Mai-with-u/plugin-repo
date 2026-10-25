@@ -79,7 +79,7 @@ jobs:
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git add plugin_versions.json
+          git add plugin_versions.json blocked_release_versions.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: 自动收录审核通过的插件版本"
             git push origin HEAD:main
@@ -106,7 +106,7 @@ jobs:
                 await github.rest.issues.getLabel({ ...context.repo, name: 'auto-approved' });
               } catch (error) {
                 if (error.status !== 404) throw error;
-                await github.rest.issues.createLabel({ ...context.repo, name: 'auto-approved', color: '0e8a16', description: '发布版本全部通过 AI 审核并自动收录' });
+                await github.rest.issues.createLabel({ ...context.repo, name: 'auto-approved', color: '0e8a16', description: '发布批次已自动处理，通过版本已收录' });
               }
               await github.rest.issues.addLabels({ ...params, labels: ['auto-approved'] });
               const { data: issue } = await github.rest.issues.get(params);
@@ -116,7 +116,8 @@ jobs:
             }
             await github.rest.issues.createComment({ ...params, body:
               (outcome.passed.length ? `✅ 已自动收录：${outcome.passed.map(item => item.version).join('、')}。\n\n` : '') +
-              (outcome.manual.length ? `⚠️ 需人工处理：${outcome.manual.join('、')}。请维护者核实风险后决定是否批准。` : '✅ 本批次全部通过，已完成自动收录。') });
+              (outcome.rejected.length ? `❌ 已自动拒绝：${outcome.rejected.join('、')}。同批次最新 Release 已通过审核。\n\n` : '') +
+              (outcome.manual.length ? `⚠️ 需人工处理：${outcome.manual.join('、')}。请维护者核实风险后决定是否批准。` : '✅ 本批次已完成自动处理。') });
             if (!outcome.manual.length) await github.rest.issues.update({ ...params, state: 'closed' });
 
       - name: Notify release developer

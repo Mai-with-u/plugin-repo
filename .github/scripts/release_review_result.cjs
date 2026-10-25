@@ -103,6 +103,14 @@ function passedReleases(result) {
     .map(({ version, tag, commit }) => ({ version, tag, commit }));
 }
 
+function rejectedReleases(result, batch) {
+  const passed = new Set(passedReleases(result).map(item => item.version));
+  // 批次按发布时间降序保存；模型输出可能重排，不能用于判断最新 Release。
+  if (!passed.has(batch?.releases[0]?.version)) return [];
+  return result.releases.filter(item => !passed.has(item.version))
+    .map(({ version }) => version);
+}
+
 // A malformed model response is evidence of an incomplete review, never approval.
 // Keep strict parsing for consumers; only the workflow converts it to manual work.
 function finalizeReleaseReview(text, batch) {
@@ -119,10 +127,11 @@ function finalizeReleaseReview(text, batch) {
   }
 }
 
-function renderReleaseReview(result) {
+function renderReleaseReview(result, batch) {
   const passed = new Set(passedReleases(result).map(item => item.version));
+  const rejected = new Set(rejectedReleases(result, batch));
   const excerpt = value => value.length > 2500 ? `${value.slice(0, 2500)}…（完整内容见审核产物）` : value;
-  const summary = result.releases.map(item => `### ${item.version}：${passed.has(item.version) ? '通过，等待自动收录' : '需人工处理'}\n\n` +
+  const summary = result.releases.map(item => `### ${item.version}：${passed.has(item.version) ? '通过，等待自动收录' : rejected.has(item.version) ? '未通过，同批次最新 Release 已通过，等待自动拒绝' : '需人工处理'}\n\n` +
     `Commit：\`${item.commit}\`\n\n${excerpt(item.summary)}\n` +
     excerpt(item.risks.map(risk => `- ${risk}`).join('\n'))).join('\n\n');
   const structured = JSON.stringify(result, null, 2);
@@ -138,6 +147,6 @@ if (require.main === module) {
   const { result, error } = finalizeReleaseReview(raw, batch);
   if (error) console.warn(error);
   fs.writeFileSync('release-review.json', JSON.stringify(result, null, 2));
-  fs.writeFileSync('codex-review.md', renderReleaseReview(result));
+  fs.writeFileSync('codex-review.md', renderReleaseReview(result, batch));
 }
-module.exports = { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, passedReleases, renderReleaseReview };
+module.exports = { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, passedReleases, rejectedReleases, renderReleaseReview };

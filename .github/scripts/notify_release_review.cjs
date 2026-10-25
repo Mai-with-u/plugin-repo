@@ -1,5 +1,5 @@
 const { parseReleaseIssue } = require('./release_review.cjs');
-const { validateReleaseReview, passedReleases } = require('./release_review_result.cjs');
+const { validateReleaseReview, passedReleases, rejectedReleases } = require('./release_review_result.cjs');
 
 const MARKER = '<!-- mai-release-developer-notification -->';
 const MISSING_EVIDENCE = ['缺少审核说明', '缺少源码检查状态', '缺少有效风险列表'];
@@ -21,10 +21,12 @@ async function notifyReleaseReview({ github, params, issue, result, published = 
   }
   if (!developers.size) throw new Error('无法确定发布开发者，未发送通知');
   const passed = new Set(result ? passedReleases(result).map(item => item.version) : []);
+  const rejected = new Set(result && published ? rejectedReleases(result, batch) : []);
   const success = [], failed = [], pending = [];
   for (const release of batch.releases) {
     const review = result?.releases.find(item => item.version === release.version);
     if (passed.has(release.version)) (published ? success : failed).push(release.version);
+    else if (rejected.has(release.version)) failed.push(release.version);
     else if (review?.reviewed && review.risks.length && !review.risks.some(risk => MISSING_EVIDENCE.includes(risk))) failed.push(release.version);
     else pending.push(release.version);
   }

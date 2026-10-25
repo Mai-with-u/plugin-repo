@@ -18,10 +18,17 @@ test('登记与 Release 请求只路由到对应审核入口', () => {
       event: { issue: { labels: labels.map(name => ({ name })) }, comment: { body: comment }, label: { name: label } } };
     return routes.map(fn => fn(github, (value, target) => value.includes(target)));
   }
-  for (const label of ['plugin-submission', 'plugin-modification', 'plugin-removal']) {
+  for (const label of ['plugin-submission', 'plugin-modification']) {
     assert.deepEqual(route([label, 'validated']), [true, false]);
     assert.deepEqual(route([label, 'validated'], 'issue_comment'), [true, false]);
     assert.deepEqual(route([label, 'validated'], 'issue_comment', '/mr'), [true, false]);
+  }
+  for (const labels of [ ['plugin-removal', 'validated'],
+    ['plugin-removal', 'plugin-submission', 'validated'],
+    ['plugin-removal', 'plugin-modification', 'validated'] ]) {
+    assert.deepEqual(route(labels), [false, false]);
+    assert.deepEqual(route(labels, 'issue_comment'), [false, false]);
+    assert.deepEqual(route(labels, 'issue_comment', '/mr'), [false, false]);
   }
   assert.deepEqual(route(['plugin-release', 'validated']), [false, true]);
   assert.deepEqual(route(['plugin-release', 'plugin-submission', 'validated']), [false, true]);

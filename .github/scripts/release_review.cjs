@@ -118,7 +118,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
           `- 插件：\`${plugin.id}\`\n- 仓库：${data.repositoryUrl}\n\n` +
           `| 发布版本 | Commit |\n| --- | --- |\n${rows}\n\n` +
           (data.discarded.length ? `本次跳过较早的 ${data.discarded.length} 个 Release，不收录、不补开审核。\n\n` : '') +
-          `无风险且完整审核的版本自动收录；有风险或结论不确定的版本留给维护者。维护者核实后可发送独立的 \`/approve\` 或 \`/ap\` 批准剩余版本，或使用 \`/reject 原因\` 拒绝。`,
+          `无风险且完整审核的版本自动收录；只有同批次最新 Release 通过，其余未通过或依据不足的旧版本才自动拒绝；最新 Release 未通过时，未通过的版本交给维护者。维护者核实后可发送独立的 \`/approve\` 或 \`/ap\` 批准剩余版本，或使用 \`/reject 原因\` 拒绝。`,
         labels: [LABEL],
       }),
     });

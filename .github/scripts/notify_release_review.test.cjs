@@ -18,15 +18,15 @@ function fixture({ organization = false } = {}) {
     issue: { body: `<!-- plugin-release: ${JSON.stringify(batch)} -->` }, botLogin: 'mai[bot]' };
 }
 
-test('通知单独提及开发者，并准确列出收录、风险和待确认版本', async () => {
+test('通知将同批次未通过和依据不足版本列为拒绝', async () => {
   const data = fixture();
   await notifyReleaseReview({ ...data, published: true });
   assert.equal(data.comments.length, 1);
   const { body } = data.comments[0];
   assert.match(body, /@developer/);
   assert.match(body, /成功收录 \| `1.0.0`/);
-  assert.match(body, /未通过或收录失败 \| `1.1.0`/);
-  assert.match(body, /待确认 \| `1.2.0`/);
+  assert.match(body, /未通过或收录失败 \| `1.1.0`、`1.2.0`/);
+  assert.match(body, /待确认 \| 无/);
   await notifyReleaseReview({ ...data, published: true });
   assert.equal(data.comments.length, 1);
 });
@@ -38,6 +38,16 @@ test('收录失败不会报成功，缺失审核依据保留为待确认', async
   assert.match(data.comments[0].body, /成功收录 \| 无/);
   assert.match(data.comments[0].body, /未通过或收录失败 \| `1.0.0`/);
   assert.match(data.comments[0].body, /待确认 \| `1.1.0`、`1.2.0`/);
+});
+
+test('最新 Release 未通过时通知仍保留依据不足版本为待确认', async () => {
+  const data = fixture();
+  const batch = JSON.parse(data.issue.body.match(/<!-- plugin-release: (.+) -->/)[1]);
+  batch.releases.reverse();
+  data.issue.body = `<!-- plugin-release: ${JSON.stringify(batch)} -->`;
+  await notifyReleaseReview({ ...data, published: true });
+  assert.match(data.comments[0].body, /成功收录 \| `1.0.0`/);
+  assert.match(data.comments[0].body, /待确认 \| `1.2.0`/);
 });
 
 test('组织仓库通知发布作者，合并重复提及；外部伪造标记不阻止通知', async () => {

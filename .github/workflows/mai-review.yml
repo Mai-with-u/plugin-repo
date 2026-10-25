@@ -16,16 +16,15 @@ jobs:
   mai-review:
     if: >-
       !contains(github.event.issue.labels.*.name, 'plugin-release') &&
+      !contains(github.event.issue.labels.*.name, 'plugin-removal') &&
       ((github.event_name == 'issues' &&
         github.actor != 'github-actions[bot]' &&
         github.event.label.name == 'validated' &&
         (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
-         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
-         contains(github.event.issue.labels.*.name, 'plugin-removal'))) ||
+         contains(github.event.issue.labels.*.name, 'plugin-modification'))) ||
        (github.event_name == 'issue_comment' &&
         (contains(github.event.issue.labels.*.name, 'plugin-submission') ||
-         contains(github.event.issue.labels.*.name, 'plugin-modification') ||
-         contains(github.event.issue.labels.*.name, 'plugin-removal')) &&
+         contains(github.event.issue.labels.*.name, 'plugin-modification')) &&
         contains(github.event.issue.labels.*.name, 'validated') &&
         (github.event.comment.body == '/mai_review' || github.event.comment.body == '/mr')))
     uses: ./.github/workflows/mai-review-run.yml

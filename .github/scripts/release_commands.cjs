@@ -7,7 +7,8 @@ function pendingReleases(root, batch) {
   const index = JSON.parse(fs.readFileSync(path.join(root, 'plugin_versions.json'), 'utf8'));
   const normalize = url => url.replace(/\/$/, '').replace(/\.git$/, '').toLowerCase();
   const plugin = index.plugins.find(item => item.id === batch.id && normalize(item.repositoryUrl) === normalize(batch.repositoryUrl));
-  return batch.releases.filter(release => !plugin?.versions.some(item =>
+  const blocked = blockedReleaseVersions(root);
+  return batch.releases.filter(release => !isBlockedRelease(blocked, batch, release.version) && !plugin?.versions.some(item =>
     item.version === release.version && item.tag === release.tag && item.commit === release.commit && !item.yanked));
 }
 
@@ -40,7 +41,8 @@ function rejectReleaseCommand({ root, issue, botLogin }) {
     if (!isBlockedRelease(blocked, batch, item.version)) blocked.push({ id: batch.id, repositoryUrl: batch.repositoryUrl, version: item.version });
   }
   fs.writeFileSync(path.join(root, 'blocked_release_versions.json'), `${JSON.stringify(blocked, null, 2)}\n`);
-  return { rejected: pending.map(item => item.version), approved: batch.releases.filter(item => !pending.includes(item)).map(item => item.version) };
+  return { rejected: pending.map(item => item.version), approved: batch.releases.filter(item =>
+    !pending.includes(item) && !isBlockedRelease(blocked, batch, item.version)).map(item => item.version) };
 }
 
 module.exports = { pendingReleases, approvalTargets, approveReleaseCommand, rejectReleaseCommand };
