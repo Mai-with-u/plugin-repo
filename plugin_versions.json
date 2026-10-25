@@ -39805,7 +39805,70 @@
       "manifest_id": "myxxr.mimo-rollback",
       "repositoryUrl": "https://github.com/myxxr/MaiBot-MiMo-rollback",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "592fbbccc21914138bfefc76ff1278909fa8575c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T06:32:06Z",
+          "release_url": "https://github.com/myxxr/MaiBot-MiMo-rollback/releases/tag/v1.0.2",
+          "release_notes": "## 1.0.2\n\n- manifest 增加 `plugin_type: provider`。\n- 安全加固：\n  - 不再跟随 HTTP 重定向（`3xx` 直接报错），避免附加 Header 与请求体（含聊天内容）被带到重定向目标；\n  - `base_url` / `base_url_override` 增加协议与主机校验：非 `http(s)` 直接报错，`http` 明文与内网/回环/云元数据地址输出告警；\n  - `auth_type=query` 首次使用时告警（api_key 会进入 URL 查询参数，可能被访问日志记录）。\n\n## 安装\n\n1. 解压 `maibot-mimo-rollback-v1.0.2.zip`；\n2. 把 `maibot-mimo-rollback` 文件夹放进 MaiBot 的 `plugins/`；\n3. 重启 MaiBot 或在 WebUI 重载插件。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "myxxr.mimo-rollback",
+            "version": "1.0.2",
+            "name": "MaiBot-MiMo-rollback",
+            "description": "接入小米 MiMo 的 OpenAI 兼容接口；当 MiMo 把 high risk 拦截文本当作正常回答返回时，把它识别为错误并交由主程序重试 / 切换模型，避免该文本被直接发给用户",
+            "author": {
+              "name": "myxxr",
+              "url": "https://github.com/myxxr"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "homepage": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "documentation": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "issues": "https://github.com/myxxr/MaiBot-MiMo-rollback/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "provider",
+            "host_application": {
+              "min_version": "1.1.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "mimo.provider",
+                "name": "Xiaomi MiMo Provider",
+                "description": "小米 MiMo OpenAI 兼容接口，带 high risk 拦截识别",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
