@@ -39933,7 +39933,65 @@
       "manifest_id": "github.42yoru.maimai-emoji-label-bridge",
       "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "98728c959ba4c748b0959552ef574e15c54bc51d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T18:22:20Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.5",
+          "release_notes": "## 表情标签桥接 0.1.5\n\n采纳第三轮审核的三条小建议（均为非阻塞项）。\n\n### 本版更新\n- README「插件信息」表的版本号与 manifest 对齐（之前漏更到 0.1.2）。\n- 删除 `label_text.strip_tags()` 死代码，相应测试同步收敛。\n- 本地运行确认插件加载日志为「表情库=570 条, 向量=570 条, 已就绪=True」，不是 0 条。\n\n### 功能回顾\n- 三档匹配：精确描述 → 本地标签重叠 → 嵌入向量兜底；阈值按实测校准为 0.68，并加字符重叠门槛。\n- 向量索引落盘并持久化就绪状态，首批 5 秒一轮推进，补齐后 10 分钟一轮增量补录。\n- 配置页已全部汉化（23 项、两个页签），发送层 Hook 超时 5000ms。\n\n详细见 [CHANGELOG](https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/CHANGELOG.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.5",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
