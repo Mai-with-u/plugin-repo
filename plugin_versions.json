@@ -19869,7 +19869,7 @@
           "tag": "v2.0.8",
           "commit": "9406dcf1e08d43f7bc20915e344cfccdb04951ca",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T11:03:11Z",
           "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.8",
           "release_notes": "## 变更\n- /价格刷新 成功应用新牌价后，除文字回报外，再发一张价目表卡片（与 /价格 同款）。\n- 卡片发送失败不影响刷新结果，只记 warning。\n",
@@ -19928,7 +19928,7 @@
           "tag": "v2.0.7",
           "commit": "75cf7b6fc1abb8f1805b21596c118afb70228853",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T10:59:00Z",
           "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.7",
           "release_notes": "## 新增\n- 记录计费口径指纹：`mode / currency / renew_amount / renew_day / share_daily / exchange_rate`。\n- 任一项变化（如 `usd → cny`、月费调整、续费日变更）时，自动触发一次账本重算，避免历史记录混币种或混订阅口径。\n- 首次记录指纹时不重算，避免新装插件就翻旧账。\n\n## 说明\n按量部分的币种切换仍由 `_compute_cost_range` 按每条价格记录的 currency 处理；本版补齐的是套餐/混合口径的历史重算入口。\n",
@@ -19987,7 +19987,7 @@
           "tag": "v2.0.6",
           "commit": "9528f7336f272c822639b91c272b764d0c437bb4",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T10:56:47Z",
           "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.6",
           "release_notes": "## 变更\n- 牌价变更明细会显式标注币种切换，例如 USD → CNY（已按汇率折算比较）。\n- 避免把汇率折算差看成涨价/降价。\n- 覆盖按量计费与混合计费的按量部分；订阅费仍由 [billing].currency 独立控制。\n\n## 验证\nUSD→CNY 与 CNY→USD 双向测试：结构变化 0，数值差异仅汇率折算差（约 7-8%）。\n",
@@ -20046,7 +20046,7 @@
           "tag": "v2.0.5",
           "commit": "ea62eec7c9c82aa23e765069fa2f1a9b7767a834",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T10:53:21Z",
           "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.5",
           "release_notes": "## 修复\n- /价格刷新 成功后回报文字混用了 {} 与 {models}，触发 KeyError: 'models'，导致抓取已成功但用户看不到结果。\n- /价格 价目表里的 {g} / {d} 占位符改为格式说明 {:g}，避免同类错误。\n",
@@ -20105,7 +20105,7 @@
           "tag": "v2.0.4",
           "commit": "dc6e209492c48bbba15c8c67a6837706a72703e3",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-17T10:48:01Z",
           "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.4",
           "release_notes": "## 修复\n- 价带结构签名先换算到 Asia/Shanghai 再比较，避免 `UTC 01:00-04:00` 与 `Asia/Shanghai 09:00-12:00` 这类等价时段被当成「消失 + 新增」的假结构变化。\n- 没有 tzdata 的环境对 UTC 做 +8 兜底。\n\n## 背景\n中文价目页用本地时区表达高峰，英文页用 UTC，价格本身一致，只是坐标系不同。v2.0.4 后两者不会再触发结构性变更。\n",
@@ -20161,8 +20161,33 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "已发布版本 2.0.8 的 commit 被修改\n+ actual - expected\n\n+ '9406dcf1e08d43f7bc20915e344cfccdb04951ca'\n- 'f4dac57acb2b08bedf774315aa36f48afa737028'"
+      "rejected_releases": [
+        {
+          "tag": "v2.0.8",
+          "version": "2.0.8",
+          "error": "已发布版本 2.0.8 的 commit 被修改（actual f4dac57acb2b08bedf774315aa36f48afa737028 / expected 9406dcf1e08d43f7bc20915e344cfccdb04951ca）"
+        },
+        {
+          "tag": "v2.0.7",
+          "version": "2.0.7",
+          "error": "已发布版本 2.0.7 的 commit 被修改（actual d589b6c19e3f25e2da029aca9da466a0bb62064c / expected 75cf7b6fc1abb8f1805b21596c118afb70228853）"
+        },
+        {
+          "tag": "v2.0.6",
+          "version": "2.0.6",
+          "error": "已发布版本 2.0.6 的 commit 被修改（actual f7de0b22aaf0d71d7c362cf28bb5cd84fc6a6840 / expected 9528f7336f272c822639b91c272b764d0c437bb4）"
+        },
+        {
+          "tag": "v2.0.5",
+          "version": "2.0.5",
+          "error": "已发布版本 2.0.5 的 commit 被修改（actual 539f104ee933c335b3d3a8e0084ab03835a6ebfe / expected ea62eec7c9c82aa23e765069fa2f1a9b7767a834）"
+        },
+        {
+          "tag": "v2.0.4",
+          "version": "2.0.4",
+          "error": "已发布版本 2.0.4 的 commit 被修改（actual 80685b0c46c77a02bf562c40ad391f6e3af9b7a0 / expected dc6e209492c48bbba15c8c67a6837706a72703e3）"
+        }
+      ]
     },
     {
       "id": "maitu.photo-studio",
@@ -28102,7 +28127,7 @@
           "tag": "v1.4.3",
           "commit": "a95cb7e3ae3fd3224292e7b313a8e6deed5941aa",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-04T13:28:26Z",
           "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.3",
           "release_notes": "## 本版本说明\n\n安全加固版本，响应插件中心审核意见的三项修复：\n\n- **路径穿越防护**：`image_dir` / `thumbnail_dir` 的相对路径解析后强制限制在插件目录内（`../../` 之类越界配置会告警并回退默认目录）；绝对路径仍支持（数据盘等场景，配置页有可信位置提示）\n- **压缩炸弹防御**：缩略图生成在解码前校验图片像素总数（上限 4000 万像素），恶意超大尺寸图不再可能造成内存耗尽\n- **依赖声明放宽**：`pillow` 声明下限从 `>=12.3.0` 放宽为 `>=10.0.0`——插件所用 API 在 Pillow 10 即可用，主程序基线（`>=12.3.0`）恒满足，避免版本声明对宿主环境产生约束\n\n## 从 1.4.1 / 1.4.2 升级\n\n直接更新即可，配置结构无变化，无需迁移。\n",
@@ -28162,7 +28187,7 @@
           "tag": "v1.4.2",
           "commit": "886d1911a5113f6036f470fc6f49af497fcfcf81",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-04T12:57:31Z",
           "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.2",
           "release_notes": "## 本版本说明\r\n\r\n按插件中心审核建议做的两项小改进，功能无变化：\r\n\r\n- manifest `dependencies` 显式声明 `pillow>=12.3.0`（Pillow 由主程序基线提供，此为自描述声明，安装行为无变化）\r\n- 人设图库路径配置项（`image_dir` / `thumbnail_dir`）在配置页增加「请确保指向可信位置」提示\r\n\r\n## 从 1.4.1 升级\r\n\r\n直接更新即可，配置结构无变化，无需迁移。",
@@ -28222,7 +28247,7 @@
           "tag": "v1.4.1",
           "commit": "ad214b8300bce2a40446f16392133ed7ddae3911",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-04T11:55:11Z",
           "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.1",
           "release_notes": "# 自我信息插件 v1.4.1\r\n\r\n## 本版本说明\r\n\r\n这是接手上游 [self_identity_plugin](https://github.com/SengokuCola/self_identity_plugin)（已停止维护）后的**首个发布版本**，版本线接续上游的 1.3.1：\r\n\r\n- **适配 MaiBot 1.3.x**，版本上界放开（`999.999.999`），后续 MaiBot 升级不再被版本校验挡住\r\n- **插件 ID 变更**：`sengokucola.self-identity-plugin` → `valleywinds.self-identity`，两者是独立插件\r\n- 移除上游遗留的图片比对功能死代码约 500 行，插件更精简\r\n- 工具名拼写更正：`search_self_infomation` → `search_self_information`\r\n- 稳定性修复：QQ 头像下载异步化（不再阻塞插件进程）、本地图片读取 5MB 上限、工具参数类型兜底\r\n- **WebUI 配置页全中文化**，自我信息可在配置页直接增删编辑\r\n- 开源协议变更为 **GPL-3.0-or-later**\r\n\r\n## 从旧版迁移\r\n\r\n> ⚠️ **新版配置文件与旧版不兼容**（`infos` 从顶层移到了 `infos_section` 节内），且迁移自我信息需要参考旧版配置。**请先不要卸载旧插件**，等迁移完成后再卸载。\r\n\r\n1. 安装本插件（此时旧插件暂时保留）\r\n2. 参考**旧插件** `config.toml` 里你写的 `[[infos]]` 内容，把自我信息填到新插件配置页（或新配置的 `[[infos_section.infos]]`）；人设图片复制到新插件目录的 `self_image` 文件夹\r\n3. 确认新插件工作正常后，**禁用或卸载**旧插件 `sengokucola.self-identity-plugin`（新旧版本三个工具同名，同时启用会冲突）\r\n\r\n## 致谢与协议\r\n\r\n本项目基于 SengokuCola 的 [self_identity_plugin](https://github.com/SengokuCola/self_identity_plugin) 修改而来，感谢原作者的原始工作。本项目以 GPL-3.0-or-later 发布。",
@@ -28274,8 +28299,23 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "已发布版本 1.4.3 的 commit 被修改\n+ actual - expected\n\n+ 'a95cb7e3ae3fd3224292e7b313a8e6deed5941aa'\n- '59bdd1fd968ff83a60d924537c7248e2604e1d62'"
+      "rejected_releases": [
+        {
+          "tag": "v1.4.3",
+          "version": "1.4.3",
+          "error": "已发布版本 1.4.3 的 commit 被修改（actual 59bdd1fd968ff83a60d924537c7248e2604e1d62 / expected a95cb7e3ae3fd3224292e7b313a8e6deed5941aa）"
+        },
+        {
+          "tag": "v1.4.2",
+          "version": "1.4.2",
+          "error": "已发布版本 1.4.2 的 commit 被修改（actual 0571b620929aeec3179d2eec5d170b4be609811c / expected 886d1911a5113f6036f470fc6f49af497fcfcf81）"
+        },
+        {
+          "tag": "v1.4.1",
+          "version": "1.4.1",
+          "error": "已发布版本 1.4.1 的 commit 被修改（actual 3ecaabc750701b5d36290b549fc06fcd536bd4ce / expected ad214b8300bce2a40446f16392133ed7ddae3911）"
+        }
+      ]
     },
     {
       "id": "com.0-hz.maifetch",
@@ -36563,7 +36603,7 @@
           "tag": "v1.0.0",
           "commit": "efe35c98269d04f95670ca7cf711192dc2a7165b",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-14T15:31:20Z",
           "release_url": "https://github.com/geffnt/maibot-group-meme-nickname/releases/tag/v1.0.0",
           "release_notes": "Cap host/sdk max_version to the environment that was actually run\n\n- host_application.max_version: 1.3.99 -> 1.3.6\n- sdk.max_version: 2.99.99 -> 2.13.0\n\nThe \"99-style\" bounds were placeholders that endorsed versions never tested, and\nreview rejected them: how many accepted plugins use the same placeholder is not\nevidence. The new caps are exactly what this machine runs and what the plugin has\nbeen loading and reloading on, i.e. the host version the validator reads from\nMaiBot/pyproject.toml (1.3.6, see manifest_validator.py:837) and the SDK version\nit reads from the installed maibot-plugin-sdk distribution (2.13.0, see\n_detect_default_sdk_version). README now records both and asks users on other\nversions to report theirs so the range can be widened after a real test.\n\nNote for context: the host itself declares its SDK protocol window as\n[1.0.0, 2.99.99] (protocol/envelope.py), which is where the placeholder habit\ncomes from, and a same-major.minor patch bump is what the host's\nupdate_compatibility_notice is built for. That is background, not a reason to\nkeep endorsing untested versions.\n\n- plugin_type: added as \"utility\". The host only special-cases adapter/trusted;\n  any other value loads as a normal third-party plugin, and review asked for a\n  closer type.\n- README: the notes section now says Planner tool calls are not covered by the\n  operator command permission.\n- Version stays 1.0.0 and tag v1.0.0 moves onto this commit.",
@@ -36610,8 +36650,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [],
-      "sync_error": "已发布版本 1.0.0 的 commit 被修改\n+ actual - expected\n\n+ 'efe35c98269d04f95670ca7cf711192dc2a7165b'\n- '9fb7c09ab3e5aa29f60e0c5d30f6250b4da12eed'"
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "已发布版本 1.0.0 的 commit 被修改（actual 9fb7c09ab3e5aa29f60e0c5d30f6250b4da12eed / expected efe35c98269d04f95670ca7cf711192dc2a7165b）"
+        }
+      ]
     },
     {
       "id": "shinoyukimiyako.claude-provider",
