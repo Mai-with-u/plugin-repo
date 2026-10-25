@@ -36413,59 +36413,6 @@
       "sync_error": "已发布版本 1.0.0 的 commit 被修改\n+ actual - expected\n\n+ 'efe35c98269d04f95670ca7cf711192dc2a7165b'\n- '9fb7c09ab3e5aa29f60e0c5d30f6250b4da12eed'"
     },
     {
-      "id": "octmicy.dicky-pk",
-      "manifest_id": "octmicy.dicky-pk",
-      "repositoryUrl": "https://github.com/octmicy/Dicky-PK",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.1",
-          "tag": "v1.0.1",
-          "commit": "fa4e059f874e7d9b1b17cab5f15f6f60081f0e73",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-10-16T06:35:34Z",
-          "release_url": "https://github.com/octmicy/Dicky-PK/releases/tag/v1.0.1",
-          "release_notes": "## 牛子PK v1.0.1\r\n\r\n从 nonebot-plugin-dicky-pk 0.7.1（原作者 月ヶ瀬，MIT）移植到 MaiBot Plugin SDK 的群聊小游戏。\r\n\r\n### 本版本修订（相对 v1.0.0）\r\n\r\n- **sdk.max_version 按实测锚定**：`2.99.99` → `2.13.99`。上限对齐实际验证过的 SDK 版本（2.13.0），不再使用无依据的“永远兼容”式写法。\r\n- **config.toml 不再纳入版本管理**：配置文件改为首次加载时由 SDK 依据 `config.py` 模型默认值自动生成；仓库仅保留 `config.toml.example` 模板供查阅与手动初始化，避免用户本地改动在版本更新时与 Git 跟踪内容冲突。\r\n- README 部署与配置说明同步更新。\r\n\r\n### 功能\r\n\r\n注册牛子 / 牛子信息 / pk / 🔒 / 打胶 / 看他牛子 / 牛子排名 / 牛子转生（5 级）/ 牛子成就（可配置条件与加成）/ 牛子仙境（定时开放修炼）/ 牛友系统（朋友费与加成），共 20 条指令。platform:user_id 复合键，群聊全开 + 私聊只读，开关指令 permission=operator，全量强类型配置（80 字段 / 9 节，WebUI 可编辑），零第三方依赖。\r\n\r\n### 兼容范围\r\n\r\n- MaiBot 主程序 1.3.0 – 1.4.99\r\n- Plugin SDK 2.6.0 – 2.13.99（实测 2.13.0）\r\n\r\n**Full Changelog**: https://github.com/octmicy/Dicky-PK/compare/v1.0.1...v1.0.1",
-          "manifest": {
-            "manifest_version": 2,
-            "id": "octmicy.dicky-pk",
-            "name": "牛子PK",
-            "version": "1.0.1",
-            "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
-            "author": {
-              "name": "octmicy",
-              "url": "https://github.com/octmicy"
-            },
-            "license": "MIT",
-            "urls": {
-              "repository": "https://github.com/octmicy/Dicky-PK"
-            },
-            "host_application": {
-              "min_version": "1.3.0",
-              "max_version": "1.4.99"
-            },
-            "sdk": {
-              "min_version": "2.6.0",
-              "max_version": "2.13.99"
-            },
-            "dependencies": [],
-            "capabilities": [
-              "send.text"
-            ],
-            "i18n": {
-              "default_locale": "zh-CN",
-              "supported_locales": [
-                "zh-CN"
-              ]
-            }
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "shinoyukimiyako.claude-provider",
       "manifest_id": "shinoyukimiyako.claude-provider",
       "repositoryUrl": "https://github.com/ShinoyukiMiyako/Claude-Provider-Support",
@@ -39696,6 +39643,81 @@
       "id": "liccsu.maibot-mimotts-voice",
       "manifest_id": "liccsu.maibot-mimotts-voice",
       "repositoryUrl": "https://github.com/Liccsu/maibot-mimotts-voice",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "toyaspio.maibot-baidu-search",
+      "manifest_id": "toyaspio.maibot-baidu-search",
+      "repositoryUrl": "https://github.com/Toyaspio/maibot-baidu-search",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mcphist2022.sanguosha",
+      "manifest_id": "mcphist2022.sanguosha",
+      "repositoryUrl": "https://github.com/Mcphist2022/MaiBot-sanguosha-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.1.0",
+          "version": "1.1.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.2'\n- '1.1.0'\n     ^"
+        },
+        {
+          "tag": "1.0.2",
+          "version": "1.0.2",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        },
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        },
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        }
+      ]
+    },
+    {
+      "id": "github.orge-8.music-request",
+      "manifest_id": "github.orge-8.music-request",
+      "repositoryUrl": "https://github.com/orge-8/music-request",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "myxxr.mimo-rollback",
+      "manifest_id": "myxxr.mimo-rollback",
+      "repositoryUrl": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.42yoru.maimai-emoji-label-bridge",
+      "manifest_id": "github.42yoru.maimai-emoji-label-bridge",
+      "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "z1252.pocket-money",
+      "manifest_id": "z1252.pocket-money",
+      "repositoryUrl": "https://github.com/z1252/pocket-money",
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
