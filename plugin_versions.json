@@ -32558,6 +32558,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "7b19fcf5725279c125570a1b713d67fe3ebd8032",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T11:37:06Z",
+          "release_url": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/releases/tag/v1.2.2",
+          "release_notes": "## v1.2.2（2026-10-25）— 按维护者终裁修订\n\n落实 #964 维护者复核裁定的两点：\n\n- `host_application.max_version` 改为 `1.3.99`（实测上界：已在 Host 1.2.5 / 1.3.1 / 1.3.9 验证；官方文档中 999.999.999 的建议已过时，以插件中心现行口径为准）\n- `config.toml` 移出仓库：配置由插件系统（Runner）生成与维护，`.gitignore` 加入 `/config.toml`；各字段中文说明以 WebUI 插件配置表单为准（README 中英文安装/配置节已同步改写）；`tools/gen_config_toml.py` 保留为本地预览默认值的开发工具，生成物不入库\n\n### 兼容性\n- Host：MaiBot 1.0.0 ～ 1.3.99（实测 1.2.5 / 1.3.1 / 1.3.9）\n- SDK：maibot-plugin-sdk 2.0.0 ～ 2.99.99\n- 相对 1.2.1 无功能变更\n\n## 安装\n\n通过 MaiBot 插件中心安装，或将仓库克隆/解压到 MaiBot 的 `plugins/` 目录。详见 [README](https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.fiatlux2333.hd2-helper",
+            "version": "1.2.2",
+            "name": "绝地潜兵2情报助手",
+            "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
+            "author": {
+              "name": "牡蛎 (fiatlux2333)",
+              "url": "https://github.com/fiatlux2333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "homepage": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "documentation": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md",
+              "issues": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "ee6c1603ad2be6b325f5b107d5c85a24680d5d4d",
