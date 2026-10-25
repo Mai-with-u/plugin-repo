@@ -27983,6 +27983,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "a6c62be382f0b6e16c0e6e7cbd130ab43ffea297",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T19:59:50Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/releases/tag/v1.0.2",
+          "release_notes": "# 麦麦我真得控制你了 v1.0.2\n\n修复「部分适配器下关键词完全不识别」的问题，并把版本区间按插件市场新规收紧。\n\n## 本版本变更（v1.0.2）\n\n- **修复：部分适配器下关键词完全不识别。** 宿主在 `chat.receive.before_process` 钩子触发之后才生成 `processed_plain_text`，此前关键词匹配完全依赖适配器是否预填该字段——NapCat / SnowLuma / 官方 QQ 适配器等预填型适配器一切正常，其余适配器会表现为「关键词怎么发都没反应」。现在适配器未预填时自动从 `raw_message` 消息段拼出文本再匹配，不再依赖适配器行为；预填型适配器行为不变。\n- **版本区间按市场新规收紧**：`host_application` **1.3.0 ~ 1.3.99**（对齐官方适配器口径），`sdk` **2.5.0 ~ 2.16.99**（市场校验禁止版本前两段填 99/999）。\n- manifest 新增 `changelog` 字段（`CHANGELOG.md`），WebUI 插件页「更新日志」可直接读取。\n- README：顶部新增 issue 反馈指引（🐛🪲🐞）；兼容性排查补充第 ④ 条。\n- 离线验证 128 → **134 项**（新增兜底识别与市场版本禁令校验），全绿。\n\n## 遇到问题？\n\n欢迎直接提 issue：https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/issues \n提问请附：① MaiBot 宿主版本；② 使用的适配器（NapCat / SnowLuma / 官方 QQ / Telegram / …）；③ 触发时发送的完整消息（群里是否 @ 了麦麦、@ 与关键词间有无空格）。\n\n## 安装\n\n1. **插件市场**：选择 v1.0.2 安装（即本 Release 的 Source code 包）；\n2. **手动安装**：下载 Source code (zip) 解压到 MaiBot 的 `plugins/` 目录，WebUI 中启用；\n3. 首次安装因 manifest 能力声明需**完整重启一次 MaiBot**，之后改配置走热更新。\n\n## 数据与隐私\n\n会话状态仅保存在插件本地 data 目录的 `state.json`，不上传任何服务器；卸载或删除该文件即全部清除。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.immersive-control",
+            "version": "1.0.2",
+            "name": "麦麦我真得控制你了",
+            "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "remote"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "3f953fb07745896c30a5e2533a95520d948d64a0",
