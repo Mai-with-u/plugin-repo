@@ -39796,7 +39796,63 @@
       "manifest_id": "github.orge-8.music-request",
       "repositoryUrl": "https://github.com/orge-8/music-request",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.7.6",
+          "tag": "v1.7.6",
+          "commit": "34ce89e4817ee8515aa77a54aacc02b136e5af04",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T00:03:09Z",
+          "release_url": "https://github.com/orge-8/music-request/releases/tag/v1.7.6",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.orge-8.music-request",
+            "version": "1.7.6",
+            "name": "点歌插件",
+            "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/music-request"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=42.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_all_streams",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
