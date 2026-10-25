@@ -39709,7 +39709,55 @@
       "manifest_id": "toyaspio.maibot-baidu-search",
       "repositoryUrl": "https://github.com/Toyaspio/maibot-baidu-search",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0ff83776be2e45fe2a29d0ad55decb323f87b5bd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T18:08:56Z",
+          "release_url": "https://github.com/Toyaspio/maibot-baidu-search/releases/tag/v0.1.0",
+          "release_notes": "MaiSearch 百度搜索插件首次发布。\r\n\r\n- 支持 /baidu 手动搜索。\r\n- 支持 AI 规划器调用 baidu_web_search 搜索工具。\r\n- 支持后台配置 API Key、自主搜索开关及调用额度。\r\n- 包含每日额度、冷却、防重复请求和隐私过滤。\r\n- 已完成隔离测试及指定会话的真实搜索回复验收。\r\n\r\n兼容：MaiBot 1.3.5 / SDK 2.10.0。\r\n使用前需自行配置百度 AppBuilder API Key。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "toyaspio.maibot-baidu-search",
+            "name": "MaiSearch 百度搜索",
+            "version": "0.1.0",
+            "description": "通过百度千帆官方 API 搜索公开网页，支持手动命令和默认关闭的 LLM Tool。",
+            "author": {
+              "name": "Toyaspio",
+              "url": "https://github.com/Toyaspio"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Toyaspio/maibot-baidu-search"
+            },
+            "host_application": {
+              "min_version": "1.3.5",
+              "max_version": "1.3.5"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.10.0"
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
