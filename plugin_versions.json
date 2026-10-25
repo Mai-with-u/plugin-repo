@@ -21824,6 +21824,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "90417b7356cf210cf2d033ea21a627d7297c24e8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:23:02Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v1.2.3",
+          "release_notes": "### 变更\n\n- 收窄主程序兼容上界：`host_application.max_version` 由 `1.99.99` 改为 `1.3.99`，兼容范围落定为 MaiBot 1.0.0 至 1.3.x。\n\n### Changed\n\n- Narrowed the host compatibility upper bound: `host_application.max_version` changed from `1.99.99` to `1.3.99`, fixing the supported range at MaiBot 1.0.0 through 1.3.x.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "1.2.3",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.0",
           "tag": "v1.2.0",
           "commit": "a9d773d201f3bb2bae06073968a21d1da7413b5c",
@@ -32483,6 +32558,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "7b19fcf5725279c125570a1b713d67fe3ebd8032",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T11:37:06Z",
+          "release_url": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/releases/tag/v1.2.2",
+          "release_notes": "## v1.2.2（2026-10-25）— 按维护者终裁修订\n\n落实 #964 维护者复核裁定的两点：\n\n- `host_application.max_version` 改为 `1.3.99`（实测上界：已在 Host 1.2.5 / 1.3.1 / 1.3.9 验证；官方文档中 999.999.999 的建议已过时，以插件中心现行口径为准）\n- `config.toml` 移出仓库：配置由插件系统（Runner）生成与维护，`.gitignore` 加入 `/config.toml`；各字段中文说明以 WebUI 插件配置表单为准（README 中英文安装/配置节已同步改写）；`tools/gen_config_toml.py` 保留为本地预览默认值的开发工具，生成物不入库\n\n### 兼容性\n- Host：MaiBot 1.0.0 ～ 1.3.99（实测 1.2.5 / 1.3.1 / 1.3.9）\n- SDK：maibot-plugin-sdk 2.0.0 ～ 2.99.99\n- 相对 1.2.1 无功能变更\n\n## 安装\n\n通过 MaiBot 插件中心安装，或将仓库克隆/解压到 MaiBot 的 `plugins/` 目录。详见 [README](https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.fiatlux2333.hd2-helper",
+            "version": "1.2.2",
+            "name": "绝地潜兵2情报助手",
+            "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
+            "author": {
+              "name": "牡蛎 (fiatlux2333)",
+              "url": "https://github.com/fiatlux2333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "homepage": "https://github.com/fiatlux2333/maibot_plugin_Helldivers",
+              "documentation": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/blob/main/README.md",
+              "issues": "https://github.com/fiatlux2333/maibot_plugin_Helldivers/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "ee6c1603ad2be6b325f5b107d5c85a24680d5d4d",
@@ -35327,6 +35462,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.6",
+          "tag": "v1.1.6",
+          "commit": "9c12eef80d37bdcd9953850ffd4b46a91a999766",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:54:15Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.6",
+          "release_notes": "## 更新\n\n- 「贴吧原页面」渲不出来时自动改用「自绘卡片」把帖子发出去，不再直接跳过这帖；同一轮里确认走不通之后，剩下的帖不再逐个白等一遍超时，下一轮自动恢复。这主要针对主程序搭配 Playwright 1.60 及更早版本时的已知缺陷（详见上面「注意事项」）。\n- 「自绘卡片」改成贴吧手机版的配色：浅灰底、白色楼层卡、贴吧蓝强调色，与「贴吧原页面」观感一致。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.6",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.5",
           "tag": "v1.1.5",
           "commit": "69d93dee4f2d1a816e21f9883bcccc38bf6b01fa",
@@ -36411,59 +36612,6 @@
       "ignored_tags": [],
       "rejected_releases": [],
       "sync_error": "已发布版本 1.0.0 的 commit 被修改\n+ actual - expected\n\n+ 'efe35c98269d04f95670ca7cf711192dc2a7165b'\n- '9fb7c09ab3e5aa29f60e0c5d30f6250b4da12eed'"
-    },
-    {
-      "id": "octmicy.dicky-pk",
-      "manifest_id": "octmicy.dicky-pk",
-      "repositoryUrl": "https://github.com/octmicy/Dicky-PK",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.1",
-          "tag": "v1.0.1",
-          "commit": "fa4e059f874e7d9b1b17cab5f15f6f60081f0e73",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-10-16T06:35:34Z",
-          "release_url": "https://github.com/octmicy/Dicky-PK/releases/tag/v1.0.1",
-          "release_notes": "## 牛子PK v1.0.1\r\n\r\n从 nonebot-plugin-dicky-pk 0.7.1（原作者 月ヶ瀬，MIT）移植到 MaiBot Plugin SDK 的群聊小游戏。\r\n\r\n### 本版本修订（相对 v1.0.0）\r\n\r\n- **sdk.max_version 按实测锚定**：`2.99.99` → `2.13.99`。上限对齐实际验证过的 SDK 版本（2.13.0），不再使用无依据的“永远兼容”式写法。\r\n- **config.toml 不再纳入版本管理**：配置文件改为首次加载时由 SDK 依据 `config.py` 模型默认值自动生成；仓库仅保留 `config.toml.example` 模板供查阅与手动初始化，避免用户本地改动在版本更新时与 Git 跟踪内容冲突。\r\n- README 部署与配置说明同步更新。\r\n\r\n### 功能\r\n\r\n注册牛子 / 牛子信息 / pk / 🔒 / 打胶 / 看他牛子 / 牛子排名 / 牛子转生（5 级）/ 牛子成就（可配置条件与加成）/ 牛子仙境（定时开放修炼）/ 牛友系统（朋友费与加成），共 20 条指令。platform:user_id 复合键，群聊全开 + 私聊只读，开关指令 permission=operator，全量强类型配置（80 字段 / 9 节，WebUI 可编辑），零第三方依赖。\r\n\r\n### 兼容范围\r\n\r\n- MaiBot 主程序 1.3.0 – 1.4.99\r\n- Plugin SDK 2.6.0 – 2.13.99（实测 2.13.0）\r\n\r\n**Full Changelog**: https://github.com/octmicy/Dicky-PK/compare/v1.0.1...v1.0.1",
-          "manifest": {
-            "manifest_version": 2,
-            "id": "octmicy.dicky-pk",
-            "name": "牛子PK",
-            "version": "1.0.1",
-            "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
-            "author": {
-              "name": "octmicy",
-              "url": "https://github.com/octmicy"
-            },
-            "license": "MIT",
-            "urls": {
-              "repository": "https://github.com/octmicy/Dicky-PK"
-            },
-            "host_application": {
-              "min_version": "1.3.0",
-              "max_version": "1.4.99"
-            },
-            "sdk": {
-              "min_version": "2.6.0",
-              "max_version": "2.13.99"
-            },
-            "dependencies": [],
-            "capabilities": [
-              "send.text"
-            ],
-            "i18n": {
-              "default_locale": "zh-CN",
-              "supported_locales": [
-                "zh-CN"
-              ]
-            }
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": []
     },
     {
       "id": "shinoyukimiyako.claude-provider",
@@ -38358,7 +38506,152 @@
       "manifest_id": "maibot-team.xiaoheihe-adapter",
       "repositoryUrl": "https://github.com/SengokuCola/xiaoheihe_adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.8.2",
+          "tag": "v0.8.2",
+          "commit": "c569c6083e933255d5274757ab3acc0395dcced9",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-21T12:17:49Z",
+          "release_url": "https://github.com/SengokuCola/xiaoheihe_adapter/releases/tag/v0.8.2",
+          "release_notes": "# 0.8.2\r\n\r\n- 配置统一由 `AdapterSettings` schema 生成 WebUI 界面与默认配置，宿主首次加载时自动创建实际配置。\r\n- 移除配置模板文件及文档中的模板使用说明。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.xiaoheihe-adapter",
+            "version": "0.8.2",
+            "name": "小黑盒社区适配器",
+            "description": "接收小黑盒社区 @ 和回复，主动浏览、评论，并由 Replyer 生成多段浏览总结帖。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "homepage": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "issues": "https://github.com/SengokuCola/xiaoheihe_adapter/issues"
+            },
+            "license": "MIT",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8,<3"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "chat.get_group_streams",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.8.1",
+          "tag": "v0.8.1",
+          "commit": "8a2a80c080cf28547932dbbe5ddfae766967d6ed",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-21T12:09:45Z",
+          "release_url": "https://github.com/SengokuCola/xiaoheihe_adapter/releases/tag/v0.8.1",
+          "release_notes": "# 小黑盒社区适配器 0.8.1（实验版）\r\n\r\n接入小黑盒社区的 @ 提及和评论回复，使用麦麦自己的聊天、人格、记忆及回复流程。\r\n\r\n## 主要功能\r\n\r\n- 扩展页面扫码登录，查看账号连接状态和帖子互动时间线。\r\n- 按所选分区主动浏览，由麦麦决定是否发表评论。\r\n- 按数量或时间汇总浏览素材，由 Replyer 生成标题和多段正文并发布总结帖；默认关闭主动发帖。\r\n- 支持评论文字、图片及表情包，按具体消息定位回复目标。\r\n\r\n## 安装与兼容\r\n\r\n- 需要 MaiBot 1.3.6–1.3.99、插件 SDK 2.12.x。\r\n- 将 ZIP 解压到 `plugins/xiaoheihe_adapter`，安装依赖并重载插件后，在扩展页面扫码登录。\r\n- 仅分发 `config.example.toml`；实际配置、登录凭据、数据库、日志、二维码及备份均不在发布包中。\r\n\r\n## 验证与已知限制\r\n\r\n- 89 项自动化测试通过，使用模拟 HTTP/网关和临时数据库。\r\n- 待发布源码经 Gitleaks 扫描未发现泄漏，ZIP 内容已逐文件校验。\r\n- 社区接口属于非官方稳定 API；带图评论尚未完成真实发布联调，完整说明见 README。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-team.xiaoheihe-adapter",
+            "version": "0.8.1",
+            "name": "小黑盒社区适配器",
+            "description": "接收小黑盒社区 @ 和回复，主动浏览、评论，并由 Replyer 生成多段浏览总结帖。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "urls": {
+              "repository": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "homepage": "https://github.com/SengokuCola/xiaoheihe_adapter",
+              "issues": "https://github.com/SengokuCola/xiaoheihe_adapter/issues"
+            },
+            "license": "MIT",
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8,<3"
+              }
+            ],
+            "capabilities": [
+              "chat.open_session",
+              "chat.get_group_streams",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -38725,7 +39018,63 @@
       "manifest_id": "github.OLDnana1.edge-tts",
       "repositoryUrl": "https://github.com/OLDnana1/maibot-edge-tts",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "2c7c9880320b07dbd171193498f77a470a5c521c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T05:57:22Z",
+          "release_url": "https://github.com/OLDnana1/maibot-edge-tts/releases/tag/1.0.1",
+          "release_notes": "用免费的微软 Edge 在线语音合成（edge-tts）把文字变成 QQ 语音。不消耗任何 TTS 付费额度，也不需要自建语音服务。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "Edge TTS 免费语音",
+            "description": "使用微软 Edge 在线语音合成（edge-tts）把文字转成 QQ 语音，支持音色、语速、音量、音调与代理配置",
+            "author": {
+              "name": "OLDnana1",
+              "url": "https://github.com/OLDnana1"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/OLDnana1/maibot-edge-tts",
+              "homepage": "https://github.com/OLDnana1/maibot-edge-tts",
+              "documentation": "https://github.com/OLDnana1/maibot-edge-tts/blob/main/README.md",
+              "issues": "https://github.com/OLDnana1/maibot-edge-tts/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "edge-tts",
+                "version_spec": ">=7.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.OLDnana1.edge-tts"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -39553,6 +39902,363 @@
       "repositoryUrl": "https://github.com/Liccsu/maibot-mimotts-voice",
       "mode": "releases",
       "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "toyaspio.maibot-baidu-search",
+      "manifest_id": "toyaspio.maibot-baidu-search",
+      "repositoryUrl": "https://github.com/Toyaspio/maibot-baidu-search",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0ff83776be2e45fe2a29d0ad55decb323f87b5bd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T18:08:56Z",
+          "release_url": "https://github.com/Toyaspio/maibot-baidu-search/releases/tag/v0.1.0",
+          "release_notes": "MaiSearch 百度搜索插件首次发布。\r\n\r\n- 支持 /baidu 手动搜索。\r\n- 支持 AI 规划器调用 baidu_web_search 搜索工具。\r\n- 支持后台配置 API Key、自主搜索开关及调用额度。\r\n- 包含每日额度、冷却、防重复请求和隐私过滤。\r\n- 已完成隔离测试及指定会话的真实搜索回复验收。\r\n\r\n兼容：MaiBot 1.3.5 / SDK 2.10.0。\r\n使用前需自行配置百度 AppBuilder API Key。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "toyaspio.maibot-baidu-search",
+            "name": "MaiSearch 百度搜索",
+            "version": "0.1.0",
+            "description": "通过百度千帆官方 API 搜索公开网页，支持手动命令和默认关闭的 LLM Tool。",
+            "author": {
+              "name": "Toyaspio",
+              "url": "https://github.com/Toyaspio"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Toyaspio/maibot-baidu-search"
+            },
+            "host_application": {
+              "min_version": "1.3.5",
+              "max_version": "1.3.5"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.10.0"
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "mcphist2022.sanguosha",
+      "manifest_id": "mcphist2022.sanguosha",
+      "repositoryUrl": "https://github.com/Mcphist2022/MaiBot-sanguosha-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.1.0",
+          "version": "1.1.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.2'\n- '1.1.0'\n     ^"
+        },
+        {
+          "tag": "1.0.2",
+          "version": "1.0.2",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        },
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        },
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+        }
+      ]
+    },
+    {
+      "id": "github.orge-8.music-request",
+      "manifest_id": "github.orge-8.music-request",
+      "repositoryUrl": "https://github.com/orge-8/music-request",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.7.6",
+          "tag": "v1.7.6",
+          "commit": "34ce89e4817ee8515aa77a54aacc02b136e5af04",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T00:03:09Z",
+          "release_url": "https://github.com/orge-8/music-request/releases/tag/v1.7.6",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.orge-8.music-request",
+            "version": "1.7.6",
+            "name": "点歌插件",
+            "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/music-request"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=42.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_all_streams",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "myxxr.mimo-rollback",
+      "manifest_id": "myxxr.mimo-rollback",
+      "repositoryUrl": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "592fbbccc21914138bfefc76ff1278909fa8575c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T06:32:06Z",
+          "release_url": "https://github.com/myxxr/MaiBot-MiMo-rollback/releases/tag/v1.0.2",
+          "release_notes": "## 1.0.2\n\n- manifest 增加 `plugin_type: provider`。\n- 安全加固：\n  - 不再跟随 HTTP 重定向（`3xx` 直接报错），避免附加 Header 与请求体（含聊天内容）被带到重定向目标；\n  - `base_url` / `base_url_override` 增加协议与主机校验：非 `http(s)` 直接报错，`http` 明文与内网/回环/云元数据地址输出告警；\n  - `auth_type=query` 首次使用时告警（api_key 会进入 URL 查询参数，可能被访问日志记录）。\n\n## 安装\n\n1. 解压 `maibot-mimo-rollback-v1.0.2.zip`；\n2. 把 `maibot-mimo-rollback` 文件夹放进 MaiBot 的 `plugins/`；\n3. 重启 MaiBot 或在 WebUI 重载插件。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "myxxr.mimo-rollback",
+            "version": "1.0.2",
+            "name": "MaiBot-MiMo-rollback",
+            "description": "接入小米 MiMo 的 OpenAI 兼容接口；当 MiMo 把 high risk 拦截文本当作正常回答返回时，把它识别为错误并交由主程序重试 / 切换模型，避免该文本被直接发给用户",
+            "author": {
+              "name": "myxxr",
+              "url": "https://github.com/myxxr"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "homepage": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "documentation": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+              "issues": "https://github.com/myxxr/MaiBot-MiMo-rollback/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "provider",
+            "host_application": {
+              "min_version": "1.1.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "mimo.provider",
+                "name": "Xiaomi MiMo Provider",
+                "description": "小米 MiMo OpenAI 兼容接口，带 high risk 拦截识别",
+                "version": "1.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.42yoru.maimai-emoji-label-bridge",
+      "manifest_id": "github.42yoru.maimai-emoji-label-bridge",
+      "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "98728c959ba4c748b0959552ef574e15c54bc51d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T18:22:20Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.5",
+          "release_notes": "## 表情标签桥接 0.1.5\n\n采纳第三轮审核的三条小建议（均为非阻塞项）。\n\n### 本版更新\n- README「插件信息」表的版本号与 manifest 对齐（之前漏更到 0.1.2）。\n- 删除 `label_text.strip_tags()` 死代码，相应测试同步收敛。\n- 本地运行确认插件加载日志为「表情库=570 条, 向量=570 条, 已就绪=True」，不是 0 条。\n\n### 功能回顾\n- 三档匹配：精确描述 → 本地标签重叠 → 嵌入向量兜底；阈值按实测校准为 0.68，并加字符重叠门槛。\n- 向量索引落盘并持久化就绪状态，首批 5 秒一轮推进，补齐后 10 分钟一轮增量补录。\n- 配置页已全部汉化（23 项、两个页签），发送层 Hook 超时 5000ms。\n\n详细见 [CHANGELOG](https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/CHANGELOG.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.5",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "z1252.pocket-money",
+      "manifest_id": "z1252.pocket-money",
+      "repositoryUrl": "https://github.com/z1252/pocket-money",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "a2bb95b1a81e95ea8a1ede77499b570d2876e5a9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T21:04:15Z",
+          "release_url": "https://github.com/z1252/pocket-money/releases/tag/v1.2.2",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "z1252.pocket-money",
+            "version": "1.2.2",
+            "name": "零花钱",
+            "description": "给麦麦发每日零花钱，按 MaiBot 记录的模型消耗扣减；额度用完后拦截对话消息、不再回复，并用固定文案向主人讨要。",
+            "author": {
+              "name": "z1252",
+              "url": "https://github.com/z1252"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/z1252/pocket-money",
+              "homepage": "https://github.com/z1252/pocket-money",
+              "documentation": "https://github.com/z1252/pocket-money/blob/main/README.md",
+              "issues": "https://github.com/z1252/pocket-money/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "wallet",
+                "fallback": "package",
+                "background": "#1f2937"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "database.get",
+              "statistics.local.model_trend"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }

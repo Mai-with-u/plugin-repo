@@ -16517,7 +16517,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.2.2",
+      "version": "1.2.3",
       "name": "日程提醒助手",
       "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
       "author": {
@@ -16530,7 +16530,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "1.0.0",
@@ -17491,7 +17491,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.minecraft-adapter",
-      "version": "1.3.2",
+      "version": "1.3.3",
       "name": "Minecraft 聊天适配器",
       "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
       "author": {
@@ -17504,7 +17504,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "1.0.0",
@@ -17939,7 +17939,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.10.5",
+      "version": "0.11.0",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -17954,7 +17954,7 @@
       },
       "sdk": {
         "min_version": "2.8.1",
-        "max_version": "2.12.0"
+        "max_version": "2.16.0"
       },
       "dependencies": [
         {
@@ -17975,6 +17975,8 @@
       ],
       "capabilities": [
         "config.get",
+        "component.enable",
+        "component.disable",
         "message.get_by_time_in_chat",
         "message.get_by_id",
         "knowledge.search",
@@ -19370,9 +19372,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.22.5",
+      "version": "1.23.4",
       "name": "生活频率",
-      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
+      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n睡醒补答（v1.23.0）：她睡着时进来的私聊与群 @ 会被记为积压，自然醒时按会话各触发一次 Planner（措辞交给宿主，她有权沉默）或注入下一次回复；只有管理员私聊能在她睡着时把她叫醒（`wake_private_scope` 三态，可越过 quiet_hours），其他人一律等她醒了再补。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -20105,7 +20107,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.fiatlux2333.hd2-helper",
-      "version": "1.2.0",
+      "version": "1.2.2",
       "name": "绝地潜兵2情报助手",
       "description": "Helldivers 2 银河战争图片情报：Dashboard、统计、主要任务、地图、战线、全球事件、Steam 公告、Wiki、军需簿、Companion 截图翻译、B站银河快报订阅推送与数据源自诊断。移植自 astrbot_plugin_Helldivers v1.9.0。",
       "author": {
@@ -20121,7 +20123,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -20795,7 +20797,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.tieba-share",
-      "version": "1.1.5",
+      "version": "1.1.6",
       "name": "麦麦贴吧搬石",
       "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
       "author": {
@@ -20962,7 +20964,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.21",
+      "version": "0.6.1",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -20988,7 +20990,7 @@
         {
           "type": "python_package",
           "name": "Pillow",
-          "version_spec": ">=11,<13"
+          "version_spec": ">=11,<14"
         },
         {
           "type": "python_package",
@@ -21063,42 +21065,6 @@
       ],
       "i18n": {
         "default_locale": "zh-CN"
-      }
-    }
-  },
-  {
-    "id": "octmicy.dicky-pk",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "octmicy.dicky-pk",
-      "name": "牛子PK",
-      "version": "1.0.1",
-      "description": "移植自 nonebot-plugin-dicky-pk（原作者 月ヶ瀬）的群聊小游戏",
-      "author": {
-        "name": "octmicy",
-        "url": "https://github.com/octmicy"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/octmicy/Dicky-PK"
-      },
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.5.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
       }
     }
   },
@@ -21966,7 +21932,7 @@
     "id": "github.OLDnana1.edge-tts",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "Edge TTS 免费语音",
       "description": "使用微软 Edge 在线语音合成（edge-tts）把文字转成 QQ 语音，支持音色、语速、音量、音调与代理配置",
       "author": {
@@ -21974,7 +21940,7 @@
         "url": "https://github.com/OLDnana1"
       },
       "license": "MIT",
-      "plugin_type": "provider",
+      "plugin_type": "media",
       "urls": {
         "repository": "https://github.com/OLDnana1/maibot-edge-tts",
         "homepage": "https://github.com/OLDnana1/maibot-edge-tts",
@@ -22368,6 +22334,288 @@
         "supported_locales": [
           "zh-CN"
         ]
+      }
+    }
+  },
+  {
+    "id": "toyaspio.maibot-baidu-search",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "toyaspio.maibot-baidu-search",
+      "name": "MaiSearch 百度搜索",
+      "version": "0.1.0",
+      "description": "通过百度千帆官方 API 搜索公开网页，支持手动命令和默认关闭的 LLM Tool。",
+      "author": {
+        "name": "Toyaspio",
+        "url": "https://github.com/Toyaspio"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Toyaspio/maibot-baidu-search"
+      },
+      "host_application": {
+        "min_version": "1.3.5",
+        "max_version": "1.3.15"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.16.0"
+      },
+      "plugin_type": "integration",
+      "capabilities": [
+        "send.text"
+      ],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<0.29"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "mcphist2022.sanguosha",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mcphist2022.sanguosha",
+      "version": "1.1.0",
+      "name": "麦麦三国杀台词姬",
+      "description": "检测 /三国杀 指令或群聊武将名，随机回复对应台词",
+      "plugin_type": "game",
+      "author": {
+        "name": "Mcphist",
+        "url": "https://github.com/Mcphist2022"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Mcphist2022/MaiBot-sanguosha-plugin"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "999.999.999"
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.orge-8.music-request",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.orge-8.music-request",
+      "version": "1.7.6",
+      "name": "点歌插件",
+      "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。",
+      "author": {
+        "name": "orge-8",
+        "url": "https://github.com/orge-8"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/orge-8/music-request"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=42.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "chat.get_all_streams",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "integration"
+    }
+  },
+  {
+    "id": "myxxr.mimo-rollback",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "myxxr.mimo-rollback",
+      "version": "1.0.2",
+      "name": "MaiBot-MiMo-rollback",
+      "description": "接入小米 MiMo 的 OpenAI 兼容接口；当 MiMo 把 high risk 拦截文本当作正常回答返回时，把它识别为错误并交由主程序重试 / 切换模型，避免该文本被直接发给用户",
+      "author": {
+        "name": "myxxr",
+        "url": "https://github.com/myxxr"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+        "homepage": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+        "documentation": "https://github.com/myxxr/MaiBot-MiMo-rollback",
+        "issues": "https://github.com/myxxr/MaiBot-MiMo-rollback/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "plugin_type": "provider",
+      "host_application": {
+        "min_version": "1.1.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24"
+        }
+      ],
+      "llm_providers": [
+        {
+          "client_type": "mimo.provider",
+          "name": "Xiaomi MiMo Provider",
+          "description": "小米 MiMo OpenAI 兼容接口，带 high risk 拦截识别",
+          "version": "1.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-emoji-label-bridge",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.5",
+      "plugin_type": "media",
+      "name": "表情标签桥接 (Emoji Label Bridge)",
+      "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+        "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+        "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "database.query",
+        "llm.embed"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.42yoru.maimai-emoji-label-bridge",
+      "changelog": "CHANGELOG.md",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "smile",
+          "background": "#FEC872"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-emoji-label-bridge.webp"
+    }
+  },
+  {
+    "id": "z1252.pocket-money",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "z1252.pocket-money",
+      "version": "1.2.2",
+      "name": "零花钱",
+      "description": "给麦麦发每日零花钱，按 MaiBot 记录的模型消耗扣减；额度用完后拦截对话消息、不再回复，并用固定文案向主人讨要。",
+      "author": {
+        "name": "z1252",
+        "url": "https://github.com/z1252"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/z1252/pocket-money",
+        "homepage": "https://github.com/z1252/pocket-money",
+        "documentation": "https://github.com/z1252/pocket-money/blob/main/README.md",
+        "issues": "https://github.com/z1252/pocket-money/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "wallet",
+          "fallback": "package",
+          "background": "#1f2937"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "database.get",
+        "statistics.local.model_trend"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
       }
     }
   }
