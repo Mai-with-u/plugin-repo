@@ -28123,6 +28123,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.4",
+          "tag": "v1.4.4",
+          "commit": "54e435c1882cc4400efb0e7497053ac5a5ed6ff6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-18T13:24:33Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.4",
+          "release_notes": "## 本版本说明\n\n适配与维护版本，插件功能无变化：\n\n- **适配并实测于 MaiBot Host 1.3.9**：加载、配置页渲染、4 个工具注册全部验证通过\n- **manifest 修复**：\n  - 移除对宿主无特殊语义的 `plugin_type: \"chat\"`，统一使用默认 `extension`\n  - `host_application` 兼容上界从 `999.999.999` 收紧为 `1.3.99`（锁定实测版本线，符合插件中心收录规范；Host 出 1.4 线后实测再抬界）\n\n## 从 1.4.1 ~ 1.4.3 升级\n\n直接更新即可，配置结构无变化，无需迁移。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.4",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        },
+        {
           "version": "1.4.3",
           "tag": "v1.4.3",
           "commit": "a95cb7e3ae3fd3224292e7b313a8e6deed5941aa",
