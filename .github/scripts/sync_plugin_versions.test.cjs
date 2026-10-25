@@ -65,10 +65,37 @@ test('从注解 Tag 解析完整 commit 并读取该 commit 的 manifest', async
   assert.equal(result.versions[0].commit, commit);
   assert.deepEqual(result.versions[0].manifest, manifest());
 });
-test('同版本重打 Tag 必须报错，旧快照保持不变', async () => {
+test('同版本重打 Tag 单独撤回并记录错误，旧快照保持不变', async () => {
   const old = await syncPlugin(plugin, undefined, client([release()]));
-  await assert.rejects(syncPlugin(plugin, old, client([release()], { commit: 'b'.repeat(40) })), /commit 被修改/);
+  const result = await syncPlugin(plugin, old, client([release()], { commit: 'b'.repeat(40) }));
+  assert.match(result.rejected_releases[0].error, /commit 被修改/);
+  assert.deepEqual(result.versions[0], { ...old.versions[0], yanked: true });
   assert.equal(old.versions[0].commit, commit);
+  assert.equal(old.versions[0].yanked, false);
+});
+
+test('旧版本 commit 或 Tag 改写不阻断新版审核及收录，并清除旧同步错误', async () => {
+  const old = await syncPlugin(plugin, undefined, client([release()]));
+  old.sync_error = '旧同步错误';
+  for (const changedTag of [false, true]) {
+    for (const approved of [false, true]) {
+      const requested = [];
+      const request = async url => {
+        if (url.includes('/releases?')) return [{ ...release(), tag_name: changedTag ? '1.0.0' : 'v1.0.0' }, release('2.0.0')];
+        if (url.includes('/git/ref/tags/') && url.endsWith('1.0.0')) return { object: { type: 'commit', sha: changedTag ? commit : 'b'.repeat(40) } };
+        return client([], { manifest: manifest('2.0.0') })(url);
+      };
+      const result = await syncWithGate(plugin, old, request, undefined, async (_, candidate) => {
+        requested.push(candidate.version);
+        return approved;
+      });
+      assert.deepEqual(requested, ['2.0.0']);
+      assert.equal(result.sync_error, undefined);
+      assert.match(result.rejected_releases[0].error, changedTag ? /Tag 被修改/ : /commit 被修改/);
+      assert.equal(result.versions.find(item => item.version === '1.0.0').yanked, true);
+      assert.equal(result.versions.some(item => item.version === '2.0.0' && !item.yanked), approved);
+    }
+  }
 });
 test('删除 Release 保留历史版本并标记撤回，重新发布恢复可用', async () => {
   const old = await syncPlugin(plugin, undefined, client([release()]));

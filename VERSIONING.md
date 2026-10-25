@@ -22,7 +22,7 @@
 | `release_url` | GitHub Release 页面 |
 | `release_notes` | GitHub Release 发布说明 |
 
-`ignored_tags` 记录不符合版本规范的 Tag；`rejected_releases` 记录各版本的格式校验失败原因；`sync_error` 表示整个插件的同步故障。
+`ignored_tags` 记录不符合版本规范的 Tag；`rejected_releases` 记录各版本的格式校验失败或已收录 Tag/commit 被修改的原因。被改写的已收录版本保留原快照并标记 `yanked`，不阻断其他版本进入审核；`sync_error` 表示整个插件的同步故障。
 
 ## 同步与故障处理
 

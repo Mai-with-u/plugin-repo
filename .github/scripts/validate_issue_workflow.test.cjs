@@ -16,12 +16,12 @@ const manifest = {
   description: "Example plugin", author: { name: "Example", url: "https://github.com/example" },
   license: "MIT", urls: { repository: "https://github.com/example/demo" },
   host_application: { min_version: "0.12.0", max_version: "0.15.99" },
-  sdk: { min_version: "2.0.0", max_version: "2.99.99" },
+  sdk: { min_version: "2.0.0", max_version: "2.1.99" },
   capabilities: [], i18n: { default_locale: "zh-CN" },
 };
 const release = { tag_name: "v1.0.0", draft: false, published_at: "2026-10-04T00:00:00Z", assets: [] };
 
-async function validate(pages, { type = "add", apiError = false } = {}) {
+async function validate(pages, { type = "add", apiError = false, manifestData = manifest } = {}) {
   const outputs = {};
   const requests = [];
   const https = {
@@ -32,7 +32,7 @@ async function validate(pages, { type = "add", apiError = false } = {}) {
       request.setTimeout = () => {};
       callback(response);
       queueMicrotask(() => {
-        response.emit("data", JSON.stringify(manifest));
+        response.emit("data", JSON.stringify(manifestData));
         response.emit("end");
       });
       return request;
@@ -66,6 +66,25 @@ test("no releases or only drafts fail validation", async () => {
     assert.equal(outputs.status, "error");
     assert.match(outputs.message, /插件尚未发布 Release/);
     assert.equal(outputs.manifest_host_min_version, "0.12.0");
+  }
+});
+
+test('申请校验拒绝所有版本字段前两位的 99 和 999，第三位不限', async () => {
+  for (const field of ['version', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version', 'sdk.max_version']) {
+    for (const version of ['99.0.0', '999.0.0', '1.99.0', '1.999.0', '1.0.99', '1.0.999', '1.0.1000', '98.100.0']) {
+      const manifestData = structuredClone(manifest);
+      const parts = field.split('.');
+      if (parts.length === 1) manifestData[field] = version;
+      else manifestData[parts[0]][parts[1]] = version;
+      const { outputs, requests } = await validate([[release]], { manifestData });
+      const rejected = ['99.0.0', '999.0.0', '1.99.0', '1.999.0'].includes(version);
+      assert.equal(outputs.status, rejected ? 'error' : 'success', `${field}=${version}`);
+      if (rejected) {
+        assert.ok(outputs.message.includes(field));
+        assert.match(outputs.message, /第一位和第二位不能填写/);
+        assert.equal(requests.length, 0);
+      }
+    }
   }
 });
 

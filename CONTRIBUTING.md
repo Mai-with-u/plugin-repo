@@ -41,11 +41,11 @@
   },
   "host_application": {
     "min_version": "1.0.0",
-    "max_version": "1.99.99"
+    "max_version": "1.0.99"
   },
   "sdk": {
     "min_version": "2.0.0",
-    "max_version": "2.99.99"
+    "max_version": "2.0.99"
   },
   "dependencies": [],
   "capabilities": [],
@@ -62,6 +62,7 @@
 > - `manifest_version` 必须为 `2`。
 > - `id` 应使用稳定、唯一的插件 ID，例如 `github.username.my-plugin`，不要使用空格或路径字符。
 > - `version`、`host_application.min_version`、`host_application.max_version`、`sdk.min_version`、`sdk.max_version` 都应使用三段式版本号，例如 `1.0.0`。
+> - 新增和修改申请的初次校验中，上述版本号的第一位、第二位不能填写 `99` 或 `999`；第三位不受此限制，例如 `1.0.99`、`1.0.999` 可通过这项检查。兼容范围请按实际支持情况填写。
 > - `author` 包含 `name` 和 `url`。
 > - `urls.repository` 必须是公开 GitHub 仓库的 HTTPS 地址。
 > - `capabilities` 只声明插件实际需要的能力；没有额外能力时填写空数组。
@@ -82,7 +83,7 @@
 3. 提交代码，创建 `v2.3.0` 或 `2.3.0` Tag，再发布对应 GitHub Release。版本号必须与该提交的 manifest 完全一致。
 4. 等待每日同步和版本审核。无风险版本自动收录，有风险或结论不确定的版本交给维护者；授信仓库的合规版本直接收录。
 
-同一版本首次收录后，其 Tag 和 commit 必须保持不变。修复代码时，请发布新的版本号。删除已收录的 Release 会将该版本标记为撤回，并保留历史记录。
+同一版本首次收录后，其 Tag 和 commit 必须保持不变。修复代码时，请发布新的版本号。删除已收录的 Release，或修改其 Tag、commit，会将该版本标记为撤回，并保留原收录快照；改写原因记录在 `rejected_releases`，其他新版本仍可正常进入审核。
 
 历史已登记且没有可识别 Release 的插件继续使用分支安装；新增和修改请求必须满足上述 Release 发布要求。如果已有三段式 Release，但它们全部校验失败，不会转回分支安装。
 

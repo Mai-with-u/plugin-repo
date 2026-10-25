@@ -414,6 +414,19 @@ jobs:
               }
             }
 
+            const declaredVersions = [
+              ['version', manifest.version],
+              ...['host_application', 'sdk'].flatMap(field =>
+                ['min_version', 'max_version'].map(bound => [`${field}.${bound}`, manifest[field][bound]])),
+            ];
+            for (const [field, value] of declaredVersions) {
+              if (String(value).split('.').slice(0, 2).some(part => part === '99' || part === '999')) {
+                core.setOutput('status', 'error');
+                core.setOutput('message', `**\`${field}\` 版本号不符合要求**\n\n当前值: \`${value}\`\n\n第一位和第二位不能填写 \`99\` 或 \`999\`，请填写实际版本；第三位不受此限制。`);
+                return;
+              }
+            }
+
             core.setOutput('manifest_host_min_version', manifest.host_application.min_version);
             core.setOutput('manifest_host_max_version', manifest.host_application.max_version);
 

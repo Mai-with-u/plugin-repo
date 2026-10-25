@@ -101,9 +101,13 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
     assert.equal(object.type, 'commit', 'Tag 必须指向 commit');
     assert.match(object.sha, SHA);
     const old = versions.get(version);
-    if (old) {
-      assert.equal(old.commit, object.sha, `已发布版本 ${version} 的 commit 被修改`);
-      assert.equal(old.tag, release.tag_name, `已发布版本 ${version} 的 Tag 被修改`);
+    if (old && (old.commit !== object.sha || old.tag !== release.tag_name)) {
+      rejectedReleases.push({ tag: release.tag_name, version,
+        error: old.commit !== object.sha
+          ? `已发布版本 ${version} 的 commit 被修改（actual ${object.sha} / expected ${old.commit}）`
+          : `已发布版本 ${version} 的 Tag 被修改（actual ${release.tag_name} / expected ${old.tag}）` });
+      // 保留原始快照并维持 yanked，不接受替换源码，也不阻断其他版本的审核。
+      continue;
     }
     let manifest = old?.manifest;
     try {
