@@ -21824,6 +21824,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "90417b7356cf210cf2d033ea21a627d7297c24e8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:23:02Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v1.2.3",
+          "release_notes": "### 变更\n\n- 收窄主程序兼容上界：`host_application.max_version` 由 `1.99.99` 改为 `1.3.99`，兼容范围落定为 MaiBot 1.0.0 至 1.3.x。\n\n### Changed\n\n- Narrowed the host compatibility upper bound: `host_application.max_version` changed from `1.99.99` to `1.3.99`, fixing the supported range at MaiBot 1.0.0 through 1.3.x.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "1.2.3",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.0",
           "tag": "v1.2.0",
           "commit": "a9d773d201f3bb2bae06073968a21d1da7413b5c",
