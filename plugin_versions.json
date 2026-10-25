@@ -20316,6 +20316,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "4dcb187029a7d0cfa3b06d6c5d5d456e43849e35",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T13:21:08Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.3.0",
+          "release_notes": "## 用户功能\n\n- 新增服装风格和场景风格配置，并在参考图选择前按标签与风格过滤。\n- 参考板生成后自动审核标签完整性、类别资格和最低置信度，未通过的条目保留为待审核。\n- 新增人物、服装和场景图库数量上限；容量策略可选择停止新增，或仅淘汰未被使用的自动补库参考图。\n- 新增服装文字回退概率；回退生成成功后可继续触发对应类别自动补库。\n- 保留原有参考图选择策略和聊天连续性行为。\n\n## 兼容性\n\n- 插件版本：0.3.0\n- 配置版本：1.8.0\n- MaiBot Host 兼容上限为已实测的 1.3.99。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.3.0",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "04545920a61a9c27e5552ddad9ba308e6f6996aa",
