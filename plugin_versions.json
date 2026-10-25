@@ -28239,6 +28239,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.5",
+          "tag": "v1.4.5",
+          "commit": "64357efb0de2fb82173968195c2fd30f44d1fd8e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T16:13:39Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.5",
+          "release_notes": "- 适配并实测 MaiBot 1.3.15（兼容上界维持 1.3.x 线）。\n- 修复配置页出现两个「启用插件」开关的问题：现在只保留页面顶部的宿主开关，插件配置节不再重复显示。\n- 新装插件的自我信息列表自带一条示范条目，照着改写成自己 Bot 的人设即可，不再是空白列表。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.5",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        },
+        {
           "version": "1.4.4",
           "tag": "v1.4.4",
           "commit": "54e435c1882cc4400efb0e7497053ac5a5ed6ff6",
