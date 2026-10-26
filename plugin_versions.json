@@ -5244,6 +5244,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.9",
+          "tag": "v1.1.9",
+          "commit": "ab751ae5c11f501e0158e33cacc321b33e34ef0c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T17:52:12Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.1.9",
+          "release_notes": "### 细节\n\n- 消息表态：`react_emoji` 声明仅群聊可用，私聊不再提供该工具。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.1.9",
+            "name": "SnowLuma 适配器/ SnowLuma Adapter",
+            "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.1.8",
           "tag": "v1.1.8",
           "commit": "54fcc7fcc4072983a1283d99fa0edd559125e1d7",
@@ -17550,6 +17614,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.2.0",
+          "tag": "v2.2.0",
+          "commit": "aa325c98931da1557edb370be4e0d148c68e4144",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T15:35:28Z",
+          "release_url": "https://github.com/octmicy/vw50_sponsor/releases/tag/v2.2.0",
+          "release_notes": "## v2.2.0 — 新增赞助查询工具\n\n### 新增\n\n**`query_sponsor_amount`**：向 planner 暴露一个工具，可查询赞助记录。\n\n| 调用方式 | 返回 |\n|---|---|\n| `query_sponsor_amount(sponsor=\"我自己的昵称或 QQ\")` | 本人的累计次数、累计金额、最近一次时间、按金额排名 |\n| `query_sponsor_amount(sponsor=\"别人\")` | 「该赞助人的赞助金额属于隐私信息，不方便透露」 |\n| `query_sponsor_amount()` | 整体汇总（人数 / 人次 / 总额）+ 调用者自己那一条 |\n\n数据由 `vw50_sponsors.json` 的明细按 `user_id` 聚合，所以同一人多次赞助会被正确累加。\n\n### 隐私设计（重要）\n\n**赞助金额按敏感信息处理，只允许查询调用者本人。**\n\n- 查别人（无论用昵称还是 QQ 号）→ 一律返回「不方便透露」，不含任何数字\n- 不带参数 → 只给整体汇总 + 自己那一条，**不提供公开排行榜**\n- 匹配到多人 → 只列昵称，**不列金额、也不泄露他人 QQ 号**\n- 拿不到调用者身份 → 直接拒绝，不返回任何明细\n- 工具描述里写入了隐私约束，模型被问到别人金额时会委婉拒绝，而不是编造数字\n\n调用者身份取自工具执行上下文的 `user_id`（主程序会优先使用本轮触发消息的发送者，\n其次回落到聊天流的 `user_id`），所以「是谁在问」是可靠的。\n\n### 提示词同步收紧\n\n感谢赞助的提示词新增一条：\n\n> 赞助金额属于隐私：不要在公开回复里写出具体金额，也不要提「累计第几次」「共多少元」这类统计；\n> 用「感谢你的支持」这类表述即可。\n\n> 如果你希望感谢时公开金额，把这条删掉即可（但与上面的隐私口径不一致）。\n\n### 配置\n\n新增 `sponsor.query_tool_enabled`（默认 `true`），设为 `false` 可关闭查询工具。\n\n### 验证\n\n- 自测第 12 组扩到 15 条断言，覆盖查自己 / 查别人（昵称、QQ）/ 模糊候选 / 无匹配 /\n  总览 / 无调用者身份 / 他人查自己 / 开关关闭；全项目 **55 项断言全绿**\n- 主程序 `ManifestValidator` 通过（2.2.0）\n- 运行环境：MaiBot 1.3.8 + Plugin SDK 2.13.0\n- **金额隐私路径已断言**：拒绝返回内容中不含任何金额数字\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.octmicy.vw50",
+            "name": "麦麦vw50",
+            "version": "2.2.0",
+            "description": "肯德基疯狂星期四「V我50」梗：每周四 11:00 后自动让麦麦生成 V我50 文案并附上收款码；未发送则每 30 分钟提醒一次直至发送；提供 send_payment_code 工具供群友主动索要收款码；支持管理员用 /vw50 金额 @成员 录入赞助并让麦麦公开感谢。目标群只需填 QQ 群号。",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/vw50_sponsor"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/octmicy/vw50_sponsor"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "vw50.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.proactive.trigger",
+              "chat.get_stream_by_group_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        },
+        {
           "version": "2.1.1",
           "tag": "v2.1.1",
           "commit": "b354fb2726d74bc3fed4a329d7448e1c54c87086",
@@ -20196,6 +20316,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "4dcb187029a7d0cfa3b06d6c5d5d456e43849e35",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T13:21:08Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.3.0",
+          "release_notes": "## 用户功能\n\n- 新增服装风格和场景风格配置，并在参考图选择前按标签与风格过滤。\n- 参考板生成后自动审核标签完整性、类别资格和最低置信度，未通过的条目保留为待审核。\n- 新增人物、服装和场景图库数量上限；容量策略可选择停止新增，或仅淘汰未被使用的自动补库参考图。\n- 新增服装文字回退概率；回退生成成功后可继续触发对应类别自动补库。\n- 保留原有参考图选择策略和聊天连续性行为。\n\n## 兼容性\n\n- 插件版本：0.3.0\n- 配置版本：1.8.0\n- MaiBot Host 兼容上限为已实测的 1.3.99。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.3.0",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "04545920a61a9c27e5552ddad9ba308e6f6996aa",
@@ -22763,7 +22956,75 @@
       "manifest_id": "omsociety.minecraft-adapter",
       "repositoryUrl": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.3.4",
+          "tag": "v1.3.4",
+          "commit": "82244ef30416efa159da748f7b6535343a54053f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T14:36:32Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter/releases/tag/v1.3.4",
+          "release_notes": "### 修复\r\n\r\n- **编号选择现在只接受发起者的回复**：多服务器（含代理后端）会话里，`/mc cmd` 与自定义指令会先给出目标列表，真正执行发生在回复编号时，而这条路径由入站消息钩子处理、不经过宿主 `@Command(permission=\"operator\")` 过滤（待选动作按会话存档，会话内任何成员都能回数字）。此前只校验命令开关与白名单，不比对回复者，会话内其他人可以代回编号替你选定执行目标。现在回复者必须是发起者本人、且仍命中 `[plugin].permission` 操作员名单，两者任一不符则不执行、原待选动作保留，发起者可在 60 秒内重新回复有效编号（覆盖 `/mc cmd` 与 `custom_cmd_list` 映射出的自定义指令两条链路）。\r\n- **头像缓存键消毒**：缓存文件名此前由服务端下发的玩家名直接拼成，玩家名含 `../` 或反斜杠时会把 PNG 写到缓存目录之外。现在键只保留字母、数字、下划线、点号与连字符（其余替换为下划线，上限 64 字符；名字为空时退回 uuid），并在读写前校验解析后的路径仍在缓存目录内，否则跳过头像缓存。\r\n\r\n### Fixed\r\n\r\n- **Number selection now accepts only the initiator's reply**: in multi-server sessions (including proxy backends), `/mc cmd` and custom commands first return a target list, and execution happens when a number is sent back — a path handled by the incoming-message hook that bypasses the host's `@Command(permission=\"operator\")` filter (pending actions are stored per session, so any member of that session can reply with a digit). Only the command switch and the whitelist were checked, never who replied, so another member could pick the execution target for you. The reply must now come from the initiator and still match the `[plugin].permission` operator list; if either fails nothing is executed and the pending action is kept, so the initiator can reply with a valid number within 60 seconds (this covers both `/mc cmd` and the custom commands mapped from `custom_cmd_list`).\r\n- **Avatar cache keys are sanitised**: the cache filename was built directly from the player name supplied by the server, so a name containing `../` or a backslash wrote the PNG outside the cache directory. Keys now keep only letters, digits, underscore, dot and hyphen (everything else becomes an underscore, 64 characters max; empty names fall back to the uuid), and the resolved path is verified to stay inside the cache directory before any read or write — otherwise the avatar cache is skipped.\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.minecraft-adapter",
+            "version": "1.3.4",
+            "name": "Minecraft 聊天适配器",
+            "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.1.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -25212,6 +25473,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.23.7",
+          "tag": "v1.23.7",
+          "commit": "80f025d75dd99fe56e23327cb0f23bffef9e4810",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T17:52:49Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.23.7",
+          "release_notes": "## 修复\r\n\r\n- **emoji 解析失败重试被 duplicate_turn 循环拦截**：配了起止不同的夜窗/午休窗后，日程表情包解析失败触发 Host 重试时， 的轮次锁仍持有旧预留，重试轮被连续抑制约两分钟。现在  时自动释放旧锁并重新预留（plugin.py ）。\r\n- docs/ 目录改为只入库 （maibot.schedule 协议 v1 接口文档），其余文档转为本地文件。\r\n\r\n## 说明\r\n\r\n- 581 项测试通过（+4 重试锁测试：首放/零重试拦/重试释放/不同 anchor 不影响）。\r\n- 版本号 6 处 1.23.7。\r\n\r\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.23.6...v1.23.7",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.23.7",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.23.4",
           "tag": "v1.23.4",
           "commit": "54e18d0a5ff28dc4e1f8d235d794acfb1ebd9144",
@@ -27648,6 +27983,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "a6c62be382f0b6e16c0e6e7cbd130ab43ffea297",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T19:59:50Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/releases/tag/v1.0.2",
+          "release_notes": "# 麦麦我真得控制你了 v1.0.2\n\n修复「部分适配器下关键词完全不识别」的问题，并把版本区间按插件市场新规收紧。\n\n## 本版本变更（v1.0.2）\n\n- **修复：部分适配器下关键词完全不识别。** 宿主在 `chat.receive.before_process` 钩子触发之后才生成 `processed_plain_text`，此前关键词匹配完全依赖适配器是否预填该字段——NapCat / SnowLuma / 官方 QQ 适配器等预填型适配器一切正常，其余适配器会表现为「关键词怎么发都没反应」。现在适配器未预填时自动从 `raw_message` 消息段拼出文本再匹配，不再依赖适配器行为；预填型适配器行为不变。\n- **版本区间按市场新规收紧**：`host_application` **1.3.0 ~ 1.3.99**（对齐官方适配器口径），`sdk` **2.5.0 ~ 2.16.99**（市场校验禁止版本前两段填 99/999）。\n- manifest 新增 `changelog` 字段（`CHANGELOG.md`），WebUI 插件页「更新日志」可直接读取。\n- README：顶部新增 issue 反馈指引（🐛🪲🐞）；兼容性排查补充第 ④ 条。\n- 离线验证 128 → **134 项**（新增兜底识别与市场版本禁令校验），全绿。\n\n## 遇到问题？\n\n欢迎直接提 issue：https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/issues \n提问请附：① MaiBot 宿主版本；② 使用的适配器（NapCat / SnowLuma / 官方 QQ / Telegram / …）；③ 触发时发送的完整消息（群里是否 @ 了麦麦、@ 与关键词间有无空格）。\n\n## 安装\n\n1. **插件市场**：选择 v1.0.2 安装（即本 Release 的 Source code 包）；\n2. **手动安装**：下载 Source code (zip) 解压到 MaiBot 的 `plugins/` 目录，WebUI 中启用；\n3. 首次安装因 manifest 能力声明需**完整重启一次 MaiBot**，之后改配置走热更新。\n\n## 数据与隐私\n\n会话状态仅保存在插件本地 data 目录的 `state.json`，不上传任何服务器；卸载或删除该文件即全部清除。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.immersive-control",
+            "version": "1.0.2",
+            "name": "麦麦我真得控制你了",
+            "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "remote"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "3f953fb07745896c30a5e2533a95520d948d64a0",
@@ -28238,6 +28624,66 @@
       "repositoryUrl": "https://github.com/ValleyWinds/Self-Identity",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.4.5",
+          "tag": "v1.4.5",
+          "commit": "64357efb0de2fb82173968195c2fd30f44d1fd8e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T16:13:39Z",
+          "release_url": "https://github.com/ValleyWinds/Self-Identity/releases/tag/v1.4.5",
+          "release_notes": "- 适配并实测 MaiBot 1.3.15（兼容上界维持 1.3.x 线）。\n- 修复配置页出现两个「启用插件」开关的问题：现在只保留页面顶部的宿主开关，插件配置节不再重复显示。\n- 新装插件的自我信息列表自带一条示范条目，照着改写成自己 Bot 的人设即可，不再是空白列表。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.5",
+            "name": "自我信息插件 (Self Identity)",
+            "description": "为 Bot 提供自我信息检索、人设图库浏览、自我图片与 QQ 头像获取能力",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Self-Identity",
+              "homepage": "https://github.com/ValleyWinds/Self-Identity",
+              "documentation": "https://github.com/ValleyWinds/Self-Identity/blob/main/README.md",
+              "issues": "https://github.com/ValleyWinds/Self-Identity/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪞",
+                "background": "#E8F0F7"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "valleywinds.self-identity"
+          }
+        },
         {
           "version": "1.4.4",
           "tag": "v1.4.4",
