@@ -40150,6 +40150,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.2",
+          "tag": "v1.6.2",
+          "commit": "81793fe9c7e8427a93c855b3e62bbe3e4142626e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T16:19:37Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.6.2",
+          "release_notes": "## 改动\n\n按官方新文档（<https://docs.maibot.chat/plugin/>）审查后修正两处问题。\n\n### 1. `max_version` 改为实际验证过的上界\n\n```diff\n- \"host_application\": { \"max_version\": \"999.999.999\" },\n- \"sdk\": { \"max_version\": \"999.999.999\" }\n+ \"host_application\": { \"max_version\": \"1.3.99\" },\n+ \"sdk\": { \"max_version\": \"2.16.99\" }\n```\n\n官方 `manifest.md` 明确禁止写 `999.999.999` 这类没有对应真实版本的上限 —— 相当于没声明上限，插件会被加载到从未验证过的版本上。现在写的是本机实测版本（Host 1.3.15 / SDK 2.16.0）的次版本 + `.99`，同一次版本的补丁更新仍会放行。\n\n### 2. 测试文件路径脱敏\n\n`tests/test_model_version.py` 里有一条本机真实权重路径，含盘符、安装目录名（带日期与显卡型号）、模型目录和角色名，会暴露本机目录结构。\n\n```diff\n- r\"D:\\GPT-SoVITS-v2pro-20261006nvidia50x0\\SoVITS_weights_v1\\azuma_e10.pth\"\n+ r\"D:\\Tools\\GPT-SoVITS-v2pro-sample\\SoVITS_weights_v1\\model_e10.pth\"\n```\n\n测试意图是「根目录的 v2pro 不能污染 v1 权重」，虚构路径同样覆盖。\n\n## 验证\n\n- 8 个测试文件、386 个断言全部通过\n- `ManifestValidator.validate()` 通过\n- 能力声明（`send.text` / `send.custom`）与实际调用一致\n\n## 其他\n\n无功能变更，纯合规性与隐私修正。已装 v1.6.1 的用户可直升。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.2",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.1",
           "tag": "v1.6.1",
           "commit": "9bd641ddb7bab8ded39c66eaee066bfbaf19999e",
