@@ -2,7 +2,6 @@
 
 [![Validate Plugins](https://github.com/Mai-with-u/plugin-repo/actions/workflows/validate-issue.yml/badge.svg)](https://github.com/Mai-with-u/plugin-repo/actions/workflows/validate-issue.yml)
 [![插件数量](https://img.shields.io/badge/dynamic/json?color=blue&label=plugins&query=%24.length&url=https%3A%2F%2Fraw.githubusercontent.com%2FMai-with-u%2Fplugin-repo%2Fmain%2Fplugins.json)](https://github.com/Mai-with-u/plugin-repo/blob/main/plugins.json)
-[![GitHub Pages](https://img.shields.io/badge/插件展示-GitHub%20Pages-blue?logo=github)](https://mai-with-u.github.io/plugin-repo/)
 
 欢迎来到 [麦麦 (MaiBot)](https://github.com/Mai-with-u) 社区插件中心！这里收录社区开发者分享的插件。
 
@@ -20,6 +19,8 @@
 
 您可以在 **[插件展示页面](https://plugins.maibot.chat/)** 搜索插件、按标签筛选并查看详情。
 
+插件市场前端由独立仓库维护和构建，本仓库负责插件登记、索引、图标及审核同步。原 `docs/` 静态前端产物保留在 `backup/plugin-market-frontend` 备份分支。
+
 ## ✨ 工作方式
 
 `plugins.json` 登记插件身份及其公开 GitHub 仓库，提交请求由工作流验证。
@@ -28,7 +29,7 @@
 
 ## CNB 国内镜像
 
-支持自动将活动插件仓库及本仓库的索引、图标和网页文件同步到 CNB。配置 `CNB_TOKEN` 和 `CNB_GROUP` 后启用，具体权限、运行方式及同步状态见 [CNB 自动镜像配置](./CNB_MIRRORS.md)。安装端接入另行处理。
+支持自动将活动插件仓库及本仓库的索引、图标同步到 CNB。配置 `CNB_TOKEN` 和 `CNB_GROUP` 后启用，具体权限、运行方式及同步状态见 [CNB 自动镜像配置](./CNB_MIRRORS.md)。安装端接入另行处理。
 
 ## 🚀 如何贡献您的插件
 

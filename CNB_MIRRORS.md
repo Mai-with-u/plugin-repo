@@ -57,7 +57,7 @@ GitHub Actions 工作流 **Sync CNB Mirrors** 读取本仓库的插件列表，�
 
 假设 `CNB_GROUP=maibot-mirrors/plugins`：
 
-- 索引仓库：`https://cnb.cool/maibot-mirrors/plugins/plugin-repo`。其 `main` 分支同步源仓库的 `main`，包含 `plugins.json`、`plugin_details.json`、`plugin_versions.json`、归档记录、图标、`docs/` 等所有跟踪文件；同时同步源仓库的 Tag。
+- 索引仓库：`https://cnb.cool/maibot-mirrors/plugins/plugin-repo`。其 `main` 分支同步源仓库的 `main`，包含 `plugins.json`、`plugin_details.json`、`plugin_versions.json`、归档记录、图标等所有跟踪文件；同时同步源仓库的 Tag。
 - 插件仓库：名称为 `p-作者--仓库名-源路径哈希`，前面的可读部分规范化并截断，后面保留 12 位 SHA-256 摘要。同一源仓库复用一个镜像，避免不同作者、符号替换和长名称产生冲突。实际地址以状态文件为准。
 - 同步状态：索引镜像的 **`cnb-mirror-status` 分支 → `cnb_mirrors.json`**，例如 `https://cnb.cool/maibot-mirrors/plugins/plugin-repo/-/blob/cnb-mirror-status/cnb_mirrors.json`。该分支独立存放生成结果，不写回 GitHub。
 
@@ -75,7 +75,7 @@ GitHub Actions 工作流 **Sync CNB Mirrors** 读取本仓库的插件列表，�
 - 推送前通过 API 关闭仓库自动事件、定时任务、NPC 和 Fork 自动构建；设置失败则不上传代码。Git 使用裸仓库，不检出或执行插件代码。Git 凭据仅通过进程环境作用于 `https://cnb.cool/`，不写入远端 URL 或日志。
 - Git 镜像不复制 GitHub Release 页面、附件、Issue、PR，也不会递归镜像 submodule、外部模型、运行时下载和 Python/npm 依赖。`plugin_versions.json` 中已有的 Release 信息随索引原样保留。
 - `repositoryUrl` 和插件 manifest 均保留 GitHub 地址。已有客户端仍访问 GitHub；后续安装端需读取镜像映射并保留 commit 校验和回退逻辑。
-- `docs/` 文件同步不等于启用 CNB 网页托管；本阶段交付的是 Git 仓库和索引文件镜像。
+- 插件市场前端由独立仓库维护，不在本仓库的镜像范围内；本阶段交付的是 Git 仓库和索引文件镜像。
 
 ## 本地验证
 
