@@ -37986,6 +37986,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.2",
+          "tag": "v0.7.2",
+          "commit": "d91bfbb69a7941e48147dec08205e5547f31cb6b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T07:03:13Z",
+          "release_url": "https://github.com/namchengwuqiu/bilibili_autopilot/releases/tag/v0.7.2",
+          "release_notes": "- 优化群分享文案：围绕视频里的具体看点，接上感受或分享理由，通常生成2～3句话、50～120字，让群友在打开链接前了解分享内容。\n- 润色保留看点和信息量，不再优先压缩成5～20字或半句话；避免固定开头、广告腔和空泛感叹。\n- 分享正文上限由80字提高至180字；素材不足时允许简短，继续保留内容依据复核与未提供亲身经历的拦截。\n- 不修改配置格式、依赖、数据结构或发送去重规则；升级保留原配置与账号数据，历史分享不补发。\n- 容器内运行225项隔离测试：224项通过，1项跳过，新增长文案与180字边界校验。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bilibili-autopilot",
+            "name": "B站自主浏览与评论",
+            "version": "0.7.2",
+            "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+              "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "chat.get_group_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "play",
+                "background": "#E7F9FF"
+              }
+            }
+          }
+        },
+        {
           "version": "0.7.1",
           "tag": "v0.7.1",
           "commit": "d945af07d0252acb1728d8fa2d93729f90c6d518",
