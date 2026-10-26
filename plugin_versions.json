@@ -36187,6 +36187,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "3ed65d3fed57a455b5880866d20b720baa7e19d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T16:29:35Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.7",
+          "release_notes": "## 更新\n\n- 「贴吧原页面」渲染前把样式表和装饰图全部内嵌、并加一条禁止外链的 CSP，页面零网络请求。主程序搭配 Playwright 1.60 及更早版本时那个「每个外链请求都抛 `TypeError`、最后超时出不了图」的缺陷因此不再影响本插件，1.58 也能正常出图。\n- 出图结果与「原生」方式基本一致（实测像素差异 0.01%~0.2%，集中在表情边距）。\n- 新增配置项「原页面渲染方式」：`零外链`（默认）或 `原生`。想省掉那 0.8~1 秒预下载、并且确认主程序 Playwright 在 1.61 以上，可以切到 `原生`；切过去之后渲染失败会自动回落到自绘卡片，不会空发。\n- 装饰图下载失败或超出预算（整页 2 MB、单图 512 KB）时该图留空，不影响文字与正文图。\n- 修复上一条带来的副作用：贴吧用 `img[src*=\"tb/editor\"]` 这类属性选择器控制表情大小，图片换成内嵌数据后选择器失配，楼层正文里的表情会按原图尺寸撑开。现在换图时把原地址留在 `data-orig-src` 上，并把样式里的 `[src…]` 一并改指过去，表情与其它依赖原地址的排版都恢复原样。\n- 长图不再降档重渲，倍率固定 1.5。降档是「再渲一遍」，总时间只会更长 ——实测 1.5 换 1.0 只省 0.15 秒，而一整轮里光是下载样式表和装饰图就要 0.8~1 秒，真正慢的是网络。现在长图渲完会像视频那样在日志里打出实际体积，方便核对。唯一保留的门槛是主程序单次回传 12 MB 的硬顶，正常层数碰不到。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.7",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.6",
           "tag": "v1.1.6",
           "commit": "9c12eef80d37bdcd9953850ffd4b46a91a999766",
