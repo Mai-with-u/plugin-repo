@@ -36803,6 +36803,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.1",
+          "tag": "1.4.1",
+          "commit": "343b8488af888d228940b4cf2804434f522f984d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T22:29:35Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.4.1",
+          "release_notes": "## \\[1.4.1] - 2026-10-26\r\n\r\n### 修复\r\n\r\n- **适配当前宿主 SDK 的发送返回值**：`ctx.send.text` / `ctx.send.image` 默认直接返回布尔值\r\n  （`return_details=True` 时返回含 `sent` 的字典），此前按宿主原始 `{\"success\": ...}` 结构解析，\r\n  会把发送成功误判为「返回结构异常」，导致 `/饭卡`、定时播报与条件警报的投递结果被判为失败。\r\n  现在同时兼容布尔值、`sent` 字典与旧版 `success` 字典三种形态。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.4.1",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "1.4.0",
           "commit": "d07091836b91e0d161ddb220b5db4a7db3edf952",
