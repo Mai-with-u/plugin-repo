@@ -4634,7 +4634,7 @@
       "id": "nguspring.random-image-api-for-maibot",
       "manifest_id": "nguspring.random-image-api-for-maibot",
       "repositoryUrl": "https://github.com/nguspring/Random-image-api-for-MaiBot",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
@@ -17440,10 +17440,16 @@
       "id": "maibot-community.mai-love",
       "manifest_id": "maibot-community.mai-love",
       "repositoryUrl": "https://github.com/octmicy/Mai_love",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "2.3.0",
+          "version": "2.3.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '2.2.1'\n- '2.3.0'\n     ^"
+        }
+      ]
     },
     {
       "id": "deepseek-v4-pro.private-humanizer",
@@ -40574,12 +40580,12 @@
         {
           "tag": "v0.4.1",
           "version": "0.4.1",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'\n"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
         },
         {
           "tag": "v0.4.0",
           "version": "0.4.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'\n"
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
         }
       ]
     },
