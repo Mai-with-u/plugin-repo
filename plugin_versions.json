@@ -39013,6 +39013,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.4",
+          "tag": "v0.7.4",
+          "commit": "a17935b49ff6790b97e4cdf3380a3ddf8205e974",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:43:53Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.4",
+          "release_notes": "### 主要功能\n\n- 每轮决策留下结构化记录：时间、心情、判断理由、实际执行或被拦下的动作\n  - 下一轮 prompt 带最近 8 轮的「当时怎么想、后来做了什么」，接着上一轮的思路往下想，不再每轮从零看盘\n- 决策 prompt 新增【这一轮的额度】块：单票上限与当前最重仓位占比、总仓位上限与还能加多少、今天还能下几笔，全部算成数字给模型\n- 三档胆量的提示词从形容词改成行为约束\n- 老状态文件里的 `recent_notes` 自动迁移成新记录，升级不丢历史\n- 聊天里的 `history` 改成展示完整判断和动作，不再只有一行「没动」\n\n### 修复\n\n- 有持仓但妙想没返回总资产时，额度块会说「现在空仓」，与同一份 prompt 里的持仓自相矛盾；现在明确写「总资产取不到，占比这轮不算」\n- 聊天触发的看盘（`sim_trader_review`）不走定时循环，跨日不重置当日笔数，第二天开局可能卡在上限；现在每轮进来先跨日重置\n\n### 细节\n\n- 启动体检补上妙想 API Key：`[mx] api_key` 和环境变量 `MX_APIKEY` 都没配时直接警告，\n  不再等第一个交易时段每轮报错才发现\n- 状态文件最多保留 24 轮记录，决策 prompt 注入最近 8 轮，`history` 查询展示最近 6 轮\n- 每轮记录的动作改成「成交行优先」，池子变更多时不会把成交挤出去\n- 妙想没返回仓位字段、或返回 0 但有持仓时，都用持仓市值算出仓位\n- 没渲染额度块时，规则里也不再提【这一轮的额度】\n- 状态文件载入时同样按 24 条截断；`round_records` 里出现非对象条目会报 `StateError`\n- 「最近几轮」和 `history` 的条数常量归到 `state.py`\n- README 增加「把账户清零重新开始」一节\n- 测试 84 → 107 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.4",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.1",
           "tag": "v0.7.1",
           "commit": "64568daf651c0e75a9eb28133b654707f518f9fa",
