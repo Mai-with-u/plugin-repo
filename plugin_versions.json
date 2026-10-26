@@ -4635,7 +4635,65 @@
       "manifest_id": "nguspring.random-image-api-for-maibot",
       "repositoryUrl": "https://github.com/nguspring/Random-image-api-for-MaiBot",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "7bf4596af56610924f41609483c72e1fd00c2790",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T15:30:13Z",
+          "release_url": "https://github.com/nguspring/Random-image-api-for-MaiBot/releases/tag/v1.2.1",
+          "release_notes": "## 随机图片插件 v1.2.1\n\n适配 MaiBot 1.3.x 与 Plugin SDK 2.x，使用 manifest v2 与 `maibot_sdk`。\n\n### 本版变更\n\n- **R18 默认关闭**：`features.allow_r18` 默认值改为 `false`，需要时在 `config.toml` 或 WebUI 中手动开启\n- 已存在的 `config.toml` 不会被覆盖，升级后仍保留原有设置\n\n### 功能\n\n- 随机获取 Pixiv 图片，单次最多 10 张\n- 标签包含 / 排除、AI 绘图过滤、横竖屏筛选、画师与收藏 / 浏览 / 尺寸阈值\n- R18 总开关 + 白名单 / 黑名单（默认关闭）\n- 全局冷却、多线路回退、先下载再发送、Pillow 智能压缩\n- 合并转发或逐条发送\n\n### 兼容性\n\n- MaiBot `1.3.0` ~ `1.3.99`\n- Plugin SDK `2.8.2` ~ `2.16.99`\n- 依赖：`Pillow >= 9.0.0`\n\n> 请确保使用场景符合当地法律法规与平台规则。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "nguspring.random-image-api-for-maibot",
+            "version": "1.2.1",
+            "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+            "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+            "author": {
+              "name": "NGU-SprinG",
+              "url": "https://github.com/nguspring"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
+              "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.custom",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "media"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
