@@ -23087,6 +23087,73 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "ea06827b37fc47c8c86235546fe36db05188e8d1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:23:03Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter/releases/tag/v1.3.3",
+          "release_notes": "### 变更\n\n- 收窄主程序兼容上界：`host_application.max_version` 由 `1.99.99` 改为 `1.3.99`，兼容范围落定为 MaiBot 1.0.0 至 1.3.x。\n\n### Changed\n\n- Narrowed the host compatibility upper bound: `host_application.max_version` changed from `1.99.99` to `1.3.99`, fixing the supported range at MaiBot 1.0.0 through 1.3.x.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.minecraft-adapter",
+            "version": "1.3.3",
+            "name": "Minecraft 聊天适配器",
+            "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.1.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
