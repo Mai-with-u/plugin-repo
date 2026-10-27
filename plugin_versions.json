@@ -20641,6 +20641,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "f7026e9d849caa8455014d2f837bd76fc6b9b563",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T15:46:34Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.3.1",
+          "release_notes": "修复长句场景描述和中英文房间标签不完全一致时漏用已有场景参考图的问题，连续性复用使用相同匹配规则。\n\n场景类型与配置风格分别筛选，避免仅因风格相似而选用其它房间的参考图。\n\n12 项离线回归测试通过，生产测试已由用户确认通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.3.1",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.0",
           "tag": "v0.3.0",
           "commit": "4dcb187029a7d0cfa3b06d6c5d5d456e43849e35",
