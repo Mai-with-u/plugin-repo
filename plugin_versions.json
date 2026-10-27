@@ -26253,6 +26253,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.0",
+          "tag": "v1.24.0",
+          "commit": "2eb2e3a3c848f13b5f043bb46668ff92b29a6f0b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T20:47:59Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.0",
+          "release_notes": "### 移除\n\n- **消息收口防抖整体移除**：宿主 1.3.15 已内置消息防抖（natural 档默认开启），插件层二次合并的收益消失、叠加等待反而拖慢回复。`MessageDebouncer`/`_Burst` 删除（-288 行），私聊与群聊消息直接放行；连发合并、合并撤回关联（`mai_life_merged_message_ids` 多来源）由宿主防抖接管，插件撤回关联退化为单条消息 ID（功能降级但可用）。\n- `DebounceSettings` 配置节删除（17 个字段中 15 个纯防抖字段随行为一起移除）。旧配置文件里的 `[debounce]` 段会被自动忽略，不需要手动清理。\n\n### 变更\n\n- **同轮回复防重（轮次锁）迁入 `[context]` 节**：`outbound_turn_guard`（默认开）、`turn_expire_seconds`（默认 120s）改由「被动回复增强」提供；行为不变。另一处隐藏引用 `_candidate` 候选寿命、recall 缓存 TTL 同步改读新路径。\n- **新增 `[group]` 群聊设置节（放在私聊用户之后）**：群闸门 9 个字段从 `[rest_gate]` 迁入并改名——`group_enabled`→`gate_enabled`、`group_mode`→`gate_scope`、`group_night_start/end`→`night_start/night_end`、`group_nap_start/nap_end`→`nap_start/nap_end`、`group_gate_segment_types`→`gate_segment_types`、`group_force_wake_terms`→`force_wake_terms`；语义不变（仍与私聊闸门共用 `rest_gate.gate_mode` 开关）。旧字段留在 `[rest_gate]` 会被忽略。\n- **群聊轮次注册独立开关 `group.turn_enabled`（默认开）**：原群轮次注册复用防抖开关 `debounce.group_enabled`（默认关），防抖删除后拆为独立字段；默认值由关变开，防止同一群消息触发多次回复。\n- **配置 Schema 版本升至 1.12.0**；`webui_config_summary` 去掉 `debounce` 键、新增 `group` 配置节（群闸门/群轮次注册/群时间窗/群段型）并补齐 `context` 的轮次锁与背景缓存字段。\n- **WebUI 配置页归类重排**：system 页 7 个 tab 重组为 5 个主题子 tab——「通用配置 / 生活与作息 / 联网搜索 / 群聊 / 运行状态」。**群聊独立分支**：QQ 群白名单表（自运行状态挪入）、群闸门与轮次、群转私边界（social 全字段）集中一处。**联网搜索分支**：见闻/新闻/主动搜索/搜索服务四段配置集中，搜索来源与 Key 健康表随之归位；「搜索服务（兜底链）」标注其现状角色——`tool_web_search` 已宿主 `ctx.web.search` 优先，该 Provider 链仍是新闻/见闻/主动搜索的动力源与联网工具兜底，配置保留不可删。全站 `card>text` 空壳压成带 label 的 `stat`（约 55 处，overview 74→57、system 181→141 个组件，声明体积 116KB→107KB）；「后台脉搏」更名「后台运行」并移除防抖专属的「活跃收口」。归类草案 `docs/_draft_webui_regroup.md`（本地）。\n\n### 移除\n\n- **插件自有联网链整体删除，联网全面走宿主统一服务**（主人决策）：`tool_web_search`、新闻阅读、主动搜索、联网见闻全部改走宿主 `ctx.web.search` / `ctx.web.fetch`（SDK 2.17+，失败按 `search_api.max_attempts`（默认 3）短退避重试，仍失败记录历史并返回空结果，**不做回退**）。删除 `search_service`/`search_providers`/`search_parsing`/`search_models`（约 870 行 Provider 降级链与 Key 冷却体系）与博查/Tavily/You.com/自定义中转/Playwright 浏览器五种 Provider。`search_api` 配置瘦身（节名不变，删 providers 列表与 timeout_seconds，新增语义为重试次数的 max_attempts）；`webui_admin_summary` 的 sources 范围、搜索来源/Key 健康表随之移除；usage 的「今日搜索请求」改由宿主搜索事件计数。\n- **网页截图工具 `mai_life_browse_web` 删除**（主人追加）：Playwright 依赖从 manifest/requirements 移除，`playwright_search.py`/`feed_parser.py` 删除；网页正文读取改用宿主 `web.fetch`（返回已提取正文）。天气获取仍走插件 HttpClient（宿主无对应能力）。\n\n### 变更（设置大整合，按主人批复的模拟稿实施）\n\n- **设置编辑表单 19 节收敛为 16 节**（节 Tab 排序全部重排为 0–15 无重复）：\n  - **群聊设置**＝原 `[group]`＋原 `[social]` 全节：白名单（逐群 启用/观察/转述/夜间静音）放节内首位，其后休息闸门与轮次、观察与转述；`[social]` 节删除。\n  - **联网**＝原 `[information]`/`[search_api]`/`[news]`/`[search]` 四节合一（21 字段平铺，news_*/search_* 加前缀）：总开关与搜索工具 → 搜索历史 → 见闻关联 → 新闻阅读 → 主动搜索。\n  - **死字段删除**：`plugin.llm_model`（零消费者）、`models.relay_summary_task`（v1.23.6 起孤儿路由，llm 路由表同步清理）。\n  - **节内字段 order 重复修复**：rest_gate（判醒模式与闸门方式同 1、强制词与夜窗开始同 6）、proactive（契机重试与最低精力同 5）；`休息回复闸门` 更名「休息回复闸门（私聊）」与群闸门区分。\n  - 配置 Schema 升 1.13.0；`migrate_legacy_sections` 校验器把旧 TOML 的 [social]/[information]/[search_api]/[news]/[search] 原样搬进 [group]/[network]，**旧配置零丢失、无需手改**。\n- **仪表盘同步**：「联网搜索」Tab 更名「联网」并按五段重排（绑定 network.*）；群聊 Tab「群转私边界」更名「观察与转述」（绑定 group.*）；overview 撤回开关加「（运行）」后缀区分运行态、删除与系统页重复的版本号。\n\n### 修复\n\n- **旧配置 `search_api.max_attempts = 12` 导致整份配置校验失败、工具与调度暂停**：新上限收紧到 5 后，旧 TOML（默认 12）会被 pydantic 拒绝。现在加 before 校验器把超范围值夹回边界（12→5、0→1），旧配置无需手改即可通过校验。\n\n- **版本约束**：要求宿主 1.3.16+、SDK 2.17.x（manifest 已同步收紧）。\n### 说明\n\n- 联网质量取决于宿主「模型设置→功能分配→联网搜索」的配置；工具的 freshness 时间档随宿主能力一并移除，新闻新鲜度按 published_at 轻量过滤（可解析且早于 3 天丢弃）。\n- 联网工具/新闻/探索的查询词隐私清洗（整词移除 QQ 号/昵称/群名）保持不变；搜索历史继续本地留痕（可关）。\n- 全量测试 488 项通过（删除 73 条 Provider 链/截图用例，新增 17 条宿主链用例：重试、历史、隐私清洗、新闻去重与新鲜度、探索归档）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.23.7...v1.24.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.0",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.23.7",
           "tag": "v1.23.7",
           "commit": "80f025d75dd99fe56e23327cb0f23bffef9e4810",
