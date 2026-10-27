@@ -1473,6 +1473,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.8",
+          "tag": "v1.15.8",
+          "commit": "d667eb54b324c1b66ff46bd4b852db0a42ceedac",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T07:50:44Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.8",
+          "release_notes": "### 主要功能\n\n- **渠道请求顺序**：管理页新增可选“请求顺序”字段，数字越小越先请求，已设置的渠道优先于未设置的渠道；同值保持原有先后。图片和视频独立排序，同渠道内联 Key 与独立 Key 均继承设置。\n- **图片 / 视频筛选**：渠道管理新增“全部渠道 / 图片渠道 / 视频渠道”，搜索与分页按所选类型生效，导航保留筛选状态；在视频分类下新增渠道默认勾选视频类型。\n\n- **自拍提示词润色**：模型输出 token 上限由 512 提高到 4096，为较长的润色结果提供更多输出空间。\n\n### 兼容与清理\n\n- 全部未设置时完全沿用原请求顺序，清空并保存可恢复默认。请求顺序存储于现有渠道数据的 `request_order` 字段，保存后对后续请求生效，无需迁移渠道或 Key。\n- 请求顺序仅接受 1–2147483647 的整数；旧数据中的无效值在运行时按未设置处理。未匹配渠道的历史 Key 仍可在“全部渠道”下管理。\n- 移除本次延迟排查的临时分阶段耗时日志，保留正常运行日志和功能回归测试；同步更新 README 与页面设计文档。\n\n### 验证\n\n- 插件全量测试 **772 项通过**，覆盖默认顺序兼容、多 Key 优先级、图片与视频独立排序、设置持久化与清空、非法输入拒绝、分类筛选与搜索分页。修改涉及的 Python 文件通过 Ruff 检查，页面 JavaScript 语法与 JSON 配置检查通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.8",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.15.7",
           "tag": "v1.15.7",
           "commit": "1f48ccc6956e2b6b8f47dca2564b8e71fb2f4452",
@@ -20342,6 +20422,124 @@
               "default_locale": "zh-CN"
             }
           }
+        },
+        {
+          "version": "2.0.3",
+          "tag": "v2.0.3",
+          "commit": "597837cb44e01e7e62bbbd5cfb54385d6c8cb03e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:42:01Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.3",
+          "release_notes": "## 变更\n- DeepSeek 默认抓取源改为中文价目页 `zh-cn/quick_start/pricing`，抓回来直接是人民币价。\n- 不再需要手动把 `prices.json` 改成 CNY；USD/CNY 混比的前提也一并消失。\n- 需要英文页或其它镜像时，可在 `[pricing].sources` 里用 `供应商=地址` 覆盖。\n\n## 说明\n配合 v2.0.2 的币种归一化，自动抓取现在能稳定得到人民币口径。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.3",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.3 起 DeepSeek 默认抓中文价目页，直接得到人民币价。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "2.0.2",
+          "tag": "v2.0.2",
+          "commit": "b9d257f6a710bab0c34bbb03c5c7bb1bc6d66e92",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-17T10:37:42Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.2",
+          "release_notes": "## 修复\n- 牌价比对闸门在比较前先按币种归一化：USD 条目按当前汇率折算为人民币，再与 CNY 条目逐项比较。\n- 此前 CNY 的 `2 / 8` 与 USD 的 `0.3 / 1.2` 被直接相减，会报出「降幅 85%」这类假警报，实际上两者只差约 8%。\n- 汇率优先取 `billing.exchange_rate` 或当日缓存，缺省 7.2。\n\n## 影响\n只影响价格变更比对与挂起判断，不改变实际计价公式。已有 `pending` 建议先否决后重新抓取。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.2",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
         }
       ],
       "ignored_tags": [],
@@ -23034,6 +23232,73 @@
             "manifest_version": 2,
             "id": "omsociety.minecraft-adapter",
             "version": "1.3.4",
+            "name": "Minecraft 聊天适配器",
+            "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.1.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "ea06827b37fc47c8c86235546fe36db05188e8d1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:23:03Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_minecraft_adapter/releases/tag/v1.3.3",
+          "release_notes": "### 变更\n\n- 收窄主程序兼容上界：`host_application.max_version` 由 `1.99.99` 改为 `1.3.99`，兼容范围落定为 MaiBot 1.0.0 至 1.3.x。\n\n### Changed\n\n- Narrowed the host compatibility upper bound: `host_application.max_version` changed from `1.99.99` to `1.3.99`, fixing the supported range at MaiBot 1.0.0 through 1.3.x.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.minecraft-adapter",
+            "version": "1.3.3",
             "name": "Minecraft 聊天适配器",
             "description": "连接 Minecraft 服务器与 MaiBot，实现游戏内 AI 聊天、跨平台消息互通、服务器远程管理（状态查询/玩家列表/远程指令）与群友绑定白名单",
             "author": {
