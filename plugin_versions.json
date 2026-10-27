@@ -23516,6 +23516,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.11.0",
+          "tag": "v0.11.0",
+          "commit": "e03185073206bc4a17fb25adf6211162c3949391",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T18:14:23Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.11.0",
+          "release_notes": "## 本版新增\n\n**群里连续干活：工作会话**\n- 群友派的活开工后，派活的人直接在群里 @ 机器人就能接着说：补充要求、改要求、问做到哪了、让它暂停 / 继续、说「结束」收尾。不用再每次重新派一件新活。\n- 正在做的时候改要求，MaiWork 会按新要求把这一件重新做，旧版本做出来的东西不会交付。\n- MaiWork 会用一两句自然话在群里回应（口吻按 MaiWork 的人设，不发工具调用和内部过程）。它中途有问题问你时，@ 它回答就行；它提议收尾时你说「确认」才会结束。\n- 一个群同一时间只做一件活，其他人批准过的活会排队，并告诉对方「前面还有一个任务」。\n- 闲置一段时间没人理会会自动收起（默认 60 分钟）。只有派活的人能这样接着说，本群批准人可以叫停；旁人 @ 照常是和 MaiBot 聊天。\n- 在「设置 → 全部设置 → 连续对话」可以整体关掉，关掉后和以前一样，每次 @ 都当一件新事。\n\n**装好就能用：群友链接默认用 here.now 公开**\n- 资讯卡片、构想提一嘴、目标「盯到了 / 完成了」、`/mw 网页` 的链接，不再要求你自己做反向代理。没填公开网址时，会把群友要看的那一页自动发布到 here.now（匿名公开页，24 小时过期，内容和群友网页一样）。\n- 填了自己的公开网址仍然优先用它；不想公开可以关掉「用 here.now 自动公开」，群里就只发文字。\n\n**群文件更容易发出去，发不出去会说原因**\n- QQ 端读不到这台机器上的文件时（比如 NapCat 装在 Docker、WSL 或另一台电脑上），20MB 以内的文件会自动改成直接传文件内容再试一次。\n- 还是不行就改发网页链接，并在交付说明里写明「群文件没发出去：原因」；首次引导和运行状态里也能看到最近一次失败的原因。\n\n**更好上手：缺什么直接告诉你怎么补**\n- 缺 SSH 客户端（连不上临时机器）时，运行状态和首次引导会按系统直接给出安装方法：Windows 的「可选功能」或一行 PowerShell 命令、macOS、Linux、Docker 各有写法。不需要装 WSL2。\n- Windows 上 SSH、一键安装画图浏览器和办公文档组件，以前可能因为缺系统变量失败，现在修好了（感谢 @YukiSakiko，PR #5）。\n- 首次引导完成页加了「群文件」「资讯卡片画图」两项检查；「干活」「群文件」「交付」也有「前往设置」按钮，点了直接打开对应设置。\n\n**Docker 部署**\n- 资讯卡片缺中文字体或画图浏览器时，可以在「设置 → 工具 → 可选组件」一键安装（装到 MaiWork 自己的目录，不改 MaiBot 的环境）。浏览器缺系统库时会写明缺哪些、该怎么装。\n- 在容器里运行时，首次引导和运行状态会检查数据目录有没有挂到容器外（没挂的话重建容器会丢数据），以及网页监听地址能不能从容器外打开。默认监听地址不变。\n- 容器里缺 SSH 时，会提示也可以改用不需要 SSH 的 Freestyle 临时机器。\n\n## 兼容性\n\n- 插件 SDK 上限放宽到 2.16.0，跟上 MaiBot dev（1.3.15）的要求。2.16.0 在本地用 MaiBot dev 跑过宿主契约测试；线上我们用的仍是 2.12.0。\n\n## 升级提醒\n\n- 数据库会自动升到第 44 步（从 0.10.5 的第 43 步升一级：新建工作会话的两张表，给任务加两列，只加不删）。\n- 配置版本升到 0.5.3（新增 `[session]` 连续对话、`[console] herenow_share`），都有默认值，不需要改 `config.toml`。宿主第一次加载时会把新字段合并进你的配置文件，原有设置保留。\n- 群友链接默认改为 here.now 公开页，拿到链接的任何人都能打开（24 小时后失效）。不想这样请在设置里关掉「用 here.now 自动公开」。\n- 升级前请备份插件和整个数据目录；如果要回滚到 0.10.5，请连同升级前的 `maiwork.db` 备份一起恢复，只换回旧代码不行。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.11.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.10.5",
           "tag": "v0.10.5",
           "commit": "1edb92c1a0335c01ec568fb94aeaa0d4d9ba8624",
