@@ -23904,6 +23904,172 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.11.2",
+          "tag": "v0.11.2",
+          "commit": "23be26bdf23fe3d24ae59b5653374b59f361335f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T09:42:32Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.11.2",
+          "release_notes": "## 本版修复\r\n\r\n- **Windows 上社交平台装不上**：Twitter、小红书、B站、YouTube、Reddit 这几个社交平台的组件装在 MaiWork 自己建的独立环境里。以前这个环境按 Linux / macOS 的目录去找程序，Windows 上建完环境就找不到 Python，安装必然失败；就算手动装好也认不出来。现在 Windows 上改用 Windows 的目录，子进程的环境变量也按 Windows 的写法拼。Linux / macOS 上行为不变。\r\n\r\n## 升级提醒\r\n\r\n- 没有数据库和配置变化（数据库第 45 步、配置版本 0.5.3），直接覆盖升级即可。\r\n- Windows 上之前社交平台装失败的，升级后在「设置 → 社交平台」点一下该平台的「重新安装」。\r\n- 从 0.11.0 或更早升上来的，请同时看 [v0.11.1](https://github.com/CharTyr/MaiWork/releases/tag/v0.11.1) 的升级提醒（网页需要重新登录一次、`trusted_proxies`）。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.11.2",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
+          "version": "0.11.1",
+          "tag": "v0.11.1",
+          "commit": "3955cb45ddc810dac54abce4102dfb7347b7467d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T03:44:37Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.11.1",
+          "release_notes": "## 本版提升\r\n\r\n**网页登录更安全：密码改用 scrypt**\r\n- 自动生成的总管理员密码和群管理员密码，新存的一律用 scrypt。老密码照样能登录，登录成功时自动换成 scrypt。\r\n- 在 `config.toml` 里直接写了 `[console] password` 的，这个密码照旧按配置比对，不会换成 scrypt。\r\n- 登录时的密码计算放到线程里，不会卡住网页和群消息处理。\r\n\r\n**反向代理后的真实 IP**\r\n- 新增配置项 `[console] trusted_proxies`（「设置 → 全部设置」的高级项里也能填）。网页放在 nginx、frp 这类反向代理后面时，把代理的 IP 或网段填进去（如 `127.0.0.1`、`10.0.0.0/8`），登录限流才会按访客的真实 IP 计算。\r\n- 只有来自这些代理的请求才认 `X-Forwarded-For`；直连的请求一律不信这个头。不填的话，行为和以前完全一样。\r\n\r\n**稳定性提升**\r\n- 后台任务（备料、构想、画像整理、保存配置后的应用、命令超时后的兜底停止）不会再跑到一半被回收。\r\n- 登录失败限流表不再只增不减，过期记录会清理，最多记 4096 个 IP。\r\n- 子进程没起来时，已经打开的日志文件会被关上。\r\n\r\n**更快**\r\n- 给事件、尝试、用量、发件箱、请求几张表补了 8 个索引，库大时常用查询更快。\r\n- 用量历史查询挪出了主循环：6 万行用量数据的 30 天视图约 300ms，以前这段时间网页和群消息都会卡住。\r\n- Freestyle 临时机器的大文件上传改为按片读、按片传，不再整份读进内存。\r\n\r\n## 升级提醒\r\n\r\n- **升级后网页需要重新登录一次。** 密码换成 scrypt 后，旧的登录状态会失效，用原来的密码重新登录即可，密码本身不用改。`config.toml` 里直接写了 `[console] password` 的总管理员不受影响，不用重新登录。\r\n- 网页在反向代理后面的话，建议在设置里填上 `trusted_proxies`；不在代理后面就不用管。\r\n- 数据库会自动从第 44 步升到第 45 步（只加索引，不改表结构）。\r\n- 配置版本仍是 0.5.3，不需要改 `config.toml`；`trusted_proxies` 默认是空的。\r\n- 升级前请备份插件和整个数据目录。如果要回滚到 0.11.0，已经升成 scrypt 的密码旧版本认不出，请连同升级前的数据目录备份一起恢复。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.11.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.11.0",
           "tag": "v0.11.0",
           "commit": "e03185073206bc4a17fb25adf6211162c3949391",
