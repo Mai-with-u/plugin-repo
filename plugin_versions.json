@@ -43617,7 +43617,65 @@
       "manifest_id": "github.qiaozhixiang.dsh-remote-bridge",
       "repositoryUrl": "https://github.com/qiaozhixiang/dsh-remote-bridge",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.6.4",
+          "tag": "v1.6.4",
+          "commit": "7c2a48152988ca774bf9b77569128e94c359377a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T11:43:51Z",
+          "release_url": "https://github.com/qiaozhixiang/dsh-remote-bridge/releases/tag/v1.6.4",
+          "release_notes": "按 MaiBot 插件商店第二轮审核意见整改。\n\n### 安全\n- **文件投递默认范围收窄**：`files.allowed_roots` 留空时不再等于全盘放行，而是只允许插件数据目录（`ctx.paths.data_dir`）；自动投递与 `send_file` API 走同一套判定。\n- **凭据/系统目录拒绝表补齐**：新增 `.kube`、`.docker`、`.gcloud`、`.mozilla`、`.thunderbird`、`.password-store` 等目录；`/etc`、`/proc`、`/sys`、`/root`、`C:\\Windows`、`Program Files` 等系统路径；以及 `id_rsa`、`*.pem`、`*.key`、`*token*`、`*secret*`、`.netrc`、`credentials.json`、`logins.json`、`cookies.sqlite` 等文件名模式。\n- **访问令牌不再跨源发送**：`test_connection` / `switch_endpoint` 的目标与 `connection.base_url` 不同源时不带 `Authorization: Bearer` / `X-DSH-Token`，并记录 warning；探活返回体新增 `auth_sent`。\n- **`/dsh status` 不再明文回显公网隧道地址**，与 `/dsh tunnel on` 只回「已启动」的约定统一。\n\n### 清理\n- 删除 `files.py` 中未使用的 `read_base64`、`summarize`、`describe_for_prompt`。\n\n**完整变更**：https://github.com/qiaozhixiang/dsh-remote-bridge/compare/v1.6.3...v1.6.4\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.qiaozhixiang.dsh-remote-bridge",
+            "name": "DSH 远程桥接",
+            "version": "1.6.4",
+            "description": "把本机 DSH（DeepSeek Shell）的会话、模型与实时输出接到 MaiBot：QQ 命令远程对话、公网隧道、内网通道、插件批量开关与 WebUI 控制台",
+            "author": {
+              "name": "qiaozhixiang",
+              "url": "https://github.com/qiaozhixiang"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/qiaozhixiang/dsh-remote-bridge",
+              "homepage": "https://github.com/qiaozhixiang/dsh-remote-bridge",
+              "documentation": "https://github.com/qiaozhixiang/dsh-remote-bridge/blob/main/README.md",
+              "issues": "https://github.com/qiaozhixiang/dsh-remote-bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "puzzle",
+                "background": "#0F172A"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
