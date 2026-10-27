@@ -1473,6 +1473,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.8",
+          "tag": "v1.15.8",
+          "commit": "d667eb54b324c1b66ff46bd4b852db0a42ceedac",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T07:50:44Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.8",
+          "release_notes": "### 主要功能\n\n- **渠道请求顺序**：管理页新增可选“请求顺序”字段，数字越小越先请求，已设置的渠道优先于未设置的渠道；同值保持原有先后。图片和视频独立排序，同渠道内联 Key 与独立 Key 均继承设置。\n- **图片 / 视频筛选**：渠道管理新增“全部渠道 / 图片渠道 / 视频渠道”，搜索与分页按所选类型生效，导航保留筛选状态；在视频分类下新增渠道默认勾选视频类型。\n\n- **自拍提示词润色**：模型输出 token 上限由 512 提高到 4096，为较长的润色结果提供更多输出空间。\n\n### 兼容与清理\n\n- 全部未设置时完全沿用原请求顺序，清空并保存可恢复默认。请求顺序存储于现有渠道数据的 `request_order` 字段，保存后对后续请求生效，无需迁移渠道或 Key。\n- 请求顺序仅接受 1–2147483647 的整数；旧数据中的无效值在运行时按未设置处理。未匹配渠道的历史 Key 仍可在“全部渠道”下管理。\n- 移除本次延迟排查的临时分阶段耗时日志，保留正常运行日志和功能回归测试；同步更新 README 与页面设计文档。\n\n### 验证\n\n- 插件全量测试 **772 项通过**，覆盖默认顺序兼容、多 Key 优先级、图片与视频独立排序、设置持久化与清空、非法输入拒绝、分类筛选与搜索分页。修改涉及的 Python 文件通过 Ruff 检查，页面 JavaScript 语法与 JSON 配置检查通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.8",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "send.custom",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.15.7",
           "tag": "v1.15.7",
           "commit": "1f48ccc6956e2b6b8f47dca2564b8e71fb2f4452",
