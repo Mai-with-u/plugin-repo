@@ -43950,7 +43950,212 @@
       "manifest_id": "github.pppalab.meme-generator-bridge",
       "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "d62f3213a682a39db6e96e252f699298bb5b5e90",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T17:18:40Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.1.2",
+          "release_notes": "## 0.1.2\n\n- 增加 `plugin_type: \"media\"`，符合插件中心的媒体类插件分类。\n- 移除未使用的空 `_locales` 语言目录；保留 manifest 必需的 `i18n.default_locale` 与 `supported_locales`。\n- README 说明关键词命中消息会在 `chat.receive.before_process` 中止，因此不进入宿主聊天记录、不经过宿主禁用词过滤；可用 `keywords.enabled` / `exclusions` 调整。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "plugin_type": "media",
+            "version": "0.1.2",
+            "name": "表情包制作桥接器",
+            "description": "通过确定性关键词和命令连接自部署 Rust meme-generator 服务",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<13"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "c0dc58306c6b3f03645d12bc633c60bd00ed0ad2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T16:56:22Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.1.1",
+          "release_notes": "# 更新日志\r\n\r\n## 0.1.1\r\n\r\n- 插件显示名称统一为“表情包制作桥接器”。\r\n\r\n## 0.1.0\r\n\r\n### 主要功能\r\n\r\n- 使用中文关键词或斜杠命令连接自部署 Rust 表情引擎，不依赖 LLM 意图判断。\r\n- 支持当前附图、结构化 @ 头像和同一会话引用消息中仍可读取的图片；多图输入保留顺序。\r\n- 提供全量关键词索引单图、模板文字详情、用法示例和预览；GIF 成品以表情发送。\r\n- 使用官方设置页管理服务、群名单、私聊权限、关键词、头像和资源限额，支持配置热更新。\r\n\r\n### 细节与修复\r\n\r\n- 群名单为空时允许全部群；非空仅允许所列群，私聊独立控制。\r\n- 修正前置 @ 的关键词匹配；无引用图时前后 @ 均作为头像输入，有引用图时不混用头像。\r\n- 修正官方 SDK 解包后的引用消息读取，拒绝跨会话引用，不下载用户 URL 或搜索历史列表。\r\n- 索引优先选择当前字体可绘制的最短关键词，无可用候选时显示模板 key。\r\n- 限制网络时限、并发、排队、冷却、输入输出大小和缓存，重型生成失败不自动重试。\r\n- 采用正式插件 ID `github.pppalab.meme-generator-bridge`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "version": "0.1.1",
+            "name": "表情包制作桥接器",
+            "description": "通过确定性关键词和命令连接自部署 Rust meme-generator 服务",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<13"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "238c1166cad65301f5998ca391192a764525eac8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T16:38:04Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.1.0",
+          "release_notes": "# 更新日志\r\n\r\n## 0.1.0\r\n\r\n### 主要功能\r\n\r\n- 使用中文关键词或斜杠命令连接自部署 Rust 表情引擎，不依赖 LLM 意图判断。\r\n- 支持当前附图、结构化 @ 头像和同一会话引用消息中仍可读取的图片；多图输入保留顺序。\r\n- 提供全量关键词索引单图、模板文字详情、用法示例和预览；GIF 成品以表情发送。\r\n- 使用官方设置页管理服务、群名单、私聊权限、关键词、头像和资源限额，支持配置热更新。\r\n\r\n### 细节与修复\r\n\r\n- 群名单为空时允许全部群；非空仅允许所列群，私聊独立控制。\r\n- 修正前置 @ 的关键词匹配；无引用图时前后 @ 均作为头像输入，有引用图时不混用头像。\r\n- 修正官方 SDK 解包后的引用消息读取，拒绝跨会话引用，不下载用户 URL 或搜索历史列表。\r\n- 索引优先选择当前字体可绘制的最短关键词，无可用候选时显示模板 key。\r\n- 限制网络时限、并发、排队、冷却、输入输出大小和缓存，重型生成失败不自动重试。\r\n- 采用正式插件 ID `github.pppalab.meme-generator-bridge`。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "version": "0.1.0",
+            "name": "Meme Generator 桥接",
+            "description": "通过确定性关键词和命令连接自部署 Rust meme-generator 服务",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<13"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
