@@ -43353,7 +43353,73 @@
       "manifest_id": "hatsuhoq.maibot-qq-voice-call",
       "repositoryUrl": "https://github.com/hatsuhoq/maibot-qq-voice-call",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "ca9b48df492e3247cd33fa20a9945fe3b647d838",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T04:44:40Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-qq-voice-call/releases/tag/v0.4.0",
+          "release_notes": "\n- 降低延迟：停顿 early_asr_ms（默认 300ms）时提前识别，对方没再出声就直接用结果；自动接听接通时不再试合成；短应答在等待来电时预合成并跨通话复用；音频收发改为回调唤醒，不再 10ms 轮询；通话桥支持长轮询（需把 bridge/napcat-plugin/index.mjs 更新到 NapCat 插件目录，旧桥仍按 0.5 秒查询）。\n- 稳定性：声卡偶发欠载/溢出只计数记日志，不再挂断通话；回复 max_tokens 随 max_reply_chars 调整；被打断的回复按已播出部分记入上下文。\n- 本机路径改为 scripts/paths.local.bat 配置（参考 paths.example.bat），脚本不再写死安装位置。\n- 一键启动脚本 scripts/start-all.bat；插件后台每 15 秒自动恢复等待来电。\n- Windows 原生自动接听：NapCat 通话桥 + 独立 AV Host，修复 Windows 下 20050 日志被误当作重新登录的问题。\n- 音频设备按名称选择；回复解析容错、单句失败不挂断；按条件插入短应答；艾丽妮日语情绪参考音频。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hatsuhoq.maibot-qq-voice-call",
+            "version": "0.4.0",
+            "name": "QQ 实时语音",
+            "description": "通过独立音频设备桥接 QQ 电话，使用本地识别与情绪语音合成，支持插话打断。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-qq-voice-call"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "sounddevice",
+                "version_spec": ">=0.5.1,<0.6"
+              },
+              {
+                "type": "python_package",
+                "name": "webrtcvad-wheels",
+                "version_spec": ">=2.0.14,<3"
+              }
+            ],
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "config.get",
+              "message.get_recent",
+              "message.build_readable",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
