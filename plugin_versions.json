@@ -39867,6 +39867,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.5",
+          "tag": "v0.7.5",
+          "commit": "637345eafc96e6571753451ae56aa4da02992185",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T05:47:01Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.5",
+          "release_notes": "### 修复\n\n- **播报被写死的输出上限卡死**：`max_tokens` / `report_max_tokens` 原来默认 4000 / 2000，\n  会覆盖宿主任务配置。用推理模型（例如 `deepseek-v4-pro` 的 `reasoning effort = max`）时，\n  思考链动辄几千 token，额度一光正文就是空的 —— 宿主报\n  `IncompleteDetails(reason='max_output_tokens')`，这一轮播报直接失败并退回机械模板\n  - 两个字段默认值改成 `0`，表示跟随宿主任务配置；想自己限长再填正数\n- 模型因为额度不够失败时，错误信息直接给出可操作建议（改成 0 / 调大 / 换非推理模型），\n  不再只抛一串英文 `IncompleteDetails`\n\n### 细节\n\n- 测试 107 → 109 项（覆盖「0 不传字段」「正数照传」两种情况）\n\n> 升上来之后如果 `config.toml` 里还留着旧的 `max_tokens = 4000` / `report_max_tokens = 2000`，\n> 手动改成 `0` 即可跟随宿主任务；不改也能跑，只是仍然按旧额度截断。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.5",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.4",
           "tag": "v0.7.4",
           "commit": "a17935b49ff6790b97e4cdf3380a3ddf8205e974",
