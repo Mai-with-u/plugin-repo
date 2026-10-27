@@ -43107,7 +43107,81 @@
       "manifest_id": "mai-dc.discord-voice",
       "repositoryUrl": "https://github.com/sunfish1728/mai-dc",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.1",
+          "tag": "0.4.1",
+          "commit": "69a8c3059af7241076e53d6fee539f6df3e6fd30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T10:14:09Z",
+          "release_url": "https://github.com/sunfish1728/mai-dc/releases/tag/0.4.1",
+          "release_notes": "- 在 `_manifest.json` 宣告 `llm.transcribe_audio` 能力，修正 `listen_provider = \"maibot\"` 被 MaiBot 拒絕呼叫的問題。\n\n完整功能說明見 [0.4.0](https://github.com/sunfish1728/mai-dc/releases/tag/0.4.0) 與 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mai-dc.discord-voice",
+            "version": "0.4.1",
+            "name": "Mai DC 語音",
+            "description": "讓麥麥以 Discord Bot 身分加入語音頻道：語音轉文字送進麥麥，回覆再用 TTS 說出來。",
+            "author": {
+              "name": "sunfish1728",
+              "url": "https://github.com/sunfish1728"
+            },
+            "license": "GPL-3.0",
+            "urls": {
+              "repository": "https://github.com/sunfish1728/mai-dc",
+              "homepage": "https://github.com/sunfish1728/mai-dc",
+              "documentation": "https://github.com/sunfish1728/mai-dc/blob/main/README.md",
+              "issues": "https://github.com/sunfish1728/mai-dc/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "opencc-python-reimplemented",
+                "version_spec": ">=0.1.7"
+              },
+              {
+                "type": "python_package",
+                "name": "pypinyin",
+                "version_spec": ">=0.50.0"
+              },
+              {
+                "type": "python_package",
+                "name": "msgpack",
+                "version_spec": ">=1.0.0"
+              }
+            ],
+            "capabilities": [
+              "llm.transcribe_audio"
+            ],
+            "i18n": {
+              "default_locale": "zh-TW",
+              "supported_locales": [
+                "zh-TW"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
