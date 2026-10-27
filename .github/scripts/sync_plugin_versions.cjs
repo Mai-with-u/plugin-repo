@@ -16,30 +16,40 @@ function compareVersions(left, right) {
   return 0;
 }
 
-function validateManifest(manifest, version, expectedId) {
-  assert.ok(manifest && typeof manifest === 'object', 'manifest 必须是对象');
-  assert.ok([1, 2].includes(manifest.manifest_version), '不支持的 manifest 协议');
-  assert.equal(manifest.version, version, 'Tag 与 manifest.version 不一致');
+function validateManifest(manifest, version, expectedId, strictVersions = true) {
+  assert.ok(manifest && typeof manifest === 'object' && !Array.isArray(manifest), 'manifest 必须是对象');
+  const errors = [];
+  const check = (valid, message) => { if (!valid) errors.push(message); };
+  const checkVersion = (value, field) => {
+    const valid = typeof value === 'string' && VERSION.test(value);
+    check(valid, `${field} 必须为三段式版本号`);
+    if (valid && strictVersions) check(!value.split('.').slice(0, 2).some(part => part === '99' || part === '999'),
+      `${field} 第一位和第二位不能填写 99 或 999`);
+    return valid;
+  };
+  check([1, 2].includes(manifest.manifest_version), '不支持的 manifest 协议');
+  check(manifest.version === version, 'Tag 与 manifest.version 不一致');
+  checkVersion(manifest.version, 'version');
   for (const key of ['name', 'description', 'license']) {
-    assert.ok(typeof manifest[key] === 'string' && manifest[key].trim(), `缺少 ${key}`);
+    check(typeof manifest[key] === 'string' && manifest[key].trim(), `缺少 ${key}`);
   }
-  assert.ok(typeof manifest.author?.name === 'string' && manifest.author.name.trim(), '缺少作者名称');
+  check(typeof manifest.author?.name === 'string' && manifest.author.name.trim(), '缺少作者名称');
   if (manifest.manifest_version === 2) {
-    assert.ok(typeof manifest.id === 'string' && /^[a-zA-Z0-9_.-]+$/.test(manifest.id), '插件 ID 无效');
-    if (expectedId) assert.equal(manifest.id, expectedId, '发布版本改变了插件 ID');
-    assert.ok(typeof manifest.urls?.repository === 'string', '缺少 urls.repository');
-    assert.ok(Array.isArray(manifest.capabilities), '缺少 capabilities');
-    assert.ok(typeof manifest.i18n?.default_locale === 'string', '缺少 i18n.default_locale');
+    check(typeof manifest.id === 'string' && /^[a-zA-Z0-9_.-]+$/.test(manifest.id), '插件 ID 无效');
+    if (expectedId) check(manifest.id === expectedId, '发布版本改变了插件 ID');
+    check(typeof manifest.urls?.repository === 'string', '缺少 urls.repository');
+    check(Array.isArray(manifest.capabilities), '缺少 capabilities');
+    check(typeof manifest.i18n?.default_locale === 'string', '缺少 i18n.default_locale');
   }
   for (const field of manifest.manifest_version === 2 ? ['host_application', 'sdk'] : ['host_application']) {
     const range = manifest[field];
-    assert.ok(range && typeof range.min_version === 'string', `缺少 ${field}.min_version`);
-    assert.match(range.min_version, VERSION);
-    if (range.max_version !== undefined) {
-      assert.match(range.max_version, VERSION);
-      assert.ok(compareVersions(range.min_version, range.max_version) <= 0, `${field} 版本范围倒置`);
+    const minValid = checkVersion(range?.min_version, `${field}.min_version`);
+    if (range?.max_version !== undefined) {
+      const maxValid = checkVersion(range.max_version, `${field}.max_version`);
+      if (minValid && maxValid) check(compareVersions(range.min_version, range.max_version) <= 0, `${field} 版本范围倒置`);
     }
   }
+  assert.ok(!errors.length, errors.join('\n'));
 }
 
 function createGithubClient(token = process.env.GITHUB_TOKEN) {
@@ -110,6 +120,15 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
       continue;
     }
     let manifest = old?.manifest;
+    const releaseErrors = [];
+    if (!old) {
+      // 检查待收录的固定 commit；接口失败不能当作文件不存在。
+      const entries = await request(`${base}/contents/?ref=${object.sha}`);
+      assert.ok(Array.isArray(entries), '仓库根目录响应无效');
+      if (entries.some(entry => entry.name === 'config.toml')) {
+        releaseErrors.push('仓库根目录不能包含 config.toml');
+      }
+    }
     try {
       if (!manifest) {
         const file = await request(`${base}/contents/_manifest.json?ref=${object.sha}`);
@@ -117,12 +136,15 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
         assert.equal(file.encoding, 'base64');
         manifest = JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'));
       }
-      validateManifest(manifest, version, manifestId);
+      validateManifest(manifest, version, manifestId, !old);
     } catch (error) {
       // 历史 Release 格式错误单独隔离并公开原因，不影响同插件已经验证的其他版本。
       // 已收录版本和网络故障不能按格式错误跳过，否则可能把暂时不可访问误判为撤回。
       if (old || !(error instanceof assert.AssertionError || error instanceof SyntaxError || error.status === 404)) throw error;
-      rejectedReleases.push({ tag: release.tag_name, version, error: error.message });
+      releaseErrors.push(error.message);
+    }
+    if (releaseErrors.length) {
+      rejectedReleases.push({ tag: release.tag_name, version, error: releaseErrors.join('\n') });
       continue;
     }
     if (manifest.manifest_version === 2) manifestId = manifest.id;

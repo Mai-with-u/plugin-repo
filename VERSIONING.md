@@ -109,3 +109,5 @@ node .github/scripts/sync_plugin_versions.cjs --retry-errors
 - 旧目录保存在插件根目录下的 `.update_backups`；降级只切换代码，不自动撤销数据迁移。作者需自行保证数据格式兼容。
 
 版本选择依赖后端发布版本接口和远端 `plugin_versions.json`；索引不可访问时报告错误。使用 `plugin_details.json` 的客户端通过分支安装插件。
+
+新 Release 收录前按固定 commit 检查根目录，不允许包含 `config.toml`；manifest 中插件版本和兼容范围版本号的前两位不允许为 `99` 或 `999`，第三位不受此限制。同一 Release 的配置和 manifest 校验问题会合并记录到 `rejected_releases`，不进入审核；已收录版本不因新增规则追溯下架。

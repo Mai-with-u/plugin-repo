@@ -17,6 +17,8 @@
 
 提交新增或修改请求前，请先发布至少一个 GitHub Release。支持预发布版本，使用 GitHub 自动生成的源码包即可；草稿和仅创建 Tag 不满足发布要求。移除请求不受此限制。
 
+仓库根目录不能包含 `config.toml`。请将运行配置移出版本控制并加入 `.gitignore`，可使用 `config.example.toml` 提供示例。新增、修改申请会检查获取 manifest 的分支，新 Release 收录前会检查对应固定 commit；已收录版本不因这条新规则追溯下架。申请校验会汇总根目录配置、manifest 字段和已发布 Release 等可独立检查的问题；无法获取或解析 manifest 时报告阻断原因。修复后可用 `/recheck` 重试。
+
 ### `_manifest.json` v2 规范
 
 `_manifest.json` 示例：
@@ -62,7 +64,7 @@
 > - `manifest_version` 必须为 `2`。
 > - `id` 应使用稳定、唯一的插件 ID，例如 `github.username.my-plugin`，不要使用空格或路径字符。
 > - `version`、`host_application.min_version`、`host_application.max_version`、`sdk.min_version`、`sdk.max_version` 都应使用三段式版本号，例如 `1.0.0`。
-> - 新增和修改申请的初次校验中，上述版本号的第一位、第二位不能填写 `99` 或 `999`；第三位不受此限制，例如 `1.0.99`、`1.0.999` 可通过这项检查。兼容范围请按实际支持情况填写。
+> - 新增、修改申请和新 Release 收录校验中，上述版本号的第一位、第二位不能填写 `99` 或 `999`；第三位不受此限制，例如 `1.0.99`、`1.0.999` 可通过这项检查。兼容范围请按实际支持情况填写。
 > - `author` 包含 `name` 和 `url`。
 > - `urls.repository` 必须是公开 GitHub 仓库的 HTTPS 地址。
 > - `capabilities` 只声明插件实际需要的能力；没有额外能力时填写空数组。

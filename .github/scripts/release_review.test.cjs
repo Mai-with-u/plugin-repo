@@ -38,6 +38,7 @@ test('部分批准后永久拒绝剩余版本，同版本换 commit 或授信仍
   const target = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate] })} -->` });
   const base = releaseClient();
   const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return [second, candidate].map(item => ({ tag_name: item.tag, draft: false }));
     if (url.includes('/git/ref/') && url.endsWith(second.tag)) return { object: { type: 'commit', sha: second.commit } };
     const result = await base(url);
@@ -64,6 +65,7 @@ test('已拒绝 Issue 的历史版本按版本号去重，同版本换 commit �
   const root = workspace(t);
   const rejected = issue({ state: 'closed', labels: [{ name: 'rejected' }] });
   const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
     assert.ok(url.includes('/issues?'), '永久拒绝版本不需要查询授信或重新开单');
     return [rejected];
   };
@@ -122,6 +124,7 @@ test('授信同时要求数字 owner ID 和授权仓库匹配', async t => {
 
 function releaseClient(commit = candidate.commit, releases = [candidate.tag]) {
   return async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return releases.map(tag_name => ({ tag_name, draft: false }));
     if (url.includes('/git/ref/')) return { object: { type: 'commit', sha: commit } };
     if (url.includes('/contents/')) return { type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify({
@@ -157,6 +160,7 @@ test('伪造作者、关闭 Issue 和登记仓库变更均阻止批准', async t
 test('批准一个发布版本不会顺带收录其他待审版本', async t => {
   const root = workspace(t);
   const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return [{ tag_name: 'v2.0.0', draft: false }, { tag_name: candidate.tag, draft: false }];
     if (url.includes('/git/ref/') && url.endsWith('v2.0.0')) return { object: { type: 'commit', sha: 'b'.repeat(40) } };
     const result = await releaseClient()(url);
@@ -248,6 +252,7 @@ test('批次批准原子收录全部目标，任何成员撤回或改 commit 都
   const target = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate] })} -->` });
   const base = releaseClient();
   const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return [second, candidate].map(item => ({ tag_name: item.tag, draft: false }));
     if (url.includes('/git/ref/') && url.endsWith(second.tag)) return { object: { type: 'commit', sha: second.commit } };
     const result = await base(url);

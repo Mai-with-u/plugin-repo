@@ -11,7 +11,7 @@ function manifest(version = '1.0.0') {
     manifest_version: 2, id: 'example.demo', version, name: '示例', description: '示例插件',
     author: { name: '作者' }, license: 'MIT', urls: { repository: plugin.repositoryUrl },
     host_application: { min_version: '1.0.0', max_version: '1.9.99' },
-    sdk: { min_version: '2.0.0', max_version: '2.99.99' },
+    sdk: { min_version: '2.0.0', max_version: '2.1.99' },
     capabilities: [], i18n: { default_locale: 'zh-CN' },
   };
 }
@@ -20,6 +20,7 @@ function release(version = '1.0.0') {
 }
 function client(releases, options = {}) {
   return async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return releases;
     if (url.includes('/git/ref/tags/')) return { object: { type: options.annotated ? 'tag' : 'commit', sha: options.commit || commit } };
     if (url.includes('/git/tags/')) return { object: { type: 'commit', sha: commit } };
@@ -42,10 +43,56 @@ test('未提供准入许可的新 Release 不收录，也不能退回分支模�
   assert.deepEqual(result.versions, []);
 });
 
+test('Release 汇总 config.toml 和多个 manifest 问题后拒绝收录', async () => {
+  const invalid = { ...manifest(), version: '99.999.0', author: null,
+    host_application: { min_version: '999.0.0', max_version: '999.99.0' }, sdk: null };
+  const base = client([release()], { manifest: invalid });
+  const result = await syncWithGate(plugin, undefined, async url =>
+    url.includes('/contents/?ref=') ? [{ name: 'config.toml' }] : base(url), undefined,
+  async () => assert.fail('违规版本不能进入审核'));
+  assert.deepEqual(result.versions, []);
+  for (const text of ['config.toml', 'Tag 与 manifest.version 不一致', 'version 第一位', '缺少作者', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version']) {
+    assert.ok(result.rejected_releases[0].error.includes(text), text);
+  }
+});
+
+test('Release 所有版本字段限制前两位 99/999，第三位不限制', () => {
+  for (const field of ['version', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version', 'sdk.max_version']) {
+    for (const value of ['99.0.0', '999.0.0', '1.99.0', '1.999.0', '1.0.99', '1.0.999', '1.0.1000']) {
+      const data = manifest();
+      const [parent, key] = field.split('.');
+      if (key) data[parent] = { min_version: value, max_version: value };
+      else data.version = value;
+      if (value.split('.').slice(0, 2).some(part => ['99', '999'].includes(part))) {
+        assert.throws(() => validateManifest(data, data.version), /第一位和第二位不能填写/);
+      } else assert.doesNotThrow(() => validateManifest(data, data.version));
+    }
+  }
+});
+
+test('新 Release 按固定 commit 检查根目录配置，违规不进入审核，接口失败不放行', async () => {
+  const base = client([release()]);
+  const request = async url => {
+    if (url.includes('/contents/?ref=')) {
+      assert.ok(url.endsWith(commit));
+      return [{ name: 'config.toml', type: 'file' }];
+    }
+    return base(url);
+  };
+  const result = await syncWithGate(plugin, undefined, request, undefined, async () => assert.fail('违规版本不得进入审核'));
+  assert.deepEqual(result.versions, []);
+  assert.match(result.rejected_releases[0].error, /config.toml/);
+  await assert.rejects(syncWithGate(plugin, undefined, async url => {
+    if (url.includes('/contents/?ref=')) throw Object.assign(new Error('GitHub 403'), { status: 403 });
+    return base(url);
+  }), /403/);
+});
+
 test('待审新版不影响旧版，已有版本无需重复准入', async () => {
   const old = await syncPlugin(plugin, undefined, client([release()]));
   const requested = [];
   const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (url.includes('/releases?')) return [release('2.0.0'), release()];
     if (url.includes('/contents/')) return { type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify(manifest('2.0.0'))).toString('base64') };
     return client([])(url);
@@ -81,6 +128,7 @@ test('旧版本 commit 或 Tag 改写不阻断新版审核及收录，并清除�
     for (const approved of [false, true]) {
       const requested = [];
       const request = async url => {
+    if (url.includes('/contents/?ref=')) return [];
         if (url.includes('/releases?')) return [{ ...release(), tag_name: changedTag ? '1.0.0' : 'v1.0.0' }, release('2.0.0')];
         if (url.includes('/git/ref/tags/') && url.endsWith('1.0.0')) return { object: { type: 'commit', sha: changedTag ? commit : 'b'.repeat(40) } };
         return client([], { manifest: manifest('2.0.0') })(url);
@@ -124,6 +172,7 @@ test('重复版本标签冲突不能静默覆盖', async () => {
 test('Release 分页取全，草稿不进入索引', async () => {
   const pages = [];
   const result = await syncPlugin(plugin, undefined, async url => {
+    if (url.includes('/contents/?ref=')) return [];
     pages.push(url);
     return url.endsWith('page=1') ? Array.from({ length: 100 }, () => ({ draft: true })) : [];
   });
@@ -139,6 +188,7 @@ test('历史格式错误隔离，不能退回分支安装', async () => {
 test('目标 commit 缺少 manifest 属于发布错误，服务器故障仍然抛出', async () => {
   const base = client([release()]);
   const request = status => async url => {
+    if (url.includes('/contents/?ref=')) return [];
     if (!url.includes('/contents/')) return base(url);
     const error = new Error(`GitHub ${status}`);
     error.status = status;

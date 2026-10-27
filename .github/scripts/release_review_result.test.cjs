@@ -182,6 +182,7 @@ test('工作流校验入口保存原始输出并生成可发布的人工处理�
 });
 
 function request(url) {
+  if (url.includes('/contents/?ref=')) return Promise.resolve([]);
   if (url.includes('/releases?')) return Promise.resolve(targets.releases.map(item => ({ tag_name: item.tag, draft: false })));
   const release = targets.releases.find(item => url.endsWith(item.tag) || url.endsWith(item.commit));
   assert.ok(release);
