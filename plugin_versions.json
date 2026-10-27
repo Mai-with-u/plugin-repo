@@ -42561,7 +42561,57 @@
       "manifest_id": "local.stable-identity",
       "repositoryUrl": "https://github.com/ZeroBlock0/maibot-stable-identity",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.6",
+          "tag": "v0.2.6",
+          "commit": "891690c5eb1a95345aa164e672978cb305b2d6b2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T11:55:33Z",
+          "release_url": "https://github.com/ZeroBlock0/maibot-stable-identity/releases/tag/v0.2.6",
+          "release_notes": "普通聊天即使没有使用记忆，旧版也可能因缺少核验引用而追加记忆诊断与整段规则，增加上下文负担并影响聊天表现。0.2.6 修正这一请求行为，精简身份标记；身份与原话权限保持原有核验边界。\n\n- 没有实际记忆工具结果或明确核验引用时，不向模型追加记忆说明。非空日常 reply_reference 不再被当成记忆调用证据；reference_missing 仅作日志诊断，原生参考保持原样。\n- 每条已核验消息使用 sender_id=\"平台:真实账号\"；同账号的 person_id 每个请求只标一次，昵称、名片、引用、机器人标记与媒体保留。\n- 实际记忆工具结果/明确引用仍逐条核验主体与来源，未知归属不猜测；每次重新核验旧标记，不修改宿主源码、聊天或记忆数据库。\n- 同一百条合成消息、三个账号的离线对照：Planner 新增文本 14,756→2,315 字符，Replyer 15,387→2,315 字符，分别减少 84.31%/84.95%，两阶段身份核验均为100/100。字符数不是 token 数，工具 schema 不计入。\n\n验证：189 项合成测试、Ruff 通过；[Python 3.12/3.13 CI](https://github.com/ZeroBlock0/maibot-stable-identity/actions/runs/40499584960)。[对照方法与范围](https://github.com/ZeroBlock0/maibot-stable-identity/blob/v0.2.6/docs/PROMPT_FOOTPRINT.md)。\n\n兼容范围仍为 MaiBot 1.3.15 / SDK 2.16.0。插件 ID 和 config_version=0.1.0 不变；更新现有插件目录，保留个人 config.toml，不同时安装同 ID 的两个副本。插件中心按官方每日同步和版本审核规则更新，发布 Release 不等于新版已收录。\n\n尚未部署到生产或完成同模型聊天质量盲测。已验证请求干预减少，不能宣称自然度已经恢复或永不认错。长期记忆自动透传、旧记忆归属、Focus 共享原话查询等既有接口限制仍保留。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.stable-identity",
+            "name": "稳定身份与原话查证",
+            "version": "0.2.6",
+            "description": "按平台和真实用户 ID 标注可核验聊天消息，并提供限定会话的原始发言查证。",
+            "author": {
+              "name": "Zero",
+              "url": "https://github.com/ZeroBlock0"
+            },
+            "license": "GPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [],
+            "urls": {
+              "repository": "https://github.com/ZeroBlock0/maibot-stable-identity",
+              "homepage": "https://github.com/ZeroBlock0/maibot-stable-identity",
+              "documentation": "https://github.com/ZeroBlock0/maibot-stable-identity/blob/main/README.md",
+              "issues": "https://github.com/ZeroBlock0/maibot-stable-identity/issues"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": [
+              "database.get",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "person.get_id"
+            ]
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
