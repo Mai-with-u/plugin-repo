@@ -4634,8 +4634,66 @@
       "id": "nguspring.random-image-api-for-maibot",
       "manifest_id": "nguspring.random-image-api-for-maibot",
       "repositoryUrl": "https://github.com/nguspring/Random-image-api-for-MaiBot",
-      "mode": "branch",
-      "versions": [],
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "7bf4596af56610924f41609483c72e1fd00c2790",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T15:30:13Z",
+          "release_url": "https://github.com/nguspring/Random-image-api-for-MaiBot/releases/tag/v1.2.1",
+          "release_notes": "## 随机图片插件 v1.2.1\n\n适配 MaiBot 1.3.x 与 Plugin SDK 2.x，使用 manifest v2 与 `maibot_sdk`。\n\n### 本版变更\n\n- **R18 默认关闭**：`features.allow_r18` 默认值改为 `false`，需要时在 `config.toml` 或 WebUI 中手动开启\n- 已存在的 `config.toml` 不会被覆盖，升级后仍保留原有设置\n\n### 功能\n\n- 随机获取 Pixiv 图片，单次最多 10 张\n- 标签包含 / 排除、AI 绘图过滤、横竖屏筛选、画师与收藏 / 浏览 / 尺寸阈值\n- R18 总开关 + 白名单 / 黑名单（默认关闭）\n- 全局冷却、多线路回退、先下载再发送、Pillow 智能压缩\n- 合并转发或逐条发送\n\n### 兼容性\n\n- MaiBot `1.3.0` ~ `1.3.99`\n- Plugin SDK `2.8.2` ~ `2.16.99`\n- 依赖：`Pillow >= 9.0.0`\n\n> 请确保使用场景符合当地法律法规与平台规则。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "nguspring.random-image-api-for-maibot",
+            "version": "1.2.1",
+            "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+            "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+            "author": {
+              "name": "NGU-SprinG",
+              "url": "https://github.com/nguspring"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
+              "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.custom",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "media"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -17440,10 +17498,16 @@
       "id": "maibot-community.mai-love",
       "manifest_id": "maibot-community.mai-love",
       "repositoryUrl": "https://github.com/octmicy/Mai_love",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "2.3.0",
+          "version": "2.3.0",
+          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '2.2.1'\n- '2.3.0'\n     ^"
+        }
+      ]
     },
     {
       "id": "deepseek-v4-pro.private-humanizer",
@@ -23451,6 +23515,89 @@
       "repositoryUrl": "https://github.com/CharTyr/MaiWork",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.11.0",
+          "tag": "v0.11.0",
+          "commit": "e03185073206bc4a17fb25adf6211162c3949391",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T18:14:23Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.11.0",
+          "release_notes": "## 本版新增\n\n**群里连续干活：工作会话**\n- 群友派的活开工后，派活的人直接在群里 @ 机器人就能接着说：补充要求、改要求、问做到哪了、让它暂停 / 继续、说「结束」收尾。不用再每次重新派一件新活。\n- 正在做的时候改要求，MaiWork 会按新要求把这一件重新做，旧版本做出来的东西不会交付。\n- MaiWork 会用一两句自然话在群里回应（口吻按 MaiWork 的人设，不发工具调用和内部过程）。它中途有问题问你时，@ 它回答就行；它提议收尾时你说「确认」才会结束。\n- 一个群同一时间只做一件活，其他人批准过的活会排队，并告诉对方「前面还有一个任务」。\n- 闲置一段时间没人理会会自动收起（默认 60 分钟）。只有派活的人能这样接着说，本群批准人可以叫停；旁人 @ 照常是和 MaiBot 聊天。\n- 在「设置 → 全部设置 → 连续对话」可以整体关掉，关掉后和以前一样，每次 @ 都当一件新事。\n\n**装好就能用：群友链接默认用 here.now 公开**\n- 资讯卡片、构想提一嘴、目标「盯到了 / 完成了」、`/mw 网页` 的链接，不再要求你自己做反向代理。没填公开网址时，会把群友要看的那一页自动发布到 here.now（匿名公开页，24 小时过期，内容和群友网页一样）。\n- 填了自己的公开网址仍然优先用它；不想公开可以关掉「用 here.now 自动公开」，群里就只发文字。\n\n**群文件更容易发出去，发不出去会说原因**\n- QQ 端读不到这台机器上的文件时（比如 NapCat 装在 Docker、WSL 或另一台电脑上），20MB 以内的文件会自动改成直接传文件内容再试一次。\n- 还是不行就改发网页链接，并在交付说明里写明「群文件没发出去：原因」；首次引导和运行状态里也能看到最近一次失败的原因。\n\n**更好上手：缺什么直接告诉你怎么补**\n- 缺 SSH 客户端（连不上临时机器）时，运行状态和首次引导会按系统直接给出安装方法：Windows 的「可选功能」或一行 PowerShell 命令、macOS、Linux、Docker 各有写法。不需要装 WSL2。\n- Windows 上 SSH、一键安装画图浏览器和办公文档组件，以前可能因为缺系统变量失败，现在修好了（感谢 @YukiSakiko，PR #5）。\n- 首次引导完成页加了「群文件」「资讯卡片画图」两项检查；「干活」「群文件」「交付」也有「前往设置」按钮，点了直接打开对应设置。\n\n**Docker 部署**\n- 资讯卡片缺中文字体或画图浏览器时，可以在「设置 → 工具 → 可选组件」一键安装（装到 MaiWork 自己的目录，不改 MaiBot 的环境）。浏览器缺系统库时会写明缺哪些、该怎么装。\n- 在容器里运行时，首次引导和运行状态会检查数据目录有没有挂到容器外（没挂的话重建容器会丢数据），以及网页监听地址能不能从容器外打开。默认监听地址不变。\n- 容器里缺 SSH 时，会提示也可以改用不需要 SSH 的 Freestyle 临时机器。\n\n## 兼容性\n\n- 插件 SDK 上限放宽到 2.16.0，跟上 MaiBot dev（1.3.15）的要求。2.16.0 在本地用 MaiBot dev 跑过宿主契约测试；线上我们用的仍是 2.12.0。\n\n## 升级提醒\n\n- 数据库会自动升到第 44 步（从 0.10.5 的第 43 步升一级：新建工作会话的两张表，给任务加两列，只加不删）。\n- 配置版本升到 0.5.3（新增 `[session]` 连续对话、`[console] herenow_share`），都有默认值，不需要改 `config.toml`。宿主第一次加载时会把新字段合并进你的配置文件，原有设置保留。\n- 群友链接默认改为 here.now 公开页，拿到链接的任何人都能打开（24 小时后失效）。不想这样请在设置里关掉「用 here.now 自动公开」。\n- 升级前请备份插件和整个数据目录；如果要回滚到 0.10.5，请连同升级前的 `maiwork.db` 备份一起恢复，只换回旧代码不行。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.11.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
         {
           "version": "0.10.5",
           "tag": "v0.10.5",
@@ -36123,6 +36270,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.7",
+          "tag": "v1.1.7",
+          "commit": "3ed65d3fed57a455b5880866d20b720baa7e19d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T16:29:35Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.7",
+          "release_notes": "## 更新\n\n- 「贴吧原页面」渲染前把样式表和装饰图全部内嵌、并加一条禁止外链的 CSP，页面零网络请求。主程序搭配 Playwright 1.60 及更早版本时那个「每个外链请求都抛 `TypeError`、最后超时出不了图」的缺陷因此不再影响本插件，1.58 也能正常出图。\n- 出图结果与「原生」方式基本一致（实测像素差异 0.01%~0.2%，集中在表情边距）。\n- 新增配置项「原页面渲染方式」：`零外链`（默认）或 `原生`。想省掉那 0.8~1 秒预下载、并且确认主程序 Playwright 在 1.61 以上，可以切到 `原生`；切过去之后渲染失败会自动回落到自绘卡片，不会空发。\n- 装饰图下载失败或超出预算（整页 2 MB、单图 512 KB）时该图留空，不影响文字与正文图。\n- 修复上一条带来的副作用：贴吧用 `img[src*=\"tb/editor\"]` 这类属性选择器控制表情大小，图片换成内嵌数据后选择器失配，楼层正文里的表情会按原图尺寸撑开。现在换图时把原地址留在 `data-orig-src` 上，并把样式里的 `[src…]` 一并改指过去，表情与其它依赖原地址的排版都恢复原样。\n- 长图不再降档重渲，倍率固定 1.5。降档是「再渲一遍」，总时间只会更长 ——实测 1.5 换 1.0 只省 0.15 秒，而一整轮里光是下载样式表和装饰图就要 0.8~1 秒，真正慢的是网络。现在长图渲完会像视频那样在日志里打出实际体积，方便核对。唯一保留的门槛是主程序单次回传 12 MB 的硬顶，正常层数碰不到。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.7",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.6",
           "tag": "v1.1.6",
           "commit": "9c12eef80d37bdcd9953850ffd4b46a91a999766",
@@ -36802,6 +37015,67 @@
       "repositoryUrl": "https://github.com/CSSQY/mai_meal_card",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.4.1",
+          "tag": "1.4.1",
+          "commit": "343b8488af888d228940b4cf2804434f522f984d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T22:29:35Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.4.1",
+          "release_notes": "## \\[1.4.1] - 2026-10-26\r\n\r\n### 修复\r\n\r\n- **适配当前宿主 SDK 的发送返回值**：`ctx.send.text` / `ctx.send.image` 默认直接返回布尔值\r\n  （`return_details=True` 时返回含 `sent` 的字典），此前按宿主原始 `{\"success\": ...}` 结构解析，\r\n  会把发送成功误判为「返回结构异常」，导致 `/饭卡`、定时播报与条件警报的投递结果被判为失败。\r\n  现在同时兼容布尔值、`sent` 字典与旧版 `success` 字典三种形态。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.4.1",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "1.4.0",
           "tag": "1.4.0",
@@ -37986,6 +38260,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.2",
+          "tag": "v0.7.2",
+          "commit": "d91bfbb69a7941e48147dec08205e5547f31cb6b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T07:03:13Z",
+          "release_url": "https://github.com/namchengwuqiu/bilibili_autopilot/releases/tag/v0.7.2",
+          "release_notes": "- 优化群分享文案：围绕视频里的具体看点，接上感受或分享理由，通常生成2～3句话、50～120字，让群友在打开链接前了解分享内容。\n- 润色保留看点和信息量，不再优先压缩成5～20字或半句话；避免固定开头、广告腔和空泛感叹。\n- 分享正文上限由80字提高至180字；素材不足时允许简短，继续保留内容依据复核与未提供亲身经历的拦截。\n- 不修改配置格式、依赖、数据结构或发送去重规则；升级保留原配置与账号数据，历史分享不补发。\n- 容器内运行225项隔离测试：224项通过，1项跳过，新增长文案与180字边界校验。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bilibili-autopilot",
+            "name": "B站自主浏览与评论",
+            "version": "0.7.2",
+            "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+              "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "chat.get_group_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "play",
+                "background": "#E7F9FF"
+              }
+            }
+          }
+        },
+        {
           "version": "0.7.1",
           "tag": "v0.7.1",
           "commit": "d945af07d0252acb1728d8fa2d93729f90c6d518",
@@ -39013,6 +39367,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.4",
+          "tag": "v0.7.4",
+          "commit": "a17935b49ff6790b97e4cdf3380a3ddf8205e974",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:43:53Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.4",
+          "release_notes": "### 主要功能\n\n- 每轮决策留下结构化记录：时间、心情、判断理由、实际执行或被拦下的动作\n  - 下一轮 prompt 带最近 8 轮的「当时怎么想、后来做了什么」，接着上一轮的思路往下想，不再每轮从零看盘\n- 决策 prompt 新增【这一轮的额度】块：单票上限与当前最重仓位占比、总仓位上限与还能加多少、今天还能下几笔，全部算成数字给模型\n- 三档胆量的提示词从形容词改成行为约束\n- 老状态文件里的 `recent_notes` 自动迁移成新记录，升级不丢历史\n- 聊天里的 `history` 改成展示完整判断和动作，不再只有一行「没动」\n\n### 修复\n\n- 有持仓但妙想没返回总资产时，额度块会说「现在空仓」，与同一份 prompt 里的持仓自相矛盾；现在明确写「总资产取不到，占比这轮不算」\n- 聊天触发的看盘（`sim_trader_review`）不走定时循环，跨日不重置当日笔数，第二天开局可能卡在上限；现在每轮进来先跨日重置\n\n### 细节\n\n- 启动体检补上妙想 API Key：`[mx] api_key` 和环境变量 `MX_APIKEY` 都没配时直接警告，\n  不再等第一个交易时段每轮报错才发现\n- 状态文件最多保留 24 轮记录，决策 prompt 注入最近 8 轮，`history` 查询展示最近 6 轮\n- 每轮记录的动作改成「成交行优先」，池子变更多时不会把成交挤出去\n- 妙想没返回仓位字段、或返回 0 但有持仓时，都用持仓市值算出仓位\n- 没渲染额度块时，规则里也不再提【这一轮的额度】\n- 状态文件载入时同样按 24 条截断；`round_records` 里出现非对象条目会报 `StateError`\n- 「最近几轮」和 `history` 的条数常量归到 `state.py`\n- README 增加「把账户清零重新开始」一节\n- 测试 84 → 107 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.4",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.1",
           "tag": "v0.7.1",
           "commit": "64568daf651c0e75a9eb28133b654707f518f9fa",
@@ -39820,6 +40233,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.2",
+          "tag": "v1.6.2",
+          "commit": "81793fe9c7e8427a93c855b3e62bbe3e4142626e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T16:19:37Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.6.2",
+          "release_notes": "## 改动\n\n按官方新文档（<https://docs.maibot.chat/plugin/>）审查后修正两处问题。\n\n### 1. `max_version` 改为实际验证过的上界\n\n```diff\n- \"host_application\": { \"max_version\": \"999.999.999\" },\n- \"sdk\": { \"max_version\": \"999.999.999\" }\n+ \"host_application\": { \"max_version\": \"1.3.99\" },\n+ \"sdk\": { \"max_version\": \"2.16.99\" }\n```\n\n官方 `manifest.md` 明确禁止写 `999.999.999` 这类没有对应真实版本的上限 —— 相当于没声明上限，插件会被加载到从未验证过的版本上。现在写的是本机实测版本（Host 1.3.15 / SDK 2.16.0）的次版本 + `.99`，同一次版本的补丁更新仍会放行。\n\n### 2. 测试文件路径脱敏\n\n`tests/test_model_version.py` 里有一条本机真实权重路径，含盘符、安装目录名（带日期与显卡型号）、模型目录和角色名，会暴露本机目录结构。\n\n```diff\n- r\"D:\\GPT-SoVITS-v2pro-20261006nvidia50x0\\SoVITS_weights_v1\\azuma_e10.pth\"\n+ r\"D:\\Tools\\GPT-SoVITS-v2pro-sample\\SoVITS_weights_v1\\model_e10.pth\"\n```\n\n测试意图是「根目录的 v2pro 不能污染 v1 权重」，虚构路径同样覆盖。\n\n## 验证\n\n- 8 个测试文件、386 个断言全部通过\n- `ManifestValidator.validate()` 通过\n- 能力声明（`send.text` / `send.custom`）与实际调用一致\n\n## 其他\n\n无功能变更，纯合规性与隐私修正。已装 v1.6.1 的用户可直升。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.2",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.1",
           "tag": "v1.6.1",
           "commit": "9bd641ddb7bab8ded39c66eaee066bfbaf19999e",
@@ -40191,6 +40665,65 @@
       "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.4.5",
+          "tag": "v0.4.5",
+          "commit": "c126ee7d0cb9cc432a4ca682dde45f0fc6fb6b1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:17:25Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.5",
+          "release_notes": "## 修复\n\n- **白名单收紧没生效**：`_refresh_owner_sessions` 以前只往集合里加，把某个主人从 `owner.owners` 删掉后，\n  他的私聊仍会继续被注入「群代号对照 + owner_directive 提示」。现在每次刷新都先清空重建\n- **`consume_dispatched` 不先清过期**：已经淡出的叮嘱会被当成「兑现」写进日志；现在先 purge 再消费\n\n## 细节\n\n- 加载和热更新时做一次配置体检：`owner.owners` 里全角冒号这类永远匹配不上的条目会被点名警告，\n  `dispatch.intent_template` 少了 `{内容}` 也会提示\n- 同一平台只查一次私聊流，不再为一个 owner 列表反复调同一个能力\n- 时长文案：90 秒不再显示成「2 分钟」，改成「1 分 30 秒」\n- README 统一「命令静默忽略 / 工具中性拒绝」口径，删掉并不存在的 `allowed_session` 说法，\n  补上时间回拨与状态文件损坏的处理办法\n- CI 矩阵加 3.13，SDK 依赖约束到 `>=2.14.0`，去掉没用的 httpx\n- manifest 的 `sdk.max_version` 从 `2.99.99` 收到 `2.16.99`\n- 测试 148 → 152 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.5",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
         {
           "version": "0.4.4",
           "tag": "v0.4.4",
@@ -40870,6 +41403,63 @@
       "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.1.7",
+          "tag": "v0.1.7",
+          "commit": "b065ac7053bd9e331c31f729713125d8b11d5a11",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:43:54Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.7",
+          "release_notes": "### 修复\n\n- **本地档会把最佳候选越选越差**：`match_local` 的 difflib 复算拿每个候选**自己的**分数比较后覆盖全局最优，\n  低覆盖候选凭一点字面相似就能顶掉高分记录，甚至跌破阈值把命中变成未命中（572 条库实测 8.35% 选错、2.08% 由命中变未命中）。\n  改成只跟当前最优比，保证分数单调不降\n- **`is_emoji` 实际不会变成 1**：之前只改了 `raw_message`，宿主的 `is_emoji` 在 hook 之前就算好了，落库仍是 0。\n  现在整条消息只剩一个表情时会把它置真；正文夹表情的混合消息保持 False（与宿主口径一致）\n- **历史里仍留着假标签**：`processed_plain_text` 沿用原文，宿主只在引用回复或该字段为空时才重算。\n  现在按重建后的组件重算它（遇到 at / reply / image 组件则不接管，交给宿主自己拼）\n- **表情库变动不清查询缓存**：新增或删除表情时，缓存里「未命中」会保留到 TTL，新表情对查过的标签一直不可用。现在库一变就清缓存\n\n### 细节\n\n- 首次向量同步失败时给一条带排查方向的长提示：确认 `index.embedding_task` 指向的嵌入任务\n  在 `model_config.toml` 里有模型，或者关掉 `match.enable_vector` / `index.enabled` 只用前两档；\n  之后仍然只留一行短日志。之前只有「同步异常，将在下一轮重试」，用户会以为插件已经完整生效\n- 支持全角方括号 `［表情包: 害羞］`\n- 一个字都对不上时不再白花一次嵌入（`require_char_overlap` 下字面门槛必然过不了）\n- 单字标签的字面门槛改用字符集合比较，不再被二元组规则误杀\n- 最后一批嵌入失败时不再把索引标成「就绪」\n- 缓存文件里的坏值只丢那一条，不再让整次加载失败；批量嵌入逐条校验结果结构\n- 判定「整条消息只有一个标签」时排除 at / image 等其它组件\n- README 的 `is_emoji` 与历史两条承诺改成与实现一致的说法，补 `only_whole_message` 前提，\n  修正索引体积与「全部字段可改」的措辞\n- CI 矩阵加 3.13，SDK 与 ruff 加上版本区间\n- 测试 51 → 56 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.7",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
         {
           "version": "0.1.5",
           "tag": "v0.1.5",

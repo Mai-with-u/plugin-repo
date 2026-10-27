@@ -1509,7 +1509,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.7",
+      "version": "1.15.8",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -2948,7 +2948,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Rabbit-Jia-Er.MaiTrace",
-      "version": "6.2.4",
+      "version": "6.3.0",
       "name": "MaiTrace（麦时迹）",
       "description": "MaiBot 的生活与 QQ 空间插件：让麦麦拥有每日作息、精力心情、睡眠梦境，并在合适的时候分享近况。",
       "plugin_type": "chat",
@@ -6017,8 +6017,8 @@
     "id": "nguspring.random-image-api-for-maibot",
     "manifest": {
       "manifest_version": 2,
-      "id": "nguspring.random-image-api",
-      "version": "1.2.0",
+      "id": "nguspring.random-image-api-for-maibot",
+      "version": "1.2.1",
       "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
       "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
       "author": {
@@ -6038,7 +6038,7 @@
       },
       "sdk": {
         "min_version": "2.8.2",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -6060,7 +6060,7 @@
           "zh-CN"
         ]
       },
-      "plugin_type": "extension"
+      "plugin_type": "media"
     }
   },
   {
@@ -11614,11 +11614,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.15"
       },
       "sdk": {
         "min_version": "2.6.0",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "plugin_type": "tool",
@@ -14108,7 +14108,7 @@
     "id": "maibot_plugin.hold_on",
     "manifest": {
       "manifest_version": 2,
-      "version": "3.4.0",
+      "version": "3.4.4",
       "name": "稍，稍等一下！",
       "description": "为 模型/厂商/功能 提供RPM，智能限速",
       "author": {
@@ -17352,9 +17352,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.fun-pack",
-      "version": "1.5.0",
+      "version": "1.6.3",
       "name": "麦麦小工具合集",
-      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发：概率推荐/复读/防循环限流）、群早晚安作息记录、指令菜单；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -17364,12 +17364,12 @@
         "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "114.514.810"
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -17389,7 +17389,8 @@
         "send.hybrid",
         "maisaka.context.append",
         "chat.get_stream_by_group_id",
-        "chat.get_stream_by_user_id"
+        "chat.get_stream_by_user_id",
+        "message.get_by_id"
       ],
       "display": {
         "icon": {
@@ -18682,7 +18683,7 @@
     "id": "wows-battle-push",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.8",
+      "version": "1.3.0",
       "id": "wows-battle-push",
       "name": "战舰世界战绩推送",
       "description": "监控《战舰世界》账号对局，检测到新战绩结算时自动推送到绑定群。数据源为 Vortex 公共接口",
@@ -18696,16 +18697,15 @@
         "documentation": "https://docs.mai-mai.org/plugin/"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "9.99.99"
+        "min_version": "1.2.3",
+        "max_version": "1.2.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "9.99.99"
+        "min_version": "2.8.0",
+        "max_version": "2.16.99"
       },
       "plugin_type": "integration",
       "capabilities": [
-        "send_message",
         "send.text",
         "send.image",
         "render.html2png"
@@ -19427,7 +19427,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.token-usage-report",
-      "version": "1.10.1",
+      "version": "1.10.2",
       "name": "Token 用量统计与播报",
       "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
       "author": {
@@ -20762,7 +20762,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.tieba-share",
-      "version": "1.1.6",
+      "version": "1.1.7",
       "name": "麦麦贴吧搬石",
       "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
       "author": {
@@ -20876,7 +20876,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.mai-meal-card",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "plugin_type": "automation",
       "name": "麦麦饭卡",
       "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
@@ -21343,7 +21343,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -21675,7 +21675,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.7.1",
+      "version": "0.7.4",
       "plugin_type": "integration",
       "name": "麦麦模拟盘",
       "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
@@ -21946,7 +21946,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
       "display": {
@@ -21970,11 +21970,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "999.999.999"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "999.999.999"
+        "max_version": "2.16.99"
       },
       "dependencies": [
         {
@@ -22056,7 +22056,7 @@
     "id": "github.42yoru.maimai-owner-reminder",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.4",
+      "version": "0.4.5",
       "plugin_type": "tool",
       "name": "主人的叮嘱 (Owner Reminder)",
       "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
@@ -22085,7 +22085,7 @@
       },
       "sdk": {
         "min_version": "2.14.0",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -22112,9 +22112,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.2.2",
+      "version": "0.3.0",
       "name": "MiMo 语音回复",
-      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：固定参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
@@ -22486,7 +22486,7 @@
     "id": "github.42yoru.maimai-emoji-label-bridge",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.5",
+      "version": "0.1.7",
       "plugin_type": "media",
       "name": "表情标签桥接 (Emoji Label Bridge)",
       "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
