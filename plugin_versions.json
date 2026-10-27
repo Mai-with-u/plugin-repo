@@ -42439,7 +42439,64 @@
       "manifest_id": "mai-beeper.beeper-adapter",
       "repositoryUrl": "https://github.com/sunfish1728/mai-beeper-adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.7",
+          "tag": "0.4.7",
+          "commit": "e0c6fac5bd257e8e33040a8e4e38077772a579f2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T10:46:23Z",
+          "release_url": "https://github.com/sunfish1728/mai-beeper-adapter/releases/tag/0.4.7",
+          "release_notes": "- 支援 MaiBot 1.3，恢復私聊路由\n- manifest 的 SDK 版本上限改為實測的 2.14.99（MaiBot 1.3.9 / SDK 2.14）\n\n安裝：在 MaiBot 插件管理以 Git 網址 https://github.com/sunfish1728/mai-beeper-adapter 安裝，詳見 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mai-beeper.beeper-adapter",
+            "version": "0.4.7",
+            "name": "Mai Beeper Adapter",
+            "description": "讓 MaiBot 透過 Beeper Desktop API 收發文字、圖片與語音，並以聊天室名稱和配對文字管理白名單。",
+            "author": {
+              "name": "sunfish1728",
+              "url": "https://github.com/sunfish1728"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/sunfish1728/mai-beeper-adapter",
+              "homepage": "https://github.com/sunfish1728/mai-beeper-adapter",
+              "documentation": "https://github.com/sunfish1728/mai-beeper-adapter/blob/main/README.md",
+              "issues": "https://github.com/sunfish1728/mai-beeper-adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.14.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "yarl",
+                "version_spec": ">=1.17.0,<2.0.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-TW",
+              "supported_locales": [
+                "zh-TW"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
