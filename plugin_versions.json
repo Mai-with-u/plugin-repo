@@ -4437,10 +4437,16 @@
       "id": "nguspring.custom_pic_plugin",
       "manifest_id": "selfie_painter",
       "repositoryUrl": "https://github.com/nguspring/custom_pic_plugin",
-      "mode": "branch",
+      "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v4.0.0",
+          "version": "4.0.0",
+          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'nguspring.painter_maimai_daily'\n- 'selfie_painter'"
+        }
+      ]
     },
     {
       "id": "SkonJIYHD.LifeSimulationPlugin",
@@ -43793,6 +43799,15 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.pppalab.meme-generator-bridge",
+      "manifest_id": "github.pppalab.meme-generator-bridge",
+      "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }

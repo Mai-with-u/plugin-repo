@@ -831,7 +831,7 @@
         ],
         "features": [
           "多种音色支持（小新、妲己、酥心御姐等）",
-          "双模式触发（智能触发和��动触发）",
+          "双模式触发（智能触���和手动触发）",
           "音色别名映射，方便用户使用",
           "仅群聊可用，确保使用场景合适",
           "完善的错误处理和日志记录",
@@ -871,7 +871,7 @@
         "爹系男友": "lucy-voice-m101",
         "暖心姐姐": "lucy-voice-female2",
         "温柔妹妹": "lucy-voice-f36",
-        "书香少女": "lucy-voice-f34"
+        "书香少���": "lucy-voice-f34"
       },
       "configuration": {
         "config_file": "config.toml",
@@ -3985,98 +3985,97 @@
   {
     "id": "nguspring.custom_pic_plugin",
     "manifest": {
-      "manifest_version": 1,
-      "name": "画家麦麦的自拍日常",
-      "version": "3.6.10",
-      "description": "集智能绘画与自拍生成于一体的 MaiBot 插件。支持文生图/图生图自动识别，兼容 OpenAI、OpenAI-Chat、豆包、Gemini、魔搭、ComfyUI 等多种 API 格式。内置日程系统、衣柜系统、三种自拍模式（standard/mirror/photo）、SSE 流式响应支持。提供命令式风格转换、模型配置管理、结果缓存、提示词优化、智能参考搜索等高级特性。",
+      "manifest_version": 2,
+      "version": "4.0.0",
+      "name": "画家麦麦的日常",
+      "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供内置日程与日程注入、空间/群/私聊多渠道自动自拍、群聊主动图片、聊天设置持久化、额度管理和对外生图 API，并可选对接 MaiTrace。",
+      "plugin_type": "creative",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "image"
+        }
+      },
       "author": {
-        "name": "Ptrel，Rabbit-Jia-Er，saberlights Kiuon，nguspring",
-        "url": "https://github.com/nguspring/selfie_painter"
+        "name": "Ptrel, Rabbit-Jia-Er, saberlights Kiuon, nguspring",
+        "url": "https://github.com/nguspring/painter_maimai_daily"
       },
-      "license": "AGPL-3.0",
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/nguspring/painter_maimai_daily",
+        "homepage": "https://github.com/nguspring/painter_maimai_daily",
+        "issues": "https://github.com/nguspring/painter_maimai_daily/issues"
+      },
       "host_application": {
-        "min_version": "0.10.0"
+        "min_version": "1.3.11",
+        "max_version": "1.3.99"
       },
-      "homepage_url": "https://github.com/nguspring/selfie_painter",
-      "repository_url": "https://github.com/nguspring/selfie_painter",
-      "keywords": [
-        "画图",
-        "自拍",
-        "日程",
-        "配文",
-        "AI",
-        "图片",
-        "魔搭",
-        "文生图",
-        "图生图",
-        "人设",
-        "ComfyUI",
-        "衣柜"
+      "sdk": {
+        "min_version": "2.15.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "maibot-plugin-sdk",
+          "version_spec": ">=2.15.0,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.28.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2024.1"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24,<1"
+        }
       ],
-      "categories": [
-        "Content Generation",
-        "Entertainment & Interaction"
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "config.get",
+        "llm.generate",
+        "message.get_by_id",
+        "message.get_recent",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "chat.get_all_streams",
+        "api.call",
+        "api.list"
       ],
-      "default_locale": "zh-CN",
-      "plugin_info": {
-        "is_built_in": false,
-        "plugin_type": "image_generator",
-        "components": [
-          {
-            "type": "action",
-            "name": "draw_picture",
-            "description": "智能图片生成，自动识别文生图/图生图",
-            "activation_modes": [
-              "keyword",
-              "llm_judge"
-            ],
-            "keywords": [
-              "画",
-              "绘制",
-              "生成图片",
-              "画图",
-              "图生图",
-              "修改图片",
-              "风格转换"
-            ]
-          },
-          {
-            "type": "command",
-            "name": "pic_generation_command",
-            "description": "风格化图生图命令：/dr <风格>",
-            "pattern": "/dr"
-          },
-          {
-            "type": "command",
-            "name": "pic_config_command",
-            "description": "模型配置管理：/dr list、/dr set等",
-            "pattern": "/dr"
-          },
-          {
-            "type": "command",
-            "name": "pic_style_command",
-            "description": "风格管理：/dr styles、/dr style等",
-            "pattern": "/dr"
-          }
-        ],
-        "features": [
-          "智能文生图/图生图识别",
-          "多API格式支持(OpenAI/OpenAI-Chat/豆包/Gemini/魔搭/ComfyUI)",
-          "命令式风格转换",
-          "动态模型配置管理",
-          "风格别名系统",
-          "结果缓存机制",
-          "调试开关控制",
-          "支持图生图开关",
-          "内置日程系统",
-          "衣柜系统",
-          "三种自拍模式(standard/mirror/photo)",
-          "SSE流式响应支持",
-          "智能参考搜索(内置Bing搜图)",
-          "独立生图接口(generate_image_standalone)"
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
         ]
       },
-      "id": "selfie_painter"
+      "id": "nguspring.painter_maimai_daily"
+    },
+    "assets": {
+      "icon_64": "icons/nguspring.custom_pic_plugin.webp"
     }
   },
   {
@@ -6018,7 +6017,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "nguspring.random-image-api-for-maibot",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
       "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
       "author": {
@@ -11600,7 +11599,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-love",
       "name": "麦麦恋人",
-      "version": "2.2.1",
+      "version": "2.3.0",
       "description": "私聊专用虚拟恋人插件，会主动找你聊天。基于麦麦的独立日程生活，通过 planner 自主决策什么时候说话、说什么，配合好感度系统调节语气温度",
       "author": {
         "name": "octmicy",
@@ -15362,7 +15361,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maitu.photo-studio",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "麦麦写真",
       "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
       "author": {
@@ -18055,7 +18054,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.23.7",
+      "version": "1.24.0",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -18063,20 +18062,14 @@
       },
       "license": "MIT",
       "host_application": {
-        "min_version": "1.3.6",
+        "min_version": "1.3.16",
         "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.7.0",
-        "max_version": "2.99.99"
+        "max_version": "2.17.99"
       },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "playwright",
-          "version_spec": ">=1.49,<2"
-        }
-      ],
+      "dependencies": [],
       "plugin_type": "extension",
       "capabilities": [
         "send.text",
@@ -18093,7 +18086,9 @@
         "api.call",
         "maisaka.proactive.trigger",
         "config.get",
-        "component.list_loaded_plugins"
+        "component.list_loaded_plugins",
+        "web.search",
+        "web.fetch"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -19599,7 +19594,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
@@ -19614,11 +19609,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "114.514.810"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "plugin_type": "data",
       "dependencies": [
@@ -22124,7 +22119,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "MiMo 语音回复",
       "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
@@ -23215,6 +23210,67 @@
     },
     "assets": {
       "icon_64": "icons/github.qiaozhixiang.dsh-remote-bridge.webp"
+    }
+  },
+  {
+    "id": "github.pppalab.meme-generator-bridge",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.pppalab.meme-generator-bridge",
+      "plugin_type": "media",
+      "version": "0.1.2",
+      "name": "表情包制作桥接器",
+      "description": "通过确定性关键词和命令连接自部署 Rust meme-generator 服务",
+      "author": {
+        "name": "PPPALab",
+        "url": "https://github.com/PPPALab"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+        "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+        "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.15"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<0.29"
+        },
+        {
+          "type": "python_package",
+          "name": "httpcore",
+          "version_spec": ">=1,<2"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10,<13"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.emoji",
+        "chat.get_avatar",
+        "chat.open_session",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
