@@ -40779,6 +40779,272 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "11b69ddb754fb7efa1a70dc82688bca7db303339",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T11:46:03Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.5.0",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.5.0\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分。两者**功能互斥，请勿同时启用**。\n\n---\n\n## 更新日志\n\n### 🎲 新增：概率语音\n\n机器人不再只能等 LLM 主动调用工具，还可以**自己按概率**把普通文字回复转成语音，更像真人随手发语音。\n\n```toml\n[random_voice]\nenabled = true\nprobability = 0.3      # 约三成回复会变成语音\ndecision_ttl = 8.0     # 同一条回复 8 秒内复用同一结果\n```\n\n通过 `send_service.before_send` 钩子拦截出站消息，掷骰命中后把纯文本消息改写成语音组件再发出。\n\n| 行为 | 说明 |\n|---|---|\n| **一次回复只用一种形式** | 长回复常被拆成多段。按 `stream_id` 缓存随机结果 `decision_ttl` 秒，避免「前句语音、后句文字」 |\n| **不适合的内容自动跳过** | 代码块、网址、表格、Markdown 列表、HTML 标签、Markdown 链接一律不转语音 |\n| **合成失败回退文字** | 语音合成出错时原样发送文字，保证消息不丢 |\n| **非纯文本消息不碰** | 带图片、文件、语音的消息不会被改写 |\n| **不抢占引用** | 转语音时自动去掉引用（QQ 不支持「引用 + 语音」组合） |\n\n默认关闭，不配置完全不影响原有行为。与 LLM 工具调用独立，可同时开启。\n\n### 🔢 新增：纯数字专用风格\n\n播报价格、时间、电话号码等纯数字内容时，韵律与正常说话差异较大，可指定专用风格：\n\n```toml\n[gpt_sovits.auto_style]\nnumber_style = \"数字\"                 # 留空则不启用\nnumber_style_include_chinese = true   # 中文数字是否也算数字\n```\n\n判断范围覆盖阿拉伯数字、中文数字、小数点、负号、千分位逗号，以及年月日号点分秒元块毛角% 等单位。优先级高于自动语气规则。\n\n### 🌏 增强：语言检测\n\n新增对更多文字系统的识别，判定优先级：\n\n```\n假名（ja）→ 谚文（ko）→ 粤语专用字（yue）\n→ 西里尔/泰文/阿拉伯文/天城文/希腊文（ru/th/ar/hi/el）\n→ 拉丁（en）→ 汉字为主体（zh）→ 兜底\n```\n\n解决了 `今日はいい天気ですね` 因汉字占比高被误判为中文的问题。\n\n**已知局限**：纯汉字构成的日语（如 `東雪蓮`）无法自动识别，请在对应风格中用 `language = \"ja\"` 显式指定。\n\n### 🔧 修复\n\n- **配置热更新不生效**：原先只打日志不重建客户端，导致改配置后需重启\n- **模型状态跨实例共享**：服务端重启后客户端仍认为权重已加载，会跳过切换导致用错模型\n- **并发串音色**：权重切换与合成未加锁，并发请求可能互相覆盖模型\n- **URL 未转义**：权重路径含空格、`&`、`#` 时请求参数被截断\n- **风格回退硬编码**：默认风格名为「默认」而非 `default` 时找不到风格\n- **空 pattern 规则**：匹配所有文本，配错会强制全部走同一风格\n- **异常兜底缺失**：`OSError` 等异常会冒泡到 SDK\n- **工具描述未传给 LLM**：MaiBot 只使用 `description` 字段（`detailed_description` 已弃用），且 SDK 中 `brief_description` 优先于 `description`。此前两者同时传入，长描述被覆盖，LLM 实际只看到「用语音回复」5 个字\n\n### ♻️ 优化\n\n- **工具描述精简**：主描述从 120 字压到 32 字，移除与参数描述重复的内容，降低每次对话的上下文开销\n- **临时音频路径**：改用 Runner 分配的 `ctx.paths.runtime_dir`，不再靠 `Path(__file__).parents[2]` 反推项目根目录\n- **钩子超时收紧**：概率语音的阻塞钩子从 120s 压到 60s，避免极端情况下堵塞出站消息\n- **补充 `plugin_type: media`**：插件分类更准确，WebUI 中不再归为 `extension`\n- **配置项中文标签**：`skip_patterns` / `style` 补充中文 label、hint 与 placeholder\n\n---\n\n## 功能总览\n\n- **自动语气**：调用方未指定风格时，按文本内容（感叹词、情绪词、标点）自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频（支持 `默认` → `默认_ja` 这类变体命名）\n- **纯数字专用风格**：见上\n- **概率语音**：见上\n- **语速控制**：`speed_factor` 全局调节合成语速\n- **文本清洗**：自动剔除零宽字符（ZWNJ/ZWJ）、BOM、方向标记等不可见字符\n- **音频校验**：校验时长与音量，拦截静音崩坏音频\n- **配置校验**：缺少必要参数时给出明确修复指引，并指向 `config.example.toml`\n\n---\n\n## 安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n> **参考音频要求**：3~10 秒、单句、干净无背景音乐的人声。\n> `prompt_text` 必须与音频内容逐字对应，否则合成会出现杂音或空白音频。\n\n### 配置示例\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nspeed_factor = 0.92\n\n[gpt_sovits.auto_style]\nenabled = true\nfallback = \"default\"\n# 纯数字专用风格（留空则不启用）\n# number_style = \"数字\"\n\n# 概率语音（默认关闭）\n[random_voice]\nenabled = true\nprobability = 0.3\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\n```\n\n---\n\n## 升级说明\n\n**从 1.4.x 升级无需改动配置**，新增功能默认全部关闭。\n\n若想启用概率语音或纯数字风格，按上面示例在 `config.toml` 中补充对应段落即可。\n\n---\n\n## 测试\n\n| 测试项 | 结果 |\n|---|---|\n| 单元测试 | 51/51 |\n| 语言检测 | 43/43 |\n| 纯数字判断 | 38/38 |\n| 数字风格路由 | 20/20 |\n| 概率语音 | 29/29 |\n| 配置校验 | 10/10 |\n| 端到端链路 | 8/8 |\n| 全新安装体验 | 9/9 |\n| 插件中心规范合规检查 | 45/45 |\n\n合计 **253 项全部通过**。概率语音另做 12 项真实合成端到端验证（拦截出站消息 → 实际调用 GPT-SoVITS → 改写成语音组件）。\n\n---\n\n## 许可\n\n沿用原版 AGPL-3.0-or-later。原作者 CGl123 署名保留在 README「来源说明」章节与 `description` 字段中。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.5.0",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "970a7f928997b79071587912e1711830e107fb9e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T09:26:54Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.4.1",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.4.1\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分。两者**功能互斥，请勿同时启用**。\n\n### 本版内容\n\n**修正 `_manifest.json` 的 `author` 字段**，并修正工具描述不生效的问题。\n\n此前 `author` 沿用了原作者 `CGl123`，导致插件管理界面显示的作者与实际维护者不符。现调整为 `Lbcheng1145`，原作者署名完整保留在 README「来源说明」章节与 `description` 字段中。\n\n同时修复 `tts_voice` 工具描述未传给 LLM 的问题：MaiBot 只使用 `description` 字段（`detailed_description` 已弃用），且 SDK 中 `brief_description` 优先于 `description`。此前两者同时传入，导致长描述被覆盖，LLM 实际只看到「用语音回复」5 个字。\n\n### 功能总览\n\n- **自动语气**：调用方未指定风格时，按文本内容（感叹词、情绪词、标点）自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频（支持 `默认` → `默认_ja` 这类变体命名）\n- **纯数字专用风格**：纯数字类文本（`12345`、`99元`、`2024年10月22日`）可指定独立风格\n- **概率语音**：按概率自动把普通文字回复转成语音，更像真人随手发语音（默认关闭）\n- **语速控制**：`speed_factor` 全局调节合成语速\n- **文本清洗**：自动剔除零宽字符（ZWNJ/ZWJ）、BOM、方向标记等不可见字符\n- **音频校验**：校验时长与音量，拦截静音崩坏音频\n- **配置校验**：缺少必要参数时给出明确修复指引，并指向 `config.example.toml`\n\n### 语言检测\n\n优先级：假名（ja）→ 谚文（ko）→ 粤语专用字（yue）→ 其他文字系统（ru/th/ar/hi/el）→ 拉丁（en）→ 汉字为主体（zh）→ 兜底。\n\n**已知局限**：纯汉字构成的日语（如 `東雪蓮`）无法自动识别，请在对应风格里用 `language = \"ja\"` 显式指定。\n\n### 首次安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n> **参考音频要求**：3~10 秒、单句、干净无背景音乐的人声。\n> `prompt_text` 必须与音频内容逐字对应，否则合成会出现杂音或空白音频。\n\n### 配置示例\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nspeed_factor = 0.92\n\n[gpt_sovits.auto_style]\nenabled = true\nfallback = \"default\"\n# 纯数字专用风格（留空则不启用）\n# number_style = \"数字\"\n\n# 概率语音（默认关闭）\n[random_voice]\nenabled = true\nprobability = 0.3\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\n```\n\n### 测试\n\n- 单元测试 51 项\n- 语言检测测试 43 项\n- 纯数字判断测试 38 项\n- 数字风格路由测试 20 项\n- 概率语音测试 29 项\n- 配置校验测试 10 项\n- 端到端链路测试 8 项\n- 全新安装体验测试 9 项\n- 插件中心规范合规检查 45 项\n\n合计 253 项全部通过。\n\n### 许可\n\n沿用原版 AGPL-3.0-or-later。原作者 CGl123 署名保留在 README 与 `description` 中。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.4.1",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来，新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "a65c3cd8f0a381b224a59bd588c6c1208cd3ccd8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T09:01:40Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.4.0",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.4.0\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分。两者**功能互斥，请勿同时启用**。\n\n### 本版新增：概率语音\n\n机器人不再只能等 LLM 主动调用工具，还可以**自己按概率**把普通文字回复转成语音，更像真人随手发语音。\n\n```toml\n[random_voice]\nenabled = true\nprobability = 0.3      # 约三成回复会变成语音\ndecision_ttl = 8.0     # 同一条回复 8 秒内复用同一结果\nmin_text_length = 2\nmax_text_length = 80\n```\n\n实现方式是通过 `send_service.before_send` 钩子拦截出站消息，掷骰命中后把纯文本消息改写成语音组件再发出。\n\n几个关键设计：\n\n| 行为 | 说明 |\n|---|---|\n| **一次回复只用一种形式** | 长回复常被拆成多段发送。按 `stream_id` 缓存随机结果 `decision_ttl` 秒，避免「前句语音、后句文字」 |\n| **不适合的内容自动跳过** | 代码块、网址、表格、Markdown 列表、HTML 标签、Markdown 链接一律不转语音 |\n| **合成失败回退文字** | 语音合成出错时原样发送文字，保证消息不丢 |\n| **非纯文本消息不碰** | 带图片、文件、语音的消息不会被改写 |\n| **不抢占引用** | 转语音时自动去掉引用（QQ 不支持「引用 + 语音」组合，会返回成功但不投递） |\n\n与 LLM 工具调用独立，可同时开启。**默认关闭**，不配置完全不影响原有行为。\n\n### 功能总览\n\n- **自动语气**：调用方未指定风格时，按文本内容（感叹词、情绪词、标点）自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频（支持 `默认` → `默认_ja` 这类变体命名）\n- **纯数字专用风格**：纯数字类文本（`12345`、`99元`、`2024年10月22日`）可指定独立风格\n- **概率语音**：见上\n- **语速控制**：`speed_factor` 全局调节合成语速\n- **文本清洗**：自动剔除零宽字符（ZWNJ/ZWJ）、BOM、方向标记等不可见字符\n- **音频校验**：校验时长与音量，拦截静音崩坏音频\n- **配置校验**：缺少必要参数时给出明确修复指引，并指向 `config.example.toml`\n\n### 语言检测\n\n优先级：假名（ja）→ 谚文（ko）→ 粤语专用字（yue）→ 其他文字系统（ru/th/ar/hi/el）→ 拉丁（en）→ 汉字为主体（zh）→ 兜底。\n\n**已知局限**：纯汉字构成的日语（如 `東雪蓮`）无法自动识别，请在对应风格里用 `language = \"ja\"` 显式指定。\n\n### 修复的问题\n\n- **配置热更新不生效**：原先只打日志不重建客户端，导致改配置后需重启\n- **模型状态跨实例共享**：服务端重启后客户端仍认为权重已加载，会跳过切换导致用错模型\n- **并发串音色**：权重切换与合成未加锁，并发请求可能互相覆盖模型\n- **URL 未转义**：权重路径含空格、`&`、`#` 时请求参数被截断\n- **语言检测误判**：`今日はいい天気ですね` 等日语文本因汉字占比高被判为中文\n- **风格回退硬编码**：默认风格名为「默认」而非 `default` 时找不到风格\n- **空 pattern 规则**：匹配所有文本，配错会强制全部走同一风格\n- **异常兜底缺失**：`OSError` 等异常会冒泡到 SDK\n\n### 首次安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n> **参考音频要求**：3~10 秒、单句、干净无背景音乐的人声。\n> `prompt_text` 必须与音频内容逐字对应，否则合成会出现杂音或空白音频。\n\n### 配置示例\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nspeed_factor = 0.92\n\n[gpt_sovits.auto_style]\nenabled = true\nfallback = \"default\"\n# 纯数字专用风格（留空则不启用）\n# number_style = \"数字\"\n\n# 概率语音（默认关闭）\n[random_voice]\nenabled = true\nprobability = 0.3\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\n```\n\n### 测试\n\n- 单元测试 51 项\n- 语言检测测试 43 项\n- 纯数字判断测试 38 项\n- 数字风格路由测试 20 项\n- 概率语音测试 29 项\n- 配置校验测试 10 项\n- 端到端链路测试 8 项\n- 全新安装体验测试 9 项\n- 插件中心规范合规检查 45 项\n\n合计 253 项全部通过。概率语音另做了 12 项真实合成端到端验证（拦截出站消息 → 实际调用 GPT-SoVITS → 改写成语音组件）。\n\n### 许可\n\n沿用原版 AGPL-3.0-or-later。原作者署名保留在 `_manifest.json` 的 `author` 字段。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.4.0",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版基于 CGl123/gpt-sovits-voice-plugin 优化而来（原作者 CGl123），新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "CGl123",
+              "url": "https://github.com/CGl123"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "9ee46ff4976500513e7512b84cce1f008e7bfe03",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T08:36:06Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.3.0",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.3.0\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分。两者**功能互斥，请勿同时启用**。\n\n### ⚠️ 与原版互斥\n\n| | 插件 ID | 数据目录 |\n|---|---|---|\n| **本插件** | `github.lbcheng1145.gpt-sovits-voice-plugin` | `data/plugins/github.lbcheng1145.gpt-sovits-voice-plugin` |\n| 原版 | `CGl123.gpt-sovits-voice-plugin` | `data/plugins/CGl123.gpt-sovits-voice-plugin` |\n\n**冲突点**：命令冲突（都注册 `/tts`、`/voice`、`/gptsovits`）、工具冲突（都声明 `tts_voice`）、重复合成。\n\n**安装前请先卸载原版**。配置 `config.toml` 不能直接复用，请参照 `config.example.toml` 重新配置。\n\n### 本版新增\n\n- **纯数字专用风格**：纯数字类文本（`12345`、`99元`、`2024年10月22日`、`一百二十三` 等）可指定独立风格，\n  适合播报数字/报数场景，与日常聊天语气区分。\n  通过 `auto_style.number_style` 配置风格名，`number_style_include_chinese` 控制中文数字是否纳入。\n  优先级高于自动语气规则；不受 `auto_style.enabled` 影响，留空即禁用。\n\n### 功能总览\n\n- **自动语气**：调用方未指定风格时，按文本内容（感叹词、情绪词、标点）自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频（支持 `默认` → `默认_ja` 这类变体命名）\n- **纯数字专用风格**：见上\n- **语速控制**：`speed_factor` 全局调节合成语速\n- **文本清洗**：自动剔除零宽字符（ZWNJ/ZWJ）、BOM、方向标记等不可见字符\n- **音频校验**：校验时长与音量，拦截静音崩坏音频\n- **配置校验**：缺少必要参数时给出明确修复指引，并指向 `config.example.toml`\n\n### 语言检测\n\n优先级：假名（ja）→ 谚文（ko）→ 粤语专用字（yue）→ 其他文字系统（ru/th/ar/hi/el）→ 拉丁（en）→ 汉字为主体（zh）→ 兜底。\n\n**已知局限**：纯汉字构成的日语（如 `東雪蓮`）无法自动识别，请在对应风格里用 `language = \"ja\"` 显式指定。\n\n### 修复的问题\n\n- **配置热更新不生效**：原先只打日志不重建客户端，导致改配置后需重启\n- **模型状态跨实例共享**：服务端重启后客户端仍认为权重已加载，会跳过切换导致用错模型\n- **并发串音色**：权重切换与合成未加锁，并发请求可能互相覆盖模型\n- **URL 未转义**：权重路径含空格、`&`、`#` 时请求参数被截断\n- **语言检测误判**：`今日はいい天気ですね` 等日语文本因汉字占比高被判为中文\n- **风格回退硬编码**：默认风格名为「默认」而非 `default` 时找不到风格\n- **空 pattern 规则**：匹配所有文本，配错会强制全部走同一风格\n- **异常兜底缺失**：`OSError` 等异常会冒泡到 SDK\n\n### 首次安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n> **参考音频要求**：3~10 秒、单句、干净无背景音乐的人声。\n> `prompt_text` 必须与音频内容逐字对应，否则合成会出现杂音或空白音频。\n\n### 配置示例\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nspeed_factor = 0.92\n\n[gpt_sovits.auto_style]\nenabled = true\nfallback = \"default\"\n# 纯数字专用风格（留空则不启用）\n# number_style = \"数字\"\n# number_style_include_chinese = true\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\n```\n\n### 测试\n\n- 单元测试 51 项\n- 语言检测测试 43 项\n- 纯数字判断测试 38 项\n- 数字风格路由测试 20 项\n- 配置校验测试 10 项\n- 端到端链路测试 8 项\n- 全新安装体验测试 9 项\n- 插件中心规范合规检查 45 项\n\n合计 224 项全部通过。\n\n### 许可\n\n沿用原版 AGPL-3.0-or-later。原作者署名保留在 `_manifest.json` 的 `author` 字段。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.3.0",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版基于 CGl123/gpt-sovits-voice-plugin 优化而来（原作者 CGl123），新增按内容自动选语气、按语言自动切换模型、纯数字专用风格、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "CGl123",
+              "url": "https://github.com/CGl123"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "a50bf46ee6a97fdab12e5ea595b71e7f5109eec4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T08:01:05Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.2.0",
+          "release_notes": "## GPT-SoVITS 语音插件（优化版）v1.2.0\n\n本版本基于 [CGl123/gpt-sovits-voice-plugin](https://github.com/CGl123/gpt-sovits-voice-plugin) 优化。\n\n> **插件 ID：`github.lbcheng1145.gpt-sovits-voice-plugin`**\n> 与原版 `CGl123.gpt-sovits-voice-plugin` 区分，可与原版共存于插件索引。\n> 但**两者功能互斥，请勿同时启用**（详见下方说明）。\n\n### ⚠️ 与原版互斥\n\n| | 插件 ID | 数据目录 |\n|---|---|---|\n| **本插件** | `github.lbcheng1145.gpt-sovits-voice-plugin` | `data/plugins/github.lbcheng1145.gpt-sovits-voice-plugin` |\n| 原版 | `CGl123.gpt-sovits-voice-plugin` | `data/plugins/CGl123.gpt-sovits-voice-plugin` |\n\n**冲突点**：\n\n- 命令冲突：都注册 `/tts`、`/voice`、`/gptsovits`\n- 工具冲突：都声明 `tts_voice` 工具，LLM 不知用哪个\n- 重复合成：两个都响应时会重复发语音\n\n**安装前请先卸载原版**。配置 `config.toml` 不能直接复用——\n本版新增 `auto_style`、`speed_factor`、`languages` 字段，请参照 `config.example.toml` 重新配置。\n\n### 新增功能\n\n- **自动语气**：调用方未指定风格时，按文本内容（感叹词、情绪词、标点）自动选择语气，规则可配置\n- **多语言路由**：检测文本语言，自动切换到对应语言的模型与参考音频（支持 `默认` → `默认_ja` 这类变体命名）\n- **语速控制**：新增 `speed_factor` 配置，全局调节合成语速\n- **文本清洗**：自动剔除零宽字符（ZWNJ/ZWJ）、BOM、方向标记等不可见字符\n- **音频校验**：校验时长与音量，拦截静音崩坏音频\n- **配置校验**：缺少必要参数时给出明确修复指引，并指向 `config.example.toml`\n\n### 修复的问题\n\n- **配置热更新不生效**：原先只打日志不重建客户端，导致改配置后需重启\n- **模型状态跨实例共享**：服务端重启后客户端仍认为权重已加载，会跳过切换导致用错模型\n- **并发串音色**：权重切换与合成未加锁，并发请求可能互相覆盖模型\n- **URL 未转义**：权重路径含空格、`&`、`#` 时请求参数被截断\n- **语言检测误判**：`今日はいい天気ですね` 等日语文本因汉字占比高被判为中文\n- **风格回退硬编码**：默认风格名为「默认」而非 `default` 时找不到风格\n- **空 pattern 规则**：匹配所有文本，配错会强制全部走同一风格\n- **异常兜底缺失**：`OSError` 等异常会冒泡到 SDK\n\n### 首次安装\n\n1. 确认已卸载原版插件\n2. 复制 `config.example.toml` 为 `config.toml`\n3. 至少填写一个风格的 `refer_wav` 与 `prompt_text`\n4. 确认 GPT-SoVITS API 服务已启动（默认 `http://127.0.0.1:9880`）\n5. 重载插件\n\n### 配置示例\n\n```toml\n[gpt_sovits]\nserver = \"http://127.0.0.1:9880\"\nspeed_factor = 0.92\n\n[gpt_sovits.auto_style]\nenabled = true\nfallback = \"default\"\n\n[[gpt_sovits.styles]]\nname = \"default\"\nrefer_wav = \"D:/vioce/ref.wav\"\nprompt_text = \"参考音频对应的文本内容。\"\nprompt_language = \"zh\"\n```\n\n### 测试\n\n- 单元测试 51 项\n- 配置校验测试 10 项\n- 端到端链路测试 8 项\n- 全新安装体验测试 9 项\n- 插件中心规范合规检查 45 项\n\n### 许可\n\n沿用原版 AGPL-3.0-or-later。原作者署名保留在 `_manifest.json` 的 `author` 字段。\n\n问题请反馈至[本仓库 Issues](https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.2.0",
+            "name": "GPT-SoVITS 语音插件（二改版）",
+            "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 CGl123/gpt-sovits-voice-plugin 二改而来（原作者 CGl123），新增按内容自动选语气、按语言自动切换模型、语速控制、文本清洗、音频校验与配置校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "CGl123",
+              "url": "https://github.com/CGl123"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.99.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
