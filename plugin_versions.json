@@ -42815,7 +42815,86 @@
       "manifest_id": "antinova.maibot-bililife",
       "repositoryUrl": "https://github.com/ANTINOVIA/maibot-bililife",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.6",
+          "tag": "v0.2.6",
+          "commit": "f20fb3f125f9fad99c06e5d38e4cc17a09278ec1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T04:01:24Z",
+          "release_url": "https://github.com/ANTINOVIA/maibot-bililife/releases/tag/v0.2.6",
+          "release_notes": "麦麦的 B 站生活 **0.2.6**，插件 ID：`antinova.maibot-bililife`。\n\n本次完善兴趣管理：列表可直接编辑名称、权重和冻结状态，修改原因选填；支持删除确认和分页。更名替换原主题，删除会同步移出允许主题，设置持久保存。历史经历和变更记录保留；没有剩余允许主题或指定 UP 主时关闭自动发布。相关接口参数与示例已更新到 README。\n\n提供自主浏览、视频与评论理解、评论回复、持久化日程、可检索经历和每日复盘。自动发布默认关闭，可按模块设置开关、额度及冷却时间。\n\n下载 `antinova.maibot-bililife-0.2.6.zip`，核对同名 `.sha256` 后在宿主插件管理界面安装。使用与接口说明见 [README](https://github.com/ANTINOVIA/maibot-bililife/blob/v0.2.6/README.md)，安装、配置、更新与卸载见 [使用文档](https://github.com/ANTINOVIA/maibot-bililife/blob/v0.2.6/docs/OPERATIONS.md)。\n\n清单类型为 `integration`，宿主兼容范围为 **MaiBot 1.3.14–1.3.99**，SDK 限定为 **2.16.0**。实际验证的宿主环境为 MaiBot 1.3.14、SDK 2.16.0、Dashboard 1.9.8、Python 3.12；范围内其他补丁版本尚未逐一验证。媒体处理按需使用 FFmpeg。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "antinova.maibot-bililife",
+            "plugin_type": "integration",
+            "version": "0.2.6",
+            "name": "麦麦的 B 站生活",
+            "description": "让麦麦自主浏览 B 站，理解视频和评论，发表评论与回复，并通过每日复盘积累记忆、调整兴趣。",
+            "author": {
+              "name": "ANTINOVIA",
+              "url": "https://github.com/ANTINOVIA"
+            },
+            "urls": {
+              "repository": "https://github.com/ANTINOVIA/maibot-bililife",
+              "homepage": "https://github.com/ANTINOVIA/maibot-bililife",
+              "documentation": "https://github.com/ANTINOVIA/maibot-bililife#readme",
+              "issues": "https://github.com/ANTINOVIA/maibot-bililife/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "llm.transcribe_audio",
+              "maisaka.context.append",
+              "send.text"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": "==0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": "==8.2"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.10,<4"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
