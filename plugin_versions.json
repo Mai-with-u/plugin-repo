@@ -36770,6 +36770,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.8",
+          "tag": "v1.1.8",
+          "commit": "6a962ccc35ca4fdb2f4729b9b1bdb98ea8889120",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T03:32:07Z",
+          "release_url": "https://github.com/mizuku003/maibot-tieba-share/releases/tag/v1.1.8",
+          "release_notes": "## 更新\n\n- 修复：帖子带视频时，整条聊天记录会被协议端整条拒收，群里一条也收不到（主程序日志里是 `message element \"video\" must be the only segment in a message`）。起因是视频段被塞进了长图所在的同一个转发节点，部分协议端/网关（如 SnowLuma）要求视频必须独占一条消息，NapCat 则容忍混装 —— 于是同一个插件换个适配器就整轮发空。现在每个视频单独占一个转发节点，两种适配器都能发。\n- 修复：一轮什么都没发出去时，日志会说「长图都没渲出来」，而实际往往是投递失败（长图明明都渲好了）。这句猜错的原因会把排查引到完全相反的方向，现在只说「没发出去」，并提示去主程序日志里看 `SendService` 那一行。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mizuku003.tieba-share",
+            "version": "1.1.8",
+            "name": "麦麦贴吧搬石",
+            "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
+            "author": {
+              "name": "mizuku003",
+              "url": "https://github.com/mizuku003"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mizuku003/maibot-tieba-share",
+              "homepage": "https://github.com/mizuku003/maibot-tieba-share",
+              "documentation": "https://github.com/mizuku003/maibot-tieba-share/blob/main/README.md",
+              "issues": "https://github.com/mizuku003/maibot-tieba-share/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "render.html2png",
+              "send.image",
+              "send.text",
+              "send.forward",
+              "send.custom",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "hammer"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.7",
           "tag": "v1.1.7",
           "commit": "3ed65d3fed57a455b5880866d20b720baa7e19d2",
