@@ -43098,7 +43098,58 @@
       "manifest_id": "org.orge-8.xiaoheihe-operator",
       "repositoryUrl": "https://github.com/HannJia/xiaoheihe-operator",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "aa2354fdce5f4e965e9c25089213276928a47b4f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T12:07:59Z",
+          "release_url": "https://github.com/HannJia/xiaoheihe-operator/releases/tag/v0.4.1",
+          "release_notes": "## 修复内容\r\n\r\n- 修复主动发帖路径在 dry_run 模式下仍可能调用小黑盒 create_post() 的问题。\r\n- dry_run 现在只生成并记录草稿，不生成图片、不上传图片，也不产生小黑盒写入。\r\n- 新增回归测试，覆盖开启配图时 dry_run 不上传图片、不调用 create_post 的场景。\r\n\r\n## 验证\r\n\r\n- Python compileall 通过。\r\n- 既有 unittest 桥接检查 4/4 通过。\r\n- 主动发帖 dry-run 定向测试通过。\r\n- 源码与英文工作区镜像一致。\r\n\r\n这是对 v0.4.0 的安全修复版本。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.xiaoheihe-operator",
+            "version": "0.4.1",
+            "name": "小黑盒运营",
+            "description": "将 maibot 的生活轨迹、游戏话题和配图能力接入小黑盒社区。",
+            "author": {
+              "name": "HannJia",
+              "url": "https://github.com/HannJia"
+            },
+            "urls": {
+              "repository": "https://github.com/HannJia/xiaoheihe-operator"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package",
+                "background": "#f1f2f4"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
