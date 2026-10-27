@@ -23128,6 +23128,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.4",
+          "tag": "v1.6.4",
+          "commit": "88f77bc893ab1b315091d9824fa5ee9090bcfef1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T02:22:32Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.6.4",
+          "release_notes": "> 本版本针对插件市场审核意见完成安全加固，修复了 /群友语录 命令失效，并新增群号名单（一个模式 + 一份名单）。\n\n### 新功能\n\n- **群号名单**（新增配置节 `[group_filter]`）：群号级的全局门控，所有命令、\n  LLM 工具、被动触发都先过同一道判定。**一个模式 + 一份名单**：\n  - `mode` 选名单怎么生效：`\"block\"`（默认，黑名单，名单里的群禁用整个插件）\n    或 `\"allow\"`（白名单，只有名单里的群能用）；\n  - `groups` 填群号列表，一个群号一行；\n  - **名单留空 = 不拦任何群（全局通过）**，两种模式都一样；私聊（拿不到群号）不受名单限制；\n  - 被拒时命令静默吞掉、工具返回提示文案 —— 与功能开关同一表现，\n    组件不会被注销（宿主不支持运行时注销）。\n\n### 安全\n\n- **群友语录落盘路径加固**（插件市场审核意见）：`group_id` 原先未做校验就直接拼进\n  索引文件名与图片目录名，畸形群号（含 `..` 或路径分隔符）可越出插件数据目录。\n  现已改为白名单（`^[A-Za-z0-9_-]{1,64}$`）+ 文件名白名单 + `resolve()` 后\n  containment 检查；索引读写、图片写入、随机读取、超上限清理、旧数据迁移全部走同一套校验，\n  非法群号只跳过、绝不落盘也绝不 unlink 目录外文件。\n- 命令入口遇到非法群号会直接回「本群群号格式异常，语录功能暂不可用」。\n\n### 修复\n\n- **`/群友语录` 命令在宿主里静默失效**：命令组件与 LLM 工具组件同名 `random_quote`，\n  而宿主 `ComponentRegistry` 以 `{插件ID}.{组件名}` 作唯一索引键、命令与工具共用该命名空间，\n  后注册的工具把命令条目覆盖掉了（日志会打「组件 maibot.fun-pack.random_quote 已存在，覆盖」）。\n  命令组件已改名 `random_group_quote`（**命令文本 `/群友语录` 和工具名 `random_quote` 都不变**）。\n\n---",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.6.4",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.5.0",
           "tag": "v1.5.0",
           "commit": "93e210a301612b802f63ba2bde10a2b6a963bc39",
