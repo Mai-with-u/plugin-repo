@@ -14697,7 +14697,7 @@
       "manifest_version": 2,
       "plugin_type": "media",
       "id": "github.achenjins.runninghub-workflow-adapter",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "麦麦画师 · RunningHub",
       "description": "文档已更新 qwen-image2.1 工作流使用方式，欢迎使用！让麦麦亲手给你画画：从一句话文生图，到多参考图 / 视频生成，统统自动完成并把成品发回聊天。支持自定义工作流、自己优化成本、AI 扩写提示词和限流防刷。仅适配 NapCat / QQ。",
       "author": {
@@ -17352,7 +17352,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.fun-pack",
-      "version": "1.6.3",
+      "version": "1.6.4",
       "name": "麦麦小工具合集",
       "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
       "author": {
@@ -17903,7 +17903,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.11.0",
+      "version": "0.11.2",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19488,9 +19488,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "QQ 名片点赞",
-      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令和 AI 口语化直接点赞，以及 @ / 回复 / 指定 QQ 号",
+      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令和自然语言点赞",
       "author": {
         "name": "FleetingEternity-qyt",
         "url": "https://github.com/FleetingEternity-qyt"
@@ -19514,7 +19514,8 @@
       "capabilities": [
         "send.text",
         "api.call",
-        "api.get"
+        "api.get",
+        "message.get_by_id"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -19523,7 +19524,18 @@
         ]
       },
       "plugin_type": "extension",
-      "changelog": "CHANGELOG.md"
+      "changelog": "CHANGELOG.md",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "package",
+          "background": "#f6f1e8"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.FleetingEternity-qyt.qq-like.webp"
     }
   },
   {
@@ -19587,10 +19599,10 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
-      "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，9 套主题可选，支持上传 QQ 群相册。",
+      "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -20762,7 +20774,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mizuku003.tieba-share",
-      "version": "1.1.7",
+      "version": "1.1.8",
       "name": "麦麦贴吧搬石",
       "description": "把贴吧帖子搬进群：可选吧名，定时或手动，整帖渲染成长图，可打包成聊天记录，搬过的不会重复搬，也能让麦麦自己搬。",
       "author": {
@@ -20929,7 +20941,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.6.4",
+      "version": "0.7.0",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -21675,7 +21687,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.7.4",
+      "version": "0.7.5",
       "plugin_type": "integration",
       "name": "麦麦模拟盘",
       "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
@@ -22582,6 +22594,627 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-target-replyer",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.3.1",
+      "plugin_type": "extension",
+      "name": "替主人回话 (Target Replyer)",
+      "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "message-circle",
+          "background": "#FFD69A"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai-target-replyer",
+        "homepage": "https://github.com/42yoru/maimai-target-replyer",
+        "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "message.get_recent",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.42yoru.maimai-target-replyer",
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-target-replyer.webp"
+    }
+  },
+  {
+    "id": "local.stable-identity",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.stable-identity",
+      "name": "稳定身份与原话查证",
+      "version": "0.2.6",
+      "description": "按平台和真实用户 ID 标注可核验聊天消息，并提供限定会话的原始发言查证。",
+      "author": {
+        "name": "Zero",
+        "url": "https://github.com/ZeroBlock0"
+      },
+      "license": "GPL-3.0-or-later",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.15"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "dependencies": [],
+      "urls": {
+        "repository": "https://github.com/ZeroBlock0/maibot-stable-identity",
+        "homepage": "https://github.com/ZeroBlock0/maibot-stable-identity",
+        "documentation": "https://github.com/ZeroBlock0/maibot-stable-identity/blob/main/README.md",
+        "issues": "https://github.com/ZeroBlock0/maibot-stable-identity/issues"
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "capabilities": [
+        "database.get",
+        "message.get_by_time_in_chat",
+        "message.get_by_id",
+        "person.get_id"
+      ]
+    }
+  },
+  {
+    "id": "gsskk.followup-window",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "gsskk.followup-window",
+      "version": "0.2.2",
+      "name": "麦麦留步",
+      "description": "群里被 @ 或被引用回复后开一个跟进窗口,参与者不带 @ 的追问也能进入 Planner;别人的闲聊照常走门控。",
+      "author": {
+        "name": "gsskk",
+        "url": "https://github.com/gsskk"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/gsskk/maibot-plugin-followup"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.15.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "frequency.get_current_talk_value",
+        "frequency.get_adjust",
+        "frequency.set_adjust",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "babyQ.maibot_reply-mark",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "babyQ.maibot_reply-mark",
+      "version": "0.5.4",
+      "name": "回复标记插件",
+      "description": "回复消息时，在被回复的那条消息上贴个表情，一眼就能看出它在回谁。",
+      "author": {
+        "name": "BabyQ",
+        "url": "https://github.com/52-Moyna"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/52-Moyna/maibot_plugin-Response",
+        "homepage": "https://github.com/52-Moyna/maibot_plugin-Response"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.1",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "plugin_type": "media",
+      "display": {
+        "icon": {
+          "type": "emoji",
+          "value": "✅",
+          "background": "#2f9e44"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "org.orge-8.xiaoheihe-operator",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "org.orge-8.xiaoheihe-operator",
+      "version": "0.4.1",
+      "name": "小黑盒运营",
+      "description": "将 maibot 的生活轨迹、游戏话题和配图能力接入小黑盒社区。",
+      "author": {
+        "name": "HannJia",
+        "url": "https://github.com/HannJia"
+      },
+      "urls": {
+        "repository": "https://github.com/HannJia/xiaoheihe-operator"
+      },
+      "license": "MIT",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "package",
+          "background": "#f1f2f4"
+        }
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.12.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "integration"
+    },
+    "assets": {
+      "icon_64": "icons/org.orge-8.xiaoheihe-operator.webp"
+    }
+  },
+  {
+    "id": "mai-dc.discord-voice",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mai-dc.discord-voice",
+      "version": "0.4.1",
+      "name": "Mai DC 語音",
+      "description": "讓麥麥以 Discord Bot 身分加入語音頻道：語音轉文字送進麥麥，回覆再用 TTS 說出來。",
+      "author": {
+        "name": "sunfish1728",
+        "url": "https://github.com/sunfish1728"
+      },
+      "license": "GPL-3.0",
+      "urls": {
+        "repository": "https://github.com/sunfish1728/mai-dc",
+        "homepage": "https://github.com/sunfish1728/mai-dc",
+        "documentation": "https://github.com/sunfish1728/mai-dc/blob/main/README.md",
+        "issues": "https://github.com/sunfish1728/mai-dc/issues"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.14.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.14,<4.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "numpy",
+          "version_spec": ">=1.26.0"
+        },
+        {
+          "type": "python_package",
+          "name": "opencc-python-reimplemented",
+          "version_spec": ">=0.1.7"
+        },
+        {
+          "type": "python_package",
+          "name": "pypinyin",
+          "version_spec": ">=0.50.0"
+        },
+        {
+          "type": "python_package",
+          "name": "msgpack",
+          "version_spec": ">=1.0.0"
+        }
+      ],
+      "capabilities": [
+        "llm.transcribe_audio"
+      ],
+      "i18n": {
+        "default_locale": "zh-TW",
+        "supported_locales": [
+          "zh-TW"
+        ]
+      }
+    }
+  },
+  {
+    "id": "mai-beeper.beeper-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mai-beeper.beeper-adapter",
+      "version": "0.4.7",
+      "name": "Mai Beeper Adapter",
+      "description": "讓 MaiBot 透過 Beeper Desktop API 收發文字、圖片與語音，並以聊天室名稱和配對文字管理白名單。",
+      "author": {
+        "name": "sunfish1728",
+        "url": "https://github.com/sunfish1728"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/sunfish1728/mai-beeper-adapter",
+        "homepage": "https://github.com/sunfish1728/mai-beeper-adapter",
+        "documentation": "https://github.com/sunfish1728/mai-beeper-adapter/blob/main/README.md",
+        "issues": "https://github.com/sunfish1728/mai-beeper-adapter/issues"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.14.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.14,<4.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "yarl",
+          "version_spec": ">=1.17.0,<2.0.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-TW",
+        "supported_locales": [
+          "zh-TW"
+        ]
+      }
+    }
+  },
+  {
+    "id": "antinova.maibot-bililife",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "antinova.maibot-bililife",
+      "plugin_type": "integration",
+      "version": "0.2.6",
+      "name": "麦麦的 B 站生活",
+      "description": "让麦麦自主浏览 B 站，理解视频和评论，发表评论与回复，并通过每日复盘积累记忆、调整兴趣。",
+      "author": {
+        "name": "ANTINOVIA",
+        "url": "https://github.com/ANTINOVIA"
+      },
+      "urls": {
+        "repository": "https://github.com/ANTINOVIA/maibot-bililife",
+        "homepage": "https://github.com/ANTINOVIA/maibot-bililife",
+        "documentation": "https://github.com/ANTINOVIA/maibot-bililife#readme",
+        "issues": "https://github.com/ANTINOVIA/maibot-bililife/issues"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.14",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "llm.get_available_models",
+        "llm.transcribe_audio",
+        "maisaka.context.append",
+        "send.text"
+      ],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "bilibili-api-python",
+          "version_spec": "==17.4.2"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": "==0.28.1"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": "==8.2"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.10,<4"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "octmicy.mai-gatekeeper",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "octmicy.mai-gatekeeper",
+      "name": "麦麦守门人",
+      "version": "0.6.5",
+      "description": "好友申请审批（LLM 自动 / 管理员人工 / 混合）+ 用户屏蔽（发言拦截、私聊删好友）插件。自建 OneBot v11 正向 WebSocket 直连 NapCat / SnowLuma 对端，无需修改适配器。",
+      "author": {
+        "name": "octmicy",
+        "url": "https://github.com/octmicy"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/octmicy/Mai_gatekeeper",
+        "homepage": "https://github.com/octmicy/Mai_gatekeeper",
+        "documentation": "https://docs.mai-mai.org"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "message.get_by_id",
+        "chat.get_stream_by_user_id",
+        "chat.open_session",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "mai.png",
+          "fallback": "fish",
+          "background": "#BFE3F2"
+        }
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/octmicy.mai-gatekeeper.webp"
+    }
+  },
+  {
+    "id": "hatsuhoq.maibot-qq-voice-call",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "hatsuhoq.maibot-qq-voice-call",
+      "version": "0.4.0",
+      "name": "QQ 实时语音",
+      "description": "通过独立音频设备桥接 QQ 电话，使用本地识别与情绪语音合成，支持插话打断。",
+      "author": {
+        "name": "hatsuhoq",
+        "url": "https://github.com/hatsuhoq"
+      },
+      "license": "GPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/hatsuhoq/maibot-qq-voice-call"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "999.999.999"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "999.999.999"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "sounddevice",
+          "version_spec": ">=0.5.1,<0.6"
+        },
+        {
+          "type": "python_package",
+          "name": "webrtcvad-wheels",
+          "version_spec": ">=2.0.14,<3"
+        }
+      ],
+      "capabilities": [
+        "chat.get_stream_by_user_id",
+        "config.get",
+        "message.get_recent",
+        "message.build_readable",
+        "llm.generate",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "changelog.md"
+    }
+  },
+  {
+    "id": "m1o0.maibot-mimotts-voice-pro",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "m1o0.maibot-mimotts-voice-pro",
+      "name": "MiMo TTS Voice Clone (Pro)",
+      "version": "1.9.10",
+      "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+      "author": {
+        "name": "m1o0",
+        "url": "https://github.com/m1o0"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "urls": {
+        "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+        "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+        "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "message.get_by_id",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.qiaozhixiang.dsh-remote-bridge",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.qiaozhixiang.dsh-remote-bridge",
+      "name": "DSH 远程桥接",
+      "version": "1.6.4",
+      "description": "把本机 DSH（DeepSeek Shell）的会话、模型与实时输出接到 MaiBot：QQ 命令远程对话、公网隧道、内网通道、插件批量开关与 WebUI 控制台",
+      "author": {
+        "name": "qiaozhixiang",
+        "url": "https://github.com/qiaozhixiang"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/qiaozhixiang/dsh-remote-bridge",
+        "homepage": "https://github.com/qiaozhixiang/dsh-remote-bridge",
+        "documentation": "https://github.com/qiaozhixiang/dsh-remote-bridge/blob/main/README.md",
+        "issues": "https://github.com/qiaozhixiang/dsh-remote-bridge/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "plugin_type": "integration",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "puzzle",
+          "background": "#0F172A"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.qiaozhixiang.dsh-remote-bridge.webp"
     }
   }
 ]
