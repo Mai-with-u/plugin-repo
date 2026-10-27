@@ -42657,7 +42657,253 @@
       "manifest_id": "m1o0.maibot-mimotts-voice-pro",
       "repositoryUrl": "https://github.com/m1o0/maibot-mimotts-voice-pro",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.9.10",
+          "tag": "v1.9.10",
+          "commit": "cecec43fd921a40967b0c2623320796542d25442",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:33:39Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.10",
+          "release_notes": "## 新增\n\n- **GitHub Actions CI**（`.github/workflows/ci.yml`）。每次 push 到 `main` 或提 PR，自动在 Python 3.10、3.11、3.12 三个版本上跑：\n  - 字节编译四个 `.py`\n  - 69 项回归测试（纯桩对象，不连 MaiBot、不打真实 API）\n  - `_manifest.json` 校验：12 个必需字段、插件 ID 格式、三段式版本、GitHub 地址\n  - 守卫：禁止提交 `config.toml`、`voices/` 下的音色文件、疑似 API Key 字符串\n- 仓库首页加了 CI 状态徽章。\n\n## 变更\n\n- README 的 Python 版本徽章从 `3.9+` 修正为 **`3.10+`** —— `maibot-plugin-sdk` 的实际下限是 3.10，原来标 3.9 是错的。\n- `requirements.txt` 补注释说明**为什么刻意不声明 `maibot-plugin-sdk`**：该包由 MaiBot 宿主自带，插件重复声明可能在用户机器上改动宿主环境（宿主 1.2.0 要求 `>=2.7.1`，1.3.15 要求 `>=2.16.0`）。\n- README 依赖安装改为 `pip install -r requirements.txt`，并写明 SDK 不需要自己装。\n\n## 验证\n\nCI 已在三个 Python 版本上跑通。另外做过一次反向验证：故意把 `audio_format` 默认值改回 `wav`，三个 job 全部在 `Run tests` 步骤失败 —— 确认它不是只会在正常代码上显示绿色。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.10",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.9.9",
+          "tag": "v1.9.9",
+          "commit": "6e73b469b308fb8c02782c992cad85fd32f9bcc3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T09:09:59Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.9",
+          "release_notes": "加测试，顺带清两个小尾巴。\n\n## 新增\n\n**`tests/test_plugin.py` —— 仓库内可跑的回归测试（69 项）**\n\n用桩对象模拟宿主，不连真实 MaiBot、不打真实 API，`python tests/test_plugin.py` 直接跑，退出码能直接接 CI。覆盖：\n\n- 配置模型解析（新配置段，含「老配置缺 `[request]`/`[fallback]`/`[audio]` 段时自动补默认值」）\n- `_find_stream_id` 的 8 种场景，重点是**多会话时不乱发**（这是第 2 轮审核指出的串流风险，之前没有测试兜着）\n- `_stream_id_from_message` 字段提取\n- TTS 重试分类：429/5xx 重试、400 不重试、超时**不**重试（超时再等一轮只会让用户等更久，直接降级发文字更快）\n- 文字降级的各分支，含「剥音频标签但不能误伤正常括号内容」\n- `_load_voices` 清空旧音色\n- 并发保护（同流忙碌时改发文字，避免堆叠触发 429）\n- `send_voice_reply` 的返回值带 `content`\n\n设 `TTS_PLUGIN_DIR` 环境变量可指向实际部署目录做现场验证，此时额外校验 `voices/` 里的真实音色，共 71 项。\n\n## 修复\n\n- `_find_stream_id` 里的局部变量 `resloved` 拼写改为 `resolved`。\n- `synthesize_with_preset` / `synthesize_with_voice_clone` 的 `audio_format` 参数默认值还是 `wav`，跟 1.9.7 统一后的 `mp3` 不一致。这两个默认值实际不会被走到（调用方总是显式传参），但留着会误导后续改动的人，一并改齐。\n\n## 验证\n\n- `python tests/test_plugin.py`：仓库内 69 项全过；指向实际部署目录 71 项全过。\n- `py_compile` 四个文件 OK；manifest 校验通过；所有文件 LF、无 BOM。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.9",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.9.8",
+          "tag": "v1.9.8",
+          "commit": "41fef6e76dc5805b15ba8d69c111441f81379c10",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T06:55:45Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.8",
+          "release_notes": "最后一条，改文档。\n\n## 修复\n\n**README「对外接口」示例里残留上游插件 ID**\n\n示例写的是 `plugin_call(\"Emilia-awa.maibot-mimotts-voice\", ...)`，那是原版插件的 ID。本插件是 `m1o0.maibot-mimotts-voice-pro` —— 照抄示例的调用方会调到原版去。\n\n这类错误不会报错：原版和本 fork 的 ID 都合法存在，调过去了就只是安静地走错地方，用的还是另一套配置、另一个音色目录、另一个 API Key。\n\n现改为本插件 ID。README 里「上游 ID 是 ...，两者不同是有意为之」那句是刻意的对比说明，保留。\n\n## 验证\n\n- 全仓库扫上游 ID：只剩对比说明那一处，无裸用。\n- 示例 `plugin_call` 的 ID 与 `_manifest.json` 的 `id` 字段逐字符一致。\n- `py_compile` OK，manifest 校验通过。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.8",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.9.7",
+          "tag": "v1.9.7",
+          "commit": "144ff6f2e141014a7cf14b3ae20415f3172ee804",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T06:44:39Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.7",
+          "release_notes": "最后一轮只提了一条，但这条确实会让新装用户吃亏。\n\n## 修复\n\n**`audio_format` 的默认值三处不一致**\n\n`VoiceSectionConfig` 的 schema 默认是 `wav`，但 `config.example.toml` 和 README 的配置表都写 `mp3`。宿主生成新配置时走的是 schema 默认值 —— 所以**新装用户实际拿到 `wav`，跟文档对不上**，他照着 README 以为自己在用 mp3，实际每次都多传五倍体积。\n\n现统一为 `mp3`：schema 默认值、代码里「配置项为空时的兜底」、以及 `audio_format` 非法时的回退目标，三处全部改成 `mp3`。\n\n选 `mp3` 而不是反过来改文档，是因为它体积约为 `wav` 的 1/6，没有任何理由让新装用户默认踩这个坑。老配置里显式写了 `wav` 的照常生效，不受影响。\n\n## 验证\n\n6 项全过：schema 默认、空配置、`config.example.toml` 与 schema 一致、显式指定仍可覆盖为 wav、README 表格默认值列。`py_compile` OK，tag 处 12 个文件干净。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.7",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.9.6",
+          "tag": "v1.9.6",
+          "commit": "660d25e21e2a2b57e3f42a2adb2e29a37c6dedfa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-25T06:29:55Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.6",
+          "release_notes": "第五轮审核两条都不影响行为，但都会让人踩坑，都改了。\n\n## 修复\n\n**1. README 的配置生成说明写错了**\n\n原文「首次启动会自动从 `config.example.toml` 生成 `config.toml`」。实际是宿主在 `_prepare_plugin_activation()` 里按插件的 `config_model` 用 `tomlkit` 生成，跟 `config.example.toml` 没有关系 —— 那个文件只是带注释的示例，插件根本不会去读它。\n\n这个错误正好是我上一轮删 `_ensure_config_exists()` 时该顺手一起改的，当时只顾着删代码没回头看文档。\n\n**2. `audio.ffmpeg_path` 配错时回退不透明**\n\n审核说「只打一条 debug 级日志」，严格讲其实是一条 warning（`audio_processor.py:138`），但核心担忧成立：配了一个不存在的路径时，如果 PATH 里恰好有另一个 `ffmpeg`（可能是别的版本，甚至同名的别的程序），插件会静默改用那个，用户还以为用的是自己配置的那个，出问题根本排查不到这里。\n\n现在解析成功后会再打一条 warning，把**实际用的是哪个可执行文件**明确写出来，并提示如何改成正确的路径。\n\n## 关于 `ffmpeg_path` 的安全性\n\n一如既往同意审核的判断：这属于本机管理员自己的配置权限，能改这个配置的人本来就能直接执行任意命令，加限制没有意义。这轮改的只是「配置写错时能不能被发现」，不是安全加固。\n\n## 验证\n\n- 新增 7 项测试：配错路径时回退并点明实际路径、配正确路径时不出现回退告警、裸命令名（非路径）不误报、三种情况都能正常解析出 ffmpeg\n- `py_compile` 三文件 OK，无 BOM，敏感信息零命中，tag 处 12 个文件无 `logs/` 残留\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.6",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
