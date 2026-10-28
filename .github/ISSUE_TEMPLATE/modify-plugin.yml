@@ -29,11 +29,11 @@ body:
     attributes:
       label: 新插件 ID / New Plugin ID
       description: |
-        建议与新 `_manifest.json` 中的 `id` 保持一致
-        Recommended to match the new `_manifest.json` `id`
+        留空保留当前 ID；修改时必须与新 `_manifest.json` 中的 `id` 一致
+        Leave blank to keep the current ID; otherwise match the new manifest ID
       placeholder: "例如: github.username.my-renamed-plugin"
     validations:
-      required: true
+      required: false
 
   - type: input
     id: new-repository-url

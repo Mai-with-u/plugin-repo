@@ -136,7 +136,7 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
         assert.equal(file.encoding, 'base64');
         manifest = JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'));
       }
-      validateManifest(manifest, version, manifestId, !old);
+      validateManifest(manifest, version, old ? old.manifest?.id : manifestId, !old);
     } catch (error) {
       // 历史 Release 格式错误单独隔离并公开原因，不影响同插件已经验证的其他版本。
       // 已收录版本和网络故障不能按格式错误跳过，否则可能把暂时不可访问误判为撤回。
@@ -147,14 +147,14 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
       rejectedReleases.push({ tag: release.tag_name, version, error: releaseErrors.join('\n') });
       continue;
     }
-    if (manifest.manifest_version === 2) manifestId = manifest.id;
+    if (!old && manifest.manifest_version === 2) manifestId = manifest.id;
     const candidate = {
       version, tag: release.tag_name, commit: object.sha,
       prerelease: Boolean(release.prerelease), yanked: false,
       published_at: release.published_at, release_url: release.html_url,
       release_notes: release.body || '', manifest,
     };
-    if (old || await admit(plugin, candidate)) versions.set(version, candidate);
+    if (old || await admit(plugin, candidate)) versions.set(version, old ? { ...old, yanked: false } : candidate);
   }
   return {
     id: plugin.id, manifest_id: manifestId || plugin.id, repositoryUrl: plugin.repositoryUrl,

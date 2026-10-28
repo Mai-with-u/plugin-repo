@@ -112,16 +112,20 @@ jobs:
                 ? 'remove'
                 : 'add';
 
+            const optionalValue = match => {
+              const value = match?.[1]?.trim();
+              return !value || value === '_No response_' || value.startsWith('### ') ? '' : value;
+            };
             const pluginIdMatch = body.match(/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/);
             const currentPluginIdMatch = body.match(/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/);
             const newPluginIdMatch = body.match(/### 新插件 ID \/ New Plugin ID\s*\n\s*\n(.+)/);
             const addRepoUrlMatch = body.match(/### 仓库地址 \/ Repository URL\s*\n\s*\n(.+)/);
-            const modifyRepoUrlMatch = body.match(/### 新的仓库地址 \/ New Repository URL\s*\n\s*\n(.+)/);
+            const modifyRepoUrlMatch = body.match(/### 新的仓库地址(?:（可选）)? \/ New Repository URL(?: \(Optional\))?\s*\n\s*\n(.+)/);
 
             if (requestType === 'modify') {
-              if (!currentPluginIdMatch || !newPluginIdMatch) {
+              if (!currentPluginIdMatch) {
                 core.setOutput('status', 'error');
-                core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了「当前插件 ID」和「新插件 ID」字段。');
+                core.setOutput('message', '无法解析 Issue 内容，请使用 Issue 模板提交。\n\n请确保填写了「当前插件 ID」字段。');
                 return;
               }
             } else if (!pluginIdMatch) {
@@ -131,13 +135,13 @@ jobs:
             }
 
             const pluginId = requestType === 'modify'
-              ? newPluginIdMatch[1].trim()
+              ? (optionalValue(newPluginIdMatch) || currentPluginIdMatch[1].trim())
               : pluginIdMatch[1].trim();
             const currentPluginId = requestType === 'modify'
               ? currentPluginIdMatch[1].trim()
               : pluginId;
             const repoUrl = requestType === 'modify'
-              ? modifyRepoUrlMatch && modifyRepoUrlMatch[1].trim()
+              ? optionalValue(modifyRepoUrlMatch)
               : addRepoUrlMatch && addRepoUrlMatch[1].trim();
 
             console.log(`Plugin ID: ${pluginId}`);
@@ -190,10 +194,10 @@ jobs:
 
             const existingPlugin = requestType === 'modify'
               ? plugins.find(p => p.id === currentPluginId)
-              : plugins.find(p => p.id === pluginId);
+              : plugins.find(p => [p.id, ...(p.aliases || [])].some(id => id.toLowerCase() === pluginId.toLowerCase()));
 
             if (requestType === 'add') {
-              const duplicateId = plugins.find(p => p.id === pluginId);
+              const duplicateId = plugins.find(p => [p.id, ...(p.aliases || [])].some(id => id.toLowerCase() === pluginId.toLowerCase()));
               if (duplicateId) {
                 core.setOutput('status', 'error');
                 core.setOutput('message', `**插件 ID 已存在**\n\n\`${pluginId}\` 已被注册。\n\n请使用不同的 ID，建议格式：\`您的用户名.插件名\``);
@@ -230,7 +234,7 @@ jobs:
               }
 
               if (hasIdChange) {
-                const duplicateId = plugins.find(p => p.id === pluginId);
+                const duplicateId = plugins.find(p => [p.id, ...(p.aliases || [])].some(id => id.toLowerCase() === pluginId.toLowerCase()));
                 if (duplicateId) {
                   core.setOutput('status', 'error');
                   core.setOutput('message', `**新插件 ID 已存在**\n\n\`${pluginId}\` 已被注册。\n\n请使用不同的插件 ID。`);

@@ -145,6 +145,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
 
       - name: Parse issue and add plugin
         id: add-plugin
@@ -160,6 +161,10 @@ jobs:
                 : 'add';
             
             const body = context.payload.issue.body;
+            const optionalValue = match => {
+              const value = match?.[1]?.trim();
+              return !value || value === '_No response_' || value.startsWith('### ') ? '' : value;
+            };
             const pluginIdMatch = body.match(/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/);
             const currentPluginIdMatch = body.match(/### 当前插件 ID \/ Current Plugin ID\s*\n\s*\n(.+)/);
             const newPluginIdMatch = body.match(/### 新插件 ID \/ New Plugin ID\s*\n\s*\n(.+)/);
@@ -167,8 +172,8 @@ jobs:
             const modifyRepoUrlMatch = body.match(/### 新的仓库地址(?:（可选）)? \/ New Repository URL(?: \(Optional\))?\s*\n\s*\n(.+)/);
             
             if (requestType === 'modify') {
-              if (!currentPluginIdMatch || !newPluginIdMatch) {
-                core.setFailed('无法解析 Issue 内容：缺少当前/新插件 ID');
+              if (!currentPluginIdMatch) {
+                core.setFailed('无法解析 Issue 内容：缺少当前插件 ID');
                 return;
               }
             } else if (!pluginIdMatch) {
@@ -177,13 +182,13 @@ jobs:
             }
             
             const pluginId = requestType === 'modify'
-              ? newPluginIdMatch[1].trim()
+              ? (optionalValue(newPluginIdMatch) || currentPluginIdMatch[1].trim())
               : pluginIdMatch[1].trim();
             const currentPluginId = requestType === 'modify'
               ? currentPluginIdMatch[1].trim()
               : pluginId;
             const repoUrl = requestType === 'modify'
-              ? modifyRepoUrlMatch && modifyRepoUrlMatch[1].trim()
+              ? optionalValue(modifyRepoUrlMatch)
               : addRepoUrlMatch && addRepoUrlMatch[1].trim();
             
             const plugins = JSON.parse(fs.readFileSync('plugins.json', 'utf8'));
@@ -192,7 +197,7 @@ jobs:
               : plugins.findIndex(p => p.id === pluginId);
             
             if (requestType === 'add') {
-              if (plugins.some(p => p.id === pluginId)) {
+              if (plugins.some(p => [p.id, ...(p.aliases || [])].some(id => id.toLowerCase() === pluginId.toLowerCase()))) {
                 core.setFailed(`插件 ID 已存在: ${pluginId}`);
                 return;
               }
@@ -212,40 +217,11 @@ jobs:
             }
             
             if (requestType === 'modify') {
-              if (existingPluginIndex === -1) {
-                core.setFailed(`插件 ID 不存在: ${currentPluginId}`);
-                return;
-              }
-              const hasRepoChange = Boolean(repoUrl && repoUrl !== plugins[existingPluginIndex].repositoryUrl);
-              const hasIdChange = currentPluginId !== pluginId;
-              
-              if (!hasRepoChange && !hasIdChange) {
-                core.setFailed('未检测到修改内容');
-                return;
-              }
-              
-              if (hasIdChange) {
-                if (plugins.some(p => p.id === pluginId)) {
-                  core.setFailed(`新插件 ID 已存在: ${pluginId}`);
-                  return;
-                }
-              }
-              
-              if (repoUrl) {
-                const duplicateUrl = plugins.find(p => p.repositoryUrl === repoUrl && p.id !== currentPluginId);
-                if (duplicateUrl) {
-                  core.setFailed(`仓库 URL 已存在: ${repoUrl}`);
-                  return;
-                }
-              }
-              
-              plugins[existingPluginIndex] = {
-                ...plugins[existingPluginIndex],
-                id: hasIdChange ? pluginId : plugins[existingPluginIndex].id,
-                repositoryUrl: hasRepoChange ? repoUrl : plugins[existingPluginIndex].repositoryUrl
-              };
+              const { migratePlugin } = require('./.github/scripts/migrate_plugin.cjs');
+              await migratePlugin({ root: process.cwd(), currentPluginId, pluginId, repoUrl,
+                request: async resource => (await github.request('GET ' + resource)).data });
             }
-            
+
             if (requestType === 'remove') {
               if (existingPluginIndex === -1) {
                 core.setFailed(`插件 ID 不存在: ${pluginId}`);
@@ -254,7 +230,7 @@ jobs:
               plugins.splice(existingPluginIndex, 1);
             }
             
-            fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
+            if (requestType !== 'modify') fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
             
             core.setOutput('plugin_id', pluginId);
             if (requestType === 'modify') {
@@ -264,10 +240,12 @@ jobs:
             core.setOutput('request_type', requestType);
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add plugins.json
+          git add plugins.json plugin_versions.json plugin_details.json blocked_release_versions.json
           if [ "${{ steps.add-plugin.outputs.request_type }}" = "modify" ]; then
             commit_message="chore: Update ${{ steps.add-plugin.outputs.plugin_id }} plugin (via #${{ github.event.issue.number }})"
           elif [ "${{ steps.add-plugin.outputs.request_type }}" = "remove" ]; then
@@ -295,6 +273,7 @@ jobs:
             CURRENT_PLUGIN_ID="${{ steps.add-plugin.outputs.current_plugin_id }}" \
             REPO_URL="${{ steps.add-plugin.outputs.repo_url }}" \
             node <<'EOL'
+          (async () => {
           const fs = require('fs');
           const requestType = process.env.REQUEST_TYPE;
           const pluginId = process.env.PLUGIN_ID;
@@ -306,7 +285,7 @@ jobs:
             : plugins.findIndex(plugin => plugin.id === pluginId);
 
           if (requestType === 'add') {
-            if (plugins.some(plugin => plugin.id === pluginId)) {
+            if (plugins.some(plugin => [plugin.id, ...(plugin.aliases || [])].some(id => id.toLowerCase() === pluginId.toLowerCase()))) {
               throw new Error(`插件 ID 已存在: ${pluginId}`);
             }
             if (!repoUrl) {
@@ -317,30 +296,10 @@ jobs:
             }
             plugins.push({ id: pluginId, repositoryUrl: repoUrl });
           } else if (requestType === 'modify') {
-            if (existingPluginIndex === -1) {
-              throw new Error(`插件 ID 不存在: ${currentPluginId}`);
-            }
-            const hasRepoChange = Boolean(repoUrl && repoUrl !== plugins[existingPluginIndex].repositoryUrl);
-            const hasIdChange = currentPluginId !== pluginId;
-            if (!hasRepoChange && !hasIdChange) {
-              throw new Error('未检测到修改内容');
-            }
-            if (hasIdChange && plugins.some(plugin => plugin.id === pluginId)) {
-              throw new Error(`新插件 ID 已存在: ${pluginId}`);
-            }
-            if (repoUrl) {
-              const duplicateUrl = plugins.find(
-                (plugin, index) => index !== existingPluginIndex && plugin.repositoryUrl === repoUrl,
-              );
-              if (duplicateUrl) {
-                throw new Error(`仓库 URL 已存在: ${repoUrl}`);
-              }
-            }
-            plugins[existingPluginIndex] = {
-              ...plugins[existingPluginIndex],
-              id: hasIdChange ? pluginId : plugins[existingPluginIndex].id,
-              repositoryUrl: hasRepoChange ? repoUrl : plugins[existingPluginIndex].repositoryUrl,
-            };
+            const { migratePlugin } = require('./.github/scripts/migrate_plugin.cjs');
+            const { createGithubClient } = require('./.github/scripts/sync_plugin_versions.cjs');
+            await migratePlugin({ root: process.cwd(), currentPluginId, pluginId, repoUrl,
+              request: createGithubClient() });
           } else if (requestType === 'remove') {
             if (existingPluginIndex === -1) {
               throw new Error(`插件 ID 不存在: ${pluginId}`);
@@ -350,10 +309,11 @@ jobs:
             throw new Error(`未知操作类型: ${requestType}`);
           }
 
-          fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
+          if (requestType !== 'modify') fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
+          })().catch(error => { console.error(error); process.exitCode = 1; });
           EOL
             node -e "JSON.parse(require('fs').readFileSync('plugins.json', 'utf8'))"
-            git add plugins.json
+            git add plugins.json plugin_versions.json plugin_details.json blocked_release_versions.json
             git commit -m "$commit_message"
           done
 

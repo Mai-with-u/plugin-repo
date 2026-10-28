@@ -21,7 +21,7 @@ const manifest = {
 };
 const release = { tag_name: "v1.0.0", draft: false, published_at: "2026-10-04T00:00:00Z", assets: [] };
 
-async function validate(pages, { type = "add", apiError = false, manifestData = manifest, rootEntries = [], rootError = false } = {}) {
+async function validate(pages, { type = "add", apiError = false, manifestData = manifest, rootEntries = [], rootError = false, bodyOverride } = {}) {
   const outputs = {};
   const requests = [];
   const https = {
@@ -46,7 +46,7 @@ async function validate(pages, { type = "add", apiError = false, manifestData = 
     : type === "modify"
       ? "### 当前插件 ID / Current Plugin ID\n\nexample.old\n\n### 新插件 ID / New Plugin ID\n\nexample.demo\n\n### 新的仓库地址 / New Repository URL\n\nhttps://github.com/example/demo"
       : "### 插件 ID / Plugin ID\n\nexample.old";
-  const context = { payload: { issue: { body, labels: [{ name: type === "add" ? "plugin-submission" : type === "modify" ? "plugin-modification" : "plugin-removal" }] } } };
+  const context = { payload: { issue: { body: bodyOverride ?? body, labels: [{ name: type === "add" ? "plugin-submission" : type === "modify" ? "plugin-modification" : "plugin-removal" }] } } };
   const github = { rest: { repos: { listReleases() {}, getContent: async ({ path: rootPath, ref }) => {
     assert.equal(rootPath, '');
     assert.ok(ref);
@@ -154,4 +154,18 @@ test("recheck failure comments still show a validated manifest range", async () 
   );
   assert.match(body, /此为重新验证结果/);
   assert.match(body, /适配 MaiBot 版本（manifest 声明）：.*0\.12\.0 ～ 0\.15\.99/);
+});
+
+
+test('修改新 ID 留空、未回答或省略时保留原 ID，并识别可选地址标题', async () => {
+  for (const value of ['', '_No response_', null]) {
+    const body = '### 当前插件 ID / Current Plugin ID\n\nexample.old\n\n' +
+      (value === null ? '' : `### 新插件 ID / New Plugin ID\n\n${value}\n\n`) +
+      '### 新的仓库地址（可选） / New Repository URL (Optional)\n\nhttps://github.com/example/new';
+    const result = await validate([[release]], { type: 'modify', bodyOverride: body,
+      manifestData: { ...manifest, id: 'example.old' } });
+    assert.equal(result.outputs.plugin_id, 'example.old');
+    assert.equal(result.outputs.repo_url, 'https://github.com/example/new');
+    assert.equal(result.outputs.status, 'success');
+  }
 });

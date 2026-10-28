@@ -211,3 +211,17 @@ test('插件 ID 或 manifest ID 冲突时跳过后续条目', () => {
   assert.deepEqual(skipConflictingPlugins(plugins, message => warnings.push(message)), [plugins[0], plugins[3]]);
   assert.equal(warnings.length, 2);
 });
+
+
+test('改 ID 后历史快照及审核信息保留，新版按新身份收录', async () => {
+  const previous = await syncPlugin(plugin, undefined, client([release()]));
+  previous.versions[0].review = { decision: 'approve', issue: 123 };
+  const snapshot = structuredClone(previous.versions[0]);
+  previous.id = 'new.demo';
+  previous.manifest_id = 'new.demo';
+  const result = await syncPlugin({ ...plugin, id: 'new.demo' }, previous,
+    client([release('2.0.0'), release()], { manifest: { ...manifest('2.0.0'), id: 'new.demo' } }));
+  assert.equal(result.manifest_id, 'new.demo');
+  assert.deepEqual(result.versions.find(item => item.version === '1.0.0'), snapshot);
+  assert.equal(result.versions.length, 2);
+});
