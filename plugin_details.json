@@ -8115,7 +8115,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -24100,7 +24100,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.beg-for-money",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "name": "讨饭",
       "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
       "author": {
@@ -24124,7 +24124,6 @@
         "send.image",
         "send.forward",
         "chat.get_stream_by_user_id",
-        "chat.get_stream_by_group_id",
         "maisaka.proactive.trigger"
       ],
       "plugin_type": "game",
