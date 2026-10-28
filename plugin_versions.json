@@ -6340,7 +6340,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.1.10",
+          "version": "1.1.10",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "pspixel.ai-drawing-plugin",
@@ -27211,7 +27217,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.4.4",
+          "version": "0.4.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.cateye.isaac.item",
@@ -36945,6 +36957,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.1.15",
+          "version": "0.1.15",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.1.9",
           "version": "0.1.9",
           "error": "发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -41098,6 +41115,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.8.6",
+          "version": "0.8.6",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.6.5",
           "version": "0.6.5",
           "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -42630,6 +42652,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.4.11",
+          "version": "0.4.11",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.4.2",
           "version": "0.4.2",
           "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -43359,6 +43386,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.1.12",
+          "version": "0.1.12",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.1.4",
           "version": "0.1.4",
           "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -43454,7 +43486,13 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.9",
+          "version": "0.3.9",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "local.stable-identity",

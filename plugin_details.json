@@ -6882,7 +6882,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.9",
+      "version": "1.1.10",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -6904,11 +6904,11 @@
         }
       },
       "host_application": {
-        "min_version": "1.2.0",
+        "min_version": "1.3.18",
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
+        "min_version": "2.19.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -6987,6 +6987,11 @@
             "type": "command",
             "name": "draw",
             "description": "绘图命令，使用 /draw <描述> 生成图片"
+          },
+          {
+            "type": "command",
+            "name": "chartag",
+            "description": "角色标签查询命令，使用 /chartag <角色名>[,作品名] 查询角色的触发标签、核心标签和缩略图"
           },
           {
             "type": "command",
@@ -18054,7 +18059,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.2",
+      "version": "1.24.4",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -18119,7 +18124,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Mai-with-u.qq-adapter",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "name": "QQ 官方机器人适配器",
       "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
       "author": {
@@ -18140,18 +18145,38 @@
         }
       },
       "host_application": {
-        "min_version": "1.3.7",
+        "min_version": "1.3.18",
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.8.2",
+        "min_version": "2.19.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
         {
           "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=9"
+        },
+        {
+          "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.14.3"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=8.2"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=50.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.3"
         }
       ],
       "capabilities": [
@@ -20544,7 +20569,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-team.telegram-adapter",
-      "version": "0.1.14",
+      "version": "0.1.15",
       "name": "Telegram 适配器",
       "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
       "author": {
@@ -20561,11 +20586,11 @@
       "changelog": "CHANGELOG.md",
       "plugin_type": "adapter",
       "host_application": {
-        "min_version": "1.3.6",
+        "min_version": "1.3.18",
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.10.0",
+        "min_version": "2.19.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -21682,8 +21707,8 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.7.5",
-      "plugin_type": "integration",
+      "version": "0.8.7",
+      "plugin_type": "automation",
       "name": "麦麦模拟盘",
       "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
       "display": {
@@ -21705,13 +21730,14 @@
         "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
         "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
       },
+      "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.9",
         "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.99.99"
+        "max_version": "2.19.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -22063,10 +22089,10 @@
     "id": "github.42yoru.maimai-owner-reminder",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.5",
-      "plugin_type": "tool",
+      "version": "0.4.12",
+      "plugin_type": "automation",
       "name": "主人的叮嘱 (Owner Reminder)",
-      "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+      "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
       "display": {
         "icon": {
           "type": "local",
@@ -22086,21 +22112,23 @@
         "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
         "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
       },
+      "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.9",
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.14.0",
-        "max_version": "2.16.99"
+        "min_version": "2.12.0",
+        "max_version": "2.19.99"
       },
       "dependencies": [],
       "capabilities": [
         "chat.get_group_streams",
         "chat.get_private_streams",
         "config.get",
-        "send.text",
-        "maisaka.proactive.trigger"
+        "maisaka.proactive.trigger",
+        "message.get_recent",
+        "send.text"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -22119,7 +22147,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "name": "MiMo 语音回复",
       "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
@@ -22493,7 +22521,7 @@
     "id": "github.42yoru.maimai-emoji-label-bridge",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.7",
+      "version": "0.1.13",
       "plugin_type": "media",
       "name": "表情标签桥接 (Emoji Label Bridge)",
       "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
@@ -22513,8 +22541,8 @@
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.16.0",
-        "max_version": "2.99.99"
+        "min_version": "2.12.0",
+        "max_version": "2.19.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -22595,7 +22623,7 @@
     "id": "github.42yoru.maimai-target-replyer",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.1",
+      "version": "0.3.10",
       "plugin_type": "extension",
       "name": "替主人回话 (Target Replyer)",
       "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
@@ -22623,8 +22651,8 @@
         "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.16.0",
-        "max_version": "2.16.99"
+        "min_version": "2.12.0",
+        "max_version": "2.19.99"
       },
       "dependencies": [],
       "capabilities": [
