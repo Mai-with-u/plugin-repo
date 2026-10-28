@@ -42946,6 +42946,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "dbcf1d304fdec151dabddaa1199c0fe5c5a60d2f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T15:44:54Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.4.0",
+          "release_notes": "## 0.4.0\n\n### 自定义音色放到了数据目录\n- 自己的参考音频改放插件数据目录的 `references/`（插件启动时自动创建，并在日志里打印完整路径）：\n  `data/plugins/github.SoulString-Dev.maibot-mimo-voice/references/`\n- `voice.reference_path` 只写文件名即可；为兼容旧版本，放在插件根目录也仍然能读到。\n- 升级插件不会覆盖 `references/`，也不会误提交（`.gitignore` 已排除 `*.wav` / `*.mp3` / `references/` / `voices/`）。\n\n### 音色对齐默认开启\n- `delivery.timbre_match` 默认改为 `true`：按参考音频的相对频谱补偿每条输出（±6 dB 限幅，强度可调）。\n- 实测与参考的频谱距离可从 4–6.5 dB 降到 1.6–2.2 dB；带混响或本身很暗的参考收益较小。\n\n### 配置模板改成中文说明\n- 每一节开头写清「这一节管什么」，每个字段标注「取值 / 默认 / 建议」，进阶项单独分段。\n- `plugin.config_version` → 0.4.0；旧 `config.toml` 的残留键会被自动忽略。\n\n### 修复\n- `sdk.max_version` 由 `2.99.99` 改为 `2.12.99`：旧值被插件索引的版本校验拒绝，这也是 0.3.1 一直进不了商店的原因。\n\n### 安装\n1. 下载 Release 或从插件商店安装；\n2. 用内置音色开箱即用（`voice.preset = bingtang` / `jasmine`）；\n3. 想用自己的声音：把参考音频放进 `references/`，`preset = \"custom\"` 并填 `reference_path`。\n\n需要麦麦 1.3.0+，SDK 2.12.0+，插件类型 media，MIT。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.4.0",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "v0.2.2",
           "commit": "de0e79a978bafd3d2122df01bff45e8618e2c157",
