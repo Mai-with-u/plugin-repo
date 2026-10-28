@@ -44834,6 +44834,55 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.9.11",
+          "tag": "v1.9.11",
+          "commit": "22cfba0a82507df242e0bd4a717e74a8f3bdc967",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T17:28:14Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.11",
+          "release_notes": "## 修复\n\n- **单个音色文件读取失败不再拖垮整个插件**。`_load_voices` 在 `on_load` 里被直接 `await`，原来 `stat()` / `open()` 没有异常保护——`voices/` 里只要有一个文件读不了（被播放器独占、网盘同步中、刚被改名），异常一路上抛到宿主，插件被注销成 FAILED，**所有语音功能消失且必须重启宿主才能恢复**。现在单文件失败只记 warning 并跳过，其余音色照常加载。\n- **重载音色不再出现「旧音色没了、新音色只加载一半」**。改为先构建新字典、走完再整体替换。\n- **不传 `stream_id` 时不再丢弃 `audio_base64`**。原实现在「只合成、不发送」分支里 `pop` 掉了该字段，调用方会拿到 `{\"success\": true}` 却没有音频。\n- **`audio_format` 填 `pcm` / `pcm16` 时语音发不出去**。上游返回无容器头裸流，适配器原样塞进 `record`，QQ 无法识别。现在发送前用标准库 `struct` 拼 44 字节 RIFF/WAVE 头封成 wav 再发。\n- **取消任务时会留下孤儿 ffmpeg 进程**。原来只处理 `asyncio.TimeoutError`，而取消抛的是 `CancelledError`，`proc.kill()` 从未执行。\n- **`on_unload` 只 `cancel()` 不等待**，协程里的 ffmpeg 同样会泄漏。现在 `await` 并带 2s 超时兜底。\n- **`@API` 未声明 RPC 超时**，宿主默认 60s 会在插件干活时掐断。现在显式声明 `timeout_ms=120000`。\n- **语气词白名单漏字**，`（深沉）` 会被原样送去合成，把「深沉」念出来。\n\n## 变更\n\n- **`_manifest.json` 的 `sdk.max_version` 从 `2.99.99` 改为 `2.16.99`**，符合插件市场审核规则（版本号前两位不能填 99 或 999）。\n- 回归测试从 69 项增至 **115 项**，每条都做过「回退到旧代码则测试失败」的反向验证。\n\n**完整对比**：https://github.com/m1o0/maibot-mimotts-voice-pro/compare/v1.9.10...v1.9.11",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.11",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.9.10",
           "tag": "v1.9.10",
           "commit": "cecec43fd921a40967b0c2623320796542d25442",
