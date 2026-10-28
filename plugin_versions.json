@@ -26416,6 +26416,146 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.4",
+          "tag": "v1.24.4",
+          "commit": "41a0a69f6903978444184e6719767fa2aa1afbbc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T10:18:18Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.4",
+          "release_notes": "## [1.24.4] - 2026-10-28\n\n### 变更\n\n- **群闸门生效方式独立开关 `group.gate_mode`（按设定时间 / 按日程判断）**：群聊不再与私聊共用同一开关，可分别选择——例如私聊按日程作息、群聊按固定时间窗。默认「按设定时间」；**旧配置自动继承私聊的 gate_mode，行为完全不变**。/麦麦配置 的群闸门行与 WebUI「群闸门与轮次」网格同步展示该开关。\n\n- 494 项测试通过（含群闸门独立模式回归用例）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.3...v1.24.4",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.4",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.24.3",
+          "tag": "v1.24.3",
+          "commit": "cc850ac39fd7d6e0b22d4bf257ecc2af09a8738d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T09:51:58Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.3",
+          "release_notes": "## [1.24.3] - 2026-10-28\n\n### 变更\n\n- **时间窗各自受「闸门生效的日程类型」列表约束（私聊与群聊同规则）**：此前「按设定时间」模式下，夜窗/午休窗无条件生效——用户从列表去掉 nap 后中午仍被午休窗拦，列表形同虚设且极易误解（用户连续两次报告）。现在夜窗仅在列表含 sleep/rest 时生效、午休窗仅在含 nap 时生效；列表去掉哪类，对应窗口即失效。「按日程判断」模式行为不变（段型列表本就是唯一开关）。\n\n- 494 项测试通过（+1 时间窗约束回归用例）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.2...v1.24.3",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.3",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.2",
           "tag": "v1.24.2",
           "commit": "04750c2269e7213582a82a1ee9369742886de2d2",
