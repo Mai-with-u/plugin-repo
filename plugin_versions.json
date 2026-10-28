@@ -40774,6 +40774,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.7",
+          "tag": "v0.8.7",
+          "commit": "a38ca350b11d6d88f016a7f04e8ac20a40b1dbbf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:16Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.7",
+          "release_notes": "**细节**\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.7",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.5",
           "tag": "v0.7.5",
           "commit": "637345eafc96e6571753451ae56aa4da02992185",
