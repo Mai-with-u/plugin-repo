@@ -45600,7 +45600,54 @@
       "manifest_id": "NetaJuutilainen.mai-mouth-filter",
       "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "8324f6676e88cd777f90c8d043717fe1e7ac3b4b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T23:53:56Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter/releases/tag/v1.0.0",
+          "release_notes": "首个正式版 🎉\n\n功能与 0.2.6 一致，主要是**展示与版式收尾**——把\"被 `filtered.` 哔掉\"的那点气质摆到门面上。\n\n## 变更\n\n- **README 头部改「图 — 标题 — 图」三列布局**：两张 128px 立绘一左一右，标题与副标题居中夹在中间，三列垂直居中对齐（替代原先\"图标居中在上、标题在下\"的堆叠排法）\n- **新增头部第二张图** `assets/chibi.jpg`（1000×1000）：与 `icon.png` 同角色的换装版（米色开衫 + 浅蓝领结 + 蓝绿瞳，`filtered.` 白字红描边拱在头顶）\n- **`assets/showcase.png` 改版**：`filtered.` 从画面顶部移到**底部**（字宽仍 99% 画宽、距边 2%、水平居中），并为底部叠加**渐变压暗**（约 55% 高度处起，最大压暗 45%）+ 轻投影（alpha 28%），保证白字红描边压在浅色画面区仍清晰、且压暗痕迹不显脏\n- **展示图挪到 README 尾部**：新增「## 关于 `filtered.`」章节放在 License 之前（它本身就是个彩蛋，但标题上不写\"彩蛋\"两个字），说明灵感来源是 [Vedal](https://github.com/vedal) 与 AI 主播 **Neuro-sama** 的 `filtered.` 消音梗\n- 「效果演示」章节不再放大图，直接进三个行为示例（逐词打码 / 整句吞噬 / 全灭兜底）\n- 安装目录树补全 `assets/`（现为 `base_words.json` / `chibi.jpg` / `icon.png` / `showcase.png`）\n- `_manifest.json` version → `1.0.0`；`SUPPORTED_CONFIG_VERSION` → `\"1.0.0\"`\n- **市场审核整改**：`plugin_type` 由自造的 `behavior` 改为文档登记值 **`extension`**（合法值：`adapter`/`tool`/`provider`/`management`/`data`/`media`/`game`/`integration`/`extension`/`other`），版本号不变，仍为 1.0.0\n- **`assets/icon.png` 压缩**：941187 B → **298713 B**（1024×1024，256 色调色板），规避宿主 `GET /icon/{plugin_id}` 的 512 KB 上限\n\n## 安装\n\n插件中心搜索「麦麦不要说辣个啦」，或把仓库放进 MaiBot 的 `plugins/` 目录（Runner 自动发现并热重载）。\n\n## 校验\n\n- `python tests/test_core.py` → **34 passed, 0 failed**\n- `py_compile` OK ｜ `_manifest.json` JSON OK\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "NetaJuutilainen.mai-mouth-filter",
+            "version": "1.0.0",
+            "name": "麦麦不要说辣个啦",
+            "description": "麦麦不要说辣个啦——Neuro-sama 式嘴替打码：麦麦回复发出之前检查正文，命中的脏话/过分词句替换为随机占位符（*已过滤* / *Filtered*，每个消音位独立随机），并有一定概率触发「整句吞噬」——整条回复直接换成一个单独的占位符，模拟整句消音。词表驱动、零 token 成本；精确词（不分英文大小写）+ 正则两类规则，词表在 WebUI 与 data 目录均可增删，热重载即时生效；正文被全部过滤时改发兜底替代语；命中记录进日志（不落原文），便于回看误杀。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
