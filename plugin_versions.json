@@ -74,12 +74,12 @@
         {
           "tag": "0.11.0",
           "version": "0.11.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.4.6'\n- '0.11.0'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.9.1",
           "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.3.0'\n- '0.9.1'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -112,12 +112,12 @@
         {
           "tag": "0.11.0",
           "version": "0.11.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.4.6'\n- '0.11.0'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.9.1",
           "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.3.0'\n- '0.9.1'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -132,12 +132,12 @@
         {
           "tag": "0.11.0",
           "version": "0.11.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.4.6'\n- '0.11.0'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.9.1",
           "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.3.0'\n- '0.9.1'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -204,7 +204,7 @@
         {
           "tag": "v2.0.0",
           "version": "2.0.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '3.2.3'\n- '2.0.0'"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         }
       ]
     },
@@ -263,12 +263,12 @@
         {
           "tag": "v1.0.1",
           "version": "1.0.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.0'\n- '1.0.1'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         },
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.0'\n- '1.0.0'"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         }
       ]
     },
@@ -283,12 +283,12 @@
         {
           "tag": "0.10.0",
           "version": "0.10.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.5'\n- '0.10.0'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.8.0",
           "version": "0.8.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.5'\n- '0.8.0'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -920,7 +920,7 @@
         {
           "tag": "0.9.1",
           "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.9.6'\n- '0.9.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -1207,47 +1207,47 @@
         {
           "tag": "1.0.3",
           "version": "1.0.3",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.1'\n- '1.0.3'"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.1.2",
           "version": "0.1.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.0'\n- '0.1.2'"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.10.2",
           "version": "0.10.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.0'\n- '0.10.2'"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.1.1",
           "version": "0.1.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.0'\n- '0.1.1'"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '4.0.0'\n- '1.0.0'"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.12.2",
           "version": "0.12.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.0'\n- '0.12.2'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.12.11",
           "version": "0.12.11",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.0'\n- '0.12.11'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.12.1",
           "version": "0.12.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.0'\n- '0.12.1'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.11.5",
           "version": "0.11.5",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.0'\n- '0.11.5'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -1325,22 +1325,22 @@
         {
           "tag": "0.11.6",
           "version": "0.11.6",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.3.0'\n- '0.11.6'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.10.3",
           "version": "0.10.3",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.1.2'\n- '0.10.3'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.10.2",
           "version": "0.10.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.1.1'\n- '0.10.2'"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.10.0",
           "version": "0.10.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.1.1'\n- '0.10.0'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -1453,7 +1453,7 @@
         {
           "tag": "2.0.1",
           "version": "2.0.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '3.0.0'\n- '2.0.1'"
+          "error": "Tag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -2206,7 +2206,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.15.6",
+          "version": "1.15.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "xun.sky_tools_plugin",
@@ -3069,7 +3075,7 @@
         {
           "tag": "2.2.0",
           "version": "2.2.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.custom-commands-plugin'\n- 'TAIY2020.custom-commands-plugin'"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -3776,7 +3782,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'taiyang.group-muter-plugin'\n- 'TAIY2020.group-muter-plugin'"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -3854,7 +3860,7 @@
         {
           "tag": "0.1.1",
           "version": "0.1.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.0'\n- '0.1.1'\n       ^"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -3941,7 +3947,7 @@
         {
           "tag": "v0.12.0",
           "version": "0.12.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '3.0.0'\n- '0.12.0'"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         }
       ]
     },
@@ -4010,7 +4016,7 @@
         {
           "tag": "3.5.0",
           "version": "3.5.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '2.5.0'\n- '3.5.0'"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -4122,7 +4128,7 @@
         {
           "tag": "0.12.0",
           "version": "0.12.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.4'\n- '0.12.0'\n      ^"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -4203,7 +4209,7 @@
         {
           "tag": "0.12.1",
           "version": "0.12.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.0'\n- '0.12.1'\n      ^"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -4444,7 +4450,7 @@
         {
           "tag": "v4.0.0",
           "version": "4.0.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'nguspring.painter_maimai_daily'\n- 'selfie_painter'"
+          "error": "发布版本改变了插件 ID"
         }
       ]
     },
@@ -4566,7 +4572,7 @@
         {
           "tag": "v2.5.0",
           "version": "2.5.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'char-tyr.mai-soul-engine'\n- 'chartyr.mai-soul-engine'\n       ^"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -6334,7 +6340,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.1.10",
+          "version": "1.1.10",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "pspixel.ai-drawing-plugin",
@@ -6520,7 +6532,7 @@
         {
           "tag": "v1.2.0",
           "version": "1.2.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'run-time-tracker-plugin'\n- 'CSSQY.RunTime_Tracker_Plugin'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         }
       ]
     },
@@ -7508,19 +7520,34 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v1.0.2",
+          "version": "1.0.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.3",
+          "version": "0.6.3",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.2'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.6.0'\n- '0.6.1'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.3.0'\n- '0.3.1'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -8323,6 +8350,95 @@
       "repositoryUrl": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
       "mode": "releases",
       "versions": [
+        {
+          "version": "2.1.3",
+          "tag": "v2.1.3",
+          "commit": "56284ac69bed57829ea67ab68ce31309d10b9551",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T03:20:59Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.1.3",
+          "release_notes": "## 新增功能\n\n- **图片下载校验开关**：在“偏好与预设 → 通用配置”新增默认关闭的“忽略图片地址 IP 校验”，供可信内网图床、特殊 DNS 及仅通过 TUN/Fake-IP 接管流量的环境使用；开启后保留原始域名，仍检查 HTTP(S) URL、地址凭据、重定向次数与图片内容。\n\n## 修复功能\n\n- **代理图片下载（#9）**：实际使用手动或系统 HTTP(S) 代理时，保留图片原始域名并由代理解析，避免本地 Fake-IP 校验提前拦截，以及将域名替换成 IP 后影响代理分流和 HTTPS CONNECT。\n- **直连与重定向校验**：每一跳重新选择实际代理；NO_PROXY 或平台绕过代理产生的直连仍检查全部 DNS 地址并固定连接 IP，默认继续阻止非同源内网、回环与链路本地地址。\n- **错误报告模板**：区分插件版本与配置版本，补充代理/Fake-IP/TUN 环境、兼容模式、图片来源和同一任务日志提示，减少无关配置和敏感信息提交。\n- **验证**：新增 18 项下载回归通过，覆盖本机 HTTP 代理、HTTPS CONNECT、重定向、直连保护及模拟 TUN/Fake-IP；相关平台、配置和国际化回归通过，验证开关保存后刷新全部 8 个下载适配器。语法、清单、模板与差异检查通过；验证环境 SDK 2.16.0，使用隔离配置和模拟接口，未调用真实收费生图服务。\n\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.12.0–2.17.0，Python 3.12 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。新增 IP 校验开关默认关闭；仅通过 TUN/Fake-IP 接管流量或使用可信特殊图床且仍遇到拦截时，可在通用配置中开启。实际使用 HTTP(S) 代理时，域名解析与访问控制由配置的可信代理负责。\n\n[图片下载与配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.3/docs/configuration.md#请求与安全边界) · [手动配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.3/docs/manual-configuration.md) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.3/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "version": "2.1.3",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.17.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
         {
           "version": "2.1.2",
           "tag": "v2.1.2",
@@ -12979,7 +13095,7 @@
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maibot-api-balance-plugin'\n- 'davidblackcn.maibot-api-balance-plugin'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -14156,9 +14272,14 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.4.7",
+          "version": "0.4.7",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.1.0",
           "version": "0.1.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'com.yufei-pan.plastic-memory'\n- 'com.0-hz.plastic-memory'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -15152,7 +15273,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.4.3",
+          "version": "0.4.3",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "deepseek-v4-pro.phigros-b30",
@@ -16138,7 +16265,7 @@
         {
           "tag": "v0.2.0",
           "version": "0.2.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.0'\n- '0.2.0'\n     ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -16997,7 +17124,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.5",
+          "version": "0.3.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "1m.nightmare",
@@ -17111,17 +17244,17 @@
         {
           "tag": "0.1.5",
           "version": "0.1.5",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.4'\n- '0.1.5'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.1.4",
           "version": "0.1.4",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.3'\n- '0.1.4'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "0.1.3",
           "version": "0.1.3",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '0.1.0'\n- '0.1.3'\n       ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -17648,7 +17781,7 @@
         {
           "tag": "2.3.0",
           "version": "2.3.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '2.2.1'\n- '2.3.0'\n     ^"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         }
       ]
     },
@@ -17934,7 +18067,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v2.1.0",
+          "version": "2.1.0",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.QlzqQlzq.sg-divination-plugin",
@@ -18029,7 +18168,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.0",
+          "version": "1.2.0",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.xiexiaojia780.file-reader-plugin",
@@ -20097,7 +20242,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.2.2",
+          "version": "0.2.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "haitai-git.chat-style-translator",
@@ -22590,7 +22741,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.2",
+          "version": "1.2.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "omsociety.bilicaption",
@@ -23557,7 +23714,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.3.2",
+          "version": "1.3.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "YukiSakiko.content_understanding_plugin",
@@ -26253,6 +26416,146 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.2",
+          "tag": "v1.24.2",
+          "commit": "04750c2269e7213582a82a1ee9369742886de2d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T05:28:48Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.2",
+          "release_notes": "## [1.24.2] - 2026-10-28\n\n### 修复\n\n- **多段回复第 2 段起被误拦、宿主判整轮失败（线上 12:57 现场）**：主动/回复任务的 direct 首段经 `reserve_send` 的 direct 分支预留，成功发送后 `sent=True`，但同锚点后续分段被 `reply_anchor` 判定拒绝而 abort——宿主日志表现为 `on_send_before 中止 Hook` → `[SendService] 发送消息失败`。现在 direct 锚点在发送成功后继续放行同锚分段（空锚点防重语义不变），补多段回复回归用例。\n- **群观察静音的日程分支不支持跨午夜段、且与群闸门判定不一致**\n\n- 493 项测试通过（+2：多段回复分段、群观察跨午夜）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.1...v1.24.2",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.2",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.24.1",
+          "tag": "v1.24.1",
+          "commit": "cf688dccdf86e4d89e1fb7b87c5391bd63a28974",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T03:29:51Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.1",
+          "release_notes": "## [1.24.1] - 2026-10-28\n\n### 修复\n\n- **私聊/群聊放行路径 `NameError: name 'reason' is not defined`**：防抖移除时收口 debug 日志仍引用已删除的 `reason` 变量，线上每条私聊消息都会在 Hook 内抛异常（消息按失败开放继续处理，但日志噪声大）。两处日志改写为不依赖该变量，并补私聊/群聊放行路径回归测试各一条。\n- 491 项测试通过（+2 条回归测试）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.0...v1.24.1",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.1",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.0",
           "tag": "v1.24.0",
           "commit": "2eb2e3a3c848f13b5f043bb46668ff92b29a6f0b",
@@ -26914,7 +27217,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.4.4",
+          "version": "0.4.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.cateye.isaac.item",
@@ -28385,7 +28694,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.7.0",
+          "version": "1.7.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "valleywinds.sleep-manager",
@@ -30965,7 +31280,7 @@
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.7.1'\n- '1.0.0'\n     ^"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -31706,7 +32021,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "Alcpare.identity",
@@ -34302,7 +34623,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.1",
+          "version": "1.2.1",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.2.0",
+          "version": "1.2.0",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "maibot.opencode-session-header",
@@ -35517,7 +35849,33 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.1.4",
+          "version": "1.1.4",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.1.3",
+          "version": "1.1.3",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.1.2",
+          "version": "1.1.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.1.1",
+          "version": "1.1.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.ZhaoCang-QWQ.social-state",
@@ -36106,7 +36464,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.1",
+          "version": "1.0.1",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "maibot.mai-recog-self",
@@ -36588,9 +36957,14 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.1.15",
+          "version": "0.1.15",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.1.9",
           "version": "0.1.9",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Sengoku.telegram-adapter'\n- 'maibot-team.telegram-adapter'"
+          "error": "发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -36784,7 +37158,7 @@
         {
           "tag": "1.2.0",
           "version": "1.2.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.2.1'\n- '1.2.0'\n       ^"
+          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -37076,7 +37450,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "1.2.0",
+          "version": "1.2.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "mizuku003.tieba-share",
@@ -37879,7 +38259,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.2",
+          "version": "1.0.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "top.launchpadx.maibot.xchat_adapter",
@@ -39020,7 +39406,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.1",
+          "version": "1.0.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "WMX20081122.maibot-picstatus",
@@ -39117,7 +39514,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v2.3.2",
+          "version": "2.3.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "WMX20081122.maibot-qiandao",
@@ -39201,7 +39604,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "local.bilibili-autopilot",
@@ -39611,7 +40020,23 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.8.0",
+          "version": "0.8.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.1",
+          "version": "0.6.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.0",
+          "version": "0.6.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "com.kilos.zuojia-room",
@@ -39887,7 +40312,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.4.3",
+          "version": "0.4.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "chenxi2542.maibot-codex-subscription",
@@ -40169,7 +40600,33 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.5",
+          "version": "0.3.5",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.4",
+          "version": "0.3.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.3",
+          "version": "0.3.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.2",
+          "version": "0.3.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.1",
+          "version": "0.3.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "SengokuCola.steam-browser-plugin",
@@ -40656,7 +41113,43 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.8.6",
+          "version": "0.8.6",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.5",
+          "version": "0.6.5",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.2",
+          "version": "0.6.2",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.1",
+          "version": "0.6.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.0",
+          "version": "0.6.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.4.0",
+          "version": "0.4.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.0",
+          "version": "0.3.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "maibot-team.xiaoheihe-adapter",
@@ -41028,7 +41521,28 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.1",
+          "version": "1.2.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.2.0",
+          "version": "1.2.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "org.azurlane.blhx-wiki-maibot",
@@ -41739,7 +42253,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.5.4",
+          "version": "1.5.4",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.5.3",
+          "version": "1.5.3",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "com.fsqhn.image-searcher",
@@ -41932,7 +42457,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.0",
+          "version": "0.3.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.42yoru.maimai-owner-reminder",
@@ -41940,6 +42471,67 @@
       "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.4.12",
+          "tag": "v0.4.12",
+          "commit": "edb06fe131075f83af7e6ff0fee3248cd27d8431",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:15Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.12",
+          "release_notes": "**细节**\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.12",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
         {
           "version": "0.4.5",
           "tag": "v0.4.5",
@@ -42121,14 +42713,24 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.4.11",
+          "version": "0.4.11",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.4.2",
+          "version": "0.4.2",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.4.1",
           "version": "0.4.1",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.4.0",
           "version": "0.4.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'maimai.owner-reminder'\n- 'github.42yoru.maimai-owner-reminder'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -42293,7 +42895,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.1",
+          "version": "0.3.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.fabiocsa.read-gif",
@@ -42437,7 +43045,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "liccsu.maibot-mimotts-voice",
@@ -42446,7 +43060,33 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v2.0.6",
+          "version": "2.0.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v2.0.5",
+          "version": "2.0.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v2.0.4",
+          "version": "2.0.4",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v2.0.3",
+          "version": "2.0.3",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v2.0.2",
+          "version": "2.0.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "toyaspio.maibot-baidu-search",
@@ -42516,22 +43156,22 @@
         {
           "tag": "1.1.0",
           "version": "1.1.0",
-          "error": "Tag 与 manifest.version 不一致\n+ actual - expected\n\n+ '1.0.2'\n- '1.1.0'\n     ^"
+          "error": "Tag 与 manifest.version 不一致\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "1.0.2",
           "version": "1.0.2",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "1.0.1",
           "version": "1.0.1",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist2022.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "发布版本改变了插件 ID\n+ actual - expected\n\n+ 'Mcphist.sanguosha.plugin'\n- 'mcphist2022.sanguosha'"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -42670,7 +43310,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.1",
+          "version": "1.0.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.42yoru.maimai-emoji-label-bridge",
@@ -42678,6 +43329,63 @@
       "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.1.13",
+          "tag": "v0.1.13",
+          "commit": "573c787a8690c9de8ba88b32058ba011021abed0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:12Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.13",
+          "release_notes": "### 细节\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`。\r\n  仓库校验要求 `version` 与 `host_application` / `sdk` 的 min/max 里**前两段不能是 99 或 999**\r\n  （第三位不受限制），`2.99.99` 第二段违规会导致提审直接失败\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.13",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
         {
           "version": "0.1.7",
           "tag": "v0.1.7",
@@ -42794,7 +43502,28 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.1.12",
+          "version": "0.1.12",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.1.4",
+          "version": "0.1.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.1.3",
+          "version": "0.1.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.1.2",
+          "version": "0.1.2",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "z1252.pocket-money",
@@ -42860,16 +43589,88 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.1",
+          "version": "1.2.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.42yoru.maimai-target-replyer",
       "manifest_id": "github.42yoru.maimai-target-replyer",
       "repositoryUrl": "https://github.com/42yoru/maimai-target-replyer",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.3.10",
+          "tag": "v0.3.10",
+          "commit": "1d3df0fb5a8adb656c20782c6aa7a41a37e5db26",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:17Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.10",
+          "release_notes": "### 细节\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.10",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.9",
+          "version": "0.3.9",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "local.stable-identity",
@@ -43300,7 +44101,28 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.2.9",
+          "version": "0.2.9",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.2.8",
+          "version": "0.2.8",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.2.1",
+          "version": "0.2.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.2.0",
+          "version": "0.2.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "mai-dc.discord-voice",
@@ -43546,7 +44368,23 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.6.4",
+          "version": "0.6.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.2",
+          "version": "0.6.2",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.6.0",
+          "version": "0.6.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "hatsuhoq.maibot-qq-voice-call",
@@ -43876,7 +44714,38 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.9.5",
+          "version": "1.9.5",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.9.4",
+          "version": "1.9.4",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.9.3",
+          "version": "1.9.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.9.2",
+          "version": "1.9.2",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.9.1",
+          "version": "1.9.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.9.0",
+          "version": "1.9.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.qiaozhixiang.dsh-remote-bridge",
@@ -43943,7 +44812,23 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.6.3",
+          "version": "1.6.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.6.2",
+          "version": "1.6.2",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.6.1",
+          "version": "1.6.1",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.pppalab.meme-generator-bridge",
