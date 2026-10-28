@@ -26416,6 +26416,146 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.4",
+          "tag": "v1.24.4",
+          "commit": "41a0a69f6903978444184e6719767fa2aa1afbbc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T10:18:18Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.4",
+          "release_notes": "## [1.24.4] - 2026-10-28\n\n### 变更\n\n- **群闸门生效方式独立开关 `group.gate_mode`（按设定时间 / 按日程判断）**：群聊不再与私聊共用同一开关，可分别选择——例如私聊按日程作息、群聊按固定时间窗。默认「按设定时间」；**旧配置自动继承私聊的 gate_mode，行为完全不变**。/麦麦配置 的群闸门行与 WebUI「群闸门与轮次」网格同步展示该开关。\n\n- 494 项测试通过（含群闸门独立模式回归用例）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.3...v1.24.4",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.4",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.24.3",
+          "tag": "v1.24.3",
+          "commit": "cc850ac39fd7d6e0b22d4bf257ecc2af09a8738d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T09:51:58Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.3",
+          "release_notes": "## [1.24.3] - 2026-10-28\n\n### 变更\n\n- **时间窗各自受「闸门生效的日程类型」列表约束（私聊与群聊同规则）**：此前「按设定时间」模式下，夜窗/午休窗无条件生效——用户从列表去掉 nap 后中午仍被午休窗拦，列表形同虚设且极易误解（用户连续两次报告）。现在夜窗仅在列表含 sleep/rest 时生效、午休窗仅在含 nap 时生效；列表去掉哪类，对应窗口即失效。「按日程判断」模式行为不变（段型列表本就是唯一开关）。\n\n- 494 项测试通过（+1 时间窗约束回归用例）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.2...v1.24.3",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.3",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.2",
           "tag": "v1.24.2",
           "commit": "04750c2269e7213582a82a1ee9369742886de2d2",
@@ -40774,6 +40914,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.7",
+          "tag": "v0.8.7",
+          "commit": "a38ca350b11d6d88f016a7f04e8ac20a40b1dbbf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:16Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.7",
+          "release_notes": "**细节**\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.7",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.5",
           "tag": "v0.7.5",
           "commit": "637345eafc96e6571753451ae56aa4da02992185",
@@ -43661,6 +43861,124 @@
             "id": "github.42yoru.maimai-target-replyer",
             "changelog": "CHANGELOG.md"
           }
+        },
+        {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "bd0ff054f55f429d4ab0fc1339f2b0c393084663",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T14:58:14Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.1",
+          "release_notes": "## 0.3.1\n\n### 细节\n\n- 兼容毫秒 / 微秒级消息时间戳，避免「目标账号最近发言」的让路规则因量级差 1000 倍而静默失效。\n- README 与配置注释补充说明：预判会把当前消息和最近聊天记录发送给 `decide.task_name` 指定的模型。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.1",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "44d3bf248cf4f2ba50b25227f8b1b8f4c9fb3dc6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T13:58:26Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.0",
+          "release_notes": "## 0.3.0\n\n### 主要功能\n\n- 新增轻量预判：先用便宜小模型判断要不要自然接话，通过后才触发 Planner，减少无意义触发。\n- 预判提示词可在 WebUI「高级 → 提示词」中修改，支持 `$bot_name`、`$bot_persona`、`$text`、`$recent` 等占位符。\n- WebUI 配置页汉化，分成「基础 / 预判与节奏 / 高级」三个页签。\n\n### 细节\n\n- 去个性化：插件不写死 bot 名称与人格，默认提示词从宿主 `bot.nickname` / `personality.personality` 读取。\n- 新增插件图标；补充 GitHub Actions CI（Python 3.11 / 3.12 / 3.13）。\n- 状态文件损坏或时间戳非法时明确报错，不再让插件加载失败。\n- 提示词模板在加载/热更新时校验未知占位符、缺失必填项和非法 `$` 写法。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
         }
       ],
       "ignored_tags": [],
@@ -43737,6 +44055,49 @@
       "repositoryUrl": "https://github.com/gsskk/maibot-plugin-followup",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "9c9c7b616fa957c59bfeb6e803baf71ec688741c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T14:36:34Z",
+          "release_url": "https://github.com/gsskk/maibot-plugin-followup/releases/tag/v0.3.0",
+          "release_notes": "## 核心变更\n\n- **追问当作提及，三关一次绕过**  \n  旧版本（0.2.x）在收到追问时将群聊发言频率临时拉至 `1.0`，但频率只作用于动态门控这一关——消息防抖与空闲退避会把追问的判定推迟到提频结束之后，导致追问依然被漏掉；同时提频期间旁人的闲聊也会被一并放行。  \n  `v0.3.0` 改为在入站钩子（`chat.receive.after_process`，BLOCKING）中将窗口内参与者的追问（以及不带 @ 的引用回复）标记为 `is_mentioned = true`，直接走宿主为提及消息准备的触发通道：**防抖缩短至 1 秒内、清零空闲退避、跳过动态门控强制进入 Planner**，回不回仍由模型自主决定，且只作用于该条消息本身。\n\n- **窗口由「按群」改为「按人」**  \n  每个群内按对话参与者各自独立维护跟进窗口（`window_seconds`）与总时长上限（`max_active_seconds`）：\n  - 本人再次 @ 或引用回复麦麦时，只续本人的窗口（不超过本人上限），不影响他人；\n  - 麦麦在群里发言时，只为**最近 `window_seconds` 内说过话**的参与者续期，避免麦麦与他人持续聊天时替早已离开的人无限续期；\n  - 窗口外群友的消息原样放行，照常走宿主门控。\n\n- **零宿主状态残留**  \n  插件不再读写宿主的发言频率调整系数（`frequency.set_adjust`），不再与其他调频插件冲突；停用、卸载、重启均无需恢复任何宿主状态。\n\n## 升级与兼容说明\n\n- **环境要求**：MaiBot 1.3.13 及以上的 1.3.x、`maibot-plugin-sdk` 2.16.x–2.19.x。1.3.13–1.3.17 的相关宿主实现一致，已在 SDK 2.16.0 与 2.19.0 下测试。\n- **行为变更（破坏性）**：窗口由按群改为按人，插件不再调整发言频率。\n- **配置兼容**：`config.toml` 配置项与结构不变，无需修改即可升级。`window_seconds` 同时作为麦麦发言续期时「最近说过话」的时间阈值。\n- **宿主开关**：强制触发依赖宿主默认开启的 `chat.reply_timing.mentioned_bot_reply = true`；关闭后被标记的追问只会缩短防抖。\n- **从 0.2.x 升级**：旧版本可能残留的频率调整系数，重启 MaiBot 后归 1.0。\n\n## 已知代价\n\n- 窗口内参与者与他人的闲聊同样会被强制送入 Planner，由模型决定是否接话。\n- 强制触发计入动态门控的回复额度，窗口结束后该群短期内会比平时安静。\n- 入站钩子改为阻塞：绝大多数消息不做远程调用即返回；判断引用对象有 1.5 秒超时，整个钩子 3 秒超时，超时则按原消息继续。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "gsskk.followup-window",
+            "version": "0.3.0",
+            "name": "麦麦留步",
+            "description": "群里被 @ 或被引用回复后给这个人开一个跟进窗口,窗口里他不带 @ 的追问会被当作提到了 bot,一定进入 Planner;别人的闲聊照常走门控。",
+            "author": {
+              "name": "gsskk",
+              "url": "https://github.com/gsskk"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/gsskk/maibot-plugin-followup"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.2.2",
           "tag": "v0.2.2",
@@ -45043,6 +45404,960 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot-mute-alert",
+      "manifest_id": "maibot-mute-alert",
+      "repositoryUrl": "https://github.com/lrony22/maibot-mute-alert",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "riesa.translate",
+      "manifest_id": "riesa.translate",
+      "repositoryUrl": "https://github.com/riesaexe/maibot-index-translate",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.7.0",
+          "tag": "v1.7.0",
+          "commit": "522901679d2b3271f1c4532add5185f037e5a10b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T07:52:25Z",
+          "release_url": "https://github.com/riesaexe/maibot-index-translate/releases/tag/v1.7.0",
+          "release_notes": "## 主要功能\n\n- 新增 `plugin.prewarm_models`，默认关闭。开启后延迟 30 秒，等待本插件翻译空闲，在后台预热漫画检测和日文 OCR 模型。\n- 模型缓存改存 SDK `ctx.paths.data_dir/models/`，自动复用旧版 `.models/` 文件，更新插件后可保留模型。\n\n## 细节\n\n- 保留真实触发词注册，兼容 `/rs` 问答插件让路；支持直接发送与引用翻译。\n- 配置版本 1.4.0，README 同步设置、模型缓存位置与首次下载提醒。\n- 首次漫画检测模型约 95 MB，日文 OCR 另约 444 MB，需要访问 GitHub Releases 和 Hugging Face。\n- 关闭预热或卸载后不启动后续步骤；已经开始的原生下载、加载会完成当前步骤。\n\n## 验证\n\n- 72 项回归测试通过，Ruff 检查通过。\n- 本地真实权重验证模型实例复用；独立进程日文 OCR 首次约 79.86 秒、后续约 0.77 秒（本机实测，不含下载）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.translate",
+            "version": "1.7.0",
+            "name": "中文翻译",
+            "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-index-translate",
+              "homepage": "https://github.com/riesaexe/maibot-index-translate",
+              "documentation": "https://github.com/riesaexe/maibot-index-translate/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-index-translate/issues"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "languages"
+              }
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "anyio",
+                "version_spec": ">=4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "onnxruntime",
+                "version_spec": ">=1.20"
+              },
+              {
+                "type": "python_package",
+                "name": "manga-ocr",
+                "version_spec": ">=0.1.16,<0.2"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26"
+              },
+              {
+                "type": "python_package",
+                "name": "opencv-python",
+                "version_spec": ">=4.5"
+              }
+            ],
+            "plugin_type": "tool",
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.6.2",
+          "tag": "v1.6.2",
+          "commit": "20327074e181020e780080ac66c2c619c1069120",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T05:53:39Z",
+          "release_url": "https://github.com/riesaexe/maibot-index-translate/releases/tag/v1.6.2",
+          "release_notes": "将插件分类从 extension 调整为 tool，使 WebUI 分类与翻译命令的用途一致。\r\n\r\n本版本仅调整插件清单，翻译、图片处理、模型缓存和命令注册逻辑保持原样。首次模型下载说明保留在 README。\r\n\r\n验证：插件清单 JSON 解析通过，版本号与分类字段校验通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.translate",
+            "version": "1.6.2",
+            "name": "中文翻译",
+            "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-index-translate",
+              "homepage": "https://github.com/riesaexe/maibot-index-translate",
+              "documentation": "https://github.com/riesaexe/maibot-index-translate/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-index-translate/issues"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "languages"
+              }
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "anyio",
+                "version_spec": ">=4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "onnxruntime",
+                "version_spec": ">=1.20"
+              },
+              {
+                "type": "python_package",
+                "name": "manga-ocr",
+                "version_spec": ">=0.1.16,<0.2"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26"
+              },
+              {
+                "type": "python_package",
+                "name": "opencv-python",
+                "version_spec": ">=4.5"
+              }
+            ],
+            "plugin_type": "tool",
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.6.1",
+          "tag": "v1.6.1",
+          "commit": "ee734f57e5c900da58d5d3b021df53943be45901",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T03:36:00Z",
+          "release_url": "https://github.com/riesaexe/maibot-index-translate/releases/tag/v1.6.1",
+          "release_notes": "修复 QQ 引用回复、@提及及图片预览位于命令前面时，翻译命令无法触发的问题。\r\n\r\n早期消息 Hook 只在原始文字段明确以配置命令开头时规范宿主匹配文本，保留引用 ID、图片段和路由信息；不会因为被引用正文里出现命令而触发。默认 `/rs 翻译` 和自定义命令均适用。\r\n\r\n验证：61 项回归测试通过，其中新增真实 HookDispatcher 与 ComponentRegistry 测试覆盖引用图片、嵌套引用摘要、纯文本引用、自定义命令、仅引用内出现命令不触发、图片先于命令等情况。Ruff、LSP 检查通过。\r\n\r\n仍为预发布，既有图像视觉限制见 README。本版本不改写 v1.6.0 标签。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.translate",
+            "version": "1.6.1",
+            "name": "中文翻译",
+            "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-index-translate",
+              "homepage": "https://github.com/riesaexe/maibot-index-translate",
+              "documentation": "https://github.com/riesaexe/maibot-index-translate/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-index-translate/issues"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "languages"
+              }
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "anyio",
+                "version_spec": ">=4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "onnxruntime",
+                "version_spec": ">=1.20"
+              },
+              {
+                "type": "python_package",
+                "name": "manga-ocr",
+                "version_spec": ">=0.1.16,<0.2"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26"
+              },
+              {
+                "type": "python_package",
+                "name": "opencv-python",
+                "version_spec": ">=4.5"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "f07e6365f91cfd3df7dece3dd0bfb8b183d477ef",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T02:52:58Z",
+          "release_url": "https://github.com/riesaexe/maibot-index-translate/releases/tag/v1.6.0",
+          "release_notes": "## 功能\r\n- 自定义完整触发命令，默认 `/rs 翻译`，支持 `/tr` 等字面量；修改后重载插件生效。\r\n- 支持直接文字、直接附图和引用回复；图片翻译回填中文并引用原始消息。\r\n- 漫画文字检测、日文 Manga OCR、最多 3 路翻译并发和短时内存缓存。\r\n- 添加插件图标、安装配置说明、MIT 许可证与第三方模型声明。\r\n\r\n## 验证\r\n55 项功能回归测试通过，Ruff 和 LSP 错误检查通过。功能测试不代表所有图片视觉质量通过。\r\n\r\n## 已知限制\r\n这是首次公开预发布版本。密集界面可能排版失败；电子界面字体、花体占位文、旋转小字和手绘边框仍有已知问题，详见 README。\r\n\r\n首次漫画/日文使用分别下载约 95 MB 和 444 MB 模型；模型权重、个人配置、聊天图片均不包含在源码包中。文字/图片翻译请求发送至哔哩哔哩 Index-Translate 服务。\r\n\r\n兼容：MaiBot 1.3.10–1.3.99，SDK 2.12.0–2.12.99。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.translate",
+            "version": "1.6.0",
+            "name": "中文翻译",
+            "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-index-translate",
+              "homepage": "https://github.com/riesaexe/maibot-index-translate",
+              "documentation": "https://github.com/riesaexe/maibot-index-translate/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-index-translate/issues"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "languages"
+              }
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "anyio",
+                "version_spec": ">=4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "onnxruntime",
+                "version_spec": ">=1.20"
+              },
+              {
+                "type": "python_package",
+                "name": "manga-ocr",
+                "version_spec": ">=0.1.16,<0.2"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26"
+              },
+              {
+                "type": "python_package",
+                "name": "opencv-python",
+                "version_spec": ">=4.5"
+              }
+            ],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.42yoru.maimai-jargon-boost",
+      "manifest_id": "github.42yoru.maimai-jargon-boost",
+      "repositoryUrl": "https://github.com/42yoru/maimai-jargon-boost",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.3.6",
+          "version": "0.3.6",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "NetaJuutilainen.mai-mouth-filter",
+      "manifest_id": "NetaJuutilainen.mai-mouth-filter",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "8324f6676e88cd777f90c8d043717fe1e7ac3b4b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T23:53:56Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter/releases/tag/v1.0.0",
+          "release_notes": "首个正式版 🎉\n\n功能与 0.2.6 一致，主要是**展示与版式收尾**——把\"被 `filtered.` 哔掉\"的那点气质摆到门面上。\n\n## 变更\n\n- **README 头部改「图 — 标题 — 图」三列布局**：两张 128px 立绘一左一右，标题与副标题居中夹在中间，三列垂直居中对齐（替代原先\"图标居中在上、标题在下\"的堆叠排法）\n- **新增头部第二张图** `assets/chibi.jpg`（1000×1000）：与 `icon.png` 同角色的换装版（米色开衫 + 浅蓝领结 + 蓝绿瞳，`filtered.` 白字红描边拱在头顶）\n- **`assets/showcase.png` 改版**：`filtered.` 从画面顶部移到**底部**（字宽仍 99% 画宽、距边 2%、水平居中），并为底部叠加**渐变压暗**（约 55% 高度处起，最大压暗 45%）+ 轻投影（alpha 28%），保证白字红描边压在浅色画面区仍清晰、且压暗痕迹不显脏\n- **展示图挪到 README 尾部**：新增「## 关于 `filtered.`」章节放在 License 之前（它本身就是个彩蛋，但标题上不写\"彩蛋\"两个字），说明灵感来源是 [Vedal](https://github.com/vedal) 与 AI 主播 **Neuro-sama** 的 `filtered.` 消音梗\n- 「效果演示」章节不再放大图，直接进三个行为示例（逐词打码 / 整句吞噬 / 全灭兜底）\n- 安装目录树补全 `assets/`（现为 `base_words.json` / `chibi.jpg` / `icon.png` / `showcase.png`）\n- `_manifest.json` version → `1.0.0`；`SUPPORTED_CONFIG_VERSION` → `\"1.0.0\"`\n- **市场审核整改**：`plugin_type` 由自造的 `behavior` 改为文档登记值 **`extension`**（合法值：`adapter`/`tool`/`provider`/`management`/`data`/`media`/`game`/`integration`/`extension`/`other`），版本号不变，仍为 1.0.0\n- **`assets/icon.png` 压缩**：941187 B → **298713 B**（1024×1024，256 色调色板），规避宿主 `GET /icon/{plugin_id}` 的 512 KB 上限\n\n## 安装\n\n插件中心搜索「麦麦不要说辣个啦」，或把仓库放进 MaiBot 的 `plugins/` 目录（Runner 自动发现并热重载）。\n\n## 校验\n\n- `python tests/test_core.py` → **34 passed, 0 failed**\n- `py_compile` OK ｜ `_manifest.json` JSON OK\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "NetaJuutilainen.mai-mouth-filter",
+            "version": "1.0.0",
+            "name": "麦麦不要说辣个啦",
+            "description": "麦麦不要说辣个啦——Neuro-sama 式嘴替打码：麦麦回复发出之前检查正文，命中的脏话/过分词句替换为随机占位符（*已过滤* / *Filtered*，每个消音位独立随机），并有一定概率触发「整句吞噬」——整条回复直接换成一个单独的占位符，模拟整句消音。词表驱动、零 token 成本；精确词（不分英文大小写）+ 正则两类规则，词表在 WebUI 与 data 目录均可增删，热重载即时生效；正文被全部过滤时改发兜底替代语；命中记录进日志（不落原文），便于回看误杀。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-plugin-mouth-filter"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-local-model-optimizer",
+      "manifest_id": "maibot-local-model-optimizer",
+      "repositoryUrl": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.4",
+          "tag": "v1.2.4",
+          "commit": "9fe24e3e087c871e09a156ce430a290ef0862ce6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T15:20:59Z",
+          "release_url": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/releases/tag/v1.2.4",
+          "release_notes": "Warm embedding-only models through /api/embed. /api/generate returns 400 for them (nomic-embed-text).",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-local-model-optimizer",
+            "version": "1.2.4",
+            "name": "本地模型优化 / Local Model Optimizer",
+            "description": "让 Ollama 本地模型常驻不卸载，并在启动时检查 planner 是否支持工具调用、vlm 是否支持识图。Keeps Ollama models warm and validates tools/vision capabilities.",
+            "author": {
+              "name": "ALLALLALLALLALLALL",
+              "url": "https://github.com/ALLALLALLALLALLALL"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "homepage": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "documentation": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/blob/main/README.md",
+              "issues": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cpu"
+              }
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "f72b761f7a2e3116771eace207081997cec0adf0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T14:48:39Z",
+          "release_url": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/releases/tag/v1.2.3",
+          "release_notes": "Manifest cleanup from review.\n\n- plugin_type: management (no Tool/Command components)\n- capabilities: [] (config.get was declared but never used)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-local-model-optimizer",
+            "version": "1.2.3",
+            "name": "本地模型优化 / Local Model Optimizer",
+            "description": "让 Ollama 本地模型常驻不卸载，并在启动时检查 planner 是否支持工具调用、vlm 是否支持识图。Keeps Ollama models warm and validates tools/vision capabilities.",
+            "author": {
+              "name": "ALLALLALLALLALLALL",
+              "url": "https://github.com/ALLALLALLALLALLALL"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "homepage": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "documentation": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/blob/main/README.md",
+              "issues": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cpu"
+              }
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "cbcc18ca1a62ff4292a1657cdbf580b814324023",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T14:11:56Z",
+          "release_url": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/releases/tag/v1.2.2",
+          "release_notes": "MaiBot 1.3 compatibility fix.\n\n- Add plugin.config_version (required by the 1.3 plugin loader)\n- i18n locale files (zh-CN, en-US)\n- Runtime config.toml is generated by the runner and gitignored",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-local-model-optimizer",
+            "version": "1.2.2",
+            "name": "本地模型优化 / Local Model Optimizer",
+            "description": "让 Ollama 本地模型常驻不卸载，并在启动时检查 planner 是否支持工具调用、vlm 是否支持识图。Keeps Ollama models warm and validates tools/vision capabilities.",
+            "author": {
+              "name": "ALLALLALLALLALLALL",
+              "url": "https://github.com/ALLALLALLALLALLALL"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "homepage": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "documentation": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/blob/main/README.md",
+              "issues": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cpu"
+              }
+            },
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "6d780ec5ebba40b58931027ae4653d654cbebff2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T13:59:24Z",
+          "release_url": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/releases/tag/v1.2.1",
+          "release_notes": "Plugin center compatibility fix.\n\n- 1.2.1 manifest (three-part version)\n- i18n locale files (zh-CN, en-US)\n- Runtime config.toml is now generated by the plugin runner and gitignored\n- create_plugin() factory\n- host_application 1.3.99 / sdk 2.16.99 upper bounds",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-local-model-optimizer",
+            "version": "1.2.1",
+            "name": "本地模型优化 / Local Model Optimizer",
+            "description": "让 Ollama 本地模型常驻不卸载，并在启动时检查 planner 是否支持工具调用、vlm 是否支持识图。Keeps Ollama models warm and validates tools/vision capabilities.",
+            "author": {
+              "name": "ALLALLALLALLALLALL",
+              "url": "https://github.com/ALLALLALLALLALLALL"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "homepage": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer",
+              "documentation": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/blob/main/README.md",
+              "issues": "https://github.com/ALLALLALLALLALLALL/maibot-local-model-optimizer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cpu"
+              }
+            },
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.2.0",
+          "version": "1.2.0",
+          "error": "仓库根目录不能包含 config.toml\n缺少 i18n.default_locale"
+        }
+      ]
+    },
+    {
+      "id": "github.QlzqQlzq.planner-reply-fixer",
+      "manifest_id": "github.QlzqQlzq.planner-reply-fixer",
+      "repositoryUrl": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.16",
+          "tag": "v0.1.16",
+          "commit": "b0be15c9f16f7722d83ea7d628b0dd7a93867e74",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:58:17Z",
+          "release_url": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/releases/tag/v0.1.16",
+          "release_notes": "## v0.1.16\n\n自查一轮后的收尾修复：\n\n- 缓存只保留文本段（≤24 段、每段 4000 字，去重），图片等 part 的 `image_base64` 不再挂在内存里\n- `quote` 按集合解析：宿主可能给逗号分隔的多个 id，或被 HTML 转义，现在都能正确跳过「被引用的旧消息」\n- 属性解析同时支持单/双引号\n- README 参数表补 `max_reference_chars`（默认 200），与实际一致\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.16",
+            "name": "小模型决策兜底",
+            "description": "当 planner 只输出文字、没有发起工具调用时，把「想回复」的意图翻译成回复工具的调用（只调 tool_names 白名单里真实存在的工具，不伪造工具、不写台词；对所有模型生效）。",
+            "author": {
+              "name": "QlzqQlzq",
+              "url": "https://github.com/QlzqQlzq"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "homepage": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "documentation": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/blob/main/README.md",
+              "issues": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.QlzqQlzq.planner-reply-fixer"
+          }
+        },
+        {
+          "version": "0.1.15",
+          "tag": "v0.1.15",
+          "commit": "5aced4e7b867f7d6c1afb47eb50b583ee61a52d3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:17:25Z",
+          "release_url": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/releases/tag/v0.1.15",
+          "release_notes": "## v0.1.15\n\n复审提的两个 nit：\n\n- README 的「装好了」示例日志与实际 `on_load()` 输出对齐，不再让人对着日志干等\n- 散文模式取消「白名单只剩一项就悄悄改用那个工具」的回落：`prose_tool_name` 不在白名单时记 warning 并跳过，\n  避免 `tool_names=[\"send_poke\"]` 这类配置下被误用来戳人\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.15",
+            "name": "小模型决策兜底",
+            "description": "当 planner 只输出文字、没有发起工具调用时，把「想回复」的意图翻译成回复工具的调用（只调 tool_names 白名单里真实存在的工具，不伪造工具、不写台词；对所有模型生效）。",
+            "author": {
+              "name": "QlzqQlzq",
+              "url": "https://github.com/QlzqQlzq"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "homepage": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "documentation": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/blob/main/README.md",
+              "issues": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.QlzqQlzq.planner-reply-fixer"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.1.3",
+          "version": "0.1.3",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "fjyxyz.reply-meme",
+      "manifest_id": "fjyxyz.reply-meme",
+      "repositoryUrl": "https://github.com/2451965602/maibot-reply-meme-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.5",
+          "tag": "1.0.5",
+          "commit": "2785138ecf184c65be26cb6c113fa9bddf45f52b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T06:50:55Z",
+          "release_url": "https://github.com/2451965602/maibot-reply-meme-plugin/releases/tag/1.0.5",
+          "release_notes": "为按聊天流的去重摘要和主动配图冷却缓存增加一小时惰性 TTL 与 512 条硬上限，避免内存随 stream_id 增长。已在 MaiBot 1.3.15 + SnowLuma 验证加载。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fjyxyz.reply-meme",
+            "version": "1.0.5",
+            "name": "回复配图·梗鲸",
+            "description": "从梗鲸图库筛选贴切表情包，并只发送到当前 QQ 聊天流。",
+            "author": {
+              "name": "fjyxyz",
+              "url": "https://github.com/2451965602"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/2451965602/maibot-reply-meme-plugin",
+              "homepage": "https://github.com/2451965602/maibot-reply-meme-plugin",
+              "documentation": "https://github.com/2451965602/maibot-reply-meme-plugin#readme",
+              "issues": "https://github.com/2451965602/maibot-reply-meme-plugin/issues"
+            },
+            "plugin_type": "media",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              }
+            ],
+            "capabilities": [
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.3",
+          "version": "1.0.3",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
+          "tag": "1.0.2",
+          "version": "1.0.2",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "github.TommyAAKK.bilibili_interest_share",
+      "manifest_id": "github.TommyAAKK.bilibili_interest_share",
+      "repositoryUrl": "https://github.com/TommyAAKK/maibot-bilibili-interest-share",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.3",
+          "version": "1.0.3",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.2",
+          "version": "1.0.2",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.1",
+          "version": "1.0.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     }
   ]
 }
