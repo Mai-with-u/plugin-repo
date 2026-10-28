@@ -29,14 +29,30 @@ function parseReleaseReview(text, batch) {
     let quoted = false;
     let escaped = false;
     let cleaned = '';
+    const closers = [];
+    let repairedClosers = 0;
     for (let i = 0; i < source.length; i++) {
-      const char = source[i];
+      let char = source[i];
       if (!quoted && char === ',' && /^\s*[}\]]/.test(source.slice(i + 1))) continue;
+      if (!quoted) {
+        if (char === '{') closers.push('}');
+        else if (char === '[') closers.push(']');
+        else if (char === '}' || char === ']') {
+          const expected = closers.pop();
+          assert.ok(expected, '审核 JSON 存在多余闭合括号');
+          if (char !== expected) {
+            // 仅替换一个类型写错的闭合括号；不补全截断，不修改字符串或审核字段。
+            assert.ok(++repairedClosers <= 1, '审核 JSON 存在多处括号错误');
+            char = expected;
+          }
+        }
+      }
       cleaned += char;
       if (escaped) escaped = false;
       else if (quoted && char === '\\') escaped = true;
       else if (char === '"') quoted = !quoted;
     }
+    assert.equal(closers.length, 0, '审核 JSON 未完整闭合');
     const value = JSON.parse(cleaned);
     // 仅兼容协议 1 的字符串写法，不推断缺失或未知的协议版本。
     if (typeof value?.schema_version === 'string' && /^1(?:\.0+)?$/.test(value.schema_version.trim())) {
@@ -58,8 +74,9 @@ function parseReleaseReview(text, batch) {
         if (quoted && char === '\\') { escaped = true; continue; }
         if (char === '"') { quoted = !quoted; continue; }
         if (quoted) continue;
-        if (char === '{') depth++;
-        if (char === '}' && --depth === 0) {
+        // 同时计算数组与对象，才能提取闭合括号类型写错但结构完整的候选。
+        if (char === '{' || char === '[') depth++;
+        if ((char === '}' || char === ']') && --depth === 0) {
           try {
             const value = decode(text.slice(start, end + 1));
             // 先收集完整结论，再统一校验，避免忽略另一份协议错误的结论。

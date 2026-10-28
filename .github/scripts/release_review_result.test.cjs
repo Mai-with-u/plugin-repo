@@ -140,6 +140,39 @@ function workspace(t) {
   return root;
 }
 
+test('兼容单个闭合括号类型错误，保留说明和风险中的括号及转义字符', () => {
+  const expected = review();
+  expected.releases[0].risks = ['保留 ] } [ { 和 "引号"、反斜杠 \\'];
+  const json = JSON.stringify(expected);
+  // #1069：最后一个版本对象被错误地用 ] 结束。
+  const wrongObject = json.replace(/\}\]\}$/, ']]}');
+  const wrongArray = json.replace(/\}\]\}$/, '}}}');
+  for (const broken of [wrongObject, wrongArray]) {
+    for (const raw of [broken, `审核完成。\n${broken}`, '```json\n' + broken + '\n```']) {
+      assert.deepEqual(parseReleaseReview(raw, targets), expected);
+      assert.deepEqual(passedReleases(parseReleaseReview(raw, targets)), [first]);
+    }
+  }
+});
+
+test('括号修复不补截断、不接受多处错误或多份结论、不绕过身份和证据校验', () => {
+  const json = JSON.stringify(review());
+  const broken = json.replace(/\}\]\}$/, ']]}');
+  for (const raw of [broken.slice(0, -1), json.replace(/\}\]\}$/, ']}]'),
+    broken + '\n' + json, json + '\n' + broken,
+    broken.replace(plugin.id, 'other.demo'), broken.replace(second.commit, 'c'.repeat(40))]) {
+    const { result, error } = finalizeReleaseReview(raw, targets);
+    assert.ok(error);
+    assert.deepEqual(passedReleases(result), []);
+  }
+  for (const field of ['summary', 'reviewed', 'risks']) {
+    const incomplete = review();
+    delete incomplete.releases[0][field];
+    const raw = JSON.stringify(incomplete).replace(/\}\]\}$/, ']]}');
+    assert.deepEqual(passedReleases(parseReleaseReview(raw, targets)), [first]);
+  }
+});
+
 test('非法 JSON、协议错误、身份错误和多份结论整批转人工，不使用部分通过结果', () => {
   const json = JSON.stringify(review());
   const invalid = review();
