@@ -26410,6 +26410,146 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.2",
+          "tag": "v1.24.2",
+          "commit": "04750c2269e7213582a82a1ee9369742886de2d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T05:28:48Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.2",
+          "release_notes": "## [1.24.2] - 2026-10-28\n\n### 修复\n\n- **多段回复第 2 段起被误拦、宿主判整轮失败（线上 12:57 现场）**：主动/回复任务的 direct 首段经 `reserve_send` 的 direct 分支预留，成功发送后 `sent=True`，但同锚点后续分段被 `reply_anchor` 判定拒绝而 abort——宿主日志表现为 `on_send_before 中止 Hook` → `[SendService] 发送消息失败`。现在 direct 锚点在发送成功后继续放行同锚分段（空锚点防重语义不变），补多段回复回归用例。\n- **群观察静音的日程分支不支持跨午夜段、且与群闸门判定不一致**\n\n- 493 项测试通过（+2：多段回复分段、群观察跨午夜）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.1...v1.24.2",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.2",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
+          "version": "1.24.1",
+          "tag": "v1.24.1",
+          "commit": "cf688dccdf86e4d89e1fb7b87c5391bd63a28974",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T03:29:51Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.1",
+          "release_notes": "## [1.24.1] - 2026-10-28\n\n### 修复\n\n- **私聊/群聊放行路径 `NameError: name 'reason' is not defined`**：防抖移除时收口 debug 日志仍引用已删除的 `reason` 变量，线上每条私聊消息都会在 Hook 内抛异常（消息按失败开放继续处理，但日志噪声大）。两处日志改写为不依赖该变量，并补私聊/群聊放行路径回归测试各一条。\n- 491 项测试通过（+2 条回归测试）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.0...v1.24.1",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.1",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.0",
           "tag": "v1.24.0",
           "commit": "2eb2e3a3c848f13b5f043bb46668ff92b29a6f0b",
