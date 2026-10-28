@@ -1205,6 +1205,11 @@
       ],
       "rejected_releases": [
         {
+          "tag": "4.1.1",
+          "version": "4.1.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "1.0.3",
           "version": "1.0.3",
           "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -46358,6 +46363,122 @@
           "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
+    },
+    {
+      "id": "github.heiye-hxy.persona-switch",
+      "manifest_id": "github.heiye-hxy.persona-switch",
+      "repositoryUrl": "https://github.com/heiye-hxy/ai",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.moonlycake.host-status",
+      "manifest_id": "com.moonlycake.host-status",
+      "repositoryUrl": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.jiakeju.maibot-curator",
+      "manifest_id": "github.jiakeju.maibot-curator",
+      "repositoryUrl": "https://github.com/JiaKeJu/maibot-curator",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.1.0",
+          "version": "0.1.0",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "github.tantan-yyds.short-term-memory",
+      "manifest_id": "github.tantan-yyds.short-term-memory",
+      "repositoryUrl": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "WiseXin.phone-controller",
+      "manifest_id": "WiseXin.phone-controller",
+      "repositoryUrl": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "WiseXin.discord-adapter",
+      "manifest_id": "WiseXin.discord-adapter",
+      "repositoryUrl": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "fjyxyz.qq-account",
+      "manifest_id": "fjyxyz.qq-account",
+      "repositoryUrl": "https://github.com/2451965602/maibot-qq-account-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.2",
+          "version": "1.0.2",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "github.qrzzzz.music-enhanced",
+      "manifest_id": "github.qrzzzz.music-enhanced",
+      "repositoryUrl": "https://github.com/Qrzzzz/maibot-music-enhanced",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.lbcheng1145.beg-for-money",
+      "manifest_id": "github.lbcheng1145.beg-for-money",
+      "repositoryUrl": "https://github.com/Lbcheng1145/maibot-beg-for-money",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
