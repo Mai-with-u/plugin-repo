@@ -69,7 +69,7 @@ function resolveRepoUrl(issue) {
       throw new Error('发布审核与插件登记信息不一致');
     }
     return { requestType: 'release', repoUrl: release.repositoryUrl,
-      releaseCommit: release.releases[0].commit, releaseBatch: release };
+      releaseCommit: release.commit, releaseTarget: release };
   }
   const requestType = labels.includes("plugin-modification")
     ? "modify"
@@ -162,7 +162,7 @@ async function main() {
     },
   });
 
-  const { requestType, repoUrl, releaseCommit, releaseBatch } = resolveRepoUrl(issue);
+  const { requestType, repoUrl, releaseCommit, releaseTarget } = resolveRepoUrl(issue);
   const pluginRepo = toRepoSlug(repoUrl);
 
   const maintainerComments = comments.filter((comment) => comment.author_association === "MEMBER");
@@ -207,8 +207,8 @@ async function main() {
 
   setOutput("plugin_repo", latestCommit?.sha ? pluginRepo : "");
   setOutput("latest_commit", latestCommit?.sha || "");
-  setOutput('release_batch', Boolean(releaseBatch));
-  if (releaseBatch) fs.writeFileSync('mai-release-targets.json', JSON.stringify(releaseBatch));
+  setOutput('release_target', Boolean(releaseTarget));
+  if (releaseTarget) fs.writeFileSync('mai-release-target.json', JSON.stringify(releaseTarget));
 
   const lines = [
     "# 当前 issue 审核上下文",
@@ -261,12 +261,11 @@ async function main() {
     lines.push("## Manifest 获取错误", ...manifestErrors, "");
   }
 
-  if (releaseBatch) {
-    lines.push('## 发布批次审核',
-      `- 已收录基线 commit：${releaseBatch.base_commit || '(无，首个版本需完整审核)'}`,
-      '- 以下每个版本都须检查其完整代码及变更，不能只检查最新版本。',
-      ...releaseBatch.releases.map(item =>
-        `- ${item.version} / ${item.commit}：源码 plugin-release-under-review/${item.version}/；变更 plugin-release-diffs/${item.version}.patch`), '');
+  if (releaseTarget) {
+    lines.push('## 发布版本审核',
+      `- 已收录基线 commit：${releaseTarget.base_commit || '(无，需完整审核)'}`,
+      `- 审核版本：${releaseTarget.version} / ${releaseTarget.commit}`,
+      '- 源码：plugin-under-review/；相对已收录基线的变更：plugin-release.patch。', '');
   }
 
   lines.push(

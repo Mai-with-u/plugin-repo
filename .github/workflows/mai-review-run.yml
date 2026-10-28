@@ -172,9 +172,9 @@ jobs:
           path: plugin-under-review
           persist-credentials: false
 
-      - name: Checkout release batch and prepare changes
-        if: steps.review-start.outputs.should_run == 'true' && steps.build-context.outputs.release_batch == 'true'
-        run: node .github/scripts/checkout_release_reviews.cjs
+      - name: Checkout release and prepare changes
+        if: steps.review-start.outputs.should_run == 'true' && steps.build-context.outputs.release_target == 'true'
+        run: node .github/scripts/checkout_release_review.cjs
 
       - name: Install Step Code CLI
         if: steps.review-start.outputs.should_run == 'true'
@@ -267,7 +267,7 @@ jobs:
           name: release-review-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             release-review.json
-            mai-release-targets.json
+            mai-release-target.json
           if-no-files-found: error
           retention-days: 7
 
@@ -288,7 +288,7 @@ jobs:
             step-maimai-attempt-*-events.jsonl
             step-maimai-attempt-*-stderr.log
             mai-review-input.md
-            mai-release-targets.json
+            mai-release-target.json
             codex-maimai.md
           if-no-files-found: ignore
           retention-days: 7

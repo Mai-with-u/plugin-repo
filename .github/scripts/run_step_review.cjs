@@ -96,13 +96,13 @@ async function runStepWithRetries({ args, prefix, run = spawnStep,
 }
 
 function buildStructuredInstructions() {
-  const batch = JSON.parse(fs.readFileSync('mai-release-targets.json', 'utf8'));
-  const template = { schema_version: 1, plugin_id: batch.id, repository_url: batch.repositoryUrl,
-    releases: batch.releases.map(({ version, tag, commit }) => ({ version, tag, commit,
-      reviewed: false, decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] })) };
+  const target = JSON.parse(fs.readFileSync('mai-release-target.json', 'utf8'));
+  const template = { schema_version: 2, plugin_id: target.id, repository_url: target.repositoryUrl,
+    version: target.version, tag: target.tag, commit: target.commit,
+      reviewed: false, decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] };
   return '\n完成检查后直接输出唯一完整的审核 JSON 对象，不加 Markdown 或其他正文。' +
     '\n以下是本次真实审核对象的输出模板，身份字段保持不变，审核字段必须按实际证据填写；模板本身不是检查证据。' +
-    '\nJSON 字符串中的双引号、反斜杠和换行必须正确转义。schema_version 使用数字 1。不要在 JSON 外附加评论。\n' +
+    '\nJSON 字符串中的双引号、反斜杠和换行必须正确转义。schema_version 使用数字 2。不要在 JSON 外附加评论。\n' +
     JSON.stringify(template, null, 2);
 }
 

@@ -9,8 +9,7 @@ jobs:
     if: >-
       contains(github.event.issue.labels.*.name, 'plugin-release') &&
       contains(github.event.issue.labels.*.name, 'validated') &&
-      (github.event.comment.body == '/approve' || github.event.comment.body == '/ap' ||
-       startsWith(github.event.comment.body, '/approve ') || startsWith(github.event.comment.body, '/ap '))
+      (github.event.comment.body == '/approve' || github.event.comment.body == '/ap')
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write
@@ -78,14 +77,11 @@ jobs:
             const fs = require('fs');
             const outcome = JSON.parse(fs.readFileSync('release-command-outcome.json', 'utf8'));
             const params = { ...context.repo, issue_number: context.issue.number };
-            await github.rest.issues.createComment({ ...params, body: `✅ 已批准并收录：${outcome.approved.join('、')}。` +
-              (outcome.pending.length ? `\n\n⏳ 待处理：${outcome.pending.join('、')}。` : '') });
-            if (!outcome.pending.length) {
-              await github.rest.issues.addLabels({ ...params, labels: ['approved'] });
-              try { await github.rest.issues.removeLabel({ ...params, name: 'needs-manual-review' }); }
-              catch (error) { if (error.status !== 404) throw error; }
-              await github.rest.issues.update({ ...params, state: 'closed' });
-            }
+            await github.rest.issues.createComment({ ...params, body: `✅ 已批准并收录：${outcome.version}。` });
+            await github.rest.issues.addLabels({ ...params, labels: ['approved'] });
+            try { await github.rest.issues.removeLabel({ ...params, name: 'needs-manual-review' }); }
+            catch (error) { if (error.status !== 404) throw error; }
+            await github.rest.issues.update({ ...params, state: 'closed' });
 
       - name: Report release approval failure
         if: failure()
@@ -437,8 +433,7 @@ jobs:
             const reason = context.payload.comment.body.slice('/reject'.length).trim() || '未提供具体原因';
             await github.rest.issues.addLabels({ ...params, labels: ['rejected'] });
             await github.rest.issues.createComment({ ...params, body:
-              `🚫 永久拒绝：${outcome.rejected.join('、') || '无待审版本'}。\n\n原因：${reason}` +
-              (outcome.approved.length ? `\n\n已收录版本保留：${outcome.approved.join('、')}。` : '') });
+              `🚫 永久拒绝：${outcome.version}。\n\n原因：${reason}` });
             for (const name of ['validated', 'needs-manual-review']) {
               try { await github.rest.issues.removeLabel({ ...params, name }); }
               catch (error) { if (error.status !== 404) throw error; }

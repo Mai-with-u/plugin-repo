@@ -69,8 +69,8 @@ jobs:
             const { createGithubClient } = require('./.github/scripts/sync_plugin_versions.cjs');
             const { data: issue } = await github.rest.issues.get({ ...context.repo, issue_number: context.issue.number });
             const result = JSON.parse(fs.readFileSync('release-review-result/release-review.json', 'utf8'));
-            const targets = JSON.parse(fs.readFileSync('release-review-result/mai-release-targets.json', 'utf8'));
-            const outcome = await applyReleaseReview({ root: process.cwd(), issue, result, targets,
+            const target = JSON.parse(fs.readFileSync('release-review-result/mai-release-target.json', 'utf8'));
+            const outcome = await applyReleaseReview({ root: process.cwd(), issue, result, target,
               request: createGithubClient(process.env.GITHUB_TOKEN), botLogin: process.env.MAI_REVIEW_BOT_LOGIN });
             fs.writeFileSync('release-review-outcome.json', JSON.stringify(outcome));
 
@@ -79,7 +79,7 @@ jobs:
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git add plugin_versions.json blocked_release_versions.json
+          git add plugin_versions.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: 自动收录审核通过的插件版本"
             git push origin HEAD:main
@@ -93,7 +93,7 @@ jobs:
             const fs = require('fs');
             const outcome = JSON.parse(fs.readFileSync('release-review-outcome.json', 'utf8'));
             const params = { ...context.repo, issue_number: context.issue.number };
-            if (outcome.manual.length) {
+            if (!outcome.approved) {
               try {
                 await github.rest.issues.getLabel({ ...context.repo, name: 'needs-manual-review' });
               } catch (error) {
@@ -106,7 +106,7 @@ jobs:
                 await github.rest.issues.getLabel({ ...context.repo, name: 'auto-approved' });
               } catch (error) {
                 if (error.status !== 404) throw error;
-                await github.rest.issues.createLabel({ ...context.repo, name: 'auto-approved', color: '0e8a16', description: '发布批次已自动处理，通过版本已收录' });
+                await github.rest.issues.createLabel({ ...context.repo, name: 'auto-approved', color: '0e8a16', description: '发布版本已自动审核并收录' });
               }
               await github.rest.issues.addLabels({ ...params, labels: ['auto-approved'] });
               const { data: issue } = await github.rest.issues.get(params);
@@ -115,10 +115,9 @@ jobs:
               }
             }
             await github.rest.issues.createComment({ ...params, body:
-              (outcome.passed.length ? `✅ 已自动收录：${outcome.passed.map(item => item.version).join('、')}。\n\n` : '') +
-              (outcome.rejected.length ? `❌ 已自动拒绝：${outcome.rejected.join('、')}。同批次最新 Release 已通过审核。\n\n` : '') +
-              (outcome.manual.length ? `⚠️ 需人工处理：${outcome.manual.join('、')}。请维护者核实风险后决定是否批准。` : '✅ 本批次已完成自动处理。') });
-            if (!outcome.manual.length) await github.rest.issues.update({ ...params, state: 'closed' });
+              outcome.approved ? `✅ 已自动收录：${outcome.version}。` :
+                `⚠️ ${outcome.version} 需人工处理。请维护者核实风险后决定是否批准。` });
+            if (outcome.approved) await github.rest.issues.update({ ...params, state: 'closed' });
 
       - name: Notify release developer
         if: always() && steps.publish-versions.outcome == 'success'

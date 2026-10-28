@@ -2,27 +2,21 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { parseReleaseIssue } = require('./release_review.cjs');
 
-function validateReleaseReview(result, batch) {
-  assert.equal(result?.schema_version, 1, '审核结果协议无效');
-  assert.equal(result.plugin_id, batch.id, '审核插件不一致');
-  assert.equal(result.repository_url, batch.repositoryUrl, '审核仓库不一致');
-  assert.ok(Array.isArray(result.releases) && result.releases.length === batch.releases.length, '审核必须覆盖整个批次');
-  const seen = new Set();
-  for (const item of result.releases) {
-    assert.ok(batch.releases.some(target => target.version === item.version && target.tag === item.tag && target.commit === item.commit), '审核版本或 commit 不一致');
-    assert.ok(!seen.has(item.version), '审核版本重复');
-    seen.add(item.version);
-    assert.ok(['pass', 'manual_review'].includes(item.decision), '审核结论无效');
-    assert.equal(typeof item.reviewed, 'boolean', '缺少源码检查状态');
-    assert.equal(typeof item.summary, 'string', `${item.version}: summary 必须是字符串，实际类型为 ${typeof item.summary}`);
-    assert.ok(item.summary.trim(), `${item.version}: summary 不能为空`);
-    assert.ok(Array.isArray(item.risks) && item.risks.every(risk =>
-      typeof risk === 'string' && risk.trim()), '风险列表无效');
-  }
+function validateReleaseReview(result, target) {
+  assert.equal(result?.schema_version, 2, '审核结果协议无效');
+  assert.equal(result.plugin_id, target.id, '审核插件不一致');
+  assert.equal(result.repository_url, target.repositoryUrl, '审核仓库不一致');
+  assert.ok(!Object.hasOwn(result, 'releases'), '不再接受批次审核结果');
+  for (const key of ['version', 'tag', 'commit']) assert.equal(result[key], target[key], '审核版本或 commit 不一致');
+  assert.ok(['pass', 'manual_review'].includes(result.decision), '审核结论无效');
+  assert.equal(typeof result.reviewed, 'boolean', '缺少源码检查状态');
+  assert.equal(typeof result.summary, 'string', 'summary 必须是字符串');
+  assert.ok(result.summary.trim(), 'summary 不能为空');
+  assert.ok(Array.isArray(result.risks) && result.risks.every(risk => typeof risk === 'string' && risk.trim()), '风险列表无效');
   return result;
 }
 
-function parseReleaseReview(text, batch) {
+function parseReleaseReview(text, target) {
   text = text.replace(/^\uFEFF/, '').trim();
   // 仅修复字符串外的尾逗号，不能改写风险说明中的文本。
   function decode(source) {
@@ -54,9 +48,9 @@ function parseReleaseReview(text, batch) {
     }
     assert.equal(closers.length, 0, '审核 JSON 未完整闭合');
     const value = JSON.parse(cleaned);
-    // 仅兼容协议 1 的字符串写法，不推断缺失或未知的协议版本。
-    if (typeof value?.schema_version === 'string' && /^1(?:\.0+)?$/.test(value.schema_version.trim())) {
-      value.schema_version = 1;
+    // 仅兼容协议 2 的字符串写法，不推断缺失或未知的协议版本。
+    if (typeof value?.schema_version === 'string' && /^2(?:\.0+)?$/.test(value.schema_version.trim())) {
+      value.schema_version = 2;
     }
     return value;
   }
@@ -80,7 +74,7 @@ function parseReleaseReview(text, batch) {
           try {
             const value = decode(text.slice(start, end + 1));
             // 先收集完整结论，再统一校验，避免忽略另一份协议错误的结论。
-            if (Array.isArray(value?.releases)) candidates.push(value);
+            if (value && typeof value === 'object' && ('plugin_id' in value || 'schema_version' in value)) candidates.push(value);
           } catch { /* 非 JSON 文本 */ }
           start = end;
           break;
@@ -91,66 +85,54 @@ function parseReleaseReview(text, batch) {
     result = candidates[0];
   }
   // 缺失证据字段的版本降为人工处理，不推断通过。
-  if (Array.isArray(result?.releases)) {
-    for (const item of result.releases) {
-      const missing = [];
-      if (typeof item.summary !== 'string' || !item.summary.trim()) {
-        item.summary = '审核说明缺失，需人工核实。';
-        missing.push('缺少审核说明');
-      }
-      if (typeof item.reviewed !== 'boolean') {
-        item.reviewed = false;
-        missing.push('缺少源码检查状态');
-      }
-      if (!Array.isArray(item.risks)) {
-        missing.push('缺少有效风险列表');
-        item.risks = typeof item.risks === 'string' && item.risks.trim() ? [item.risks] : [];
-      }
-      if (missing.length) {
-        item.decision = 'manual_review';
-        item.risks.push(...missing);
-      }
+  if (result && typeof result === 'object' && !Array.isArray(result)) {
+    const item = result;
+    const missing = [];
+    if (typeof item.summary !== 'string' || !item.summary.trim()) {
+      item.summary = '审核说明缺失，需人工核实。';
+      missing.push('缺少审核说明');
+    }
+    if (typeof item.reviewed !== 'boolean') {
+      item.reviewed = false;
+      missing.push('缺少源码检查状态');
+    }
+    if (!Array.isArray(item.risks)) {
+      missing.push('缺少有效风险列表');
+      item.risks = typeof item.risks === 'string' && item.risks.trim() ? [item.risks] : [];
+    }
+    if (missing.length) {
+      item.decision = 'manual_review';
+      item.risks.push(...missing);
     }
   }
-  return validateReleaseReview(result, batch);
+  return validateReleaseReview(result, target);
 }
 
-function passedReleases(result) {
-  return result.releases.filter(item => item.decision === 'pass' && item.reviewed && item.risks.length === 0)
-    .map(({ version, tag, commit }) => ({ version, tag, commit }));
-}
-
-function rejectedReleases(result, batch) {
-  const passed = new Set(passedReleases(result).map(item => item.version));
-  // 批次按发布时间降序保存；模型输出可能重排，不能用于判断最新 Release。
-  if (!passed.has(batch?.releases[0]?.version)) return [];
-  return result.releases.filter(item => !passed.has(item.version))
-    .map(({ version }) => version);
+function isReleasePassed(result) {
+  return result.decision === 'pass' && result.reviewed && result.risks.length === 0;
 }
 
 // A malformed model response is evidence of an incomplete review, never approval.
 // Keep strict parsing for consumers; only the workflow converts it to manual work.
-function finalizeReleaseReview(text, batch) {
+function finalizeReleaseReview(text, target) {
   try {
-    return { result: parseReleaseReview(text, batch), error: null };
+    return { result: parseReleaseReview(text, target), error: null };
   } catch (error) {
     const reason = `自动审核结果未通过校验，需人工核实：${error.message}`;
-    const result = { schema_version: 1, plugin_id: batch.id, repository_url: batch.repositoryUrl,
-      releases: batch.releases.map(({ version, tag, commit }) => ({ version, tag, commit,
+    const result = { schema_version: 2, plugin_id: target.id, repository_url: target.repositoryUrl,
+      version: target.version, tag: target.tag, commit: target.commit,
         reviewed: false, decision: 'manual_review',
         summary: '模型输出无法作为有效审核结论。原始输出保存在本次运行诊断产物 codex-review-raw.md 中；请核实后重新审核或人工处理。',
-        risks: [reason] })) };
-    return { result: validateReleaseReview(result, batch), error: reason };
+        risks: [reason] };
+    return { result: validateReleaseReview(result, target), error: reason };
   }
 }
 
-function renderReleaseReview(result, batch) {
-  const passed = new Set(passedReleases(result).map(item => item.version));
-  const rejected = new Set(rejectedReleases(result, batch));
+function renderReleaseReview(result) {
   const excerpt = value => value.length > 2500 ? `${value.slice(0, 2500)}…（完整内容见审核产物）` : value;
-  const summary = result.releases.map(item => `### ${item.version}：${passed.has(item.version) ? '通过，等待自动收录' : rejected.has(item.version) ? '未通过，同批次最新 Release 已通过，等待自动拒绝' : '需人工处理'}\n\n` +
-    `Commit：\`${item.commit}\`\n\n${excerpt(item.summary)}\n` +
-    excerpt(item.risks.map(risk => `- ${risk}`).join('\n'))).join('\n\n');
+  const summary = `### ${result.version}：${isReleasePassed(result) ? '通过，等待自动收录' : '需人工处理'}\n\n` +
+    `Commit：\`${result.commit}\`\n\n${excerpt(result.summary)}\n` +
+    excerpt(result.risks.map(risk => `- ${risk}`).join('\n'));
   const structured = JSON.stringify(result, null, 2);
   return summary + (structured.length <= 20000
     ? `\n\n<details><summary>结构化审核结果</summary>\n\n\`\`\`json\n${structured}\n\`\`\`\n</details>`
@@ -158,12 +140,12 @@ function renderReleaseReview(result, batch) {
 }
 
 if (require.main === module) {
-  const batch = parseReleaseIssue({ body: `<!-- plugin-release: ${fs.readFileSync('mai-release-targets.json', 'utf8')} -->` });
+  const target = parseReleaseIssue({ body: `<!-- plugin-release: ${fs.readFileSync('mai-release-target.json', 'utf8')} -->` });
   const raw = fs.readFileSync('codex-review.md', 'utf8');
   fs.writeFileSync('codex-review-raw.md', raw);
-  const { result, error } = finalizeReleaseReview(raw, batch);
+  const { result, error } = finalizeReleaseReview(raw, target);
   if (error) console.warn(error);
   fs.writeFileSync('release-review.json', JSON.stringify(result, null, 2));
-  fs.writeFileSync('codex-review.md', renderReleaseReview(result, batch));
+  fs.writeFileSync('codex-review.md', renderReleaseReview(result));
 }
-module.exports = { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, passedReleases, rejectedReleases, renderReleaseReview };
+module.exports = { validateReleaseReview, parseReleaseReview, finalizeReleaseReview, isReleasePassed, renderReleaseReview };

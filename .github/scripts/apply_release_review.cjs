@@ -1,29 +1,18 @@
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const { parseReleaseIssue, approveRelease, blockedReleaseVersions, isBlockedRelease } = require('./release_review.cjs');
-const { validateReleaseReview, passedReleases, rejectedReleases } = require('./release_review_result.cjs');
+const { parseReleaseIssue, approveRelease } = require('./release_review.cjs');
+const { validateReleaseReview, isReleasePassed } = require('./release_review_result.cjs');
 
-async function applyReleaseReview({ root, issue, result, targets, request, botLogin }) {
+async function applyReleaseReview({ root, issue, result, target, request, botLogin }) {
   assert.equal(issue.user.login, botLogin, '审核 Issue 作者不可信');
   assert.equal(issue.state, 'open', '审核 Issue 已关闭');
   assert.ok(issue.labels.some(label => label.name === 'plugin-release'), '不是发布审核 Issue');
-  assert.ok(!issue.labels.some(label => label.name === 'rejected'), '批次已被拒绝');
-  const batch = parseReleaseIssue(issue);
-  assert.deepEqual(batch, parseReleaseIssue({ body: `<!-- plugin-release: ${JSON.stringify(targets)} -->` }), '审核期间批次发生变化');
-  validateReleaseReview(result, batch);
-  const passed = passedReleases(result);
-  const rejected = rejectedReleases(result, batch);
-  if (passed.length) await approveRelease({ root, issue, request, botLogin, approvedReleases: passed });
-  if (rejected.length) {
-    const blocked = blockedReleaseVersions(root);
-    for (const version of rejected) {
-      if (!isBlockedRelease(blocked, batch, version)) blocked.push({ id: batch.id, repositoryUrl: batch.repositoryUrl, version });
-    }
-    fs.writeFileSync(path.join(root, 'blocked_release_versions.json'), `${JSON.stringify(blocked, null, 2)}\n`);
-  }
-  return { passed, rejected, manual: result.releases.filter(item =>
-    !passed.some(target => target.version === item.version) && !rejected.includes(item.version)).map(item => item.version) };
+  assert.ok(!issue.labels.some(label => label.name === 'rejected'), '版本已被拒绝');
+  const release = parseReleaseIssue(issue);
+  assert.deepEqual(release, parseReleaseIssue({ body: `<!-- plugin-release: ${JSON.stringify(target)} -->` }), '审核期间目标发生变化');
+  validateReleaseReview(result, release);
+  const approved = isReleasePassed(result);
+  if (approved) await approveRelease({ root, issue, request, botLogin });
+  return { version: release.version, approved };
 }
 
 module.exports = { applyReleaseReview };

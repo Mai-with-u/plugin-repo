@@ -5,23 +5,34 @@ const path = require('node:path');
 const LABEL = 'plugin-release';
 const MARKER = /<!-- plugin-release: (.+) -->/;
 
-function parseReleaseIssue(issue) {
+function readReleaseIssue(issue) {
   const match = (issue.body || '').match(MARKER);
   assert.ok(match, '缺少发布审核信息');
   const data = JSON.parse(match[1]);
   assert.ok(typeof data.id === 'string' && /^[\w.-]+$/.test(data.id), '插件 ID 无效');
   assert.match(data.repositoryUrl, /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/);
-  const releases = data.releases || [{ version: data.version, tag: data.tag, commit: data.commit }];
-  assert.ok(Array.isArray(releases) && releases.length > 0 && releases.length <= 5, '每批审核 1 至 5 个发布版本');
   assert.ok(Array.isArray(data.discarded || []), '跳过版本必须是数组');
-  for (const release of [...releases, ...(data.discarded || [])]) {
-    assert.match(release.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
-    assert.ok(release.tag === release.version || release.tag === `v${release.version}`, 'Tag 无效');
-    assert.match(release.commit, /^[0-9a-f]{40}$/);
+  return data;
+}
+
+function releaseSnapshot(release) {
+  assert.match(release.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
+  assert.ok(release.tag === release.version || release.tag === `v${release.version}`, 'Tag 无效');
+  assert.match(release.commit, /^[0-9a-f]{40}$/);
+  return { version: release.version, tag: release.tag, commit: release.commit };
+}
+
+function parseReleaseIssue(issue) {
+  const data = readReleaseIssue(issue);
+  // 已打开的旧单版本 Issue 可继续处理；多版本旧单只供历史去重读取。
+  if (data.releases !== undefined) {
+    assert.ok(Array.isArray(data.releases) && data.releases.length === 1, '仅支持单个 Release 审核');
+    assert.ok(data.version === undefined, '审核目标格式冲突');
   }
-  assert.equal(new Set(releases.map(item => item.version)).size, releases.length, '批次版本重复');
+  const release = releaseSnapshot(data.releases ? data.releases[0] : data);
   if (data.base_commit) assert.match(data.base_commit, /^[0-9a-f]{40}$/);
-  return { id: data.id, repositoryUrl: data.repositoryUrl, releases, discarded: data.discarded || [], base_commit: data.base_commit || null };
+  return { id: data.id, repositoryUrl: data.repositoryUrl, ...release,
+    discarded: (data.discarded || []).map(releaseSnapshot), base_commit: data.base_commit || null };
 }
 
 function releaseKey(data) {
@@ -61,11 +72,14 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     for (const issue of batch) {
       if (issue.pull_request || issue.user?.login !== botLogin) continue;
       try {
-        const data = parseReleaseIssue(issue);
+        const data = readReleaseIssue(issue);
+        // 只读历史快照，避免旧批次及已跳过版本被重新开单；不参与审核和批准。
+        const history = (data.releases || [data]).map(releaseSnapshot);
+        const discarded = (data.discarded || []).map(releaseSnapshot);
         if (issue.labels.some(label => label.name === 'rejected')) {
-          for (const release of data.releases) blocked.push({ id: data.id, repositoryUrl: data.repositoryUrl, version: release.version });
+          for (const release of history) blocked.push({ id: data.id, repositoryUrl: data.repositoryUrl, version: release.version });
         }
-        for (const release of [...data.releases, ...data.discarded]) {
+        for (const release of [...history, ...discarded]) {
           issues.set(releaseKey({ ...data, ...release }), issue);
         }
       } catch { /* 非发布审核 Issue */ }
@@ -107,22 +121,20 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     if (!candidates.length) return;
     const snapshot = item => ({ version: item.version, tag: item.tag, commit: item.commit });
     const data = { id: plugin.id, repositoryUrl: candidates[0].repositoryUrl,
-      releases: candidates.slice(0, 5).map(snapshot), discarded: candidates.slice(5).map(snapshot),
+      ...snapshot(candidates[0]), discarded: candidates.slice(1).map(snapshot),
       base_commit: previous?.versions.find(item => !item.yanked)?.commit || null };
-    const rows = data.releases.map(item =>
-      `| [${item.tag}](${data.repositoryUrl}/releases/tag/${item.tag}) | \`${item.commit}\` |`).join('\n');
     const issue = await request(`${base}/issues`, {
       method: 'POST', body: JSON.stringify({
-        title: `[Release] ${plugin.id} ${data.releases.map(item => item.version).join(', ')}`,
-        body: `<!-- plugin-release: ${JSON.stringify(data)} -->\n\n插件发布批次等待自动审核。\n\n` +
+        title: `[Release] ${plugin.id} ${data.version}`,
+        body: `<!-- plugin-release: ${JSON.stringify(data)} -->\n\n仅最新发布版本等待自动审核。\n\n` +
           `- 插件：\`${plugin.id}\`\n- 仓库：${data.repositoryUrl}\n\n` +
-          `| 发布版本 | Commit |\n| --- | --- |\n${rows}\n\n` +
+          `| 发布版本 | Commit |\n| --- | --- |\n| [${data.tag}](${data.repositoryUrl}/releases/tag/${data.tag}) | \`${data.commit}\` |\n\n` +
           (data.discarded.length ? `本次跳过较早的 ${data.discarded.length} 个 Release，不收录、不补开审核。\n\n` : '') +
-          `无风险且完整审核的版本自动收录；只有同批次最新 Release 通过，其余未通过或依据不足的旧版本才自动拒绝；最新 Release 未通过时，未通过的版本交给维护者。维护者核实后可发送独立的 \`/approve\` 或 \`/ap\` 批准剩余版本，或使用 \`/reject 原因\` 拒绝。`,
+          `无风险且完整审核的版本自动收录；未通过或依据不足时交给维护者。维护者核实后可发送独立的 \`/approve\` 或 \`/ap\` 批准，或使用 \`/reject 原因\` 拒绝。`,
         labels: [LABEL],
       }),
     });
-    for (const release of [...data.releases, ...data.discarded]) {
+    for (const release of [data, ...data.discarded]) {
       issues.set(releaseKey({ ...data, ...release }), issue);
     }
     pending.delete(plugin.id);
@@ -131,16 +143,13 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
   return admit;
 }
 
-async function approveRelease({ root, issue, request, botLogin, approvedReleases }) {
+async function approveRelease({ root, issue, request, botLogin }) {
   assert.equal(issue.user.login, botLogin, '只能批准市场自动创建的发布审核 Issue');
   assert.equal(issue.state, 'open', 'Issue 已关闭');
-  assert.ok(!issue.labels.some(label => label.name === 'rejected'), '批次已被拒绝');
+  assert.ok(!issue.labels.some(label => label.name === 'rejected'), '版本已被拒绝');
   const data = parseReleaseIssue(issue);
-  const targets = approvedReleases || data.releases;
-  assert.ok(targets.length > 0 && targets.every(target => data.releases.some(item =>
-    item.version === target.version && item.tag === target.tag && item.commit === target.commit)), '批准目标不属于当前审核批次');
   const blocked = blockedReleaseVersions(root);
-  assert.ok(targets.every(target => !isBlockedRelease(blocked, data, target.version)), '版本已被永久拒绝');
+  assert.ok(!isBlockedRelease(blocked, data, data.version), '版本已被永久拒绝');
   const plugins = JSON.parse(fs.readFileSync(path.join(root, 'plugins.json'), 'utf8'));
   const plugin = plugins.find(item => item.id === data.id);
   assert.ok(plugin && plugin.repositoryUrl.replace(/\/$/, '').replace(/\.git$/, '') === data.repositoryUrl, '插件登记信息已改变');
@@ -153,9 +162,9 @@ async function approveRelease({ root, issue, request, botLogin, approvedReleases
   const details = fs.existsSync(detailsPath) ? JSON.parse(fs.readFileSync(detailsPath, 'utf8')) : [];
   const expectedId = previous?.manifest_id || details.find(item => item.id === plugin.id)?.manifest?.id;
   const updated = await syncPlugin(plugin, previous, request, expectedId, async (_, candidate) =>
-    targets.some(item => item.version === candidate.version && item.tag === candidate.tag && item.commit === candidate.commit));
-  assert.ok(targets.every(release => updated.versions.some(item => item.version === release.version && item.tag === release.tag &&
-    item.commit === release.commit && !item.yanked)), 'Release 已变更、撤回或校验失败，请重新审核');
+    data.version === candidate.version && data.tag === candidate.tag && data.commit === candidate.commit);
+  assert.ok(updated.versions.some(item => item.version === data.version && item.tag === data.tag &&
+    item.commit === data.commit && !item.yanked), 'Release 已变更、撤回或校验失败，请重新审核');
   if (position < 0) index.plugins.push(updated);
   else index.plugins[position] = updated;
   assert.equal(skipConflictingPlugins(index.plugins).length, index.plugins.length, '插件身份冲突');

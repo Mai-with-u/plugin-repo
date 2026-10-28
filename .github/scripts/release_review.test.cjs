@@ -4,7 +4,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { createReleaseGate, approveRelease, parseReleaseIssue } = require('./release_review.cjs');
-const { approvalTargets, approveReleaseCommand, rejectReleaseCommand } = require('./release_commands.cjs');
+const { approveReleaseCommand, rejectReleaseCommand } = require('./release_commands.cjs');
 
 const plugin = { id: 'example.demo', repositoryUrl: 'https://github.com/example/demo' };
 const candidate = { version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40) };
@@ -21,45 +21,6 @@ function workspace(t, trusted = []) {
   fs.writeFileSync(path.join(root, 'plugin_versions.json'), JSON.stringify({ schema_version: 1, plugins: [] }));
   return root;
 }
-
-test('指定批准命令只接受本批次版本，拒绝重复、无效和越界参数', () => {
-  const second = { ...candidate, version: '2.0.0', tag: 'v2.0.0' };
-  const batch = { releases: [candidate, second] };
-  assert.deepEqual(approvalTargets('/ap', batch, [second]), [second]);
-  assert.deepEqual(approvalTargets('/approve 2.0.0, 1.0.0', batch, batch.releases), batch.releases);
-  for (const command of ['/ap 1.0', '/ap 3.0.0', '/ap 1.0.0 1.0.0', '/apple', '/ap 1.0.0 原因']) {
-    assert.throws(() => approvalTargets(command, batch, batch.releases));
-  }
-});
-
-test('部分批准后永久拒绝剩余版本，同版本换 commit 或授信仍不能收录', async t => {
-  const root = workspace(t, [{ owner_id: 10, repositories: ['example/demo'] }]);
-  const second = { version: '2.0.0', tag: 'v2.0.0', commit: 'b'.repeat(40) };
-  const target = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate] })} -->` });
-  const base = releaseClient();
-  const request = async url => {
-    if (url.includes('/contents/?ref=')) return [];
-    if (url.includes('/releases?')) return [second, candidate].map(item => ({ tag_name: item.tag, draft: false }));
-    if (url.includes('/git/ref/') && url.endsWith(second.tag)) return { object: { type: 'commit', sha: second.commit } };
-    const result = await base(url);
-    if (url.includes('/contents/') && url.endsWith(second.commit)) {
-      const manifest = JSON.parse(Buffer.from(result.content, 'base64').toString());
-      manifest.version = second.version;
-      result.content = Buffer.from(JSON.stringify(manifest)).toString('base64');
-    }
-    return result;
-  };
-  assert.deepEqual(await approveReleaseCommand({ root, issue: target, request, botLogin, command: '/ap 2.0.0' }),
-    { approved: ['2.0.0'], pending: ['1.0.0'] });
-  assert.deepEqual(rejectReleaseCommand({ root, issue: target, botLogin }), { rejected: ['1.0.0'], approved: ['2.0.0'] });
-  const index = fs.readFileSync(path.join(root, 'plugin_versions.json'), 'utf8');
-  await assert.rejects(approveReleaseCommand({ root, issue: target, request, botLogin, command: '/ap 1.0.0' }), /永久拒绝/);
-  assert.equal(fs.readFileSync(path.join(root, 'plugin_versions.json'), 'utf8'), index);
-  const gate = await createReleaseGate({ root, repository: 'market/repo', botLogin, request: async url =>
-    url.includes('/issues?') ? [] : { owner: { id: 10 }, full_name: 'example/demo' } });
-  assert.equal(await gate(plugin, { ...candidate, commit: 'c'.repeat(40), tag: candidate.version }), false);
-  assert.equal(await gate(plugin, { ...candidate, version: '3.0.0', tag: 'v3.0.0' }), true);
-});
 
 test('已拒绝 Issue 的历史版本按版本号去重，同版本换 commit 不重新开单', async t => {
   const root = workspace(t);
@@ -106,7 +67,7 @@ test('新发布只创建一次 Issue，再添加 validated 触发审核；伪造
   assert.equal(posts.length, 2);
   assert.deepEqual(posts[0][1].labels, ['plugin-release']);
   assert.deepEqual(posts[1][1].labels, ['validated']);
-  assert.deepEqual(parseReleaseIssue({ body: posts[0][1].body }).releases, [candidate]);
+  assert.deepEqual(parseReleaseIssue({ body: posts[0][1].body }), { ...data, discarded: [], base_commit: null });
 });
 
 test('授信同时要求数字 owner ID 和授权仓库匹配', async t => {
@@ -190,7 +151,7 @@ test('开单后添加标签失败，下次巡视恢复审核触发', async t => 
   assert.equal(posts, 1);
 });
 
-test('每次巡视最多合并最新五个，重跑不补开丢弃版本，待审新发布另开批次', async t => {
+test('每次巡视只审核最新一个，重跑不补开丢弃版本，待审新发布另开审核单', async t => {
   const root = workspace(t);
   const issues = [];
   const request = async (url, init) => {
@@ -215,21 +176,21 @@ test('每次巡视最多合并最新五个，重跑不补开丢弃版本，待�
   await scan(candidates);
   assert.equal(issues.length, 1);
   const batch = parseReleaseIssue(issues[0]);
-  assert.deepEqual(batch.releases.map(item => item.version), ['1.0.6', '1.0.5', '1.0.4', '1.0.3', '1.0.2']);
-  assert.deepEqual(batch.discarded.map(item => item.version), ['1.0.1', '1.0.0']);
+  assert.deepEqual(batch.version, '1.0.6');
+  assert.deepEqual(batch.discarded.map(item => item.version), ['1.0.5', '1.0.4', '1.0.3', '1.0.2', '1.0.1', '1.0.0']);
   await scan(candidates);
   assert.equal(issues.length, 1);
   const next = { version: '1.0.7', tag: 'v1.0.7', commit: '8'.repeat(40), published_at: '2026-10-08T00:00:00Z' };
   await scan([...candidates, next]);
   assert.equal(issues.length, 2);
-  assert.deepEqual(parseReleaseIssue(issues[1]).releases.map(item => item.version), ['1.0.7']);
+  assert.deepEqual(parseReleaseIssue(issues[1]).version, '1.0.7');
   assert.deepEqual(parseReleaseIssue(issues[0]), batch);
   issues.forEach(item => { item.state = 'closed'; });
   await scan([...candidates, next]);
   assert.equal(issues.length, 2);
 });
 
-test('批次按发布时间而非版本号取最新，超过五个目标不能批准', async t => {
+test('仅按发布时间而非版本号取最新，多版本目标不能批准', async t => {
   const root = workspace(t);
   let created;
   const request = async (url, init) => {
@@ -241,36 +202,43 @@ test('批次按发布时间而非版本号取最新，超过五个目标不能�
   await gate(plugin, { ...candidate, version: '9.0.0', tag: 'v9.0.0', published_at: '2026-01-01' });
   await gate(plugin, { ...candidate, published_at: '2026-10-01' });
   await gate.flush(plugin);
-  assert.deepEqual(parseReleaseIssue(created).releases.map(item => item.version), ['1.0.0', '9.0.0']);
+  assert.deepEqual(parseReleaseIssue(created).version, '1.0.0');
+  assert.deepEqual(parseReleaseIssue(created).discarded.map(item => item.version), ['9.0.0']);
   assert.throws(() => parseReleaseIssue(issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin,
-    releases: Array.from({ length: 6 }, () => candidate) })} -->` })), /1 至 5/);
+    releases: Array.from({ length: 6 }, () => candidate) })} -->` })), /单个 Release/);
 });
 
-test('批次批准原子收录全部目标，任何成员撤回或改 commit 都不写入', async t => {
+test('批准命令只接受无参数形式，拒绝不能下架已收录版本', async t => {
   const root = workspace(t);
-  const second = { version: '2.0.0', tag: 'v2.0.0', commit: 'b'.repeat(40) };
-  const target = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate] })} -->` });
-  const base = releaseClient();
-  const request = async url => {
-    if (url.includes('/contents/?ref=')) return [];
-    if (url.includes('/releases?')) return [second, candidate].map(item => ({ tag_name: item.tag, draft: false }));
-    if (url.includes('/git/ref/') && url.endsWith(second.tag)) return { object: { type: 'commit', sha: second.commit } };
-    const result = await base(url);
-    if (url.includes('/contents/') && url.endsWith(second.commit)) {
-      const manifest = JSON.parse(Buffer.from(result.content, 'base64').toString());
-      manifest.version = second.version;
-      result.content = Buffer.from(JSON.stringify(manifest)).toString('base64');
-    }
-    return result;
-  };
-  const file = path.join(root, 'plugin_versions.json');
-  const before = fs.readFileSync(file, 'utf8');
-  await assert.rejects(approveRelease({ root, issue: target, botLogin, request: async url =>
-    url.includes('/releases?') ? [{ tag_name: candidate.tag, draft: false }] : request(url) }));
-  assert.equal(fs.readFileSync(file, 'utf8'), before);
-  await assert.rejects(approveRelease({ root, issue: target, botLogin, request: async url =>
-    url.includes('/git/ref/') && url.endsWith(second.tag) ? { object: { type: 'commit', sha: candidate.commit } } : request(url) }));
-  assert.equal(fs.readFileSync(file, 'utf8'), before);
-  await approveRelease({ root, issue: target, botLogin, request });
-  assert.deepEqual(JSON.parse(fs.readFileSync(file)).plugins[0].versions.map(item => item.version), ['2.0.0', '1.0.0']);
+  for (const command of ['/ap 1.0.0', '/approve 1.0.0 2.0.0', '/apple']) {
+    await assert.rejects(approveReleaseCommand({ root, issue: issue(), request: releaseClient(), botLogin, command }), /不再接受版本参数/);
+  }
+  assert.deepEqual(await approveReleaseCommand({ root, issue: issue(), request: releaseClient(), botLogin, command: '/ap' }), { version: '1.0.0' });
+  assert.throws(() => rejectReleaseCommand({ root, issue: issue(), botLogin }), /已收录/);
+});
+
+test('拒绝单版本永久生效，同版本换 commit 或授信仍不能收录', async t => {
+  const root = workspace(t, [{ owner_id: 10, repositories: ['example/demo'] }]);
+  for (let i = 0; i < 2; i++) assert.deepEqual(rejectReleaseCommand({ root, issue: issue(), botLogin }), { version: '1.0.0' });
+  assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'blocked_release_versions.json'))).length, 1);
+  await assert.rejects(approveRelease({ root, issue: issue(), request: releaseClient(), botLogin }), /永久拒绝/);
+  const gate = await createReleaseGate({ root, repository: 'market/repo', botLogin, request: async url =>
+    url.includes('/issues?') ? [] : { owner: { id: 10 }, full_name: 'example/demo' } });
+  assert.equal(await gate(plugin, { ...candidate, commit: 'c'.repeat(40) }), false);
+});
+
+test('旧单版本 Issue 归一化，多版本只参与历史去重且不能批准', async t => {
+  const root = workspace(t);
+  const second = { ...candidate, version: '2.0.0', tag: 'v2.0.0' };
+  const single = issue({ body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [candidate] })} -->` });
+  assert.deepEqual(parseReleaseIssue(single), parseReleaseIssue(issue()));
+  const old = issue({ state: 'closed', body: `<!-- plugin-release: ${JSON.stringify({ ...plugin, releases: [second, candidate], discarded: [] })} -->` });
+  assert.throws(() => parseReleaseIssue(old), /单个 Release/);
+  await assert.rejects(approveRelease({ root, issue: { ...old, state: 'open' }, request: releaseClient(), botLogin }), /单个 Release/);
+  const gate = await createReleaseGate({ root, repository: 'market/repo', botLogin, request: async (url, init) => {
+    assert.equal(init, undefined, '历史版本不能重新开单');
+    return url.includes('/issues?') ? [old] : { owner: { id: 10 }, full_name: 'example/demo' };
+  } });
+  for (const release of [candidate, second]) assert.equal(await gate(plugin, release), false);
+  await gate.flush(plugin);
 });

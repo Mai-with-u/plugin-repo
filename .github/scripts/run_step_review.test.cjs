@@ -33,19 +33,19 @@ test('没有最终回复或回复为空时报错，思考内容不进入审核�
   assert.equal(extractReview([event]), '审核结论');
 });
 
-test('结构化提示模板从当前批次读取精确身份且默认不批准', t => {
+test('结构化提示模板从当前版本读取精确身份且默认不批准', t => {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'review-prompt-test-'));
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   const batch = { id: 'author.actual-plugin', repositoryUrl: 'https://github.com/author/actual-plugin',
-    releases: [{ version: '2.3.4', tag: 'release-2.3.4', commit: 'a'.repeat(40) }] };
-  fs.writeFileSync(path.join(cwd, 'mai-release-targets.json'), JSON.stringify(batch));
+    version: '2.3.4', tag: 'v2.3.4', commit: 'a'.repeat(40) };
+  fs.writeFileSync(path.join(cwd, 'mai-release-target.json'), JSON.stringify(batch));
   const modulePath = path.join(__dirname, 'run_step_review.cjs');
   const prompt = execFileSync(process.execPath, ['-e',
     `process.stdout.write(require(${JSON.stringify(modulePath)}).buildStructuredInstructions())`], { cwd, encoding: 'utf8' });
   const template = JSON.parse(prompt.slice(prompt.indexOf('{')));
   assert.equal(template.plugin_id, batch.id);
   assert.equal(template.repository_url, batch.repositoryUrl);
-  assert.deepEqual(template.releases[0], { ...batch.releases[0], reviewed: false,
+  assert.deepEqual(template, { schema_version: 2, plugin_id: batch.id, repository_url: batch.repositoryUrl, version: batch.version, tag: batch.tag, commit: batch.commit, reviewed: false,
     decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] });
 });
 

@@ -129,7 +129,7 @@ test('审核诊断在成功、失败或取消后均保存，登记审核也适�
   assert.ok(step);
   const condition = step.match(/        if: (.+)/)[1];
   assert.equal(condition, "always() && steps.review-start.outputs.should_run == 'true'");
-  for (const file of ['codex-review-raw.md', 'step-review-events.jsonl', 'step-review-stderr.log', 'step-maimai-events.jsonl', 'step-maimai-stderr.log', 'mai-review-input.md', 'mai-release-targets.json']) {
+  for (const file of ['codex-review-raw.md', 'step-review-events.jsonl', 'step-review-stderr.log', 'step-maimai-events.jsonl', 'step-maimai-stderr.log', 'mai-review-input.md', 'mai-release-target.json']) {
     assert.ok(step.includes(`            ${file}\n`), `Missing diagnostic: ${file}`);
   }
   assert.match(step, /if-no-files-found: ignore/);
