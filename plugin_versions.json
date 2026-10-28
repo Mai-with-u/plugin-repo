@@ -46487,7 +46487,126 @@
       "manifest_id": "github.jiakeju.maibot-curator",
       "repositoryUrl": "https://github.com/JiaKeJu/maibot-curator",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "7d1675cf751ae138177de270947c0da86cba1c37",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:07:58Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.3",
+          "release_notes": "麦麦很好奇（Memory Keeper）v0.1.3\r\n这个版本集中在两件事：让配置界面自己讲清楚，以及代码健康度收尾。\r\n\r\n本次改动\r\n配置说明重写：README 配置章节按 WebUI 面板顺序重排，90 个参数逐一写明含义、默认值、取值范围与示例（插件 / 调度 / 黑话学习 / 联网检索 / 表达方式 / 表情包 / 群友日程 / 上下文注入）。\r\nWebUI 输入框灰色提示：配置 Schema 生成时自动把字段 description 回填为 hint，插件配置页每个输入框下方直接显示说明，不用再翻文档。\r\n第 5 轮复审补强：[agenda] max_archive_per_run 真正生效（每轮归档上限，超出的事件顺延到下一轮、不丢失；dry-run 不写人物卡、不受此限）；[web] base_url 字段描述补充「仅建议填写可信的 API 地址」。\r\n英文副名调整：显示名改为「麦麦很好奇（Memory Keeper）」，插件 id、中文名与功能不变。\r\n代码清理：删除 3 个已被取代的旧函数与 2 个未使用常量（plugin.py 2,974 → 2,877 行），行为不变。\r\n新增 CHANGELOG.md：按版本记录全部改动，README 版本记录区已链接。\r\n升级说明\r\n无需迁移配置与 data：config.toml 由 Runner 按配置 schema 自动补齐 max_archive_per_run 等新键，已有值不变。\r\ndry-run（[agenda] writeback = false）时不会再写人物卡 PersonInfo.memory_points，账号/群组信息均不出本机（联网只使用插件自身 [web] api_key，且只发送词条与检索问法）。\r\n兼容与环境\r\nMaiBot 1.3.0 – 1.3.99；Plugin SDK 2.8.0 – 2.16.99。\r\n无额外 Python 依赖：联网复用宿主自带的 httpx（缺失时自动只使用群内证据）；LLM/embedding 走宿主能力。\r\n自查\r\n静态审计 97 项、运行时仿真 91 项、洁净检出 33 项、冗余自查 8 类 0 候选，四套全部通过。\r\n本地实例部署验证 20 项全过：仓库与实例的 plugin.py / README.md / CHANGELOG.md / icon.png 逐字节一致，配置与 data 目录未被覆盖，WebUI 识别版本 0.1.3，配置 Schema 8 面板 / 90 字段提示齐全。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.3",
+            "name": "麦麦很好奇（Memory Keeper）",
+            "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "635080a6737f7513e12ac5cf0b5843cfbf1bd6f1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T05:47:26Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.2",
+          "release_notes": "## v0.1.2 — 复审收尾 + 自查加固\r\n\r\n按市场复审意见完成收尾，并补上自查发现的小问题。**无破坏性变更，配置与数据兼容 v0.1.1，直接覆盖升级即可。**\r\n\r\n### 修复\r\n- manifest 移除未使用的 `message.get_recent` 能力声明（只保留实际使用的 8 项）\r\n- 修正 docstring 中“联网走宿主同一把 Key”的过期描述——联网只用插件配置的 `[web] api_key`\r\n- 修复 `[plugin] enabled` 关闭再打开后后台巡检不会自动重启的问题\r\n- 单轮巡检异常不再终止整个循环（`_safe_run_due` 兜底，异常只记录）\r\n\r\n### 加固\r\n- 去掉 `plugin.py` 文件头 BOM\r\n- 移除 `urllib` 兜底：联网只走宿主自带的 `httpx`；环境缺失时警告一次并跳过联网（只用群内证据）\r\n- 仓库仍不包含 `config.toml`（由 Runner 按配置模型生成）\r\n\r\n### 自查\r\n静态审查 78 项 + 宿主仿真 74 项 + 洁净检出 24 项，共 176 项全部通过；不含开发者机器路径、密钥与本地数据文件。\r\n\r\n**适配**：MaiBot 1.3.0 – 1.3.99，Plugin SDK 2.8.0 – 2.16.99\r\n**升级**：市场更新或替换插件目录后重启；已有配置与 `data/` 数据无需迁移。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.2",
+            "name": "麦麦很好奇（MaiBot Curator）",
+            "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
