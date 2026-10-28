@@ -46502,7 +46502,224 @@
       "manifest_id": "github.tantan-yyds.short-term-memory",
       "repositoryUrl": "https://github.com/TanTan-yyds/maibot-short-term-memory",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "e0fe2579bd7616c357af1f53a279480bd565d0f4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T10:03:39Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.4",
+          "release_notes": "## 变更\n\n- 放宽 SDK 兼容上限至 `2.19.99`\n- 移除旧 Host Planner `messages` 兼容分支\n- `add_short_term_memory` 保持 `core_tool=True`；修改与删除工具改为 deferred，减少每轮工具定义占用\n\n全局短期记忆设计保持不变。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.4",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "f17312c6e3b3281704862564e082723bc4cfa46a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T09:37:55Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.3",
+          "release_notes": "## 变更\n\n- 更新短期记忆注入头，补充删除条件通常发生一次即结束的说明\n- 注入行将事情描述与删除条件合并展示：`描述；删除条件：...`\n- 创建与修改工具说明补充删除条件的判断、询问与可选规则\n- 修改工具仍支持不传时保留原值、传空字符串清除\n\n## 兼容性\n\n- 旧记忆数据没有删除条件时自动按空值加载\n- 兼容 MaiBot 1.3.x / SDK 2.16.x",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.3",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "15e65b8d48d946ba0e7e2a33e5352c92965414ab",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T08:51:54Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.2",
+          "release_notes": "## 新增\n\n- 短期记忆新增可选字段 `delete_condition`（删除条件）\n- 创建工具 `add_short_term_memory` 支持传入删除条件，也可以不填\n- 修改工具 `modify_short_term_memory` 支持更新删除条件；不传时保留原值，传空字符串可清除\n- 删除条件会随记忆一起注入 Planner 与 Replyer，供 LLM 判断何时调用删除工具\n- 插件不会自动解释或执行删除条件\n\n## 兼容性\n\n- 旧记忆数据没有删除条件时自动按空值加载\n- 兼容 MaiBot 1.3.x / SDK 2.16.x",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.2",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "fc91b3d13e7cb2cbebd5467daef9719ea7a615fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T04:33:36Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.1",
+          "release_notes": "## 变更\n\n- 插件 ID 从 `com.codex.short-term-memory` 调整为 `github.tantan-yyds.short-term-memory`\n- 插件版本更新为 `1.0.1`\n- 功能无变化，仍兼容 MaiBot 1.3.x / SDK 2.16.x\n\n## 从 v1.0.0 升级\n\nHost 会把新 ID 视为新插件。若旧版本已有记忆数据，请将旧数据目录迁移到新 ID 对应的数据目录。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.1",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
