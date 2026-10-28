@@ -43721,6 +43721,124 @@
             "id": "github.42yoru.maimai-target-replyer",
             "changelog": "CHANGELOG.md"
           }
+        },
+        {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "bd0ff054f55f429d4ab0fc1339f2b0c393084663",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T14:58:14Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.1",
+          "release_notes": "## 0.3.1\n\n### 细节\n\n- 兼容毫秒 / 微秒级消息时间戳，避免「目标账号最近发言」的让路规则因量级差 1000 倍而静默失效。\n- README 与配置注释补充说明：预判会把当前消息和最近聊天记录发送给 `decide.task_name` 指定的模型。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.1",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "44d3bf248cf4f2ba50b25227f8b1b8f4c9fb3dc6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T13:58:26Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.0",
+          "release_notes": "## 0.3.0\n\n### 主要功能\n\n- 新增轻量预判：先用便宜小模型判断要不要自然接话，通过后才触发 Planner，减少无意义触发。\n- 预判提示词可在 WebUI「高级 → 提示词」中修改，支持 `$bot_name`、`$bot_persona`、`$text`、`$recent` 等占位符。\n- WebUI 配置页汉化，分成「基础 / 预判与节奏 / 高级」三个页签。\n\n### 细节\n\n- 去个性化：插件不写死 bot 名称与人格，默认提示词从宿主 `bot.nickname` / `personality.personality` 读取。\n- 新增插件图标；补充 GitHub Actions CI（Python 3.11 / 3.12 / 3.13）。\n- 状态文件损坏或时间戳非法时明确报错，不再让插件加载失败。\n- 提示词模板在加载/热更新时校验未知占位符、缺失必填项和非法 `$` 写法。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
         }
       ],
       "ignored_tags": [],
