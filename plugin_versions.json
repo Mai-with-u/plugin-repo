@@ -45432,7 +45432,96 @@
       "manifest_id": "github.QlzqQlzq.planner-reply-fixer",
       "repositoryUrl": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.16",
+          "tag": "v0.1.16",
+          "commit": "b0be15c9f16f7722d83ea7d628b0dd7a93867e74",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:58:17Z",
+          "release_url": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/releases/tag/v0.1.16",
+          "release_notes": "## v0.1.16\n\n自查一轮后的收尾修复：\n\n- 缓存只保留文本段（≤24 段、每段 4000 字，去重），图片等 part 的 `image_base64` 不再挂在内存里\n- `quote` 按集合解析：宿主可能给逗号分隔的多个 id，或被 HTML 转义，现在都能正确跳过「被引用的旧消息」\n- 属性解析同时支持单/双引号\n- README 参数表补 `max_reference_chars`（默认 200），与实际一致\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.16",
+            "name": "小模型决策兜底",
+            "description": "当 planner 只输出文字、没有发起工具调用时，把「想回复」的意图翻译成回复工具的调用（只调 tool_names 白名单里真实存在的工具，不伪造工具、不写台词；对所有模型生效）。",
+            "author": {
+              "name": "QlzqQlzq",
+              "url": "https://github.com/QlzqQlzq"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "homepage": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "documentation": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/blob/main/README.md",
+              "issues": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.QlzqQlzq.planner-reply-fixer"
+          }
+        },
+        {
+          "version": "0.1.15",
+          "tag": "v0.1.15",
+          "commit": "5aced4e7b867f7d6c1afb47eb50b583ee61a52d3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:17:25Z",
+          "release_url": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/releases/tag/v0.1.15",
+          "release_notes": "## v0.1.15\n\n复审提的两个 nit：\n\n- README 的「装好了」示例日志与实际 `on_load()` 输出对齐，不再让人对着日志干等\n- 散文模式取消「白名单只剩一项就悄悄改用那个工具」的回落：`prose_tool_name` 不在白名单时记 warning 并跳过，\n  避免 `tool_names=[\"send_poke\"]` 这类配置下被误用来戳人\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.15",
+            "name": "小模型决策兜底",
+            "description": "当 planner 只输出文字、没有发起工具调用时，把「想回复」的意图翻译成回复工具的调用（只调 tool_names 白名单里真实存在的工具，不伪造工具、不写台词；对所有模型生效）。",
+            "author": {
+              "name": "QlzqQlzq",
+              "url": "https://github.com/QlzqQlzq"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "homepage": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer",
+              "documentation": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/blob/main/README.md",
+              "issues": "https://github.com/QlzqQlzq/maibot-planner-reply-fixer/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.QlzqQlzq.planner-reply-fixer"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
