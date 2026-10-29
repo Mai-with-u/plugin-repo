@@ -42423,6 +42423,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.3",
+          "tag": "v1.6.3",
+          "commit": "c6e444dc24eafc0d57a51b12fae16976ba63b24e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T18:33:53Z",
+          "release_url": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/releases/tag/v1.6.3",
+          "release_notes": "支持连接远程 GPT-SoVITS 服务。\n\n**修复：参考音频不再做本地校验**\n\n有用户反馈「不能连接别的服务器，参考音频存在校验是在本地路径」。\n\n`gpt_sovits.server` 其实一直可以填远程地址，问题出在 `validate_style` 里这句无条件的本地检查：\n\n```python\nif not os.path.exists(style.refer_wav):\n    return f\"风格 '{style_name}' 的参考音频不存在：{style.refer_wav}\"\n```\n\n远程部署时 `refer_wav` 指向的是**服务器上**的路径（比如 `/root/GPT-SoVITS/refs/narrator.wav`），\n本地当然没有这个文件，于是插件在发请求之前就把人挡掉了——表现就是「连不上别的服务器」。\n\n现在只有服务跑在本机（`127.0.0.1` / `localhost` / `0.0.0.0` / `::1`）时才做本地文件存在性校验，\n远程时把路径交给服务端自己判断。本机用法行为完全不变。\n\n**措辞同步**\n\n- manifest 描述：「基于本地 GPT-SoVITS 服务」→「基于 GPT-SoVITS，本机或远程服务均可」\n- README 开头补充远程配置说明\n- `server` 配置提示补充「也可以填远程地址，此时参考音频和模型权重要填服务器上的路径」\n- `refer_wav` 配置提示说明本机校验、远程不校验的区别\n\n**验证**\n\n在 `127.0.0.2:9881` 起了一个假的 GPT-SoVITS 服务（`127.0.0.2` 不在本机白名单里会被判成远程，\n但仍是回环地址能真连上），`refer_wav` 填 `/root/GPT-SoVITS/refs/narrator.wav`（本地不存在）：\n\n- `validate_style` 放行\n- 合成请求正常发出并返回音频\n- 服务端收到的 `ref_audio_path` 就是配置里那个路径\n\n新增 `tests/test_remote_server.py`，54 个断言 × 3 轮全过。原有测试也全绿：\nunits 51/51、language 36/36、number_route 20/20、model_version 65/65。\n\n**远程用法**\n\n```toml\n[gpt_sovits]\nserver = \"http://192.168.1.10:9880\"   # 换成你的服务器地址\n\n[[gpt_sovits.styles]]\nrefer_wav = \"/root/GPT-SoVITS/refs/narrator.wav\"   # 服务器上的路径\n```\n\n**要求**\n\n- MaiBot 1.x\n- maibot-plugin-sdk 2.x\n\n详见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.3",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.2",
           "tag": "v1.6.2",
           "commit": "81793fe9c7e8427a93c855b3e62bbe3e4142626e",
