@@ -47615,7 +47615,85 @@
       "manifest_id": "com.neal240.xiaohongshu",
       "repositoryUrl": "https://github.com/neal240/maibot-xiaohongshu",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "8c376a65419f6657472e7f7fcaabf72625c0f549",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-29T10:07:52Z",
+          "release_url": "https://github.com/neal240/maibot-xiaohongshu/releases/tag/v0.1.5",
+          "release_notes": "## 更新内容\n\n- 新增「跨平台身份关联」页面，可手动关联小红书用户与 QQ 用户，让麦麦在小红书对话时参考关联身份和可读取的 QQ 人物基础信息。关联不会合并画像或全部长期记忆。\n- 支持接收已验证的小红书表情包，并将图片交给麦麦处理；动图读取第一帧，理解效果取决于视觉模型。\n- 修复 WebUI 沙箱中身份关联保存和浏览记录搜索按钮无法触发的问题。\n- 完善所有人私信模式、自动公开发布和非官方接口的使用说明，修正浏览器登录助手的提示。\n\n这是开发预览版，使用非官方接口。遇到平台验证请按提示手动处理；扫码登录、长期运行和跨机器登录体验仍有待验证。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.neal240.xiaohongshu",
+            "version": "0.1.5",
+            "name": "麦麦小红书",
+            "description": "让麦麦浏览小红书、阅读私信，并规划发布图文。",
+            "author": {
+              "name": "Neal240",
+              "url": "https://github.com/neal240"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/neal240/maibot-xiaohongshu"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "adapter",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "xhshow",
+                "version_spec": "==0.2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "curl-cffi",
+                "version_spec": "==0.16.2"
+              },
+              {
+                "type": "python_package",
+                "name": "pycryptodome",
+                "version_spec": "==4.2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": "==8.2"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0,<14.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=50.0.1,<51.0.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "person.get_id",
+              "person.get_value",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
