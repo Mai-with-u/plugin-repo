@@ -1205,34 +1205,29 @@
       ],
       "rejected_releases": [
         {
-          "tag": "4.1.1",
-          "version": "4.1.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "1.0.3",
           "version": "1.0.3",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.1.2",
           "version": "0.1.2",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.10.2",
           "version": "0.10.2",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.1.1",
           "version": "0.1.1",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         },
         {
           "tag": "0.12.2",
@@ -1458,7 +1453,7 @@
         {
           "tag": "2.0.1",
           "version": "2.0.1",
-          "error": "Tag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -2215,7 +2210,7 @@
         {
           "tag": "v1.15.6",
           "version": "1.15.6",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -3080,7 +3075,7 @@
         {
           "tag": "2.2.0",
           "version": "2.2.0",
-          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -3787,7 +3782,7 @@
         {
           "tag": "2.1.0",
           "version": "2.1.0",
-          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -4577,7 +4572,7 @@
         {
           "tag": "v2.5.0",
           "version": "2.5.0",
-          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -6345,18 +6340,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v1.1.11",
-          "version": "1.1.11",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.1.10",
-          "version": "1.1.10",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "pspixel.ai-drawing-plugin",
@@ -7532,32 +7516,32 @@
         {
           "tag": "v1.0.2",
           "version": "1.0.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.3",
           "version": "0.6.3",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.2",
           "version": "0.6.2",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -13105,7 +13089,7 @@
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -14284,12 +14268,12 @@
         {
           "tag": "v0.4.7",
           "version": "0.4.7",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.1.0",
           "version": "0.1.0",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -15287,7 +15271,7 @@
         {
           "tag": "v0.4.3",
           "version": "0.4.3",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -16275,7 +16259,7 @@
         {
           "tag": "v0.2.0",
           "version": "0.2.0",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -17138,7 +17122,7 @@
         {
           "tag": "v0.3.5",
           "version": "0.3.5",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -17254,17 +17238,17 @@
         {
           "tag": "0.1.5",
           "version": "0.1.5",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         },
         {
           "tag": "0.1.4",
           "version": "0.1.4",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         },
         {
           "tag": "0.1.3",
           "version": "0.1.3",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
         }
       ]
     },
@@ -18081,7 +18065,7 @@
         {
           "tag": "v2.1.0",
           "version": "2.1.0",
-          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml"
         }
       ]
     },
@@ -18182,7 +18166,7 @@
         {
           "tag": "v1.2.0",
           "version": "1.2.0",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -20256,7 +20240,7 @@
         {
           "tag": "v0.2.2",
           "version": "0.2.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -22755,7 +22739,7 @@
         {
           "tag": "v1.2.2",
           "version": "1.2.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -23728,7 +23712,7 @@
         {
           "tag": "v1.3.2",
           "version": "1.3.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -27410,13 +27394,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.4.4",
-          "version": "0.4.4",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "github.cateye.isaac.item",
@@ -28891,7 +28869,7 @@
         {
           "tag": "v1.7.0",
           "version": "1.7.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -31473,7 +31451,7 @@
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -32214,13 +32192,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v1.1.0",
-          "version": "1.1.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "Alcpare.identity",
@@ -34820,12 +34792,12 @@
         {
           "tag": "v1.2.1",
           "version": "1.2.1",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.2.0",
           "version": "1.2.0",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -36046,27 +36018,27 @@
         {
           "tag": "v1.1.4",
           "version": "1.1.4",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.1.3",
           "version": "1.1.3",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.1.2",
           "version": "1.1.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.1.1",
           "version": "1.1.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.1.0",
           "version": "1.1.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -36661,12 +36633,12 @@
         {
           "tag": "v1.0.1",
           "version": "1.0.1",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -37150,14 +37122,9 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v0.1.15",
-          "version": "0.1.15",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v0.1.9",
           "version": "0.1.9",
-          "error": "发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "发布版本改变了插件 ID"
         }
       ]
     },
@@ -37351,7 +37318,7 @@
         {
           "tag": "1.2.0",
           "version": "1.2.0",
-          "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -37647,7 +37614,7 @@
         {
           "tag": "1.2.0",
           "version": "1.2.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -38456,7 +38423,7 @@
         {
           "tag": "v1.0.2",
           "version": "1.0.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -39605,12 +39572,12 @@
         {
           "tag": "v1.0.1",
           "version": "1.0.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -39713,7 +39680,7 @@
         {
           "tag": "v2.3.2",
           "version": "2.3.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -39803,7 +39770,7 @@
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -40219,17 +40186,17 @@
         {
           "tag": "v0.8.0",
           "version": "0.8.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.1",
           "version": "0.6.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.6.0",
           "version": "0.6.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -40507,13 +40474,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.4.3",
-          "version": "0.4.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "chenxi2542.maibot-codex-subscription",
@@ -40797,29 +40758,14 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v0.3.5",
-          "version": "0.3.5",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.3.4",
-          "version": "0.3.4",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.3.3",
-          "version": "0.3.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v0.3.2",
           "version": "0.3.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.3.1",
           "version": "0.3.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -41368,43 +41314,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.8.6",
-          "version": "0.8.6",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.5",
-          "version": "0.6.5",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.2",
-          "version": "0.6.2",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.1",
-          "version": "0.6.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.0",
-          "version": "0.6.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.4.0",
-          "version": "0.4.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.3.0",
-          "version": "0.3.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "maibot-team.xiaoheihe-adapter",
@@ -41776,28 +41686,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v1.2.1",
-          "version": "1.2.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.2.0",
-          "version": "1.2.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.1.0",
-          "version": "1.1.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.0.0",
-          "version": "1.0.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "org.azurlane.blhx-wiki-maibot",
@@ -42512,12 +42401,12 @@
         {
           "tag": "v1.5.4",
           "version": "1.5.4",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.5.3",
           "version": "1.5.3",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -42716,7 +42605,7 @@
         {
           "tag": "v0.3.0",
           "version": "0.3.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -42968,24 +42857,19 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v0.4.11",
-          "version": "0.4.11",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v0.4.2",
           "version": "0.4.2",
-          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml"
         },
         {
           "tag": "v0.4.1",
           "version": "0.4.1",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         },
         {
           "tag": "v0.4.0",
           "version": "0.4.0",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         }
       ]
     },
@@ -43201,13 +43085,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.3.1",
-          "version": "0.3.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "github.fabiocsa.read-gif",
@@ -43355,7 +43233,7 @@
         {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -43370,27 +43248,27 @@
         {
           "tag": "v2.0.6",
           "version": "2.0.6",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v2.0.5",
           "version": "2.0.5",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v2.0.4",
           "version": "2.0.4",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v2.0.3",
           "version": "2.0.3",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v2.0.2",
           "version": "2.0.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -43462,22 +43340,22 @@
         {
           "tag": "1.1.0",
           "version": "1.1.0",
-          "error": "Tag 与 manifest.version 不一致\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "Tag 与 manifest.version 不一致\n发布版本改变了插件 ID"
         },
         {
           "tag": "1.0.2",
           "version": "1.0.2",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         },
         {
           "tag": "1.0.1",
           "version": "1.0.1",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         },
         {
           "tag": "1.0.0",
           "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
         }
       ]
     },
@@ -43618,14 +43496,9 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.0.1",
-          "version": "1.0.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -43865,28 +43738,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.1.12",
-          "version": "0.1.12",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.1.4",
-          "version": "0.1.4",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.1.3",
-          "version": "0.1.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.1.2",
-          "version": "0.1.2",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "z1252.pocket-money",
@@ -43956,7 +43808,7 @@
         {
           "tag": "v1.2.1",
           "version": "1.2.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -44145,13 +43997,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.3.9",
-          "version": "0.3.9",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "local.stable-identity",
@@ -44627,24 +44473,19 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v0.2.9",
-          "version": "0.2.9",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v0.2.8",
           "version": "0.2.8",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.2.1",
           "version": "0.2.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v0.2.0",
           "version": "0.2.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -44892,23 +44733,7 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.6.4",
-          "version": "0.6.4",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.2",
-          "version": "0.6.2",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v0.6.0",
-          "version": "0.6.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "hatsuhoq.maibot-qq-voice-call",
@@ -45289,34 +45114,14 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.9.5",
-          "version": "1.9.5",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.9.4",
-          "version": "1.9.4",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.9.3",
-          "version": "1.9.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.9.2",
-          "version": "1.9.2",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v1.9.1",
           "version": "1.9.1",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.9.0",
           "version": "1.9.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -45387,19 +45192,14 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.6.3",
-          "version": "1.6.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v1.6.2",
           "version": "1.6.2",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         },
         {
           "tag": "v1.6.1",
           "version": "1.6.1",
-          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml"
         }
       ]
     },
@@ -45628,7 +45428,7 @@
         {
           "tag": "v1.1.0",
           "version": "1.1.0",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -46057,13 +45857,7 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.3.6",
-          "version": "0.3.6",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "NetaJuutilainen.mai-mouth-filter",
@@ -46532,7 +46326,7 @@
         {
           "tag": "1.0.1",
           "version": "1.0.1",
-          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml"
         }
       ]
     },
@@ -46545,29 +46339,9 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.1.0",
-          "version": "1.1.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.0.3",
-          "version": "1.0.3",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.0.2",
-          "version": "1.0.2",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
-          "tag": "v1.0.1",
-          "version": "1.0.1",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        },
-        {
           "tag": "v1.0.0",
           "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
     },
@@ -46715,13 +46489,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.1.0",
-          "version": "0.1.0",
-          "error": "仓库根目录不能包含 config.toml"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "github.tantan-yyds.short-term-memory",
@@ -46977,13 +46745,7 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "1.0.0",
-          "version": "1.0.0",
-          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "fjyxyz.qq-account",
@@ -47001,7 +46763,7 @@
         {
           "tag": "1.0.1",
           "version": "1.0.1",
-          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+          "error": "仓库根目录不能包含 config.toml"
         }
       ]
     },

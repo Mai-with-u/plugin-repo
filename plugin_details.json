@@ -6882,7 +6882,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.11",
+      "version": "1.1.12",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -6909,7 +6909,7 @@
       },
       "sdk": {
         "min_version": "2.19.0",
-        "max_version": "2.99.99"
+        "max_version": "2.98.99"
       },
       "dependencies": [
         {
@@ -8115,7 +8115,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -16169,7 +16169,7 @@
     "id": "deepseek-v4-pro.ongeki-gacha",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.7",
+      "version": "1.3.8",
       "name": "音击抽卡模拟器",
       "description": "音击抽卡模拟器",
       "author": {
@@ -18124,7 +18124,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Mai-with-u.qq-adapter",
-      "version": "0.4.4",
+      "version": "0.4.5",
       "name": "QQ 官方机器人适配器",
       "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
       "author": {
@@ -18150,7 +18150,7 @@
       },
       "sdk": {
         "min_version": "2.19.0",
-        "max_version": "2.99.99"
+        "max_version": "2.98.99"
       },
       "dependencies": [
         {
@@ -19357,7 +19357,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.23.4",
+      "version": "1.25.0",
       "name": "生活频率",
       "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n睡醒补答（v1.23.0）：她睡着时进来的私聊与群 @ 会被记为积压，自然醒时按会话各触发一次 Planner（措辞交给宿主，她有权沉默）或注入下一次回复；只有管理员私聊能在她睡着时把她叫醒（`wake_private_scope` 三态，可越过 quiet_hours），其他人一律等她醒了再补。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
@@ -19619,7 +19619,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
@@ -20569,7 +20569,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-team.telegram-adapter",
-      "version": "0.1.15",
+      "version": "0.1.16",
       "name": "Telegram 适配器",
       "description": "单账号 Telegram Bot API 适配器，支持论坛话题、文本、图片、静态/动画/视频贴纸、语音、@、回复引用和转发。",
       "author": {
@@ -20591,7 +20591,7 @@
       },
       "sdk": {
         "min_version": "2.19.0",
-        "max_version": "2.99.99"
+        "max_version": "2.98.99"
       },
       "dependencies": [
         {
@@ -21707,7 +21707,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.8.7",
+      "version": "0.8.8",
       "plugin_type": "automation",
       "name": "麦麦模拟盘",
       "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
@@ -22147,9 +22147,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.4.0",
+      "version": "0.5.1",
       "name": "MiMo 语音回复",
-      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
@@ -22183,7 +22183,17 @@
         "supported_locales": [
           "zh-CN"
         ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "mic"
+        }
       }
+    },
+    "assets": {
+      "icon_64": "icons/github.SoulString-Dev.maibot-mimo-voice.webp"
     }
   },
   {
@@ -23437,9 +23447,9 @@
     "id": "github.42yoru.maimai-jargon-boost",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.7",
+      "version": "0.4.0",
       "name": "黑话加速器",
-      "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。",
+      "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
       "author": {
         "name": "42yoru",
         "url": "https://github.com/42yoru"
@@ -23903,7 +23913,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.phone-controller",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "name": "麦麦的手机",
       "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷B站知乎并向主人幽默吐槽分享的真正数字生命能力。",
       "author": {
@@ -23937,7 +23947,8 @@
         "send.text",
         "send.image",
         "llm.generate",
-        "chat.get_stream_by_user_id"
+        "chat.get_stream_by_user_id",
+        "chat.get_private_streams"
       ],
       "i18n": {
         "default_locale": "zh-CN",
