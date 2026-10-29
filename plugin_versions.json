@@ -32263,6 +32263,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "3363a581d05ffae9e0b9c3f0a09ebc0d0a1dc0cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T13:36:38Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.2.0",
+          "release_notes": "- **新增「统计机器人自身发言」开关**（`analysis.include_bot_messages`，**默认关闭**）：\n  开启后，日报重建最近 24 小时数据时会同时纳入机器人自己的发言，计入消息数、参与人数、\n  小时分布、话题、称号与金句等分析输入。默认关闭 = 保持既有统计口径，老用户零影响。\n  命令与转发消息仍按原规则过滤，文本采样上限照旧生效。\n  （贡献者 [@Scorp1o117](https://github.com/Scorp1o117)，PR #1）\n\n---\n\n### 升级方式\n\n插件中心「更新」即可，或 WebUI 插件详情页选版本安装。\n\n新增配置项 `analysis.include_bot_messages`（分析设置 → 统计机器人自身发言），**默认关闭**；\n本版已把 `config_version` 升到 `1.3.0`，已安装用户更新后宿主会自动把该键合并进你的 `config.toml`。\n\n### 贡献\n\n感谢 [@Scorp1o117](https://github.com/Scorp1o117) 的 PR #1。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.2.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "3c146d96f08a3c74d6ea76c58eceac2df57f27a2",
