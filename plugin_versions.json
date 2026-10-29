@@ -27222,6 +27222,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.5",
+          "tag": "v0.4.5",
+          "commit": "12ce20ea0a7572c107fd591df749e522baaabdfa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T13:21:51Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter/releases/tag/v0.4.5",
+          "release_notes": "需要 MaiBot >= 1.3.18。\r\n\r\n### 细节\r\n\r\n- 插件市场：将 SDK 兼容版本上限修正为 `2.98.99`，解决版本格式校验阻止收录的问题。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Mai-with-u.qq-adapter",
+            "version": "0.4.5",
+            "name": "QQ 官方机器人适配器",
+            "description": "直连 QQ 开放平台官方 API，支持群聊与单聊的文本、@、图片、表情收发，提供禁言、撤回工具。",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-QQ-Adapter"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "plug",
+                "background": "#E5EAEC"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8.2"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=50.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.3",
           "tag": "v0.4.3",
           "commit": "30f19f24febd584e4bdd2a900b5f53bebd993a52",
