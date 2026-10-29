@@ -42950,6 +42950,67 @@
           }
         },
         {
+          "version": "0.4.11",
+          "tag": "v0.4.11",
+          "commit": "d76d752a3727744cb156e5443eaa6137fd8c219b",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T12:53:26Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.11",
+          "release_notes": "**修复**\r\n\r\n- **消费 hook 用 BLOCKING 但什么都不改**：`owner_reminder_consume` 不修改任何 kwargs、也不需要拦下\r\n  消息，BLOCKING 只会把整条发送链路挂在它的超时上。改成 `OBSERVE`\r\n- **`_apply_directive` 的宽 `except`**：收窄到只兜 `ReminderStoreError`（状态文件写不进去），\r\n  其它异常照常上抛；保存失败时日志补上堆栈\r\n\r\n**细节**\r\n\r\n- 删掉 `get_components` 里 `allowed_session` 的死分支（宿主不读这个键）\r\n- `on_load` 里的状态文件读取从「格式化日志的副作用」改成显式一步：坏文件在这里就暴露，\r\n  责任明确\r\n- 测试 160 → 161：新增「manifest 能力声明与实际调用一一对应」的断言",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.11",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
           "version": "0.4.5",
           "tag": "v0.4.5",
           "commit": "c126ee7d0cb9cc432a4ca682dde45f0fc6fb6b1c",
