@@ -41188,6 +41188,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.8",
+          "tag": "v0.8.8",
+          "commit": "6ce5a2e951342465276e81e19a239ae6eee70334",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T05:11:27Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.8",
+          "release_notes": "**修复**\r\n\r\n- **WebUI 保存配置报 `Unable to convert an object of <class 'NoneType'> to a TOML item`**：\r\n  0.8.0 给 `[risk]` 加那四个倍率时用了 `Optional[float] = None` 当\"沿用档位预设\"的哨兵，\r\n  而 TOML 没有 null —— 宿主保存配置走 tomlkit，遇到 None 直接抛 `ConvertError`，\r\n  整张配置页都存不进去。\r\n  改成显式的 `profile = \"custom\"` 档：四项都是普通 float（默认 1.0/1.0/1.0/0.0），\r\n  只有 `profile` 为 `custom` 时才生效，其它档位忽略它们\r\n\r\n**细节**\r\n\r\n- 之前\"填了某一项就覆盖\"的写法没有了：要自定义就整档改成 `custom`，四项一起给——语义更清楚，\r\n  也避免\"改了某一项发现没反应\"（非 custom 档本来就不会读它）\r\n- 测试 136 → 138：新增「默认配置必须可被 tomlkit 序列化、且不含 None」这条守卫，\r\n  以及「非 custom 档忽略那四个数字」\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.8",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.8.7",
           "tag": "v0.8.7",
           "commit": "a38ca350b11d6d88f016a7f04e8ac20a40b1dbbf",
