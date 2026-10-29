@@ -52,3 +52,11 @@ test('结果身份不匹配时不发布开发者通知', async () => {
   await assert.rejects(notifyReleaseReview(data), /审核插件不一致/);
   assert.equal(data.comments.length, 0);
 });
+
+test('被新版取代的旧审核结果不再通知开发者', async () => {
+  const data = fixture();
+  data.issue.body += '\n<!-- plugin-release-superseded: 2 -->';
+  data.github.paginate = async () => assert.fail('不应继续发送旧单通知');
+  await notifyReleaseReview(data);
+  assert.equal(data.comments.length, 0);
+});

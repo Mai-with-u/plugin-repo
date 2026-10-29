@@ -4,6 +4,11 @@ const path = require('node:path');
 
 const LABEL = 'plugin-release';
 const MARKER = /<!-- plugin-release: (.+) -->/;
+const SUPERSEDED = '<!-- plugin-release-superseded:';
+
+function isSupersededRelease(issue) {
+  return (issue.body || '').includes(SUPERSEDED);
+}
 
 function readReleaseIssue(issue) {
   const match = (issue.body || '').match(MARKER);
@@ -67,6 +72,11 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
   }
   const base = `/repos/${repository}`;
   const issues = new Map();
+  const pluginIssues = new Map();
+  function rememberIssue(id, issue) {
+    if (!pluginIssues.has(id)) pluginIssues.set(id, new Map());
+    pluginIssues.get(id).set(issue.number, issue);
+  }
   for (let page = 1; ; page++) {
     const batch = await request(`${base}/issues?state=all&labels=${LABEL}&per_page=100&page=${page}`);
     for (const issue of batch) {
@@ -76,6 +86,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
         // 只读历史快照，避免旧批次及已跳过版本被重新开单；不参与审核和批准。
         const history = (data.releases || [data]).map(releaseSnapshot);
         const discarded = (data.discarded || []).map(releaseSnapshot);
+        rememberIssue(data.id, issue);
         if (issue.labels.some(label => label.name === 'rejected')) {
           for (const release of history) blocked.push({ id: data.id, repositoryUrl: data.repositoryUrl, version: release.version });
         }
@@ -89,12 +100,31 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
   const owners = new Map();
   const pending = new Map();
   async function ensureReviewLabel(issue) {
-    if (issue.state === 'open' && !issue.labels.some(label => label.name === 'rejected') && !issue.labels.some(label => label.name === 'validated')) {
+    if (issue.state === 'open' && !isSupersededRelease(issue) && !issue.labels.some(label => label.name === 'rejected') && !issue.labels.some(label => label.name === 'validated')) {
       await request(`${base}/issues/${issue.number}/labels`, {
         method: 'POST', body: JSON.stringify({ labels: ['validated'] }),
       });
       issue.labels.push({ name: 'validated' });
     }
+  }
+  async function reconcileIssues(plugin) {
+    // Issue 编号表示创建顺序；即使最新单已关闭，也不能恢复旧单审核。
+    const history = [...(pluginIssues.get(plugin.id)?.values() || [])].sort((a, b) => b.number - a.number);
+    const latest = history[0];
+    if (!latest) return;
+    for (const old of history.slice(1)) {
+      if (old.state !== 'open') continue;
+      const body = isSupersededRelease(old) ? old.body :
+        `${old.body}\n\n${SUPERSEDED} ${latest.number} -->\n\n⏭️ 已由新发版审核单 #${latest.number} 取代，本单版本跳过审核，不再收录；这不代表风险拒绝。`;
+      await request(`${base}/issues/${old.number}`, {
+        method: 'PATCH', body: JSON.stringify({ state: 'closed', state_reason: 'not_planned', body,
+          labels: old.labels.map(label => label.name).filter(name => !['validated', 'needs-manual-review'].includes(name)) }),
+      });
+      old.state = 'closed';
+      old.body = body;
+    }
+    // 清理完成后再触发新单；中途失败时，下次同步继续清理，不重复开单。
+    await ensureReviewLabel(latest);
   }
   const admit = async (plugin, candidate) => {
     if (isBlockedRelease(blocked, plugin, candidate.version)) return false;
@@ -107,8 +137,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
       version: candidate.version, tag: candidate.tag, commit: candidate.commit };
     const key = releaseKey(data);
     const issue = issues.get(key);
-    if (issue) await ensureReviewLabel(issue);
-    else {
+    if (!issue) {
       if (!pending.has(plugin.id)) pending.set(plugin.id, new Map());
       pending.get(plugin.id).set(key, { ...data, published_at: candidate.published_at });
     }
@@ -118,7 +147,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
     const candidates = [...(pending.get(plugin.id)?.values() || [])].sort((a, b) =>
       (b.published_at || '').localeCompare(a.published_at || '') ||
       require('./sync_plugin_versions.cjs').compareVersions(b.version, a.version));
-    if (!candidates.length) return;
+    if (!candidates.length) return reconcileIssues(plugin);
     const snapshot = item => ({ version: item.version, tag: item.tag, commit: item.commit });
     const data = { id: plugin.id, repositoryUrl: candidates[0].repositoryUrl,
       ...snapshot(candidates[0]), discarded: candidates.slice(1).map(snapshot),
@@ -134,11 +163,12 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
         labels: [LABEL],
       }),
     });
+    rememberIssue(plugin.id, issue);
     for (const release of [data, ...data.discarded]) {
       issues.set(releaseKey({ ...data, ...release }), issue);
     }
     pending.delete(plugin.id);
-    await ensureReviewLabel(issue);
+    await reconcileIssues(plugin);
   };
   return admit;
 }
@@ -146,6 +176,7 @@ async function createReleaseGate({ root, request, repository = process.env.GITHU
 async function approveRelease({ root, issue, request, botLogin }) {
   assert.equal(issue.user.login, botLogin, '只能批准市场自动创建的发布审核 Issue');
   assert.equal(issue.state, 'open', 'Issue 已关闭');
+  assert.ok(!isSupersededRelease(issue), '审核单已被新版取代');
   assert.ok(!issue.labels.some(label => label.name === 'rejected'), '版本已被拒绝');
   const data = parseReleaseIssue(issue);
   const blocked = blockedReleaseVersions(root);
@@ -171,4 +202,4 @@ async function approveRelease({ root, issue, request, botLogin }) {
   fs.writeFileSync(output, `${JSON.stringify(index, null, 2)}\n`);
 }
 
-module.exports = { createReleaseGate, approveRelease, parseReleaseIssue, blockedReleaseVersions, isBlockedRelease };
+module.exports = { createReleaseGate, approveRelease, parseReleaseIssue, blockedReleaseVersions, isBlockedRelease, isSupersededRelease };

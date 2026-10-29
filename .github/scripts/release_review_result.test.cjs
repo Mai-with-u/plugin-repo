@@ -245,6 +245,7 @@ test('审核对象修改、已拒绝或已关闭的审核单不会自动放行',
   for (const current of [
     { ...issue, body: `<!-- plugin-release: ${JSON.stringify(changed)} -->` },
     { ...issue, state: 'closed' },
+    { ...issue, body: issue.body + '\n<!-- plugin-release-superseded: 99 -->' },
     { ...issue, labels: [...issue.labels, { name: 'rejected' }] },
     { ...issue, user: { login: 'attacker' } },
   ]) {

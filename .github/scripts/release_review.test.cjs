@@ -148,6 +148,7 @@ test('开单后添加标签失败，下次巡视恢复审核触发', async t => 
   };
   const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
   assert.equal(await gate(plugin, candidate), false);
+  await gate.flush(plugin);
   assert.equal(posts, 1);
 });
 
@@ -183,6 +184,8 @@ test('每次巡视只审核最新一个，重跑不补开丢弃版本，待审�
   const next = { version: '1.0.7', tag: 'v1.0.7', commit: '8'.repeat(40), published_at: '2026-10-08T00:00:00Z' };
   await scan([...candidates, next]);
   assert.equal(issues.length, 2);
+  assert.equal(issues[0].state, 'closed');
+  assert.equal(issues[1].state, 'open');
   assert.deepEqual(parseReleaseIssue(issues[1]).version, '1.0.7');
   assert.deepEqual(parseReleaseIssue(issues[0]), batch);
   issues.forEach(item => { item.state = 'closed'; });
@@ -241,4 +244,82 @@ test('旧单版本 Issue 归一化，多版本只参与历史去重且不能批�
   } });
   for (const release of [candidate, second]) assert.equal(await gate(plugin, release), false);
   await gate.flush(plugin);
+});
+
+test('取代旧单可重试，隔离其他插件与伪造作者，新单创建失败不关闭旧单', async t => {
+  const root = workspace(t);
+  const old = issue({ number: 8 });
+  const other = issue({ number: 9, body: `<!-- plugin-release: ${JSON.stringify({ ...data, id: 'other.plugin' })} -->` });
+  const forged = issue({ number: 10, user: { login: 'attacker' } });
+  const history = [old, other, forged];
+  const calls = [];
+  let failCreate = true, failClose = true;
+  const request = async (url, init) => {
+    if (!init) return url.includes('/issues?') ? structuredClone(history) : { owner: { id: 10 }, full_name: 'example/demo' };
+    const body = JSON.parse(init.body);
+    calls.push({ url, method: init.method, body });
+    if (url.endsWith('/issues')) {
+      if (failCreate) throw new Error('创建失败');
+      const created = issue({ number: 11, body: body.body, labels: [{ name: 'plugin-release' }] });
+      history.push(created);
+      return structuredClone(created);
+    }
+    if (init.method === 'PATCH') {
+      assert.equal(url, '/repos/market/repo/issues/8');
+      if (failClose) throw new Error('关闭失败');
+      Object.assign(old, body, { labels: body.labels.map(name => ({ name })) });
+      return structuredClone(old);
+    }
+    assert.equal(url, '/repos/market/repo/issues/11/labels');
+    history[3].labels.push({ name: 'validated' });
+    return [];
+  };
+  const newer = { version: '2.0.0', tag: 'v2.0.0', commit: 'b'.repeat(40) };
+  async function scan() {
+    const gate = await createReleaseGate({ root, request, repository: 'market/repo', botLogin });
+    await gate(plugin, candidate);
+    await gate(plugin, newer);
+    await gate.flush(plugin);
+  }
+  await assert.rejects(scan(), /创建失败/);
+  assert.equal(old.state, 'open');
+  assert.equal(calls.some(call => call.method === 'PATCH'), false);
+  failCreate = false;
+  await assert.rejects(scan(), /关闭失败/);
+  assert.equal(history.length, 4);
+  assert.equal(history[3].labels.some(label => label.name === 'validated'), false);
+  failClose = false;
+  await scan();
+  assert.equal(history.length, 4, '恢复时不重复开单');
+  assert.equal(old.state, 'closed');
+  assert.equal(old.state_reason, 'not_planned');
+  assert.match(old.body, /plugin-release-superseded: 11/);
+  assert.equal(old.labels.some(label => label.name === 'validated'), false);
+  assert.equal(other.state, 'open');
+  assert.equal(forged.state, 'open');
+  assert.equal(history[3].labels.some(label => label.name === 'validated'), true);
+  assert.equal(fs.existsSync(path.join(root, 'blocked_release_versions.json')), false);
+  const reopened = { ...old, state: 'open' };
+  await assert.rejects(approveRelease({ root, issue: reopened, request: releaseClient(), botLogin }), /被新版取代/);
+  assert.throws(() => rejectReleaseCommand({ root, issue: reopened, botLogin }), /被新版取代/);
+  const before = calls.length;
+  await scan();
+  assert.equal(calls.length, before);
+});
+
+test('没有新候选时也清理遗留旧单，即使最新单已关闭', async t => {
+  const root = workspace(t);
+  const latest = issue({ number: 12, state: 'closed' });
+  const old = issue({ number: 8 });
+  const writes = [];
+  const gate = await createReleaseGate({ root, repository: 'market/repo', botLogin, request: async (url, init) => {
+    if (!init) return [old, latest];
+    writes.push([url, JSON.parse(init.body)]);
+    return {};
+  } });
+  await gate.flush(plugin);
+  assert.equal(writes.length, 1);
+  assert.equal(writes[0][0], '/repos/market/repo/issues/8');
+  assert.equal(writes[0][1].state, 'closed');
+  assert.match(writes[0][1].body, /#12/);
 });

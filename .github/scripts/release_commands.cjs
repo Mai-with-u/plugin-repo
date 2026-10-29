@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseReleaseIssue, approveRelease, blockedReleaseVersions, isBlockedRelease } = require('./release_review.cjs');
+const { parseReleaseIssue, approveRelease, blockedReleaseVersions, isBlockedRelease, isSupersededRelease } = require('./release_review.cjs');
 
 async function approveReleaseCommand(options) {
   assert.match(options.command.trim(), /^\/(?:approve|ap)$/, '请使用 /ap 或 /approve，不再接受版本参数');
@@ -13,6 +13,7 @@ async function approveReleaseCommand(options) {
 function rejectReleaseCommand({ root, issue, botLogin }) {
   assert.equal(issue.user.login, botLogin, '只能拒绝市场自动创建的发布审核 Issue');
   assert.equal(issue.state, 'open', 'Issue 已关闭');
+  assert.ok(!isSupersededRelease(issue), '审核单已被新版取代');
   const release = parseReleaseIssue(issue);
   const index = JSON.parse(fs.readFileSync(path.join(root, 'plugin_versions.json'), 'utf8'));
   const normalize = url => url.replace(/\/$/, '').replace(/\.git$/, '').toLowerCase();

@@ -15,6 +15,7 @@ permissions:
 jobs:
   mai-review:
     if: >-
+      github.event.issue.state != 'closed' &&
       contains(github.event.issue.labels.*.name, 'plugin-release') &&
       ((github.event_name == 'issues' &&
         github.actor != 'github-actions[bot]' &&
@@ -141,10 +142,12 @@ jobs:
           script: |
             const fs = require('fs');
             const { notifyReleaseReview } = require('./.github/scripts/notify_release_review.cjs');
-            await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number,
-              body: `⚠️ 自动收录未完成，Issue 保留给维护者处理。请查看[运行日志](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})。` });
+            const { isSupersededRelease } = require('./.github/scripts/release_review.cjs');
             const params = { ...context.repo, issue_number: context.issue.number };
             const { data: issue } = await github.rest.issues.get(params);
+            if (isSupersededRelease(issue)) return;
+            await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number,
+              body: `⚠️ 自动收录未完成，Issue 保留给维护者处理。请查看[运行日志](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})。` });
             const file = 'release-review-result/release-review.json';
             await notifyReleaseReview({ github, params, issue,
               result: fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null,

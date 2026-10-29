@@ -1,9 +1,10 @@
-const { parseReleaseIssue } = require('./release_review.cjs');
+const { parseReleaseIssue, isSupersededRelease } = require('./release_review.cjs');
 const { validateReleaseReview, isReleasePassed } = require('./release_review_result.cjs');
 
 const MARKER = '<!-- mai-release-developer-notification -->';
 
 async function notifyReleaseReview({ github, params, issue, result, published = false, botLogin }) {
+  if (isSupersededRelease(issue)) return;
   const comments = await github.paginate(github.rest.issues.listComments, { ...params, per_page: 100 });
   if (comments.some(comment => comment.user?.login === botLogin && comment.body?.includes(MARKER))) return;
   const release = parseReleaseIssue(issue);
