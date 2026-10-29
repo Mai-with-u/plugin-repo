@@ -8115,7 +8115,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -17907,7 +17907,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.11.2",
+      "version": "0.12.0",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18059,7 +18059,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.4",
+      "version": "1.24.5",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -21979,7 +21979,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.6.2",
+      "version": "1.6.3",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
       "display": {
@@ -21989,7 +21989,7 @@
           "fallback": "mic"
         }
       },
-      "description": "基于本地 GPT-SoVITS 服务的文本转语音插件。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+      "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
       "author": {
         "name": "Lbcheng1145",
         "url": "https://github.com/Lbcheng1145"
@@ -23811,9 +23811,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.jiakeju.maibot-curator",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "name": "麦麦很好奇（Memory Keeper）",
-      "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+      "description": "后台整理插件：学习群里的黑话、表达方式与表情包，按角色性格精选、查重合并，并整理群友日程。支持 WebUI 配置与 dry-run（只出报告、不改库）。",
       "author": {
         "name": "JJK",
         "url": "https://github.com/JiaKeJu"
@@ -24378,6 +24378,254 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "com.moonlycake.member-distiller",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.moonlycake.member-distiller",
+      "version": "1.1.1",
+      "name": "群友蒸馏资料收集",
+      "description": "按 QQ 收集群聊发言及少量匿名上下文，并导出本机文本。",
+      "author": {
+        "name": "MoonlyCake",
+        "url": "https://github.com/MoonlyCake"
+      },
+      "urls": {
+        "repository": "https://github.com/MoonlyCake/maibot-member-distiller"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.12",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.16.99"
+      },
+      "plugin_type": "extension",
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "messages-square"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.lbcheng1145.cost-report",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.lbcheng1145.cost-report",
+      "version": "1.0.1",
+      "name": "开销统计",
+      "description": "查询麦麦的 token 消耗和模型花费，默认看最近 24 小时。支持命令和 LLM 工具调用。",
+      "author": {
+        "name": "Lbcheng1145",
+        "url": "https://github.com/Lbcheng1145"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Lbcheng1145/maibot-cost-report"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.4.0",
+        "max_version": "2.16.99"
+      },
+      "capabilities": [
+        "statistics.local.models",
+        "send.text",
+        "send.image",
+        "render.html2png"
+      ],
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "background": "#3B82F6"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.lbcheng1145.cost-report.webp"
+    }
+  },
+  {
+    "id": "github.qiaozhixiang.office-toolkit",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.qiaozhixiang.office-toolkit",
+      "version": "1.2.7",
+      "name": "办公文件工具箱",
+      "description": "用自然语言或 QQ 指令操作本机办公文件：读写 Word/Excel/PPT/PDF/ZIP，聊天文件自动入库，批量增删改查、差异对比、成绩核查、奖学金评定、表格格式化，AI 指令自动编排多步操作。",
+      "author": {
+        "name": "qiaozhixiang",
+        "url": "https://github.com/qiaozhixiang"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/qiaozhixiang/office-toolkit-dist",
+        "homepage": "https://github.com/qiaozhixiang/office-toolkit-dist",
+        "documentation": "https://github.com/qiaozhixiang/office-toolkit-dist/blob/main/README.md",
+        "issues": "https://github.com/qiaozhixiang/office-toolkit-dist/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "api.call",
+        "llm.generate",
+        "message.get_recent",
+        "message.get_by_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "file-text",
+          "background": "#eef2ff"
+        }
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.qiaozhixiang.office-toolkit.webp"
+    }
+  },
+  {
+    "id": "maibot-community.mai-life-suite",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-community.mai-life-suite",
+      "version": "1.2.1",
+      "name": "MaiLifeSuite（麦麦生活套件）",
+      "description": "Mai_life 与 MaiTrace 的合并插件：持续生活模拟、消息体验、联网见闻、书柜创作，以及每日作息、临时约定与 QQ 空间分享。",
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png"
+        }
+      },
+      "author": {
+        "name": "lightning",
+        "url": "https://github.com/lightningXMS"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+        "homepage": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+        "issues": "https://github.com/lightningXMS/MaiLifeSuite-----/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.15.0",
+        "max_version": "2.19.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "json5",
+          "version_spec": ">=0.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2024.1"
+        },
+        {
+          "type": "python_package",
+          "name": "chinese-calendar",
+          "version_spec": ">=1.11.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lunar-python",
+          "version_spec": ">=1.4.0"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.49,<2"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get",
+        "config.get_plugin",
+        "llm.generate",
+        "llm.get_available_models",
+        "message.get_by_id",
+        "message.get_by_time_in_chat",
+        "chat.get_all_streams",
+        "chat.get_private_streams",
+        "chat.get_group_streams",
+        "chat.get_stream_by_user_id",
+        "chat.get_stream_by_group_id",
+        "chat.open_session",
+        "emoji.get_by_description",
+        "database.get",
+        "api.call",
+        "api.list",
+        "knowledge.search",
+        "render.html2png",
+        "frequency.set_adjust",
+        "maisaka.proactive.trigger",
+        "component.list_loaded_plugins"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-community.mai-life-suite.webp"
     }
   }
 ]

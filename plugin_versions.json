@@ -13638,7 +13638,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v3.3.2",
+          "version": "3.3.2",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "whitefox.weather-forecast",
@@ -22647,7 +22653,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.3.8",
+          "version": "1.3.8",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.cateye.mai-forward",
@@ -48045,6 +48057,53 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.moonlycake.member-distiller",
+      "manifest_id": "com.moonlycake.member-distiller",
+      "repositoryUrl": "https://github.com/MoonlyCake/maibot-member-distiller",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.lbcheng1145.cost-report",
+      "manifest_id": "github.lbcheng1145.cost-report",
+      "repositoryUrl": "https://github.com/Lbcheng1145/maibot-cost-report",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.qiaozhixiang.office-toolkit",
+      "manifest_id": "github.qiaozhixiang.office-toolkit",
+      "repositoryUrl": "https://github.com/qiaozhixiang/office-toolkit-dist",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.2.5",
+          "version": "1.2.5",
+          "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.2.4",
+          "version": "1.2.4",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "maibot-community.mai-life-suite",
+      "manifest_id": "maibot-community.mai-life-suite",
+      "repositoryUrl": "https://github.com/lightningXMS/MaiLifeSuite-----",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
