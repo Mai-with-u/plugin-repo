@@ -6347,6 +6347,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v1.1.11",
+          "version": "1.1.11",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v1.1.10",
           "version": "1.1.10",
           "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -23745,6 +23750,49 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.15.0",
+          "tag": "v2.15.0",
+          "commit": "dcdece04f80eed786971efcacd41ae7e307697e1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T02:28:10Z",
+          "release_url": "https://github.com/orge-8/cv_lyric_context/releases/tag/v2.15.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.cv-lyric-context",
+            "version": "2.15.0",
+            "name": "中V歌词识别 · 歌曲库",
+            "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "urls": {
+              "repository": "https://github.com/orge-8/cv_lyric_context",
+              "homepage": "https://github.com/orge-8/cv_lyric_context",
+              "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.1.0",
+              "max_version": "2.16.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "declarative_basic"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "2.14.6",
           "tag": "v2.14.6",
           "commit": "ee5588fc0ca7e0091af8559c8879e0d25a29a2de",
@@ -39034,7 +39082,9 @@
           }
         }
       ],
-      "ignored_tags": [],
+      "ignored_tags": [
+        "v.0.7.1"
+      ],
       "rejected_releases": []
     },
     {
@@ -43585,6 +43635,63 @@
       "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "f09691091cef61b593bcd43d1bbc4a63f3761486",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T02:57:02Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.2.0",
+          "release_notes": "### 细节\r\n\r\n- **附带小开关：句末标点清理**（`[punctuation] enabled`，默认关闭）。打开后去掉**没有假标签**的\r\n  普通文本结尾的句号（默认只认「。」，句中不动，表情/at/引用/图片组件不碰，整条只剩标点时保留原样）。\r\n  带假标签的消息走原来的桥接路径、不做任何清理——两条路互斥，不叠加处理\r\n- 清理后的纯文本同步进 `processed_plain_text` 与顶层 `kwargs`，历史里存的也是清理后的版本\r\n- WebUI 配置页在「高级」页签最末尾加了一个默认折叠的「句末标点（附带）」\r\n- 测试 63 → 74：句末/句中/连续句号/只剩标点/默认关闭/不波及表情组件/不碰半角句点/\r\n  带标签时不清，以及 `_strip_trailing_marks` 的三个边界\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.2.0",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
         {
           "version": "0.1.13",
           "tag": "v0.1.13",
