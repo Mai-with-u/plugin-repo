@@ -412,7 +412,8 @@ jobs:
               }
             }
 
-            for (const rangeField of ['host_application', 'sdk']) {
+            // SDK 版本范围由宿主判断，市场不校验其版本声明。
+            for (const rangeField of ['host_application']) {
               const rangeValue = manifest[rangeField];
               if (!isObject(rangeValue) || !semverRegex.test(String(rangeValue.min_version || '')) || !semverRegex.test(String(rangeValue.max_version || ''))) {
                 validationErrors.push(`**\`${rangeField}\` 字段格式错误**\n\n必须包含三段式版本号 \`min_version\` 和 \`max_version\`，例如 \`1.0.0\`。`);
@@ -421,7 +422,7 @@ jobs:
 
             const declaredVersions = [
               ['version', manifest.version],
-              ...['host_application', 'sdk'].flatMap(field =>
+              ...['host_application'].flatMap(field =>
                 ['min_version', 'max_version'].map(bound => [`${field}.${bound}`, manifest[field]?.[bound]])),
             ];
             for (const [field, value] of declaredVersions) {

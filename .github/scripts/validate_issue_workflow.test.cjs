@@ -80,7 +80,7 @@ test('申请一次显示配置、manifest 多字段及缺少 Release 的问题�
       host_application: null, sdk: { min_version: '2.99.0', max_version: '999.0.0' }, i18n: null };
     const { outputs } = await validate([[]], { type, manifestData, rootEntries: [{ name: 'config.toml' }] });
     assert.equal(outputs.status, 'error');
-    for (const field of ['config.toml', 'version', 'author', 'urls', 'host_application', 'sdk.min_version', 'sdk.max_version', 'i18n', '插件尚未发布 Release']) {
+    for (const field of ['config.toml', 'version', 'author', 'urls', 'host_application', 'i18n', '插件尚未发布 Release']) {
       assert.ok(outputs.message.includes(field), field);
     }
   }
@@ -98,8 +98,8 @@ test('新增和修改申请禁止根目录 config.toml，检查失败不放行�
   assert.equal((await validate([], { type: 'remove', rootError: true })).outputs.status, 'success');
 });
 
-test('申请校验拒绝所有版本字段前两位的 99 和 999，第三位不限', async () => {
-  for (const field of ['version', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version', 'sdk.max_version']) {
+test('申请校验拒绝插件和宿主版本字段前两位的 99 和 999，第三位不限', async () => {
+  for (const field of ['version', 'host_application.min_version', 'host_application.max_version']) {
     for (const version of ['99.0.0', '999.0.0', '1.99.0', '1.999.0', '1.0.99', '1.0.999', '1.0.1000', '98.100.0']) {
       const manifestData = structuredClone(manifest);
       const parts = field.split('.');
@@ -167,5 +167,16 @@ test('修改新 ID 留空、未回答或省略时保留原 ID，并识别可选�
     assert.equal(result.outputs.plugin_id, 'example.old');
     assert.equal(result.outputs.repo_url, 'https://github.com/example/new');
     assert.equal(result.outputs.status, 'success');
+  }
+});
+
+
+test('新增和修改申请不校验 SDK 版本范围', async () => {
+  for (const type of ['add', 'modify']) {
+    for (const sdk of [{ min_version: '2.19.0', max_version: '2.99.99' },
+      { min_version: '3.0.0', max_version: '1.0.0' }, { min_version: 'invalid' }]) {
+      const { outputs } = await validate([[release]], { type, manifestData: { ...manifest, sdk } });
+      assert.equal(outputs.status, 'success');
+    }
   }
 });

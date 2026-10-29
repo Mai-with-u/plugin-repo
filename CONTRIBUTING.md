@@ -63,8 +63,9 @@
 > [!IMPORTANT]
 > - `manifest_version` 必须为 `2`。
 > - `id` 应使用稳定、唯一的插件 ID，例如 `github.username.my-plugin`，不要使用空格或路径字符。
-> - `version`、`host_application.min_version`、`host_application.max_version`、`sdk.min_version`、`sdk.max_version` 都应使用三段式版本号，例如 `1.0.0`。
+> - `version`、`host_application.min_version`、`host_application.max_version` 都应使用三段式版本号，例如 `1.0.0`。
 > - 新增、修改申请和新 Release 收录校验中，上述版本号的第一位、第二位不能填写 `99` 或 `999`；第三位不受此限制，例如 `1.0.99`、`1.0.999` 可通过这项检查。兼容范围请按实际支持情况填写。
+> - 市场不校验 `sdk` 的版本格式、范围顺序或 `99` / `999` 限制，SDK 兼容性由宿主判断；新增和修改申请仍要求声明 `sdk` 字段。
 > - `author` 包含 `name` 和 `url`。
 > - `urls.repository` 必须是公开 GitHub 仓库的 HTTPS 地址。
 > - `capabilities` 只声明插件实际需要的能力；没有额外能力时填写空数组。

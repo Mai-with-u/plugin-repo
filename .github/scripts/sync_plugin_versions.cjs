@@ -41,7 +41,8 @@ function validateManifest(manifest, version, expectedId, strictVersions = true) 
     check(Array.isArray(manifest.capabilities), '缺少 capabilities');
     check(typeof manifest.i18n?.default_locale === 'string', '缺少 i18n.default_locale');
   }
-  for (const field of manifest.manifest_version === 2 ? ['host_application', 'sdk'] : ['host_application']) {
+  // SDK 版本范围由宿主判断，市场只校验宿主版本范围。
+  for (const field of ['host_application']) {
     const range = manifest[field];
     const minValid = checkVersion(range?.min_version, `${field}.min_version`);
     if (range?.max_version !== undefined) {

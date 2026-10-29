@@ -51,13 +51,13 @@ test('Release 汇总 config.toml 和多个 manifest 问题后拒绝收录', asyn
     url.includes('/contents/?ref=') ? [{ name: 'config.toml' }] : base(url), undefined,
   async () => assert.fail('违规版本不能进入审核'));
   assert.deepEqual(result.versions, []);
-  for (const text of ['config.toml', 'Tag 与 manifest.version 不一致', 'version 第一位', '缺少作者', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version']) {
+  for (const text of ['config.toml', 'Tag 与 manifest.version 不一致', 'version 第一位', '缺少作者', 'host_application.min_version', 'host_application.max_version']) {
     assert.ok(result.rejected_releases[0].error.includes(text), text);
   }
 });
 
-test('Release 所有版本字段限制前两位 99/999，第三位不限制', () => {
-  for (const field of ['version', 'host_application.min_version', 'host_application.max_version', 'sdk.min_version', 'sdk.max_version']) {
+test('Release 插件和宿主版本字段限制前两位 99/999，第三位不限制', () => {
+  for (const field of ['version', 'host_application.min_version', 'host_application.max_version']) {
     for (const value of ['99.0.0', '999.0.0', '1.99.0', '1.999.0', '1.0.99', '1.0.999', '1.0.1000']) {
       const data = manifest();
       const [parent, key] = field.split('.');
@@ -163,7 +163,7 @@ test('manifest 版本、身份、范围错误均阻止收录', () => {
   assert.throws(() => validateManifest(manifest(), '2.0.0', 'example.demo'), /version 不一致/);
   assert.throws(() => validateManifest(manifest(), '1.0.0', 'other.demo'), /插件 ID/);
   const invalid = manifest();
-  invalid.sdk.max_version = '1.0.0';
+  invalid.host_application.max_version = '0.9.0';
   assert.throws(() => validateManifest(invalid, '1.0.0'), /倒置/);
 });
 test('重复版本标签冲突不能静默覆盖', async () => {
@@ -224,4 +224,18 @@ test('改 ID 后历史快照及审核信息保留，新版按新身份收录', a
   assert.equal(result.manifest_id, 'new.demo');
   assert.deepEqual(result.versions.find(item => item.version === '1.0.0'), snapshot);
   assert.equal(result.versions.length, 2);
+});
+
+
+test('Release 不校验 SDK 版本范围，保留声明并重新处理此前被拒的版本', async () => {
+  for (const sdk of [{ min_version: '2.19.0', max_version: '2.99.99' },
+    { min_version: '3.0.0', max_version: '1.0.0' }, { min_version: 'invalid' }]) {
+    const data = { ...manifest(), sdk };
+    const previous = { ...plugin, mode: 'releases', versions: [],
+      rejected_releases: [{ tag: 'v1.0.0', version: '1.0.0', error: 'sdk.max_version 第一位和第二位不能填写 99 或 999' }] };
+    const result = await syncPlugin(plugin, previous, client([release()], { manifest: data }));
+    assert.equal(result.versions.length, 1);
+    assert.deepEqual(result.versions[0].manifest.sdk, sdk);
+    assert.deepEqual(result.rejected_releases, []);
+  }
 });
