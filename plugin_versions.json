@@ -47786,7 +47786,65 @@
       "manifest_id": "WiseXin.phone-controller",
       "repositoryUrl": "https://github.com/WiseXin/MaiBot-Phone-Controller",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "7c915220ca68c95994143a4c6263a8ed15b12f5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T14:44:19Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Phone-Controller/releases/tag/v1.1.2",
+          "release_notes": "## 📱 麦麦的手机 (Phone Controller) v1.1.2 正式发布！\n\n让麦麦（MaiBot）拥有属于自己的实体安卓手机！不仅支持无线秒连、看屏幕实时截图、按文字智能点击、中文打字、多设备别名无缝切换，更具备**闲时自动摸鱼巡航**（白天自主刷 B站/知乎/微博/小红书/抖音并向主人幽默吐槽分享）的真正数字生命能力！\n\n### 🌟 v1.1.2 核心更新特性：\n1. **直填人性化账号路由**：\n   - 通知目标（ 与 ）支持直接填写**用户 QQ 号**、**机器人的专属 QQ 号**或 **Discord 用户数字 ID**；\n   - 彻底告别翻查底层繁琐的 32 位十六进制哈希会话 ID！\n2. **纯净主备通道分级容灾**：\n   - 严格分级隔离：摸鱼成果优先在主通道发送，发送成功立即终止，绝不触碰备用通道；\n   - **仅当主通道彻底断连或发送失败时，才启动备用通道容灾补发**，彻底消灭跨平台误发串台！\n3. **摸鱼时间戳持久化防抢跑**：\n   - 引入运行时状态时间戳持久化保存机制，彻底防止麦麦服务重启或配置热重载后由于内存状态丢失而过早抢跑摸鱼。\n4. **全链路规范化与跨平台路径适配**：\n   - 彻底移除硬编码宿主目录，采用全动态路径解析规范；\n   - 全库严密脱敏，0 敏感账号与内网 IP 暴露，完全符合开源市场最高安全准则。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.phone-controller",
+            "version": "1.1.2",
+            "name": "麦麦的手机",
+            "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷B站知乎并向主人幽默吐槽分享的真正数字生命能力。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+              "homepage": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+              "documentation": "https://github.com/WiseXin/MaiBot-Phone-Controller#readme",
+              "issues": "https://github.com/WiseXin/MaiBot-Phone-Controller/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "smartphone"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
