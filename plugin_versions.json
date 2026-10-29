@@ -46781,7 +46781,59 @@
       "manifest_id": "github.lbcheng1145.beg-for-money",
       "repositoryUrl": "https://github.com/Lbcheng1145/maibot-beg-for-money",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "99c5c85fe9f48ae3bc7a1771b25c6205e886d1c5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T20:09:40Z",
+          "release_url": "https://github.com/Lbcheng1145/maibot-beg-for-money/releases/tag/v1.0.2",
+          "release_notes": "修掉两个会让核心功能静默失效的问题。\n\n**修复**\n\n- **群聊里发收款码会发到发言人的私聊**：宿主注入的 `chat_id` 其实是当前会话的 session_id（32 位十六进制），不是群号。原来拿它当群号去反查，查不到就退回「按发言人查私聊流」，于是收款码、冷却计数、每日上限、审批记录和道谢全都跑到私聊去了。现在直接用宿主注入的 `stream_id`，整条反查链已删除。\n- **发送失败被当成成功**：SDK 的 `send.forward` / `send.image` / `send.text` 失败时返回 `False` 而不抛异常。原来只看有没有异常，结果收款码没发出去仍然回复「发出去了」、审批私信没送到仍然建记录。三处都改成检查返回值。\n\n**其他改进**\n\n- 工具调用无法再伪造 `message` / `user_id` 冒充管理员绕过记账审批\n- 账本文件解析失败时改名留档并停止写入，不再用空账本覆盖历史记录\n- 审批记录写盘失败时回滚账本条目，避免重启后重复记账\n- 并发调用不再绕过冷却和每日上限\n- 道谢触发失败时保留窗口，可以重试\n- 金额校验拒绝 NaN / inf\n- `/待确认` 和开启 `admin_only` 后的 `/收款` 要求私聊查\n- `/打赏` 加 30 秒节流，防止刷爆管理员私聊\n- `/收款 1-5` 这种不补零的日期写法也能认\n\n**要求**\n\n- MaiBot 1.3.x\n- maibot-plugin-sdk 2.16.x\n\n详见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.beg-for-money",
+            "version": "1.0.2",
+            "name": "讨饭",
+            "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/maibot-beg-for-money"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#F59E0B"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
