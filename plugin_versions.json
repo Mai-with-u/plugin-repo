@@ -43595,6 +43595,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.1",
+          "tag": "v0.5.1",
+          "commit": "4cdc5325a694a401b20379da77babb12e8c899a3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T16:31:06Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.1",
+          "release_notes": "### 修改\n\n- 内部拆分：把常量、配置模型、朗读清洗与音频工具搬进 `core/` 子包，`plugin.py` 从 1672 行降到 1134 行。\n  **无行为变化**：配置结构、默认值、Hook 与发送链路均未改动，79 条断言、`ruff`、`mypy` 全部通过。\n\n### 升级说明\n\n- 纯内部重构，**不需要修改任何配置**；`config_version` 同步为 0.5.1，插件首次加载时会自动写回。\n- 部署方式不变：把仓库里的 `plugin.py`、`core/`、`config.example.toml`、`_manifest.json` 一起替换即可（`core/` 是新增目录）。\n\n### 依赖\n\n- 宿主自带 `numpy`（可选，音色对齐与尾音处理用到），其余只需 `aiohttp`（manifest 已声明）。\n\n### 其他\n\n- 许可证 MIT，改动说明与维护手记见仓库 `CHANGELOG.md`、`docs/MAINTAINING.md`。\n- 静态检查：`ruff`、`mypy plugin.py core`、`tests/run_all.py`（79 条断言）全部通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.1",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.0",
           "tag": "v0.5.0",
           "commit": "d763c7e3353b61c45447436256ce34204da98e51",
