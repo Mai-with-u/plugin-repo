@@ -24152,5 +24152,232 @@
     "assets": {
       "icon_64": "icons/github.lbcheng1145.beg-for-money.webp"
     }
+  },
+  {
+    "id": "maibot.bilibili-browser",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.bilibili-browser",
+      "version": "1.0.3",
+      "name": "刷B站",
+      "description": "让麦麦自己刷B站：发 BV 号、av 号或链接就去看视频、读字幕、翻评论和弹幕；也可以在她主动思考时，从首页推荐、综合热门或兴趣搜索里自己挑一个看。",
+      "author": {
+        "name": "梦域 & 玄鲸",
+        "url": "https://github.com/DomainDream"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DomainDream/maibot-bilibili-browser",
+        "issues": "https://github.com/DomainDream/maibot-bilibili-browser/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.10.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.25.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "tv"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "anse.skills-support",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "anse.skills-support",
+      "version": "0.4.3",
+      "name": "Skills 技能管理",
+      "description": "让麦麦办事更靠谱！安装、创建和管理 Skills，按步骤查资料、做任务，还能更新和还原技能。",
+      "author": {
+        "name": "Andself",
+        "url": "https://github.com/Andself"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Andself/maibot-skills-support",
+        "documentation": "https://github.com/Andself/maibot-skills-support#readme",
+        "issues": "https://github.com/Andself/maibot-skills-support/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.14",
+        "max_version": "1.3.16"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.99"
+      },
+      "capabilities": [
+        "message.get_recent",
+        "chat.get_private_streams",
+        "send.text",
+        "llm.generate"
+      ],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "PyYAML",
+          "version_spec": ">=6,<7"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "management"
+    }
+  },
+  {
+    "id": "yayimiko.moss-image",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "yayimiko.moss-image",
+      "name": "MOSS 绘图",
+      "version": "0.3.0",
+      "description": "MaiBot 的 MOSS 生图插件：原文直出、漫画/表情包、风格与 OC、图片反推，通过 ComfyUI 发送到 QQ。",
+      "author": {
+        "name": "YayiMiko",
+        "url": "https://github.com/YayiMiko"
+      },
+      "urls": {
+        "repository": "https://github.com/YayiMiko/maibot_plugin_moss_image",
+        "documentation": "https://github.com/YayiMiko/maibot_plugin_moss_image/blob/main/README.md",
+        "issues": "https://github.com/YayiMiko/maibot_plugin_moss_image/issues"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "host_application": {
+        "min_version": "1.3.1",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.2",
+        "max_version": "2.13.99"
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.32,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=11,<13"
+        }
+      ],
+      "capabilities": [
+        "llm.generate",
+        "send.text",
+        "send.image",
+        "send.forward",
+        "api.call"
+      ]
+    }
+  },
+  {
+    "id": "com.neal240.xiaohongshu",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.neal240.xiaohongshu",
+      "version": "0.1.5",
+      "name": "麦麦小红书",
+      "description": "让麦麦浏览小红书、阅读私信，并规划发布图文。",
+      "author": {
+        "name": "Neal240",
+        "url": "https://github.com/neal240"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/neal240/maibot-xiaohongshu"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.99"
+      },
+      "plugin_type": "adapter",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "xhshow",
+          "version_spec": "==0.2.0"
+        },
+        {
+          "type": "python_package",
+          "name": "curl-cffi",
+          "version_spec": "==0.16.2"
+        },
+        {
+          "type": "python_package",
+          "name": "pycryptodome",
+          "version_spec": "==4.2.0"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": "==8.2"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=12.3.0,<14.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=50.0.1,<51.0.0"
+        }
+      ],
+      "capabilities": [
+        "llm.generate",
+        "chat.get_private_streams",
+        "chat.open_session",
+        "person.get_id",
+        "person.get_value",
+        "maisaka.context.append"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
   }
 ]
