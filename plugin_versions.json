@@ -42993,6 +42993,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "d763c7e3353b61c45447436256ce34204da98e51",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T10:13:15Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.0",
+          "release_notes": "0.5.0 主要变化：补齐“能发出去”之后的工程质量——音频校验、尾部处理、端点校验，以及一轮 A/B/C/D/E 代码整改（含一个会导致整条语音失败的崩溃点）。\n\n### 新增\n\n- 插件图标（`assets/icon.svg` + manifest `display.icon`），商店详情页会显示。\n- 尾部处理三件套：`delivery.trim_tail_silence_ms`（默认 250，裁掉多余尾静音）、`delivery.tail_pad_ms`（默认 120，补一点尾巴防播放端吃字）、`delivery.peak_normalize`（默认开，峰值统一到 −1.5 dBFS）。\n- 合成结果校验：时长下限 0.3 秒、上限按字数自适应（20 秒起、最多 90 秒），RMS 高于 −40 dBFS，WAV 头可解析；静音、截断、超长按失败处理并回退文字。\n- `mimo.api_base_url` 校验：只接受 https 公网地址；指向本机、内网、链路本地或云元数据时自动回退官方地址并告警。自建代理可显式打开 `mimo.allow_private_base_url`。\n- 单测（`tests/`，79 条断言，无 pytest 依赖）、开发依赖（`requirements-dev.txt`）、静态检查配置（`pyproject.toml` 的 ruff / mypy 段）与 CI（`.github/workflows/ci.yml`）。\n- 维护手记 `docs/MAINTAINING.md`。\n\n### 修改\n\n- 后处理合并为\"一次解析 → 处理 → 一次写回\"，频带矩阵按帧长缓存，单条后处理从 8.4 ms 降到 6.9 ms（中位）。\n- 时长上限改为按文本长度自适应，不再固定 20 秒（300 字的长句以前必然被自己的校验拒掉）。\n- 告警收敛到单一通道 `_warn_once`，同一次运行同类告警只打一次；配置告警在启动时按字段去重后清空。\n- 缓存上限常量按用途分开命名（TTL 缓存 / 身份缓存），不再复用同一个数。\n- 三处 ffmpeg 调用收敛为 `_run_ffmpeg` / `_encode_reference` / `_concat_reference`；`balanced` 策略的分片与列表文件按参考音频签名分目录。\n- 参考音频缓存只保留最近 6 个，同时清理 `parts-*` 目录与 `merge-*.txt`。\n- 默认朗读文案、配置模板、README 三处统一；`config_version` 同步 0.5.0。\n- 配置模板注明：开启任一音频后处理时 `mimo.audio_format` 会被忽略，实际按 WAV 处理。\n\n### 修复\n\n- **崩溃**：后处理里调用了一个在重构中已被删除的告警方法，一旦音色对齐失败就会 `AttributeError` 并让整条语音失败；改为走统一告警通道，并给后处理整体加兜底（失败按原样发出，不吞消息）。\n- 音色对齐的目标频谱只按实例缓存、不跟着参考文件变化失效（同名覆盖参考后仍在用旧曲线）。\n- `full_merge` 策略产出的参考可能是 mp3，但发给 API 时被标成 `audio/wav`。\n- 随机路径：紧邻数字的拉丁串（如 `ff14`）被误判成口癖 `ff` 删掉；去掉 URL 后中文之间残留空格。\n- 抽签结果在 TTL 内被反复复用，导致同一会话 10 秒内连续两条语音；改为一次性消费。\n- 重试退避期间仍占着并发槽，其它会话被跳过；改为先释放再退避。\n- 确定性失败（音频过长）被当成可重试错误；改为直接失败。\n- 身份未知时 `blacklist` 模式下私聊被误拦；改为放行并告警。\n- 就地修改宿主 `outbound` 字典；改为深拷贝后修改。\n- 三个 TTL 容器与身份缓存只增不减；补上过期清理与上限。\n- 静态检查在真实 SDK 环境下报错（`self.config` 未收窄、numpy 判空写法），补上 `config` 属性收窄与正确的空值处理，CI 从此稳定。\n\n### 安装\n\n```bash\ncd <麦麦插件目录>\ngit clone https://github.com/SoulString-Dev/maibot-mimo-voice.git\n# 重启麦麦核心，或直接改插件目录里的文件触发文件监视重载\n```\n\n### 依赖\n\n- 麦麦宿主 1.3.0–1.3.99，插件 SDK 2.12.x\n- 运行期需要 `aiohttp`（宿主自带）、`numpy`（宿主主程序自带）\n- `ffmpeg` 仅在可选的参考音频处理策略下需要，默认不需要\n\n### 其他\n\n- 自定义参考音频放在插件数据目录的 `references/`（启动日志会打印路径），升级不会覆盖。\n- 版本变更的唯一事实源是仓库里的 `CHANGELOG.md`。\n\nMIT License，fork 自 [Ling-LA/ling-tts-bot](https://github.com/Ling-LA/ling-tts-bot)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.0",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.4.0",
           "tag": "v0.4.0",
           "commit": "dbcf1d304fdec151dabddaa1199c0fe5c5a60d2f",
