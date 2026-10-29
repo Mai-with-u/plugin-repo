@@ -46448,7 +46448,60 @@
       "manifest_id": "github.TommyAAKK.bilibili_interest_share",
       "repositoryUrl": "https://github.com/TommyAAKK/maibot-bilibili-interest-share",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "7a710c0bbb405c52996099c020f9e07e3b6f28fc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T04:35:37Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-bilibili-interest-share/releases/tag/v1.1.0",
+          "release_notes": "## v1.1.0\n\n分享改成「随口一提」，不再摆出明确的分享/推荐意图；顺带补齐审核提的几处边角问题。\n\n### 新增\n\n- `[share].casual_mode`（默认 `true`）：「随口一提」模式，把一句随口的话和【标题】链接合成**一条**消息发出去，像群里顺嘴提一句，而不是「我来给大家分享一个视频」。\n- `[share].casual_max_chars`（默认 `60`）：随口一句的字数上限。\n\n### 变更\n\n- 分享文案的提示词改为：像刚刷到、顺嘴聊两句，可以带吐槽/情绪/疑问；不要用「推荐」「分享」「安利」「值得一看」「大家快看」这类词，不分点、不加前缀。\n- 「随口一提」模式下不再单独发推荐语，也不再分条发送；`send_as_parts` / `intro_enabled` / `narrative_enabled` 只在关闭该模式后生效。\n- 关闭 `casual_mode` 即回到 v1.0.x 的「推荐语 / 标题链接 / 自然语言介绍」分条格式，行为与配置含义都不变。\n\n### 修复\n\n- 兼容新版宿主的 `send.text` 返回结构：宿主 1.3.15 / SDK 2.16 在 `return_details=False` 时返回 `{\"success\": bool}`，旧代码只认 `{\"sent\": bool}`，会把「发成功」误判成「发失败」。现在两种结构都识别。\n- `[[categories]].max_share_per_round` 真正生效（之前只取 `[schedule]` 和 `[[streams]]` 的值，类别级上限形同虚设）。\n- `/bili-search` 和 `/赤石视频` 现在也受 `[[streams]]` 白名单约束：非白名单会话只回一句提示，不发视频。\n- 赤石视频路径补上全局过滤：`[filter].block_keywords`、`block_up_names`，以及 `exclude_official` 打开时的 `official_keywords` 都会生效。\n- `/bili-search` 不带参数时不再拿指令原文当搜索词：会剥掉指令前缀，剥完为空就回「用法」。\n\n### 依赖\n\n- `_manifest.json` 的 `dependencies` 里声明 `imageio-ffmpeg >= 0.4.9`（`python_package`）：抽帧用的 ffmpeg 由它提供，宿主安装插件时先检查、缺了才自动装。\n\n### 测试\n\n- 新增 `tests/test_review_fixes.py`（7 例）覆盖上面几条；全套 143 例通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.bilibili_interest_share",
+            "version": "1.1.0",
+            "name": "麦麦刷B站",
+            "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-bilibili-interest-share"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.4.9"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
