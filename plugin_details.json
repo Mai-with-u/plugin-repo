@@ -1073,7 +1073,7 @@
     "id": "XXXxx7258.google_search_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.1.0",
+      "version": "4.1.1",
       "name": "麦麦联网插件（search plugin）",
       "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
       "author": {
@@ -14701,7 +14701,7 @@
       "manifest_version": 2,
       "plugin_type": "media",
       "id": "github.achenjins.runninghub-workflow-adapter",
-      "version": "4.0.1",
+      "version": "1.3.5",
       "name": "麦麦画师 · RunningHub",
       "description": "文档已更新 qwen-image2.1 工作流使用方式，欢迎使用！让麦麦亲手给你画画：从一句话文生图，到多参考图 / 视频生成，统统自动完成并把成品发回聊天。支持自定义工作流、自己优化成本、AI 扩写提示词和限流防刷。仅适配 NapCat / QQ。",
       "author": {
@@ -19834,7 +19834,7 @@
       "version": "1.2.4",
       "id": "mai-play-ygo",
       "name": "麦麦玩游戏王",
-      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页��看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
       "author": {
         "name": "erhan111119",
         "url": "https://github.com/erhan111119"
@@ -22168,7 +22168,7 @@
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.99.99"
+        "max_version": "2.12.99"
       },
       "dependencies": [
         {
@@ -23148,7 +23148,7 @@
       "manifest_version": 2,
       "id": "m1o0.maibot-mimotts-voice-pro",
       "name": "MiMo TTS Voice Clone (Pro)",
-      "version": "1.9.10",
+      "version": "1.9.11",
       "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
       "author": {
         "name": "m1o0",
@@ -23167,7 +23167,7 @@
       },
       "sdk": {
         "min_version": "1.0.0",
-        "max_version": "2.99.99"
+        "max_version": "2.16.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -23700,6 +23700,446 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
+    }
+  },
+  {
+    "id": "github.heiye-hxy.persona-switch",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.heiye-hxy.persona-switch",
+      "version": "1.0.1",
+      "name": "人格定时/口令切换",
+      "description": "按时段或白名单暗号临时覆盖麦麦人格，只改运行时提示词，不修改任何配置文件",
+      "author": {
+        "name": "Taffy",
+        "url": "https://github.com/heiye-hxy"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/heiye-hxy/ai",
+        "homepage": "https://github.com/heiye-hxy/ai",
+        "documentation": "https://github.com/heiye-hxy/ai/blob/main/README.md",
+        "issues": "https://github.com/heiye-hxy/ai/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.14.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.moonlycake.host-status",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.moonlycake.host-status",
+      "version": "1.0.3",
+      "name": "宿主机状态图",
+      "description": "使用命令采样并绘制宿主机 CPU、内存、交换空间、硬盘和运行时间，无模型调用。",
+      "author": {
+        "name": "MoonlyCake",
+        "url": "https://github.com/MoonlyCake"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+        "homepage": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+        "documentation": "https://github.com/MoonlyCake/maibot-host-status-plugin/blob/main/README.md",
+        "issues": "https://github.com/MoonlyCake/maibot-host-status-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.12",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.16.99"
+      },
+      "plugin_type": "extension",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "psutil",
+          "version_spec": ">=6.0,<8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0,<13.0"
+        }
+      ],
+      "capabilities": [
+        "send.image",
+        "send.text"
+      ],
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "activity"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "github.jiakeju.maibot-curator",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.jiakeju.maibot-curator",
+      "version": "0.1.3",
+      "name": "麦麦很好奇（Memory Keeper）",
+      "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+      "author": {
+        "name": "JJK",
+        "url": "https://github.com/JiaKeJu"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/JiaKeJu/maibot-curator",
+        "homepage": "https://github.com/JiaKeJu/maibot-curator",
+        "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+        "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "sparkles",
+          "background": "#1C272C"
+        }
+      },
+      "capabilities": [
+        "database.query",
+        "llm.generate",
+        "llm.embed",
+        "config.get",
+        "message.get_by_time_in_chat",
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "person.get_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.jiakeju.maibot-curator.webp"
+    }
+  },
+  {
+    "id": "github.tantan-yyds.short-term-memory",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.tantan-yyds.short-term-memory",
+      "version": "1.0.4",
+      "name": "短期记忆",
+      "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+      "author": {
+        "name": "TanTanMao",
+        "url": "https://github.com/TanTan-yyds"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+        "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+        "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+        "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.19.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "brain"
+        }
+      },
+      "capabilities": [
+        "person.get_id",
+        "person.get_value"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "WiseXin.phone-controller",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WiseXin.phone-controller",
+      "version": "1.1.1",
+      "name": "麦麦的手机",
+      "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷B站知乎并向主人幽默吐槽分享的真正数字生命能力。",
+      "author": {
+        "name": "WiseXin",
+        "url": "https://github.com/WiseXin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+        "homepage": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+        "documentation": "https://github.com/WiseXin/MaiBot-Phone-Controller#readme",
+        "issues": "https://github.com/WiseXin/MaiBot-Phone-Controller/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "smartphone"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "chat.get_stream_by_user_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "WiseXin.discord-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WiseXin.discord-adapter",
+      "version": "1.0.3",
+      "name": "Discord 适配器 / Discord Adapter",
+      "description": "Discord 平台双工消息网关适配器，让麦麦无缝接入 Discord 服务器与私聊(DM)，支持图文消息与引用回复。",
+      "author": {
+        "name": "WiseXin",
+        "url": "https://github.com/WiseXin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+        "homepage": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+        "documentation": "https://github.com/WiseXin/MaiBot-Discord-Adapter/blob/main/README.md",
+        "issues": "https://github.com/WiseXin/MaiBot-Discord-Adapter/issues"
+      },
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bot"
+        }
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.0.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "discord.py",
+          "version_spec": ">=2.3.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "fjyxyz.qq-account",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "fjyxyz.qq-account",
+      "version": "1.0.6",
+      "name": "QQ 账号管理",
+      "description": "通过 SnowLuma 管理机器人自身 QQ 资料、在线状态与 QQ 空间黑名单，仅允许主人调用。",
+      "author": {
+        "name": "fjyxyz",
+        "url": "https://github.com/2451965602"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/2451965602/maibot-qq-account-plugin",
+        "homepage": "https://github.com/2451965602/maibot-qq-account-plugin",
+        "documentation": "https://github.com/2451965602/maibot-qq-account-plugin#readme",
+        "issues": "https://github.com/2451965602/maibot-qq-account-plugin/issues"
+      },
+      "plugin_type": "tool",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=1.0.1"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "chat.get_stream_by_user_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.qrzzzz.music-enhanced",
+    "manifest": {
+      "manifest_version": 2,
+      "plugin_type": "tool",
+      "id": "github.qrzzzz.music-enhanced",
+      "version": "1.1.1",
+      "name": "麦麦点歌增强",
+      "description": "基于 maibot-music 增强的 QQ/网易云点歌插件，支持聚合音源、完整时长校验、转码和本地语音缓存",
+      "author": {
+        "name": "Qrzzzz",
+        "url": "https://github.com/Qrzzzz"
+      },
+      "license": "GPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/Qrzzzz/maibot-music-enhanced",
+        "issues": "https://github.com/Qrzzzz/maibot-music-enhanced/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=42.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.lbcheng1145.beg-for-money",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.lbcheng1145.beg-for-money",
+      "version": "1.0.2",
+      "name": "讨饭",
+      "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
+      "author": {
+        "name": "Lbcheng1145",
+        "url": "https://github.com/Lbcheng1145"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Lbcheng1145/maibot-beg-for-money"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.99"
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward",
+        "chat.get_stream_by_user_id",
+        "maisaka.proactive.trigger"
+      ],
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "background": "#F59E0B"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.lbcheng1145.beg-for-money.webp"
     }
   }
 ]

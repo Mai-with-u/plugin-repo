@@ -1205,6 +1205,11 @@
       ],
       "rejected_releases": [
         {
+          "tag": "4.1.1",
+          "version": "4.1.1",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "1.0.3",
           "version": "1.0.3",
           "error": "Tag 与 manifest.version 不一致\nsdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -42941,6 +42946,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "dbcf1d304fdec151dabddaa1199c0fe5c5a60d2f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T15:44:54Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.4.0",
+          "release_notes": "## 0.4.0\n\n### 自定义音色放到了数据目录\n- 自己的参考音频改放插件数据目录的 `references/`（插件启动时自动创建，并在日志里打印完整路径）：\n  `data/plugins/github.SoulString-Dev.maibot-mimo-voice/references/`\n- `voice.reference_path` 只写文件名即可；为兼容旧版本，放在插件根目录也仍然能读到。\n- 升级插件不会覆盖 `references/`，也不会误提交（`.gitignore` 已排除 `*.wav` / `*.mp3` / `references/` / `voices/`）。\n\n### 音色对齐默认开启\n- `delivery.timbre_match` 默认改为 `true`：按参考音频的相对频谱补偿每条输出（±6 dB 限幅，强度可调）。\n- 实测与参考的频谱距离可从 4–6.5 dB 降到 1.6–2.2 dB；带混响或本身很暗的参考收益较小。\n\n### 配置模板改成中文说明\n- 每一节开头写清「这一节管什么」，每个字段标注「取值 / 默认 / 建议」，进阶项单独分段。\n- `plugin.config_version` → 0.4.0；旧 `config.toml` 的残留键会被自动忽略。\n\n### 修复\n- `sdk.max_version` 由 `2.99.99` 改为 `2.12.99`：旧值被插件索引的版本校验拒绝，这也是 0.3.1 一直进不了商店的原因。\n\n### 安装\n1. 下载 Release 或从插件商店安装；\n2. 用内置音色开箱即用（`voice.preset = bingtang` / `jasmine`）；\n3. 想用自己的声音：把参考音频放进 `references/`，`preset = \"custom\"` 并填 `reference_path`。\n\n需要麦麦 1.3.0+，SDK 2.12.0+，插件类型 media，MIT。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.4.0",
+            "name": "MiMo 语音回复",
+            "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、支持随机/模型请求双触发、超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "v0.2.2",
           "commit": "de0e79a978bafd3d2122df01bff45e8618e2c157",
@@ -44829,6 +44885,55 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.9.11",
+          "tag": "v1.9.11",
+          "commit": "22cfba0a82507df242e0bd4a717e74a8f3bdc967",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T17:28:14Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.11",
+          "release_notes": "## 修复\n\n- **单个音色文件读取失败不再拖垮整个插件**。`_load_voices` 在 `on_load` 里被直接 `await`，原来 `stat()` / `open()` 没有异常保护——`voices/` 里只要有一个文件读不了（被播放器独占、网盘同步中、刚被改名），异常一路上抛到宿主，插件被注销成 FAILED，**所有语音功能消失且必须重启宿主才能恢复**。现在单文件失败只记 warning 并跳过，其余音色照常加载。\n- **重载音色不再出现「旧音色没了、新音色只加载一半」**。改为先构建新字典、走完再整体替换。\n- **不传 `stream_id` 时不再丢弃 `audio_base64`**。原实现在「只合成、不发送」分支里 `pop` 掉了该字段，调用方会拿到 `{\"success\": true}` 却没有音频。\n- **`audio_format` 填 `pcm` / `pcm16` 时语音发不出去**。上游返回无容器头裸流，适配器原样塞进 `record`，QQ 无法识别。现在发送前用标准库 `struct` 拼 44 字节 RIFF/WAVE 头封成 wav 再发。\n- **取消任务时会留下孤儿 ffmpeg 进程**。原来只处理 `asyncio.TimeoutError`，而取消抛的是 `CancelledError`，`proc.kill()` 从未执行。\n- **`on_unload` 只 `cancel()` 不等待**，协程里的 ffmpeg 同样会泄漏。现在 `await` 并带 2s 超时兜底。\n- **`@API` 未声明 RPC 超时**，宿主默认 60s 会在插件干活时掐断。现在显式声明 `timeout_ms=120000`。\n- **语气词白名单漏字**，`（深沉）` 会被原样送去合成，把「深沉」念出来。\n\n## 变更\n\n- **`_manifest.json` 的 `sdk.max_version` 从 `2.99.99` 改为 `2.16.99`**，符合插件市场审核规则（版本号前两位不能填 99 或 999）。\n- 回归测试从 69 项增至 **115 项**，每条都做过「回退到旧代码则测试失败」的反向验证。\n\n**完整对比**：https://github.com/m1o0/maibot-mimotts-voice-pro/compare/v1.9.10...v1.9.11",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.11",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.9.10",
           "tag": "v1.9.10",
           "commit": "cecec43fd921a40967b0c2623320796542d25442",
@@ -46358,6 +46463,458 @@
           "error": "仓库根目录不能包含 config.toml\nhost_application.max_version 第一位和第二位不能填写 99 或 999\nsdk.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
+    },
+    {
+      "id": "github.heiye-hxy.persona-switch",
+      "manifest_id": "github.heiye-hxy.persona-switch",
+      "repositoryUrl": "https://github.com/heiye-hxy/ai",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "com.moonlycake.host-status",
+      "manifest_id": "com.moonlycake.host-status",
+      "repositoryUrl": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.jiakeju.maibot-curator",
+      "manifest_id": "github.jiakeju.maibot-curator",
+      "repositoryUrl": "https://github.com/JiaKeJu/maibot-curator",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "7d1675cf751ae138177de270947c0da86cba1c37",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T14:07:58Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.3",
+          "release_notes": "麦麦很好奇（Memory Keeper）v0.1.3\r\n这个版本集中在两件事：让配置界面自己讲清楚，以及代码健康度收尾。\r\n\r\n本次改动\r\n配置说明重写：README 配置章节按 WebUI 面板顺序重排，90 个参数逐一写明含义、默认值、取值范围与示例（插件 / 调度 / 黑话学习 / 联网检索 / 表达方式 / 表情包 / 群友日程 / 上下文注入）。\r\nWebUI 输入框灰色提示：配置 Schema 生成时自动把字段 description 回填为 hint，插件配置页每个输入框下方直接显示说明，不用再翻文档。\r\n第 5 轮复审补强：[agenda] max_archive_per_run 真正生效（每轮归档上限，超出的事件顺延到下一轮、不丢失；dry-run 不写人物卡、不受此限）；[web] base_url 字段描述补充「仅建议填写可信的 API 地址」。\r\n英文副名调整：显示名改为「麦麦很好奇（Memory Keeper）」，插件 id、中文名与功能不变。\r\n代码清理：删除 3 个已被取代的旧函数与 2 个未使用常量（plugin.py 2,974 → 2,877 行），行为不变。\r\n新增 CHANGELOG.md：按版本记录全部改动，README 版本记录区已链接。\r\n升级说明\r\n无需迁移配置与 data：config.toml 由 Runner 按配置 schema 自动补齐 max_archive_per_run 等新键，已有值不变。\r\ndry-run（[agenda] writeback = false）时不会再写人物卡 PersonInfo.memory_points，账号/群组信息均不出本机（联网只使用插件自身 [web] api_key，且只发送词条与检索问法）。\r\n兼容与环境\r\nMaiBot 1.3.0 – 1.3.99；Plugin SDK 2.8.0 – 2.16.99。\r\n无额外 Python 依赖：联网复用宿主自带的 httpx（缺失时自动只使用群内证据）；LLM/embedding 走宿主能力。\r\n自查\r\n静态审计 97 项、运行时仿真 91 项、洁净检出 33 项、冗余自查 8 类 0 候选，四套全部通过。\r\n本地实例部署验证 20 项全过：仓库与实例的 plugin.py / README.md / CHANGELOG.md / icon.png 逐字节一致，配置与 data 目录未被覆盖，WebUI 识别版本 0.1.3，配置 Schema 8 面板 / 90 字段提示齐全。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.3",
+            "name": "麦麦很好奇（Memory Keeper）",
+            "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "635080a6737f7513e12ac5cf0b5843cfbf1bd6f1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T05:47:26Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.2",
+          "release_notes": "## v0.1.2 — 复审收尾 + 自查加固\r\n\r\n按市场复审意见完成收尾，并补上自查发现的小问题。**无破坏性变更，配置与数据兼容 v0.1.1，直接覆盖升级即可。**\r\n\r\n### 修复\r\n- manifest 移除未使用的 `message.get_recent` 能力声明（只保留实际使用的 8 项）\r\n- 修正 docstring 中“联网走宿主同一把 Key”的过期描述——联网只用插件配置的 `[web] api_key`\r\n- 修复 `[plugin] enabled` 关闭再打开后后台巡检不会自动重启的问题\r\n- 单轮巡检异常不再终止整个循环（`_safe_run_due` 兜底，异常只记录）\r\n\r\n### 加固\r\n- 去掉 `plugin.py` 文件头 BOM\r\n- 移除 `urllib` 兜底：联网只走宿主自带的 `httpx`；环境缺失时警告一次并跳过联网（只用群内证据）\r\n- 仓库仍不包含 `config.toml`（由 Runner 按配置模型生成）\r\n\r\n### 自查\r\n静态审查 78 项 + 宿主仿真 74 项 + 洁净检出 24 项，共 176 项全部通过；不含开发者机器路径、密钥与本地数据文件。\r\n\r\n**适配**：MaiBot 1.3.0 – 1.3.99，Plugin SDK 2.8.0 – 2.16.99\r\n**升级**：市场更新或替换插件目录后重启；已有配置与 `data/` 数据无需迁移。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.2",
+            "name": "麦麦很好奇（MaiBot Curator）",
+            "description": "后台学习与整理插件：黑话 / 表达 / 表情三库自动清洗 + 群聊日程待办。①黑话：抽取后结合群内用法与联网检索多轮自证，高置信才补释义；②表达：embedding 聚类合并近似条目，LLM 判定质量与适用场景；③表情：补「画面描述｜标签｜适用场景」并去重、取消注册重复项；④日程：pending→confirmed→done/cancelled 状态机，确认后才注入上下文，结束后归档人物卡并定时清理。支持 dry-run，全中文注释配置。联网自证需在配置中自填 DeepSeek API Key（留空则只用群内证据）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.1.0",
+          "version": "0.1.0",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "github.tantan-yyds.short-term-memory",
+      "manifest_id": "github.tantan-yyds.short-term-memory",
+      "repositoryUrl": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "e0fe2579bd7616c357af1f53a279480bd565d0f4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T10:03:39Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.4",
+          "release_notes": "## 变更\n\n- 放宽 SDK 兼容上限至 `2.19.99`\n- 移除旧 Host Planner `messages` 兼容分支\n- `add_short_term_memory` 保持 `core_tool=True`；修改与删除工具改为 deferred，减少每轮工具定义占用\n\n全局短期记忆设计保持不变。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.4",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "f17312c6e3b3281704862564e082723bc4cfa46a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T09:37:55Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.3",
+          "release_notes": "## 变更\n\n- 更新短期记忆注入头，补充删除条件通常发生一次即结束的说明\n- 注入行将事情描述与删除条件合并展示：`描述；删除条件：...`\n- 创建与修改工具说明补充删除条件的判断、询问与可选规则\n- 修改工具仍支持不传时保留原值、传空字符串清除\n\n## 兼容性\n\n- 旧记忆数据没有删除条件时自动按空值加载\n- 兼容 MaiBot 1.3.x / SDK 2.16.x",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.3",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "15e65b8d48d946ba0e7e2a33e5352c92965414ab",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T08:51:54Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.2",
+          "release_notes": "## 新增\n\n- 短期记忆新增可选字段 `delete_condition`（删除条件）\n- 创建工具 `add_short_term_memory` 支持传入删除条件，也可以不填\n- 修改工具 `modify_short_term_memory` 支持更新删除条件；不传时保留原值，传空字符串可清除\n- 删除条件会随记忆一起注入 Planner 与 Replyer，供 LLM 判断何时调用删除工具\n- 插件不会自动解释或执行删除条件\n\n## 兼容性\n\n- 旧记忆数据没有删除条件时自动按空值加载\n- 兼容 MaiBot 1.3.x / SDK 2.16.x",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.2",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "fc91b3d13e7cb2cbebd5467daef9719ea7a615fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T04:33:36Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.0.1",
+          "release_notes": "## 变更\n\n- 插件 ID 从 `com.codex.short-term-memory` 调整为 `github.tantan-yyds.short-term-memory`\n- 插件版本更新为 `1.0.1`\n- 功能无变化，仍兼容 MaiBot 1.3.x / SDK 2.16.x\n\n## 从 v1.0.0 升级\n\nHost 会把新 ID 视为新插件。若旧版本已有记忆数据，请将旧数据目录迁移到新 ID 对应的数据目录。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.0.1",
+            "name": "短期记忆",
+            "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "WiseXin.phone-controller",
+      "manifest_id": "WiseXin.phone-controller",
+      "repositoryUrl": "https://github.com/WiseXin/MaiBot-Phone-Controller",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "WiseXin.discord-adapter",
+      "manifest_id": "WiseXin.discord-adapter",
+      "repositoryUrl": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "fjyxyz.qq-account",
+      "manifest_id": "fjyxyz.qq-account",
+      "repositoryUrl": "https://github.com/2451965602/maibot-qq-account-plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.2",
+          "version": "1.0.2",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "仓库根目录不能包含 config.toml\nsdk.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    },
+    {
+      "id": "github.qrzzzz.music-enhanced",
+      "manifest_id": "github.qrzzzz.music-enhanced",
+      "repositoryUrl": "https://github.com/Qrzzzz/maibot-music-enhanced",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.lbcheng1145.beg-for-money",
+      "manifest_id": "github.lbcheng1145.beg-for-money",
+      "repositoryUrl": "https://github.com/Lbcheng1145/maibot-beg-for-money",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
