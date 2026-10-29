@@ -6882,7 +6882,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.10",
+      "version": "1.1.11",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -17580,7 +17580,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.14.6",
+      "version": "2.15.0",
       "name": "中V歌词识别 · 歌曲库",
       "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
@@ -22521,7 +22521,7 @@
     "id": "github.42yoru.maimai-emoji-label-bridge",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.13",
+      "version": "0.2.0",
       "plugin_type": "media",
       "name": "表情标签桥接 (Emoji Label Bridge)",
       "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",

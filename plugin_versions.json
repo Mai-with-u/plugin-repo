@@ -6347,6 +6347,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v1.1.11",
+          "version": "1.1.11",
+          "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v1.1.10",
           "version": "1.1.10",
           "error": "sdk.max_version 第一位和第二位不能填写 99 或 999"
@@ -39034,7 +39039,9 @@
           }
         }
       ],
-      "ignored_tags": [],
+      "ignored_tags": [
+        "v.0.7.1"
+      ],
       "rejected_releases": []
     },
     {
