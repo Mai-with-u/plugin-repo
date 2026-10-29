@@ -26642,6 +26642,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.5",
+          "tag": "v1.24.5",
+          "commit": "8a27bc057272ea262868fdca6e65bf370f856652",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T15:59:34Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.5",
+          "release_notes": "### 修复\n\n- **睡前推迟 10 分钟失效（双循环竞态，实测复现）**：入睡协商 defer 只在夜窗开始后计算，而状态引擎在夜窗第一拍就把相位打成\"入睡中\"——协商条件（非睡眠相位）从此永假，`sleep_defer_until` 恒为 0，用户睡前消息只能靠概率判醒碰运气。现在 defer 预武装：麦麦醒着时恒维护\"最后一条消息+静默 10 分钟\"（夜窗前也写入），状态引擎到点看到 defer 未到期即保持清醒。副作用说明：午休段前聊天同样会推迟午睡 10 分钟（与夜间语义一致）。\n\n- 498 项测试通过。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.4...v1.24.5",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.5",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.4",
           "tag": "v1.24.4",
           "commit": "41a0a69f6903978444184e6719767fa2aa1afbbc",
