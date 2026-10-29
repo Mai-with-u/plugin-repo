@@ -951,6 +951,119 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "4.1.1",
+          "tag": "4.1.1",
+          "commit": "94e4577f05c6e6cfcf984a09f7f7688b895ac332",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T16:19:21Z",
+          "release_url": "https://github.com/YukiSakiko/google_search_plugin/releases/tag/4.1.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "4.1.1",
+            "name": "麦麦联网插件（search plugin）",
+            "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
+            "author": {
+              "name": "晴空",
+              "url": "https://github.com/XXXxx7258"
+            },
+            "license": "AGPL",
+            "urls": {
+              "repository": "https://github.com/XXXxx7258/google_search_plugin",
+              "homepage": "https://github.com/XXXxx7258/google_search_plugin",
+              "documentation": "https://github.com/XXXxx7258/google_search_plugin#readme",
+              "issues": "https://github.com/XXXxx7258/google_search_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "0.10.0",
+              "max_version": "1.14.5"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "curl_cffi",
+                "version_spec": ">=0.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=4.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "readability-lxml",
+                "version_spec": ">=0.8.1"
+              },
+              {
+                "type": "python_package",
+                "name": "trafilatura",
+                "version_spec": ">=1.6.0"
+              },
+              {
+                "type": "python_package",
+                "name": "charset-normalizer",
+                "version_spec": ">=3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml-html-clean",
+                "version_spec": ">=0.1.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp-socks",
+                "version_spec": ">=0.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "brotli",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "ddgs",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "xxxxx7258.google-search-plugin"
+          }
+        },
+        {
           "version": "4.1.0",
           "tag": "4.1.0",
           "commit": "0dd3ad29e603bb6ac6d02c32cce55934ba07cb32",
