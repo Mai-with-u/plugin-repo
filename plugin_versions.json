@@ -47582,7 +47582,65 @@
       "manifest_id": "maibot.bilibili-browser",
       "repositoryUrl": "https://github.com/DomainDream/maibot-bilibili-browser",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "1.0.3",
+          "commit": "b903de5ed6230e809c5c8bf708cfe7201df0b5d1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T12:45:34Z",
+          "release_url": "https://github.com/DomainDream/maibot-bilibili-browser/releases/tag/1.0.3",
+          "release_notes": "第三轮审核意见的三处修正，外加诊断命令的权限收敛。\n\n## 修正（本轮审核提出）\n\n- **README「登录 token」一节自相矛盾** —— 那里还写着 `credential_file` 可以填「绝对路径或相对数据目录的路径」，而配置一节和 `config.py` 的描述都写明绝对路径会被忽略。现在统一成「只认数据目录内的相对路径」，并指向配置一节。\n- **`plugin.py` 的 `_data_dir()` 兜底路径写错** —— 兜底分支用的是 `data/plugins/bilibili-browser`，而按插件 ID 实际应为 `data/plugins/maibot.bilibili-browser`。兜底平时走不到，但一旦触发就会用到错的目录。\n- **`bili/credential.py` 模块 docstring** 里同一个目录名也写错了，一并改正。\n\n## 新功能\n\n- **`[status] admin_qq`** —— `/bili_status` 的可用范围。留空则任何人在私聊都能查；填了就只有名单里的 QQ 能查。群聊里这个命令一律不响应，与白名单无关（插件配置是实例级一份，输出对每个对话都一样，群里发等于广播）。\n\n## 其他调整\n\n- **凭证路径不再脱敏** —— 上一版为了不在群里暴露，凭证来源只显示文件名。既然现在群聊完全不响应，私聊里再藏路径只会让人自己翻目录，所以恢复成完整绝对路径，可以直接复制去改文件。\n- **`config_version` 升到 `1.1.0`** —— 新增了 `[status]` 段，配置结构变了；描述也写清楚了这是配置结构版本、跟插件版本号不是一回事。\n\n## 验证\n\n编译通过，自测全绿；四条权限用例覆盖：群聊拦截、私聊放行、白名单外拦截、白名单内放行。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.bilibili-browser",
+            "version": "1.0.3",
+            "name": "刷B站",
+            "description": "让麦麦自己刷B站：发 BV 号、av 号或链接就去看视频、读字幕、翻评论和弹幕；也可以在她主动思考时，从首页推荐、综合热门或兴趣搜索里自己挑一个看。",
+            "author": {
+              "name": "梦域 & 玄鲸",
+              "url": "https://github.com/DomainDream"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/DomainDream/maibot-bilibili-browser",
+              "issues": "https://github.com/DomainDream/maibot-bilibili-browser/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.10.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "tv"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
