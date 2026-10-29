@@ -46186,7 +46186,65 @@
       "manifest_id": "github.42yoru.maimai-jargon-boost",
       "repositoryUrl": "https://github.com/42yoru/maimai-jargon-boost",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "fc3e752145f67fbe8d2f85fe7741eabd427ec467",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T03:24:25Z",
+          "release_url": "https://github.com/42yoru/maimai-jargon-boost/releases/tag/v0.4.0",
+          "release_notes": "**破坏性变更**\r\n\r\n- **移除 `jargon_boost_run` 工具**，手动入口只保留 operator 命令 `/黑话加速`。\r\n\r\n  原因（插件市场复核给出的源码结论，我核实过）：宿主的 `permission` 元数据**只被命令链路消费**\r\n  （`component_query._build_command_info` → `CommandInfo` → `bot.py` 里的 `has_command_permission`），\r\n  工具的 `_build_tool_definition` 根本不读它。也就是说 0.3.7 里给工具加的\r\n  `permission=\"operator\"` 只是装饰——任何会话都能通过模型调用它写 `Jargon.count`，\r\n  与「只有主人明确要求时才调用」的声明不符。工具通道没有可信的操作员校验可用，所以直接不提供。\r\n\r\n**修复**\r\n\r\n- **回执里标明本次扫描范围**：`仅当前会话` / `所有会话（boost.shared_globally=true）`，\r\n  调用者能看到自己动的是哪一批记录\r\n\r\n**细节**\r\n\r\n- 模块文档、README「手动入口」表同步说明为什么只有命令没有工具\r\n- 测试 31 → 33：新增「不再声明任何工具」与「回执标明作用范围」两条；原来那条\r\n  「工具需要 operator 权限」的断言已删除（它断言的正是这次被判无效的做法）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.0",
+            "name": "黑话加速器",
+            "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-jargon-boost",
+              "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+              "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "zap",
+                "background": "#FFD69A"
+              }
+            },
+            "plugin_type": "knowledge",
+            "id": "github.42yoru.maimai-jargon-boost"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
