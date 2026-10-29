@@ -47246,7 +47246,66 @@
       "manifest_id": "WiseXin.discord-adapter",
       "repositoryUrl": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "cfe0e9d33d536abb428e7a590e607bbf8cc06c1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T04:39:54Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Discord-Adapter/releases/tag/1.0.0",
+          "release_notes": "### MaiBot Discord 双工消息网关适配器 v1.0.0\n\n- 基于 MaiBot SDK 2.x 和 discord.py 2.7.x 构建\n- 支持私聊(DM)与服务器频道消息收发、图文混排、引用回复\n- 支持 Discord 2000 字符限制自动分段与打字状态展示\n- 严谨的双节配置模型 (基础配置 + 机器人连接设置)\n- 100% 通过官方 ManifestValidator 严格模式与 PluginLoader 发现测试",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.discord-adapter",
+            "version": "1.0.0",
+            "name": "Discord 适配器 / Discord Adapter",
+            "description": "Discord 平台双工消息网关适配器，让麦麦无缝接入 Discord 服务器与私聊(DM)，支持图文消息与引用回复。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+              "homepage": "https://github.com/WiseXin/MaiBot-Discord-Adapter",
+              "documentation": "https://github.com/WiseXin/MaiBot-Discord-Adapter/blob/main/README.md",
+              "issues": "https://github.com/WiseXin/MaiBot-Discord-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bot"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "discord.py",
+                "version_spec": ">=2.3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
