@@ -47530,7 +47530,63 @@
       "manifest_id": "anse.skills-support",
       "repositoryUrl": "https://github.com/Andself/maibot-skills-support",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "f30074d2f20c134caa5533d6e7f8e7d076c8c891",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T01:32:51Z",
+          "release_url": "https://github.com/Andself/maibot-skills-support/releases/tag/v0.4.3",
+          "release_notes": "- 四个技能工具要求由真实模型请求 Hook 生成的随机短期凭证，绑定会话与最新消息；校验缺失、伪造、跨会话、旧消息及过期凭证。重载后失效，不修改宿主。\n- 收紧内置调查触发词，移除搜索、检索、好好想想等泛词；精确迁移未修改的旧内置示例，保留停用/删除/自定义状态。\n- 两个管理命令的权限展示改为 operator，执行层独立管理员校验不变。\n- 安装ZIP移除构建工具与环境示例，仅含运行文件、README与LICENSE。\n\n47项回归测试通过。兼容范围保持 MaiBot 1.3.14–1.3.16 / SDK 2.16.x。请求凭证缩小跨会话调用面，不替代宿主权限或保证模型不泄漏上下文。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "anse.skills-support",
+            "version": "0.4.3",
+            "name": "Skills 技能管理",
+            "description": "让麦麦办事更靠谱！安装、创建和管理 Skills，按步骤查资料、做任务，还能更新和还原技能。",
+            "author": {
+              "name": "Andself",
+              "url": "https://github.com/Andself"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Andself/maibot-skills-support",
+              "documentation": "https://github.com/Andself/maibot-skills-support#readme",
+              "issues": "https://github.com/Andself/maibot-skills-support/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.3.16"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "capabilities": [
+              "message.get_recent",
+              "chat.get_private_streams",
+              "send.text",
+              "llm.generate"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "PyYAML",
+                "version_spec": ">=6,<7"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "management"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
