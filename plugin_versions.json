@@ -49503,7 +49503,70 @@
       "manifest_id": "sengokucola.maimai-sprinkles",
       "repositoryUrl": "https://github.com/SengokuCola/pet-fe",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "49f1171428c9a7611c6acb3cbd3d7adad20cc72b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T14:57:49Z",
+          "release_url": "https://github.com/SengokuCola/pet-fe/releases/tag/v1.0.0",
+          "release_notes": "### 主要功能\r\n\r\n- 提起麦麦 1.5 秒后掉落一只小麦麦，落地弹跳并淡出；形象直接缩小主桌宠原图。\r\n- 点击麦麦播放钢管音效，每次点击独立播放，支持重叠；默认音量 1%。\r\n- 桌宠扩展菜单提供「钢管音量」面板，支持 0～100% 调节、精确输入、静音和恢复 1%，设置自动保存。\r\n\r\n### 细节\r\n\r\n- 支持调整掉落等待时长、显示时长和同时显示数量。\r\n- 取消拖动、隐藏桌宠和卸载插件时清理对应任务或效果窗口。\r\n- 音量面板采用和桌宠一致的暖色圆角样式，支持透明背景和系统缩放。\r\n- 仅支持 Windows；需要 MaiBot 1.3.19+、SDK 2.20.0+ 和 WebView2 Runtime。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "sengokucola.maimai-sprinkles",
+            "name": "麦麦钢管",
+            "version": "1.0.0",
+            "description": "仅 Windows：提起麦麦后掉落小麦麦，点击播放钢管音效，支持重叠播放和可调音量。",
+            "plugin_type": "extension",
+            "author": {
+              "name": "Sengoku",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "desktop_pet.refresh_buttons"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pywebview",
+                "version_spec": ">=6.2,<7"
+              }
+            ],
+            "urls": {
+              "repository": "https://github.com/SengokuCola/pet-fe",
+              "homepage": "https://github.com/SengokuCola/pet-fe",
+              "documentation": "https://github.com/SengokuCola/pet-fe/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/pet-fe/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/mini_maimai.png",
+                "fallback": "volume-2",
+                "background": "#fff8ec"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
