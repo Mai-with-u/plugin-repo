@@ -48729,7 +48729,66 @@
       "manifest_id": "github.natsuyutori.wake-up-maimai",
       "repositoryUrl": "https://github.com/NatsuYutori/wake-up-maimai",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "9f7b1438b315a8993866ea8be6fc182eedaf53b4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T19:28:05Z",
+          "release_url": "https://github.com/NatsuYutori/wake-up-maimai/releases/tag/v1.3.1",
+          "release_notes": "## 苏醒吧麦麦！v1.3.1\n\n修正 manifest 声明与实现不符：`sdk.min_version` 原为 `2.8.0`，但代码调用的 `maisaka.reply.generate`（`MaisakaReplyCapability`）直到插件 SDK **2.16.0** 才加入。在 2.8.0–2.15.x 上插件能正常加载，`AttributeError` 又会被兜底的 `except Exception` 吞成一条 WARNING，结果是默认开启的「超时兜底补发」静默失效。\n\n### 改动\n- `_manifest.json`：`sdk.min_version` → `2.16.0`（已核对 2.8.0 / 2.15.0 无该能力，2.16.0 起 `generate` 即带 `stream_id, reference, format_instruction, model_name, timeout_ms`，与现有调用一致）。\n- 运行期能力探测 `has_reply_capability(ctx)`：MaiBot 1.3.x 对 SDK 版本不匹配只打 WARNING 放行（不会拒绝加载），因此插件启动时自行检查 `ctx.maisaka.reply`；缺失时打 **ERROR**、不挂兜底任务、WebUI 快照 `force_fallback_available=false`，@ 消息仍正常放行、保留提示词层强制——不再靠异常背锅。\n- README：环境要求改为 SDK `2.16.0+`，说明「告警放行 + 运行期探测」的真实行为，排障新增对应条目。\n- 新增 4 个单元测试覆盖「缺 maisaka.reply 的老 SDK」场景（共 98 个）。\n\n### 校验\n- 98 tests OK；manifest / webui v2 / config schema 全部通过宿主校验器。\n- 已在本机 MaiBot 1.3.18 + SDK 2.19.0 实例上热重载为 v1.3.1，`苏醒吧麦麦！已加载` 正常，`超时兜底=开`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.natsuyutori.wake-up-maimai",
+            "version": "1.3.1",
+            "name": "苏醒吧麦麦！",
+            "description": "控制麦麦为默认回复only@，添加到白名单群聊正常回复",
+            "author": {
+              "name": "Natsuhi Seishio",
+              "url": "https://github.com/NatsuYutori"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NatsuYutori/wake-up-maimai",
+              "homepage": "https://github.com/NatsuYutori/wake-up-maimai",
+              "documentation": "https://github.com/NatsuYutori/wake-up-maimai/blob/main/README.md",
+              "issues": "https://github.com/NatsuYutori/wake-up-maimai/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "shield-check",
+                "background": "#1f2937"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "chat.open_session",
+              "maisaka.context.append",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
