@@ -24461,6 +24461,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.13.0",
+          "tag": "v0.13.0",
+          "commit": "89810ac87377555549b1b2899b5610b994990ce7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T13:13:30Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.13.0",
+          "release_notes": "## MaiWork 0.13.0 · 调研岗做法工具 + 管理员对话诊断 + 管理员工具大瘦身\n\n### 新功能\n\n- **做法能带工具**：写一份做法（skill）就能让资讯 / 构想 / 目标岗带上注册给子 agent 的工具。比如在 MCP 里接好一个搜索源，让主模型写一份「资讯也去那里找内容」的做法挂到资讯岗，下一批资讯就会用上。带执行类工具（跑命令 / 写文件）的做法，写出、安装、挂载都要你确认；真用到时每一轮开单独工作区，用完即清。资讯补找交回的链接，没在工具真实返回里出现过的一律丢掉。\n- **管理员对话能查证**：和主模型对话时，它能看子 agent 实际调了哪些工具、传的参数、返回或报错，按群、批次号、工具名过滤；每批资讯带「漏斗」行——搜了几次、候选按来源拆开、打开几条、留下几条、补找交回 / 留下 / 丢弃 / 出错，一眼看清某个工具到底抓没抓到东西。\n- **管理员对话能试工具**：主模型可以按名字试调任一子 agent 工具一次，回显真实返回或真实报错。只读工具（搜索、抓页、MCP 查询）直接调；执行类和派活类每次先出确认小票；每次试调都进调用记录，可审计。\n- **管理员工具大瘦身**：管理员对话的工具从 63 个合并成 25 个——同一件事（MCP / 专岗 / 模型库 / 做法 / 规则 / 身份 / 画像 / 关注成员 / 来源 / 资讯 / 构想 / 任务 / 目标 / 审批 / 群外发）一个入口，里面用动作区分看 / 加 / 改 / 删。主模型每次要读的工具说明少了一半多，也不易挑错工具；确认小票、服务群隔离、密钥不进对话全部不变。\n- **管理员输入框回车换行**：回车 = 换行，发送改 Ctrl / Cmd + 回车或点按钮，和手机端一致。\n\n### 其他\n\n- 配置版本仍 **0.5.4**、库号仍 **48**：不用改配置，没有数据库迁移。\n- 回滚到旧版请连同升级前备份的插件目录一起恢复。\n\n详见 [升级说明](docs/guide/upgrade.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.13.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.12.0",
           "tag": "v0.12.0",
           "commit": "1c73434fae95800b2368784a7ad922e371e5d2d4",
