@@ -48906,7 +48906,57 @@
       "manifest_id": "github.hhhhhhezeus.bilibili-meme",
       "repositoryUrl": "https://github.com/hhhhhhezeus/bilibili-meme",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "58feade223249204fa33d3ca8cdbf245a807b3f8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T16:50:20Z",
+          "release_url": "https://github.com/hhhhhhezeus/bilibili-meme/releases/tag/v1.0.2",
+          "release_notes": "第二轮审核修复：检查数据库操作的原始失败响应，保留同名记录的使用统计并避免覆盖其他来源；说明模型任务配置、环境变量优先级、全局写入及命令无冷却的限制，并拒绝超过 255 字的梗名。\n\nSDK 2.19.0 和 2.20.0 的模拟 Host 测试各 8 项通过。真实 MaiBot、QQ/NapCat 环境尚未联调；Host 兼容范围仍待实际验证。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hhhhhhezeus.bilibili-meme",
+            "version": "1.0.2",
+            "name": "B站学梗 / Bilibili Meme Learner",
+            "description": "从 B站 视频里学梗，并理解群友分享的视频：读字幕、看弹幕爆发点、翻热评，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、选源打分与自动降级。",
+            "author": {
+              "name": "hhhhhhezeus",
+              "url": "https://github.com/hhhhhhezeus"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hhhhhhezeus/bilibili-meme",
+              "homepage": "https://github.com/hhhhhhezeus/bilibili-meme",
+              "documentation": "https://github.com/hhhhhhezeus/bilibili-meme/blob/main/README.md",
+              "issues": "https://github.com/hhhhhhezeus/bilibili-meme/issues"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
