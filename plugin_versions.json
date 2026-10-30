@@ -48841,7 +48841,60 @@
       "manifest_id": "github.beichen24a1.memewiki",
       "repositoryUrl": "https://github.com/beichen24a1/MaiBot-MemeWiki",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "60e6926cc4827ce6ce31279003873cd35358c8d2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T04:30:08Z",
+          "release_url": "https://github.com/beichen24a1/MaiBot-MemeWiki/releases/tag/v0.1.0",
+          "release_notes": "首个可用版本（移植自 AstrBot 版梗百科）。\n\n- 内置 6668 条本地词条（data/memes.db，来自原项目 in1t1a1/astrbot_plugin_memewiki，MIT）\n- 注册 \\search_meme_wiki\\ 工具：模型可自主调用查梗（需在 behavior_style 加一句指引）\n- \\/梗 <词>\\ 命令：人工查询，返回【梗】【标签】【怎么用】【出处】\n- 匹配：完整标题精确命中，或消息中包含的最长标题；未命中明确提示不要编\n- 无额外 Python 依赖（仅标准库 sqlite3）\n\n暂未移植：/黑话 自建词条、cnmeme.wiki 联网兜底、图片卡片。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.beichen24a1.memewiki",
+            "version": "0.1.0",
+            "name": "梗百科",
+            "description": "让麦麦认得网络梗和黑话：内置 6668 条本地词条（SQLite 毫秒级），注册 search_meme_wiki 工具与大模型可自主调用，另提供 /梗 命令查询。",
+            "author": {
+              "name": "beichen24a1",
+              "url": "https://github.com/beichen24a1"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/beichen24a1/MaiBot-MemeWiki",
+              "homepage": "https://github.com/beichen24a1/MaiBot-MemeWiki",
+              "issues": "https://github.com/beichen24a1/MaiBot-MemeWiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "book-open"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
