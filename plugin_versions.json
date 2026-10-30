@@ -24372,6 +24372,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.12.0",
+          "tag": "v0.12.0",
+          "commit": "1c73434fae95800b2368784a7ad922e371e5d2d4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T18:11:45Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.12.0",
+          "release_notes": "## 网页看板：一眼看清 MaiWork 各专岗在做什么\n\n- **新增「看板」页**（只有总管理员能看，只看不改）：每个专岗一栏平铺——主模型、资讯、构想、目标、通用任务、开话题，以及你自定义的专岗。每栏分「进行中」和「历史」，栏头是这个专岗的小鱼；超过 10 分钟没动静的标出来。顶部可按群筛选，页面每 10 秒自动刷新。\n- **点开任意一件看完整过程**：按时间列出每一次工具调用（名字、输入、输出、耗时、成败）、模型每次的回复、模型的思考过程，以及开始和结束。抽屉开着时新步骤会自动补上。\n- **模型思考过程记入调用日志**：模型返回的思考内容现在会存下来（每条最多 8000 字，跟着日志一起到期清理），只给总管理员看，不会进入 MaiWork 的回复，也不会发回给模型。加密的思考只标记，不存内容。\n- **每一步精确对应到具体哪件活**：资讯轮、构想、开话题、主模型的独立判断都带上了「这一轮」的标记，看板靠它精确对上，不再按时间推断（老记录仍按时间推断，网页会提示）。\n\n### 升级须知\n\n- 配置版本升到 **0.5.4**，新增 `[console] board_hours`（看板历史往回看多少小时，默认 24，可填 1~168），宿主第一次加载时会自动合并进你的 `config.toml`。**不用改配置。**\n- 数据库自动从库号 44 或 45 升到 **47**（新建 `main_runs` 表，给几张表加 `run_ref` 列，只加不删）。\n- 回滚到旧版请连同升级前备份的数据库和 `config.toml` 一起恢复。\n\n详见 [升级说明](docs/guide/upgrade.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.12.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.16.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.11.2",
           "tag": "v0.11.2",
           "commit": "23be26bdf23fe3d24ae59b5653374b59f361335f",
