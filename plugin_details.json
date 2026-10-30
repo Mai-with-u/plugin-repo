@@ -6882,7 +6882,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.12",
+      "version": "1.1.13",
       "name": "SnowLuma 适配器/ SnowLuma Adapter",
       "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
       "author": {
@@ -19691,11 +19691,11 @@
       "changelog": "README.md",
       "host_application": {
         "min_version": "1.3.6",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.9.0",
-        "max_version": "2.99.99"
+        "max_version": "2.21.99"
       },
       "dependencies": [],
       "capabilities": [],
@@ -22158,8 +22158,8 @@
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
       "version": "0.5.2",
-      "name": "MiMo 语音回复",
-      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉/理塘王三套音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
+      "name": "MiMo TTS 语音回复",
+      "description": "用 MiMo API 音色克隆把文本回复按比例换成语音：内置理塘王、MiMo 默认女角色音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
@@ -23924,9 +23924,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.phone-controller",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "name": "麦麦的手机",
-      "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷B站知乎并向主人幽默吐槽分享的真正数字生命能力。",
+      "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、动态录屏抽帧、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷4大平台、深度点击浏览详情并向主人幽默吐槽分享的真正数字生命能力。",
       "author": {
         "name": "WiseXin",
         "url": "https://github.com/WiseXin"
@@ -24778,7 +24778,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.hhhhhhezeus.bilibili-meme",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "name": "B站学梗 / Bilibili Meme Learner",
       "description": "从 B站 视频里学梗，并理解群友分享的视频：读字幕、看弹幕爆发点、翻热评，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、选源打分与自动降级。",
       "author": {
@@ -25176,9 +25176,9 @@
       "manifest_version": 2,
       "id": "sengokucola.maimai-sprinkles",
       "name": "麦麦钢管",
-      "version": "1.0.0",
-      "description": "仅 Windows：提起麦麦后掉落小麦麦，点击播放钢管音效，支持重叠播放和可调音量。",
-      "plugin_type": "extension",
+      "version": "1.0.3",
+      "description": "让麦麦被点击后发出钢管叫声",
+      "plugin_type": "deskpet",
       "author": {
         "name": "Sengoku",
         "url": "https://github.com/SengokuCola"
@@ -25212,7 +25212,7 @@
       "display": {
         "icon": {
           "type": "local",
-          "value": "assets/mini_maimai.png",
+          "value": "assets/plugin_icon.png",
           "fallback": "volume-2",
           "background": "#fff8ec"
         }
@@ -25226,6 +25226,171 @@
     },
     "assets": {
       "icon_64": "icons/sengokucola.maimai-sprinkles.webp"
+    }
+  },
+  {
+    "id": "WhiteCloudOL.maimai-tts-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WhiteCloudOL.maimai-tts-plugin",
+      "version": "2.0.0",
+      "name": "麦麦多平台TTS语音",
+      "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+      "plugin_type": "media",
+      "author": {
+        "name": "清蒸云鸭",
+        "url": "https://github.com/WhiteCloudOL"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+        "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+        "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+        "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.13.0",
+        "max_version": "2.20.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0,<4.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.0.0,<3.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "av",
+          "version_spec": ">=14.0.0,<17.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "silk-python",
+          "version_spec": ">=0.2.8,<0.3.0"
+        }
+      ],
+      "capabilities": [
+        "send.hybrid",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "changelog.md",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "speech",
+          "background": "#D8EAD7"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/WhiteCloudOL.maimai-tts-plugin.webp"
+    }
+  },
+  {
+    "id": "github.winincorce-a11y.talk-rate",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.winincorce-a11y.talk-rate",
+      "version": "1.1.3",
+      "name": "发言频率控制",
+      "description": "把群聊回复频率精确控制到 0：可以设置某个群只有被 @ 或命中关键词才回复，平时的聊天内容完全不触发回复；支持逐群规则、关键词放行与热更新。",
+      "author": {
+        "name": "winincorce-a11y",
+        "url": "https://github.com/winincorce-a11y"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/winincorce-a11y/mai-talk-rate",
+        "homepage": "https://github.com/winincorce-a11y/mai-talk-rate",
+        "documentation": "https://github.com/winincorce-a11y/mai-talk-rate/blob/main/README.md",
+        "issues": "https://github.com/winincorce-a11y/mai-talk-rate/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "message-square-dashed",
+          "fallback": "message-circle",
+          "background": "#1f2937"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "CHANGELOG.md"
+    }
+  },
+  {
+    "id": "mai-persona.mai-persona",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "0.1.0",
+      "name": "Mai Persona 内在引擎",
+      "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
+      "author": {
+        "name": "Mai Persona Contributors",
+        "url": "https://github.com/hedgehogovo"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/hedgehogovo/mai-persona",
+        "homepage": "https://github.com/hedgehogovo/mai-persona",
+        "documentation": "https://github.com/hedgehogovo/mai-persona/blob/main/README.md",
+        "issues": "https://github.com/hedgehogovo/mai-persona/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "knowledge.search",
+        "message.get_by_id",
+        "send.text",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "mai-persona.mai-persona"
     }
   }
 ]
