@@ -49589,7 +49589,55 @@
       "manifest_id": "github.hhhhhhezeus.maijam",
       "repositoryUrl": "https://github.com/hhhhhhezeus/MaiJam",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "404275f07f37f0d2188faf644cebdde7f0289caa",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-29T16:50:22Z",
+          "release_url": "https://github.com/hhhhhhezeus/MaiJam/releases/tag/v0.1.2",
+          "release_notes": "补充 Dashboard 工作台可查看全部已登记群的成员用户 ID、风格和混音状态的说明。包含此前的 manifest 审核修复。\n\n这是开发预览版，真实 MaiBot、QQ/NapCat 和 Dashboard 联调仍未完成；Host 范围仍待实测。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hhhhhhezeus.maijam",
+            "version": "0.1.2",
+            "name": "MaiJam 群聊协作乐队",
+            "description": "通过规则聚合群聊互动，本地生成原创分轨音乐；不调用 LLM，支持 WAV 与 MIDI 导出。",
+            "author": {
+              "name": "hhhhhhezeus",
+              "url": "https://github.com/hhhhhhezeus"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hhhhhhezeus/MaiJam",
+              "homepage": "https://github.com/hhhhhhezeus/MaiJam",
+              "documentation": "https://github.com/hhhhhhezeus/MaiJam/blob/main/README.md",
+              "issues": "https://github.com/hhhhhhezeus/MaiJam/issues"
+            },
+            "plugin_type": "media",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
