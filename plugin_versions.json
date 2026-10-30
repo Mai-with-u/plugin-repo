@@ -49355,7 +49355,98 @@
       "manifest_id": "community.wows-yuyuko",
       "repositoryUrl": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "5a3122e82cc2d64f46b1ce541e9de92be3bd01e2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T05:30:34Z",
+          "release_url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot/releases/tag/v1.0.2",
+          "release_notes": "### 1.0.2\r\n\r\n**安全与健壮性**\r\n- `/wws 检查更新` 的自动同步收窄到插件目录：只在插件根目录自身查找 `.git`，不再向主程序目录上溯；`origin` 必须是本插件仓库，否则拒绝执行任何 git 操作\r\n- 模板 / 战舰 zip 解压前校验成员路径：绝对路径、盘符、`../` 上跳与符号链接一律拒绝（防 zip-slip）\r\n- `playwright install-deps` 由 `os.system` 改为列表参数 `subprocess.run`，不走 shell\r\n\r\n**行为变更**\r\n- 不再内置任何第三方 API Token：`wows_token` 默认空，由使用者自行申请\r\n- 未配置 token 时拦截指令，提示前往 README 8.3 节（话术不带链接、不展开申请渠道），`/wws help` 仍可用\r\n- token 为空时启动日志给出明确告警\r\n\r\n**修复**\r\n- 配置热更新后把 hikari 的缓存目录钉回插件数据目录（模块重载会让路径退回 `cwd/data/wows-yuyuko`，导致 Playwright 去错误目录重新下载浏览器内核）\r\n\r\n**文档**\r\n- README 排障表补齐：空 token、token 格式错误、409 上报失败、限流/封禁、图标缺失、自动同步被拒绝、zip 越界条目、管理员校验串、Playwright 下载失败、数据目录迁移\r\n- 新增运行期第三方域名清单与 `hikari_core` 本地补丁表\r\n\r\n**依赖**：`playwright==1.58.0`（chromium-1208）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "community.wows-yuyuko",
+            "name": "战舰世界战绩查询",
+            "version": "1.0.2",
+            "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYuyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
+            "author": {
+              "name": "白云鱼海",
+              "url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+              "homepage": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+              "issues": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "loguru",
+                "version_spec": ">=0.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "APScheduler",
+                "version_spec": ">=3.10.1"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.0"
+              },
+              {
+                "type": "python_package",
+                "name": "h2",
+                "version_spec": ">=4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.3"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": "==1.58.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
