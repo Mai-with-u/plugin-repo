@@ -44321,6 +44321,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.2",
+          "tag": "v0.5.2",
+          "commit": "bf539a04107d3a53509bc9af6466bf3943f6d0a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T17:33:58Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.2",
+          "release_notes": "## [0.5.2] - 2026-10-30\n\n### 新增\n\n- **参考音频自动瘦身**（`voice.auto_prepare_reference`，默认开，仅 `single_file` + WAV 生效）：发送前按 20ms 能量做 VAD，把长参考切成单句、丢掉碎片、去掉句间长静音，拼到约 3.7 秒（硬上限 5 秒），峰值归一到 −3 dBFS，缓存在运行时目录。\n  依据：线上 8.41 秒 / 4 段话 / 18.5% 静音的参考换成 3.73 秒拼接版后，盲听\"像同一个人\"明显更稳（客观：同文本 9 条的距离离散 σ 从 2.07 降到 1.10 dB，f0 相对参考从 +1.9 半音降到 −0.5 半音）。已经是短而干净的素材会原样使用，不重复编码。\n- **启动参考音频体检**：时长 > 6 秒、静音占比 > 15%、最长静音 > 0.4 秒任一条命中就打 warning，说明原因与建议（2–5 秒干净单句），不阻断加载。\n- 后处理加**软限幅**（`core.audio.soft_limit`，天花板 0.97）：在峰值归一前后各兜一次底，把原始削顶 / EQ 放大出来的破音用 tanh 压回去，不再硬削。\n- **内置音色「理塘王」**（`reference-litang.wav`，约 4.75 秒）：低沉、带口音男声，VAD 取两句拼接、静音 3.4%、峰值 −3 dBFS，随插件分发；实测克隆输出的频谱距离中位 3.39 dB（冰糖/茉莉时代的线上参考是 6.88 dB）。\n- `voice.preset` 改为**只显示中文名**：`理塘王` / `冰糖` / `茉莉` / `自定义`（此前下拉里中英文各列一份，重复了）。旧的 `bingtang` / `jasmine` / `litang` / `custom` 仍能读，读进来会立刻换成中文名。\n- 内置音色跳过启动体检与自动瘦身：它们是随版本校验过的成品，静音比例天然偏高，二次加工只会让音色在版本间漂移。\n\n### 修改\n\n- **默认音色改为内置「理塘王」**（`voice.preset` 默认值，低沉、带口音）：想要原来的女声写 `冰糖` 或 `茉莉` 即可。\n- 峰值归一的上限从 +12 dB 收到 +6 dB（`_PEAK_GAIN_MAX` 4.0 → 2.0）：原上限会把安静输出里的呼吸、底噪一起抬出来，实测最多 +4.3 dB 就出现明显破音。\n- **插件改名为 `MiMo TTS 语音回复`**（`_manifest.json` 的 `name`）：id 不变，插件市场里搜「MiMo」「TTS」「语音」都能命中。`description` 重写为「用 MiMo API 音色克隆…」，开头点明依赖 MiMo API，内置理塘王排在前面，`冰糖` / `茉莉` 统一称 MiMo 默认女角色。\n- `trigger.mode` 默认值从 `random` 改为 **`random_llm`**：新装用户基本都要先试一两条语音，纯概率模式下模型没有 `mimo_voice_say` 工具、试不出来；要旧行为把 `trigger.mode` 写回 `random` 即可。\n- README 安装说明按插件市场流程重写：`config.toml` 由运行时按配置模型自动生成（`runner_main.py` 的 `_apply_plugin_config` 在文件缺失且插件声明了默认值时写入），不再要求手动复制 `config.example.toml`。\n- 音色对齐：频谱距离超过 8 dB 后按距离反比降低补偿强度（`_TIMBRE_FULL_STRENGTH_DB`），并对相邻频带增益做一次平滑——距离远说明这条本来就偏离参考，满强度硬怼只会更刺耳/更闷。\n- 尾部裁剪后保留的尾音从 50ms 增加到 150ms（`_TAIL_KEEP_SECONDS`），减少最后一个字尾音被吃掉。\n- 实测结论：**不做\"合成两条选一条\"**。12 条人工标注 vs 8 个客观指标（频谱距离、前后半段差异、f0、质心抖动、高频比、倒谱峰、谐噪比、jitter）全部重叠，自动选优准确率≈抛硬币，且并发翻倍会撞 429。\n- 配置项 `config_version` 同步 0.5.2。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.2",
+            "name": "MiMo TTS 语音回复",
+            "description": "用 MiMo API 音色克隆把文本回复按比例换成语音：内置理塘王、MiMo 默认女角色音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.1",
           "tag": "v0.5.1",
           "commit": "4cdc5325a694a401b20379da77babb12e8c899a3",
