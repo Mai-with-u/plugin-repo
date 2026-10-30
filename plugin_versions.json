@@ -48815,7 +48815,68 @@
       "manifest_id": "hohoko-chan.phone-play",
       "repositoryUrl": "https://github.com/hatsuhoq/maibot-phone-play",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "0.1.1",
+          "commit": "3c490183098a3225652290a2cd6e7aae9a6afc37",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T18:30:55Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.1.1",
+          "release_notes": "按插件中心审核意见做的小调整，功能没有变化。\n\n- manifest 加上 `plugin_type: game`\n- `device.serial`、`device.wda_url` 的说明提醒只填自己的设备、别指向不可信的主机\n- README 开头提醒：可选的「互动」功能会用手机上登录的账号公开点赞、评论、关注，可能被平台限流封号\n- 说明聊天里看屏幕的权限只是辅助校验；注释说明 `llm_timeout_seconds` 是等宿主回应的超时\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.1.1",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
