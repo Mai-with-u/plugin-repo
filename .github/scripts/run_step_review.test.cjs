@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { extractReview, runStepWithRetries } = require('./run_step_review.cjs');
+const { extractReview, runStepWithRetries, runReview, REVIEW_LIMITS, COMMENT_LIMITS } = require('./run_step_review.cjs');
 
 function message(text, stopReason = 'stop', extra = {}) {
   return { type: 'message_end', message: { role: 'assistant', stopReason,
@@ -112,4 +112,94 @@ test('危险命令、授权错误、输出截断、无效事件和进程信号�
     assert.equal(h.calls(), 1);
     assert.deepEqual(h.delays, []);
   }
+});
+
+test('限流重试共用检查时间、总时间和剩余轮数', async t => {
+  const h = retryHarness(t, [{ ...limited, events: [{ type: 'turn_start' }, ...limited.events] },
+    { code: 0, events: [message('最终结论')] }]);
+  const budgets = [];
+  let time = 1000;
+  const run = h.options.run;
+  h.options.run = async options => { budgets.push(options); return run(options); };
+  h.options.now = () => time;
+  h.options.wait = async ms => { time += ms; };
+  h.options.limits = { maxTurns: 2, inspectionMs: 60000, conclusionMs: 10000 };
+  assert.equal(await runStepWithRetries(h.options), '最终结论');
+  assert.deepEqual(budgets.map(b => [b.inspectionDeadline, b.maxTurns, b.timeoutMs]),
+    [[61000, 2, 70000], [61000, 1, 40000]]);
+});
+
+test('退避等待耗尽总预算后不再启动下一次审核', async t => {
+  const h = retryHarness(t, [limited]);
+  let time = 0;
+  h.options.now = () => time;
+  h.options.wait = async ms => { assert.equal(ms, 15000); time += ms; };
+  h.options.limits = { maxTurns: 2, inspectionMs: 10000, conclusionMs: 5000 };
+  await assert.rejects(runStepWithRetries(h.options), { code: 'REVIEW_BUDGET_EXCEEDED' });
+  assert.equal(h.calls(), 1);
+});
+
+test('结论超时及进程达到硬超时都返回预算错误，不采用中途结论', async t => {
+  for (const hardTimeout of [true, false]) {
+    const h = retryHarness(t, [{ code: hardTimeout ? null : 0,
+      stderr: hardTimeout ? '' : 'MAI_REVIEW_CONCLUSION_TIMEOUT', events: [message('中途结论')] }]);
+    let time = 0;
+    const run = h.options.run;
+    h.options.run = async options => { const result = await run(options); time = 15000; return result; };
+    h.options.now = () => time;
+    h.options.limits = { maxTurns: 2, inspectionMs: 10000, conclusionMs: 5000 };
+    await assert.rejects(runStepWithRetries(h.options), { code: 'REVIEW_BUDGET_EXCEEDED' });
+    assert.equal(h.calls(), 1);
+    assert.equal(fs.existsSync(`${h.prefix}-attempt-1-events.jsonl`), true);
+  }
+});
+
+test('正式审核和短评使用只读工具与 medium，按任务类型选择预算', async t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'review-mode-test-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const oldKey = process.env.STEP_API_KEY;
+  process.env.STEP_API_KEY = 'test';
+  t.after(() => { if (oldKey === undefined) delete process.env.STEP_API_KEY; else process.env.STEP_API_KEY = oldKey; });
+  const promptFile = path.join(root, 'prompt.md');
+  const outputFile = path.join(root, 'review.md');
+  fs.writeFileSync(promptFile, '静态审核');
+  for (const comment of [false, true]) {
+    await runReview({ promptFile, outputFile, prefix: path.join(root, 'step'), comment,
+      run: async ({ args, limits }) => {
+        assert.equal(args[args.indexOf('--thinking') + 1], 'medium');
+        assert.equal(args[args.indexOf('--tools') + 1], 'read,grep,find,ls,search_web');
+        assert.match(args[args.indexOf('--extension') + 1], /review_budget\.mjs$/);
+        assert.equal(limits, comment ? COMMENT_LIMITS : REVIEW_LIMITS);
+        return '审核结论';
+      } });
+    assert.equal(fs.readFileSync(outputFile, 'utf8'), '审核结论\n');
+  }
+  await runReview({ promptFile, outputFile, prefix: path.join(root, 'step'),
+    run: async () => { throw Object.assign(new Error('预算耗尽'), { code: 'REVIEW_BUDGET_EXCEEDED' }); } });
+  assert.match(fs.readFileSync(outputFile, 'utf8'), /未能形成最终结论，请维护者确认/);
+});
+
+test('Release 预算耗尽仍输出当前版本的人工审核结果', t => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'review-budget-test-'));
+  t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
+  const target = { id: 'author.plugin', repositoryUrl: 'https://github.com/author/plugin',
+    version: '1.2.3', tag: 'v1.2.3', commit: 'a'.repeat(40) };
+  fs.writeFileSync(path.join(cwd, 'mai-release-target.json'), JSON.stringify(target));
+  fs.writeFileSync(path.join(cwd, 'prompt.md'), '审核 Release');
+  const script = `const {runReview,REVIEW_LIMITS}=require(${JSON.stringify(path.join(__dirname, 'run_step_review.cjs'))});
+    runReview({promptFile:'prompt.md',outputFile:'result.json',prefix:'step',structured:true,
+      run:async({args,limits})=>{
+        require('node:assert/strict').equal(args[args.indexOf('--thinking')+1],'medium');
+        require('node:assert/strict').equal(limits,REVIEW_LIMITS);
+        throw Object.assign(new Error('预算耗尽'),{code:'REVIEW_BUDGET_EXCEEDED'});
+      }}).catch(e=>{console.error(e);process.exitCode=1});`;
+  execFileSync(process.execPath, ['-e', script], { cwd, env: { ...process.env, STEP_API_KEY: 'test' }, stdio: 'pipe' });
+  const result = JSON.parse(fs.readFileSync(path.join(cwd, 'result.json'), 'utf8'));
+  assert.equal(result.schema_version, 2);
+  assert.equal(result.plugin_id, target.id);
+  assert.equal(result.commit, target.commit);
+  assert.equal(result.version, target.version);
+  assert.equal(result.reviewed, false);
+  assert.equal(result.decision, 'manual_review');
+  assert.equal(result.risks.length, 1);
 });

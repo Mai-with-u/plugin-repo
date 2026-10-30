@@ -192,7 +192,8 @@ jobs:
 
       - name: Run StepFun review
         if: steps.review-start.outputs.should_run == 'true'
-        # Multi-version source reviews can remain active beyond 30 minutes.
+        # The runner budgets 25 minutes for inspection and 5 for the conclusion.
+        # Keep the outer timeout as a last resort for runner/setup failures.
         timeout-minutes: 60
         env:
           REVIEW_PROMPT: ${{ inputs.review_prompt }}
@@ -230,7 +231,7 @@ jobs:
           MAI_COMMENT_PROMPT: ${{ inputs.maimai_prompt }}
           STEP_API_KEY: ${{ secrets.STEP_API_KEY }}
         run: |
-          node .github/scripts/run_step_review.cjs "$MAI_COMMENT_PROMPT" codex-maimai.md step-maimai
+          node .github/scripts/run_step_review.cjs "$MAI_COMMENT_PROMPT" codex-maimai.md step-maimai comment
 
       # Refresh the App token before posting results, including failed reviews.
       # Long reviews may outlive the token used for the start notification.

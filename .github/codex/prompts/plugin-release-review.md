@@ -2,11 +2,15 @@
 
 ## 检查流程
 
+仅做静态审核：读取源码和文档，不安装依赖、不导入或执行插件、不运行测试。
+
 1. 阅读 `mai-review-input.md` 和 `mai-release-target.json`。目标文件的 id、repositoryUrl、version、tag、commit 确定本次审核对象；discarded 是历史去重记录。
 2. 检查 `plugin-under-review/` 中固定 commit 的 manifest、README、入口、配置和核心功能实现。
 3. 结合 `plugin-release.patch` 核实相对已收录版本的变更，并打开相关源码确认影响；没有基线时检查当前版本的核心调用链。
 4. 大文件用 Read 的 offset、limit 分段读取，每次约 200 行；大 patch 先用 Grep 搜索 `^diff --git ` 定位变更文件，再读取相关段落。锁文件、生成文件和静态资源按功能影响安排检查。
 5. 读取失败时换用 Glob 查找、Grep 定位或分段读取。按需查阅 https://docs.mai-mai.org/develop/ 和 https://docs.mai-mai.org/plugin/ 。
+
+入口、配置、核心调用链及相关变更检查完成，已发现的阻断疑点有结论后，立即提交审核结果。宿主和 SDK 只查与具体疑点直接相关的接口；预算到达时结束检查，使用已有证据输出结论，尚未查清的核心部分交人工确认。
 
 ## 审核标准
 

@@ -2,10 +2,14 @@
 
 ## 检查流程
 
+仅做静态审核：读取源码和文档，不安装依赖、不导入或执行插件、不运行测试。
+
 1. 阅读 `mai-review-input.md`，确认申请类型、仓库、当前 commit 和历史审核意见。
 2. 打开 `plugin-under-review/` 中的 `_manifest.json`、README、入口及配置，再沿核心功能的调用链检查相关实现。
 3. 大文件用 Read 的 offset、limit 分段读取，每次约 200 行；用 Glob 查找文件、Grep 定位实现。读取失败时换用分段读取或附近代码核实。
 4. 按需查阅开发文档 https://docs.mai-mai.org/develop/ 和能力、SDK 文档 https://docs.mai-mai.org/plugin/ 。
+
+入口、配置与核心调用链检查完成，已发现的阻断疑点有结论后，立即提交审核结果。宿主和 SDK 只查与具体疑点直接相关的接口；预算到达时结束检查，使用已有证据输出结论，尚未查清的核心部分交人工确认。
 
 ## 审核标准
 
