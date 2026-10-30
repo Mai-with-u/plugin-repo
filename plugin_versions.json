@@ -50265,6 +50265,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "bfbe725b39513776752035ea2c862d59f3b8025f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T15:54:32Z",
+          "release_url": "https://github.com/SengokuCola/pet-fe/releases/tag/v1.0.3",
+          "release_notes": "修复插件图标过大导致 WebUI 无法加载的问题。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "sengokucola.maimai-sprinkles",
+            "name": "麦麦钢管",
+            "version": "1.0.3",
+            "description": "让麦麦被点击后发出钢管叫声",
+            "plugin_type": "deskpet",
+            "author": {
+              "name": "Sengoku",
+              "url": "https://github.com/SengokuCola"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "desktop_pet.refresh_buttons"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pywebview",
+                "version_spec": ">=6.2,<7"
+              }
+            ],
+            "urls": {
+              "repository": "https://github.com/SengokuCola/pet-fe",
+              "homepage": "https://github.com/SengokuCola/pet-fe",
+              "documentation": "https://github.com/SengokuCola/pet-fe/blob/main/README.md",
+              "issues": "https://github.com/SengokuCola/pet-fe/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/plugin_icon.png",
+                "fallback": "volume-2",
+                "background": "#fff8ec"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "49f1171428c9a7611c6acb3cbd3d7adad20cc72b",
