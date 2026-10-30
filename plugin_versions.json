@@ -13665,6 +13665,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "3.3.2",
+          "tag": "v3.3.2",
+          "commit": "c46bb1b085ee43f9ff37ec2d65a0f730725068fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T17:35:52Z",
+          "release_url": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober/releases/tag/v3.3.2",
+          "release_notes": "## 🎉 v3.3.2 — 双源串谱修复与难度配色\n\n### ✨ 主要功能\n- 难度色统一为指定 RGBA 调色板，修正 B50 曲目 ID、AWMC 信息卡/成绩卡与今日运势难度标签颜色。\n\n### 🐛 细节修复\n- 彩色难度标签内的文字统一为白色，并加深色描边/阴影，提高浅色难度的可读性。\n- 双源成绩映射按歌曲 ID 与 SD/DX 类型区分，拒绝未知类型、越界难度和无法可靠映射的成绩，避免同曲串谱。\n- 落雪 B50 的旧曲 B35 / 新曲 B15 分组保留每条成绩的真实谱面类型，定数与封面补全按类型查找。\n- 单曲最佳传入 song_id 并解析 Score[]，覆盖不在 B50 中的成绩；历史展示上传时间，修正命令与帮助说明。\n- 同步读取目标成绩失败时停止写入；双向同步均提供 dry_run 差异检查。\n\n---\n\n📖 [README](https://github.com/DeepSeek-V4-Pro/maimaidx_prober/blob/v3.3.2/README.md) · [更新日志](https://github.com/DeepSeek-V4-Pro/maimaidx_prober/blob/v3.3.2/CHANGELOG.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "3.3.2",
+            "name": "MaiMai DX 双源查分器",
+            "description": "舞萌 DX 双源查分插件：diving-fish（水鱼）查分 + lxns（落雪）账号接入（OAuth/个人密钥/开发者密钥），支持 B50、个人成绩、热力图、趋势、历史、排行、年度回顾、收藏品、成绩同步上传、猜歌与运势",
+            "author": {
+              "name": "DeepSeek-V4",
+              "url": "https://github.com/DeepSeek-V4-Pro"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+              "homepage": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+              "documentation": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober",
+              "issues": "https://github.com/DeepSeek-V4-Pro/maimaidx_prober/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.40"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.image",
+              "config.get",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "deepseek-v4-pro.maimaidx-prober"
+          }
+        },
+        {
           "version": "2.0.0",
           "tag": "v2.0.0",
           "commit": "019cbc0ab58737c1e7b9be75eed8437a3f0b4237",
