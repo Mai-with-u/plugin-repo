@@ -50344,7 +50344,64 @@
       "manifest_id": "github.winincorce-a11y.talk-rate",
       "repositoryUrl": "https://github.com/winincorce-a11y/mai-talk-rate",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.3",
+          "tag": "v1.1.3",
+          "commit": "8af22aa259fa4234b58979cb5f9558f466f554f9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T06:33:19Z",
+          "release_url": "https://github.com/winincorce-a11y/mai-talk-rate/releases/tag/v1.1.3",
+          "release_notes": "### 按第二轮审核意见改进\n\n- 修正 README 与实际行为不一致：零频率会话里**主动消息同样会被拦截**\n  （无入站记忆时按会话规则兜底）。原文档写成「主动消息不受限」，\n  会让用户以为主动聊天还能用、实际却哑掉。现已写实，并说明想让某群保留\n  主动聊天应把该群频率设为 `default` 或 `1`。\n- 命令结果不再回退到成员 QQ 号：群聊只用 `chat_id` / `group_id`，\n  避免两者都失败时把频率规则文本发到该成员私聊；私聊仍用 `user_id`。\n- 配置可读性测试覆盖 `outbound_guard` 段，防止以后新增字段漏写中文标签。\n\n### 兼容性\n\n- Host：MaiBot 1.3.x（上限 1.3.99）\n- SDK：maibot-plugin-sdk 2.19.0+\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.talk-rate",
+            "version": "1.1.3",
+            "name": "发言频率控制",
+            "description": "把群聊回复频率精确控制到 0：可以设置某个群只有被 @ 或命中关键词才回复，平时的聊天内容完全不触发回复；支持逐群规则、关键词放行与热更新。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/mai-talk-rate",
+              "homepage": "https://github.com/winincorce-a11y/mai-talk-rate",
+              "documentation": "https://github.com/winincorce-a11y/mai-talk-rate/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/mai-talk-rate/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "message-square-dashed",
+                "fallback": "message-circle",
+                "background": "#1f2937"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
