@@ -39579,6 +39579,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "1.5.0",
+          "commit": "849cfd4eeb8889d6f53e9b54eed63e1e76ad81f3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T02:10:47Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.5.0",
+          "release_notes": "## [1.5.0] - 2026-10-30\r\n\r\n### 新增\r\n\r\n- **外部字体改为可选**：`[render]` 新增「使用外部字体」开关（`use_external_fonts`，默认关闭）。\r\n  默认直接用系统中文字体出图，不再要求配置可用的 Google Fonts 地址；需要 Noto Sans SC 观感时再开启。\r\n- **系统字体自动回退**：开启外部字体后，若字体服务组为空 / 地址非法 / 未允许联网 / 外部尝试全部失败，\r\n  自动改用系统字体渲染，不再因为字体问题导致整张图渲染失败。\r\n- **内置模板支持无外部字体**：`simple` / `dark` / `card` 改用 `{{font_links}}` 占位符，\r\n  并补全 `Source Han Sans SC`、`PingFang SC`、`WenQuanYi Micro Hei` 等系统中文字体回退。\r\n\r\n### 变更\r\n\r\n- 图片渲染默认不再加载 Google Fonts；此前依赖 Noto Sans SC 的用户需要把「使用外部字体」打开。\r\n- `allow_network` 仍作为页面联网总开关；关闭后外部字体不会加载，模板里的外部图片也不会显示。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.5.0",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.1",
           "tag": "1.4.1",
           "commit": "343b8488af888d228940b4cf2804434f522f984d",
