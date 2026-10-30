@@ -47569,6 +47569,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "52750199a11fec68d4f4273ff83d61dfa241d9e3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T02:55:35Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-bilibili-interest-share/releases/tag/v1.1.2",
+          "release_notes": "## 修两个真实环境里的问题\n\n**换用 snowluma 连接器后分享发不出去**\n\n宿主启动时会把数据库里的全部会话读进内存，同一个群在换账号后会同时存在旧账号和新账号两套会话；`chat.get_stream_by_group_id` 返回的是先加载进来的那套（往往是已经掉线的旧会话），发送时宿主报 `Platform IO 发送失败: platform=qq 未命中任何发送路由`，整轮分享静默失败。\n\n现在解析白名单会话时会额外用 `chat.get_all_streams` 把同群 / 同用户的全部会话列出来作为候选，发送失败时自动换下一个候选重试，成功后就记住可用的那个。白名单校验用的集合也包含这些候选会话，所以在新的会话里发指令、触发重发都不会被误判成「非白名单」。宿主不支持该能力时行为与之前一致。\n\n**配置页版本号对不上**\n\n1.1.1 为了过市场校验把 `sdk.max_version` 写成了 `2.16.99`，而宿主实际 SDK 已经是 2.20.0，加载时会提示「SDK 版本超出插件声明范围，已放行」。市场只要求版本号第一位和第二位不能填 `99` / `999`，现在改成 `2.20.99`，既满足校验又能覆盖当前 SDK。\n\n### 变更\n\n- `_manifest.json` 新增能力 `chat.get_all_streams`\n\n### 测试\n\n- 新增 `StreamFallbackTests`（5 例），全套 148 例通过\n- 真实实例验证：同一轮 3 个群，修复前 `shared 0`（全部发往死会话失败），修复后 `shared 3`，日志出现「发送失败，已自动改用可用会话」\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.bilibili_interest_share",
+            "version": "1.1.2",
+            "name": "麦麦刷B站",
+            "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-bilibili-interest-share"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.4.9"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "7a710c0bbb405c52996099c020f9e07e3b6f28fc",
