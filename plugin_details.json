@@ -7344,7 +7344,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -7364,7 +7364,7 @@
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.17.0"
+        "max_version": "2.20.0"
       },
       "dependencies": [
         {
@@ -8115,7 +8115,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -17907,7 +17907,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.12.0",
+      "version": "0.13.0",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -18059,7 +18059,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.5",
+      "version": "1.24.6",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -18072,7 +18072,7 @@
       },
       "sdk": {
         "min_version": "2.7.0",
-        "max_version": "2.17.99"
+        "max_version": "2.91.99"
       },
       "dependencies": [],
       "plugin_type": "extension",
@@ -19447,7 +19447,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.token-usage-report",
-      "version": "1.10.2",
+      "version": "1.11.0",
       "name": "Token 用量统计与播报",
       "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
       "author": {
@@ -20908,7 +20908,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.mai-meal-card",
-      "version": "1.4.1",
+      "version": "1.5.0",
       "plugin_type": "automation",
       "name": "麦麦饭卡",
       "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
@@ -22147,9 +22147,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.5.1",
+      "version": "0.5.2",
       "name": "MiMo 语音回复",
-      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
+      "description": "用 MiMo 音色克隆把麦麦的纯文本回复按比例替换为语音：内置冰糖/茉莉/理塘王三套音色、可换自定义参考音频、朗读清洗与风格指令稳定音色、音色对齐与尾音修正、支持随机/模型请求双触发、超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
@@ -23672,7 +23672,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.TommyAAKK.bilibili_interest_share",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "name": "麦麦刷B站",
       "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
       "author": {
@@ -23690,7 +23690,7 @@
       },
       "sdk": {
         "min_version": "2.9.0",
-        "max_version": "2.16.99"
+        "max_version": "2.20.99"
       },
       "dependencies": [
         {
@@ -23705,7 +23705,8 @@
         "chat.get_stream_by_user_id",
         "message.get_recent",
         "llm.generate",
-        "config.get"
+        "config.get",
+        "chat.get_all_streams"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -24626,6 +24627,537 @@
     },
     "assets": {
       "icon_64": "icons/maibot-community.mai-life-suite.webp"
+    }
+  },
+  {
+    "id": "local.bible-citation",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.bible-citation",
+      "name": "大肥鱼·圣经原句出处",
+      "version": "1.1.8",
+      "description": "QQ 群聊回复中连续片段与本机简体和合本逐字相同时，自动追加经卷章节；支持部分命中，无需模型。",
+      "author": {
+        "name": "CODao",
+        "url": "https://github.com/CODao"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.17",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.19.99"
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "urls": {
+        "repository": "https://github.com/CODao/maibot-bible-citation",
+        "homepage": "https://github.com/CODao/maibot-bible-citation",
+        "documentation": "https://github.com/CODao/maibot-bible-citation/blob/main/README.md",
+        "issues": "https://github.com/CODao/maibot-bible-citation/issues"
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/bible-book.png",
+          "fallback": "BookOpen",
+          "background": "#19191E"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/local.bible-citation.webp"
+    }
+  },
+  {
+    "id": "community.wows-yuyuko",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "community.wows-yuyuko",
+      "name": "战舰世界战绩查询",
+      "version": "1.0.2",
+      "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYuyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
+      "author": {
+        "name": "白云鱼海",
+        "url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+        "homepage": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+        "issues": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.16.99"
+      },
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "loguru",
+          "version_spec": ">=0.7.0"
+        },
+        {
+          "type": "python_package",
+          "name": "APScheduler",
+          "version_spec": ">=3.10.1"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.0"
+        },
+        {
+          "type": "python_package",
+          "name": "h2",
+          "version_spec": ">=4.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.0.3"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": "==1.58.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "changelog": "CHANGELOG.md",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/community.wows-yuyuko.webp"
+    }
+  },
+  {
+    "id": "github.hhhhhhezeus.bilibili-meme",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hhhhhhezeus.bilibili-meme",
+      "version": "1.0.2",
+      "name": "B站学梗 / Bilibili Meme Learner",
+      "description": "从 B站 视频里学梗，并理解群友分享的视频：读字幕、看弹幕爆发点、翻热评，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、选源打分与自动降级。",
+      "author": {
+        "name": "hhhhhhezeus",
+        "url": "https://github.com/hhhhhhezeus"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/hhhhhhezeus/bilibili-meme",
+        "homepage": "https://github.com/hhhhhhezeus/bilibili-meme",
+        "documentation": "https://github.com/hhhhhhezeus/bilibili-meme/blob/main/README.md",
+        "issues": "https://github.com/hhhhhhezeus/bilibili-meme/issues"
+      },
+      "plugin_type": "integration",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "database.query",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.beichen24a1.workbuddy",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.beichen24a1.workbuddy",
+      "version": "0.1.2",
+      "name": "WorkBuddy 模型接入",
+      "description": "把 WorkBuddy(CN) 账号的模型接入 MaiBot：插件内完成 OAuth 登录与 token 刷新，注册一个 LLM Provider，模型配置里把 client_type 指向它即可用 deepseek-v4.1-flash、glm、kimi 等模型。",
+      "author": {
+        "name": "beichen24a1",
+        "url": "https://github.com/beichen24a1"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beichen24a1/MaiBot-WorkBuddy",
+        "homepage": "https://github.com/beichen24a1/MaiBot-WorkBuddy",
+        "issues": "https://github.com/beichen24a1/MaiBot-WorkBuddy/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9,<4"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=41"
+        }
+      ],
+      "plugin_type": "provider",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "sparkles"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "llm_providers": [
+        {
+          "client_type": "com.beichen24a1.workbuddy",
+          "name": "WorkBuddy (CN)",
+          "description": "通过 WorkBuddy 账号转发的 OpenAI 兼容模型通道",
+          "version": "1.0.0"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.beichen24a1.memewiki",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.beichen24a1.memewiki",
+      "version": "0.1.0",
+      "name": "梗百科",
+      "description": "让麦麦认得网络梗和黑话：内置 6668 条本地词条（SQLite 毫秒级），注册 search_meme_wiki 工具与大模型可自主调用，另提供 /梗 命令查询。",
+      "author": {
+        "name": "beichen24a1",
+        "url": "https://github.com/beichen24a1"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beichen24a1/MaiBot-MemeWiki",
+        "homepage": "https://github.com/beichen24a1/MaiBot-MemeWiki",
+        "issues": "https://github.com/beichen24a1/MaiBot-MemeWiki/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "book-open"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.natsuyutori.wake-up-maimai",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.natsuyutori.wake-up-maimai",
+      "version": "1.3.1",
+      "name": "苏醒吧麦麦！",
+      "description": "控制麦麦为默认回复only@，添加到白名单群聊正常回复",
+      "author": {
+        "name": "Natsuhi Seishio",
+        "url": "https://github.com/NatsuYutori"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/NatsuYutori/wake-up-maimai",
+        "homepage": "https://github.com/NatsuYutori/wake-up-maimai",
+        "documentation": "https://github.com/NatsuYutori/wake-up-maimai/blob/main/README.md",
+        "issues": "https://github.com/NatsuYutori/wake-up-maimai/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "shield-check",
+          "background": "#1f2937"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "chat.open_session",
+        "maisaka.context.append",
+        "maisaka.reply.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.natsuyutori.wake-up-maimai.webp"
+    }
+  },
+  {
+    "id": "github.hhhhhhezeus.maimai-blind-test",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hhhhhhezeus.maimai-blind-test",
+      "version": "1.0.1",
+      "name": "麦麦盲测局",
+      "description": "群聊发起盲测，通过私聊个人入口独立评测文字、图片和短音频，揭晓身份与真实反馈，并支持关联复测。",
+      "author": {
+        "name": "hhhhhhezeus",
+        "url": "https://github.com/hhhhhhezeus"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/hhhhhhezeus/maimai-blind-test",
+        "homepage": "https://github.com/hhhhhhezeus/maimai-blind-test",
+        "documentation": "https://github.com/hhhhhhezeus/maimai-blind-test/blob/main/README.md",
+        "issues": "https://github.com/hhhhhhezeus/maimai-blind-test/issues"
+      },
+      "plugin_type": "game",
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "chat.open_session"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.hhhhhhezeus.maijam",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hhhhhhezeus.maijam",
+      "version": "0.1.2",
+      "name": "MaiJam 群聊协作乐队",
+      "description": "通过规则聚合群聊互动，本地生成原创分轨音乐；不调用 LLM，支持 WAV 与 MIDI 导出。",
+      "author": {
+        "name": "hhhhhhezeus",
+        "url": "https://github.com/hhhhhhezeus"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/hhhhhhezeus/MaiJam",
+        "homepage": "https://github.com/hhhhhhezeus/MaiJam",
+        "documentation": "https://github.com/hhhhhhezeus/MaiJam/blob/main/README.md",
+        "issues": "https://github.com/hhhhhhezeus/MaiJam/issues"
+      },
+      "plugin_type": "media",
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "hohoko-chan.phone-play",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "hohoko-chan.phone-play",
+      "plugin_type": "game",
+      "version": "0.1.1",
+      "name": "刷会儿手机",
+      "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+      "author": {
+        "name": "hatsuhoq",
+        "url": "https://github.com/hatsuhoq"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.1"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "maisaka.proactive.trigger",
+        "send.image",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "changelog.md"
+    }
+  },
+  {
+    "id": "elysia.sing.plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "elysia.sing.plugin",
+      "name": "MaiSing · 麦麦想唱歌",
+      "version": "1.0.1",
+      "description": "通过独立推理服务生成 AI 演唱片段，支持歌曲检索、人声分离、RVC 音色转换、自动变调与混音。",
+      "author": {
+        "name": "real-Elysia886",
+        "url": "https://github.com/real-Elysia886"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/real-Elysia886/maibot-maising",
+        "homepage": "https://github.com/real-Elysia886/maibot-maising",
+        "documentation": "https://github.com/real-Elysia886/maibot-maising#readme",
+        "issues": "https://github.com/real-Elysia886/maibot-maising/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.17",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.19.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "plugin_type": "media",
+      "capabilities": [
+        "send.text",
+        "send.custom"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "music"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/elysia.sing.plugin.webp"
     }
   }
 ]
