@@ -26725,6 +26725,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.6",
+          "tag": "v1.24.6",
+          "commit": "6d9f1b9ca446104e0b03868f6dea61d1ee869e45",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T06:42:16Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.6",
+          "release_notes": "### 修复（含社区反馈）\r\n\r\n- **群聊睡前协商改以 bot 发言为基准**（PR #7 反馈的问题确实存在）：此前按\"群内最近 10 分钟有消息\"判定，活跃群永远顺延、午休/夜间闸门实质失效（已实测复现）。现在只在 bot 最近 10 分钟内在该群发过言时才推迟，defer 锚定 bot 最后发言时刻+10 分钟——bot 持续陪聊就顺延，停止发言满 10 分钟即正常拦截；协商期内向 Replyer 注入睡前收尾提示（与私聊 approaching 同义）。\r\n- **群聊贴表情等通知绕过群闸门**（Issue #5）：`is_notify` 消息此前直接放行，深夜被贴表情仍会吵醒。现在通知类消息同样接受群闸门判定，静默期直接阻断。\r\n- **重要日期正则过宽**（Issue #6）：`2.2s`、`1.5倍`、`3/4`、`1.2` 等时长/倍率/比例会被当成月日并直接落库（GIF 解析插件注入的文案每张图多一条假日期）。现在只接受「X月X日/号」中文式与「YYYY.MM.DD/YYYY-MM-DD」年份三段式，前后不紧跟数字/字母/单位；**事件名回落到整段文本（无事件语义）时降级为待确认候选，不再直接写正式表**。\r\n\r\n- 505 项测试通过（+6 回归用例）。\r\n\r\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.5...v1.24.6",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.6",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.5",
           "tag": "v1.24.5",
           "commit": "8a27bc057272ea262868fdca6e65bf370f856652",
