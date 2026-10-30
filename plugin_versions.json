@@ -50335,7 +50335,86 @@
       "manifest_id": "WhiteCloudOL.maimai-tts-plugin",
       "repositoryUrl": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "de24fe26090942b3503d8a74048114e40efc98c2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T14:31:08Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.0.0",
+          "release_notes": "## 新增功能\r\n\r\n- **多平台语音合成**：接入 OpenAI、阿里云百炼千问 / CosyVoice / MiniMax、MiniMax 官方、硅基流动、火山引擎、小米 MiMo、BreezeTTS、GPT-SoVITS 和 OpenAI 兼容服务，按平台适配合成协议、参数与音色能力。\r\n- **语音工作台**：提供麦麦同风格WebUI、侧栏入口、深浅主题、过渡动画和 PC / 手机布局；平台配置、模型设置与音色管理分别组织，支持保存当前平台和全部设置。\r\n- **模型与音色管理**：每个平台可管理多个模型与音色，支持搜索多选、手动添加、账号音色同步、预设收藏、自定义音色、录音克隆与声音设计。\r\n- **整体语音路由**：按 `Provider/Model` 选择首选与有序备选，并分别指定音色；`/mmtts model` 展示列表，支持按编号或完整名称切换模型。\r\n- **固定与动态语调**：按平台、模型和音色显示可用语调；固定模式直接使用配置，动态模式向麦麦提供允许标签，校验后清理正文并生成对应语气。\r\n- **本地参考录音**：支持插件数据目录中的相对路径、绝对路径和公开音频链接；提供目录选择、服务器文件导入及逐音色文字稿配置。\r\n- **BreezeTTS**：同一服务商支持“本地API”和官方在线接口；本地参考音色、文字声音设计、CFG 与种子分别配置，在线提供账号音色、克隆、设计及同步 / 流式 / 后台任务合成。API Key 按需填写，填写后使用标准 Bearer 鉴权。\r\n- **聊天语音**：命令、`mmtts_speak` 工具和整轮概率回复共用合成与发送流程；支持 QQ 官方机器人、SnowLuma 与 NapCat，按发送设置处理原始格式或 SILK。\r\n\r\n## 修复功能\r\n\r\n- **连接与操作反馈**：平台统一填写 BaseURL，适配器生成请求路径；列表获取、音色操作和试听使用当前编辑值，错误提示显示在操作区域。\r\n- **工作台载荷**：共享重复的预设音色目录，完整目录满足宿主 JSON 元素与大小限制；模型和音色弹窗采用固定视口、内部滚动与统一对齐。\r\n- **参数与平台响应**：临时语速优先于模型和音色设置；加强 HTTP、WebSocket 和后台任务的响应校验，按实际模型提供语调与音频格式选项。\r\n- **音频与缓存**：识别实际音频容器，聊天转码纳入备选链；损坏缓存按条目清理，列表按接口与账号复用，录音与权重变化参与缓存处理。\r\n\r\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.13.0–2.20.0，Python 3.10 及以上。**\r\n\r\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.0/README.md) · [BreezeTTS 接入](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.0/README.md#breezetts-接入) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.0/changelog.md)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.0.0",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
