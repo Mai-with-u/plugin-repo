@@ -39,7 +39,8 @@ async function validate(pages, { type = "add", apiError = false, manifestData = 
     },
   };
   const plugins = type === "add" ? [] : [{ id: "example.old", repositoryUrl: "https://github.com/example/old" }];
-  const localRequire = (name) => name === "https" ? https : { readFileSync: () => JSON.stringify(plugins) };
+  const localRequire = (name) => name === "https" ? https : name === 'fs'
+    ? { readFileSync: () => JSON.stringify(plugins) } : require(path.resolve(__dirname, '../..', name));
   const core = { setOutput: (key, value) => { outputs[key] = value; } };
   const body = type === "add"
     ? "### 插件 ID / Plugin ID\n\nexample.demo\n\n### 仓库地址 / Repository URL\n\nhttps://github.com/example/demo"
@@ -104,7 +105,7 @@ test('申请校验拒绝插件和宿主版本字段前两位的 99 和 999，第
       const manifestData = structuredClone(manifest);
       const parts = field.split('.');
       if (parts.length === 1) manifestData[field] = version;
-      else manifestData[parts[0]][parts[1]] = version;
+      else manifestData[parts[0]] = { min_version: version, max_version: version };
       const { outputs, requests } = await validate([[release]], { manifestData });
       const rejected = ['99.0.0', '999.0.0', '1.99.0', '1.999.0'].includes(version);
       assert.equal(outputs.status, rejected ? 'error' : 'success', `${field}=${version}`);
@@ -178,5 +179,45 @@ test('新增和修改申请不校验 SDK 版本范围', async () => {
       const { outputs } = await validate([[release]], { type, manifestData: { ...manifest, sdk } });
       assert.equal(outputs.status, 'success');
     }
+  }
+});
+
+test('登记与新 Release 共用基础校验：范围、字段类型和 URL 结论一致', async () => {
+  const { validateManifest } = require('./sync_plugin_versions.cjs');
+  const cases = [
+    ['省略兼容上限', m => { delete m.host_application.max_version; }, true],
+    ['范围倒置', m => { m.host_application = { min_version: '2.0.0', max_version: '1.0.0' }; }, false],
+    ['版本前导零', m => { m.version = '01.0.0'; }, false],
+    ['空能力列表', m => { m.capabilities = []; }, true],
+    ['有效能力列表', m => { m.capabilities = ['example']; }, true],
+    ['能力列表对象', m => { m.capabilities = [{}]; }, false],
+    ['能力列表数字', m => { m.capabilities = [1]; }, false],
+    ['能力列表空文本', m => { m.capabilities = [' ']; }, false],
+    ['仓库地址空文本', m => { m.urls.repository = ''; }, false],
+    ['仓库地址无效', m => { m.urls.repository = 'https://'; }, false],
+    ['仓库地址非 HTTP', m => { m.urls.repository = 'file:///tmp/demo'; }, false],
+    ['可选地址无效', m => { m.urls.homepage = ''; }, false],
+    ['名称非文本', m => { m.name = 123; }, false],
+    ['描述空文本', m => { m.description = ' '; }, false],
+    ['许可证非文本', m => { m.license = {}; }, false],
+    ['作者非文本', m => { m.author.name = 123; }, false],
+    ['作者地址缺失', m => { delete m.author.url; }, false],
+    ['语言非文本', m => { m.i18n.default_locale = {}; }, false],
+    ['SDK 未声明', m => { delete m.sdk; }, false],
+    ['SDK 范围由宿主判断', m => { m.sdk = { min_version: 'invalid', max_version: '99.0.0' }; }, true],
+  ];
+  for (const [name, change, accepted] of cases) {
+    const data = structuredClone(manifest);
+    change(data);
+    for (const type of ['add', 'modify']) {
+      const { outputs } = await validate([[release]], { type, manifestData: data });
+      assert.equal(outputs.status, accepted ? 'success' : 'error', `${type}: ${name}`);
+      if (name === '省略兼容上限') {
+        assert.match(outputs.message, /0\.12\.0 ～ 未限制/);
+        assert.equal(outputs.manifest_host_max_version, '未限制');
+      }
+    }
+    if (accepted) assert.doesNotThrow(() => validateManifest(data, data.version, data.id), name);
+    else assert.throws(() => validateManifest(data, data.version, data.id), name);
   }
 });

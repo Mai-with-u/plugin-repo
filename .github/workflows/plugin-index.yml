@@ -7,6 +7,7 @@ on:
     paths:
       - 'plugins.json'
       - '.github/scripts/sync_plugin_versions.cjs'
+      - '.github/scripts/validate_manifest.cjs'
       - '.github/scripts/prune_unavailable_plugins.cjs'
       - '.github/scripts/prune_unavailable_plugins.test.cjs'
       - '.github/scripts/release_review.cjs'

@@ -209,8 +209,22 @@ jobs:
         if: steps.review-start.outputs.should_run == 'true' && inputs.structured_release_review
         run: node .github/scripts/release_review_result.cjs
 
+      # Persist the decision before optional presentation steps.
+      - name: Save structured release review
+        id: review-artifact
+        if: steps.review-start.outputs.should_run == 'true' && inputs.structured_release_review && success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-review-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            release-review.json
+            mai-release-target.json
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Run StepFun Mai comment
         if: steps.review-start.outputs.should_run == 'true'
+        continue-on-error: true
         timeout-minutes: 10
         env:
           MAI_COMMENT_PROMPT: ${{ inputs.maimai_prompt }}
@@ -222,6 +236,7 @@ jobs:
       # Long reviews may outlive the token used for the start notification.
       - name: Refresh Mai GitHub App token for result
         if: always() && steps.review-start.outputs.should_run == 'true'
+        continue-on-error: ${{ inputs.structured_release_review }}
         id: result-app-token
         uses: actions/create-github-app-token@v1
         with:
@@ -230,6 +245,7 @@ jobs:
 
       - name: Post review comment
         if: steps.review-start.outputs.should_run == 'true' && success()
+        continue-on-error: ${{ inputs.structured_release_review }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.result-app-token.outputs.token || steps.app-token.outputs.token }}
@@ -243,13 +259,10 @@ jobs:
                 .replace(/\/reject\b/gi, '"reject"');
 
             const review = sanitize(fs.readFileSync('codex-review.md', 'utf8').trim());
-            const maimai = sanitize(fs.readFileSync('codex-maimai.md', 'utf8').trim());
+            const maimai = fs.existsSync('codex-maimai.md')
+              ? sanitize(fs.readFileSync('codex-maimai.md', 'utf8').trim()) : '';
             if (!review) {
               core.setFailed('codex-review.md 为空，无法发表评论');
-              return;
-            }
-            if (!maimai) {
-              core.setFailed('codex-maimai.md 为空，无法发表评论');
               return;
             }
             await github.rest.issues.createComment({
@@ -259,20 +272,9 @@ jobs:
               body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-run: ${{ steps.review-start.outputs.review_run }} -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${review}\n${maimai}\n\n已审核：${{ steps.review-start.outputs.review_count }}次 / 8次`,
             });
 
-      - name: Save structured release review
-        id: review-artifact
-        if: steps.review-start.outputs.should_run == 'true' && inputs.structured_release_review && success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-review-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            release-review.json
-            mai-release-target.json
-          if-no-files-found: error
-          retention-days: 7
-
       - name: Save review diagnostics
         if: always() && steps.review-start.outputs.should_run == 'true'
+        continue-on-error: ${{ inputs.structured_release_review }}
         uses: actions/upload-artifact@v4
         with:
           name: review-diagnostics-${{ inputs.issue_number }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -294,7 +296,7 @@ jobs:
           retention-days: 7
 
       - name: Post review failure
-        if: always() && steps.review-start.outputs.should_run == 'true' && (failure() || cancelled())
+        if: always() && steps.review-start.outputs.should_run == 'true' && steps.review-artifact.outputs.artifact-id == '' && (failure() || cancelled())
         uses: actions/github-script@v7
         env:
           REVIEW_COUNT: ${{ steps.review-start.outputs.review_count }}
@@ -311,6 +313,7 @@ jobs:
 
       - name: Clear review in progress
         if: always() && (steps.review-label.outcome == 'success' || steps.review-label.outcome == 'failure')
+        continue-on-error: ${{ inputs.structured_release_review }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.result-app-token.outputs.token || steps.app-token.outputs.token }}

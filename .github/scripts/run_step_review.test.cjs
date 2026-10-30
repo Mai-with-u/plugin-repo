@@ -46,7 +46,7 @@ test('结构化提示模板从当前版本读取精确身份且默认不批准',
   assert.equal(template.plugin_id, batch.id);
   assert.equal(template.repository_url, batch.repositoryUrl);
   assert.deepEqual(template, { schema_version: 2, plugin_id: batch.id, repository_url: batch.repositoryUrl, version: batch.version, tag: batch.tag, commit: batch.commit, reviewed: false,
-    decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] });
+    decision: 'manual_review', summary: '填写检查范围与结论', risks: [] });
 });
 
 function retryHarness(t, attempts) {

@@ -221,7 +221,7 @@ function request(url) {
   assert.ok(release);
   if (url.includes('/git/ref/')) return Promise.resolve({ object: { type: 'commit', sha: release.commit } });
   const manifest = { manifest_version: 2, id: plugin.id, version: release.version, name: 'demo', description: 'demo', license: 'MIT',
-    author: { name: 'example' }, urls: { repository: plugin.repositoryUrl }, capabilities: [], i18n: { default_locale: 'zh-CN' },
+    author: { name: 'example', url: 'https://github.com/example' }, urls: { repository: plugin.repositoryUrl }, capabilities: [], i18n: { default_locale: 'zh-CN' },
     host_application: { min_version: '1.0.0' }, sdk: { min_version: '2.0.0' } };
   return Promise.resolve({ type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify(manifest)).toString('base64') });
 }

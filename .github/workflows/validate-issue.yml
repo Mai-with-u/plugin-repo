@@ -352,26 +352,8 @@ jobs:
               return;
             }
 
-            // 检查 manifest v2 必需字段
-            const requiredFields = [
-              'manifest_version',
-              'id',
-              'name',
-              'version',
-              'description',
-              'author',
-              'license',
-              'urls',
-              'host_application',
-              'sdk',
-              'capabilities',
-              'i18n'
-            ];
-            const missingFields = requiredFields.filter(f => !manifest[f]);
-
-            if (missingFields.length > 0) {
-              validationErrors.push(`**\`_manifest.json\` 缺少 manifest v2 必需字段**\n\n缺少: ${missingFields.map(f => '\`' + f + '\`').join(', ')}\n\n请参考 [Manifest 文档](https://docs.mai-mai.org/develop/plugin-dev/manifest) 添加这些字段。`);
-            }
+            const { collectManifestErrors } = require('./.github/scripts/validate_manifest.cjs');
+            validationErrors.push(...collectManifestErrors(manifest));
 
             if (manifest.manifest_version !== 2) {
               validationErrors.push('**`manifest_version` 必须为 `2`**\n\n新提交插件请升级为 `_manifest.json` v2。');
@@ -383,64 +365,8 @@ jobs:
               validationErrors.push(`**\`_manifest.json\` 包含旧版或展示侧字段**\n\n请移除: ${legacyFieldsInManifest.map(f => '\`' + f + '\`').join(', ')}\n\nmanifest v2 使用 \`urls.repository\` / \`urls.homepage\` 等字段；\`categories\` 不属于 Host 严格校验的 v2 字段。`);
             }
 
-            const semverRegex = /^\d+\.\d+\.\d+$/;
-            const pluginIdRegex = /^[A-Za-z0-9_]+(?:[.-][A-Za-z0-9_]+)+$/;
-            const isObject = value => value && typeof value === 'object' && !Array.isArray(value);
-            const isHttpUrl = value => typeof value === 'string' && /^https?:\/\/.+/.test(value);
-
-            if (!pluginIdRegex.test(String(manifest.id || ''))) {
-              validationErrors.push('**`id` 字段格式错误**\n\n必须使用字母、数字、下划线，并以点号或短横线分隔，例如 `github.username.my-plugin`。');
-            }
-
-            if (!semverRegex.test(String(manifest.version || ''))) {
-              validationErrors.push(`**\`version\` 字段格式错误**\n\n当前值: \`${manifest.version}\`\n\n必须为三段式版本号，例如 \`1.0.0\`。`);
-            }
-
-            // 验证 author 结构
-            if (!isObject(manifest.author) || !manifest.author.name || !isHttpUrl(manifest.author.url)) {
-              validationErrors.push('**\`author\` 字段格式错误**\n\n必须是包含 `name` 和 HTTP/HTTPS `url` 的对象:\n```json\n"author": {\n  "name": "作者名",\n  "url": "https://github.com/username"\n}\n```');
-            }
-
-            // 验证 urls 结构
-            if (!isObject(manifest.urls) || !isHttpUrl(manifest.urls.repository)) {
-              validationErrors.push('**\`urls\` 字段格式错误**\n\n必须包含 HTTP/HTTPS 格式的 `repository`:\n```json\n"urls": {\n  "repository": "https://github.com/username/my-plugin"\n}\n```');
-            }
-
-            for (const optionalUrlField of ['homepage', 'documentation', 'issues']) {
-              if (manifest.urls?.[optionalUrlField] !== undefined && !isHttpUrl(manifest.urls?.[optionalUrlField])) {
-                validationErrors.push(`**\`urls.${optionalUrlField}\` 字段格式错误**\n\n如果填写该字段，必须使用 HTTP/HTTPS URL。`);
-              }
-            }
-
-            // SDK 版本范围由宿主判断，市场不校验其版本声明。
-            for (const rangeField of ['host_application']) {
-              const rangeValue = manifest[rangeField];
-              if (!isObject(rangeValue) || !semverRegex.test(String(rangeValue.min_version || '')) || !semverRegex.test(String(rangeValue.max_version || ''))) {
-                validationErrors.push(`**\`${rangeField}\` 字段格式错误**\n\n必须包含三段式版本号 \`min_version\` 和 \`max_version\`，例如 \`1.0.0\`。`);
-              }
-            }
-
-            const declaredVersions = [
-              ['version', manifest.version],
-              ...['host_application'].flatMap(field =>
-                ['min_version', 'max_version'].map(bound => [`${field}.${bound}`, manifest[field]?.[bound]])),
-            ];
-            for (const [field, value] of declaredVersions) {
-              if (String(value).split('.').slice(0, 2).some(part => part === '99' || part === '999')) {
-                validationErrors.push(`**\`${field}\` 版本号不符合要求**\n\n当前值: \`${value}\`\n\n第一位和第二位不能填写 \`99\` 或 \`999\`，请填写实际版本；第三位不受此限制。`);
-              }
-            }
-
             core.setOutput('manifest_host_min_version', manifest.host_application?.min_version);
-            core.setOutput('manifest_host_max_version', manifest.host_application?.max_version);
-
-            if (!Array.isArray(manifest.capabilities) || manifest.capabilities.some(item => !String(item || '').trim())) {
-              validationErrors.push('**`capabilities` 字段格式错误**\n\n必须是字符串数组；没有额外能力时请填写空数组 `[]`。');
-            }
-
-            if (!isObject(manifest.i18n) || !String(manifest.i18n.default_locale || '').trim()) {
-              validationErrors.push('**`i18n` 字段格式错误**\n\n必须至少包含 `default_locale`，例如 `{\"default_locale\": \"zh-CN\", \"supported_locales\": [\"zh-CN\"]}`。');
-            }
+            core.setOutput('manifest_host_max_version', manifest.host_application?.max_version ?? '未限制');
 
             // ========== 一致性检查 ==========
             if (pluginId !== manifest.id) {
@@ -503,9 +429,9 @@ jobs:
             // ========== 验证成功 ==========
             let successMessage = '';
             if (requestType === 'add') {
-              successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| Manifest ID | ${manifest.id} |\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
+              successMessage = `**插件信息:**\n| 字段 | 值 |\n|------|----|\n| Manifest ID | ${manifest.id} |\n| 名称 | ${manifest.name} |\n| 版本 | ${manifest.version} |\n| 作者 | ${manifest.author.name} |\n| 许可证 | ${manifest.license} |\n| 描述 | ${manifest.description} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version ?? '未限制'} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
             } else {
-              successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
+              successMessage = `**修改请求验证通过**\n| 字段 | 值 |\n|------|----|\n| 当前插件 ID | ${currentPluginId} |\n| 新插件 ID | ${pluginId} |\n| 原仓库地址 | ${existingPlugin.repositoryUrl} |\n| 新仓库地址 | ${repoUrl || '未修改'} |\n| 作者 | ${manifest.author.name} |\n| 适配 MaiBot 版本（manifest 声明） | ${manifest.host_application.min_version} ～ ${manifest.host_application.max_version ?? '未限制'} |\n| 已发布 Release | [${publishedRelease.tag_name}](${effectiveRepoUrl}/releases) |\n| 分支 | ${successBranch} |`;
             }
 
             const approveAction = requestType === 'add'

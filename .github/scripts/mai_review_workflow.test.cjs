@@ -79,7 +79,7 @@ test('统一重审命令在两类 Issue 中均限维护者', async () => {
   }
 });
 
-async function runScript(name, comments = [], extra = {}) {
+async function runScript(name, comments = [], extra = {}, files = { 'codex-review.md': '审核文本', 'codex-maimai.md': '审核文本' }) {
   const posted = [];
   const outputs = {};
   const createComment = async (comment) => { posted.push(comment); return { data: { id: 99 } }; };
@@ -90,7 +90,10 @@ async function runScript(name, comments = [], extra = {}) {
   const context = { repo: { owner: "example", repo: "plugins" }, issue: { number: 7 }, runId: 123 };
   const core = { setOutput: (key, value) => { outputs[key] = value; }, setFailed: assert.fail };
   const localRequire = (name) => name === "fs"
-    ? { readFileSync: () => "审核文本" }
+    ? { existsSync: file => Object.hasOwn(files, file), readFileSync: file => {
+      if (!Object.hasOwn(files, file)) throw new Error(`ENOENT: ${file}`);
+      return files[file];
+    } }
     : require(path.resolve(__dirname, "../..", name));
   const process = { env: { REVIEW_ISSUE_NUMBER: "7", GITHUB_RUN_ATTEMPT: "1", GITHUB_SERVER_URL: "https://github.com", ...extra } };
   // Substitute trusted step outputs as GitHub Actions does before execution.
@@ -195,4 +198,51 @@ test("success and failure post separate results with the count", async () => {
   assert.match(failure.posted[0].body, /本次审核失败/);
   assert.match(failure.posted[0].body, /https:\/\/github.com\/example\/plugins\/actions\/runs\/123/);
   assert.match(failure.posted[0].body, /已审核：8次 \/ 8次$/);
+});
+
+test('短评缺失或为空仍发布正式审核，正式审核为空仍失败', async () => {
+  for (const files of [{ 'codex-review.md': '正式审核结论' },
+    { 'codex-review.md': '正式审核结论', 'codex-maimai.md': '  \n' }]) {
+    const { posted } = await runScript('Post review comment', [], {}, files);
+    assert.equal(posted.length, 1);
+    assert.match(posted[0].body, /正式审核结论/);
+    assert.doesNotMatch(posted[0].body, /undefined/);
+  }
+  await assert.rejects(runScript('Post review comment', [], {}, { 'codex-review.md': '' }), /codex-review.md 为空/);
+});
+
+test('正式结果先保存，短评失败可继续；通知失败后仍收录，缺产物或取消时不收录', () => {
+  const saved = workflow.indexOf('      - name: Save structured release review\n');
+  const comment = workflow.indexOf('      - name: Run StepFun Mai comment\n');
+  assert.ok(saved > workflow.indexOf('      - name: Validate structured release review\n') && saved < comment);
+  assert.match(workflow.slice(comment).split('\n      - name:')[0], /continue-on-error: true/);
+  // Keep the reusable job successful after a saved decision, including when
+  // GitHub comment/token/diagnostic/label calls fail. Registration still reports errors.
+  for (const name of ['Refresh Mai GitHub App token for result', 'Post review comment',
+    'Save review diagnostics', 'Clear review in progress']) {
+    const step = workflow.split(`      - name: ${name}\n`)[1].split('\n      - name:')[0];
+    assert.match(step, /continue-on-error: \$\{\{ inputs.structured_release_review \}\}/);
+  }
+  const releaseWorkflow = fs.readFileSync(path.join(__dirname, '../workflows/mai-release-review.yml'), 'utf8');
+  const condition = releaseWorkflow.split('  auto-approve:')[1].match(/    if: (.+)/)[1]
+    .replace(/^\$\{\{\s*|\s*\}\}$/g, '').replaceAll('needs.mai-review', 'needs.review');
+  // Actions implicitly adds success() unless the condition contains a status function.
+  const shouldApprove = new Function('needs', 'cancelled', 'success',
+    `return ${/\b(?:always|cancelled|failure|success)\(/.test(condition) ? '' : 'success() && '}(${condition});`);
+  for (const result of ['success', 'failure']) {
+    for (const ready of ['true', 'false']) {
+      for (const cancelled of [true, false]) {
+        assert.equal(shouldApprove({ review: { result, outputs: { review_ready: ready } } },
+          () => cancelled, () => result === 'success'), ready === 'true' && !cancelled);
+      }
+    }
+  }
+  const failureCondition = workflow.split('      - name: Post review failure\n')[1].match(/        if: (.+)/)[1]
+    .replaceAll('steps.review-start', 'steps.start').replaceAll('steps.review-artifact', 'steps.artifact')
+    .replaceAll('.artifact-id', "['artifact-id']");
+  const shouldReportFailure = new Function('steps', 'always', 'failure', 'cancelled', `return (${failureCondition});`);
+  for (const artifactId of ['', '123']) {
+    assert.equal(shouldReportFailure({ start: { outputs: { should_run: 'true' } },
+      artifact: { outputs: { 'artifact-id': artifactId } } }, () => true, () => true, () => false), !artifactId);
+  }
 });

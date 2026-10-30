@@ -2,54 +2,13 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const VERSION = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
+const { VERSION, compareVersions, collectManifestErrors } = require('./validate_manifest.cjs');
 const SHA = /^[0-9a-f]{40}$/;
 
-function compareVersions(left, right) {
-  assert.match(left, VERSION, `无效版本号：${left}`);
-  assert.match(right, VERSION, `无效版本号：${right}`);
-  const a = left.split('.').map(BigInt);
-  const b = right.split('.').map(BigInt);
-  for (let i = 0; i < 3; i++) {
-    if (a[i] !== b[i]) return a[i] > b[i] ? 1 : -1;
-  }
-  return 0;
-}
-
-function validateManifest(manifest, version, expectedId, strictVersions = true) {
-  assert.ok(manifest && typeof manifest === 'object' && !Array.isArray(manifest), 'manifest 必须是对象');
-  const errors = [];
-  const check = (valid, message) => { if (!valid) errors.push(message); };
-  const checkVersion = (value, field) => {
-    const valid = typeof value === 'string' && VERSION.test(value);
-    check(valid, `${field} 必须为三段式版本号`);
-    if (valid && strictVersions) check(!value.split('.').slice(0, 2).some(part => part === '99' || part === '999'),
-      `${field} 第一位和第二位不能填写 99 或 999`);
-    return valid;
-  };
-  check([1, 2].includes(manifest.manifest_version), '不支持的 manifest 协议');
-  check(manifest.version === version, 'Tag 与 manifest.version 不一致');
-  checkVersion(manifest.version, 'version');
-  for (const key of ['name', 'description', 'license']) {
-    check(typeof manifest[key] === 'string' && manifest[key].trim(), `缺少 ${key}`);
-  }
-  check(typeof manifest.author?.name === 'string' && manifest.author.name.trim(), '缺少作者名称');
-  if (manifest.manifest_version === 2) {
-    check(typeof manifest.id === 'string' && /^[a-zA-Z0-9_.-]+$/.test(manifest.id), '插件 ID 无效');
-    if (expectedId) check(manifest.id === expectedId, '发布版本改变了插件 ID');
-    check(typeof manifest.urls?.repository === 'string', '缺少 urls.repository');
-    check(Array.isArray(manifest.capabilities), '缺少 capabilities');
-    check(typeof manifest.i18n?.default_locale === 'string', '缺少 i18n.default_locale');
-  }
-  // SDK 版本范围由宿主判断，市场只校验宿主版本范围。
-  for (const field of ['host_application']) {
-    const range = manifest[field];
-    const minValid = checkVersion(range?.min_version, `${field}.min_version`);
-    if (range?.max_version !== undefined) {
-      const maxValid = checkVersion(range.max_version, `${field}.max_version`);
-      if (minValid && maxValid) check(compareVersions(range.min_version, range.max_version) <= 0, `${field} 版本范围倒置`);
-    }
-  }
+function validateManifest(manifest, version, expectedId, newRelease = true) {
+  const errors = collectManifestErrors(manifest, { historical: !newRelease });
+  if (manifest?.version !== version) errors.push('Tag 与 manifest.version 不一致');
+  if (manifest?.manifest_version === 2 && expectedId && manifest.id !== expectedId) errors.push('发布版本改变了插件 ID');
   assert.ok(!errors.length, errors.join('\n'));
 }
 

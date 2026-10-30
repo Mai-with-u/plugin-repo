@@ -17,18 +17,11 @@ function extractReview(events) {
 
 async function runReview({ promptFile, outputFile, prefix, structured = false }) {
   if (!process.env.STEP_API_KEY) throw new Error('缺少 STEP_API_KEY');
-  // Allocate outside the agent: reference downloads never need a destructive reset.
-  // Leave cleanup to the ephemeral Actions runner, not a model-generated command.
   const referenceDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mai-review-reference-'));
   const prompt = fs.readFileSync(promptFile, 'utf8') +
-    `\n\n审核工作目录：${process.cwd()}。可按审核需要使用所有可用工具，包括联网核验 SDK 文档；不运行插件代码。` +
-    `\n\n非交互审核的工具约束（适用于整个审核过程）：
-- CI 无法提供交互确认；危险命令会直接终止审核，--approval-mode auto 也不能绕过保护。
-- 优先使用 Read、Grep、Glob 等读取工具。必须使用 shell 时，每次只执行简单的字面命令；搜索表达式用单引号包裹，尤其不能把含反引号或美元符号的正则放入双引号。下载、搜索分开调用，不拼接复杂管道、循环、heredoc 或命令替换。
-- 已为本次调用创建空的参考资料目录：${JSON.stringify(referenceDir)}。下载 SDK 或其他参考源码时，在该目录内使用新的子目录作为 git clone 目标；目标已存在则读取复用，或另取一个未使用的目录名。
-- 不执行删除或清空目录的命令，包括 rm -rf、rm -r、递归删除 API；不为重新克隆、下载或重试而删除文件。无需清理临时资料，CI runner 负责回收。
-- 只读检查插件、宿主和 SDK 源码；不执行 git reset --hard、git clean、强制覆盖或其他破坏性操作，不执行下载的代码，不尝试绕过工具安全保护。
-- 工具遇到需要确认或拒绝执行时，若仍能继续，改用读取已有资料、新目录或只读 HTTP 获取。无法核实的事实标为证据不足，按原定输出格式完成审核，不将未完成的检查判为通过。` +
+    `\n\n工作目录：${process.cwd()}。采用静态源码审查，使用 Read、Grep、Glob 按需读取文件，可联网核实宿主与 SDK 文档。` +
+    `\n使用 shell 时每次执行简单命令，搜索表达式使用单引号，下载与搜索分开调用。工具不可用时换用已有资料、分段读取或只读 HTTP 请求。` +
+    `\n参考资料目录：${JSON.stringify(referenceDir)}。下载资料使用其中的新子目录，已有资料直接复用；临时文件由 runner 回收。` +
     (structured ? buildStructuredInstructions() : '');
   const args = ['--print', '--mode', 'json', '--model', process.env.STEP_MODEL || 'step-5-preview',
     '--thinking', structured ? 'high' : 'medium',
@@ -99,10 +92,8 @@ function buildStructuredInstructions() {
   const target = JSON.parse(fs.readFileSync('mai-release-target.json', 'utf8'));
   const template = { schema_version: 2, plugin_id: target.id, repository_url: target.repositoryUrl,
     version: target.version, tag: target.tag, commit: target.commit,
-      reviewed: false, decision: 'manual_review', summary: '填写实际检查证据', risks: ['填写风险或证据缺口'] };
-  return '\n完成检查后直接输出唯一完整的审核 JSON 对象，不加 Markdown 或其他正文。' +
-    '\n以下是本次真实审核对象的输出模板，身份字段保持不变，审核字段必须按实际证据填写；模板本身不是检查证据。' +
-    '\nJSON 字符串中的双引号、反斜杠和换行必须正确转义。schema_version 使用数字 2。不要在 JSON 外附加评论。\n' +
+      reviewed: false, decision: 'manual_review', summary: '填写检查范围与结论', risks: [] };
+  return '\n输出 JSON 字段模板，身份字段保持原值，审核字段按本次结论填写：\n' +
     JSON.stringify(template, null, 2);
 }
 

@@ -33,7 +33,8 @@ jobs:
 
   auto-approve:
     needs: mai-review
-    if: needs.mai-review.outputs.review_ready == 'true'
+    # A comment/diagnostic failure must not discard a saved review decision.
+    if: ${{ !cancelled() && needs.mai-review.outputs.review_ready == 'true' }}
     runs-on: ubuntu-latest
     concurrency:
       group: plugin-repo-main-write

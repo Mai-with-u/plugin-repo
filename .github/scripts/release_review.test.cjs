@@ -90,7 +90,7 @@ function releaseClient(commit = candidate.commit, releases = [candidate.tag]) {
     if (url.includes('/git/ref/')) return { object: { type: 'commit', sha: commit } };
     if (url.includes('/contents/')) return { type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify({
       manifest_version: 2, id: plugin.id, version: candidate.version, name: 'demo', description: 'demo',
-      license: 'MIT', author: { name: 'example' }, urls: { repository: plugin.repositoryUrl },
+      license: 'MIT', author: { name: 'example', url: 'https://github.com/example' }, urls: { repository: plugin.repositoryUrl },
       capabilities: [], i18n: { default_locale: 'zh-CN' }, host_application: { min_version: '1.0.0' }, sdk: { min_version: '2.0.0' },
     })).toString('base64') };
     throw new Error(url);

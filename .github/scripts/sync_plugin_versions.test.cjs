@@ -9,7 +9,7 @@ const commit = 'a'.repeat(40);
 function manifest(version = '1.0.0') {
   return {
     manifest_version: 2, id: 'example.demo', version, name: '示例', description: '示例插件',
-    author: { name: '作者' }, license: 'MIT', urls: { repository: plugin.repositoryUrl },
+    author: { name: '作者', url: 'https://github.com/example' }, license: 'MIT', urls: { repository: plugin.repositoryUrl },
     host_application: { min_version: '1.0.0', max_version: '1.9.99' },
     sdk: { min_version: '2.0.0', max_version: '2.1.99' },
     capabilities: [], i18n: { default_locale: 'zh-CN' },
@@ -104,6 +104,26 @@ test('待审新版不影响旧版，已有版本无需重复准入', async () =>
   assert.deepEqual(requested, ['2.0.0']);
   assert.deepEqual(result.versions.map(item => item.version), ['1.0.0']);
   assert.equal(result.versions[0].yanked, false);
+});
+
+test('新增基础校验不追溯已收录快照，历史 v1 发布仍兼容', async () => {
+  const snapshot = manifest();
+  delete snapshot.author.url;
+  delete snapshot.sdk;
+  snapshot.urls.repository = '';
+  snapshot.capabilities = [{}];
+  snapshot.i18n.default_locale = '';
+  snapshot.host_application.max_version = '99.0.0';
+  const previous = { id: plugin.id, manifest_id: snapshot.id, repositoryUrl: plugin.repositoryUrl,
+    mode: 'releases', versions: [{ version: '1.0.0', tag: 'v1.0.0', commit, manifest: snapshot, yanked: false }] };
+  const result = await syncWithGate(plugin, previous, client([release()]), snapshot.id,
+    async () => assert.fail('已收录版本无需重审'));
+  assert.deepEqual(result.versions, previous.versions);
+  assert.deepEqual(result.rejected_releases, []);
+
+  const v1 = { ...snapshot, manifest_version: 1, host_application: { min_version: '1.0.0' } };
+  const legacy = await syncPlugin(plugin, undefined, client([release()], { manifest: v1 }));
+  assert.equal(legacy.versions.length, 1);
 });
 test('从注解 Tag 解析完整 commit 并读取该 commit 的 manifest', async () => {
   const result = await syncPlugin(plugin, undefined, client([release()], { annotated: true }), 'example.demo');
