@@ -33231,6 +33231,50 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.7",
+          "tag": "1.0.7",
+          "commit": "9a2efc299006415c8372289e9560b40922aac9fc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T16:58:02Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.0.7",
+          "release_notes": "联系方式：1373558257@qq.com\n\n## v1.0.7\n\n这是一次**测试版发布**，重点是把 1.3.19 环境下的两个已知问题修掉，并做了一轮完整回归。因为是 b 版，建议先在小群试用，确认没问题再上正式群。\n\n### 修复\n\n- **修复名单坏值导致整个插件加载失败**：以前只要名单里有一条填错（比如关心频率填 5、身份填了不认识的字），整个插件就加载不了、完全不工作。现在改成逐条校验：坏的那条跳过并打警告，其余照常生效；关心频率填错时保留这个人、频率回落到默认值。\n- **修复全角数字识别不了**：中文输入法打出的全角数字（１３７３５５８２５７）以前认不出，会被当成无效号码。现在会自动转成半角再解析。\n\n### 改进\n\n- 清单警告更清楚：名单为空且未开启\"名单外也注入\"时，启动日志会明确提示\"插件不会注入任何身份信息\"。\n\n### 验证\n\n- 84 项测试全过，覆盖：静态结构、名单解析（新/旧两种格式）、三档身份注入、四档关心频率、重名检测、号码防护、并发安全（10 并发只注入 1 次）、幂等、与 chat_guard 共存、持久化、内存清理、WebUI 页面与接口。\n- 真实环境下已确认 planner 和 replyer 两个阶段都能正确注入。\n\n### 已知限制\n\n- QQ 号只用于内部识别，**永远不会进入提示词**（有硬校验，注入文本里出现 5 位以上连续数字会被整条拒绝）。\n- 官方平台限制：本插件依赖 MaiBot 1.3.6+ 的自定义页面能力。\n\n---\n\n## 安装\n\n1. 在插件市场或手动放置到 `plugins/` 目录\n2. 重启或热加载\n3. 在 WebUI 的「身份认知」页面里添加人、设定身份和关心频率\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.7",
+            "name": "身份认知（测试版）",
+            "description": "【测试版】手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
           "version": "1.0.5",
           "tag": "1.0.5",
           "commit": "add584e57dfd4ca4f664d93cdef7aa419148b454",
