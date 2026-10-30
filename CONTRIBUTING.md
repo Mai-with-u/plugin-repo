@@ -73,7 +73,28 @@
 > [!NOTE]
 > `_manifest.json` 中的 `categories`、`keywords`、`repository_url`、`homepage_url` 等未定义字段可能导致 Host 校验失败。
 
-详细文档：[_manifest.json 字段说明](https://docs.mai-mai.org/develop/plugin-dev/manifest)
+### 插件类别
+
+`plugin_type` 表示插件的主要类别，供 WebUI 展示和筛选。字段可省略；缺省或填写 `extension` 时显示为“无类别”，不列入分类筛选。请选择最能代表插件主要功能的一项。
+
+- `adapter` — 适配器：接入聊天平台或消息协议
+- `tool` — 工具：命令、查询和模型可调用工具
+- `provider` — 服务提供方：LLM、TTS、API 等能力提供方
+- `management` — 管理：群管理、权限和后台管理
+- `data` — 数据与知识：统计、记忆、知识库和数据处理
+- `media` — 媒体：图片、语音、视频和表情处理
+- `game` — 游戏娱乐：游戏、娱乐和互动
+- `integration` — 外部集成：外部平台、搜索服务和 Webhook
+- `other` — 其他：无法归入已有类别的插件
+- `chat` — 聊天：对话、回复和聊天行为增强
+- `creative` — 创作：绘画、写作和内容生成
+- `automation` — 自动化：定时任务、自动执行和工作流
+- `deskpet` — 桌宠：桌面宠物及相关交互
+
+兼容旧值：`knowledge` 显示为数据与知识，`entertainment` 显示为游戏娱乐，`search` 显示为外部集成；其他未知值显示为其他。Host 目前接受字符串，不强制校验上述枚举。`adapter` 还用于适配器 Runner 分组。
+
+
+详细文档：[_manifest.json 字段说明](https://docs.maibot.chat/plugin/manifest)
 
 ---
 
