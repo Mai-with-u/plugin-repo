@@ -48625,7 +48625,60 @@
       "manifest_id": "local.bible-citation",
       "repositoryUrl": "https://github.com/CODao/maibot-bible-citation",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.8",
+          "tag": "v1.1.8",
+          "commit": "017d7576a09ee6091eb421f46bf0bf5459d6a005",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T03:29:39Z",
+          "release_url": "https://github.com/CODao/maibot-bible-citation/releases/tag/v1.1.8",
+          "release_notes": "- 移除第三方《吸血鬼幸存者》游戏图标，改为独立绘制的书本图标；图案和绘制源文件使用 MIT 许可。\n- 自检状态灯只有“自检通过”才显示绿色；未执行、进行中显示警告，失败显示错误。\n- 新增状态灯回归测试；普通模式和 python -O 均通过 32 项测试。\n- 已在 MaiBot 1.3.17 / SDK 2.19.0 验证加载、未自检状态和自检通过状态。自检不向 QQ 群发送消息。\n- 延续 512 字符上限和约 150 毫秒协作式计算预算；仅查询副本处理标点，实际回复完整保留。\n\n代码及新图标使用 MIT；经文按来源的公有领域声明分发。旧版本游戏素材的来源及许可说明保留在其对应历史版本中。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bible-citation",
+            "name": "大肥鱼·圣经原句出处",
+            "version": "1.1.8",
+            "description": "QQ 群聊回复中连续片段与本机简体和合本逐字相同时，自动追加经卷章节；支持部分命中，无需模型。",
+            "author": {
+              "name": "CODao",
+              "url": "https://github.com/CODao"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.19.99"
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/CODao/maibot-bible-citation",
+              "homepage": "https://github.com/CODao/maibot-bible-citation",
+              "documentation": "https://github.com/CODao/maibot-bible-citation/blob/main/README.md",
+              "issues": "https://github.com/CODao/maibot-bible-citation/issues"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/bible-book.png",
+                "fallback": "BookOpen",
+                "background": "#19191E"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
