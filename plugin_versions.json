@@ -48915,7 +48915,80 @@
       "manifest_id": "github.beichen24a1.workbuddy",
       "repositoryUrl": "https://github.com/beichen24a1/MaiBot-WorkBuddy",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "4c6179d90d71c89530ae8e008970b6d6a892602c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T06:29:25Z",
+          "release_url": "https://github.com/beichen24a1/MaiBot-WorkBuddy/releases/tag/v0.1.2",
+          "release_notes": "**重要修复**：带 tools 的请求此前会全部失败。\n\n- 插件返回的 \\\tool_calls\\ 改为 Host 期望的 OpenAI 形态（\\id\\ + \\\function.name\\/\\\function.arguments\\）\n- 旧格式 \\call_id/func_name/args\\ 会让 Host 的 \\deserialize_tool_calls_snapshot\\ 得到 \\\function.name=None\\，\n  抛「快照中的 tool_call 缺少 id 或 function.name」，从而把 planner 这类带工具的请求整条判失败并回落\n- 额外丢弃上游返回的不完整 tool_call（缺 \\\function.name\\），避免污染上下文\n\n实测：\\WorkBuddy 调用: messages=22 tools=9\\ 连续成功，Planner 正常发起 \\search_meme_wiki\\ 工具调用。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.beichen24a1.workbuddy",
+            "version": "0.1.2",
+            "name": "WorkBuddy 模型接入",
+            "description": "把 WorkBuddy(CN) 账号的模型接入 MaiBot：插件内完成 OAuth 登录与 token 刷新，注册一个 LLM Provider，模型配置里把 client_type 指向它即可用 deepseek-v4.1-flash、glm、kimi 等模型。",
+            "author": {
+              "name": "beichen24a1",
+              "url": "https://github.com/beichen24a1"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/beichen24a1/MaiBot-WorkBuddy",
+              "homepage": "https://github.com/beichen24a1/MaiBot-WorkBuddy",
+              "issues": "https://github.com/beichen24a1/MaiBot-WorkBuddy/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=41"
+              }
+            ],
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "sparkles"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "llm_providers": [
+              {
+                "client_type": "com.beichen24a1.workbuddy",
+                "name": "WorkBuddy (CN)",
+                "description": "通过 WorkBuddy 账号转发的 OpenAI 兼容模型通道",
+                "version": "1.0.0"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
