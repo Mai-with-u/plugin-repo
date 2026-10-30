@@ -49688,6 +49688,55 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "6644b11fe15d59c23fec564beb2f88d09330713c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T15:29:41Z",
+          "release_url": "https://github.com/hhhhhhezeus/bilibili-meme/releases/tag/v1.1.0",
+          "release_notes": "## 每周自动学梗\n\n- 每周追踪「瞎问虾猜丶」的《断网补全计划》系列，以及「梗指南」的新投稿，从标题、字幕和评论提取多个梗并按现有规则写入黑话库。\n- 新增状态命令 `/周梗状态`，按视频去重并记录进度，失败后重试；可在插件配置开启 `weekly_enabled` 并设置 `weekly_hour`。\n- 每周任务默认关闭；默认北京时间周一 9 点后处理上一自然周。启用需要开启 `write_to_db`，并配置可用的模型任务及 B站访问条件。\n- 包含请求冷却、并发上限、字幕地址校验和数据库失败处理改进。\n\n本版本的黑话写入是全局生效的；视频分析使用字幕和评论，不读取画面。详细使用说明见 README。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hhhhhhezeus.bilibili-meme",
+            "version": "1.1.0",
+            "name": "B站学梗 / Bilibili Meme Learner",
+            "description": "从 B站 视频里学梗，并理解群友分享的视频：读字幕、看弹幕爆发点、翻热评，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、选源打分与自动降级。",
+            "author": {
+              "name": "hhhhhhezeus",
+              "url": "https://github.com/hhhhhhezeus"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hhhhhhezeus/bilibili-meme",
+              "homepage": "https://github.com/hhhhhhezeus/bilibili-meme",
+              "documentation": "https://github.com/hhhhhhezeus/bilibili-meme/blob/main/README.md",
+              "issues": "https://github.com/hhhhhhezeus/bilibili-meme/issues"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.2",
           "tag": "v1.0.2",
           "commit": "58feade223249204fa33d3ca8cdbf245a807b3f8",
