@@ -48120,7 +48120,70 @@
       "manifest_id": "com.moonlycake.host-status",
       "repositoryUrl": "https://github.com/MoonlyCake/maibot-host-status-plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "86e8545455a89288010b23faf7d844edc0ca15b8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T08:29:10Z",
+          "release_url": "https://github.com/MoonlyCake/maibot-host-status-plugin/releases/tag/v1.0.3",
+          "release_notes": "首个公开发布版本。\r\n\r\n发送 /系统状态、/主机状态、/sysinfo 或 /status，使用本地代码采样 CPU 各核心、内存、交换空间、磁盘和运行时间，生成深色状态图。无模型调用、无后台采样；状态图不显示 IP、用户名或完整挂载路径。\r\n\r\n安装：下载 Source code (zip)，解压到 MaiBot/plugins/host_status，确保 plugin.py 和 _manifest.json 位于插件目录根层，然后重启或启用插件。\r\n\r\n依赖：psutil>=6,<8；Pillow>=10,<13。需要中文字体，Linux 可安装 Noto CJK。容器部署读取容器可见资源。\r\n\r\n兼容：MaiBot 1.3.12+（1.3.x），SDK 2.12–2.16。已在 macOS / SDK 2.12 部署，并完成 SDK 2.16 的插件加载与发送接口兼容检查。许可：MIT。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.moonlycake.host-status",
+            "version": "1.0.3",
+            "name": "宿主机状态图",
+            "description": "使用命令采样并绘制宿主机 CPU、内存、交换空间、硬盘和运行时间，无模型调用。",
+            "author": {
+              "name": "MoonlyCake",
+              "url": "https://github.com/MoonlyCake"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+              "homepage": "https://github.com/MoonlyCake/maibot-host-status-plugin",
+              "documentation": "https://github.com/MoonlyCake/maibot-host-status-plugin/blob/main/README.md",
+              "issues": "https://github.com/MoonlyCake/maibot-host-status-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.12",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "extension",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "psutil",
+                "version_spec": ">=6.0,<8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0,<13.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "activity"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
