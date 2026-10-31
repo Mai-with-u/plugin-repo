@@ -48026,6 +48026,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "898b1a9786e0cbce4e80335d83f0c0961d7d7d76",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:18Z",
+          "release_url": "https://github.com/42yoru/maimai-jargon-boost/releases/tag/v0.4.1",
+          "release_notes": "## 修复\n\n- 保留同内容的跨会话记录，避免候选在作用域筛选前被错误覆盖。\n- 手动扫描先限定合法 count 范围，避免其他会话或高 count 记录长期遮挡候选。\n- 收窄数据库自检文案，不再把宿主返回的空列表直接当成数据库健康证明。\n\n## 兼容性\n\n- SDK 兼容上限更新为 `2.50.50`。\n- 完成 35 项测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.1",
+            "name": "黑话加速器",
+            "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-jargon-boost",
+              "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+              "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "zap",
+                "background": "#FFD69A"
+              }
+            },
+            "plugin_type": "knowledge",
+            "id": "github.42yoru.maimai-jargon-boost"
+          }
+        },
+        {
           "version": "0.4.0",
           "tag": "v0.4.0",
           "commit": "fc3e752145f67fbe8d2f85fe7741eabd427ec467",
