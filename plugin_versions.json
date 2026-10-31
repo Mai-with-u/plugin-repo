@@ -47132,6 +47132,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "05368ba42f44dba1f7c46fae589502f862936055",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T11:50:59Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.1.3",
+          "release_notes": "## 0.1.3\n\n- 适配 MaiBot 1.3.19 / SDK 2.20.0，核对关键词拦截、命令消费、媒体序列化与配置迁移契约；兼容声明限定为该已验证组合。\n- 资源大小设置改用十进制 MB / KB，索引图像素设置改用万像素；支持小数，标签与超限提示明确单位。\n- 旧字节/像素配置自动精确迁移为新单位（配置版本 1.5.0），实际默认限额、上下限与内部整数保护保持不变。\n\n### 升级提示\n\n- 本版本兼容声明限定为 **MaiBot 1.3.19 / maibot-plugin-sdk 2.20.0**；旧宿主请使用对应历史发布。\n- 升级前建议备份插件配置。旧字节/像素配置会自动精确换算为 MB / KB / 万像素（配置版本 1.5.0），原实际限额保持不变。\n- 服务地址及 QQ 适配器配置无需重新填写。\n- GIF 输入/输出、帧数及模板选择逻辑不变。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "plugin_type": "media",
+            "version": "0.1.3",
+            "name": "表情包制作桥接器",
+            "description": "通过命令使用图片、文字等素材制作各种沙雕表情包，也可自动获取头像进行制作。需连接自部署的 Rust meme-generator 服务。",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<13"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "d62f3213a682a39db6e96e252f699298bb5b5e90",
