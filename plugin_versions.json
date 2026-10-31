@@ -72,6 +72,16 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v2.0.1",
+          "version": "2.0.1",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v2.0.0",
+          "version": "2.0.0",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
           "tag": "0.11.0",
           "version": "0.11.0",
           "error": "Tag 与 manifest.version 不一致"
@@ -4560,6 +4570,11 @@
       "versions": [],
       "ignored_tags": [],
       "rejected_releases": [
+        {
+          "tag": "v4.0.1",
+          "version": "4.0.1",
+          "error": "发布版本改变了插件 ID"
+        },
         {
           "tag": "v4.0.0",
           "version": "4.0.0",
@@ -20363,7 +20378,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.2.1",
+          "version": "1.2.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "dcy501.reminder",
@@ -22406,7 +22427,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.3.2",
+          "version": "0.3.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "com.zhigengniao258.error-notify",
@@ -43189,7 +43216,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.1.2",
+          "version": "0.1.2",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.OLDnana1.edge-tts",
@@ -46508,7 +46541,13 @@
       "mode": "releases",
       "versions": [],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.6.6",
+          "version": "0.6.6",
+          "error": "Tag 与 manifest.version 不一致"
+        }
+      ]
     },
     {
       "id": "hatsuhoq.maibot-qq-voice-call",
@@ -50618,7 +50657,7 @@
           "tag": "v0.1.0",
           "commit": "ae795bb86f1ed23cfeaa5370959a5a4102fe89ae",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-30T14:45:32Z",
           "release_url": "https://github.com/hedgehogovo/mai-persona/releases/tag/v0.1.0",
           "release_notes": "Mai Persona 首个公开版本。维护 MaiBot 角色的内在状态与个人生活模拟，并通过 MaiBot Planner 工作流处理状态维护任务。角色身份、行为准则和回复风格继续由 MaiBot 自有人格设置负责。",
@@ -50663,6 +50702,33 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "local.nai-plugin",
+      "manifest_id": "local.nai-plugin",
+      "repositoryUrl": "https://github.com/QlzqQlzq/nai-harness",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "Alcpare.divergent_search",
+      "manifest_id": "Alcpare.divergent_search",
+      "repositoryUrl": "https://github.com/Alcpare/maibot_divergent_search_plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "wu.group-timetable",
+      "manifest_id": "wu.group-timetable",
+      "repositoryUrl": "https://github.com/uFay0411/maibot-group-timetable",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
