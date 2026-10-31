@@ -46839,6 +46839,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "3e8b3d51f122c2fe9f7c6b1a1ba0466e399c32af",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T18:17:02Z",
+          "release_url": "https://github.com/HannJia/xiaoheihe-operator/releases/tag/v0.5.0",
+          "release_notes": "## 新增与改动\n\n- 人设默认跟随 MaiBot 主配置：评论、回复和帖子使用 `bot.nickname` 和 `personality.personality`，和 MaiBot 在 QQ 上回复时用的是同一份人设。在 WebUI 改人设或切换人设方案后，最多一分钟生效，不用重启。去掉了之前写死的人设。\n- 新增可选配置「小黑盒人设」（`[content] persona_override`），想让小黑盒上的身份或口吻不一样时填写。宿主人设读不到、也没有填写时，使用一句中性人设。为此声明了 `config.get` 能力，只读取上面两个字段。\n- 逛推荐流改版：间隔在设定值的 0.5–1.5 倍之间随机；每次点开 2–4 篇，大多只看不评；评论和点赞只给符合游戏筛选的帖子，当天的评论额度摊到剩下的场次；插件重启后第一次浏览推迟 2–15 分钟。\n- 新增帖子点赞：`likes_per_day` 控制每天上限（默认 3），同一帖子只赞一次，不占评论冷却。点赞接口参考 `dph-heybox` 的抓包记录，不是小黑盒公开文档。\n- 联动「生活频率」时，她在睡觉或小睡就不逛也不发帖。\n- 主动评论和回复别人分开写提示词，不复述原帖、不用套话；评论和帖子的输出上限放宽到 600 / 900 token，避免被截断。\n- 配图失败或超时时继续发纯文字帖子，不再卡住发帖。\n\n## 兼容性\n\n- SDK 上限放宽到 2.99.99，在 MaiBot 1.3.12（SDK 2.12.0）和 1.3.19（SDK 2.20.0）上测试通过。\n- 旧版 `config.toml` 不用改；新字段默认留空，也就是跟随宿主人设。\n\n## 验证\n\n- 58 项测试在两个 SDK 版本上全部通过，包括新增的人设来源测试。\n- 用真实 SDK 校验旧版配置通过，新字段在配置页显示为多行输入框。\n- 点赞接口用真实账号实测一次，读回 `is_award_link` 从 0 变成 1。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.xiaoheihe-operator",
+            "version": "0.5.0",
+            "name": "小黑盒运营",
+            "description": "让 MaiBot 用自己的人设在小黑盒逛帖、点赞、评论和发帖，可联动生活轨迹和配图。",
+            "author": {
+              "name": "HannJia",
+              "url": "https://github.com/HannJia"
+            },
+            "urls": {
+              "repository": "https://github.com/HannJia/xiaoheihe-operator"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package",
+                "background": "#f1f2f4"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        },
+        {
           "version": "0.4.1",
           "tag": "v0.4.1",
           "commit": "aa2354fdce5f4e965e9c25089213276928a47b4f",
