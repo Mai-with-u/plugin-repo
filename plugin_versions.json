@@ -51751,7 +51751,90 @@
       "manifest_id": "wu.group-timetable",
       "repositoryUrl": "https://github.com/uFay0411/maibot-group-timetable",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.10.8",
+          "tag": "v1.10.8",
+          "commit": "c0cb84446ee63ab54bd94aacb76c4e23fe627946",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T23:32:23Z",
+          "release_url": "https://github.com/uFay0411/maibot-group-timetable/releases/tag/v1.10.8",
+          "release_notes": "重新设计mai课表群友课程看板。\n\n- 暖白底色、圆角课程卡片、紧凑头像与柔和状态标签。\n- 顶部独立统计区；科目、时间、教室及倒计时分层展示。\n- 替换此前参考BLBot原型的箭头、角标、引号标题及排版。\n- 每张图片最多8条，保留结果分页。\n- 课程状态、排序、指令、自然语言、提醒、配置与课表数据保持不变。\n\n验证：46项相关检查通过，Ruff通过；示例图片已视觉检查。本机已更新并加载成功，没有发送群测试消息。",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "tool",
+            "id": "wu.group-timetable",
+            "name": "群聊个人课表提醒",
+            "version": "1.10.8",
+            "description": "群友今日课程状态看板：头像、进行中、下一节、已结束与倒计时；保留群聊课表管理和提醒",
+            "author": {
+              "name": "Wu",
+              "url": "https://github.com/uFay0411"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/uFay0411/maibot-group-timetable",
+              "homepage": "https://github.com/uFay0411/maibot-group-timetable",
+              "documentation": "https://github.com/uFay0411/maibot-group-timetable/blob/main/README.md",
+              "issues": "https://github.com/uFay0411/maibot-group-timetable/issues"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "icalendar",
+                "version_spec": ">=6.3,<8"
+              },
+              {
+                "type": "python_package",
+                "name": "recurring-ical-events",
+                "version_spec": ">=3.8,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2025.1"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<14"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "maisaka.reply.generate",
+              "message.get_by_id",
+              "api.call",
+              "api.list",
+              "llm.generate",
+              "maisaka.context.resolve_image",
+              "config.get",
+              "chat.get_avatar"
+            ]
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
