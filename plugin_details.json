@@ -17604,9 +17604,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.15.0",
+      "version": "2.15.1",
       "name": "中V歌词识别 · 歌曲库",
-      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_model_request）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -17931,7 +17931,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.15.0",
+      "version": "0.15.1",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -19471,7 +19471,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.token-usage-report",
-      "version": "1.11.0",
+      "version": "1.11.1",
       "name": "Token 用量统计与播报",
       "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
       "author": {
@@ -20942,10 +20942,10 @@
     "manifest": {
       "manifest_version": 2,
       "id": "cssqy.mai-meal-card",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "plugin_type": "automation",
       "name": "麦麦饭卡",
-      "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台）",
+      "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台、火山方舟 Agent Plan）",
       "author": {
         "name": "CSSQY",
         "url": "https://github.com/CSSQY"
@@ -22183,7 +22183,7 @@
       "id": "github.SoulString-Dev.maibot-mimo-voice",
       "version": "0.5.3",
       "name": "MiMo TTS 语音回复",
-      "description": "用 MiMo API 音色克隆把文本回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女角色音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+      "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
       "author": {
         "name": "SoulString",
         "url": "https://github.com/SoulString-Dev"
@@ -22844,9 +22844,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.xiaoheihe-operator",
-      "version": "0.4.1",
+      "version": "0.5.0",
       "name": "小黑盒运营",
-      "description": "将 maibot 的生活轨迹、游戏话题和配图能力接入小黑盒社区。",
+      "description": "让 MaiBot 用自己的人设在小黑盒逛帖、点赞、评论和发帖，可联动生活轨迹和配图。",
       "author": {
         "name": "HannJia",
         "url": "https://github.com/HannJia"
@@ -22869,11 +22869,12 @@
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.12.99"
+        "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
         "api.call",
+        "config.get",
         "llm.generate"
       ],
       "i18n": {
@@ -24719,8 +24720,8 @@
       "manifest_version": 2,
       "id": "community.wows-yuyuko",
       "name": "战舰世界战绩查询",
-      "version": "1.0.2",
-      "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYuyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
+      "version": "1.2.0",
+      "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYoyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
       "author": {
         "name": "白云鱼海",
         "url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot"
@@ -24785,7 +24786,9 @@
       ],
       "capabilities": [
         "send.text",
-        "send.image"
+        "send.image",
+        "maisaka.reply.generate",
+        "component.get_all_plugins"
       ],
       "changelog": "CHANGELOG.md",
       "i18n": {
@@ -25103,6 +25106,13 @@
       "urls": {
         "repository": "https://github.com/hatsuhoq/maibot-phone-play"
       },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "smartphone"
+        }
+      },
       "host_application": {
         "min_version": "1.3.6",
         "max_version": "1.3.99"
@@ -25137,6 +25147,9 @@
         ]
       },
       "changelog": "changelog.md"
+    },
+    "assets": {
+      "icon_64": "icons/hohoko-chan.phone-play.webp"
     }
   },
   {
@@ -25259,7 +25272,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -25381,7 +25394,7 @@
     "id": "mai-persona.mai-persona",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.2",
+      "version": "0.1.4",
       "name": "Mai Persona 内在引擎",
       "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
       "author": {
