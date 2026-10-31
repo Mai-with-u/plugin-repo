@@ -50083,6 +50083,116 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "80c2cf056b063ec481de4aeb59bdf41b89b8d97a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T09:15:00Z",
+          "release_url": "https://github.com/lightningXMS/MaiLifeSuite-----/releases/tag/v1.2.2",
+          "release_notes": "# MaiLifeSuite v1.2.2 更新公告（2026-10-31）\n\n## 适配 MaiBot 1.3.19\n\nMaiBot 1.3.19 要求 `maibot-plugin-sdk>=2.20.0`（1.3.18 为 >=2.19.0）。本插件旧上限 `<2.20` 会像 1.3.18 那次一样阻断依赖解析，导致 1.3.19 无法完成插件安装。\n\n**修复**：SDK 依赖区间放宽为 **`maibot-plugin-sdk>=2.15.0,<2.30`**（requirements / pyproject / manifest 三处同步），manifest `sdk.max_version` 同步放宽至 2.29.99——按宿主校验器语义，SDK 超出声明范围仅警告不拒绝加载，实测 2.15.0–2.21.0 全绿，后续头寸为预留声明，可覆盖未来多个宿主版本而无需再改依赖。宿主兼容范围保持 **1.3.6–1.3.99** 不变。\n\n## 兼容性验证（无功能变更）\n\n本版本不改任何插件运行逻辑。1.3.19 为纯增量更新（新增人设/桌宠能力与稳定性修复，插件不使用新 API，无破坏性变更）。已在两个 SDK 环境分别执行全量回归：\n\n| 验证环境 | 结果 |\n| --- | --- |\n| maibot-plugin-sdk **2.21.0**（当前最新，pip 实际安装版本） | **451 通过 / 14 跳过 / 127 子测试全绿** |\n| maibot-plugin-sdk **2.20.0**（1.3.19 最低要求版本） | **451 通过 / 14 跳过 / 127 子测试全绿** |\n\n## 升级说明\n\n- **一键包用户**：在启动器直接点击更新到 MaiBot 1.3.19 即可，依赖解析已通。\n- **手动部署用户**：下载本 Release 源码包（或 `git pull`）替换插件目录，重启宿主。\n- 从 1.2.x 升级无需迁移配置。\n- 提示：`maibot-dashboard` 新版本在部分国内镜像源可能暂缺，启动器会自动回退官方 PyPI 源，属正常现象。\n\n---\n\n完整变更见 [CHANGELOG.md](https://github.com/lightningXMS/MaiLifeSuite-----/blob/master/CHANGELOG.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life-suite",
+            "version": "1.2.2",
+            "name": "MaiLifeSuite（麦麦生活套件）",
+            "description": "Mai_life 与 MaiTrace 的合并插件：持续生活模拟、消息体验、联网见闻、书柜创作，以及每日作息、临时约定与 QQ 空间分享。",
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png"
+              }
+            },
+            "author": {
+              "name": "lightning",
+              "url": "https://github.com/lightningXMS"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+              "homepage": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+              "issues": "https://github.com/lightningXMS/MaiLifeSuite-----/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.29.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "json5",
+                "version_spec": ">=0.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "chinese-calendar",
+                "version_spec": ">=1.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lunar-python",
+                "version_spec": ">=1.4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "config.get_plugin",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_private_streams",
+              "chat.get_group_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "chat.open_session",
+              "emoji.get_by_description",
+              "database.get",
+              "api.call",
+              "api.list",
+              "knowledge.search",
+              "render.html2png",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.1",
           "tag": "v1.2.1",
           "commit": "c15e1e16fc523d72b29ceba0efeb4808113b2b8e",
