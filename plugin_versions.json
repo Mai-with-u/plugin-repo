@@ -51186,6 +51186,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "07cbd60952dd100e283faaaa681d73e775bfe3e8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T09:48:58Z",
+          "release_url": "https://github.com/hedgehogovo/mai-persona/releases/tag/v0.1.2",
+          "release_notes": "## 更新内容\n\n- 新增 MaiTrace 日程兼容开关，默认关闭，通过插件 API 只读同步当前活动与当天日程。\n- 将活动信息提供给 Planner、Replyer 和 WebUI；启用兼容时不再生成重复的本地日程，日常小事件照常维护。\n- 增加日程不可用状态处理、设置说明与相关测试。\n\n验证：25 项单元测试通过，compileall、manifest JSON 与示例 TOML 校验通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.2",
+            "name": "Mai Persona 内在引擎",
+            "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
+            "author": {
+              "name": "Mai Persona Contributors",
+              "url": "https://github.com/hedgehogovo"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hedgehogovo/mai-persona",
+              "homepage": "https://github.com/hedgehogovo/mai-persona",
+              "documentation": "https://github.com/hedgehogovo/mai-persona/blob/main/README.md",
+              "issues": "https://github.com/hedgehogovo/mai-persona/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "knowledge.search",
+              "message.get_by_id",
+              "api.call",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "mai-persona.mai-persona"
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "ae795bb86f1ed23cfeaa5370959a5a4102fe89ae",
