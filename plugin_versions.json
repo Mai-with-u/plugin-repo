@@ -51142,6 +51142,84 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.2",
+          "tag": "v2.0.2",
+          "commit": "36ef4a1c039661c44356d124f2d0310285ab79e2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T10:20:08Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.0.2",
+          "release_notes": "## 新增功能\n\n- **路由独立保存**：整体语音路由面板新增“保存语音路由”，统一保存首选服务商、模型、音色和有序备选链；其他平台与回复行为草稿继续保留。\n- **路由生效状态**：概览展示聊天当前生效的配置，编辑路由时显示待保存提示，保存后立即更新生效状态。\n\n## 修复功能\n\n- **语音发送状态**：成功发送后通过宿主同步麦麦自身聊天历史，工具回传明确的发送状态和朗读正文，并结束当前规划轮次；QQ 官方适配器与 SnowLuma 共用这套处理流程。\n- **动态语调调用**：根据路由实际选中的模型与音色决定语调查询工具及提示的可见性。固定和关闭模式直接使用朗读正文，动态模式注入允许列表并校验标签。\n- **路由与缓存**：保存后的模型、音色选择即时参与后续合成，缓存按实际请求区分；同一句文本切换模型或音色时使用对应的缓存结果。\n- **路由日志**：记录配置版本、实际服务商、模型、音色和语调模式，便于核对每次合成使用的配置。\n- **用户文档**：README 添加版本、运行环境和许可证徽章，功能介绍采用“主题：说明”的分段正文，并更新安装与使用步骤。\n- **验证**：358 项 Python 回归通过，覆盖语调模式与音色优先级、规划器到语音发送的模拟流程、发送回执、聊天历史同步参数、路由保存及缓存隔离。页面验证覆盖路由待保存提示、独立保存、生效状态和其他设置草稿的保留；使用 Python 3.12.13、插件 SDK 2.13.0、隔离配置及本地模拟服务。QQ 官方适配器的实际聊天效果可在重载插件后复测。\n\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.13.0–2.20.0，Python 3.10 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。语音路由选择完成后点击“保存语音路由”，概览中的“聊天当前生效路由”用于核对实际调用目标。\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.2/README.md) · [模型与音色管理](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.2/README.md#模型与音色) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.2/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.0.2",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.0.0",
           "tag": "v2.0.0",
           "commit": "de24fe26090942b3503d8a74048114e40efc98c2",
