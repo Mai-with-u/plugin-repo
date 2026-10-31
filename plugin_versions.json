@@ -33066,6 +33066,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "f55c38d03e94c3815bfa999cdcb87cecf381aede",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T23:22:14Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.3.0",
+          "release_notes": "# v1.3.0\n\n### 渲染稳定性与弱机负载（issue #2「日报渲染失败」+ issue #3「浏览器渲染压力过大」合并修复）\n\n- **摘除阻塞式外链字体样式表（#2 根治）**：11 套主题（ATRI 除外）此前在 `<head>` 里带\n  `fonts.loli.net` 的阻塞式 `<link rel=\"stylesheet\">`，容器访问该域「挂住」时页面永远到不了\n  `DOMContentLoaded`，渲染卡到 100 秒超时、三档降级全部无效。现在渲染管线统一摘除该外链\n  （`rel=\"preconnect\"` 保留）；BlueArchive 的 `Blueaka.css`（另一外链域）一并摘除。\n- **全主题内嵌中文字体（新增配置 `analysis.inline_cjk_font`，默认开）**：外链字体摘除后，\n  非 ATRI 主题默认注入包内 LXGW 子集字体（`@font-face`），12 套主题中文观感与 ATRI 一致；\n  关闭后回落系统字体（能出字、不出豆腐块）。代价是每份 HTML +约 1.2 MB（云端渲染 POST 同步变大）。\n- **BlueArchive 远程素材本地化**：阿洛娜立绘等 2 张远程 PNG（约 515 KB）打进包内并渲染前内联，\n  配合断网渲染不再出现「静默破图」。\n- **本地渲染全面断网（`allow_network=False`）**：成品页已零外链，渲染时任何残留外部请求立即失败\n  而不是挂住——「外链挂住 → 等 100 秒超时」这类故障从机制上消灭。云端渲染路径不受影响。\n- **页面 2 秒自静止（#3 核心修复）**：主题里的无限 CSS 动画（轮播/浮动/飘落花瓣）此前会在渲染\n  等待窗口里逼 SwiftShader 软件合成持续跑满 CPU（2 核服务器实测 GPU 进程 28.7%）。现在页面加载\n  2 秒后自动暂停全部动画/过渡，等待窗口 CPU 归零，截图取最终稳定帧。\n- **渲染后等待 8 秒 → 3 秒（新增配置 `analysis.render_settle_ms`）**：资产全内联后无需长等；\n  弱机可进一步调小，低于 2800ms 按 2800ms 执行（动画暂停点在 2000ms，等待过短会截到入场动画中途）。\n  单次渲染的 CPU 占用窗口约缩短 2/3。\n- **降级链超时直落精简档（#3）**：全量档渲染超时（≈ 机器弱或页面挂）时跳过 1.0x 全量档、\n  直落精简档，弱机最坏情况从「3 × 100 秒满负荷」降到「1 × 超时 + 精简档」，不再白烧中间档；\n  超时判定覆盖 `timeout` / `timed out` / 「超时」三种文案，宿主改措辞不会让止损静默失效。\n- 弱机（2 核 2 GB）配套建议（零代码）：插件侧 `render_scale` 调 1.0、宿主侧渲染并发\n  `concurrency_limit` 调 1、`render_timeout_sec` 适当调小；内存紧张时渲染期叠加 swap 抖动是\n  「服务器卡死」体感的主要来源。\n\n---\n\n**完整变更**：见 [CHANGELOG.md](https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/blob/main/CHANGELOG.md) · **部署验证**：单测 12/12、12 套主题离线渲染全 PASS、服务器热重载后零报错。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.3.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.2.0",
           "tag": "v1.2.0",
           "commit": "3363a581d05ffae9e0b9c3f0a09ebc0d0a1dc0cf",
