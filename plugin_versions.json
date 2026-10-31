@@ -50950,6 +50950,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "0.1.2",
+          "commit": "815bb7f98ebca2f9fa46ee37df73332f31023ab8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T10:34:41Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.1.2",
+          "release_notes": "这一版主要让她能和大家一起玩联机游戏、聊天里说的话和手机上对得上，并且 iPhone 可以不用数据线。\n\n- **iPhone 可以不用数据线了**：用 pymobiledevice3 通过 Wi-Fi 启动 WebDriverAgent，不需要管理员权限，拔线后速度和插线时一样。步骤见 README「准备工作（iPhone）」里的「不用数据线」。\n- 联机游戏：在好友房、组队房间里等人、等开局时不再结束；`together` 也包括各用各的手机联机组队，不只是同一台手机轮流玩。\n- 应用新增 `keep_open`：玩完不回桌面、打开时不先关掉，适合联机游戏；其他应用在上次结束后 15 分钟内再打开，也接着上次的画面。\n- `wait` 最长 120 秒；超过 30 秒的等待只截图比对、不调用模型，有人进房间、开局了或聊天里有新要求时提前醒来。\n- 聊天里的她知道手机上的实际情况：玩手机期间，发起的聊天每一轮都带上手机上的近况（`maisaka.planner.before_request`、`maisaka.replyer.before_request` Hook），不再编造进展。\n- 玩的时候再调用 `play_phone`，会把对方的新要求交给手机上的她，下一步优先照做。\n- 工具用法写进 `description`（宿主已不再使用 `detailed_description`）；`play_phone` 写明也能玩手机上的游戏。\n- 点之前核对画面：要点的东西已经不在原处时，这一步不点，避免误点。\n- iPhone 横屏应用里的返回手势按当前屏幕尺寸计算。\n- 按上次审核建议：`usage.json` 损坏时自动备份、从空记录重新开始，不再导致插件加载失败；`device.adb_path` 的说明写明只填 adb 程序本身。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.1.2",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "0.1.1",
           "commit": "3c490183098a3225652290a2cd6e7aae9a6afc37",
