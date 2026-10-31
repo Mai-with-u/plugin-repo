@@ -51798,6 +51798,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.4",
+          "tag": "v0.1.4",
+          "commit": "976ecc0956d7106a9d581eafbfd9e894b7f4ac20",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T16:15:37Z",
+          "release_url": "https://github.com/hedgehogovo/mai-persona/releases/tag/v0.1.4",
+          "release_notes": "## 新增\n\n- 私聊中明确结束对话（晚安、拜拜、明天见、先去忙了等）后，自动请 Planner 决定下一次主动联系该用户的时间。\n- 决策输入包含当前日期与时刻、角色状态、该用户的关系/好感/待办/记忆事实，以及刚结束的对话片段；输出为带时区、精确到分钟的 `fire_at`，或 `skip` 表示没有值得再联系的理由。\n- 新增用户过滤：`off` / `whitelist` / `blacklist`，按用户 ID 精确匹配，只影响私聊结束触发的排程。\n- 该功能默认关闭，需要同时开启“允许主动联系”；群聊不触发，已有待发送排程时不覆盖，同一用户带冷却。\n\n## 修复与约束\n\n- `skip` 仅表示不为该用户排程，不会清除其他用户已排好的主动联系。\n- 定向决策落库时若已有其他用户的排程，保留现有排程不覆盖。\n\n验证：30 项单元测试通过，compileall 通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.4",
+            "name": "Mai Persona 内在引擎",
+            "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
+            "author": {
+              "name": "Mai Persona Contributors",
+              "url": "https://github.com/hedgehogovo"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hedgehogovo/mai-persona",
+              "homepage": "https://github.com/hedgehogovo/mai-persona",
+              "documentation": "https://github.com/hedgehogovo/mai-persona/blob/main/README.md",
+              "issues": "https://github.com/hedgehogovo/mai-persona/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "knowledge.search",
+              "message.get_by_id",
+              "api.call",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "mai-persona.mai-persona"
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "07cbd60952dd100e283faaaa681d73e775bfe3e8",
