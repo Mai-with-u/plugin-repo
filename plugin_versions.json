@@ -48930,6 +48930,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "dce7eb85854cfafc9a8347fce62fd82e079fc102",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T12:44:15Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.5",
+          "release_notes": "## v0.1.5 — 联网默认走宿主「联网服务」；日程扩展为「群友近况」\n\n### 联网检索：零配置可用\n\n- 新增 `web.search` / `web.fetch` 能力声明：`[web] api_key` **留空时**，联网检索改走宿主的统一联网服务（和宿主自己的联网工具共用同一套服务与 Key），插件不再要求自备 DeepSeek API Key。\n- 保留直连模式：填写 `[web] api_key` 时，插件仍直连 DeepSeek `/v1/tools/search`（`base_url` 只在直连时生效）。\n- 两种方式都不可用（宿主未配置联网服务、且没有填 key）时，自动跳过联网、只用群内证据，并且只警告一次，不影响其他模块。\n\n### 群友近况 / 短时状态\n\n- 日程模块从「日程待办」扩展为「群友近况 / 日程」：抽取 prompt 同时识别 `kind=plan`（日程）与 `kind=state`（加班、感冒、考试周、出差、心情不好、刚搬完家等短时状态）。\n- 近况不需要具体时间，只记几个小时到一两天内和这个人有关的状态；默认保留 48 小时，期间没人再提就自动淡忘（`expired`），**不进人物卡**。\n- 同一人的同类近况自动合并更新（提及次数、最后提及时间、更明显的极性、更完整的内容），证据保留最近 6 条；报告新增 `state_new` / `state_update` / `state_expired` 计数。\n- 新增配置：`[agenda] state_enabled` / `state_ttl_hours` / `state_max_events` / `state_confirm_confidence` / `care_enabled`。\n\n### 上下文注入：更像「记得住、接得上」\n\n- 注入块新增【群友近况】（带「约几小时前提过」）与【关心提示】（近况偏负面时建议轻轻关心一句，不追问、不说教）。\n- 新增一句「用你自己的口吻（昵称：人格摘要）来接」，按 bot 人格设定说话，减少群里生硬复述感。\n- 新增配置：`[inject] states` / `care` / `persona_style` / `persona_max_chars`；注入总字数上限默认 420 → 600。\n- 日程/近况仍只注入 `confirmed` 且未过期的条目；dry-run 时只出报告。\n\n### 文档与配置\n\n- README 配置说明按 WebUI 面板重生成（116 个参数），功能表 / 工作原理 / 日程说明同步更新；`CHANGELOG.md` 增完整条目。\n- 升级不需要迁移配置与 data 文件：新字段与版本号由 Runner 自动补齐。\n\n### 验证\n\n- 静态审计 106 项、运行时仿真审计 134 项（含联网 4 个模式用例、近况抽取/确认/注入/过期淡忘全流程）、洁净检出 33 项、冗余自查 0 候选，全部通过。\n\n### 兼容性\n\n- MaiBot `1.3.0 – 1.3.99`，Plugin SDK `2.8.0 – 2.16.99`；无额外 Python 依赖。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.5",
+            "name": "麦麦很好奇（Memory Keeper）",
+            "description": "后台整理插件：学习群里的黑话、表达方式与表情包，按角色性格精选、查重合并，并整理群友日程。支持 WebUI 配置与 dry-run（只出报告、不改库）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.4",
           "tag": "v0.1.4",
           "commit": "ce332095c63f59607ce06a107598f4fa45b5aef6",
