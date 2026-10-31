@@ -51302,7 +51302,53 @@
       "manifest_id": "Alcpare.divergent_search",
       "repositoryUrl": "https://github.com/Alcpare/maibot_divergent_search_plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "1.0.1",
+          "commit": "b4d9fb9d0b0be8e1e45fa009db1e65a91a2bd87e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T19:15:26Z",
+          "release_url": "https://github.com/Alcpare/maibot_divergent_search_plugin/releases/tag/1.0.1",
+          "release_notes": "联系方式：1373558257@qq.com\n\n## v1.0.1\n\n根据官方审核意见（plugin-repo #1218）修正两处**配置项与实际行为不一致**的问题。\n\n### 修复\n\n- **`tools.enable_search` 此前不生效**：这个开关原来只用在启动日志里，即使关掉，搜索工具照样会联网。\n  现在改为在 `web_search` 内部运行时判断——关闭时直接返回「搜索已关闭，直接说不知道。」，\n  **不发起任何请求**。\n- **移除 `tools.search_description`**：SDK 的 `@Tool` 描述在装饰器执行时静态绑定，运行时无法通过配置修改，\n  留着会误导用户。搜索工具的描述固定为内置文案。\n\n### 改进\n\n- 配置项提示文案补上准确行为说明（`enable_search` 关闭时工具仍会注册，但调用即返回不可用；\n  想彻底不暴露工具请禁用整个插件）。\n- 启动日志在 `enable_search` 关闭时额外打一条 WARNING 说明当前状态。\n\n### 测试\n\n- `enable_search = false`：实测 0.0000 秒返回固定文案，调用计数 0，缓存 0，无网络请求。\n- `enable_search = true`：实测 1.92 秒正常返回 1065 字搜索结果。\n\n### 兼容性\n\n- MaiBot 1.3.19 ~ 1.3.99\n- 插件 SDK 2.9.0 ~ 2.21.99\n\n---\n\nMIT License\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "发散搜索结果",
+            "description": "给麦麦提供联网搜索能力（百度千帆 AI Search）。搜索结果后可附加可编辑的提示词，让模型用自己的话说，避免把搜索内容整段念给用户。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_divergent_search_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_divergent_search_plugin",
+              "documentation": "https://github.com/Alcpare/maibot_divergent_search_plugin/blob/main/README.md",
+              "issues": "https://github.com/Alcpare/maibot_divergent_search_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.divergent_search"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
