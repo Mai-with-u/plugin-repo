@@ -44774,6 +44774,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.3",
+          "tag": "v0.5.3",
+          "commit": "c8d935badf2c5952fbae8bc0d0ce7cb599935ab4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T14:14:48Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.3",
+          "release_notes": "## [0.5.3] - 2026-10-31\n\n### 新增\n\n- **每次合成的耗时埋点**：成功打 `语音合成耗时：4.21s（timeout 20.0s，第 1 次）`，失败打 `语音合成失败（类型=timeout|429|5xx|network|audio|other，耗时…，timeout …，第 N 次）：…`。之前成功路径没有耗时日志，p80 / 超时分布无从计算。\n- **自适应超时**（`general.timeout_mode = \"auto\"`，默认开）：按最近 50 次成功合成的 p80 × 1.4 计算，向上取整到 0.5 秒并限制在 **12–25 秒**；样本少于 10 条时沿用 `general.timeout`。冷启动不改变行为，样本够了自动收紧/放宽。\n- `general.timeout_mode = \"fixed\"` 可退回 0.5.2 的固定超时行为。\n- 新增 `tests/test_timeout.py`（分位数、动态值上下限与取整、失败归类、插件接入）。\n- **内置音色「可爱少女」**（`presets/reference-keai.wav`，约 3.8 秒）：年轻、明亮、偏可爱的女声。素材来自长期在用的 `test.wav`（8.41 秒、静音 20.7%），按插件同款 VAD 规则取两句拼接、去头尾静音、峰值归一到 −3 dBFS（静音 7.3%、最长静音 0.18 秒）；不调音高。\n\n### 修改\n\n- 超时后的补一次请求改为**预算制**（`core/timeout.py::retry_timeout`）：单条语音总共最多占用单路 `_SYNTH_TOTAL_BUDGET_SECONDS` = 40 秒（与 0.5.2 的最坏耗时持平）；补的那次超时取 `min(原超时, 剩余预算)`，剩余预算不足 `_SYNTH_MIN_RETRY_SECONDS` = 8 秒才放弃。\n  依据：超时的请求多数直接跳到 30 秒以上，\"再给一次机会\"的价值在于换一条新连接、可能落到健康节点，而不是等得更久。自适应把上限压到 25 秒后，补的那次通常只分到 15–28 秒；40 秒总预算既保留 0.5.2 约一半的救回率，又让\"上游整体变慢\"有了硬边界。`mimo.retry_on_timeout = false` 可完全关掉。\n- 内置音色移到 `presets/` 子目录（`presets/reference-{bingtang,jasmine,litang}.wav`），为后续新增内置音色留位置；旧的根目录布局仍会兜底读取。\n- 配置项 `config_version` 同步 0.5.3。\n- **描述改为强调「免费 API」**（`_manifest.json` 的 `description`）：把「用 MiMo API 音色克隆…」改成「用 MiMo **免费** API 音色克隆…」，并把 `MiMo 默认女角色音色` 压成 `MiMo 默认女音色`，整句 102 字、市场列表三行内放得下。\n- **插件改名为 `MiMo TTS 语音回复`**（`_manifest.json` 的 `name`）：id 不变，插件市场里搜「MiMo」「TTS」「语音」都能命中。`description` 重写为「用 MiMo 免费 API 音色克隆…」，开头点明依赖 MiMo 的**免费** API，内置理塘王排在前面，`冰糖` / `茉莉` 统一称 MiMo 默认女角色。\n- `trigger.mode` 默认值从 `random` 改为 **`random_llm`**：新装用户基本都要先试一两条语音，纯概率模式下模型没有 `mimo_voice_say` 工具、试不出来；要旧行为把 `trigger.mode` 写回 `random` 即可。\n- README 安装说明按插件市场流程重写：`config.toml` 由运行时按配置模型自动生成（`runner_main.py` 的 `_apply_plugin_config` 在文件缺失且插件声明了默认值时写入），不再要求手动复制 `config.example.toml`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.3",
+            "name": "MiMo TTS 语音回复",
+            "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.2",
           "tag": "v0.5.2",
           "commit": "bf539a04107d3a53509bc9af6466bf3943f6d0a0",
