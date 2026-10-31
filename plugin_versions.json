@@ -39967,6 +39967,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.0",
+          "tag": "1.6.0",
+          "commit": "49e054c18ac5498f186c542224f5704a8d90616a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T16:29:11Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.6.0",
+          "release_notes": "## \\[1.6.0] - 2026-11-01\r\n\r\n### 新增\r\n\r\n* **内置火山方舟 Agent Plan 适配**：平台类型选 `volcengine`，填写 Access Key ID / Secret Access Key 后，\r\n调用 `GetAFPUsage`（`POST https://ark.cn-beijing.volcengineapi.com/?Action=GetAFPUsage\\&Version=2024-01-01`）\r\n查询 5 小时 / 近一天 / 近一周 / 近一月四个滚动窗口的 AFP 额度用量。\r\n* **AFP 指标**：每个窗口产出「剩余百分比」「已用 AFP」「重置倒计时」；另含套餐档位与原始响应。\r\n* **火山引擎 V4 签名**：使用标准库实现 `HMAC-SHA256` 请求签名（`content-type;host;x-content-sha256;x-date`），\r\n不需要额外的火山引擎 SDK；支持自定义基地址。\r\n\r\n### 说明\r\n\r\n* 该接口仅支持 Access Key 鉴权，**不支持方舟 API Key**；请在火山引擎控制台「API 访问密钥」获取 AK/SK。\r\n* 新增平台槽位字段 `access\\_key` / `secret\\_key`，其他平台类型不受影响。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.6.0",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台、火山方舟 Agent Plan）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.5.0",
           "tag": "1.5.0",
           "commit": "849cfd4eeb8889d6f53e9b54eed63e1e76ad81f3",
