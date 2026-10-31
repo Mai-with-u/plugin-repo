@@ -45568,6 +45568,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.11",
+          "tag": "v0.3.11",
+          "commit": "0460dc55f181c355b29980fb78bf5846eb46aefa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:22Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.11",
+          "release_notes": "## 修复\n\n- 拒绝 `NaN`、`Infinity` 等非法时间戳，避免让路判断被异常时间数据干扰。\n\n## 细节\n\n- SDK 兼容上限更新为 `2.50.50`。\n- 补充 `reply.delay_seconds` 文档和数据边界说明。\n- CI 已通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.11",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.3.10",
           "tag": "v0.3.10",
           "commit": "1d3df0fb5a8adb656c20782c6aa7a41a37e5db26",
