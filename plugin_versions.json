@@ -32048,6 +32048,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.11.1",
+          "tag": "1.11.1",
+          "commit": "4fecf674871761616d86439faf678afc6086e3cc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T17:26:28Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.11.1",
+          "release_notes": "## [1.11.1]\r\n\r\n### 细节\r\n\r\n- 修复会话维度单窗口统计崩溃：`_fill_metrics` 的聚合循环此前遍历全部 6 个窗口的 `predicates`，但单窗口模式下 `windows` 只构建所选窗口，命中后续窗口时访问 `windows[key]` 抛 `KeyError`（如 `/token 今日` 报 `KeyError: 'this_week'`）。现改为只遍历本次实际构建的 `windows`；全窗口模式行为不变，`/token 今日`、`/token 群 123 本周`、`/token 最近30天` 等会话范围 + 时间窗口恢复。无配置变更。\r\n- 文档：README 与 `requirements.txt` 说明此前写「pillow / httpx 都没有写进 `_manifest.json`」，但清单实际声明了 `pillow>=12.3.0`，排查依赖时会被误读成「插件无任何 Python 包依赖」；现改为准确描述——`_manifest.json` 只声明 `pillow>=12.3.0`（与主程序约束一致），`httpx` 不声明、由宿主提供，缺包时 LLM 转述记一条错误并回退模板文本。无行为变更。\r\n- 文档：README「更新记录」不再内联维护版本表，改为引导读者直接查看 `CHANGELOG.md`；后续版本变更只更新本文件。无行为变更。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.11.1",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.11.0",
           "tag": "1.11.0",
           "commit": "df66b0991251df8afacbb79a5cb558752a0d2f1d",
