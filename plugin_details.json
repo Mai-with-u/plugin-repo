@@ -4959,7 +4959,7 @@
           "refresh_interval_minutes": {
             "type": "integer",
             "default": 30,
-            "description": "人物画像定时刷新周期（分钟）"
+            "description": "人物画像定时刷新周期（��钟）"
           },
           "active_window_hours": {
             "type": "number",
@@ -8138,7 +8138,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新今日猪猪",
+            "usage": "/刷新��日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -23963,7 +23963,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.phone-controller",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "麦麦的手机",
       "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、动态录屏抽帧、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷4大平台、深度浏览详情向主人吐槽分享、后台静默副屏、心智欲望池与生活日记的真正数字生命能力。",
       "author": {
@@ -25285,7 +25285,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.0.5",
+      "version": "2.0.6",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -26144,7 +26144,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.character-disguise",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "麦麦的人类伪装计划",
       "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
       "author": {
@@ -26190,7 +26190,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-reply-guard",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "plugin_type": "management",
       "name": "回复守卫 (Reply Guard)",
       "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
