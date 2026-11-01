@@ -27445,6 +27445,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.8",
+          "tag": "v1.24.8",
+          "commit": "f58b5b2910d4f2cf4acc0347dd431fc4cdbd7f8f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:36:19Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.8",
+          "release_notes": "### 新增\n\n- **私聊休息闸门覆盖全部私聊（无需配置 QQ 号）**：未配置/未启用的私聊用户此前完全绕过闸门——深夜陌生人消息畅通无阻。现在陌生人同样接受闸门判定：窗内拦截直接 abort（不写互动、不写回复积压、不建运行态与待醒候选），窗外/协商期/宽限期照常放行进主程序。闸门状态本就是全局态，行为与已配置用户一致。\n- **陌生人无唤醒权**：唤醒词（含自定义强制词）命中不再直接叫醒，照常走概率/LLM 判定，防止深夜被词表试探。已配置用户行为不变。\n\n### 变更\n\n- **friend 关系温度封顶 80**：每日结算按角色取上限（owner 仍 100），\"知己\"段位成为 owner 专属；存量超 80 的 friend 无需迁移，下一次每日结算自动钳回。关系阶段边界同步调整为 ≤80 显示\"亲近\"、>80 才是\"知己\"。朋友边界权限走 role 判定，不受影响。\n\n### 说明\n\n- 已知语义：陌生人的陪聊不会推迟入睡点（睡前协商只统计已配置用户的最后发言）——\"陌生人聊得再晚，麦麦到点照睡\"。\n\n- 489 项测试通过（+7：陌生人拦/放/唤醒词不旁路、friend 触顶与存量钳回、owner 不受封顶、阶段边界）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.7...v1.24.8\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.8",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.7",
           "tag": "v1.24.7",
           "commit": "9f485bbe431254cfcabdbc56748b1e400bfc3511",
