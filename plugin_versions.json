@@ -50366,7 +50366,58 @@
       "manifest_id": "github.lbcheng1145.cost-report",
       "repositoryUrl": "https://github.com/Lbcheng1145/maibot-cost-report",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "e420fd7dbca7ca6abebd8ef8c509ec10ca318982",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T19:32:45Z",
+          "release_url": "https://github.com/Lbcheng1145/maibot-cost-report/releases/tag/v1.0.1",
+          "release_notes": "修复三个会让功能静默失效的问题。\n\n**修复**\n\n- **群聊里发卡片图会发到发言人的私聊**：宿主注入的 `chat_id` 其实是当前会话的 session_id（32 位十六进制），不是群号。原来拿它当群号去反查，查不到就退回「按发言人查私聊流」，图就跑到私聊去了。现在直接用宿主注入的 `stream_id`，整条反查链已删除。\n- **发送失败被当成成功**：SDK 的 `send.image` 失败时返回 `False` 而不抛异常。原来不看返回值，图没发出去也当成功，命令路径据此跳过补发文本，用户一条回复都收不到。\n- **查询失败显示成「还没有模型调用记录」**：`ctx.statistics.local.models()` 会把查询失败归一成空列表，分不出「没数据」和「查不到」。改用 `call_capability` 拿原始返回。\n\n**其他改进**\n\n- 缓存命中率的窗口对齐到整点，和聚合表按整点分桶的口径一致\n- 宿主按调用次数取前 N 个模型，limit 提到上限 50，撞上限时页脚注明\n- 数值字段容错：坏值按 0 算，不再让一行脏数据把整张统计打崩\n- 中文模型名按显示宽度对齐，文本版能对整齐了\n- 数据库路径支持 `~` 和相对路径，带空格或 `#` 也能正常打开\n- 渲染加实例级锁，Playwright 单实例不吃并发\n- `/开销7`、`/开销 7天` 也能识别\n\n**要求**\n\n- MaiBot 1.3.x\n- maibot-plugin-sdk 2.0+\n\n详见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.cost-report",
+            "version": "1.0.1",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，默认看最近 24 小时。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
