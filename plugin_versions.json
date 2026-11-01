@@ -54019,7 +54019,60 @@
       "manifest_id": "m1o0.persona-switcher",
       "repositoryUrl": "https://github.com/m1o0/maibot-persona-switcher",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "ea18dd7ebf1d754ad879962a6ba1182059c6d22f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T18:26:14Z",
+          "release_url": "https://github.com/m1o0/maibot-persona-switcher/releases/tag/v1.1.1",
+          "release_notes": "把人设存成存档，随时切回；还能设个时限，到点自己换回去。\n\n**三级粒度**：整套人设 / 群聊通用提示词 / 单个聊天流的专属提示词，按 MaiBot 配置的真实层级来切。\n\n**限时生效**：应用存档时可选 15 分钟 ~ 8 小时后自动恢复。实测到点自动切回，不需要盯着。\n\n**状态栏**：页面顶部常驻显示「现在用的是哪份、还剩多久、是不是永久」。\n\n**立刻恢复原人设**：一键切回应用前的样子，不用去存档列表翻备份。\n\n### 变更\n\n- `_manifest.json` 的 `dependencies` 补上 `tomlkit >= 0.12`。此前为空数组，而代码实际 `import tomlkit`；虽然宿主环境通常自带该包，但声明出来才能在包缺失时给出明确的依赖错误，而不是加载时报 `ModuleNotFoundError`。\n- 文档与界面占位符里的示例名称改为中性表述（README 的目录树、状态栏示例、聊天流示例，以及 WebUI 三个输入框的占位符）。功能代码未变。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.persona-switcher",
+            "version": "1.1.1",
+            "name": "人设存档与切换",
+            "description": "把人设存成存档，随时切换回来，并且到点能自动恢复。支持整套人设、群聊人设、单个聊天流人设三级粒度；切换前自动备份，切换后可一键恢复原状；可选限时生效（如「30 分钟后自动换回」）。全部在 WebUI 页面里点按操作，不用改配置文件。只动人设字段，聊天频率、模型、语音等配置一律不碰。",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-persona-switcher",
+              "homepage": "https://github.com/m1o0/maibot-persona-switcher"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
