@@ -53855,7 +53855,57 @@
       "manifest_id": "github.zzy-fxxxexxxyxxx.proactive-ping",
       "repositoryUrl": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "62bd12c7883cea5528f76fddd177e9134f76bac4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-30T14:51:08Z",
+          "release_url": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/releases/tag/v0.3.0",
+          "release_notes": "## 主动敲门 (Proactive Ping) v0.3.0\n\n冷场时提醒 MaiBot 的 planner 自主决定要不要主动开口，插件本身不调用模型、不直接发消息。\n\n### 本版变化\n- 符合插件中心 manifest v2 规范：ID 为 `github.zzy-fxxxexxxyxxx.proactive-ping`\n- `host_application` 声明 `1.3.0 ~ 1.9.99`（同时满足 MaiBot 本地校验与市场版本规则）\n- 文档链接指向仓库 README\n\n### 功能\n- **WebUI 配置**：基础 / 时间 / 提示词 三分区，热重载生效\n- **时间锚定提示词**：避免隔一小时再开口像一条迟到的回复\n- **允许虚构自身当下状态**，但禁止虚构用户的事实\n- **聊天流自动发现**：`stream_id` 留空即自动取第一个私聊流，多流时日志打印候选项\n- 每日上限 / 冷却 / 静默时段三层节流，planner 可调用 `stop()` 选择不打扰\n\n### 安装\n```bash\ncd /path/to/MaiBot/plugins\ngit clone https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping proactive_ping\ncp proactive_ping/config.example.toml proactive_ping/config.toml\n```",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+            "version": "0.3.0",
+            "name": "主动敲门 (Proactive Ping)",
+            "description": "冷场时提醒 MaiBot 的 planner 自主决定要不要主动找你。可配置探测间隔、空闲阈值、冷却、每日上限、静默时段与提示词；插件不调用模型、不直接发消息。",
+            "author": {
+              "name": "zzy-fxxxexxxyxxx",
+              "url": "https://github.com/zzy-fxxxexxxyxxx"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+              "homepage": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+              "documentation": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/blob/main/README.md",
+              "issues": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_private_streams",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "extension",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
