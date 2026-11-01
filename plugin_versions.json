@@ -53395,7 +53395,66 @@
       "manifest_id": "github.winincorce-a11y.news-three-elements",
       "repositoryUrl": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.23.2",
+          "tag": "v1.23.2",
+          "commit": "d278721a5ab49d614c6ddd2f6675dccc257e702e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T05:37:22Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.23.2",
+          "release_notes": "补齐第二次审核指出的最后一处入口不一致。\n\n### 背景\n\nv1.23.1 已修好 ``plugin.enabled`` 与 ``blocked_stream_ids`` 的守卫，复审确认到位；\n但审核同时指出「平台限制仅命令入口可判」——这是三个入口里唯一还对不齐的一项。\n\n### 改动\n\n- 新增 ``_stream_platform`` 映射：命令入口拿到 ``platform`` 时记下「会话 ID → 平台」\n- 新增 ``_platform_allowed_for_stream()``：按会话 ID 反查平台，无法判断时返回 ``None``\n- ``write_obituary_news`` 工具入口启用平台校验，会话所属平台未被允许则拒绝出稿\n- ``generate_obituary_news`` API 在传入 ``stream_id`` 时同样校验\n\n查不到会话所属平台时按放行处理，避免因为缺少信息就拒绝正常请求。\n\n### 三个入口的一致性\n\n| 检查项 | 命令 | 工具 | API |\n| --- | --- | --- | --- |\n| `plugin.enabled` | ✓ | ✓ | ✓ |\n| `only_platforms` | ✓ 直接判断 | ✓ 按会话反查 | ✓ 按会话反查 |\n| `blocked_stream_ids` | ✓ | ✓ | — |\n\nAPI 只回正文不发送消息，因此不校验 ``blocked_stream_ids``。\n\n### 验证\n\n离线自检 64 项全过，新增 5 项覆盖平台一致性：\n命令入口记录平台、工具继承判定、工具拒绝未启用平台、API 限制与放行、未配置时全放行。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.23.2",
+            "name": "新闻三要素",
+            "description": "把一段素材改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用取素材、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "newspaper",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
