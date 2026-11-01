@@ -47212,7 +47212,69 @@
       "manifest_id": "octmicy.mai-gatekeeper",
       "repositoryUrl": "https://github.com/octmicy/Mai_gatekeeper",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.6.7",
+          "tag": "v0.6.7",
+          "commit": "697d0846e567ba6c0296d67b395ee402f1a0d42f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T11:38:12Z",
+          "release_url": "https://github.com/octmicy/Mai_gatekeeper/releases/tag/v0.6.7",
+          "release_notes": "## 本版更新（相对 v0.6.5）\n\n### v0.6.7\n\n- README 新增**环境要求**小节：MaiBot ≥ 1.3.0、插件 SDK 2.6.0 ~ 2.91.99\n- 功能表标注 `remove_friend` 默认关闭（需在配置中显式开启 `allow_remove_friend`）\n- 版本号对齐（v0.6.6 的 SDK 上限放宽本次一并落号）\n\n### v0.6.6\n\n- 放宽插件 SDK 兼容上限至 2.91.99\n\n## 功能总览\n\n- **好友申请审批**：`auto` / `manual` / `hybrid`（默认）三种模式，任何路径完成审批均通知全部管理员\n- **群聊屏蔽**：`block_user`（仅群聊），时长上限默认一天、到期自动解除，提示文案模板可自定义\n- **私聊删好友**：`remove_friend`（仅私聊，目标固定为当前对话对象，默认关闭），删后自动全局屏蔽并转告管理员\n- **管理命令**：`/fr list|ok|no`、`/block list|un|add`（管理员 = admin_ids ∪ 主程序操作员 ∪ WebUI 控制台）\n- 自建 OneBot v11 正向 WebSocket 直连 NapCat / SnowLuma 对端，**不修改任何适配器**\n\n## 安装\n\n放入 MaiBot `plugins/` 目录，复制 [`config.example.toml`](https://github.com/octmicy/Mai_gatekeeper/blob/main/config.example.toml) 为 `config.toml` 并填写管理员与对端连接信息，重载插件即可。详见 [README](https://github.com/octmicy/Mai_gatekeeper/blob/main/README.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "octmicy.mai-gatekeeper",
+            "name": "麦麦守门人",
+            "version": "0.6.7",
+            "description": "好友申请审批（LLM 自动 / 管理员人工 / 混合）+ 用户屏蔽（发言拦截、私聊删好友）插件。自建 OneBot v11 正向 WebSocket 直连 NapCat / SnowLuma 对端，无需修改适配器。",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_gatekeeper",
+              "homepage": "https://github.com/octmicy/Mai_gatekeeper",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "message.get_by_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mai.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
