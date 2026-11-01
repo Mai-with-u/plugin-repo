@@ -27396,6 +27396,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.7",
+          "tag": "v1.24.7",
+          "commit": "9f485bbe431254cfcabdbc56748b1e400bfc3511",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:09:50Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.7",
+          "release_notes": "### 移除\n\n- **撤回增强整体删除**（MaiBot 主程序已内置消息防抖与撤回处理，插件层重复建设）：撤回通知处理、撤回墓碑查询、私聊撤回清洗、撤回复读问答、发送链撤回取消、群观察撤回清理及存储层 11 个撤回读写方法一并删除；`recall_events` 表结构保留不做破坏性迁移，仅停止读写。旧 `config.toml` 的 `[recall]` 段被静默忽略，无需手动改配置，WebUI 中相关配置项隐藏。\n- **群聊被动轮的同发送者抑制删除**（宿主 1.3.15+ 的 planner steering / new message interrupt 已覆盖）：同发送者新消息不再由插件取消旧回复。群轮次注册表保留，继续承担群被动轮的上下文隔离（不注入私聊关系）、睡前协商提示和 `group:*` 轮次锁。\n- **消息收口行为不变**：新入站消息取消旧待发送、过期/重复/归因缺失抑制、主动与转述结算链路原样保留，与撤回无关。\n\n### 说明\n\n- 配置架构版本升至 1.13.0：旧 `[social]`/`[information]`/`[search_api]`/`[news]`/`[search]` 段自动迁移进 `[group]`/`[network]`，`[recall]` 段无需处理。\n- `classify_intent` 删除「询问本人撤回内容」意图分支：插件已看不到撤回内容，此类问题自然落入普通提问，模型会如实回答看不到。\n- 仓库卫生：顺带清理了历史误入库的临时脚本与草稿文件（`_tmp_*.py`、`findings.md`、`mai_template.json`），并补了 .gitignore 防复发。\n\n- 482 项测试通过（随功能删除同步收敛，`test_recall.py` 整体移除）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.6...v1.24.7\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.7",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.17.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.6",
           "tag": "v1.24.6",
           "commit": "6d9f1b9ca446104e0b03868f6dea61d1ee869e45",
