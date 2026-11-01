@@ -54202,7 +54202,61 @@
       "manifest_id": "WiseXin.character-disguise",
       "repositoryUrl": "https://github.com/WiseXin/MaiBot-Character-Disguise",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "fc4280ec00e235d446d3b428b9ef0cc9b9f830c8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T13:29:24Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Character-Disguise/releases/tag/v1.0.1",
+          "release_notes": "## 🚀 v1.0.1: 麦麦的人类伪装计划（健壮消息段兼容与防崩溃加固）\n\n本次更新针对消息出站拦截管线（`send_service.before_send`）与多类型消息载荷进行了深度兼容与安全加固，彻底消除潜在崩溃隐患并打通多气泡完整链路。\n\n### ✨ 修复与优化亮点\n\n1. **🛡️ 健壮消息段解构防崩溃 (`dc4fdca`)**：\n   - 深度防御：针对不同聊天平台适配器传递的 `raw_message` 数据结构，增加了对 `part[\"data\"]` 为字符串类型及扁平 `part[\"text\"]` 的全面兼容；\n   - 彻底根除当消息段数据直接为字符串时可能触发的 `AttributeError: str object has no attribute get` 异常。\n\n2. **🚫 非文本消息绝对白名单放行**：\n   - 针对纯图片、表情包、语音、合并转发、戳一戳等非文本出站消息，建立严格白名单放行机制，绝不误判沉默；\n   - 确保宿主与其它各类媒体扩展插件发图、发语音功能 100% 稳定运行。\n\n3. **💬 完整保留多气泡 `<message>` 结构**：\n   - 修复后置守卫提前截断多气泡的问题，将 `<message>` 结构平滑透传给 `send_service`，配合随机微间隔陆续推送，完美还原真人打字节奏。\n\n4. **🧪 完备防御性回归测试套件**：\n   - 新增针对字符串 part 载荷与扁平文本消息的独立单元测试；\n   - 全量 20 项测试在真实运行环境中 100% 绿灯 PASS。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.character-disguise",
+            "version": "1.0.1",
+            "name": "麦麦的人类伪装计划",
+            "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+              "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-check"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
