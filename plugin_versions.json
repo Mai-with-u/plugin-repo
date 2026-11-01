@@ -53323,7 +53323,70 @@
       "manifest_id": "kamionichan.search_hub",
       "repositoryUrl": "https://github.com/kamionichan/maibot-search-hub",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.5.6",
+          "tag": "0.5.6",
+          "commit": "735307ba6654aa26ecf81c3fceff0d841f65b4e0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:06:42Z",
+          "release_url": "https://github.com/kamionichan/maibot-search-hub/releases/tag/0.5.6",
+          "release_notes": "修复第二轮独立代码审查发现的问题：\n\n- 资源：下载网页和接口数据时，解压的每一步都有大小上限，并限制下载的原始字节数；只接受一层 gzip/deflate 压缩。之前一个很小的压缩包可以让插件短时间占用几十 MB 内存。\n- key 遮挡：换 key 后，旧 key 在一段时间内仍会被遮掉（旧请求可能还没结束）；错误信息先遮挡再截短；搜索结果的标题、摘要，读取的网页正文，以及链接里 `token=`、`key=` 一类的参数也会遮掉；日志里的异常堆栈也会遮挡。\n- 换 key 后，旧 key 请求晚一步返回的“鉴权失败”不会再让新 key 冷却 24 小时。容器 key 改了也会解除冷却。\n- 卸载或重启插件时，所有还在进行的网络请求都会被取消。\n- 以图搜图在核对候选图时被取消或超时，已经找到的候选会保留下来。图片处理改用专用的 2 个线程，不占用 MaiBot 的公共线程。\n- 子代理搜索次数：同一个聊天里多个子代理同时工作时，宁可偶尔多拒绝一次，也不会超出上限；计数按聊天分开，任务 30 分钟没有动静后重新计数。\n- 从 0.5.1 及更早版本升级的数据库，第一次打开时就补好结果编号的计数器，之后清理或清空记录，编号也不会从 S1 重来（升级前就已被删掉的编号无法找回）。\n- 搜索记录里“进过回复参考资料”和“读过原文”分开统计。\n- Exa 默认每日上限从 60 次改为 45 次：本插件用的是 Auto 搜索（$7/千次），每月 $10 免费额度约 1400 次。已经保存过配置的，需要在配置页手动改。\n- 结果卡里过长的链接会标明“已截短”。\n- README、KEYS.md：补全隐私说明（网页默认交给 MaiBot 联网服务或 fetch-url 读取、SearXNG、候选缩略图下载、代理的前提）；改正“不会超额”“key 不会出现在日志”等过于绝对的说法；更正以图搜图深度档的行为、Exa 等来源的额度说明。\n- 发布脚本：拒绝把开发目录的上级目录、子目录、符号链接或非 git 目录当成发布目标；未被 git 跟踪的文件不能进入发布。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.5.6",
+            "name": "MaiBot 搜索中枢",
+            "description": "统一的搜索编排与对话衔接：自动组合多个搜索来源，长搜索转后台不占用聊天，结果带编号自然接回对话。",
+            "author": {
+              "name": "kamionichan",
+              "url": "https://github.com/kamionichan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kamionichan/maibot-search-hub",
+              "issues": "https://github.com/kamionichan/maibot-search-hub/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.0"
+            },
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.resolve_image",
+              "send.text",
+              "web.search",
+              "web.fetch",
+              "api.call",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh_CN"
+            },
+            "id": "kamionichan.search_hub",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.svg",
+                "fallback": "search",
+                "background": "#4f7cff"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
