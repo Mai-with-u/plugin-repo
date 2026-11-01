@@ -53914,7 +53914,60 @@
       "manifest_id": "github.beichen24a1.group-persona",
       "repositoryUrl": "https://github.com/beichen24a1/MaiBot-GroupPersona",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "0739c29312eea7ea85fd63f93fdeb824394e77e0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T04:49:15Z",
+          "release_url": "https://github.com/beichen24a1/MaiBot-GroupPersona/releases/tag/v0.1.1",
+          "release_notes": "本版本核心：不用再手改文件。\n\n- 新增 config_model，WebUI 插件配置页自动生成表单：总开关 + 群人格列表（群号/名称/启用/人设/行为准则/说话方式/示例对话）\n- 配置源优先 WebUI；WebUI 为空时兼容旧的 personas.toml，升级不丢配置\n- 修复：宿主不在 sys.path 导致跨文件 import 静默失败、on_load 崩溃\n- 修复：嵌套模型缺 model_rebuild()\n- 补齐宿主要求的 [plugin] 节与 config_version",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.beichen24a1.group-persona",
+            "version": "0.1.1",
+            "name": "分群人格",
+            "description": "让麦麦在不同群里是不同的人：按群覆盖人设与行为风格，记忆、表达与上下文本来就已经按群隔离，本插件只补上人格这一层。",
+            "author": {
+              "name": "beichen24a1",
+              "url": "https://github.com/beichen24a1"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+              "homepage": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+              "issues": "https://github.com/beichen24a1/MaiBot-GroupPersona/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "users"
+              }
+            },
+            "capabilities": [
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
