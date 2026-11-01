@@ -54214,6 +54214,62 @@
             },
             "changelog": "CHANGELOG.md"
           }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "3006980b7ea2dd798ea564766eb1de595117d450",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-01T12:43:22Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.0",
+          "release_notes": "首个版本。识别「不是 bot 正常说话」的模型输出 —— 拒答文案、接口报错、提示词泄漏 —— 拦下不让它出站。\r\n\r\n起因很具体：某次模型被上游内容过滤拦了，中转站把拦截文案当成正常正文返回，宿主以为生成成功，于是 bot 在群里念了一整段英文政策条款。\r\n\r\n## 主要功能\r\n\r\n- **六信号判据**：语言失配、非发言形态、错误语汇、中文拒答、提示词泄漏、编码异常。每个信号输出 0~1 强度，用 noisy-OR 合成综合分数，默认拦截阈值 0.65。\r\n- **语言判定按 Unicode Script**：假名率区分中日文、谚文率识别韩语、拉丁率识别英文主导。不按汉字占比推断语言 —— 日语也用汉字，用汉字占比会把日文拒答误判成中文。\r\n- **四层拦截**：L1 `maisaka.replyer.after_response` 判定、L3 `send_service.before_send` 统一出站防线、L0 `maisaka.planner.after_response` 守卫被动式下的 Planner 正文；L2 模型避让在 v0.2.0 落地。\r\n- **两种 replyer 模式都适配**：默认模式与实验性被动式 replyer。默认模式（被动式关闭）是插件基准形态，L0 完全不参与。\r\n- **三档松紧预设**：`loose` / `balanced` / `strict`，一键切换拦截、记录与语义复核候选三个阈值。\r\n- **豁免正则**：命中即整条放行，是误杀的唯一逃生口。\r\n\r\n## 细节\r\n\r\n- 状态持久化用原子写；状态文件损坏时抛错拒绝启动，不静默降级为空状态。\r\n- 连续异常次数与历史总次数拆成两个字段；正常回复一次即清零，避让到期同样清零。\r\n- 判定异常时默认不请求重生成：宿主重生成会把被拦原文重新拼进提示词再上传一次。\r\n- 日志与状态里的被拦文本受 `log_excerpt_chars` 限制。\r\n- WebUI 配置页按中文分页签重组：基础 / 判定信号 / 高级。\r\n- `recover.enabled` 默认为 `false` 并在配置页标注「v0.2.0 起可用」。\r\n\r\n## 已知边界\r\n\r\n- **不保证 100% 拦截**。判据是启发式的，一种全新文案同时躲过所有信号时会漏；出站拦截用的是同一套判据。\r\n- **不纠正内容**，不会把拒答改写成一句「正常的话」。\r\n- **不覆盖非 replyer / 非 planner 路径**：文本拆分、子代理、其它插件发的文本只有出站那一层管得到。\r\n\r\n72 项单元测试。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
         }
       ],
       "ignored_tags": [],
