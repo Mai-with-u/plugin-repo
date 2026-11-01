@@ -4959,7 +4959,7 @@
           "refresh_interval_minutes": {
             "type": "integer",
             "default": 30,
-            "description": "人物画像定时刷新周期（��钟）"
+            "description": "人物画像定时刷新周期（分钟）"
           },
           "active_window_hours": {
             "type": "number",
@@ -17942,7 +17942,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.15.1",
+      "version": "0.15.2",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -25756,9 +25756,9 @@
     "id": "kamionichan.search_hub",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.6",
+      "version": "0.5.7",
       "name": "MaiBot 搜索中枢",
-      "description": "统一的搜索编排与对话衔接：自动组合多个搜索来源，长搜索转后台不占用聊天，结果带编号自然接回对话。",
+      "description": "文字搜索与以图搜图：自动组合多个搜索来源，截图可认番剧、角色和出处；长搜索转后台不占用聊天，结果带编号自然接回对话。",
       "author": {
         "name": "kamionichan",
         "url": "https://github.com/kamionichan"
@@ -25815,7 +25815,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.winincorce-a11y.news-three-elements",
-      "version": "1.23.2",
+      "version": "1.23.3",
       "name": "新闻三要素",
       "description": "把一段素材改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用取素材、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
       "author": {
@@ -25852,13 +25852,16 @@
       },
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "newspaper",
-          "fallback": "puzzle",
+          "type": "local",
+          "value": "assets/icon.webp",
+          "fallback": "newspaper",
           "background": "#1C272C"
         }
       },
       "plugin_type": "creative"
+    },
+    "assets": {
+      "icon_64": "icons/github.winincorce-a11y.news-three-elements.webp"
     }
   },
   {
@@ -26190,10 +26193,10 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-reply-guard",
-      "version": "0.1.2",
+      "version": "0.4.0",
       "plugin_type": "management",
       "name": "回复守卫 (Reply Guard)",
-      "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+      "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
       "display": {
         "icon": {
           "type": "local",
@@ -26279,6 +26282,119 @@
         "supported_locales": [
           "zh-CN"
         ]
+      }
+    }
+  },
+  {
+    "id": "github.jiakeju.token-ledger",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.jiakeju.token-ledger",
+      "version": "0.1.0",
+      "name": "麦麦不贪吃（Token Ledger）",
+      "description": "读取宿主 token 用量，按自维护价格库（支持峰谷价、星期与节假日）重算费用，提供按群与按模型的图表看板，并给出工具调用费估算。只读数据库，不发消息。",
+      "author": {
+        "name": "JJK",
+        "url": "https://github.com/JiaKeJu"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/JiaKeJu/maibot-ledger",
+        "homepage": "https://github.com/JiaKeJu/maibot-ledger",
+        "documentation": "https://github.com/JiaKeJu/maibot-ledger#readme",
+        "issues": "https://github.com/JiaKeJu/maibot-ledger/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "capabilities": [
+        "database.get"
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.jiakeju.token-ledger.webp"
+    }
+  },
+  {
+    "id": "ayu.goreview",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ayu.goreview",
+      "name": "阿羽围棋复盘",
+      "version": "0.4.2",
+      "description": "内置围棋复盘服务，支持野狐棋谱与智子围棋 KataGo。",
+      "author": {
+        "name": "toya",
+        "url": "https://github.com/Toyaspio"
+      },
+      "urls": {
+        "repository": "https://github.com/Toyaspio/GoReview"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.15"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "plugin_type": "integration",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "maisaka.reply.generate"
+      ],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<0.29"
+        },
+        {
+          "type": "python_package",
+          "name": "sgfmill",
+          "version_spec": "==1.1.1"
+        },
+        {
+          "type": "python_package",
+          "name": "fastapi",
+          "version_spec": ">=0.115.12,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.56,<2"
+        },
+        {
+          "type": "python_package",
+          "name": "python-socketio",
+          "version_spec": ">=5.11,<6"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9,<4"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
       }
     }
   }
