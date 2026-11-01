@@ -52517,6 +52517,84 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.5",
+          "tag": "v2.0.5",
+          "commit": "23c8fe9af4038f50060609ef7dea95cdcc122ea5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T07:49:18Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.0.5",
+          "release_notes": "## 新增功能\n\n- **引用回复保留文本**：在“回复行为 → 概率语音”新增独立开关，默认开启。引用回复保留引用卡片与麦麦自己的回复正文，并发送该正文的语音。\n- **引用回复的文字模式**：关闭开关后，引用回复保持文字，普通文本回复继续按整轮概率与长度设置转换。\n\n## 修复功能\n\n- **引用消息显示**：补齐引用回复的正文，修复文字转换成语音后出现空引用气泡的问题。\n- **朗读内容**：使用麦麦本轮回复正文生成语音，引用卡片中的原消息保持原样。\n- **发送上下文**：保留引用目标、发送路由与 QQ 官方被动回复上下文，兼顾 SnowLuma、NapCat 和 QQ 官方适配器。\n- **回复状态管理**：按聊天流、音频与正文关联发送状态，重复命中音频缓存的分段分别处理，并清理过期状态。\n\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.13.0–2.20.0，Python 3.10 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。在“回复行为 → 概率语音”调整“引用回复保留文本”。\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.5/README.md) · [提交反馈或建议](https://github.com/WhiteCloudOL/maimai-tts-plugin/issues/new/choose) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.5/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.0.5",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.0.3",
           "tag": "v2.0.3",
           "commit": "891d1969c2aa9879c1034ea526e88a4378facd2b",
