@@ -49738,6 +49738,60 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "eb01a127c698e0fb374bf7567679500e28e411e0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:55:17Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-bilibili-interest-share/releases/tag/v2.0.0",
+          "release_notes": "上一次发布（v1.1.2）之后积累的全部改动合并成这一个版本。这一轮的主题是「配置能自己看懂、兴趣能自己管、登录不用折腾」：加上 B 站扫码登录、配置项全部中文化、自动兴趣看得见也改得动、README 整体重写，并在实机验收中顺带修掉了几个只有在真实群聊里才会暴露的问题。\n\n### 新增\n\n- **B 站扫码登录**：新增 `[account]` 配置节与 `/扫码登录` 指令（别名 `/bili-login`、`/扫码登陆`）。\n  - **仅私聊可用**：群里发这个指令只回一句提示，不生成二维码（群里发二维码容易被别人扫走，也容易刷屏）。\n  - 私聊里发指令，插件发一张二维码图片，手机 B 站客户端扫码确认后自动把 Cookie 写进 `[account].cookie` 并立刻生效，无需重启、无需手动复制；图片发不出去时自动改发登录链接文本。\n  - 相关配置：`cookie`、`qrcode_timeout_seconds`（二维码有效期，默认 180 秒）、`check_on_start`（启动时检查登录态，失效会在日志里提示）。\n  - 登录后能读到**字幕**（未登录时 B 站不返回字幕内容），排行榜和搜索也更稳。\n- **自动兴趣写回配置**：从聊天记录提取的兴趣会写进对应 `[[streams]]` 的 `auto_interests`，在设置页能直接看到；也可以手动改，改过之后插件认为你接管了、不再覆盖（清空即可恢复自动维护）。相关配置：`[interest].persist_auto_interests`。\n- **人设初始兴趣**：新增通用配置项 `[interest].persona_seed_interests`，所有聊天流共用一份。留空时每轮开始会先按 MaiBot 的人设让 LLM 生成一次并自动填进来（不用等某个流没兴趣才触发），也可以直接手改；某个流既没手写兴趣、聊天里也提不出词时，同样用它兜底。相关配置：`persona_seed_enabled`、`persona_seed_count`。\n- **手动排除账号**：新增 `[interest].exclude_user_ids`（填 QQ 号），用来挡住不参与兴趣提取的账号。\n- `store.py` 的 `state.json` 新增 `auto_interests` 段，记录「插件上次写了什么」，用来判断用户有没有手动改过；新增 `meta` 段记录插件自身的运行时标记。\n\n### 变更\n\n- **所有配置项中文化**：每个字段都带中文名（WebUI 表单显示的是中文而不是英文键名）和中文说明，配置节标题也全部是中文；`config.example.toml` 重新生成，每个键上方都有一行中文注释。\n- `[[streams]]` 的 `interests` 中文名改为「手写兴趣」，新增 `auto_interests`「自动提取的兴趣」。\n- 旧版放在 `[advanced].cookie` 的 Cookie 仍兼容读取（`[account].cookie` 优先），但已标记为「（旧版）」并默认隐藏，建议迁移。\n- `/bili-status` 增加登录状态行和各会话兴趣展示（手写 / 自动 / 是否被手动锁定）。\n- **自动兴趣改用 jieba 分词**：之前用 2~4 字滑动窗口 + 停用词过滤，真实群聊里会产出「器人程序」「天机器人」「工智能聊」「智能聊天」一串同源碎片。现在宿主装了就优先用 jieba（按词性保留名词类），分词结果更接近真实兴趣（「机械」「键盘」「原神」「猫咪」）；没装 jieba 时自动退回原来的 n-gram 方式，行为不变。\n- **同源碎片抑制**：即使走 n-gram 兜底，也会丢掉「每次出现都被更长候选词包住」的碎片，以及同长度、大面积重叠的相邻切片。\n- README 整体重写：按「功能 → 快速开始 → 配置 → 指令 → 原理 → 数据 → 结构 → 测试 → 常见问题 → 限制」重新组织。\n\n### 修复\n\n- **人设初始兴趣永远生不出来**：实机日志里这次 LLM 调用「提示词 867 tok、输出 412 tok」，而 `max_tokens` 只给了 300——模型在输出数组前先写了一段说明，数组被截断，严格 JSON 解析失败后静默返回空列表，所以配置里一直是 `[]`。三处一起改：`max_tokens` 提到 800、提示词要求「直接输出数组、不要开场白」、解析失败时打 info 日志而不是只 debug。\n- **兴趣词解析器容错不足**：新增兜底解析，能处理被截断的数组（缺右括号）、`1. 游戏` / `- 原神` 这种编号/项目符号列表、以及中文引号包裹的词；同时避免把 `{\"relevant\": true, ...}` 这类判断结果对象里的字段名当成兴趣词。\n- **自动兴趣混进噪音**：真实群里跑出来的是 `ww`、`qq`、`用户`、`主人`、`消息`、`https`、`哔哩` 这类没有兴趣含义的高频词，以及群里喊 bot 的名字 / 别名（`小鲸鱼`、`鲸鱼`、`大肥鱼`）。现在停用词表补齐了聊天常见噪音，并在提取时剔除人设名字与别名；单字别名不做包含匹配，避免「鱼」把「钓鱼」误杀。\n- **bot 消息污染兴趣**：提取兴趣时会跳过插件自己的账号（插件启动时通过 `chat.get_all_streams` 收集宿主登记过的 bot 账号）和 `exclude_user_ids` 里列出的账号。第三方 bot 在协议层和真人消息无法区分，所以不做「按昵称猜 bot」的自动识别——那个启发式太容易误伤真人，只保留手动排除。\n- **写回配置会打断当前这一轮**：之前提取到新兴趣就立刻写 `config.toml`，宿主发现文件变化会重载插件，正在跑的这轮直接被掐断（连视频都没来得及挑）。现在改成先记在内存里，等这一轮彻底跑完再一次性落盘。\n- **兴趣词顺序变化导致的重复写盘**：词的先后顺序每轮可能不同，之前按列表比较会认为「变了」，于是每轮都写一次、每轮都重载。现在按「去重 + 排序」比较，内容没变就不写。\n- **旧账号会话读不到消息时自动换会话**：换连接器后同一个群会同时挂着旧账号和新账号两套会话，`message.get_recent` 拿到的旧会话消息停留在换账号之前，按 `lookback_hours` 过滤后是空的，自动兴趣就永远提不出来。现在按「记住的可用会话 → 主会话 → 其余候选」顺序找第一个有消息的，并把可用的那个记下来。\n- `send.image` 传图时使用原始 base64（不带 `data:` 前缀），与宿主 `_cap_send_image` 的实现对齐。\n\n### 兼容\n\n- 旧配置里的 `[advanced].cookie` 仍会被读取（`[account].cookie` 优先），不需要立刻迁移。\n- 旧 `state.json` 里分享记录保存的 `summary` / `points` 字段仍兼容读取（新数据用 `narrative` / `intro`）。\n- 从 v1.1.x 升级时，宿主会自动把 `config.toml` 迁移到新结构并补齐 `[account]` 节、`auto_interests`、`persona_seed_interests` 等新键。\n\n### 测试\n\n- 新增 `tests/test_bilibili_login.py`（28 例）与 `tests/test_config_edit.py`（28 例）；`tests/test_plugin.py` 增加账号登录、自动兴趣写回与锁定、人设兴趣种子、状态展示、会话兜底、bot 消息过滤、解析容错等用例；全套 255 例通过。\n\n---\n\n**完整说明见 [CHANGELOG.md](https://github.com/TommyAAKK/maibot-bilibili-interest-share/blob/main/CHANGELOG.md)**\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.bilibili_interest_share",
+            "version": "2.0.0",
+            "name": "麦麦刷B站",
+            "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-bilibili-interest-share"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "imageio-ffmpeg",
+                "version_spec": ">=0.4.9"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "llm.generate",
+              "config.get",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.2",
           "tag": "v1.1.2",
           "commit": "52750199a11fec68d4f4273ff83d61dfa241d9e3",
