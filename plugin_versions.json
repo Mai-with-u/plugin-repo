@@ -53782,6 +53782,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.42yoru.maimai-reply-guard",
+      "manifest_id": "github.42yoru.maimai-reply-guard",
+      "repositoryUrl": "https://github.com/42yoru/maimai-reply-guard",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "b481e6e666c5fc4b8ddfc6a450331c49df14cc9d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:43:38Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.1",
+          "release_notes": "适配主程序 dev 分支新增的「Hook 可带原因中止」能力。\n\n## 主要功能\n\n- **L1 命中后主动中止本轮回复，并把原因传给 Planner**。`maisaka.replyer.after_response` 在新版宿主中 `allow_abort=True`，插件的中止请求会经 `HookAbortedError` 变成 Planner 可读的工具回执，它会知道自己上一句为什么被拦，而不是只收到一句「回复失败」。\n\n## 细节\n\n- **旧版本宿主自动降级，不做版本探测**。插件无条件返回 `action=abort`：支持带原因中止的宿主会真的中止；不支持的宿主由 `HookDispatcher` 记录「不允许 abort，已忽略」后**继续使用原回复**，全部流程不受影响，异常文本仍由 L3 出站拦截挡下。\n\n  为什么不用探测：两个版本的 Hook 载荷字段完全一致、插件读不到宿主版本号，而「真发一次 abort 试探」在支持的宿主上会砍掉一条正常回复。\n\n- L3 出站拦截保持独立判据不变，仍是与宿主版本、replyer 模式都无关的不变量。\n- 测试补 3 条：默认中止、开启重试时不中止、旧宿主忽略中止后 L3 仍拦下。\n\n## 兼容性\n\n| 宿主 | 表现 |\n| --- | --- |\n| 支持带原因中止（较新） | 真正中止本轮回复，Planner 收到拦截原因 |\n| 不支持（较早） | 中止被忽略，回复照常走到发送层，被 L3 拦下 |\n\n**挡不挡得住与宿主版本无关**，旧宿主上只是 Planner 收不到具体原因。\n\n75 项单元测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.1",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
