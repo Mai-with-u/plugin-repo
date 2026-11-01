@@ -53535,7 +53535,65 @@
       "manifest_id": "maibot.maimai-feed-bot",
       "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "6c2fd07136d587870128a106bb50785687b13f14",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T09:04:23Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v1.6.0",
+          "release_notes": "## v1.6.0\n\n- **内置清除风格道具 🥛牛奶（可选）**：WebUI `[shop].builtin_clear_item` 开启后，每个启用群自动上架一条「牛奶」（价格 5、饱食度 +5），投喂后清空本群全部生效投喂风格；**默认关闭——不开启则完全不改动既有商店数据**，也可随时手动「群上架 牛奶」+「设置清除效果 牛奶」\n- **`/商店` 图片菜单**：新增 `[shop].render_image` 开关（WebUI 可改，默认开）——菜单渲染为一张图片，每件道具展示**完整效果**（风格提示词全文与时长 / 清除全部投喂风格）、价格与饱食度，道具再多也不刷长文本；纯本地 PIL 渲染（无浏览器依赖），失败或关闭时自动回退文本菜单\n- **渲染细节**：效果/描述文本 emoji 混排彩显（💥📱🌌 等不再变方框）、多 emoji 道具名对齐、积分加大加粗、饱食度正绿负红、emoji 段按可见宽度紧排；支持插件目录 `fonts/` 自带新版 emoji 字体（覆盖系统旧字体缺字形的问题）\n- manifest 相应新增 `send.image` 能力声明；README 效果示例重写并新增真实菜单参考图（敏感数据已脱敏）\n\n> 兼容性：宿主 1.0.0 ~ 1.3.99 / SDK 2.0.0 ~ 2.16.99；从 1.5.x 升级无需改配置，既有商店数据不会被改动。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "1.6.0",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     }
