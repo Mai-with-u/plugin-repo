@@ -48188,6 +48188,108 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.1",
+          "tag": "v1.7.1",
+          "commit": "0adc135ab070cb3b50fa889c48d5115297072e28",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T01:41:09Z",
+          "release_url": "https://github.com/riesaexe/maibot-index-translate/releases/tag/v1.7.1",
+          "release_notes": "## 修复\n\n- 修复深色电子界面被误判为空心粉笔字体，导致原文残留、译文叠字的问题。\n- 避免将平整深色截图合并成手写段落，保留姓名、账号与正文的区域边界。\n- 已有中文和纯统计数字跳过翻译并保留原始像素，避免日期、关注数和粉丝数被重写。\n- 改善深色背景上的文字采色，减少抗锯齿导致的灰暗字色。\n\n## 验证\n\n- 79 项回归测试通过，Ruff 检查通过。\n- 使用用户原始截图调用真实翻译服务，确认正文正常擦除和回填；中文、统计数字及未翻译区域保留。\n- 使用既有译文重渲染 4 张粉笔、斜拍手写与英文漫画样例，输出与之前逐像素一致。此项用于验证无新增视觉回归，不代表已修复旧样例全部缺陷。\n- README 已同步版本和更新说明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "riesa.translate",
+            "version": "1.7.1",
+            "name": "中文翻译",
+            "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
+            "author": {
+              "name": "RiESA",
+              "url": "https://github.com/riesaexe"
+            },
+            "urls": {
+              "repository": "https://github.com/riesaexe/maibot-index-translate",
+              "homepage": "https://github.com/riesaexe/maibot-index-translate",
+              "documentation": "https://github.com/riesaexe/maibot-index-translate/blob/main/README.md",
+              "issues": "https://github.com/riesaexe/maibot-index-translate/issues"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "languages"
+              }
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "anyio",
+                "version_spec": ">=4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "onnxruntime",
+                "version_spec": ">=1.20"
+              },
+              {
+                "type": "python_package",
+                "name": "manga-ocr",
+                "version_spec": ">=0.1.16,<0.2"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26"
+              },
+              {
+                "type": "python_package",
+                "name": "opencv-python",
+                "version_spec": ">=4.5"
+              }
+            ],
+            "plugin_type": "tool",
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.7.0",
           "tag": "v1.7.0",
           "commit": "522901679d2b3271f1c4532add5185f037e5a10b",
