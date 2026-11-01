@@ -49798,6 +49798,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.6",
+          "tag": "v0.1.6",
+          "commit": "efd53ab71ad28599bfe640a5bf8a0bec716822e8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T02:55:15Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.6",
+          "release_notes": "# v0.1.6 Release 正文（GitHub Release）\n\n## 版本定位\n\n修复表达自动采纳在 WebUI 不可见、以及多轮自证触发 120s 硬超时的问题；属于 v0.1.5 的补丁版本，升级无需迁移配置与数据。\n\n## 变更\n\n### 表达自动采纳在 UI 可见\n- 自动采纳时写回 `checked=true`，并默认同时把 `modified_by` 标记为 `USER`，这些条目会出现在 WebUI 资源页的「仅精选」筛选里，不再\"只在 log 里看得到\"。\n- 真实来源不会丢：每条采纳记录（`adopted` / `ui_mark` / 置信度 / 时间）完整保存在数据目录的 `auto_checked.json`。\n- 新增 `[expression] auto_check_ui_mark` 开关（默认 `true`）；设为 `false` 时只勾选 `checked`、不改来源。\n\n### 多轮自证拆小批次\n- 黑话 / 表达 / 表情三类自证的 LLM 请求由「一次提交全部候选」改为「每批最多 2 条分别请求」，单次提示体积显著缩小，降低因 120s 硬超时导致整批自证失败的概率。\n- 某一批失败只跳过该批，不影响其余批次；联网检索次数与总 token 基本不变。\n\n### 文档\n- README 配置表重生成（117 个参数），版本记录新增 v0.1.6；CHANGELOG 增加 v0.1.6 章节。\n\n## 兼容性\n\n- 适配 MaiBot `1.3.0 – 1.3.99`、Plugin SDK `2.8.0 – 2.16.99`。\n- 无新增 Python 依赖。\n- 升级不覆盖 `config.toml`，不影响 `data/` 下的台账、缓存与报告。\n\n## 自查\n\n- 静态审计 109 项、运行时仿真 144 项、洁净检出 33 项、冗余自查 0 候选，全部通过。\n- 表达/黑话/表情/日程/注入五条链路均有仿真用例（含自动采纳 UI 标记、自证拆批、宿主人格严判、dry-run、限流等）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.6",
+            "name": "麦麦很好奇（Memory Keeper）",
+            "description": "后台整理插件：学习群里的黑话、表达方式与表情包，按角色性格精选、查重合并，并整理群友日程。支持 WebUI 配置与 dry-run（只出报告、不改库）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.5",
           "tag": "v0.1.5",
           "commit": "dce7eb85854cfafc9a8347fce62fd82e079fc102",
