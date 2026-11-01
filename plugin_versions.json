@@ -54605,6 +54605,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "f915ee1f57822f68332ad62018960cf95ffcb8eb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T15:00:45Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.4.0",
+          "release_notes": "本次发布包含 **0.2.0 / 0.3.0 / 0.4.0 三个阶段的功能**（0.2.0 与 0.3.0 未单独发版，\n内容都在这个版本里）。\n\n## 主要功能\n\n### 思维链泄露拦截\n\n部分模型中转下，推理内容（thinking / thought）会被当成正文返回，bot 把整段思考过程\n发到群里，连同 system prompt 里的表达习惯、内部约束和 `msg_id` 这类内部字段一起倒出来。\n\n这类文本是**地道中文**，语言失配信号天然失效（实测七条真实样本全部 0.000 分），\n问题不在文案而在「结构的形状不对」。所以单独做了一套结构性判据：\n\n- **硬标志**（命中即拦、权重 1.0）：`[thinking]` / `[thought]`、`msg_id=`、\n  `reply_reference:`、`【额外回复要求】`、`**分析当前情况**`、「提示要求：」等。\n  选词标准是「不可能出现在正常发言里」，所以配得上满分权重 ——\n  noisy-OR 下总分直接到 1.0。\n- **结构特征**（成组才判）：markdown 小节标题、编号列表、第三人称转述、元词、\n  引号引用 + 分析。累计到阈值（默认 3）才拦。\n\n推理标签做**残缺容忍**：真实样本里出现过 `[thought` 后直接换行、标签没闭合的情况\n（输出被截断）。命中时**强制不重试** —— 泄露的可能正是 system prompt，\n重试会把原文再上传一次。\n\n### WebUI 侧边栏拦截日志\n\n插件在 WebUI 侧边栏挂了一个「回复守卫」页面，直接看拦截记录，不用翻日志文件。\n显示近 24 小时统计、当前避开中的模型、拦截记录列表（时间 / 动作 / 层级 / 模型 /\n分数 / 会话 / 被拦文本摘要 / 命中的信号中文标签）。\n\n**按需刷新**：轮询时先调轻量的 `guard_watch`（只返回版本号等几个整数，约 126 字节），\n版本号没变就不拉完整列表。记录越多，省得越多。\n\n页面只在你打开它时工作：侧边栏是独立路由，切走时 iframe 被宿主销毁，不留后台请求；\n切到后台标签页也会暂停探测。\n\n### 换模型（L2）\n\n同一会话里某模型连续 N 次（默认 2）被判异常后进入避让期（默认 15 分钟），\n这期间的 replyer 请求改到备用模型。\n\n- **只改 `model_name`，不动 `task_name`**。task_name 决定 temperature / max_tokens，\n  一起换会把 replyer 的生成参数覆盖成 planner 的。\n- **`__planner__` 运行时展开**成 planner 任务当前的模型，换了 planner 模型不用改配置。\n- 当前模型名未知时**不换**（猜错会把不该换的请求换掉）。\n- 避让是会话级的；连续计数在「出现正常回复」和「避让到期」时都清零。\n\n## 细节\n\n- **自动适配被动式 replyer 转正**：插件运行时读 `experimental.passive_replyer`\n  决定挂不挂 L0，宿主默认值变什么就跟着做什么，**不需要改配置也不需要改代码**。\n- 按需刷新用 `revision` 版本号，`guard_log` 与 `guard_watch` 返回同一个值保证同源。\n- 页面文本一律走 `textContent`，不拼 HTML，避免被拦文本里的尖括号造成注入。\n- 清空记录有二次确认（宿主侧），只清事件不影响模型避让状态。\n\n## 判据质量\n\n- 判据基准测试 81 条真实样本，覆盖厂商拒答 / 多语言 / 结构化错误 / 正常发言 /\n  思维链泄露 / 防误杀边界六组，当前**漏判 0、误杀 0**。\n- 单元测试 122 项，CI 在 Python 3.11 / 3.12 / 3.13 上运行 ruff + unittest。\n- 测试不依赖主程序源码：CI 环境只装 `maibot-plugin-sdk` 与 `ruff`。\n\n## 已知边界\n\n- 不保证 100% 拦截。判据是启发式的，一种全新文案同时躲过所有信号时会漏；\n  出站拦截用的是同一套判据。\n- 在群里讨论「`[thinking]` 这个词」会被误拦（推理标签做了残缺容忍的代价），\n  加豁免正则可解决。\n- 不纠正内容，不覆盖非 replyer / 非 planner 路径的文本。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.4.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "c3285ece3193fa76cfc922311551efe200e0d793",
