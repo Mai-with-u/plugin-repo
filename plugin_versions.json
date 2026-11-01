@@ -52115,6 +52115,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.3",
+          "tag": "0.1.3",
+          "commit": "7020a70193bb49eb2d18e590adeb7ecfcf283a89",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T04:15:46Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.1.3",
+          "release_notes": "这一版是稳定性修复：玩手机时被叫停不会再卡住，联机游戏中途切应用不会被退出房间，操作和计数的边界更严格。\n\n- 修复：收尾时被叫停会一直卡在「正在玩」，之后再也开始不了。\n- 修复：中途切到别的应用后，结束时仍按最初的应用决定回不回桌面（联机游戏会被退出房间）。\n- 在应用里的操作执行前再确认一次前台，模型思考期间跳到了白名单以外的应用、或者突然认不出前台时就不做。\n- 没开互动时提示词不再说可以点赞；关了文字输入也不能写评论。\n- 次数、步数、互动计数及时保存，不再只在结束时保存；叫停时被打断的保存不会用旧数据盖掉新记录。\n- WebUI 状态和聊天里的手机近况显示她现在实际在用的应用。\n- 玩到一半改了设备配置会先结束这一次；白名单的修改下一步就生效。\n- 聊天里交过去的要求之后每一步都还看得到；界面树解析放进线程；手机断开时的等待按真实时间计算。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.1.3",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "0.1.2",
           "commit": "815bb7f98ebca2f9fa46ee37df73332f31023ab8",
