@@ -53902,6 +53902,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.7",
+          "tag": "0.5.7",
+          "commit": "6789d32b66d1c4ea79f01640d61ad1dd7dd48705",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T15:00:32Z",
+          "release_url": "https://github.com/kamionichan/maibot-search-hub/releases/tag/0.5.7",
+          "release_notes": "- 开启“允许成人向结果”后，SauceNAO 的成人向结果会保留并标注“成人向”（之前保留了但没有标注；trace.moe 本来就有标注）。\n- 工具说明：要求麦麦在闲聊、开玩笑、吐槽时不要搜索，也不要把聊天原句整段拿去搜。\n- 给回复模型的参考资料提示：资料能回答问题时，先把资料里的答案告诉对方，不要撇开资料改用自己的印象；对方要歌词、台词等原文而资料里有时，可以直接引用。\n- README 开头和插件简介写明以图搜图；安装和升级改为以插件市场为主；补充成人向结果、闲聊搜索、歌词原文的说明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.5.7",
+            "name": "MaiBot 搜索中枢",
+            "description": "文字搜索与以图搜图：自动组合多个搜索来源，截图可认番剧、角色和出处；长搜索转后台不占用聊天，结果带编号自然接回对话。",
+            "author": {
+              "name": "kamionichan",
+              "url": "https://github.com/kamionichan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kamionichan/maibot-search-hub",
+              "issues": "https://github.com/kamionichan/maibot-search-hub/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.0"
+            },
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.resolve_image",
+              "send.text",
+              "web.search",
+              "web.fetch",
+              "api.call",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh_CN"
+            },
+            "id": "kamionichan.search_hub",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.svg",
+                "fallback": "search",
+                "background": "#4f7cff"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.5.6",
           "tag": "0.5.6",
           "commit": "735307ba6654aa26ecf81c3fceff0d841f65b4e0",
