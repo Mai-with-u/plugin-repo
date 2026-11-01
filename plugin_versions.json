@@ -54345,6 +54345,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "c3285ece3193fa76cfc922311551efe200e0d793",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T13:51:21Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.2",
+          "release_notes": "系统性判据测试发现并修复三类漏判，**基准通过率 73.2% → 100%**。\n\n## 主要功能\n\n- **新增判据基准测试**（`tests/benchmark_detect.py`）：64 条真实样本分四组\n  （厂商拒答 / 多语言 / 结构化错误 / 正常发言），逐条比对期望结果并统计漏判率与误杀率。\n\n  这是发现下面所有问题的工具 —— 原有单测只验「代码行为符合设计」，\n  验不出「判据准不准」。这份基准一跑就暴露出 15 条漏判。\n\n## 修复\n\n- **中文拒答必然漏判**：权重原为 0.60，低于拦截阈值 0.65，等于一条永远拦不住的规则。\n  基准测试里 11 条真实厂商中文拒答（豆包 / 通义 / Kimi / 文心 / Qwen / DeepSeek）\n  全部停在 0.600 放行。权重改为 0.70 后全部拦下。\n- **非中日英语言完全漏判**：`analyze_scripts()` 只统计汉字、假名、谚文、拉丁四类，\n  西里尔（俄语）、阿拉伯、泰、希伯来、希腊、天城文（印地语）等字母文字\n  一概不计入任何分类，导致这些语言的拒答分数恒为 0.000。\n  新增「其它字母文字」统计与对应信号，统一按「不是中文」处理，不做逐语言特例。\n- **带变音符的拉丁字母统计不全**：原用 `char.isascii()` 判断，会漏掉 ỗ/ü/é。\n  实测越南语按 ASCII 口径 0.69、按 Unicode 口径 0.94。改用 `unicodedata.name()`。\n- **拉丁信号强度衰减过陡**：latin_ratio 0.70 原只给 0.29 强度、贡献 0.26 分，\n  连阈值一半都不到。改为刚过线给保底强度再线性爬到满档。\n- **HTML 错误页识别失败**：标签正则匹配不到 `<!DOCTYPE`，503 页面只能靠\n  拉丁信号勉强命中（0.354，拦不住）。正则放行 `!`/`?`，另补 HTML 结构标签兜底。\n\n## 细节\n\n- **拒答词表移除「拒绝」**：「拒绝回答 / 拒绝协助」是最常见的「描述别人在拒答」的措辞\n  （例如「现在的大模型遇到敏感内容会拒绝回答」），保留会误杀技术讨论。\n  移除后六条真实厂商拒答全部保留命中，那两条描述句不再命中。\n- 单元测试 75 → 84 项；基准 64 条，当前漏判 0、误杀 0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.2",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "b481e6e666c5fc4b8ddfc6a450331c49df14cc9d",
