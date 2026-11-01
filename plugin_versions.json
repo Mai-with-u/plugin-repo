@@ -43561,6 +43561,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "b0f2396371d9319ce3a01788658895bc94f56186",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T10:52:03Z",
+          "release_url": "https://github.com/senhan1337/MaiBot-blhx-wiki/releases/tag/v0.1.2",
+          "release_notes": "feat: 帮助图/语音表样式重做、服务器状态块圆角；清理大建卡池与头像映射死代码\r\n- 删除 assets/config/active_pool.json（大建功能已移除）\r\n- 清理 name_list.py 头像映射、text.py load_index()、plugin.py 对应 import\r\n- drawing.py：服务器状态红绿状态块改为圆角(radius=5)，与整体卡片样式统一\r\n- help.png：字体统一为思源黑体、文字左对齐；未实现功能(大图/皮肤原图)置底\r\n- 加删除线标注(暂未实现)；分类间加空行分隔；筛选占位符[科技分类]改[属性]\r\n- voice.png：同步新样式",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.azurlane.blhx-wiki-maibot",
+            "version": "0.1.2",
+            "plugin_type": "tool",
+            "name": "碧蓝航线 wiki",
+            "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
+            "author": {
+              "name": "senhan1337",
+              "url": "https://github.com/senhan1337"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/senhan1337/MaiBot-blhx-wiki"
+            },
+            "host_application": {
+              "min_version": "0.10.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=5.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "265ac63fbe03f4d4efd212e35e91da17c1eebf66",
