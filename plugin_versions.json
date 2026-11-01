@@ -53848,6 +53848,68 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "tianditongcuo.partner-game-pro",
+      "manifest_id": "tianditongcuo.partner-game-pro",
+      "repositoryUrl": "https://github.com/tianditongcuo/partner-game",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "2.0.2",
+          "tag": "v2.0.2",
+          "commit": "15536831b9076b9842afcd90f762a82053e67481",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:37:49Z",
+          "release_url": "https://github.com/tianditongcuo/partner-game/releases/tag/v2.0.2",
+          "release_notes": "```markdown\r\n## 今日老婆 Pro+ v2.0.2\r\n\r\n基于 [onelxzy/partner-game](https://github.com/onelxzy/partner-game) 的维护分支首个版本。\r\n\r\n### 与原版的差异\r\n- 插件 ID 改为 `tianditongcuo.partner-game-pro`，可与原版并存区分\r\n- `host_application.max_version` 由 `1.99.99` 修正为 `1.3.99`（按实测版本声明）\r\n- 移除指向不存在目录的 `i18n.locales_path`\r\n- 新增 `docs/`：功能依赖地图、可视化维护面板、插件识别预检脚本\r\n\r\n### 玩法\r\n与原版 v2.0.2 完全一致（24 条指令：抽取/求婚/强娶/抢老婆/打劫/打工/修炼/约会/榜单等）。\r\n后续版本将扩展财富、修炼体系、惩罚机制、物品系统。\r\n```",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "tianditongcuo.partner-game-pro",
+            "version": "2.0.2",
+            "name": "今日老婆 Pro+",
+            "description": "基于随机抽签演化的群聊伴侣互动游戏系统（支持抽、娶、抢、甩等互动玩法）。Pro+ 维护分支，持续扩展中。",
+            "author": {
+              "name": "tianditongcuo",
+              "url": "https://github.com/tianditongcuo"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tianditongcuo/partner-game",
+              "issues": "https://github.com/tianditongcuo/partner-game/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "game",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
