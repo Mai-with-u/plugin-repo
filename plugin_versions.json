@@ -51266,7 +51266,56 @@
       "manifest_id": "github.hhhhhhezeus.maimai-blind-test",
       "repositoryUrl": "https://github.com/hhhhhhezeus/maimai-blind-test",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "1fafeef318e39cf18e59869317a06a4be1056b70",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T16:38:05Z",
+          "release_url": "https://github.com/hhhhhhezeus/maimai-blind-test/releases/tag/v1.0.1",
+          "release_notes": "# v1.0.1 — 审核修复版\n\n包含 REVIEW_FIXES.md 中记录的修复：插件类型及兼容范围声明、相关代码与部署说明。完整修复和测试边界请参阅该文件。\n\n验证：2 项本地测试通过。B站学梗与盲测局分别验证 SDK 2.19.0 / 2.20.0；MaiJam 验证 SDK 2.20.0。\n\n真实 MaiBot、QQ/NapCat 和 Dashboard 联调尚未完成，Host 范围仍是待验证的目标范围。本版本不代表插件市场已经批准收录。\n\nGitHub 自动生成的 Source code 源码包包含本次修复。旧 tag 保持不变。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hhhhhhezeus.maimai-blind-test",
+            "version": "1.0.1",
+            "name": "麦麦盲测局",
+            "description": "群聊发起盲测，通过私聊个人入口独立评测文字、图片和短音频，揭晓身份与真实反馈，并支持关联复测。",
+            "author": {
+              "name": "hhhhhhezeus",
+              "url": "https://github.com/hhhhhhezeus"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/hhhhhhezeus/maimai-blind-test",
+              "homepage": "https://github.com/hhhhhhezeus/maimai-blind-test",
+              "documentation": "https://github.com/hhhhhhezeus/maimai-blind-test/blob/main/README.md",
+              "issues": "https://github.com/hhhhhhezeus/maimai-blind-test/issues"
+            },
+            "plugin_type": "game",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "chat.open_session"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
