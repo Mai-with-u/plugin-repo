@@ -72,16 +72,6 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v2.0.1",
-          "version": "2.0.1",
-          "error": "发布版本改变了插件 ID"
-        },
-        {
-          "tag": "v2.0.0",
-          "version": "2.0.0",
-          "error": "发布版本改变了插件 ID"
-        },
-        {
           "tag": "0.11.0",
           "version": "0.11.0",
           "error": "Tag 与 manifest.version 不一致"
@@ -53780,6 +53770,51 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "m1o0.proactive-wake",
+      "manifest_id": "m1o0.proactive-wake",
+      "repositoryUrl": "https://github.com/m1o0/maibot-proactive-wake",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "m1o0.persona-switcher",
+      "manifest_id": "m1o0.persona-switcher",
+      "repositoryUrl": "https://github.com/m1o0/maibot-persona-switcher",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+      "manifest_id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+      "repositoryUrl": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.beichen24a1.group-persona",
+      "manifest_id": "github.beichen24a1.group-persona",
+      "repositoryUrl": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "WiseXin.character-disguise",
+      "manifest_id": "WiseXin.character-disguise",
+      "repositoryUrl": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     },

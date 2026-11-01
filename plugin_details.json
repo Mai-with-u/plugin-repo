@@ -95,7 +95,7 @@
       }
     },
     "assets": {
-      "icon_64": "icons/A0000Xz.MaiBot-Tarots-Plugin.webp"
+      "icon_64": "icons/github.a0000xz.maibot-tarots-plugin.webp"
     }
   },
   {
@@ -8138,7 +8138,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -18094,7 +18094,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.7",
+      "version": "1.24.8",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -23718,7 +23718,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.TommyAAKK.bilibili_interest_share",
-      "version": "1.1.2",
+      "version": "2.0.0",
       "name": "麦麦刷B站",
       "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
       "author": {
@@ -23747,6 +23747,7 @@
       ],
       "capabilities": [
         "send.text",
+        "send.image",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "message.get_recent",
@@ -24434,7 +24435,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.moonlycake.member-distiller",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "群友蒸馏资料收集",
       "description": "按 QQ 收集群聊发言及少量匿名上下文，并导出本机文本。",
       "author": {
@@ -24456,7 +24457,8 @@
       "plugin_type": "extension",
       "dependencies": [],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "config.get"
       ],
       "display": {
         "icon": {
@@ -25962,6 +25964,322 @@
     },
     "assets": {
       "icon_64": "icons/maibot.maimai-feed-bot.webp"
+    }
+  },
+  {
+    "id": "m1o0.proactive-wake",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "m1o0.proactive-wake",
+      "version": "1.1.0",
+      "name": "主动唤醒",
+      "description": "手动让麦麦立刻接一轮当前话题，不必等动态门控放行。带冷却防手滑、唤醒前检查她是否刚说过话（可强制跳过），并在页面上显示各聊天流的可唤醒状态与唤醒历史。",
+      "author": {
+        "name": "m1o0",
+        "url": "https://github.com/m1o0"
+      },
+      "license": "MIT",
+      "plugin_type": "chat",
+      "urls": {
+        "repository": "https://github.com/m1o0/maibot-proactive-wake",
+        "homepage": "https://github.com/m1o0/maibot-proactive-wake",
+        "issues": "https://github.com/m1o0/maibot-proactive-wake/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "chat.get_all_streams",
+        "maisaka.proactive.trigger",
+        "config.get",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "m1o0.persona-switcher",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "m1o0.persona-switcher",
+      "version": "1.1.1",
+      "name": "人设存档与切换",
+      "description": "把人设存成存档，随时切换回来，并且到点能自动恢复。支持整套人设、群聊人设、单个聊天流人设三级粒度；切换前自动备份，切换后可一键恢复原状；可选限时生效（如「30 分钟后自动换回」）。全部在 WebUI 页面里点按操作，不用改配置文件。只动人设字段，聊天频率、模型、语音等配置一律不碰。",
+      "author": {
+        "name": "m1o0",
+        "url": "https://github.com/m1o0"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/m1o0/maibot-persona-switcher",
+        "homepage": "https://github.com/m1o0/maibot-persona-switcher"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "data",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+      "version": "0.3.0",
+      "name": "主动敲门 (Proactive Ping)",
+      "description": "冷场时提醒 MaiBot 的 planner 自主决定要不要主动找你。可配置探测间隔、空闲阈值、冷却、每日上限、静默时段与提示词；插件不调用模型、不直接发消息。",
+      "author": {
+        "name": "zzy-fxxxexxxyxxx",
+        "url": "https://github.com/zzy-fxxxexxxyxxx"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+        "homepage": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+        "documentation": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/blob/main/README.md",
+        "issues": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_private_streams",
+        "message.get_recent",
+        "maisaka.proactive.trigger"
+      ],
+      "plugin_type": "extension",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.beichen24a1.group-persona",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.beichen24a1.group-persona",
+      "version": "0.1.2",
+      "name": "分群人格",
+      "description": "让麦麦在不同群里是不同的人：按群覆盖人设与行为风格，记忆、表达与上下文本来就已经按群隔离，本插件只补上人格这一层。",
+      "author": {
+        "name": "beichen24a1",
+        "url": "https://github.com/beichen24a1"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+        "homepage": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+        "issues": "https://github.com/beichen24a1/MaiBot-GroupPersona/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "users"
+        }
+      },
+      "capabilities": [
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "WiseXin.character-disguise",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WiseXin.character-disguise",
+      "version": "1.0.0",
+      "name": "麦麦的人类伪装计划",
+      "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+      "author": {
+        "name": "WiseXin",
+        "url": "https://github.com/WiseXin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+        "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+        "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+        "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "user-check"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-reply-guard",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.42yoru.maimai-reply-guard",
+      "version": "0.1.1",
+      "plugin_type": "management",
+      "name": "回复守卫 (Reply Guard)",
+      "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "shield-check",
+          "background": "#9AD0FF"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai-reply-guard",
+        "homepage": "https://github.com/42yoru/maimai-reply-guard",
+        "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.50.50"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-reply-guard.webp"
+    }
+  },
+  {
+    "id": "tianditongcuo.partner-game-pro",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "tianditongcuo.partner-game-pro",
+      "version": "2.0.2",
+      "name": "今日老婆 Pro+",
+      "description": "基于随机抽签演化的群聊伴侣互动游戏系统（支持抽、娶、抢、甩等互动玩法）。Pro+ 维护分支，持续扩展中。",
+      "author": {
+        "name": "tianditongcuo",
+        "url": "https://github.com/tianditongcuo"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tianditongcuo/partner-game",
+        "issues": "https://github.com/tianditongcuo/partner-game/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "game",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
