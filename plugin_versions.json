@@ -53907,7 +53907,56 @@
       "manifest_id": "m1o0.proactive-wake",
       "repositoryUrl": "https://github.com/m1o0/maibot-proactive-wake",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "cba69cd8706a25132928257c64665b80cdf5713b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:30:39Z",
+          "release_url": "https://github.com/m1o0/maibot-proactive-wake/releases/tag/v1.1.0",
+          "release_notes": "手动让麦麦立刻接一轮当前话题，不必等动态门控放行。\n\nMaiBot 的动态门控按 `talk_value` 算每小时该回几次，回得越多放行阈值抬得越高。用超额度之后阈值会顶到接近 1.0，群里再热闹也一声不吭，只能等窗口滑动恢复。这个插件补的就是这一段：一个按钮，让 Planner 立刻接一轮。\n\n**它不修改任何配置、不绕过门控的长期策略**——只调用宿主自己提供的 `maisaka.proactive.trigger` 投递一次主动任务。触发之后门控计数照旧累加。\n\n### 这版做了什么\n\n- **冷却防手滑**（默认 30 秒）：同一流连点会让前一次的 intent 被顶掉（宿主主动任务只有一个槽位），白烧一轮 Planner\n- **「她刚说过话」让路**（默认 60 秒）：唤醒前拉最近消息，如果麦麦自己刚发过言就拦下并告诉你是几秒前；勾「强制唤醒」可跳过\n- **状态可见**：下拉框标注剩余冷却，按钮在冷却期显示倒计时并禁用\n- **唤醒历史**：页面显示最近 10 次记录\n\n### 与自动触发类插件的区别\n\n市场里用 `maisaka.proactive.trigger` 的插件有 38 个，绝大多数是自动的（静默太久、冷场、定时、概率）。这个反过来——**你不点，它什么都不做**。两者可以共存：那些管「平时自己找话」，这个管「现在就想让她说」。\n\n### 安全\n\n只声明 4 项能力（`chat.get_all_streams`、`maisaka.proactive.trigger`、`config.get`、`message.get_recent`），不读写配置文件，无 subprocess/eval/exec，无外部网络请求，页面单文件无外部资源、动态内容全部转义。\n\n### 验证\n\n31 项单元测试（冷却 / 历史 / 时间戳解析 / 发送者判断 / 记录清理）全过；真实环境点唤醒后约 13 秒 SnowLuma 发出两条正常回复。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.proactive-wake",
+            "version": "1.1.0",
+            "name": "主动唤醒",
+            "description": "手动让麦麦立刻接一轮当前话题，不必等动态门控放行。带冷却防手滑、唤醒前检查她是否刚说过话（可强制跳过），并在页面上显示各聊天流的可唤醒状态与唤醒历史。",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "chat",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-proactive-wake",
+              "homepage": "https://github.com/m1o0/maibot-proactive-wake",
+              "issues": "https://github.com/m1o0/maibot-proactive-wake/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "chat.get_all_streams",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
