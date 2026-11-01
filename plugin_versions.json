@@ -54863,6 +54863,85 @@
               "default_locale": "zh-CN"
             }
           }
+        },
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "bde9a243d8035c0a5e179e1b106427dd9f902e45",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-01T13:39:30Z",
+          "release_url": "https://github.com/Toyaspio/GoReview/releases/tag/v0.4.1",
+          "release_notes": "内置复盘服务，自动准备出图环境。配置智子账号及群号后即可使用；保留独立服务兼容。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ayu.goreview",
+            "name": "阿羽围棋复盘",
+            "version": "0.4.1",
+            "description": "内置围棋复盘服务，支持野狐棋谱与智子围棋 KataGo。",
+            "author": {
+              "name": "toya",
+              "url": "https://github.com/Toyaspio"
+            },
+            "urls": {
+              "repository": "https://github.com/Toyaspio/GoReview"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "plugin_type": "integration",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "sgfmill",
+                "version_spec": "==1.1.1"
+              },
+              {
+                "type": "python_package",
+                "name": "fastapi",
+                "version_spec": "==0.115.12"
+              },
+              {
+                "type": "python_package",
+                "name": "uvicorn",
+                "version_spec": "==0.34.2"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": "==1.56.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socketio",
+                "version_spec": ">=5.11,<6"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
         }
       ],
       "ignored_tags": [],
