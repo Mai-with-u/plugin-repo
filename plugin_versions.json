@@ -53331,7 +53331,65 @@
       "manifest_id": "onebot-ws.goqbot-adapter",
       "repositoryUrl": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "6e8f3ed1b950414b9c4367ff24e6375f661c2034",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T13:31:52Z",
+          "release_url": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter/releases/tag/v0.2.1",
+          "release_notes": "## 更新内容\r\n\r\n### 禁言工具：只执行白名单用户的固定格式指令\r\n\r\n新增「禁言工具」配置分组。禁言工具现在只执行「允许触发的用户」本人发出的指令，模型不能自己决定禁言谁。\r\n\r\n| 指令 | 说明 |\r\n| --- | --- |\r\n| `禁言 @某人 时长` | 时长可写 `30秒` / `10分钟` / `2小时` / `1天`，纯数字按分钟，不写默认 10 分钟 |\r\n| `解禁 @某人` / `解除禁言 @某人` | 解除禁言 |\r\n\r\n- 禁言对象和时长由插件从它收到的原始群消息中解析，模型只能指出是哪一条指令，不能选择禁言对象或修改时长。\r\n- 指令须在 10 分钟内，且只能执行一次；插件重启前的消息不会被接受。\r\n- 「别禁言 @某人」「他刷屏了禁言他吧」这类话不算指令，不会执行。\r\n- 新增配置项：\r\n  - **允许触发的用户**：留空时任何人都无法触发禁言。\r\n  - **禁言保护名单**：名单里的人不会被禁言，解除禁言不受影响。\r\n  - **允许禁言的群**：留空表示所有群都可用。\r\n  - **最长禁言时长**：从「聊天工具」分组移到这里。\r\n- 每次禁言和解禁都会在日志中记录指令发出者和目标。\r\n\r\n### 互动召回：仅限当前用户，禁止聊天触发\r\n\r\n- 只能召回当前私聊的用户，不能再指定其他用户；工具只在私聊中出现。\r\n- 新增开关「禁止聊天触发召回」（默认开启）：用户最近 60 分钟内在该私聊发过消息时拒绝召回，召回只能由 AI 在用户长时间未互动时自行发起。\r\n\r\n### 其他\r\n\r\n- manifest 新增能力声明 `message.get_recent`，用于查询当前私聊最近的消息。\r\n\r\n## 升级说明\r\n\r\n- 更新后请**重启 MaiBot**。新增的能力声明需要重启才能生效，热重载不会生效。\r\n- 0.2.0 中设置的「禁言最长时长」会自动迁移到新的「禁言工具」分组。\r\n- 禁言指令中的 @ 需要 goqbot 设置 `qq.mention_mode: at`。默认的 `strip` 会删掉 @，所有指令都会被拒绝，但不会误禁言。\r\n- 名单填写 goqbot 下发的数字 `user_id` / `group_id`。同一个人在私聊和不同群中的 `user_id` 可能不同，请按该群聊天记录中显示的 ID 填写。\r\n\r\n## 版本要求\r\n\r\nMaiBot ≥ 1.3.18，goqbot ≥ 1.11.0\r\n\r\n完整说明见 [README](https://github.com/huilongxiji/MaiBot-GoqBot-Adapter#readme)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "onebot-ws.goqbot-adapter",
+            "version": "0.2.1",
+            "name": "goqbot 适配器 / GoqBot Adapter",
+            "description": "通过 OneBot V11 正向/反向 WebSocket 连接 goqbot（QQ 官方机器人协议端），可与 NoneBot 等框架共用同一个机器人",
+            "author": {
+              "name": "huilongxiji",
+              "url": "https://github.com/huilongxiji"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+              "homepage": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+              "documentation": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter#readme",
+              "issues": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bot"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
