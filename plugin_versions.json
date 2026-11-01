@@ -54694,6 +54694,90 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "ayu.goreview",
+      "manifest_id": "ayu.goreview",
+      "repositoryUrl": "https://github.com/Toyaspio/GoReview",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "0400f68b69501a42a50fb21d34a51b04b480afa9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T14:04:31Z",
+          "release_url": "https://github.com/Toyaspio/GoReview/releases/tag/v0.4.2",
+          "release_notes": "内置复盘服务，支持直接配置智子账户。兼容现有核心依赖，可复用已安装的 Chromium；补充 Token 配置文档。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ayu.goreview",
+            "name": "阿羽围棋复盘",
+            "version": "0.4.2",
+            "description": "内置围棋复盘服务，支持野狐棋谱与智子围棋 KataGo。",
+            "author": {
+              "name": "toya",
+              "url": "https://github.com/Toyaspio"
+            },
+            "urls": {
+              "repository": "https://github.com/Toyaspio/GoReview"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.15"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.0"
+            },
+            "plugin_type": "integration",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate"
+            ],
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "sgfmill",
+                "version_spec": "==1.1.1"
+              },
+              {
+                "type": "python_package",
+                "name": "fastapi",
+                "version_spec": ">=0.115.12,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.56,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "python-socketio",
+                "version_spec": ">=5.11,<6"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
