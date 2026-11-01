@@ -68,7 +68,66 @@
       "manifest_id": "github.a0000xz.maibot-tarots-plugin",
       "repositoryUrl": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "2.0.1",
+          "tag": "v2.0.1",
+          "commit": "7b51e4844233fc8d5ff5628757dcee04d09040cf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T11:21:15Z",
+          "release_url": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/releases/tag/v2.0.1",
+          "release_notes": "# v2.0.1 — 塔罗工坊\n\n## 修复\n\n- **修复 2.0.0 拆分代码时丢失 `urllib` 导入导致的首次下载卡面报错**：\n  - 现象：首次抽牌 / `/tarots cache` 需要下载卡面时抛 `NameError: name 'urllib' is not defined`\n  - 原因：2.0.0 代码结构拆分时，`plugin.py` 丢失了 `import urllib.request` / `import urllib.error`\n  - 修复：补回导入；并在真实 MaiBot 1.3.18 环境用真实网络验证下载（92,757 字节写入缓存成功）\n\n## 测试\n\n- 新增真实下载链路单元测试（只 mock `urlopen`，不 mock `_download_image`）\n- 52 个单元测试全部通过\n- manifest 校验 0 error / 0 warning\n\n## 说明\n\n- 2.0.0 已发布的 Release 保留（含该 bug，请使用 2.0.1）\n- 2.0.0 的迁移与新增功能详见 v2.0.0 Release\n- 使用说明：[README](https://github.com/A0000Xz/MaiBot-Tarots-Plugin/blob/main/README.md)\n- 扩展手册：[help.md](https://github.com/A0000Xz/MaiBot-Tarots-Plugin/blob/main/help.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.a0000xz.maibot-tarots-plugin",
+            "version": "2.0.1",
+            "name": "塔罗工坊",
+            "description": "面向 MaiBot 新版插件系统的塔罗占卜插件：11 种牌阵、可自定义牌阵与牌组、桌布风布局图、麦麦人设解牌",
+            "author": {
+              "name": "A肆零西烛",
+              "url": "https://github.com/A0000Xz"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "homepage": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "documentation": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/blob/main/README.md",
+              "issues": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "sparkles"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
