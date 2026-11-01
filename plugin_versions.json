@@ -52690,6 +52690,84 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.6",
+          "tag": "v2.0.6",
+          "commit": "fb31ed1fa771ee62a3527355fbfac495acdc13dc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T13:33:20Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.0.6",
+          "release_notes": "## 新增功能\n\n- **服务商独立代理**：每个实例分别设置网络连接方式，默认关闭代理并使用直接连接，可选择系统环境代理、自定义 HTTP/HTTPS 代理或沿用插件运行设置。\n- **统一网络配置**：在服务商页面展开“网络代理 · 当前服务商实例”，配置应用于语音合成、模型与音色列表、音色克隆、参考音频下载及 WebSocket 连接。\n\n## 修复功能\n\n- **MiMo 音色克隆**：参考录音使用带正确音频类型前缀的 Data URL，修复克隆接口的参数错误，并限制编码后的录音大小。\n- **MiMo 模型适配**：对齐预设、音色克隆和声音设计三种模型的请求字段；PCM 输出按 24 kHz、16-bit、单声道处理，工作台自动封装为 WAV 播放。\n- **MiniMax 参数处理**：保留同步 HTTP 作为默认合成方式，修正旧文本归一化开关的参数映射，补齐示例录音文件 ID 与录音检查结果的校验。\n- **网络与缓存**：各服务商的代理设置分别生效，修改网络配置后刷新列表，相同内容的合成结果继续复用缓存；连接资源在插件卸载时统一释放。\n- **用户说明**：补充代理配置、MiMo 三种模型与 MiniMax 同步合成的使用说明。\n\n**运行要求：MaiBot 1.3.6–1.3.99，插件 SDK 2.13.0–2.20.0，Python 3.10 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。代理默认关闭，可在各服务商实例的网络代理设置中按需开启。\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.6/README.md) · [提交反馈或建议](https://github.com/WhiteCloudOL/maimai-tts-plugin/issues/new/choose) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.0.6/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.0.6",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.0.5",
           "tag": "v2.0.5",
           "commit": "23c8fe9af4038f50060609ef7dea95cdcc122ea5",
