@@ -54036,6 +54036,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.23.3",
+          "tag": "v1.23.3",
+          "commit": "41c85e49a2e0ae9283d601145463fdec5ee9497e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T16:43:52Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.23.3",
+          "release_notes": "### 新增插件图标\n\n新增 `assets/icon.webp`（64×64），取自三人并排的迷彩合影，裁掉两侧黑边后居中取正方形，\n并略微提亮、加对比，保证小尺寸下仍可辨认。\n\n`_manifest.json` 的 `display.icon` 改为 `local` 类型：\n\n```json\n\"display\": {\n  \"icon\": {\n    \"type\": \"local\",\n    \"value\": \"assets/icon.webp\",\n    \"fallback\": \"newspaper\",\n    \"background\": \"#1C272C\"\n  }\n}\n```\n\n插件中心的工作流会从本仓库抓取该文件，缩放到 64×64 后存入 `icons/<plugin_id>.webp`；\n抓取失败时回落到 `newspaper` 图标。\n\n### 说明\n\n功能无变化，仅补图标资源。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.23.3",
+            "name": "新闻三要素",
+            "description": "把一段素材改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用取素材、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "newspaper",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
           "version": "1.23.2",
           "tag": "v1.23.2",
           "commit": "d278721a5ab49d614c6ddd2f6675dccc257e702e",
