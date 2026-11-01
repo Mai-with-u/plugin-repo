@@ -18763,7 +18763,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.1.0",
+          "version": "1.1.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "togawasakiko-desuwa.emoji-select-with-text",
@@ -24603,7 +24609,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.4.0",
+          "version": "1.4.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "org.orge-8.budget-pacer",
@@ -27232,7 +27244,7 @@
           "tag": "v1.24.6",
           "commit": "6d9f1b9ca446104e0b03868f6dea61d1ee869e45",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-10-30T06:42:16Z",
           "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.6",
           "release_notes": "### 修复（含社区反馈）\r\n\r\n- **群聊睡前协商改以 bot 发言为基准**（PR #7 反馈的问题确实存在）：此前按\"群内最近 10 分钟有消息\"判定，活跃群永远顺延、午休/夜间闸门实质失效（已实测复现）。现在只在 bot 最近 10 分钟内在该群发过言时才推迟，defer 锚定 bot 最后发言时刻+10 分钟——bot 持续陪聊就顺延，停止发言满 10 分钟即正常拦截；协商期内向 Replyer 注入睡前收尾提示（与私聊 approaching 同义）。\r\n- **群聊贴表情等通知绕过群闸门**（Issue #5）：`is_notify` 消息此前直接放行，深夜被贴表情仍会吵醒。现在通知类消息同样接受群闸门判定，静默期直接阻断。\r\n- **重要日期正则过宽**（Issue #6）：`2.2s`、`1.5倍`、`3/4`、`1.2` 等时长/倍率/比例会被当成月日并直接落库（GIF 解析插件注入的文案每张图多一条假日期）。现在只接受「X月X日/号」中文式与「YYYY.MM.DD/YYYY-MM-DD」年份三段式，前后不紧跟数字/字母/单位；**事件名回落到整段文本（无事件语义）时降级为待确认候选，不再直接写正式表**。\r\n\r\n- 505 项测试通过（+6 回归用例）。\r\n\r\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.5...v1.24.6",
@@ -28016,6 +28028,11 @@
       ],
       "ignored_tags": [],
       "rejected_releases": [
+        {
+          "tag": "v1.24.6",
+          "version": "1.24.6",
+          "error": "已发布版本 1.24.6 的 commit 被修改（actual ddfe02e96f67c852e1c14ebf37795c32aabb3eb8 / expected 6d9f1b9ca446104e0b03868f6dea61d1ee869e45）"
+        },
         {
           "tag": "v1.24.5",
           "version": "1.24.5",
@@ -43592,13 +43609,7 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v0.1.2",
-          "version": "0.1.2",
-          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
-        }
-      ]
+      "rejected_releases": []
     },
     {
       "id": "github.OLDnana1.edge-tts",
@@ -52336,6 +52347,72 @@
           }
         }
       ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "onebot-ws.goqbot-adapter",
+      "manifest_id": "onebot-ws.goqbot-adapter",
+      "repositoryUrl": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.PPPALab.maibot_plugin_fishing",
+      "manifest_id": "github.PPPALab.maibot_plugin_fishing",
+      "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_fishing",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "kamionichan.search_hub",
+      "manifest_id": "kamionichan.search_hub",
+      "repositoryUrl": "https://github.com/kamionichan/maibot-search-hub",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.winincorce-a11y.news-three-elements",
+      "manifest_id": "github.winincorce-a11y.news-three-elements",
+      "repositoryUrl": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-team.planner-social",
+      "manifest_id": "maibot-team.planner-social",
+      "repositoryUrl": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "maibot.maimai-feed-bot",
+      "manifest_id": "maibot.maimai-feed-bot",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+      "mode": "releases",
+      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     }
