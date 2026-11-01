@@ -143,9 +143,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
 
+      - name: Resolve initial review bot identity
+        if: >-
+          contains(github.event.issue.labels.*.name, 'plugin-submission') &&
+          !contains(github.event.issue.labels.*.name, 'plugin-modification') &&
+          !contains(github.event.issue.labels.*.name, 'plugin-removal')
+        id: initial-review-app
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.MAI_REVIEW_APP_ID }}
+          private-key: ${{ secrets.MAI_REVIEW_APP_PRIVATE_KEY }}
+
       - name: Parse issue and add plugin
         id: add-plugin
         uses: actions/github-script@v7
+        env:
+          MAI_REVIEW_BOT_LOGIN: ${{ steps.initial-review-app.outputs.app-slug }}[bot]
         with:
           script: |
             const fs = require('fs');
@@ -156,7 +169,10 @@ jobs:
                 ? 'remove'
                 : 'add';
             
-            const body = context.payload.issue.body;
+            const { data: issue } = await github.rest.issues.get({
+              ...context.repo, issue_number: context.issue.number,
+            });
+            const body = issue.body;
             const optionalValue = match => {
               const value = match?.[1]?.trim();
               return !value || value === '_No response_' || value.startsWith('### ') ? '' : value;
@@ -227,6 +243,23 @@ jobs:
             }
             
             if (requestType !== 'modify') fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
+            if (requestType === 'add') {
+              const { reviewedInitialRelease, recordInitialRelease } = require('./.github/scripts/initial_release.cjs');
+              const plugin = { id: pluginId, repositoryUrl: repoUrl };
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                ...context.repo, issue_number: context.issue.number, per_page: 100,
+              });
+              const target = reviewedInitialRelease({
+                comments: comments.filter(comment => comment.id < context.payload.comment.id),
+                plugin, botLogin: process.env.MAI_REVIEW_BOT_LOGIN,
+              });
+              // Keep the same snapshot across push retries, regardless of new reviews.
+              fs.writeFileSync('initial-release-approval.json', JSON.stringify(target));
+              await recordInitialRelease({ root: process.cwd(), plugin, target,
+                request: async resource => (await github.request('GET ' + resource)).data });
+              core.setOutput('initial_release_version', target?.version || '');
+              if (!target) core.warning('此申请没有可复用的首次 Release 审核快照，仅登记插件，Release 保持独立审核。');
+            }
             
             core.setOutput('plugin_id', pluginId);
             if (requestType === 'modify') {
@@ -306,6 +339,13 @@ jobs:
           }
 
           if (requestType !== 'modify') fs.writeFileSync('plugins.json', JSON.stringify(plugins, null, 2) + '\n');
+          if (requestType === 'add') {
+            const { recordInitialRelease } = require('./.github/scripts/initial_release.cjs');
+            const { createGithubClient } = require('./.github/scripts/sync_plugin_versions.cjs');
+            await recordInitialRelease({ root: process.cwd(), plugin: { id: pluginId, repositoryUrl: repoUrl },
+              target: JSON.parse(fs.readFileSync('initial-release-approval.json', 'utf8')),
+              request: createGithubClient() });
+          }
           })().catch(error => { console.error(error); process.exitCode = 1; });
           EOL
             node -e "JSON.parse(require('fs').readFileSync('plugins.json', 'utf8'))"
@@ -320,6 +360,10 @@ jobs:
             const pluginId = '${{ steps.add-plugin.outputs.plugin_id }}';
             const approvedBy = '${{ steps.check-permission.outputs.approved_by }}';
             const requestType = '${{ steps.add-plugin.outputs.request_type }}';
+            const initialVersion = '${{ steps.add-plugin.outputs.initial_release_version }}';
+            const releaseNotice = initialVersion
+              ? `\n\n已同时收录首次审核的 Release：\`${initialVersion}\`，无需再次审核此版本。`
+              : '';
             
             const titleMap = {
               add: '插件已添加 / Plugin Added',
@@ -338,7 +382,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## 🎉 ${title}\n\n插件 \`${pluginId}\` ${actionText}！\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugins.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
+              body: `## 🎉 ${title}\n\n插件 \`${pluginId}\` ${actionText}！${releaseNotice}\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugins.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
             });
             
             await github.rest.issues.addLabels({

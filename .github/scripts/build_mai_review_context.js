@@ -162,8 +162,18 @@ async function main() {
     },
   });
 
-  const { requestType, repoUrl, releaseCommit, releaseTarget } = resolveRepoUrl(issue);
+  let { requestType, repoUrl, releaseCommit, releaseTarget } = resolveRepoUrl(issue);
+  let initialReleaseTarget = null;
   const pluginRepo = toRepoSlug(repoUrl);
+  if (requestType === 'add' && pluginRepo) {
+    const { selectInitialRelease } = require('./initial_release.cjs');
+    initialReleaseTarget = await selectInitialRelease({ plugin: {
+      id: extractFirst(issue.body || '', [/### 插件 ID \/ Plugin ID\s*\n\s*\n(.+)/]),
+      repositoryUrl: repoUrl,
+    }, request: gh });
+    releaseCommit = initialReleaseTarget.commit;
+    fs.writeFileSync('mai-initial-release-target.json', JSON.stringify(initialReleaseTarget));
+  }
 
   const maintainerComments = comments.filter((comment) => comment.author_association === "MEMBER");
 
@@ -267,6 +277,11 @@ async function main() {
       `- 审核版本：${releaseTarget.version} / ${releaseTarget.commit}`,
       '- 源码：plugin-under-review/；相对已收录基线的变更：plugin-release.patch。', '');
   }
+  if (initialReleaseTarget) {
+    lines.push('## 首次收录的发布版本',
+      `- 审核版本：${initialReleaseTarget.version} / ${initialReleaseTarget.tag} / ${initialReleaseTarget.commit}`,
+      '- plugin-under-review/ 固定到该 Release 的 commit，完整审核此版本。维护者批准登记时将同时收录此版本。', '');
+  }
 
   lines.push(
     "## 建议优先检查的文件",
@@ -287,4 +302,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { resolveRepoUrl };
+module.exports = { resolveRepoUrl, main };

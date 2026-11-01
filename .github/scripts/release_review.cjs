@@ -179,6 +179,11 @@ async function approveRelease({ root, issue, request, botLogin }) {
   assert.ok(!isSupersededRelease(issue), '审核单已被新版取代');
   assert.ok(!issue.labels.some(label => label.name === 'rejected'), '版本已被拒绝');
   const data = parseReleaseIssue(issue);
+  await recordReleaseSnapshot({ root, data, request });
+}
+
+async function recordReleaseSnapshot({ root, data, request }) {
+  data = parseReleaseIssue({ body: `<!-- plugin-release: ${JSON.stringify(data)} -->` });
   const blocked = blockedReleaseVersions(root);
   assert.ok(!isBlockedRelease(blocked, data, data.version), '版本已被永久拒绝');
   const plugins = JSON.parse(fs.readFileSync(path.join(root, 'plugins.json'), 'utf8'));
@@ -202,4 +207,4 @@ async function approveRelease({ root, issue, request, botLogin }) {
   fs.writeFileSync(output, `${JSON.stringify(index, null, 2)}\n`);
 }
 
-module.exports = { createReleaseGate, approveRelease, parseReleaseIssue, blockedReleaseVersions, isBlockedRelease, isSupersededRelease };
+module.exports = { createReleaseGate, approveRelease, recordReleaseSnapshot, parseReleaseIssue, blockedReleaseVersions, isBlockedRelease, isSupersededRelease };

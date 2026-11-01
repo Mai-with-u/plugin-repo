@@ -211,6 +211,15 @@ test('短评缺失或为空仍发布正式审核，正式审核为空仍失败',
   await assert.rejects(runScript('Post review comment', [], {}, { 'codex-review.md': '' }), /codex-review.md 为空/);
 });
 
+test('首次审核评论由工作流在固定头部写入 Release 快照', async () => {
+  const target = { id: 'example.demo', repositoryUrl: 'https://github.com/example/demo', version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40) };
+  const { posted } = await runScript('Post review comment', [], {}, {
+    'codex-review.md': '正式审核结论', 'mai-initial-release-target.json': JSON.stringify(target),
+  });
+  assert.match(posted[0].body, /commit: abc1234 -->\n<!-- codex-mai-initial-release: /);
+  assert.ok(posted[0].body.includes(JSON.stringify(target)));
+});
+
 test('正式结果先保存，短评失败可继续；通知失败后仍收录，缺产物或取消时不收录', () => {
   const saved = workflow.indexOf('      - name: Save structured release review\n');
   const comment = workflow.indexOf('      - name: Run StepFun Mai comment\n');

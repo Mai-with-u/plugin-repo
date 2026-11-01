@@ -266,11 +266,14 @@ jobs:
               core.setFailed('codex-review.md 为空，无法发表评论');
               return;
             }
+            const initialRelease = fs.existsSync('mai-initial-release-target.json')
+              ? require('./.github/scripts/initial_release.cjs').initialReleaseMarker(
+                JSON.parse(fs.readFileSync('mai-initial-release-target.json', 'utf8'))) : '';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: Number(process.env.REVIEW_ISSUE_NUMBER),
-              body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-run: ${{ steps.review-start.outputs.review_run }} -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${review}\n${maimai}\n\n已审核：${{ steps.review-start.outputs.review_count }}次 / 8次`,
+              body: `<!-- codex-mai-review -->\n<!-- codex-mai-review-run: ${{ steps.review-start.outputs.review_run }} -->\n<!-- codex-mai-review-commit: ${{ steps.build-context.outputs.latest_commit }} -->\n${initialRelease}${review}\n${maimai}\n\n已审核：${{ steps.review-start.outputs.review_count }}次 / 8次`,
             });
 
       - name: Save review diagnostics
@@ -293,6 +296,7 @@ jobs:
             mai-review-input.md
             mai-release-target.json
             codex-maimai.md
+            mai-initial-release-target.json
           if-no-files-found: ignore
           retention-days: 7
 
