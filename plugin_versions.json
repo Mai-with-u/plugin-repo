@@ -21209,6 +21209,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "5f33fc735c2771262b30b27fe66a33926cfa1e1a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T21:56:32Z",
+          "release_url": "https://github.com/tsuiraku9/maitu-photo-studio/releases/tag/v0.4.0",
+          "release_notes": "- 新增发送图片大小上限，默认 **1024 KB**。超过上限自动压缩，未超限原样发送；生成原图沿用现有保留规则。\n- 图片大小配置统一使用 **KB**（1 KB = 1024 B）。参考图大小上限最大可设为 **500 KB**，优化相关配置说明。\n- MaiBot WebUI 侧栏统一为一个「麦麦写真」入口，参考图库与任务列表作为页内子页面，优化界面及手机布局。\n- 任务列表支持查看保留期内的全部持久任务，提供筛选、分页、结果预览，以及投递、通知和压缩信息。\n- 优化任务恢复与投递重试，复用已生成的图片和压缩副本，避免重复生图。\n\n升级说明：本次升级会清除以下两个旧配置字段，对应新版配置恢复默认值：\n\n| 被清除的旧字段 | 新版配置默认值 |\n|---|---|\n| `references.max_bytes` | 参考图大小上限：**468.75 KB** |\n| `openai.max_response_bytes` | 响应图片上限：**32768 KB** |\n\n这两项原有的自定义值不会保留，请按需在升级后重新设置。其他同名且类型一致的配置会保留。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maitu.photo-studio",
+            "version": "0.4.0",
+            "name": "麦麦写真",
+            "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
+            "author": {
+              "name": "tsuiraku9",
+              "url": "https://github.com/tsuiraku9"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "homepage": "https://github.com/tsuiraku9/maitu-photo-studio",
+              "documentation": "https://github.com/tsuiraku9/maitu-photo-studio/blob/main/README.md",
+              "issues": "https://github.com/tsuiraku9/maitu-photo-studio/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "message.get_by_id",
+              "message.get_recent",
+              "config.get",
+              "llm.generate",
+              "webui.claim_upload",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger"
+            ],
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "camera",
+                "fallback": "image"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.1",
           "tag": "v0.3.1",
           "commit": "f7026e9d849caa8455014d2f837bd76fc6b9b563",
