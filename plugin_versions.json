@@ -23182,7 +23182,67 @@
       "manifest_id": "mengshouer.analysis-bilibili",
       "repositoryUrl": "https://github.com/493Arceus/maibot-bilibili-analyzer",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.7",
+          "tag": "v1.0.7",
+          "commit": "f8a0bc84e2e5ef20eef8a330a9c9f1c22e6d9bd8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T10:10:27Z",
+          "release_url": "https://github.com/493Arceus/maibot-bilibili-analyzer/releases/tag/v1.0.7",
+          "release_notes": "适配 MaiBot 1.3.x，插件发行版本提升至 1.0.7，宿主兼容范围为 1.2.0 至 1.3.99。配置结构版本 plugin.config_version 保持 1.0.6，避免不必要的配置迁移并保留已有设置。同步更新兼容性说明及现有版本回归测试。发布验证：25 项现有测试全部通过；宿主版本边界通过严格 Manifest 校验；使用 MaiBot 实际 Runner 确认升级后保留全部 14 个分析配置字段。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.7",
+            "name": "Bilibili 内容解析",
+            "description": "自动解析 Bilibili 视频、番剧、直播、专栏和动态，并支持视频搜索",
+            "author": {
+              "name": "493Arceus",
+              "url": "https://github.com/493Arceus"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/493Arceus/maibot-bilibili-analyzer",
+              "homepage": "https://github.com/493Arceus/maibot-bilibili-analyzer",
+              "documentation": "https://github.com/493Arceus/maibot-bilibili-analyzer#readme",
+              "issues": "https://github.com/493Arceus/maibot-bilibili-analyzer/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14,<4"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "id": "mengshouer.analysis-bilibili",
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "video",
+                "background": "#FFFFFF"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
