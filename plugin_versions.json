@@ -55484,6 +55484,57 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "TommyAAKK.antibait",
+      "manifest_id": "TommyAAKK.antibait",
+      "repositoryUrl": "https://github.com/TommyAAKK/maibot-antibait",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "43cd77a18d031e23270eabb63074ea800c89b546",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T14:20:32Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-antibait/releases/tag/1.0.0",
+          "release_notes": "## AI八股拦截 v1.0.0\r\n\r\nMaiBot 插件：拦截 AI 八股、附和服软腔与结构残留，命中后打回 replyer 重生成一次，并在两次结果中择优发出。\r\n\r\n### 功能\r\n\r\n- **三档规则**：总结腔 / 对仗腔 / 自曝 AI / 结构残留等硬规则，加软规则打分，加附和服软腔\r\n- **序列特征**：同款颜文字连发、连续附和服软（跨回复才判得出）\r\n- **赦免层**：玩梗 / 复读 / 回答问题时有条件放行，宁可漏赦不可错赦\r\n- **单次重试 + 择优**：只打回一次，比较两次结果，宁可保留更差的第二份也不发硬伤\r\n- **试运行监控**：dry_run 只记录不拦截，JSONL 落盘 + 汇总报告\r\n- **口癖自动生成**：调模型出候选，按 2%~30% 命中率窗口校验，草稿人工确认\r\n\r\n### 安装\r\n\r\n```bash\r\ngit clone https://github.com/TommyAAKK/maibot-antibait.git <MaiBot>/plugins/antibait\r\n```\r\n\r\n不需重启（Runner 监听插件目录自动重载）。默认 `dry_run = true`，只记录不拦截。\r\n\r\n### 要求\r\n\r\n- MaiBot 1.3.x（实测 1.3.18）\r\n- maibot-plugin-sdk >= 2.9（实测 2.15.0）\r\n- 零第三方依赖\r\n\r\n### 实测\r\n\r\n真实群聊连续运行 9 天 / 665 条回复：命中率 0.8%，live 打回 4 次，修完规则后误杀 0。\r\n抓到过原始 XML 标签漏进正文、工具调用痕迹 `[glass-meme-lookup]` 漏进正文这类真 bug。\r\n\r\n### 测试\r\n\r\n145 项回归测试：`python tests.py`\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "TommyAAKK.antibait",
+            "version": "1.0.0",
+            "name": "AI八股拦截",
+            "description": "拦截 AI 八股、附和服软腔与结构残留，命中后打回 replyer 重生成一次，并在两次结果中择优发出",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-antibait"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
