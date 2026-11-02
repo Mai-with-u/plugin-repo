@@ -56242,6 +56242,65 @@
             },
             "changelog": "CHANGELOG.md"
           }
+        },
+        {
+          "version": "2.4.4",
+          "tag": "v2.4.4",
+          "commit": "4823b2880a35830d0b42d995f357d911b4ea4b69",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T02:26:51Z",
+          "release_url": "https://github.com/42yoru/lolicon-setu-plugin/releases/tag/v2.4.4",
+          "release_notes": "## 修复\n\n- **改图片规格时 WebUI 报 `E_BAD_PAYLOAD`**：\n\n  ```\n  插件配置校验请求失败: [E_BAD_PAYLOAD]\n  1 validation error for LoliconSetuConfig\n  features.size_list  Input should be a valid list\n  [type=list_type, input_value='original', input_type=str]\n  ```\n\n  **原因**：`config_ui.py` 把 `size_list` 的 `ui_type` 强制设成了 `textarea`。\n  SDK 对 array 字段推导出的默认控件是 `list`（前端渲染成列表编辑器、提交数组），\n  改成 textarea 后前端把输入当字符串提交，后端 `List[str]` 校验直接失败。\n\n  `proxy_candidates` 是同一类字段，之前恰好没被覆盖，所以一直是好的 ——\n  这也是为什么只有改图片规格时才出问题。\n\n## 细节\n\n- 新增一组**控件类型匹配测试**，防止再犯：\n  - array 字段必须用 `list` / `tags` 控件，不能是 `textarea`\n  - boolean 用 `switch`、数字用 `number`\n  - array 的默认值必须是列表\n\n  已验证这组测试能抓出问题：临时恢复 textarea 覆盖后立刻失败。\n\n功能行为无变化，只是配置页控件修好了。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.lolicon-setu",
+            "version": "2.4.4",
+            "plugin_type": "media",
+            "name": "Lolicon 色图插件 (Lolicon Setu)",
+            "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#FCF3D9"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+              "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+              "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+              "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
         }
       ],
       "ignored_tags": [],
