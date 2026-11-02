@@ -55299,6 +55299,58 @@
           "error": "发布版本改变了插件 ID"
         }
       ]
+    },
+    {
+      "id": "shinoyuki.memdiag",
+      "manifest_id": "shinoyuki.memdiag",
+      "repositoryUrl": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "b2882a936c6e6d3d4b1b2c5b5de8522b92d49695",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T21:12:01Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/releases/tag/v0.1.0",
+          "release_notes": "首个版本。\n\n- 从插件 Runner 进程外周期采集 Worker 内存：Linux 读 `/proc`，Windows 用进程 API（启动器式 venv、\n  解释器副本式 venv 与系统 Python 都能认出 Worker），macOS 用 libproc（主指标是 `phys_footprint`）；\n  子进程按可执行文件名汇总，只在 Linux 上按 Worker 的直接子进程认插件 Runner，不从命令行取任何文本。\n- 趋势记录：`smaps_rollup`、glibc 线程堆估计、fd 分类、cgroup v1/v2 用量与 OOM 计数（按 `mountinfo` 找挂载点，\n  叠层挂载取可见的一层）、关键文件与目录大小。一轮没写成时窗口并进下一条记录。\n- WebUI 端口按 socket inode 归属到 Worker 的连接与发送队列，识别零窗口探测中的停读客户端。\n- 主库只读统计：每个趋势节拍取各表最大 id 与新增消息数，每小时取总量与近 30 天消息量；每条语句有时限，\n  插件停止时正在执行的查询会被打断。`meta` 记录 SQLite 版本（3.43 之前黑话证据体量按字符计）。\n- RPC 探测每轮最多等 5 秒且不取消慢请求：Worker 主循环卡住时样本照常记录，挂起时长记为 `rpc_pending_s`。\n  单个请求的超时放宽到 10 分钟，超过宿主默认 30 秒的卡顿也能记下真实耗时。\n- 样本按大小轮转的 JSONL，每行 fsync；轮转中断（Windows 上文件被占用）后从中断处继续，不多丢备份。\n  Worker 退出或被替换时写 `stop` 记录并停止；写失败标记本身失败只记日志，不绕过连续失败上限；\n  开始采集时写 `meta` 失败同样按连续失败计。\n- 重载后从趋势文件恢复同一 Worker 的增长历史，刚轮转过时多读一个旧文件。\n- 配置变更先解析目标再重启采集，解析失败时原来的采集按旧配置照常运行，摘要与诊断包如实反映采集在用的配置，\n  摘要注明未按新配置重启，白名单不受影响；与卸载并发时卸载会等旧采集真正结束。\n- `/memdiag` 回复摘要，`/memdiag pack` 在后台生成诊断包，旧包删不掉时新包照常生成并在回复里注明；\n  命令需要宿主放行（受保护命令），可再按用户收窄。\n- 兼容 MaiBot 1.2.3 至 1.3.x、maibot-plugin-sdk 2.8.0 及以上；WebUI 端口 v1.3.16 起读 `http.port`，更早读 `webui.port`；\n  Linux 内核 4.5 之前从 `statm` 推算匿名内存。\n  真实宿主的端到端验证只在 Linux 上做过（官方 Docker 镜像 1.2.3、1.3.8、1.3.17、1.3.19 与直接运行的 1.2.3），\n  Windows 与 macOS 只验证过采集代码。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyuki.memdiag",
+            "version": "0.1.0",
+            "name": "内存诊断",
+            "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+              "issues": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
