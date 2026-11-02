@@ -55235,6 +55235,70 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.zerlight.reply-integrity",
+      "manifest_id": "github.zerlight.reply-integrity",
+      "repositoryUrl": "https://github.com/Zerlight/maibot-reply-integrity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "953afca624f361fa4187729134b0d02bcbf12b68",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T08:40:46Z",
+          "release_url": "https://github.com/Zerlight/maibot-reply-integrity/releases/tag/v1.3.0",
+          "release_notes": "Reply Integrity now focuses on passing Planner facts to the Replier and separating background notes from conversational style.\n\n- Removed the response post-processing hook and `bypass_post_processing` setting. Replies now follow MaiBot's own post-processing settings.\n- Configuration migration to 1.3.0 removes the retired field while preserving the remaining settings.\n- Updated both READMEs with Host setup guidance and the limits of Planner-visible tool observations.\n\n**Upgrade:** If you relied on the plugin to preserve generated text, disable the Host's global response post-processing switch in WebUI or set this in `bot_config.toml`:\n\n```toml\n[response_post_process]\nenable_response_post_process = false\n```\n\nDisabling only the splitter is not equivalent. The plugin does not change Host configuration.\n\nCompatibility: MaiBot **1.3.19**, SDK **2.20.0**. Plugin ID: `github.zerlight.reply-integrity`.\n\nValidation: **7 unit tests passed**, Ruff passed. The Host integration test was skipped because the full Host runtime was unavailable; live upgrade was not tested.\n\n---\n\nReply Integrity 现在专注于 Planner 事实传递与 Replier 文风隔离。\n\n- 移除回复后处理 Hook 和 `bypass_post_processing` 设置，回复后处理统一遵循 MaiBot 宿主配置。\n- 配置自动升级至 1.3.0，删除旧字段并保留其余设置。\n- 同步更新中英文 README，补充宿主设置建议及工具结果可见性边界。\n\n**升级提示：** 如果此前依赖插件保留生成原文，请在 WebUI 关闭宿主「回复后处理」总开关，或使用上面的 TOML 配置。只关闭「分句」并不等效；插件不会替你修改宿主配置。\n\n兼容 MaiBot **1.3.19** / SDK **2.20.0**，插件 ID 保持 `github.zerlight.reply-integrity`。\n\n验证：**7 项单元测试通过**，Ruff 通过。宿主集成测试因缺少完整运行环境而跳过，未验证在线升级。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zerlight.reply-integrity",
+            "version": "1.3.0",
+            "name": "Reply Integrity",
+            "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
+            "author": {
+              "name": "Reply Integrity",
+              "url": "https://github.com/Zerlight/maibot-reply-integrity"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Zerlight/maibot-reply-integrity"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.svg"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.2.0",
+          "version": "1.2.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
     }
   ]
 }
