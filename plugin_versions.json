@@ -54947,6 +54947,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "c67738d9f418ef3def7143b4d8996412b9d6ff39",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T16:19:26Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Character-Disguise/releases/tag/v1.0.2",
+          "release_notes": "## 🚀 v1.0.2: 麦麦的人类伪装计划（消除自我指涉、XML伪标签终结与自然水群接话）\n\n本次更新直击大模型日常水群的深层“AI味”痛点，彻底切断身份自证辩解，终结 XML 伪标签裸露，打造真人群聊呼吸感！\n\n### ✨ 核心亮点与修复\n\n1. **🪞 消除自我指涉（高情商不聊自己）**：\n   - 越解释是真人，越显得像机器人！提示词彻底拔除“AI、机器人、底座、系统指令”等锚点词汇；\n   - 引导模型建立真人群友心态：群里聊模型、框架、技术，当成别人的八卦听，不往自己身上扯，绝不跳出来自证辩解。\n\n2. **🏷️ XML 伪标签终结者（防裸露穿帮）**：\n   - 提示词严令禁止模型在正文手写任何 XML/HTML 伪标签；\n   - 后置 `strip_xml_tags` 强力剥离残留标签，全面兼容带属性与未闭合伪标签，保障聊天窗口 100% 呈现干净纯文本。\n\n3. **🫧 自然接话（拒绝机械高频引用）**：\n   - 真人群聊普遍不习惯每句都带引用。移除提示词层面的强制引用诱导，将引用控制权交还给底层动态概率算法；\n   - 杜绝“每句必引用”的大模型一眼假破绽，还原真实群友随手打字接话的松弛感。\n\n4. **💥 8 大真实水群场景直观对比文档**：\n   - GitHub README 全新改版，用直观对比表清晰呈现做题家、句号怪、长篇小作文、叫闭嘴还顶嘴等痛点的解决效果，干货突出零废话。\n\n5. **🧪 完备回归测试与零泄密保障**：\n   - 全量 26 项单元测试在 Python 3.13 真实运行环境下全部 100% 绿灯 PASS；\n   - 严格通过脱敏与安全自检，零硬编码敏感凭据。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.character-disguise",
+            "version": "1.0.2",
+            "name": "麦麦的人类伪装计划",
+            "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+              "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-check"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "fc4280ec00e235d446d3b428b9ef0cc9b9f830c8",
