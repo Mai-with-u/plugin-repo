@@ -55535,6 +55535,64 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "qqbot-music.sing",
+      "manifest_id": "qqbot-music.sing",
+      "repositoryUrl": "https://github.com/aa1805370178-dot/qqbot-music-maibot",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "3f75fa306ec57966744d80cd5ead48f23e2697e9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T09:04:23Z",
+          "release_url": "https://github.com/aa1805370178-dot/qqbot-music-maibot/releases/tag/1.0.0",
+          "release_notes": "首个版本",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "QQ 机器人唱歌（qqbot-music）",
+            "description": "给麦麦一个 sing 工具：用你配置的音色唱歌、发语音。需要另外运行 qqbot-music 唱歌服务（https://github.com/aa1805370178-dot/qqbot-music）。",
+            "author": {
+              "name": "小小墨",
+              "url": "https://github.com/aa1805370178-dot"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/aa1805370178-dot/qqbot-music-maibot",
+              "homepage": "https://github.com/aa1805370178-dot/qqbot-music",
+              "documentation": "https://github.com/aa1805370178-dot/qqbot-music-maibot#readme",
+              "issues": "https://github.com/aa1805370178-dot/qqbot-music-maibot/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "config.get"
+            ],
+            "id": "qqbot-music.sing",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
