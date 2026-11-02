@@ -55658,6 +55658,71 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "chartyr.devinsearch",
+      "manifest_id": "chartyr.devinsearch",
+      "repositoryUrl": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "4ebcf522a1bf7b171b264d32ab204415b99962aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T14:54:39Z",
+          "release_url": "https://github.com/CharTyr/MaiBot-Devin-WebSearch/releases/tag/v0.1.0",
+          "release_notes": "Devin web search + fetch plugin for MaiBot.\n\n- devin_search: real-time web search (1-10 results)\n- devin_fetch: fetch page text via r.jina.ai + trafilatura fallback\n- Admin commands: /devin_login /devin_code /devin_status /devin_logout /devin_cancel\n\nTested on MaiBot 1.3.16 / SDK 2.16.0.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.devinsearch",
+            "version": "0.1.0",
+            "name": "DevinSearch",
+            "description": "Devin 联网搜索：用免费 Devin 账号授权后，给 Planner 一个 devin_search 工具做实时网络检索",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "homepage": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "documentation": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "issues": "https://github.com/CharTyr/MaiBot-Devin-WebSearch/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "tool.register",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "search"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
