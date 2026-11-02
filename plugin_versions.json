@@ -54382,6 +54382,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.28.0",
+          "tag": "v1.28.0",
+          "commit": "bcf0f9d13ef3dcbd36157d035390ba26f5673026",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T08:59:00Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.28.0",
+          "release_notes": "### 新增：插件自主识别图片\n\n引用图片时，插件**自己调用视觉模型**取得画面内容，不再依赖宿主是否识别过。\n\n#### 背景\n\n宿主的图片描述只在图片入库时生成一次，之后不会补：\n\n- 表情包走「标签路径」，`description` 只有情绪标签（`大笑,笑死,刷手机`），**没有画面**\n- 普通图片若入库时 VLM 没跑（`vlm_processed=0` 且 `description` 为空），再也没有机会\n\n这两种情况下 `processed_plain_text` 只剩 `[image]` / `[emoji]` 占位符。\n\n#### 实现\n\n宿主 `llm.generate` 的 `prompt` 支持消息列表，图片片段格式为\n`{\"type\": \"image\", \"image_format\": ..., \"image_base64\": ...}`。据此：\n\n- `_recognize_image()`：读图片文件、转 base64、以 `task_name=\"vlm\"` 调视觉模型\n- `_find_image_file()` / `_mbot_root()`：从 `ctx.paths.data_dir` 反推 MaiBot 根目录，\n  优先用 `images.full_path`，再按 `data/images`、`data/emoji` + hash 兜底\n- 单张上限 4 MB；提示词要求「客观描述主体、场景、关键文字，不评论」\n\n#### 兜底顺序\n\n| 顺序 | 来源 |\n| --- | --- |\n| 1 | `images` 表已有描述 |\n| 2 | **插件自建识别**（新增） |\n| 3 | 表情包标签（无画面时当情绪语境） |\n\n#### 图文结合\n\n引用图片时若同时写了素材，两者**合并**而非覆盖：\n\n```\n某项目团队本周开展版本联调，准备上线\n\n（另附一张现场图片，画面内容：两个黄色圆润角色正面对峙，配有血条与计时44。\n请把文字描述与画面内容结合起来写同一条新闻。）\n```\n\n实测引用格斗游戏开发界面图 + `该团队本周进行版本联调，准备上线 （甲一，乙二，丙三）`，\n正文同时包含文字线索（版本联调 / 准备上线）、画面线索（黄色角色 / 血条 / 计时44）\n与自定义名单（甲一 / 乙二 / 丙三）。\n\n#### 名单替换确认\n\n| 场景 | 结果 |\n| --- | --- |\n| 引用图片 + 只给名单 | 素材来自图片，名单生效 |\n| 引用图片 + 文字素材 + 名单 | 三者都在提示词里 |\n| 引用图片 + `（张三，李四）` | 「死亡名单共 2 人」，默认三人不出现 |\n\n#### 文档\n\nREADME 新增「图片识别」章节，说明为什么要自己识别、如何定位文件与调用视觉模型、\n兜底顺序、图文结合机制与依赖（需要 `vlm` 视觉模型任务）。\n\n#### 验证\n\n离线自检 76 项全过，覆盖图片识别、图文结合、名单替换三类场景。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.28.0",
+            "name": "新闻三要素",
+            "description": "把素材或图片改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用文字/图片取素材（插件自主调用视觉模型识别画面）、图文结合、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "database.query"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "newspaper",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
           "version": "1.23.3",
           "tag": "v1.23.3",
           "commit": "41c85e49a2e0ae9283d601145463fdec5ee9497e",
