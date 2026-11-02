@@ -51849,6 +51849,116 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "811eaeb6933850de16ce39eafcacb923d8907306",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T08:35:07Z",
+          "release_url": "https://github.com/lightningXMS/MaiLifeSuite-----/releases/tag/v1.3.0",
+          "release_notes": "本版本针对\"工作日之间、周末之间日程高度雷同，`/麦麦重生日程` 前后仍逐字相近\"的问题，围绕**随机性与反重复**做了系统强化。全部改动集中于 `[schedule]` 新增设置，不影响既有功能，无需迁移配置。\n\n## 新增设置（WebUI 可调）\n\n| 设置 | 默认 | 说明 |\n| --- | --- | --- |\n| 日程生成温度 | 0.75 | 生成采样温度（0–1.5）：越高内容越多样，越低越稳定趋同；推荐 0.7～0.85。此前版本未向模型传温度（实际固定 0.5） |\n| 每日特色提示词（可选） | 空 | 周一到周日各一句特色引导。**单行 `|` 分段**写法：共 7 段从左到右对应周一到周日，某段留空（两个 `|` 连写）或只写 `-` 表示该天使用内置默认；整项留空全部用内置默认 |\n| 启用内置灵感池 | 开 | 探索笔记/书架素材不足时自动补充随机日常活动灵感 |\n| 灵感池抽取数量 | 3 | 每次生成随机抽取的内置灵感条数（1–6） |\n| 内置灵感池（活动灵感） | 32 条默认 | 灵感列表可自由增删改（黑白名单同款列表样式）；清空全部条目恢复出厂默认 |\n\n每日特色提示词示例：`早点收心||下午给自己买杯奶茶||||晚上去打球` = 周一\"早点收心\"、周三\"下午给自己买杯奶茶\"、周日\"晚上去打球\"，其余天使用内置默认。（MaiBot WebUI 输入框不支持换行，因此不用多行格式。）\n\n## 反重复强化\n\n- **生成硬约束**：同一活动主题最多连续两天，之后必须换新主题或明显推进；抽取到灵感时至少一条落实为当天主要活动。\n- **`/麦麦重生日程` 反重复**：重生成时把最近几天日程从\"可参考\"改为\"必须避开\"的黑名单——只允许沿用时间结构，主题/地点/内容必须明显不同，严禁复用已出现的活动描述。\n- **归档兜底去重**：生成屡败后的随机归档兜底排除今天与最近两天的存档（仅近期存档可用时才回退），避免兜底结果与隔壁天逐字雷同。\n\n## 文档修正（避免歧义）\n\n- README 配置参考补齐 `[announce]` 活动播报段（17 项），修正 `[rest_gate]`（补 `group_whitelist`，21 项）、`[life]`（移除已于 v1.2.1 删除的 `profiles`，17 项）、`[schedule]`（48 → 56 项）的陈旧计数与缺失字段；配置总览更新为 32 段 341 项。\n\n## 兼容性与验证\n\n- 宿主与 SDK 兼容区间不变：MaiBot 1.3.6–1.3.99，SDK `>=2.15.0, <2.30`。\n- 全量测试 **460 用例通过**（14 项跳过，含 127 子测试），新增 9 个日程生成回归用例（温度透传、特色提示词分段解析、灵感池注入/关闭/自定义、逾期重启补生成、重生日程黑名单措辞、兜底排除近期归档、短横线占位符）。\n\n**升级方式**：覆盖安装插件目录后重载即可；无配置迁移与数据结构变更。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life-suite",
+            "version": "1.3.0",
+            "name": "MaiLifeSuite（麦麦生活套件）",
+            "description": "Mai_life 与 MaiTrace 的合并插件：持续生活模拟、消息体验、联网见闻、书柜创作，以及每日作息、临时约定与 QQ 空间分享。",
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png"
+              }
+            },
+            "author": {
+              "name": "lightning",
+              "url": "https://github.com/lightningXMS"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+              "homepage": "https://github.com/lightningXMS/MaiLifeSuite-----/tree/master",
+              "issues": "https://github.com/lightningXMS/MaiLifeSuite-----/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.29.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "json5",
+                "version_spec": ">=0.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "chinese-calendar",
+                "version_spec": ">=1.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lunar-python",
+                "version_spec": ">=1.4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.49,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "config.get_plugin",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_private_streams",
+              "chat.get_group_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "chat.open_session",
+              "emoji.get_by_description",
+              "database.get",
+              "api.call",
+              "api.list",
+              "knowledge.search",
+              "render.html2png",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.2",
           "tag": "v1.2.2",
           "commit": "80c2cf056b063ec481de4aeb59bdf41b89b8d97a",
