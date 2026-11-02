@@ -55184,6 +55184,57 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "Sol.trusted_identity",
+      "manifest_id": "Sol.trusted_identity",
+      "repositoryUrl": "https://github.com/MWT-D0ZUV/Sol_trusted_identity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "0c2062e6073e925c5ef56954df95303f86aaa1d6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T17:24:03Z",
+          "release_url": "https://github.com/MWT-D0ZUV/Sol_trusted_identity/releases/tag/v0.4.1",
+          "release_notes": "# Sol.trusted_identity 0.4.1\r\n\r\n本次修正插件中心的 Release 收录兼容问题，身份核验、关注称呼和配置迁移逻辑与 0.4.0 一致。\r\n\r\n- 仓库及安装包均不包含根目录 `config.toml`，改由宿主根据现有 `config_model = Config` 配置模型生成默认配置。\r\n- 默认仍关闭，账号、称呼和关注名单仍为空；升级请保留自己的本地配置。\r\n- 默认配置测试改为验证 SDK 配置归一化的结果，不依赖已移除的配置文件。\r\n- 同步版本说明、忽略规则和所有文件校验和。\r\n- 安装包：`Sol_trusted_identity-0.4.1-portable.zip`。验证环境仍为 Host 1.3.19 / SDK 2.21.0。\r\n\r\n发布时新建标签 `v0.4.1`，使其指向包含本次全部修订的提交；旧标签 `v0.4.0` 保留。仅修改 main 或替换旧 Release 附件，不会改变旧标签固定指向的源码。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Sol.trusted_identity",
+            "name": "精确身份与群聊特别关注",
+            "version": "0.4.1",
+            "description": "核验当前QQ回复目标；绑定账号及每个关注账号可独立填写称呼，默认留空。不授予管理员或工具权限。",
+            "author": {
+              "name": "Sol",
+              "url": "https://github.com/MWT-D0ZUV/Sol_trusted_identity"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/MWT-D0ZUV/Sol_trusted_identity"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
