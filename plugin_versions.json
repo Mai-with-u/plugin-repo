@@ -56405,6 +56405,61 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "af71b0a7767056c6064d26e8f3f01bdefd6cd07c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T15:16:35Z",
+          "release_url": "https://github.com/CharTyr/MaiBot-Devin-WebSearch/releases/tag/v0.2.0",
+          "release_notes": "Optional WebUI pages (login status + search history), config-gated off by default.\n\n- New webui.json v2: status (workspace) + history (sidebar) pages\n- [webui] config toggles page content via API enabled flag (default false = placeholder)\n- 4 @API endpoints (webui_status/webui_history/webui_logout/webui_clear_history)\n- SSRF guard on devin_fetch: blocks private/loopback/CGNAT hosts\n- Fix: tool/command/API methods were dead code inside _fetch_page_text (indentation bug)\n\nTested on MaiBot 1.3.16 / SDK 2.16.0 — plugin loads, devin_search returns live results.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.devinsearch",
+            "version": "0.2.0",
+            "name": "DevinSearch",
+            "description": "Devin 联网搜索：用免费 Devin 账号授权后，给 Planner 一个 devin_search 工具做实时网络检索",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "homepage": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "documentation": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+              "issues": "https://github.com/CharTyr/MaiBot-Devin-WebSearch/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "tool.register",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "4ebcf522a1bf7b171b264d32ab204415b99962aa",
