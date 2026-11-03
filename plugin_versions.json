@@ -54137,6 +54137,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "fe7f8df6a2d7e709f597a877ff34bd0475e481b1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:04:00Z",
+          "release_url": "https://github.com/Zerlight/maibot-reply-integrity/releases/tag/v1.3.1",
+          "release_notes": "Reply Integrity 1.3.1 明确 Planner 与 Replier 的职责，并扩大已验证的版本覆盖范围。\n\n- Planner 负责工具执行与调度，Replier 负责组织回复；提示词要求执行状态有事实依据，避免将后台计划或禁令当成执行结果与对外承诺。\n- 兼容范围扩大为 MaiBot `1.2.0–1.3.19`、SDK `2.7.1–2.21.0`；同时仍须满足宿主自身的 SDK 依赖要求。\n- 修复 MaiBot `1.3.1–1.3.3` 合并回复原因与参考时，旧草稿残留在聊天历史末尾的问题。\n- Manifest 作者更新为 `Zerlight`，更新中英文 README 与公开版本记录。\n\n配置字段与默认值不变，保留现有 `config.toml` 即可升级。`config_version` 仍为 `1.3.0`。\n\n验证：16 个已发布 SDK 版本均通过现有 7 项单元测试；26 个 MaiBot 正式版本完成 Hook 契约与常规文本提示词构建检查；MaiBot `1.3.19` / SDK `2.20.0` 的隔离环境通过 8 项测试及 manifest 校验。旧版完整部署、多模态与复古模板未逐组合验证，提示词约束也不能保证每次生成都严格遵守。\n\nEnglish:\n\n- Clarifies Planner execution and Replier expression roles, requiring evidence for execution status and discouraging promises based on internal operational notes.\n- Supports MaiBot `1.2.0–1.3.19` and SDK `2.7.1–2.21.0`, subject to the Host's own SDK dependencies.\n- Removes trailing legacy reply reasons on MaiBot `1.3.1–1.3.3`.\n- Updates the manifest author to `Zerlight` and refreshes bilingual documentation.\n\nExisting settings and defaults are preserved; the configuration schema remains `1.3.0`. Validation includes the 7-test unit suite on 16 published SDK versions, prompt-contract checks across 26 Host releases, and 8 tests plus manifest validation in an isolated MaiBot `1.3.19` / SDK `2.20.0` environment. Older full deployments, multimodal paths and retro templates were not tested across every combination; prompt policies remain soft constraints.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zerlight.reply-integrity",
+            "version": "1.3.1",
+            "name": "Reply Integrity",
+            "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
+            "author": {
+              "name": "Zerlight",
+              "url": "https://github.com/Zerlight"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Zerlight/maibot-reply-integrity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.svg"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "953afca624f361fa4187729134b0d02bcbf12b68",
