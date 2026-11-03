@@ -53287,6 +53287,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "3c71a705bd2cd1c51689f16e03141f1d3ea57f21",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:39:58Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Character-Disguise/releases/tag/v1.0.3",
+          "release_notes": "## 🚀 v1.0.3: 麦麦的人类伪装计划（多插件命令畅通放行、精准刷屏防御与死代码清理）\n\n本次更新彻底解除了入站拦截管线对其他插件命令的抢占，全面打通多插件命令生态，同时保持对第三方机器人报错刷屏与恶意注入的严密防御！\n\n### ✨ 核心修复与优化 (Commit: 9839532 / 3c71a70)\n\n1. **🔌 插件指令全面畅通放行**：\n   - 根除入站拦截总线对 `/dr`、`/help`、`/play`、`/xhh` 等前缀插件指令的误杀；\n   - 让 MaiBot 命令处理器（`_process_commands`）及各功能扩展插件正常响应，实现多插件生态无缝兼容。\n\n2. **🛡️ 精准防御机器人报错刷屏与恶意注入**：\n   - 保留对第三方机器人系统报错、状态打卡刷屏（`权限不足以使用此指令` 等）的静默拦截，防止污染模型上下文；\n   - 严格拦截恶意 SQL 注入与 XSS 攻击代码（`code_injection`）；\n   - 保留闭嘴词物理静默机制（`mute_keyword`）。\n\n3. **🧼 代码整洁度与文档全面同步**：\n   - 清理未使用的旧命令正则死代码；\n   - 中英文双语 README 场景对比表、武器库、配置示例与全闭环管线流程图全面对齐；\n   - 全量 26 项单元测试 100% 绿灯 PASS。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.character-disguise",
+            "version": "1.0.3",
+            "name": "麦麦的人类伪装计划",
+            "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+              "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-check"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.2",
           "tag": "v1.0.2",
           "commit": "c67738d9f418ef3def7143b4d8996412b9d6ff39",
