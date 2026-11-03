@@ -51750,6 +51750,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "0.2.0",
+          "commit": "9435d4444db792338b1b05a11f47521ebaef658f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:36:04Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.2.0",
+          "release_notes": "这一版让玩手机更可控、也更像真人：你可以随时接管手机，连不上时 WebUI 里看得到原因和重连进度；她会记住看过什么、不重复看同一个视频，B 站从首页和搜索点开的视频分别按对的方式看。\r\n\r\n### 主要功能\r\n\r\n- **人工接管**：WebUI「我来操作 / 交还控制」或 `/手机 接管`、`/手机 交还`。接管后她马上停手，晚回来的模型结果作废，自动玩不会抢；交还后先重新看画面再决定。\r\n- **连接状态**：WebUI 显示连上了、重连中（第几次、还剩多久）、要解锁、要点允许、配置有问题；开始时连不上在 20 秒内重试，锁屏和配置错误直接说明原因，开始失败不占次数。\r\n- **每个应用单独设置**：`step_interval_seconds`、`max_minutes`、`reopen_on_start`、`go_home_after`；旧的 `keep_open` 照常生效，应用设置绕不过全局上限。\r\n- **内容记忆**：跨次记住画面上确认看到的小说章节、歌，对方亲口说的兴趣（新工具 `remember_for_phone`），以及上次没做完的事；决定玩什么时参考，WebUI 可查看来源和删除。\r\n- **失败诊断**：失败的步骤保存当时的画面（标出要点的位置或滑动方向）和计划动作、目标、结果，WebUI 里查看；最多 30 条、3 天，可一键清理。\r\n- **调用统计和预算**：记录每次的模型调用次数（含失败）、宿主返回的 token 和各阶段耗时；新增单次、每天的模型调用预算，用完正常收尾。\r\n- **卡住检测**：同一处连点无效、两个画面来回切、同样的失败反复出现时结束这次，看小说、看视频、等对方不会误判。\r\n- **短视频、长视频分开看**：`wait` 带上 `video`（short / long），各有自己的节奏；看视频时不再因为画面变化被叫醒，长视频能一段一段看下去。\r\n- **B 站视频页自动识别**：认出首页点开的竖屏播放器和搜索点开的视频详情页，分别告诉她怎么看、滑动后视频换没换；详情页的标题插件自己读，B 站标着「最近看过」的卡片也不再点开。\r\n- **看过的视频不再看**（`play.skip_watched_videos`）：记住 30 天内看过的视频，列表里不点开、播放器里刷到就划走；对方点名要看的不拦。\r\n\r\n### 细节\r\n\r\n- 前台应用：分清「这台设备给不出前台」和「这一步暂时没认出来」，认不出时不调用模型、不操作；后者恢复后照常继续。\r\n- 记录：每次去过的应用和各待了多久、调用统计写进历史；旧的历史文件照常读取。\r\n- 内容记忆：看过的视频单独保存（最多 300 个），不会挤掉对方说过的兴趣；WebUI 可单独清空看过的视频。\r\n- 聊天：卡住、预算用完、暂停或接管太久结束时，玩完提起的说法不再一律是「被叫停了」。\r\n- WebUI：新增连接、调用统计、去过的应用、诊断、内容记忆等区域；新接口 `webui_takeover`、`webui_release`、`webui_diagnostic`、`webui_clear_diagnostics`、`webui_memory`、`webui_memory_delete`、`webui_memory_clear`。\r\n- 设备：adb 未授权、路径不对、多台设备未指定等配置问题不再反复重试；WDA 连不上的提示同时写出无线和有线两种启动方式。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.2.0",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.1.3",
           "tag": "0.1.3",
           "commit": "7020a70193bb49eb2d18e590adeb7ecfcf283a89",
