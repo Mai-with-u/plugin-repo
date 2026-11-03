@@ -94,64 +94,6 @@
       ]
     },
     {
-      "id": "Schxar.MaiBot-DoubaoSearch-Plugin",
-      "manifest_id": "Schxar.MaiBot-DoubaoSearch-Plugin",
-      "repositoryUrl": "https://github.com/schxar/doubao_search_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "minecraft1024a.MaiBot-Send-Image-Plugin-SF",
-      "manifest_id": "minecraft1024a.MaiBot-Send-Image-Plugin-SF",
-      "repositoryUrl": "https://github.com/minecraft1024a/MaiBot-Send-Image-Plugin-SF",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A0000Xz.MaiBot-Curfew-Plugin",
-      "manifest_id": "A0000Xz.MaiBot-Curfew-Plugin",
-      "repositoryUrl": "https://github.com/A0000Xz/MaiBot-Curfew-Plugin",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "0.11.0",
-          "version": "0.11.0",
-          "error": "Tag 与 manifest.version 不一致"
-        },
-        {
-          "tag": "0.9.1",
-          "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "A0000Xz.MaiBot-AntiPoke-Plugin",
-      "manifest_id": "A0000Xz.MaiBot-AntiPoke-Plugin",
-      "repositoryUrl": "https://github.com/A0000Xz/MaiBot-AntiPoke-Plugin",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "0.11.0",
-          "version": "0.11.0",
-          "error": "Tag 与 manifest.version 不一致"
-        },
-        {
-          "tag": "0.9.1",
-          "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
       "id": "tts_voice_plugin",
       "manifest_id": "xuqian13.tts-voice-plugin",
       "repositoryUrl": "https://github.com/xuqian13/tts_voice_plugin",
@@ -215,90 +157,6 @@
           "tag": "v2.0.0",
           "version": "2.0.0",
           "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "xuqian13.music_plugin",
-      "manifest_id": "靓仔.music_plugin",
-      "repositoryUrl": "https://github.com/xuqian13/music_plugin",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.2",
-          "tag": "v1.0.2",
-          "commit": "351ecf6f72d5a67c9e13351e1bd9dcaccb63c129",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2025-10-12T09:09:48Z",
-          "release_url": "https://github.com/xuqian13/music_plugin/releases/tag/v1.0.2",
-          "release_notes": "删除action组件，添加qq音乐接口，快捷选择，智能推荐功能",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "网易云音乐点歌插件",
-            "version": "1.0.2",
-            "description": "基于网易云音乐API的智能点歌插件，支持音乐搜索和点歌功能。",
-            "author": {
-              "name": "靓仔",
-              "url": "https://github.com/xuqian13"
-            },
-            "license": "AGPL-v3.0",
-            "host_application": {
-              "min_version": "0.9.0",
-              "max_version": "1.0.0"
-            },
-            "keywords": [
-              "音乐",
-              "点歌",
-              "网易云",
-              "music",
-              "song",
-              "播放",
-              "搜索",
-              "娱乐"
-            ],
-            "categories": [
-              "Entertainment",
-              "Music",
-              "Utility"
-            ],
-            "repository_url": "https://github.com/xuqian13/music_plugin",
-            "default_locale": "zh-CN",
-            "locales_path": "_locales"
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v1.0.1",
-          "version": "1.0.1",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
-        },
-        {
-          "tag": "v1.0.0",
-          "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml\nTag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "khiqwq.silent_mode_plugin",
-      "manifest_id": "khiqwq.silent_mode_plugin",
-      "repositoryUrl": "https://github.com/khiqwq/MaiBot_silent_Plugins",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "0.10.0",
-          "version": "0.10.0",
-          "error": "Tag 与 manifest.version 不一致"
-        },
-        {
-          "tag": "0.8.0",
-          "version": "0.8.0",
-          "error": "Tag 与 manifest.version 不一致"
         }
       ]
     },
@@ -882,59 +740,6 @@
       "rejected_releases": []
     },
     {
-      "id": "Heximiao.acpoke_plugin",
-      "manifest_id": "Heximiao.acpoke_plugin",
-      "repositoryUrl": "https://github.com/Heximiao/acpoke_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Neorestim.poke_plugin",
-      "manifest_id": "Neorestim.poke_plugin",
-      "repositoryUrl": "https://github.com/Neorestim/poke_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [
-        "Main"
-      ],
-      "rejected_releases": []
-    },
-    {
-      "id": "xuqian13.ai_voice_plugin",
-      "manifest_id": "xuqian13.ai_voice_plugin",
-      "repositoryUrl": "https://github.com/xuqian13/ai_voice_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "xuqian13.gsv2p_tts_plugin",
-      "manifest_id": "xuqian13.gsv2p_tts_plugin",
-      "repositoryUrl": "https://github.com/xuqian13/gsv2p_tts_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A0000Xz.MaiBot-Silence-Plugin",
-      "manifest_id": "A0000Xz.MaiBot-Silence-Plugin",
-      "repositoryUrl": "https://github.com/A0000Xz/MaiBot-Silence-Plugin",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "0.9.1",
-          "version": "0.9.1",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
       "id": "whitefox20011120.bilibili_dynamic_push_plugin",
       "manifest_id": "whitefox.bilibili-dynamic-push",
       "repositoryUrl": "https://github.com/whitefox20011120/bilibili_dynamic_push_plugin",
@@ -1375,15 +1180,6 @@
       ]
     },
     {
-      "id": "yhny1001.proactive_talk_plugin",
-      "manifest_id": "yhny1001.proactive_talk_plugin",
-      "repositoryUrl": "https://github.com/yhny1001/proactive_talk_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "CharTyr.Maibot_hltv_plugin",
       "manifest_id": "chartyr.hltv-plugin",
       "repositoryUrl": "https://github.com/CharTyr/Maibot_hltv_plugin",
@@ -1466,15 +1262,6 @@
           "error": "Tag 与 manifest.version 不一致"
         }
       ]
-    },
-    {
-      "id": "CharTyr.MaiBot-DetailedExplanation-Plugin",
-      "manifest_id": "CharTyr.MaiBot-DetailedExplanation-Plugin",
-      "repositoryUrl": "https://github.com/CharTyr/MaiBot-DetailedExplanation-Plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
     },
     {
       "id": "Heximiao.repeat_plugin",
@@ -1579,15 +1366,6 @@
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\nTag 与 manifest.version 不一致"
         }
       ]
-    },
-    {
-      "id": "whitefox20011120.recall_manager_plugin",
-      "manifest_id": "whitefox20011120.recall_manager_plugin",
-      "repositoryUrl": "https://github.com/whitefox20011120/recall_manager_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
     },
     {
       "id": "namchengwuqiu.gemini_drawer",
@@ -2338,397 +2116,6 @@
       ]
     },
     {
-      "id": "xun.sky_tools_plugin",
-      "manifest_id": "寻.sky_tools_plugin",
-      "repositoryUrl": "https://github.com/xc94188/sky_tools_plugin",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.5",
-          "tag": "v1.0.5",
-          "commit": "ce32882f1e7600406ae359c74af2101b07340c25",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-02-13T09:12:25Z",
-          "release_url": "https://github.com/xun-moe/sky_tools_plugin/releases/tag/v1.0.5",
-          "release_notes": "## 📋 更新日志\r\n\r\n### [1.0.5] - 2026-02-13\r\n\r\n#### ✨ 新增\r\n- **一键汇总命令 `#all`**  \r\n  一次性获取所有已启用的日常信息（任务、蜡烛、红石、复刻、魔法、日历、服务器状态）\r\n\r\n#### 🌟 更新\r\n- **架构重构**  \r\n  - 引入**命令元数据注册表**，集中管理所有命令的名称、别名、示例、参数。  \r\n  - 引入**平台处理器注册表**，新增身高数据源无需修改核心代码。 \r\n\r\n#### 🐛 修复\r\n- **修复备用发送方案无法发送图片问题**  ",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "光遇查询插件",
-            "version": "1.0.5",
-            "description": "光遇工具(sky_tools_plugin)",
-            "author": {
-              "name": "寻",
-              "url": "https://github.com/xc94188"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.2"
-            },
-            "homepage_url": "https://github.com/xc94188",
-            "repository_url": "https://github.com/xc94188/sky_tools_plugin",
-            "keywords": [
-              "光遇",
-              "Sky",
-              "身高查询",
-              "任务查询",
-              "大蜡烛",
-              "复刻先祖",
-              "每日魔法"
-            ],
-            "categories": [
-              "Utility Tools"
-            ],
-            "default_locale": "zh-CN",
-            "plugin_info": {
-              "is_built_in": false,
-              "plugin_type": "general",
-              "components": [
-                {
-                  "type": "command",
-                  "name": "skytools",
-                  "description": "帮助命令"
-                },
-                {
-                  "type": "command",
-                  "name": "height",
-                  "description": "身高查询命令"
-                },
-                {
-                  "type": "command",
-                  "name": "task",
-                  "description": "任务图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "candle",
-                  "description": "大蜡烛位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "ancestor",
-                  "description": "复刻先祖信息获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "magic",
-                  "description": "每日魔法图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "season_candle",
-                  "description": "每日季蜡位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "calendar",
-                  "description": "光遇日历图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "redstone",
-                  "description": "红石位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "skytest",
-                  "description": "检测光遇服务器状态"
-                },
-                {
-                  "type": "command",
-                  "name": "all",
-                  "description": "一次性获取所有日常信息"
-                }
-              ]
-            },
-            "id": "寻.sky_tools_plugin"
-          }
-        },
-        {
-          "version": "1.0.4",
-          "tag": "v1.0.4",
-          "commit": "69e621c1a11562ecec6f2e744e68c740df57baef",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2025-12-06T17:15:01Z",
-          "release_url": "https://github.com/xun-moe/sky_tools_plugin/releases/tag/v1.0.4",
-          "release_notes": "# 更新日志\r\n\r\n## [1.0.4] - 2025-12-7\r\n\r\n### ✨ 新增\r\n- 命令前缀修改配置\r\n\r\n### 🔧 优化\r\n- 将消息变为合并聊天记录发送，防止刷屏(napcat配置详见Readme.md)",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "光遇查询插件",
-            "version": "1.0.4",
-            "description": "光遇工具(sky_tools_plugin)",
-            "author": {
-              "name": "寻",
-              "url": "https://github.com/xc94188"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.2"
-            },
-            "homepage_url": "https://github.com/xc94188",
-            "repository_url": "https://github.com/xc94188/sky_tools_plugin",
-            "keywords": [
-              "光遇",
-              "Sky",
-              "身高查询",
-              "任务查询",
-              "大蜡烛",
-              "复刻先祖",
-              "每日魔法"
-            ],
-            "categories": [
-              "Utility Tools"
-            ],
-            "default_locale": "zh-CN",
-            "plugin_info": {
-              "is_built_in": false,
-              "plugin_type": "general",
-              "components": [
-                {
-                  "type": "command",
-                  "name": "skytools",
-                  "description": "帮助命令"
-                },
-                {
-                  "type": "command",
-                  "name": "height",
-                  "description": "身高查询命令"
-                },
-                {
-                  "type": "command",
-                  "name": "task",
-                  "description": "任务图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "candle",
-                  "description": "大蜡烛位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "ancestor",
-                  "description": "复刻先祖信息获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "magic",
-                  "description": "每日魔法图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "season_candle",
-                  "description": "每日季蜡位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "calendar",
-                  "description": "光遇日历图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "redstone",
-                  "description": "红石位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "skytest",
-                  "description": "检测光遇服务器状态"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "version": "1.0.3",
-          "tag": "v1.0.3",
-          "commit": "0103e6ee500f2b71f454d13979eb75a07295d92b",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2025-11-16T07:23:57Z",
-          "release_url": "https://github.com/xun-moe/sky_tools_plugin/releases/tag/v1.0.3",
-          "release_notes": "## [1.0.3] - 2025-11-16\r\n\r\n### ✨ 新增\r\n- 新增多平台身高查询支持（芒果、独角兽、应天）\r\n- 添加功能开关配置，可按需启用/禁用功能\r\n\r\n### 🔧 优化\r\n- 增强错误处理和用户提示信息\r\n- 根据配置构建帮助文本\r\n- 配置热重载从轮询改为watchdog\r\n\r\n## [1.0.2] - 不记得时间\r\n\r\n### ✨ 新增\r\n- 新增每日任务查询\r\n- 新增大蜡烛位置查询\r\n- 新增复刻先祖信息查询\r\n- 新增每日魔法查询\r\n- 新增季节蜡烛位置查询\r\n- 新增活动日历查询\r\n- 新增红石位置查询\r\n- 新增服务器状态查询\r\n\r\n### 🔧 优化\r\n- 配置支持热重载",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "光遇查询插件",
-            "version": "1.0.3",
-            "description": "光遇工具(sky_tools_plugin)",
-            "author": {
-              "name": "寻",
-              "url": "https://github.com/xc94188"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.2"
-            },
-            "homepage_url": "https://github.com/xc94188",
-            "repository_url": "https://github.com/xc94188/sky_tools_plugin",
-            "keywords": [
-              "光遇",
-              "Sky",
-              "身高查询",
-              "任务查询",
-              "大蜡烛",
-              "复刻先祖",
-              "每日魔法"
-            ],
-            "categories": [
-              "Utility Tools"
-            ],
-            "default_locale": "zh-CN",
-            "plugin_info": {
-              "is_built_in": false,
-              "plugin_type": "general",
-              "components": [
-                {
-                  "type": "command",
-                  "name": "skytools",
-                  "description": "帮助命令"
-                },
-                {
-                  "type": "command",
-                  "name": "height",
-                  "description": "身高查询命令"
-                },
-                {
-                  "type": "command",
-                  "name": "task",
-                  "description": "任务图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "candle",
-                  "description": "大蜡烛位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "ancestor",
-                  "description": "复刻先祖信息获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "magic",
-                  "description": "每日魔法图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "season_candle",
-                  "description": "每日季蜡位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "calendar",
-                  "description": "光遇日历图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "redstone",
-                  "description": "红石位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "skytest",
-                  "description": "检测光遇服务器状态"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "version": "1.0.2",
-          "tag": "v1.0.2",
-          "commit": "f52a8ba773d39e423b757b8dd99f2c7a97291760",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2025-10-04T13:17:27Z",
-          "release_url": "https://github.com/xun-moe/sky_tools_plugin/releases/tag/v1.0.2",
-          "release_notes": "添加数据获取api\r\n应该最低为0.10.0版本，但未测试，如需使用自行更改_manifest.json中min_version",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "光遇查询插件",
-            "version": "1.0.2",
-            "description": "光遇工具(sky_tools_plugin)",
-            "author": {
-              "name": "寻",
-              "url": "https://github.com/xc94188"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.2"
-            },
-            "homepage_url": "https://github.com/xc94188",
-            "repository_url": "https://github.com/xc94188/sky_tools_plugin",
-            "keywords": [
-              "光遇",
-              "身高查询",
-              "任务图片",
-              "游戏工具",
-              "Sky光遇"
-            ],
-            "categories": [
-              "Utility Tools"
-            ],
-            "default_locale": "zh-CN",
-            "plugin_info": {
-              "is_built_in": false,
-              "plugin_type": "general",
-              "components": [
-                {
-                  "type": "command",
-                  "name": "skytools",
-                  "description": "帮助命令"
-                },
-                {
-                  "type": "command",
-                  "name": "height",
-                  "description": "身高查询命令"
-                },
-                {
-                  "type": "command",
-                  "name": "task",
-                  "description": "任务图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "candle",
-                  "description": "大蜡烛位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "ancestor",
-                  "description": "复刻先祖信息获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "magic",
-                  "description": "每日魔法图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "season_candle",
-                  "description": "每日季蜡位置图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "calendar",
-                  "description": "光遇日历图片获取命令"
-                },
-                {
-                  "type": "command",
-                  "name": "redstone",
-                  "description": "红石位置图片获取命令"
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "ignored_tags": [
-        "v1.0.4-1"
-      ],
-      "rejected_releases": []
-    },
-    {
       "id": "TAIY2020.custom_commands_plugin",
       "manifest_id": "TAIY2020.custom-commands-plugin",
       "repositoryUrl": "https://github.com/TAIY2020/custom_commands_plugin",
@@ -3201,15 +2588,6 @@
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\n发布版本改变了插件 ID"
         }
       ]
-    },
-    {
-      "id": "Kristen23557.MaiBot_Tarots_Plugin_REBORN",
-      "manifest_id": "Kristen23557.MaiBot_Tarots_Plugin_REBORN",
-      "repositoryUrl": "https://github.com/Kristen23557/MaiBot-Tarots-Plugin-REBORN",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
     },
     {
       "id": "TAIY2020.group_muter_plugin",
@@ -3910,141 +3288,9 @@
       ]
     },
     {
-      "id": "exynos967.animetrace_plugin",
-      "manifest_id": "exynos967.animetrace_plugin",
-      "repositoryUrl": "https://github.com/exynos967/animetrace_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "XXXxx7258.anan_sketchbook_plugin",
-      "manifest_id": "XXXxx7258.anan_sketchbook_plugin",
-      "repositoryUrl": "https://github.com/XXXxx7258/anan_sketchbook_plugin",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "0.1.0",
-          "tag": "0.1.0",
-          "commit": "04a6ed9629a461573334037be249ff96f8a66f53",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2025-11-13T17:24:46Z",
-          "release_url": "https://github.com/YukiSakiko/anan_sketchbook_plugin/releases/tag/0.1.0",
-          "release_notes": "发布",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "安安素描本渲染插件 (Anan Sketchbook Renderer)",
-            "version": "0.1.0",
-            "description": "把麦麦输出渲染成素描本截图并发送图片回复。",
-            "author": {
-              "name": "晴空",
-              "url": "https://github.com/XXXxx7258"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.0"
-            },
-            "homepage_url": "https://github.com/XXXxx7258/anan_sketchbook_plugin",
-            "repository_url": "https://github.com/XXXxx7258/anan_sketchbook_plugin",
-            "keywords": [
-              "sketchbook",
-              "render",
-              "anan"
-            ],
-            "categories": [
-              "Rendering",
-              "Fun"
-            ],
-            "plugin_info": {
-              "is_built_in": false,
-              "plugin_type": "media",
-              "components": [
-                {
-                  "type": "action",
-                  "name": "anan_sketchbook_render",
-                  "description": "把文字和可选图片绘制到安安素描本底图并发送图片回复"
-                }
-              ],
-              "features": [
-                "多表情差分底图",
-                "自动排版文本和图片",
-                "支持 LLM 控制的 mood / 文本 / 图片参数"
-              ]
-            }
-          }
-        }
-      ],
-      "ignored_tags": [
-        "0.12"
-      ],
-      "rejected_releases": [
-        {
-          "tag": "0.1.1",
-          "version": "0.1.1",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "saberlights.lolicon_setu_plugin",
-      "manifest_id": "久远.lolicon-setu-plugin",
-      "repositoryUrl": "https://github.com/saberlights/lolicon-setu-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "xuqian13.context_clear_plugin",
       "manifest_id": "xuqian13.context-clear",
       "repositoryUrl": "https://github.com/xuqian13/context_clear_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "maimai_aivoice_plugin",
-      "manifest_id": "maimai_aivoice_plugin",
-      "repositoryUrl": "https://github.com/yuexps/maimai_aivoice_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "magisk317.MaiMBot_LiteratureFeeder",
-      "manifest_id": "magisk317.MaiMBot_LiteratureFeeder",
-      "repositoryUrl": "https://github.com/magisk317/MaiMBot_LiteratureFeeder",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "XXXxx7258.nbnhhsh_translate_plugin",
-      "manifest_id": "XXXxx7258.nbnhhsh_translate_plugin",
-      "repositoryUrl": "https://github.com/XXXxx7258/nbnhhsh_translate_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "saberlights.chat_summary_plugin",
-      "manifest_id": "久远.chat_summary_plugin",
-      "repositoryUrl": "https://github.com/saberlights/chat_summary_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Kristen23557.Maibot-Plugin-Manager",
-      "manifest_id": "Kristen23557.Maibot-Plugin-Manager",
-      "repositoryUrl": "https://github.com/Kristen23557/Maibot-Plugin-Manager",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -4078,75 +3324,6 @@
       "id": "saberlights.smart_segmentation_plugin",
       "manifest_id": "saberlights.smart-segmentation-plugin",
       "repositoryUrl": "https://github.com/saberlights/smart_segmentation_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "SkillfulPainter.reminder_plugin",
-      "manifest_id": "SkillfulPainter.reminder_plugin",
-      "repositoryUrl": "https://github.com/SkillfulPainter/reminder_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Hug_Yo.weather_query_plugin",
-      "manifest_id": "Hug_Yo.weather_query_plugin",
-      "repositoryUrl": "https://github.com/Hug-Yo/weather_query_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Kmaj.expenses_summary",
-      "manifest_id": "Kmaj.expenses_summary",
-      "repositoryUrl": "https://github.com/Kmaj1st/expenses_summary",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Hug_Yo.wife_plugin",
-      "manifest_id": "Hug_Yo.wife_plugin",
-      "repositoryUrl": "https://github.com/Hug-Yo/wife_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "CharTyr.MaiBot_MCPBridgePlugin",
-      "manifest_id": "MaiBot Community.MCPBridgePlugin",
-      "repositoryUrl": "https://github.com/CharTyr/MaiBot_MCPBridgePlugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "heitiehu-beep.impression_affection_plugin",
-      "manifest_id": "heitiehu-beep.impression_affection_plugin",
-      "repositoryUrl": "https://github.com/heitiehu-beep/impression_affection_plugin",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "3.5.0",
-          "version": "3.5.0",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "HyperSharkawa.poke_plugin",
-      "manifest_id": "HyperSharkawa.poke_plugin",
-      "repositoryUrl": "https://github.com/HyperSharkawa/poke_plugin",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -4241,322 +3418,9 @@
       "rejected_releases": []
     },
     {
-      "id": "A0000Xz.MaiBot-MineMai-Plugin",
-      "manifest_id": "A0000Xz.MaiBot-MineMai-Plugin",
-      "repositoryUrl": "https://github.com/A0000Xz/MaiBot-MineMai-Plugin",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "0.12.0",
-          "version": "0.12.0",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "A-Dawn.Mai_Forever_memories",
-      "manifest_id": "A-Dawn.MaiForeverMemories",
-      "repositoryUrl": "https://github.com/A-Dawn/Mai_Forever_memories",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "linyuww.IgnorePhrasePlugin",
-      "manifest_id": "linyuww.IgnorePhrasePlugin",
-      "repositoryUrl": "https://github.com/linyuww/IgnorePhrasePlugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Rankgice.comfyui-maibot-plugin",
-      "manifest_id": "Rankgice.comfyui-maibot-plugin",
-      "repositoryUrl": "https://github.com/Rankgice/comfyui-maibot-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "UBC2008.galgame_search_plugin",
-      "manifest_id": "UBC2008.galgame_search_plugin",
-      "repositoryUrl": "https://github.com/UBC2008/galgame_search_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "MorningFeather.safebooru_plugin",
-      "manifest_id": "MorningFeather.safebooru_plugin",
-      "repositoryUrl": "https://github.com/MorningFeather/safebooru_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "ThelevenFD.wait_remover",
-      "manifest_id": "ThelevenFD.wait_remover",
-      "repositoryUrl": "https://github.com/ThelevenFD/wait_remover",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Alvter.repeat_content_plugin",
-      "manifest_id": "Alvter.repeat_content_plugin",
-      "repositoryUrl": "https://github.com/Alvter/repeat_content_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "XXXxx7258.Mai_Only_You",
-      "manifest_id": "XXXxx7258.Mai_Only_You",
-      "repositoryUrl": "https://github.com/XXXxx7258/Mai_Only_You",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [
-        "0.13",
-        "0.121"
-      ],
-      "rejected_releases": [
-        {
-          "tag": "0.12.1",
-          "version": "0.12.1",
-          "error": "Tag 与 manifest.version 不一致"
-        }
-      ]
-    },
-    {
-      "id": "rand0mdevel0per.pgvec_mem_plugin",
-      "manifest_id": "rand0mdevel0per.pgvec_mem_plugin",
-      "repositoryUrl": "https://github.com/rand0mdevel0per/MaiVecMem",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.2",
-          "tag": "v1.0.2",
-          "commit": "4790f48ce038dcbda78685be97568c2e4dc703fd",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-01-03T10:08:09Z",
-          "release_url": "https://github.com/rand0mdevel0per/MaiVecMem/releases/tag/v1.0.2",
-          "release_notes": "## What's Changed\r\n* Rel by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/4\r\n* Merge pull request #4 from rand0mdevel0per/rel by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/5\r\n* refactor: 优化工具参数类型定义 by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/7\r\n\r\n\r\n**Full Changelog**: https://github.com/rand0mdevel0per/MaiVecMem/compare/v1.0.1...v1.0.2",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "PgVector 记忆插件",
-            "version": "1.0.2",
-            "description": "一个使用 PostgreSQL & PgVector Plugin 数据库存储和检索记忆的插件。",
-            "author": {
-              "name": "rand0mdevel0per",
-              "url": "https://github.com/rand0mdevel0per"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.0",
-              "max_version": "0.14.0"
-            },
-            "repository_url": "https://github.com/rand0mdevel0per/MaiVecMem.git"
-          }
-        },
-        {
-          "version": "1.0.1",
-          "tag": "v1.0.1",
-          "commit": "3441d9b6a9f1ce339d0121fa69eeb4553ec4a899",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-01-02T11:25:51Z",
-          "release_url": "https://github.com/rand0mdevel0per/MaiVecMem/releases/tag/v1.0.1",
-          "release_notes": "## What's Changed\r\n* merge by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/2\r\n* master->rel by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/3\r\n\r\n\r\n**Full Changelog**: https://github.com/rand0mdevel0per/MaiVecMem/compare/v1.0.0...v1.0.1",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "PgVector 记忆插件",
-            "version": "1.0.1",
-            "description": "一个使用 PostgreSQL & PgVector Plugin 数据库存储和检索记忆的插件。",
-            "author": {
-              "name": "rand0mdevel0per",
-              "url": "https://github.com/rand0mdevel0per"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.0",
-              "max_version": "0.14.0"
-            },
-            "repository_url": "https://github.com/rand0mdevel0per/MaiVecMem.git"
-          }
-        },
-        {
-          "version": "1.0.0",
-          "tag": "v1.0.0",
-          "commit": "3a41e4b4f313bf5e88c127de6b8c3505267c75f8",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-01-02T07:11:14Z",
-          "release_url": "https://github.com/rand0mdevel0per/MaiVecMem/releases/tag/v1.0.0",
-          "release_notes": "## What's Changed\r\n* merge master ---> rel by @rand0mdevel0per in https://github.com/rand0mdevel0per/MaiVecMem/pull/1\r\n\r\n## New Contributors\r\n* @rand0mdevel0per made their first contribution in https://github.com/rand0mdevel0per/MaiVecMem/pull/1\r\n\r\n**Full Changelog**: https://github.com/rand0mdevel0per/MaiVecMem/commits/v1.0.0",
-          "manifest": {
-            "manifest_version": 1,
-            "name": "PgVector 记忆插件",
-            "version": "1.0.0",
-            "description": "一个使用 PostgreSQL & PgVector Plugin 数据库存储和检索记忆的插件。",
-            "author": {
-              "name": "rand0mdevel0per",
-              "url": "https://github.com/rand0mdevel0per"
-            },
-            "license": "MIT",
-            "host_application": {
-              "min_version": "0.10.0",
-              "max_version": "0.14.0"
-            },
-            "repository_url": "https://github.com/rand0mdevel0per/MaiVecMem.git"
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "heitiehu-beep.date_aware_plugin",
-      "manifest_id": "heitiehu-beep.date_aware_plugin",
-      "repositoryUrl": "https://github.com/heitiehu-beep/date_aware_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "WaterInk0101.Groupsign",
-      "manifest_id": "WaterInk0101.Groupsign",
-      "repositoryUrl": "https://github.com/WaterInk0101/groupsign",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "AkariRin.jrlp",
-      "manifest_id": "AkariRin.jrlp",
-      "repositoryUrl": "https://github.com/AkariRin/jrlp-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "MaiBot-Discord-Adapter",
-      "manifest_id": "MaiBot-Discord-Adapter",
-      "repositoryUrl": "https://github.com/2829798842/MaiBot-Discord-Adapter",
-      "mode": "releases",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "1.0.0",
-          "version": "1.0.0",
-          "error": "GitHub 404：/repos/2829798842/MaiBot-Discord-Adapter/contents/_manifest.json?ref=8c5edd2043d091bfa1103be8eb3ffba3b5191e17"
-        }
-      ]
-    },
-    {
-      "id": "WaterInk0101.proactive_private_chat",
-      "manifest_id": "WaterInk0101.proactive_private_chat",
-      "repositoryUrl": "https://github.com/WaterInk0101/proactive_private_chat",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Pekofirst.MCping-for-Maibot",
-      "manifest_id": "Pekofirst.MCping-for-Maibot",
-      "repositoryUrl": "https://github.com/Pekofirst/MCping-for-Maibot",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [
-        "1.04",
-        "1.03",
-        "1.02",
-        "newest",
-        "1"
-      ],
-      "rejected_releases": []
-    },
-    {
-      "id": "HyperSharkawa.like_plugin",
-      "manifest_id": "HyperSharkawa.like_plugin",
-      "repositoryUrl": "https://github.com/HyperSharkawa/like_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "heitiehu-beep.prompt_injection_guard",
-      "manifest_id": "heitiehu-beep.prompt_injection_guard",
-      "repositoryUrl": "https://github.com/heitiehu-beep/prompt_injection_guard",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "AkariRin.drift-bottle",
-      "manifest_id": "AkariRin.drift-bottle",
-      "repositoryUrl": "https://github.com/AkariRin/drift-bottle-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "AkariRin.duoshe",
-      "manifest_id": "AkariRin.duoshe",
-      "repositoryUrl": "https://github.com/AkariRin/duoshe-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "mmmpipi.MaiBot-DetailedReason-Plugin",
-      "manifest_id": "mmmpipi.MaiBot-DetailedReason-Plugin",
-      "repositoryUrl": "https://github.com/mmmpipi/MaiBot-DetailedReason-Plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "ARC.A_Mind",
       "manifest_id": "A-Dawn.A-Mind",
       "repositoryUrl": "https://github.com/A-Dawn/A_Mind",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "sansenjian.quick_poke",
-      "manifest_id": "sansenjian.quick_poke",
-      "repositoryUrl": "https://github.com/sansenjian/quick-poke",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "yunchenqwq.easy_plugin",
-      "manifest_id": "yunchenqwq.easy_plugin",
-      "repositoryUrl": "https://github.com/YunChenqwq/EasyttsPlugin",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -4592,48 +3456,6 @@
       "rejected_releases": []
     },
     {
-      "id": "dglab_coyote_plugin",
-      "manifest_id": "dglab_coyote_plugin",
-      "repositoryUrl": "https://github.com/exynos967/dglab_coyote_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "sansenjian.quick_repeat",
-      "manifest_id": "sansenjian.quick_repeat",
-      "repositoryUrl": "https://github.com/sansenjian/quick-repeat",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "checkin_plugin",
-      "manifest_id": "checkin_plugin",
-      "repositoryUrl": "https://github.com/miantaoo/checkin_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A-Dawn.A_memorix",
-      "manifest_id": "A_Dawn.A_memorix",
-      "repositoryUrl": "https://github.com/A-Dawn/A_memorix",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [
-        "v2.0.0a4",
-        "v2.0.0a3",
-        "acl2026-demo-v1.1.1",
-        "acl2026-demo-v1.1.0",
-        "acl2026-demo-v1.0.0"
-      ],
-      "rejected_releases": []
-    },
-    {
       "id": "wentaoxian6-svg.MaiBot-rule_horror_plugin",
       "manifest_id": "wentaoxian6-svg.rule-horror-plugin",
       "repositoryUrl": "https://github.com/wentaoxian6-svg/MaiBot-rule_horror_plugin",
@@ -4643,45 +3465,9 @@
       "rejected_releases": []
     },
     {
-      "id": "FoolOyster.mai-video-plugin",
-      "manifest_id": "FoolOyster.mai-video-plugin",
-      "repositoryUrl": "https://github.com/FoolOyster/mai-video-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "HyperSharkawa.msg_react_plugin",
-      "manifest_id": "HyperSharkawa.msg_react_plugin",
-      "repositoryUrl": "https://github.com/HyperSharkawa/maibot-msg-react-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "sansenjian.quick_date_perception",
-      "manifest_id": "sansenjian.quick_date_perception",
-      "repositoryUrl": "https://github.com/sansenjian/quick-date-perception",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "yueshenqiu.video_generator_plugin",
       "manifest_id": "com.yueshenqiu.video-generator",
       "repositoryUrl": "https://github.com/yueshenqiu/video_generator_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Rxiain.a1ctf_plugin",
-      "manifest_id": "orxiain.a1ctf_plugin",
-      "repositoryUrl": "https://github.com/Rxiain/a1ctf_plugin",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -4705,42 +3491,6 @@
       ]
     },
     {
-      "id": "WaterInk0101.coc_dice_plugin",
-      "manifest_id": "WaterInk0101.coc_dice_plugin",
-      "repositoryUrl": "https://github.com/WaterInk0101/coc_dice_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "HyperSharkawa.message_filter_plugin",
-      "manifest_id": "HyperSharkawa.message_filter_plugin",
-      "repositoryUrl": "https://github.com/HyperSharkawa/maibot-message-filter-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "mmmpipi.MaiBot-At-Plugin",
-      "manifest_id": "mmmpipi.MaiBot-At-Plugin",
-      "repositoryUrl": "https://github.com/mmmpipi/MaiBot-At-Plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "sansenjian.quick-e2b-sandbox",
-      "manifest_id": "sansenjian.quick-e2b-sandbox",
-      "repositoryUrl": "https://github.com/sansenjian/quick-e2b-sandbox",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "Mettafy.bilibili_video_parser",
       "manifest_id": "mettafy.bilibili-video-parser-maisaka",
       "repositoryUrl": "https://github.com/Mettafy/bilibili_video_parser",
@@ -4752,99 +3502,9 @@
       "rejected_releases": []
     },
     {
-      "id": "exynos967.maibot-invasion-astrbook",
-      "manifest_id": "exynos.maibot_invasion_astrbook",
-      "repositoryUrl": "https://github.com/exynos967/maibot_invasion_astrbook",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "ViaVxxx.maibot-random-video-plugin",
-      "manifest_id": "ViaVxxx.maibot-random-video-plugin",
-      "repositoryUrl": "https://github.com/ViaVxxx/maibot-random-video-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "fsqhn.bgg_search_plugin",
       "manifest_id": "fsqhn.bgg_search_plugin",
       "repositoryUrl": "https://github.com/fsqhn/maibot-bgg-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "HyperSharkawa.maibot-character-sketch-plugin",
-      "manifest_id": "HyperSharkawa.maibot-character-sketch-plugin",
-      "repositoryUrl": "https://github.com/HyperSharkawa/maibot-character-sketch-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "XXXxx7258.leave_delete_guard_plugin",
-      "manifest_id": "XXXxx7258.leave_delete_guard_plugin",
-      "repositoryUrl": "https://github.com/XXXxx7258/leave_delete_guard_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "cakezhcn.Mai_tsonline",
-      "manifest_id": "cakezhcn.Mai_tsonline",
-      "repositoryUrl": "https://github.com/cakezhcn/Mai_tsonline",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "Eric-Termina.llm_message_guard_plugin",
-      "manifest_id": "Eric.llm_message_guard_plugin",
-      "repositoryUrl": "https://github.com/Eric-Terminal/llm_message_guard_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "putaojuju.MaiShangHao",
-      "manifest_id": "putaojuju.MaiShangHao",
-      "repositoryUrl": "https://github.com/putaojuju/MaiShangHao",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A-Dawn.call_me",
-      "manifest_id": "A-Dawn.call_me",
-      "repositoryUrl": "https://github.com/A-Dawn/call_me",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "putaojuju.maiplug_message_react-remake",
-      "manifest_id": "putaojuju.maiplug_message_react-remake",
-      "repositoryUrl": "https://github.com/putaojuju/maiplug_message_react-remake",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A_Dawn.A_model_router",
-      "manifest_id": "A_Dawn.A_model_router",
-      "repositoryUrl": "https://github.com/A-Dawn/A_model_router",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -4975,33 +3635,6 @@
       "rejected_releases": []
     },
     {
-      "id": "theStar7.Mai_Plan",
-      "manifest_id": "theStar7.Mai_Plan",
-      "repositoryUrl": "https://github.com/theStar7/Mai_Plan",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "bdbmzwsc.maibot-chat-summary-plugin",
-      "manifest_id": "bdbmzwsc.maibot-chat-summary-plugin",
-      "repositoryUrl": "https://github.com/Bdbmzwsc/maibot-chat-summary-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "higekibaka.recall_response_plugin",
-      "manifest_id": "higekibaka.recall_response_plugin",
-      "repositoryUrl": "https://github.com/higekibaka/recall_response_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "XXXxx7258.moegirl_wiki_plugin",
       "manifest_id": "xxxxx7258.moegirl-wiki-plugin",
       "repositoryUrl": "https://github.com/XXXxx7258/moegirl_wiki_plugin",
@@ -5063,24 +3696,6 @@
       "rejected_releases": []
     },
     {
-      "id": "grok-search-plugin",
-      "manifest_id": "grok-search-plugin",
-      "repositoryUrl": "https://github.com/Anderwer/grok-search-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "NymphSong.MaiHoYoGetCos_plugin",
-      "manifest_id": "NymphSong.MaiHoYoGetCos_plugin",
-      "repositoryUrl": "https://github.com/NymphSong/MaiHoYoGetCos_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "maibot_music_plugin",
       "manifest_id": "hydrogen.astrbot-plugin-music",
       "repositoryUrl": "https://github.com/hydrogen-francium/maibot_music_plugin",
@@ -5090,45 +3705,9 @@
       "rejected_releases": []
     },
     {
-      "id": "custom_knowledge_base_plugin",
-      "manifest_id": "maibot.knowledge_base_plugin",
-      "repositoryUrl": "https://github.com/hmr-BH/custom_knowledge_base_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "sengokucola.self-identity-plugin",
       "manifest_id": "sengokucola.self-identity-plugin",
       "repositoryUrl": "https://github.com/SengokuCola/self_identity_plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "NothingButSeaweedSoup.lonely-mai",
-      "manifest_id": "NothingButSeaweedSoup.LonelyMai",
-      "repositoryUrl": "https://github.com/NothingButSeaweedSoup/lonely-mai",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "yuebaiqingfeng.MinecraftServerStatus",
-      "manifest_id": "yuebaiqingfeng.MinecraftServerStatus",
-      "repositoryUrl": "https://github.com/yuebaiqingfeng/MinecraftServerStatus",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "sarkozyfan.maibot_plugin_endfield",
-      "manifest_id": "sarkozyfan.maibot_plugin_endfield",
-      "repositoryUrl": "https://github.com/sarkozyfan/maibot_plugin_endfield",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -6595,15 +5174,6 @@
           }
         }
       ],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "pspixel.ai-drawing-plugin",
-      "manifest_id": "pspixel.ai-drawing-plugin",
-      "repositoryUrl": "https://github.com/Pspixel/ai-drawing-plugin",
-      "mode": "branch",
-      "versions": [],
       "ignored_tags": [],
       "rejected_releases": []
     },
@@ -11129,15 +9699,6 @@
       "rejected_releases": []
     },
     {
-      "id": "maibot_plugin_rocom_merchant",
-      "manifest_id": "maibot_plugin_rocom_merchant",
-      "repositoryUrl": "https://github.com/hydrogen-francium/maibot_plugin_rocom_merchant",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
       "id": "exynos967.telegram-adapter",
       "manifest_id": "exynos967.telegram-adapter",
       "repositoryUrl": "https://github.com/exynos967/MaiBot-Telegram-Adapter",
@@ -11378,15 +9939,6 @@
       "id": "Emilia-awa.maibot-mimotts-voice",
       "manifest_id": "Emilia-awa.maibot-mimotts-voice",
       "repositoryUrl": "https://github.com/Emilia-awa/maibot-mimotts-voice",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "A-Dawn.NodeSync",
-      "manifest_id": "A-Dawn.NodeSync",
-      "repositoryUrl": "https://github.com/A-Dawn/NodeSync",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -11762,15 +10314,6 @@
       "id": "a-dawn.oaimage",
       "manifest_id": "a-dawn.oaimage",
       "repositoryUrl": "https://github.com/A-Dawn/OAImage",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "NymphSong.Pighub_plugin",
-      "manifest_id": "NymphSong.Pighub_plugin",
-      "repositoryUrl": "https://github.com/NymphSong/Pighub_plugin",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -20665,15 +19208,6 @@
       "id": "haitai-git.chat-style-translator",
       "manifest_id": "haitai-git.chat-style-translator",
       "repositoryUrl": "https://github.com/haitai-git/chat-style-translator-plugin",
-      "mode": "branch",
-      "versions": [],
-      "ignored_tags": [],
-      "rejected_releases": []
-    },
-    {
-      "id": "github.jessiongod.wemai-adapter",
-      "manifest_id": "github.jessiongod.wemai-adapter",
-      "repositoryUrl": "https://github.com/jessiongod/mai-bot-wechat-adapter",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
