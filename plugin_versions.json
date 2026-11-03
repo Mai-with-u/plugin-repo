@@ -22656,6 +22656,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.5",
+          "tag": "v1.6.5",
+          "commit": "619d8325ae407abdbe75efc0580aef102459ed5f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:33:38Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.6.5",
+          "release_notes": "> 本版本修复一个「消息被吞」的问题：早晚安冷却期内再发「早安/晚安」时，这条消息原先对麦麦完全不可见。\n\n### 行为变更\n\n- **早晚安冷却期不再吞消息**（默认行为变化）：此前同一用户在 `cooldown_minutes`\n  （默认 30 分钟）内再次发「早安 / 晚安」时，命令返回 `intercept=True`，\n  这条消息对麦麦**完全不可见** —— 用户反馈\"说了晚安机器人毫无反应\"多由此产生。\n  现在冷却期只回一句提示语（**文案不变**），消息**照常放行**给麦麦，由它自行决定是否接话。\n- 新增配置项 `[good_morning] cooldown_intercept`（默认 **`false`**）：想恢复旧行为\n  （冷却期直接吞掉该消息）把它设为 `true` 即可。\n\n### 说明\n\n- 记录成功路径（非冷却期）本就返回 `intercept=False`，本次**只改冷却分支**；\n- 其余会吞消息的场景未变：功能开关关闭、`[group_filter]` 群号名单拒绝；\n- 新增字段由宿主自动合并进现有 `config.toml`（`config_version` 1.6.4 → 1.6.5），\n  你原有的配置值全部保留，无需手动改。\n\n---\n\n完整更新日志见 [CHANGELOG.md](https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/blob/main/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.6.5",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.6.4",
           "tag": "v1.6.4",
           "commit": "88f77bc893ab1b315091d9824fa5ee9090bcfef1",
