@@ -6375,7 +6375,7 @@
           {
             "type": "command",
             "name": "MaiHoYo_help",
-            "description": "显示插件帮助信��"
+            "description": "显示插件帮助信息"
           },
           {
             "type": "action",
@@ -8138,7 +8138,7 @@
             "name": "刷新今日猪猪",
             "description": "清除缓存并重新抽取今日猪猪",
             "pattern": "/刷新今日猪猪",
-            "usage": "/刷新��日猪猪",
+            "usage": "/刷新今日猪猪",
             "examples": [
               "/刷新今日猪猪 - 清除今日缓存并重新抽取",
               "@张三 /刷新今日猪猪 - 为张三刷新今日猪猪"
@@ -18094,7 +18094,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.8",
+      "version": "1.24.9",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -24732,7 +24732,7 @@
       "manifest_version": 2,
       "id": "community.wows-yuyuko",
       "name": "战舰世界战绩查询",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYoyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
       "author": {
         "name": "白云鱼海",
@@ -26317,18 +26317,9 @@
       "capabilities": [
         "database.get"
       ],
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "assets/icon.png"
-        }
-      },
       "i18n": {
         "default_locale": "zh-CN"
       }
-    },
-    "assets": {
-      "icon_64": "icons/github.jiakeju.token-ledger.webp"
     }
   },
   {
