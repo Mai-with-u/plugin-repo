@@ -27829,6 +27829,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.9",
+          "tag": "v1.24.9",
+          "commit": "37d99beeaaea33f326e9d840b7254889b4d68e30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T18:19:10Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.9",
+          "release_notes": "### 新增\n\n- **WebUI 整体迁移为自写 HTML 页面（宿主 custom page 协议 v2，需 MaiBot ≥ 1.3.19）**：原 7 个声明式组件页（332 组件）废弃，改为 3 个沙箱自定义页——「麦麦此刻」工作区大屏（生命实况舱、生理体征仪表、二维情绪罗盘、72h 双轴轨迹、24h 日程甘特轴、Token 监控台）、「记忆与牵挂」（关系温度/重要日期/日记梦境/书柜创作/联网见闻 5-Tab）、「系统与配置」（耦合自检、主动巡检漏斗、群矩阵、配置透视）。页面经宿主 `window.maibot` 桥调用插件 API，CSP 全内联，主题/暗色/三套皮肤自动跟随。\n- **「系统与配置」页支持修改插件自身设置**：新增 `webui_config_save` 单键回写——字符串强转 → 全模型校验（枚举/范围/自定义校验器全生效）→ 写回 config.toml（tomlkit 保留注释）→ 立即热生效；保存走宿主确认弹窗，派生键/列表字段/未知键/越界值全部拒绝且无副作用。\n\n### 修复\n\n- **主动/转述回复在发送前被静默 abort（#10）**：`replyer.after_response` 拿空锚点、`before_send` 拿首段真实消息号（宿主不检查 `set_quote`），严格相等比较判为不同轮导致整轮回复被拦。现在空登记锚点视为同一轮并回填首个真实锚点；多段发送正常放行，空锚点直发依旧拦截、其他消息号不得劫持（防重语义不变）。\n- **发送前拦截全程可观测**：`on_send_before` 六个 abort 分支补 reason 日志（此前宿主侧静默，线上无法定位）。\n\n- 496 项测试通过（+6 配置回写、+3 锚点回归）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.8...v1.24.9\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.9",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.8",
           "tag": "v1.24.8",
           "commit": "f58b5b2910d4f2cf4acc0347dd431fc4cdbd7f8f",
