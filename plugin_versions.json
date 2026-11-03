@@ -52407,6 +52407,98 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "9340967d70d5244559aa81e6b303bfda4b27de29",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T22:38:42Z",
+          "release_url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot/releases/tag/v1.3.0",
+          "release_notes": "# v1.3.0：单船排行榜 + 船名解析修正 + AI 对话查询收到 5 个口径\r\n\r\n这一版新增**单船服务器排行榜**（这条船在某个服谁打得最好），简易查询和 AI 对话两条路都能用；顺手修好「单独一条 `/船名`」的三处解析；并把 AI 对话查询从 13 个工具收到 **5 个查询口径**。\r\n\r\n`/wws` 指令的行为**完全不变**，群聊 @ 群友查水表、简易查询这两条确定性路径的触发规则也只加不减。\r\n\r\n---\r\n\r\n## 一、新增：单船服务器排行榜\r\n\r\n### 简易查询（不 @ 机器人也能用）\r\n\r\n触发词在查水表的关键词之外多三个：`排行榜` / `排行` / `rank`（大小写都行），船名写法沿用原样（换皮前缀 `AL` / `ARP` / `BA`…、`·`、字母与汉字间的空格都照旧，`·` 省略掉照样认）。\r\n\r\n```\r\n/查CN西西里排行榜\r\n/ASIAARP大和RANK\r\n/CNAL信浓RANK\r\n/EUARPYAMATORANK\r\n```\r\n\r\n- **服务器判定**：`CN`/`cn`/`国服`/`china`、`ASIA`/`亚服`/`asian`、`EU`/`欧服`/`europe`、`NA`/`美服`/`northamerican`、`RU`/`俄服`/`russia`，写在句子任意位置都行\r\n- 服务器码要求**前面不是英文字母**，且后面要么不是字母、要么直接接换皮前缀——所以 `/NAGATO排行榜` 里的 `NA` 不会被抠成美服（按「没写服务器」处理，回一句让你补）\r\n- 榜上是全服别人的成绩，跟发送者绑没绑账号**无关**：没绑定照样出图，不走绑定门禁\r\n- 没识别到服务器时不出图、也不替你猜一个服\r\n- 只有查询词没有船名（`/排行榜`）、点了两条船（`/西西里和蒙大拿排行榜`）、船名不在上游百科里 → **整条静默不接**\r\n- `/rank cn 西西里`、`/wws ship rank cn 西西里` 以指令词开头，仍走原来的指令链\r\n\r\n### AI 对话查询：新工具 `wws_ship_rank`\r\n\r\n- 核心工具（`core_tool`），宿主的 Planner 不依赖 `tool_search` 就能看到它；开关是 WebUI「AI 对话查询 → 单船排行榜」（`enable_ship_rank`，默认开）\r\n- **排行榜不触发 AI 点评**：这条工具的结果走独立引导语，明确要求「这是全服榜单，不要点评水平」，`evaluate` 开着也不会把别人的成绩说成提问者的表现\r\n- `server` 缺失时会先回查这条消息原文（模型常把「/查CN…」里的 CN 漏掉），原文也认不出才让模型去问是哪个服\r\n- 给模型的是榜首若干名（排名、场次、场均/最高伤害、胜率、经验、PR 与档位），和发给用户的榜单图同源\r\n\r\n### `enable_ship_rank` 同时管两条路\r\n\r\n关掉后：AI 工具回「已被管理员关闭」，简易查询里带「排行榜/排行/rank」的消息也**整条不接**（不会退化成拿「国服西西里排行榜」当船名去查水表）。其余 `enable_*` 只作用于各自的 AI 工具，`/wws` 指令一律不受这些开关影响。\r\n\r\n---\r\n\r\n## 二、修正：船名解析四处（简易查询 / @ 查询同一条解析链）\r\n\r\n| 问题 | 现在 |\r\n|---|---|\r\n| 船名里的「和」被当成连词，`/大和`、`/ARP大和`、`/大和魁`、`/共和国排行` 整条被拒 | **完全不拆连词**：船名原样交给上游百科判定。水表和排行榜每次只查一艘船，`/西西里和蒙大拿` 这种拼法上游本来就查不到，自然整条静默；在这里拆词反而会误伤真船名 |\r\n| 船名后面直接挂数字被当成船名的一部分 | `/BA蒙大拿30`、`/西西里36`、`/大和 7` = 这艘船近 30/36/7 天；`U-190`、`I-56`、`4501`、`/4501水表` 不受影响 |\r\n| `·` 和字母-汉字间空格被切开 | `/大和·魁`、`/彼得罗·巴格拉季昂`、`/AL 信浓`、`/BA 蒙大拿 30` 都能触发 |\r\n| 上游百科里**中文名和英文名一模一样**的换皮船（`施里芬`、`弗赖海特` 各两条），旧逻辑取列表第一条，正好选中 `coopOnly` 合作战役 / `demoWithoutStats` 演示船这种**没有玩家数据**的行，排行榜出一张空榜 | 同名多行时跳过 `coopOnly` 与 `demo*`，取第一条有数据分类的；全是这类行才退回第一条。全库 level 1-10 共 1030 条，中文同名的只有这两组，英文名重名 0 组 |\r\n\r\n上游百科里没有的写法仍然整条静默忽略（不做前缀猜测，猜会伤到 `ARP`/`BA`/`AL` 这类换皮标记）。\r\n\r\n另外收紧一处门禁：「随机抽船」这类说法不再被判定成「这条消息在查战绩」，查询意图判定补上「抽」这个闲聊词。\r\n\r\n---\r\n\r\n## 三、破坏性变更：AI 对话查询只留 5 个口径\r\n\r\n保留（全部是核心工具）：\r\n\r\n- `wws_account` 账号总表\r\n- `wws_ship` 单船生涯总表\r\n- `wws_recent` 近期（可用 `battle_mode` 按模式筛选）\r\n- `wws_ship_recent` 单船近期\r\n- `wws_ship_rank` 单船排行榜\r\n\r\n删掉 8 个：\r\n\r\n| 删掉的工具 | 原因 | 替代 |\r\n|---|---|---|\r\n| `wws_recent_random`、`wws_recent_rank` | 模式筛选本来就是 `wws_recent` 的参数，拆三条只会让模型多两次选错机会 | 「最近 30 天排位战绩」 |\r\n| `wws_recent_battles`（逐场明细） | 低频 | `/wws recents` |\r\n| `wws_ships`（按等级/国家/舰种筛选） | 低频 | `/wws ships <等级/国家/舰种>` |\r\n| `wws_roll_ship`（随机抽船） | 娱乐工具 | `/wws roll [国家] [类型] [等级]` |\r\n| `wws_bind`、`wws_bind_list`、`wws_bind_change` | **绑定是改账号归属的操作，不可逆且影响之后所有「查我」** | `/wws 绑定`、`/wws 查绑定`、`/wws 切换绑定 <序号>` |\r\n\r\n绑定这条是这轮最需要说一下的：实测模型曾在私聊里凭空调一次 `wws_bind`，把默认账号从 A 换成 B，之后用户查到的都是别人号上的战绩，而界面上一切正常。现在这条路径只能由用户自己发指令完成。\r\n\r\n### 配置 schema 1.6.0 → 1.7.0\r\n\r\n`[llm_tool]` 里这 8 个工具各自的 `enable_*` 开关一起删掉了。宿主在 `config_version` 变化时会按新结构重建插件配置：**新增字段补默认值、废弃字段移除、`token` 等已有值保留**，日志会记一行 `检测到插件配置版本升级: 1.6.0 -> 1.7.0`。\r\n\r\n> ⚠️ 一个已知的宿主行为：更新后如果在插件 WebUI 里点过「保存」，`token` 有可能被清空（保存表单时的既有行为，与本版无关）。更新完顺手确认一下日志里 `token='***:***'` 还在，不在就从 `config_back/` 里回填。\r\n\r\n---\r\n\r\n## 四、怎么更新到 1.3.0\r\n\r\n- **插件市场**：02:00 / 15:00 两次同步，需要本 Release 存在\r\n- **手动**：`git pull` 到插件目录，或直接覆盖 `plugin.py`、`config.py`、`README.md`、`CHANGELOG.md`、`_manifest.json` 和 `yuyuko_llm/` 整个目录，保存后 watchfiles 会热重载\r\n- 版本号仍是 `1.3.0`（`_manifest.json` 未变），**不需要重启容器**\r\n- 更新后确认日志出现：`插件 community.wows-yuyuko v1.3.0 加载成功`\r\n\r\n## 五、验收清单\r\n\r\n| 说法 | 期望 |\r\n|---|---|\r\n| `/查CN西西里排行榜` | 直接出西西里国服榜单，不需要绑定 |\r\n| `/查国服大和魁排行` | 服务器 = cn、船 = 大和魁（= 大和·魁），1.2.0 里这条会被「和」当连词拒掉 |\r\n| `/共和国排行` | 同上，`和` 在真船名里不再触发拆词 |\r\n| `/大和魁` | 出大和·魁的生涯总表（`·` 省略也认，上游百科归到同一条船） |\r\n| `@机器人 亚服 ARP大和 排行` | 走 `wws_ship_rank`，出榜 + 榜单要点，**不点评水平** |\r\n| `查CN大和排行榜`（没说 @ 机器人时看 `require_at`） | 认出服务器 = cn，船 = 大和 |\r\n| `/西西里和蒙大拿`、`/西西里和蒙大拿排行榜` | 整条静默（两条船的拼法过不了上游百科，不是被连词规则拦的） |\r\n| `/BA蒙大拿30` | 蒙大拿近 30 天水表 |\r\n| `/西西里` | 西西里生涯总表 |\r\n| `/4501水表`、`/U-190` | 数字船名照常，不被当成天数 |\r\n| `/查国服施里芬排行` | 出**科技树施里芬**的榜单（50 人）。旧逻辑选中同名同英文的 `coopOnly` 合作战役条目，四个服都是 0 人的空榜 |\r\n| `/查俄服弗赖海特排行` | 出 `special` 那条的榜单，不会选中同名的 `demoWithoutStats` 演示船 |\r\n| `/查国服弗赖海特排行` | 同上，国服这条 `special`(L8) 榜上有 50 人；`/查俄服弗赖海特排行` 选中的船是对的，但俄服这艘船榜上确实没人，空榜属于数据本身，不是选错船 |\r\n| `/rank cn 西西里` | 让路给指令链，不由本插件出图 |\r\n| 关掉 `enable_ship_rank` 后再发 `/查CN西西里排行榜` | 整条不响应 |\r\n\r\n## 对比上一版\r\n\r\n完整改动见仓库 `CHANGELOG.md` 的 `## 1.3.0` 一节；`/wws` 指令、群聊 @ 群友查水表、AI 对话查战绩的其余用法与 1.2.0 一致。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "community.wows-yuyuko",
+            "name": "战舰世界战绩查询",
+            "version": "1.3.0",
+            "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYoyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
+            "author": {
+              "name": "白云鱼海",
+              "url": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+              "homepage": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot",
+              "issues": "https://github.com/BYYH-5316/MaiByWowsYoyukoBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "loguru",
+                "version_spec": ">=0.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "APScheduler",
+                "version_spec": ">=3.10.1"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.0"
+              },
+              {
+                "type": "python_package",
+                "name": "h2",
+                "version_spec": ">=4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.3"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": "==1.58.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate",
+              "component.get_all_plugins"
+            ],
+            "changelog": "CHANGELOG.md",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.0",
           "tag": "v1.2.0",
           "commit": "87cc91198a549f025426b6ff7e106d82ba981c8e",
