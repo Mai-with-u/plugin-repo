@@ -26444,6 +26444,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.24.10",
+          "tag": "v1.24.10",
+          "commit": "dd99f7eeebd64f7003a713f3af3fff5a44c37bf5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:20:37Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.10",
+          "release_notes": "### 新增\n\n- **日程细化描写开关（`schedule.detailed_schedule`，默认关闭）**：开启后日程生成要求地点必须落到「场所+具体位置」（如\"图书馆三楼靠窗的自习区\"），休闲段必须点名具体游戏/作品（如\"开两把星铁的每日\"），禁止\"玩游戏/看书\"这类泛称。默认关闭保持输出短而稳；开关可在 WebUI 配置页直接切换。\n- **重要日期 WebUI 模板写入（公历/农历可选）**：日期 Tab 新增写入表单（事件名/归属用户/历法/日期/每年循环）与行内删除、聊天候选确认/驳回按钮。公历存 YYYY-MM-DD，农历按平月存 月-日，周年\"下次发生\"用 lunar_python 按农历年换算（闰月暂按对应平月）；写入与删除均走宿主确认弹窗，同名同日期同周期幂等拒绝。\n- **农历写入安全门**：宿主未安装 `lunar_python` 时农历写入直接被拒绝（错误信息明确提示），公历不受影响；日期接口带 `lunar_available` 供页面自动禁用农历选项。\n- **绘图联动补图生图引导（#11 L1）**：对方发照片想看\"麦麦长这样\"时，若本轮工具含 drawpic 的 `edit_image`，引导改走图生图（自动以对方真实图片为参考）；工具不可见则不提。参考图上传与图生图基础能力由「麦麦绘图」2.1.1 自身提供（其 studio 页已支持上传源图）。\n\n### 说明\n\n- `important_dates` 新增 `calendar` 列，存量日期自动标记为公历；唯一索引不含历法——同名同日期同周期视为重复。\n- 农历换算依赖 `lunar_python`（部署环境已内置）；本地无该依赖时相关用例自动跳过。\n\n- 504 项测试通过（+6 日期写入、+1 日程提示词开关、+1 图生图引导）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.9...v1.24.10\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.10",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.9",
           "tag": "v1.24.9",
           "commit": "37d99beeaaea33f326e9d840b7254889b4d68e30",
