@@ -54350,6 +54350,48 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "7c65c1ec58123ff38012273298ba3f4884b11b15",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T13:03:42Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/releases/tag/v0.1.1",
+          "release_notes": "- 趋势记录新增 `anon_maps`（Linux）：从 `smaps` 按映射种类汇总常驻的匿名内存（主堆、线程堆、按大小分档的其余映射、\n  带名字的映射），并列出最大的 5 块，用来分辨涨的是 malloc 的堆还是堆外的大块映射。线程堆估计改从同一份 `smaps`\n  得出，不再另读 `maps`；没有 `smaps` 的内核照旧读 `maps`，`anon_maps` 记为 `null`。\n- `meta` 新增透明大页设置 `thp`（Linux）。\n- 新增观测 A_Memorix 数据目录下全部 faiss 索引文件的个数与总大小（`dirs.amemorix_faiss_index`）；\n  诊断包的 `meta.json` 另列逐个索引文件的相对路径、大小与修改时间（`amemorix_faiss_indexes`）。\n- 修复：Windows 上每在 Runner 内重载一次插件，旧模块的结构体类就被 ctypes 的全局缓存留住一份（Python 3.13 及以前）。\n- 修复：超过 1 小时的打包残片删不掉时，之后每次打包都会失败；现在新包照常生成，回复里注明删不掉的个数。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyuki.memdiag",
+            "version": "0.1.1",
+            "name": "内存诊断",
+            "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+              "issues": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "b2882a936c6e6d3d4b1b2c5b5de8522b92d49695",
