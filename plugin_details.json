@@ -2673,7 +2673,7 @@
       "manifest_version": 2,
       "id": "Emilia-awa.maibot-mimotts-voice",
       "name": "MiMo TTS Voice Clone",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "description": "MiMo TTS Voice Clone Plugin for MaiBot - AI语音回复插件，支持自定义音色克隆和风格控制",
       "author": {
         "name": "Emilia-awa",
@@ -2694,11 +2694,8 @@
       },
       "dependencies": [],
       "capabilities": [
-        "send.text",
         "send.custom",
-        "send.record",
-        "message.get_by_id",
-        "chat.get_all_streams"
+        "chat.get_group_streams"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -3690,9 +3687,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.4.2",
+      "version": "1.5.0",
       "name": "F1 资讯插件",
-      "description": "查询 F1 赛历、赛果和新闻，并向模型注入可编辑的车手群聊上下文。",
+      "description": "查询 F1 赛历、赛果和新闻，定时采集发送 F1 Meme，并向模型注入可编辑的车手群聊上下文。",
       "author": {
         "name": "chi8wah",
         "url": "https://github.com/Chi8wah"
@@ -3716,6 +3713,8 @@
       "capabilities": [
         "send.text",
         "send.image",
+        "send.hybrid",
+        "chat.get_stream_by_group_id",
         "render.html2png",
         "llm.generate"
       ],
@@ -5651,7 +5650,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.kuuri-krtt.mai_tarots",
-      "version": "1.1.5",
+      "version": "1.1.6",
       "name": "麦麦塔罗",
       "description": "提供本地塔罗占卜功能，支持多种牌阵、牌面图片发送、AI 解读和语境化延伸评论。",
       "author": {
@@ -12432,9 +12431,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -16213,7 +16212,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.8.0",
+      "version": "0.8.3",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -16261,6 +16260,8 @@
         "config.get",
         "send.text",
         "send.image",
+        "send.custom",
+        "api.call",
         "chat.get_group_streams"
       ],
       "i18n": {
@@ -16874,9 +16875,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.3.18",
+      "version": "0.7.0",
       "name": "麦麦寻人",
-      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
         "name": "fsqhn",
         "url": "https://github.com/fsqhn"
@@ -16909,7 +16910,8 @@
         "send.text",
         "send.forward",
         "message.get_by_id",
-        "message.get_recent"
+        "message.get_recent",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -17997,7 +17999,7 @@
       "manifest_version": 2,
       "id": "m1o0.maibot-mimotts-voice-pro",
       "name": "MiMo TTS Voice Clone (Pro)",
-      "version": "1.9.12",
+      "version": "1.9.13",
       "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
       "author": {
         "name": "m1o0",
@@ -19899,7 +19901,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.1.3",
+      "version": "0.2.0",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -20583,7 +20585,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.character-disguise",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "麦麦的人类伪装计划",
       "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
       "author": {
@@ -20909,24 +20911,24 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.zerlight.reply-integrity",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "Reply Integrity",
       "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
       "author": {
-        "name": "Reply Integrity",
-        "url": "https://github.com/Zerlight/maibot-reply-integrity"
+        "name": "Zerlight",
+        "url": "https://github.com/Zerlight"
       },
       "license": "MIT",
       "urls": {
         "repository": "https://github.com/Zerlight/maibot-reply-integrity"
       },
       "host_application": {
-        "min_version": "1.3.19",
+        "min_version": "1.2.0",
         "max_version": "1.3.19"
       },
       "sdk": {
-        "min_version": "2.20.0",
-        "max_version": "2.20.0"
+        "min_version": "2.7.1",
+        "max_version": "2.21.0"
       },
       "dependencies": [],
       "capabilities": [],
@@ -20953,7 +20955,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "shinoyuki.memdiag",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "内存诊断",
       "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
       "author": {
@@ -20987,10 +20989,11 @@
     "id": "ilworkcn.maiweave",
     "manifest": {
       "manifest_version": 2,
+      "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜阅读与生活",
-      "version": "0.7.5",
-      "description": "给麦麦一本书，让它按日程阅读、留下笔记，和你聊读后感。聊天也能改变生活安排，串起日记、人物关系与纪念日。",
+      "version": "0.8.4",
+      "description": "麦麦会从书架挑书，记下摘句和疑问，读到有感触的地方还会主动找你聊。你也可以和它约时间、改日程，翻看它写的生活日记。",
       "author": {
         "name": "ilworkcn",
         "url": "https://github.com/ilworkcn"
@@ -21018,6 +21021,7 @@
       ],
       "capabilities": [
         "llm.generate",
+        "database.get",
         "config.get",
         "send.text",
         "maisaka.proactive.trigger",
@@ -21320,6 +21324,59 @@
     },
     "assets": {
       "icon_64": "icons/github.42yoru.lolicon-setu.webp"
+    }
+  },
+  {
+    "id": "maibot.maimai-feed-bot",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.maimai-feed-bot",
+      "version": "1.6.0",
+      "name": "麦麦要吃那个！",
+      "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+      "author": {
+        "name": "NetaJuutilainen",
+        "url": "https://github.com/NetaJuutilainen"
+      },
+      "license": "MIT",
+      "plugin_type": "game",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      },
+      "urls": {
+        "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+        "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+        "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+        "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "llm.generate",
+        "chat.get_group_streams",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maibot.maimai-feed-bot.webp"
     }
   }
 ]

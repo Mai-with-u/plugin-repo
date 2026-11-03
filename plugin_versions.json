@@ -11903,7 +11903,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.5.0",
+          "version": "1.5.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "davidblackcn.maibot-api-balance-plugin",
@@ -41362,6 +41368,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.8.3",
+          "version": "0.8.3",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.8.0",
           "version": "0.8.0",
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
@@ -44026,6 +44037,21 @@
       ],
       "ignored_tags": [],
       "rejected_releases": [
+        {
+          "tag": "v0.7.0",
+          "version": "0.7.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.6",
+          "version": "0.5.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.5",
+          "version": "0.5.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
         {
           "tag": "v0.3.18",
           "version": "0.3.18",
