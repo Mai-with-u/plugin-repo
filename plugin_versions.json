@@ -47663,6 +47663,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "a19babfcf39ce2ca47a9dc48ef9ec41ed6edf373",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:43:50Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.2.0",
+          "release_notes": "## 0.2.0\n\n相较 0.1.3：\n\n### 主要功能\n\n- 新增可选本地托管：开启并保存后，后台自动下载、校验并运行 meme-generator-rs v0.2.3，无需另行部署服务；默认关闭。\n- 新增下载进度、失败重试和托管数据删除。关闭托管后恢复原外部地址并保留安装，再次开启可直接复用。\n- 菜单改为随包预绘的 300 模板索引图，加载后直接复用，运行时无需 Pillow 或系统字体。\n\n### 细节与修复\n\n- 托管自动匹配 Linux glibc x86_64/aarch64、Windows x86_64、macOS x86_64/aarch64、Android aarch64。Linux x86_64 已验证，其余为实验性支持。\n- 实际可用模板与预绘菜单不一致时，按设置返回文字清单或提示，避免展示错误列表。\n- 模板信息改为后台读取，减少插件加载和保存配置时的等待。\n- 显示名称改为「表情包制作」，插件 ID 不变。\n\n### 升级提示\n\n- 覆盖更新时保留原配置和数据；若重载后仍显示旧界面，请重启 MaiBot 核心并刷新页面。\n- 托管首次下载约 381 MB 素材归档，解包后约 414 MB，至少预留 1.2 GB 磁盘空间。\n- 托管引擎与 MaiBot 共用权限和资源，没有单独的 CPU、内存配额。第三方字体、素材的许可尚未完整确认，不代表全部采用 MIT。\n\n### 安装包\n\n- **ZIP**：解压后将插件目录放入 MaiBot 的 `plugins/`；覆盖更新时保留原配置和数据。\n- **wheel / tar.gz**：分别为 Python 安装包与源码包。\n- 文件摘要见 `SHA256SUMS`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "plugin_type": "media",
+            "version": "0.2.0",
+            "name": "表情包制作",
+            "description": "通过中文关键词或命令，使用图片、文字和 @ 头像制作表情包。支持外部 Rust 服务或默认关闭的本地托管引擎。",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.3",
           "tag": "v0.1.3",
           "commit": "05368ba42f44dba1f7c46fae589502f862936055",
