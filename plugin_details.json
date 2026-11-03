@@ -1,50 +1,5 @@
 [
   {
-    "id": "SengokuCola.Mute-Plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "4.7.1",
-      "name": "群聊禁言管理插件 (Mute Plugin)",
-      "description": "群聊禁言管理插件，提供智能禁言和手动禁言命令",
-      "author": {
-        "name": "SengokuCola",
-        "url": "https://github.com/SengokuCola"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/SengokuCola/MutePlugin",
-        "homepage": "https://github.com/SengokuCola/MutePlugin",
-        "documentation": "https://github.com/SengokuCola/MutePlugin/blob/main/README.md",
-        "issues": "https://github.com/SengokuCola/MutePlugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.2.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.8.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "api.call",
-        "api.list",
-        "message.get_by_id",
-        "person.get_id_by_name",
-        "person.get_value",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": "_locales",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "sengokucola.mute-plugin"
-    }
-  },
-  {
     "id": "github.a0000xz.maibot-tarots-plugin",
     "manifest": {
       "manifest_version": 2,
