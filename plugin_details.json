@@ -45,7 +45,7 @@
     }
   },
   {
-    "id": "A0000Xz.MaiBot-Tarots-Plugin",
+    "id": "github.a0000xz.maibot-tarots-plugin",
     "manifest": {
       "manifest_version": 2,
       "id": "github.a0000xz.maibot-tarots-plugin",
@@ -95,7 +95,7 @@
       }
     },
     "assets": {
-      "icon_64": "icons/A0000Xz.MaiBot-Tarots-Plugin.webp"
+      "icon_64": "icons/github.a0000xz.maibot-tarots-plugin.webp"
     }
   },
   {
@@ -244,7 +244,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "internetsb.maizone",
-      "version": "3.0.3",
+      "version": "3.0.4",
       "name": "Maizone（麦麦空间）",
       "description": "让麦麦阅读、评论、点赞、发送QQ空间。为插件提供发送说说接口",
       "author": {
@@ -6320,7 +6320,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pan-ice.music",
-      "version": "1.4.6",
+      "version": "1.4.7",
       "name": "音乐插件",
       "description": "搜索点歌、解析音乐链接，发送语音音频，支持网易云音乐和QQ音乐",
       "author": {
@@ -8035,7 +8035,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.fffold.bangumi-browse-plugin",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "Bangumi 动漫高手插件",
       "description": "接入 Bangumi (bgm.tv)，让你的 MaiBot 变身动画高手！支持新番速览、每日放送、单集吐槽、长评阅读、制作阵容查询，动画/游戏/书籍一网打尽。",
       "author": {
@@ -9875,7 +9875,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -10226,7 +10226,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maitu.photo-studio",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "name": "麦麦写真",
       "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
       "author": {
@@ -11238,7 +11238,7 @@
     "id": "mengshouer.analysis-bilibili",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.6",
+      "version": "1.0.7",
       "name": "Bilibili 内容解析",
       "description": "自动解析 Bilibili 视频、番剧、直播、专栏和动态，并支持视频搜索",
       "author": {
@@ -11254,7 +11254,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.2.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.7.1",
@@ -12477,9 +12477,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "1.3.3",
+      "version": "1.4.0",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」与「丰富回复」时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主关闭「启用引用回复」与「丰富回复」时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -12490,7 +12490,7 @@
       },
       "host_application": {
         "min_version": "1.2.3",
-        "max_version": "1.99.99"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.8.0",
@@ -12540,7 +12540,18 @@
         ]
       },
       "plugin_type": "extension",
-      "changelog": "CHANGELOG.md"
+      "changelog": "CHANGELOG.md",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/logo.png",
+          "fallback": "package",
+          "background": "#F2F1ED"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.cateye.better-post-processing.webp"
     }
   },
   {
@@ -12768,7 +12779,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.15.1",
+      "version": "0.15.3",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -12920,7 +12931,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.24.6",
+      "version": "1.24.9",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -13692,9 +13703,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.7.1",
+      "version": "1.8.0",
       "name": "better-diary 日记插件",
-      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、/日记查看 等本地检索。天气与归档术语一律以当天聊天原文为据，不凭空生成。权限 fail-closed：先配 admin_ids 才可用。",
+      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；天气与归档术语以当天原文为据，线索不足时只按氛围选。权限 fail-closed：先配 admin_ids 才可用。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -13709,7 +13720,7 @@
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.99.99"
+        "max_version": "2.21.0"
       },
       "dependencies": [
         {
@@ -13994,9 +14005,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "riesa.reason",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "深度问答 · 图片版",
-      "description": "群内输入「前缀 + 问题」触发（前缀默认 /rs，可自定义），调用宿主模型深度思考并联网查证，把思考过程与详细回答渲染成卡片图片回复。支持纯前缀、@机器人 + 前缀、引用消息 + 前缀三种触发形态；回答过长自动按空白带安全分页，思考区按版面预算自适应保留或折叠。",
+      "description": "群内输入「前缀 + 问题」触发（前缀默认 /rs，可自定义），使用独立配置的 OpenAI 兼容回答模型，可选调用独立配置的 DeepSeek 官方网页搜索，搜索结果条数可调整为 1～50 条，并将回答渲染成卡片图片。支持纯前缀、@机器人 + 前缀、引用消息 + 前缀三种触发形态；回答过长自动安全分页。",
       "author": {
         "name": "RiESA",
         "url": "https://github.com/riesaexe"
@@ -14040,7 +14051,7 @@
         "send.text",
         "send.image",
         "send.hybrid",
-        "llm.generate",
+        "message.get_by_id",
         "render.html2png",
         "database.save",
         "database.delete",
@@ -14218,9 +14229,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.life-frequency",
-      "version": "1.25.0",
+      "version": "1.25.5",
       "name": "生活频率",
-      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件用哨兵对照在运行时自证，验证不通过即停用而非退回全库检索）。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n睡醒补答（v1.23.0）：她睡着时进来的私聊与群 @ 会被记为积压，自然醒时按会话各触发一次 Planner（措辞交给宿主，她有权沉默）或注入下一次回复；只有管理员私聊能在她睡着时把她叫醒（`wake_private_scope` 三态，可越过 quiet_hours），其他人一律等她醒了再补。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
+      "description": "为麦麦维护一份持续的小生活，并按当前状态缩放每个会话的发言频率：作息活动由 LLM 依人设与近/中/远三层近期经历生成，另有情绪体力、身体、日期节日与经济维度；自动适配宿主的回复触发模式，与其它写频率的插件做乘性合成而不是互相覆盖。\n\n生活侧：工作表活动（通勤/工作/开会/加班/午休/下班）与可选作息班表（含法定节假日与调休），由强制层守住作息一致性；可选习惯层（「HH:MM-HH:MM|场景|活动」，支持多句候选）、生理三餐窗、四段病程的感冒（含 /生活 送药）、拟真睡眠（小睡 / 失眠 / 赖床 / 睡懒觉）与按人建档的关系熟悉度。倍率侧：活动 / 情绪 / 体力 / 健康 / 日期五类因子有序相乘再加素材加成，睡眠与静默时段走硬闸直接归零；压力、孤独、社交电量三个内心维度只进提示词与素材，不进倍率（避免双重抑制）。\n\n可选接线（每路独立降级、失败不影响主流程）：better-diary 选材摘要、「外面的世界」（bilibili 开播与动态、入群新人、最近命中歌曲）、budget-pacer 真实月度预算、宿主长期记忆（A_Memorix 只读：只进主动开口素材与关系档案，不进活动提示词与回复摘要；其 person_id / respect_filter 作用域不在 SDK 公开签名里，插件在运行时用「另一个真实的真人」做对照自证（验不出判存疑并退严格模式，确认无作用域才停用，绝不退回全库检索））。另含主动开口（素材 / 问候 / 关系维护三类动机，可选冷群搭话：群里安静下来时抛一条能被回答的公共话题）、打断机制（被 @ 或私聊时临时切「聊天中」）、梦境、多活动并行与关系档案。\n\n睡醒补答（v1.23.0）：她睡着时进来的私聊与群 @ 会被记为积压，自然醒时按会话各触发一次 Planner（措辞交给宿主，她有权沉默）或注入下一次回复；只有管理员私聊能在她睡着时把她叫醒（`wake_private_scope` 三态，可越过 quiet_hours），其他人一律等她醒了再补。\n\n命令：/生活 状态 / 频率 / 归因 / 关系 / 活动 / 为什么 / 送药 等（完整列表与全部配置项见 README）；完整版本历史见 README「版本历史」。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -14235,7 +14246,7 @@
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.13.99"
+        "max_version": "2.21.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -14871,9 +14882,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.file-reader",
-      "version": "1.2.1",
+      "version": "1.3.6",
       "name": "文件读取（File Reader）",
-      "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/csv/代码/文本等），分块向量化后按语义检索，把最相关内容注入 LLM 上下文，实现低开销的文件问答。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+      "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。支持追问改写、解析失败原因回传模型、文件滑动续期。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -14883,13 +14894,14 @@
         "repository": "https://github.com/orge-8/file-reader"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.99.99"
+        "max_version": "2.21.99"
       },
+      "plugin_type": "data",
       "dependencies": [
         {
           "type": "python_package",
@@ -16758,11 +16770,11 @@
       },
       "host_application": {
         "min_version": "0.10.0",
-        "max_version": "999.999.999"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "999.999.999"
+        "max_version": "2.99.99"
       },
       "dependencies": [
         {
@@ -16907,7 +16919,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.3.13",
+      "version": "0.3.18",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -17018,7 +17030,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.5.3",
+      "version": "0.5.4",
       "name": "MiMo TTS 语音回复",
       "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
       "author": {
@@ -17915,7 +17927,7 @@
       "manifest_version": 2,
       "id": "octmicy.mai-gatekeeper",
       "name": "麦麦守门人",
-      "version": "0.6.5",
+      "version": "0.6.7",
       "description": "好友申请审批（LLM 自动 / 管理员人工 / 混合）+ 用户屏蔽（发言拦截、私聊删好友）插件。自建 OneBot v11 正向 WebSocket 直连 NapCat / SnowLuma 对端，无需修改适配器。",
       "author": {
         "name": "octmicy",
@@ -18222,7 +18234,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "riesa.translate",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "name": "中文翻译",
       "description": "使用 Index-Translate 将聊天文字和图片翻译为中文，支持自定义触发命令（默认 /rs 翻译）与引用消息",
       "author": {
@@ -18499,8 +18511,8 @@
       "manifest_version": 2,
       "id": "fjyxyz.reply-meme",
       "version": "1.0.5",
-      "name": "回复配图·梗鲸",
-      "description": "从梗鲸图库筛选贴切表情包，并只发送到当前 QQ 聊天流。",
+      "name": "梗鲸回复配图",
+      "description": "从梗鲸图库筛选四张以内的表情包候选供视觉模型判断，再由 reply.attach_pic 使用 tool_result 媒体索引将选中的一张发送到当前 QQ 聊天流。",
       "author": {
         "name": "fjyxyz",
         "url": "https://github.com/2451965602"
@@ -18519,7 +18531,7 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.16.99"
+        "max_version": "2.21.99"
       },
       "dependencies": [
         {
@@ -18528,9 +18540,7 @@
           "version_spec": ">=3.9,<4"
         }
       ],
-      "capabilities": [
-        "send.image"
-      ],
+      "capabilities": [],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -18544,7 +18554,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.TommyAAKK.bilibili_interest_share",
-      "version": "1.1.2",
+      "version": "2.0.0",
       "name": "麦麦刷B站",
       "description": "定时刷 B 站，按白名单聊天流的用户兴趣挑选有趣的视频分享。支持抽帧看画面、读弹幕与热门评论、LLM 语义判断与内容总结、按 MaiBot 人设口吻写分享文案、已刷名单、主动搜索与 /赤石视频。刷取频率可在配置中调节，每个配置项都带中文注释。",
       "author": {
@@ -18573,6 +18583,7 @@
       ],
       "capabilities": [
         "send.text",
+        "send.image",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
         "message.get_recent",
@@ -18684,7 +18695,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.jiakeju.maibot-curator",
-      "version": "0.1.5",
+      "version": "0.1.7",
       "name": "麦麦很好奇（Memory Keeper）",
       "description": "后台整理插件：学习群里的黑话、表达方式与表情包，按角色性格精选、查重合并，并整理群友日程。支持 WebUI 配置与 dry-run（只出报告、不改库）。",
       "author": {
@@ -18788,9 +18799,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WiseXin.phone-controller",
-      "version": "1.1.3",
+      "version": "1.3.1",
       "name": "麦麦的手机",
-      "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、动态录屏抽帧、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷4大平台、深度点击浏览详情并向主人幽默吐槽分享的真正数字生命能力。",
+      "description": "让麦麦拥有属于自己的实体安卓手机！支持无线调试秒连、看屏幕截图、动态录屏抽帧、按文字智能点击、中文打字、多设备别名无缝切换，更具备闲时自动摸鱼刷4大平台、深度浏览详情向主人吐槽分享、后台静默副屏、心智欲望池与生活日记的真正数字生命能力。",
       "author": {
         "name": "WiseXin",
         "url": "https://github.com/WiseXin"
@@ -19260,7 +19271,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.moonlycake.member-distiller",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "群友蒸馏资料收集",
       "description": "按 QQ 收集群聊发言及少量匿名上下文，并导出本机文本。",
       "author": {
@@ -19282,7 +19293,8 @@
       "plugin_type": "extension",
       "dependencies": [],
       "capabilities": [
-        "send.text"
+        "send.text",
+        "config.get"
       ],
       "display": {
         "icon": {
@@ -19402,7 +19414,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-community.mai-life-suite",
-      "version": "1.2.2",
+      "version": "1.3.0",
       "name": "MaiLifeSuite（麦麦生活套件）",
       "description": "Mai_life 与 MaiTrace 的合并插件：持续生活模拟、消息体验、联网见闻、书柜创作，以及每日作息、临时约定与 QQ 空间分享。",
       "plugin_type": "integration",
@@ -19557,7 +19569,7 @@
       "manifest_version": 2,
       "id": "community.wows-yuyuko",
       "name": "战舰世界战绩查询",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "description": "战舰世界（World of Warships）战绩查询：/wws 指令渲染水表图片，数据来自 yuyuko API。MaiBot 移植版，基于 AstrBot 插件 AstrByWowsYoyukoBot（西行寺雨季）内置 hikari-core v2.0.1。",
       "author": {
         "name": "白云鱼海",
@@ -19932,7 +19944,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -20109,7 +20121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.0.3",
+      "version": "2.0.6",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -20231,11 +20243,11 @@
     "id": "mai-persona.mai-persona",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.4",
+      "version": "0.3.3",
       "name": "Mai Persona 内在引擎",
       "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
       "author": {
-        "name": "Mai Persona Contributors",
+        "name": "Orxil.V",
         "url": "https://github.com/hedgehogovo"
       },
       "license": "MIT",
@@ -20436,6 +20448,923 @@
         "config.get",
         "chat.get_avatar"
       ]
+    }
+  },
+  {
+    "id": "m1o0.proactive-wake",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "m1o0.proactive-wake",
+      "version": "1.1.0",
+      "name": "主动唤醒",
+      "description": "手动让麦麦立刻接一轮当前话题，不必等动态门控放行。带冷却防手滑、唤醒前检查她是否刚说过话（可强制跳过），并在页面上显示各聊天流的可唤醒状态与唤醒历史。",
+      "author": {
+        "name": "m1o0",
+        "url": "https://github.com/m1o0"
+      },
+      "license": "MIT",
+      "plugin_type": "chat",
+      "urls": {
+        "repository": "https://github.com/m1o0/maibot-proactive-wake",
+        "homepage": "https://github.com/m1o0/maibot-proactive-wake",
+        "issues": "https://github.com/m1o0/maibot-proactive-wake/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "chat.get_all_streams",
+        "maisaka.proactive.trigger",
+        "config.get",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "m1o0.persona-switcher",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "m1o0.persona-switcher",
+      "version": "1.1.1",
+      "name": "人设存档与切换",
+      "description": "把人设存成存档，随时切换回来，并且到点能自动恢复。支持整套人设、群聊人设、单个聊天流人设三级粒度；切换前自动备份，切换后可一键恢复原状；可选限时生效（如「30 分钟后自动换回」）。全部在 WebUI 页面里点按操作，不用改配置文件。只动人设字段，聊天频率、模型、语音等配置一律不碰。",
+      "author": {
+        "name": "m1o0",
+        "url": "https://github.com/m1o0"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/m1o0/maibot-persona-switcher",
+        "homepage": "https://github.com/m1o0/maibot-persona-switcher"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "data",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.12"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.zzy-fxxxexxxyxxx.proactive-ping",
+      "version": "0.3.0",
+      "name": "主动敲门 (Proactive Ping)",
+      "description": "冷场时提醒 MaiBot 的 planner 自主决定要不要主动找你。可配置探测间隔、空闲阈值、冷却、每日上限、静默时段与提示词；插件不调用模型、不直接发消息。",
+      "author": {
+        "name": "zzy-fxxxexxxyxxx",
+        "url": "https://github.com/zzy-fxxxexxxyxxx"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+        "homepage": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping",
+        "documentation": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/blob/main/README.md",
+        "issues": "https://github.com/zzy-fxxxexxxyxxx/maibot-plugin-proactive-ping/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_private_streams",
+        "message.get_recent",
+        "maisaka.proactive.trigger"
+      ],
+      "plugin_type": "extension",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.beichen24a1.group-persona",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.beichen24a1.group-persona",
+      "version": "0.1.2",
+      "name": "分群人格",
+      "description": "让麦麦在不同群里是不同的人：按群覆盖人设与行为风格，记忆、表达与上下文本来就已经按群隔离，本插件只补上人格这一层。",
+      "author": {
+        "name": "beichen24a1",
+        "url": "https://github.com/beichen24a1"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+        "homepage": "https://github.com/beichen24a1/MaiBot-GroupPersona",
+        "issues": "https://github.com/beichen24a1/MaiBot-GroupPersona/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.10.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "users"
+        }
+      },
+      "capabilities": [
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "WiseXin.character-disguise",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "WiseXin.character-disguise",
+      "version": "1.0.2",
+      "name": "麦麦的人类伪装计划",
+      "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+      "author": {
+        "name": "WiseXin",
+        "url": "https://github.com/WiseXin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+        "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+        "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+        "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text"
+      ],
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "user-check"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-reply-guard",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.42yoru.maimai-reply-guard",
+      "version": "0.4.0",
+      "plugin_type": "management",
+      "name": "回复守卫 (Reply Guard)",
+      "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "shield-check",
+          "background": "#9AD0FF"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/maimai-reply-guard",
+        "homepage": "https://github.com/42yoru/maimai-reply-guard",
+        "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+        "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.50.50"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-reply-guard.webp"
+    }
+  },
+  {
+    "id": "tianditongcuo.partner-game-pro",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "tianditongcuo.partner-game-pro",
+      "version": "2.0.2",
+      "name": "今日老婆 Pro+",
+      "description": "基于随机抽签演化的群聊伴侣互动游戏系统（支持抽、娶、抢、甩等互动玩法）。Pro+ 维护分支，持续扩展中。",
+      "author": {
+        "name": "tianditongcuo",
+        "url": "https://github.com/tianditongcuo"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tianditongcuo/partner-game",
+        "issues": "https://github.com/tianditongcuo/partner-game/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "game",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.jiakeju.token-ledger",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.jiakeju.token-ledger",
+      "version": "0.1.2",
+      "name": "麦麦不贪吃（Token Ledger）",
+      "description": "读取宿主 token 用量，按自维护价格库（支持峰谷价、星期与节假日）重算费用，提供按群与按模型的图表看板、不可篡改的周报 / 月报记录，并给出工具调用费估算。只读数据库，不发消息。",
+      "author": {
+        "name": "JJK",
+        "url": "https://github.com/JiaKeJu"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/JiaKeJu/maibot-ledger",
+        "homepage": "https://github.com/JiaKeJu/maibot-ledger",
+        "documentation": "https://github.com/JiaKeJu/maibot-ledger#readme",
+        "issues": "https://github.com/JiaKeJu/maibot-ledger/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "capabilities": [
+        "database.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "ayu.goreview",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ayu.goreview",
+      "name": "阿羽围棋复盘",
+      "version": "0.4.2",
+      "description": "内置围棋复盘服务，支持野狐棋谱与智子围棋 KataGo。",
+      "author": {
+        "name": "toya",
+        "url": "https://github.com/Toyaspio"
+      },
+      "urls": {
+        "repository": "https://github.com/Toyaspio/GoReview"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.15"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.16.0"
+      },
+      "plugin_type": "integration",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "maisaka.reply.generate"
+      ],
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<0.29"
+        },
+        {
+          "type": "python_package",
+          "name": "sgfmill",
+          "version_spec": "==1.1.1"
+        },
+        {
+          "type": "python_package",
+          "name": "fastapi",
+          "version_spec": ">=0.115.12,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.56,<2"
+        },
+        {
+          "type": "python_package",
+          "name": "python-socketio",
+          "version_spec": ">=5.11,<6"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9,<4"
+        }
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "YukiSakiko.cnmeme-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "YukiSakiko.cnmeme-plugin",
+      "version": "0.1.1",
+      "name": "麦麦梗百科插件",
+      "description": "唯独你没懂——按需查询网络梗和陌生词，为麦麦理解聊天提供内部参考，不主动发送词义解释。",
+      "author": {
+        "name": "YukiSakiko",
+        "url": "https://github.com/YukiSakiko"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/YukiSakiko/cnmeme_plugin"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.0.0,<3.0.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "Sol.trusted_identity",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "Sol.trusted_identity",
+      "name": "精确身份与群聊特别关注",
+      "version": "0.4.1",
+      "description": "核验当前QQ回复目标；绑定账号及每个关注账号可独立填写称呼，默认留空。不授予管理员或工具权限。",
+      "author": {
+        "name": "Sol",
+        "url": "https://github.com/MWT-D0ZUV/Sol_trusted_identity"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.21.0"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "urls": {
+        "repository": "https://github.com/MWT-D0ZUV/Sol_trusted_identity"
+      }
+    }
+  },
+  {
+    "id": "github.zerlight.reply-integrity",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.zerlight.reply-integrity",
+      "version": "1.3.0",
+      "name": "Reply Integrity",
+      "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
+      "author": {
+        "name": "Reply Integrity",
+        "url": "https://github.com/Zerlight/maibot-reply-integrity"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Zerlight/maibot-reply-integrity"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.20.0"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "plugin_type": "chat",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/logo.svg"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.zerlight.reply-integrity.webp"
+    }
+  },
+  {
+    "id": "shinoyuki.memdiag",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "shinoyuki.memdiag",
+      "version": "0.1.0",
+      "name": "内存诊断",
+      "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
+      "author": {
+        "name": "ShinoyukiMiyako",
+        "url": "https://github.com/ShinoyukiMiyako"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+        "issues": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/issues"
+      },
+      "host_application": {
+        "min_version": "1.2.3",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "ilworkcn.maiweave",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "ilworkcn.maiweave",
+      "name": "MaiWeave · 麦织｜阅读与生活",
+      "version": "0.7.5",
+      "description": "给麦麦一本书，让它按日程阅读、留下笔记，和你聊读后感。聊天也能改变生活安排，串起日记、人物关系与纪念日。",
+      "author": {
+        "name": "ilworkcn",
+        "url": "https://github.com/ilworkcn"
+      },
+      "license": "GPL-3.0-only",
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "lunar_python",
+          "version_spec": "==1.4.8"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2026.1"
+        }
+      ],
+      "capabilities": [
+        "llm.generate",
+        "config.get",
+        "send.text",
+        "maisaka.proactive.trigger",
+        "web.search",
+        "web.fetch",
+        "chat.open_session",
+        "person.get_value",
+        "chat.get_all_streams",
+        "person.get_id",
+        "llm.get_available_models"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "urls": {
+        "repository": "https://github.com/ilworkcn/MaiWeave"
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/ilworkcn.maiweave.webp"
+    }
+  },
+  {
+    "id": "local.volc.tts2",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.volc.tts2",
+      "version": "1.0.1",
+      "name": "豆包语音合成 2.0",
+      "description": "MaiBot 的豆包语音合成 2.0 插件，提供文字转语音工具、调试命令与公开合成 API，支持音色、情绪标记和缓存。",
+      "author": {
+        "name": "suodeovo",
+        "url": "https://github.com/suodeovo"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "urls": {
+        "repository": "https://github.com/suodeovo/MaiBot-Doubao-TTS",
+        "homepage": "https://github.com/suodeovo/MaiBot-Doubao-TTS",
+        "documentation": "https://github.com/suodeovo/MaiBot-Doubao-TTS/blob/main/README.md",
+        "issues": "https://github.com/suodeovo/MaiBot-Doubao-TTS/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.21.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "capabilities": [
+        "send.custom",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TommyAAKK.antibait",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "TommyAAKK.antibait",
+      "version": "1.0.0",
+      "name": "AI八股拦截",
+      "description": "拦截 AI 八股、附和服软腔与结构残留，命中后打回 replyer 重生成一次，并在两次结果中择优发出",
+      "author": {
+        "name": "TommyAAKK",
+        "url": "https://github.com/TommyAAKK"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/TommyAAKK/maibot-antibait"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.99.99"
+      },
+      "capabilities": [
+        "config.get",
+        "message.get_recent",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      }
+    }
+  },
+  {
+    "id": "qqbot-music.sing",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "QQ 机器人唱歌（qqbot-music）",
+      "description": "给麦麦一个 sing 工具：用你配置的音色唱歌、发语音。需要另外运行 qqbot-music 唱歌服务（https://github.com/aa1805370178-dot/qqbot-music）。",
+      "author": {
+        "name": "小小墨",
+        "url": "https://github.com/aa1805370178-dot"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/aa1805370178-dot/qqbot-music-maibot",
+        "homepage": "https://github.com/aa1805370178-dot/qqbot-music",
+        "documentation": "https://github.com/aa1805370178-dot/qqbot-music-maibot#readme",
+        "issues": "https://github.com/aa1805370178-dot/qqbot-music-maibot/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "config.get"
+      ],
+      "id": "qqbot-music.sing",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "com.maimai.pic-collector",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.maimai.pic-collector",
+      "version": "1.0.1",
+      "name": "聊天图片收藏",
+      "description": "有选择性地保存聊天记录图片：根据 bot 人设或用户自定义要求，用文字 LLM（回复模型）判断主程序已生成的图片识别文字，符合条件的原图按日期保存到指定目录，保存后随机发送一条通知。",
+      "author": {
+        "name": "LDrumDusk",
+        "url": "https://github.com/LDrumDusk"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LDrumDusk/maibot_pic_collector",
+        "homepage": "https://github.com/LDrumDusk/maibot_pic_collector",
+        "documentation": "https://github.com/LDrumDusk/maibot_pic_collector/blob/main/README.md",
+        "issues": "https://github.com/LDrumDusk/maibot_pic_collector/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.5.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "chartyr.devinsearch",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "chartyr.devinsearch",
+      "version": "0.2.0",
+      "name": "DevinSearch",
+      "description": "Devin 联网搜索：用免费 Devin 账号授权后，给 Planner 一个 devin_search 工具做实时网络检索",
+      "author": {
+        "name": "CharTyr",
+        "url": "https://github.com/CharTyr"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+        "homepage": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+        "documentation": "https://github.com/CharTyr/MaiBot-Devin-WebSearch",
+        "issues": "https://github.com/CharTyr/MaiBot-Devin-WebSearch/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.12",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.16.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "tool.register",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "extension",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "search"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.42yoru.lolicon-setu",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.42yoru.lolicon-setu",
+      "version": "2.4.6",
+      "plugin_type": "media",
+      "name": "不发图我看什么",
+      "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "image",
+          "background": "#FCF3D9"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+        "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+        "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+        "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.50.50"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "config.get",
+        "send.text",
+        "send.image",
+        "send.forward"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.lolicon-setu.webp"
     }
   }
 ]
