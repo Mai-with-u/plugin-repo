@@ -11903,7 +11903,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.5.0",
+          "version": "1.5.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "davidblackcn.maibot-api-balance-plugin",
@@ -13305,6 +13311,15 @@
       "id": "DeepSeek-V4-pro.eku-egg-protocol",
       "manifest_id": "DeepSeek-V4-pro.eku-egg-protocol",
       "repositoryUrl": "https://github.com/DeepSeek-V4-Pro/free_egg_distribution",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "NothingButSeaweedSoup.LonelyMai",
+      "manifest_id": "NothingButSeaweedSoup.LonelyMai-sdkv2",
+      "repositoryUrl": "https://github.com/clfr41/lonely-mai-sdkv2",
       "mode": "branch",
       "versions": [],
       "ignored_tags": [],
@@ -22641,6 +22656,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.5",
+          "tag": "v1.6.5",
+          "commit": "619d8325ae407abdbe75efc0580aef102459ed5f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:33:38Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.6.5",
+          "release_notes": "> 本版本修复一个「消息被吞」的问题：早晚安冷却期内再发「早安/晚安」时，这条消息原先对麦麦完全不可见。\n\n### 行为变更\n\n- **早晚安冷却期不再吞消息**（默认行为变化）：此前同一用户在 `cooldown_minutes`\n  （默认 30 分钟）内再次发「早安 / 晚安」时，命令返回 `intercept=True`，\n  这条消息对麦麦**完全不可见** —— 用户反馈\"说了晚安机器人毫无反应\"多由此产生。\n  现在冷却期只回一句提示语（**文案不变**），消息**照常放行**给麦麦，由它自行决定是否接话。\n- 新增配置项 `[good_morning] cooldown_intercept`（默认 **`false`**）：想恢复旧行为\n  （冷却期直接吞掉该消息）把它设为 `true` 即可。\n\n### 说明\n\n- 记录成功路径（非冷却期）本就返回 `intercept=False`，本次**只改冷却分支**；\n- 其余会吞消息的场景未变：功能开关关闭、`[group_filter]` 群号名单拒绝；\n- 新增字段由宿主自动合并进现有 `config.toml`（`config_version` 1.6.4 → 1.6.5），\n  你原有的配置值全部保留，无需手动改。\n\n---\n\n完整更新日志见 [CHANGELOG.md](https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/blob/main/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.6.5",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.6.4",
           "tag": "v1.6.4",
           "commit": "88f77bc893ab1b315091d9824fa5ee9090bcfef1",
@@ -26362,6 +26443,76 @@
       "repositoryUrl": "https://github.com/octmicy/Mai_life",
       "mode": "releases",
       "versions": [
+        {
+          "version": "1.24.10",
+          "tag": "v1.24.10",
+          "commit": "dd99f7eeebd64f7003a713f3af3fff5a44c37bf5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:20:37Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.24.10",
+          "release_notes": "### 新增\n\n- **日程细化描写开关（`schedule.detailed_schedule`，默认关闭）**：开启后日程生成要求地点必须落到「场所+具体位置」（如\"图书馆三楼靠窗的自习区\"），休闲段必须点名具体游戏/作品（如\"开两把星铁的每日\"），禁止\"玩游戏/看书\"这类泛称。默认关闭保持输出短而稳；开关可在 WebUI 配置页直接切换。\n- **重要日期 WebUI 模板写入（公历/农历可选）**：日期 Tab 新增写入表单（事件名/归属用户/历法/日期/每年循环）与行内删除、聊天候选确认/驳回按钮。公历存 YYYY-MM-DD，农历按平月存 月-日，周年\"下次发生\"用 lunar_python 按农历年换算（闰月暂按对应平月）；写入与删除均走宿主确认弹窗，同名同日期同周期幂等拒绝。\n- **农历写入安全门**：宿主未安装 `lunar_python` 时农历写入直接被拒绝（错误信息明确提示），公历不受影响；日期接口带 `lunar_available` 供页面自动禁用农历选项。\n- **绘图联动补图生图引导（#11 L1）**：对方发照片想看\"麦麦长这样\"时，若本轮工具含 drawpic 的 `edit_image`，引导改走图生图（自动以对方真实图片为参考）；工具不可见则不提。参考图上传与图生图基础能力由「麦麦绘图」2.1.1 自身提供（其 studio 页已支持上传源图）。\n\n### 说明\n\n- `important_dates` 新增 `calendar` 列，存量日期自动标记为公历；唯一索引不含历法——同名同日期同周期视为重复。\n- 农历换算依赖 `lunar_python`（部署环境已内置）；本地无该依赖时相关用例自动跳过。\n\n- 504 项测试通过（+6 日期写入、+1 日程提示词开关、+1 图生图引导）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.9...v1.24.10\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.24.10",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
         {
           "version": "1.24.9",
           "tag": "v1.24.9",
@@ -35311,6 +35462,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.9",
+          "tag": "v1.3.9",
+          "commit": "297122e01604869467660e3048890c14014ccc62",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T15:27:48Z",
+          "release_url": "https://github.com/orge-8/file-reader/releases/tag/v1.3.9",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.file-reader",
+            "version": "1.3.9",
+            "name": "文件读取（File Reader）",
+            "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。支持追问改写、解析失败原因回传模型、文件滑动续期。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/file-reader"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.21.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "pdfminer.six",
+                "version_spec": ">=20221105"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "llm.embed",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.3.6",
           "tag": "v1.3.6",
           "commit": "93689c04c802884152400cee1ed40c0ea351ee32",
@@ -41353,6 +41563,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v0.8.3",
+          "version": "0.8.3",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v0.8.0",
           "version": "0.8.0",
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
@@ -44017,6 +44232,21 @@
       ],
       "ignored_tags": [],
       "rejected_releases": [
+        {
+          "tag": "v0.7.0",
+          "version": "0.7.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.6",
+          "version": "0.5.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.5",
+          "version": "0.5.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
         {
           "tag": "v0.3.18",
           "version": "0.3.18",
@@ -46942,6 +47172,55 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.9.13",
+          "tag": "v1.9.13",
+          "commit": "872afdd229c03d55543761f9d522f4216220e274",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T11:26:49Z",
+          "release_url": "https://github.com/m1o0/maibot-mimotts-voice-pro/releases/tag/v1.9.13",
+          "release_notes": "### 修复\n\n- **`200` 已返回、音频正在下发时被误判为超时**。原来只传 `ClientTimeout(total=request_timeout)`，把「等响应头」和「下载响应体」放进同一个总预算，`sock_read` 没设。MiMo 的实际行为是 `200 + gzip + chunked`：响应头 2~9 秒就到，音频边生成边下发，整体很容易超过 45s。实测 13 次真实合成里有 4 次命中，客户端拿到 `TimeoutError` 就放弃，但上游其实已经把音频生成好了。\n  现在 `_build_timeout()` 显式区分三个量：`total`（整体）、`sock_connect`（建连）、`sock_read`（传输空闲）。只要还在持续出数据就不会被打断。\n- **超时被误报成「不是合法 JSON」**。`_parse_response` 整段包在 `except Exception` 里，而 aiohttp 的读超时抛的是 `TimeoutError`（`OSError` 子类，不是 `asyncio.TimeoutError`，且 `str(exc)` 为空串），于是被吞掉后报成 `invalid response: `。日志里完全看不出是超时，排查时会误判为上游返回坏数据。\n  现在读 body 单独捕获超时并明确标注，其他读取异常保留异常类型名；`_do_request` 的 `except` 也补上了 `TimeoutError`。\n- **`_parse_response` 改为读原始字节再 `json.loads`**，并在响应体为空时明确报 `empty response body`，坏 JSON 会把 body 前 200 字节打进日志。\n\n### 新增\n\n- `[request] stall_timeout`：传输空闲超时（默认 `30.0`）。响应体两次收到数据之间允许的最大间隔，卡住不动超过这么久才放弃。\n- `request_timeout` 默认值 `45.0` → `90.0`，语义改为「单次合成整体超时」。\n\n### 升级建议\n\n**建议升级。** 尤其是语音偶尔「明明发了却没声音 / 改成文字」的用户：这一版修掉的很可能是你遇到的那一半。\n\n### 验证\n\n- 新增 6 项断言：`ClientTimeout` 三个字段确实分开设置、`stall_timeout` 可独立于 `request_timeout`、读 body 超时报超时而不是 JSON 错误、读 body 异常带类型名、空响应体识别、正常 body 能解析出音频\n- 回归测试 120 → **126 项全过**\n- CI 全绿（Python 3.10 / 3.11 / 3.12）\n- 真实上游验证：修复前 13 次合成失败 4 次，修复后 **18 次连续成功**，单次耗时 2.7~19.0s",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "m1o0.maibot-mimotts-voice-pro",
+            "name": "MiMo TTS Voice Clone (Pro)",
+            "version": "1.9.13",
+            "description": "MiMo TTS Voice Clone Plugin for MaiBot - 语音回复插件，带请求超时、退避重试、并发上限与失败自动退回文字，并支持 ffmpeg 本地音高/语速/响度调整",
+            "author": {
+              "name": "m1o0",
+              "url": "https://github.com/m1o0"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "homepage": "https://github.com/m1o0/maibot-mimotts-voice-pro",
+              "issues": "https://github.com/m1o0/maibot-mimotts-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.9.12",
           "tag": "v1.9.12",
           "commit": "8dc29da446495a607df8f35daba74671c1bd49ad",
@@ -47383,6 +47662,69 @@
       "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "a19babfcf39ce2ca47a9dc48ef9ec41ed6edf373",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T17:43:50Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/releases/tag/v0.2.0",
+          "release_notes": "## 0.2.0\n\n相较 0.1.3：\n\n### 主要功能\n\n- 新增可选本地托管：开启并保存后，后台自动下载、校验并运行 meme-generator-rs v0.2.3，无需另行部署服务；默认关闭。\n- 新增下载进度、失败重试和托管数据删除。关闭托管后恢复原外部地址并保留安装，再次开启可直接复用。\n- 菜单改为随包预绘的 300 模板索引图，加载后直接复用，运行时无需 Pillow 或系统字体。\n\n### 细节与修复\n\n- 托管自动匹配 Linux glibc x86_64/aarch64、Windows x86_64、macOS x86_64/aarch64、Android aarch64。Linux x86_64 已验证，其余为实验性支持。\n- 实际可用模板与预绘菜单不一致时，按设置返回文字清单或提示，避免展示错误列表。\n- 模板信息改为后台读取，减少插件加载和保存配置时的等待。\n- 显示名称改为「表情包制作」，插件 ID 不变。\n\n### 升级提示\n\n- 覆盖更新时保留原配置和数据；若重载后仍显示旧界面，请重启 MaiBot 核心并刷新页面。\n- 托管首次下载约 381 MB 素材归档，解包后约 414 MB，至少预留 1.2 GB 磁盘空间。\n- 托管引擎与 MaiBot 共用权限和资源，没有单独的 CPU、内存配额。第三方字体、素材的许可尚未完整确认，不代表全部采用 MIT。\n\n### 安装包\n\n- **ZIP**：解压后将插件目录放入 MaiBot 的 `plugins/`；覆盖更新时保留原配置和数据。\n- **wheel / tar.gz**：分别为 Python 安装包与源码包。\n- 文件摘要见 `SHA256SUMS`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pppalab.meme-generator-bridge",
+            "plugin_type": "media",
+            "version": "0.2.0",
+            "name": "表情包制作",
+            "description": "通过中文关键词或命令，使用图片、文字和 @ 头像制作表情包。支持外部 Rust 服务或默认关闭的本地托管引擎。",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_meme_generator_bridge/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<0.29"
+              },
+              {
+                "type": "python_package",
+                "name": "httpcore",
+                "version_spec": ">=1,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.emoji",
+              "chat.get_avatar",
+              "chat.open_session",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
         {
           "version": "0.1.3",
           "tag": "v0.1.3",
@@ -51666,6 +52008,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "0.2.0",
+          "commit": "9435d4444db792338b1b05a11f47521ebaef658f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:36:04Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.2.0",
+          "release_notes": "这一版让玩手机更可控、也更像真人：你可以随时接管手机，连不上时 WebUI 里看得到原因和重连进度；她会记住看过什么、不重复看同一个视频，B 站从首页和搜索点开的视频分别按对的方式看。\r\n\r\n### 主要功能\r\n\r\n- **人工接管**：WebUI「我来操作 / 交还控制」或 `/手机 接管`、`/手机 交还`。接管后她马上停手，晚回来的模型结果作废，自动玩不会抢；交还后先重新看画面再决定。\r\n- **连接状态**：WebUI 显示连上了、重连中（第几次、还剩多久）、要解锁、要点允许、配置有问题；开始时连不上在 20 秒内重试，锁屏和配置错误直接说明原因，开始失败不占次数。\r\n- **每个应用单独设置**：`step_interval_seconds`、`max_minutes`、`reopen_on_start`、`go_home_after`；旧的 `keep_open` 照常生效，应用设置绕不过全局上限。\r\n- **内容记忆**：跨次记住画面上确认看到的小说章节、歌，对方亲口说的兴趣（新工具 `remember_for_phone`），以及上次没做完的事；决定玩什么时参考，WebUI 可查看来源和删除。\r\n- **失败诊断**：失败的步骤保存当时的画面（标出要点的位置或滑动方向）和计划动作、目标、结果，WebUI 里查看；最多 30 条、3 天，可一键清理。\r\n- **调用统计和预算**：记录每次的模型调用次数（含失败）、宿主返回的 token 和各阶段耗时；新增单次、每天的模型调用预算，用完正常收尾。\r\n- **卡住检测**：同一处连点无效、两个画面来回切、同样的失败反复出现时结束这次，看小说、看视频、等对方不会误判。\r\n- **短视频、长视频分开看**：`wait` 带上 `video`（short / long），各有自己的节奏；看视频时不再因为画面变化被叫醒，长视频能一段一段看下去。\r\n- **B 站视频页自动识别**：认出首页点开的竖屏播放器和搜索点开的视频详情页，分别告诉她怎么看、滑动后视频换没换；详情页的标题插件自己读，B 站标着「最近看过」的卡片也不再点开。\r\n- **看过的视频不再看**（`play.skip_watched_videos`）：记住 30 天内看过的视频，列表里不点开、播放器里刷到就划走；对方点名要看的不拦。\r\n\r\n### 细节\r\n\r\n- 前台应用：分清「这台设备给不出前台」和「这一步暂时没认出来」，认不出时不调用模型、不操作；后者恢复后照常继续。\r\n- 记录：每次去过的应用和各待了多久、调用统计写进历史；旧的历史文件照常读取。\r\n- 内容记忆：看过的视频单独保存（最多 300 个），不会挤掉对方说过的兴趣；WebUI 可单独清空看过的视频。\r\n- 聊天：卡住、预算用完、暂停或接管太久结束时，玩完提起的说法不再一律是「被叫停了」。\r\n- WebUI：新增连接、调用统计、去过的应用、诊断、内容记忆等区域；新接口 `webui_takeover`、`webui_release`、`webui_diagnostic`、`webui_clear_diagnostics`、`webui_memory`、`webui_memory_delete`、`webui_memory_clear`。\r\n- 设备：adb 未授权、路径不对、多台设备未指定等配置问题不再反复重试；WDA 连不上的提示同时写出无线和有线两种启动方式。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.2.0",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.1.3",
           "tag": "0.1.3",
           "commit": "7020a70193bb49eb2d18e590adeb7ecfcf283a89",
@@ -53203,6 +53612,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "3c71a705bd2cd1c51689f16e03141f1d3ea57f21",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:39:58Z",
+          "release_url": "https://github.com/WiseXin/MaiBot-Character-Disguise/releases/tag/v1.0.3",
+          "release_notes": "## 🚀 v1.0.3: 麦麦的人类伪装计划（多插件命令畅通放行、精准刷屏防御与死代码清理）\n\n本次更新彻底解除了入站拦截管线对其他插件命令的抢占，全面打通多插件命令生态，同时保持对第三方机器人报错刷屏与恶意注入的严密防御！\n\n### ✨ 核心修复与优化 (Commit: 9839532 / 3c71a70)\n\n1. **🔌 插件指令全面畅通放行**：\n   - 根除入站拦截总线对 `/dr`、`/help`、`/play`、`/xhh` 等前缀插件指令的误杀；\n   - 让 MaiBot 命令处理器（`_process_commands`）及各功能扩展插件正常响应，实现多插件生态无缝兼容。\n\n2. **🛡️ 精准防御机器人报错刷屏与恶意注入**：\n   - 保留对第三方机器人系统报错、状态打卡刷屏（`权限不足以使用此指令` 等）的静默拦截，防止污染模型上下文；\n   - 严格拦截恶意 SQL 注入与 XSS 攻击代码（`code_injection`）；\n   - 保留闭嘴词物理静默机制（`mute_keyword`）。\n\n3. **🧼 代码整洁度与文档全面同步**：\n   - 清理未使用的旧命令正则死代码；\n   - 中英文双语 README 场景对比表、武器库、配置示例与全闭环管线流程图全面对齐；\n   - 全量 26 项单元测试 100% 绿灯 PASS。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WiseXin.character-disguise",
+            "version": "1.0.3",
+            "name": "麦麦的人类伪装计划",
+            "description": "告别机器人爹味与做题家说教！让麦麦像真人一样随性聊天：彻底去句号、极短随性断句、纯文本零Markdown、不当懂王不抢答、懂得知难而退与潜水窥屏，完美融入人类日常水群与私聊。",
+            "author": {
+              "name": "WiseXin",
+              "url": "https://github.com/WiseXin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "homepage": "https://github.com/WiseXin/MaiBot-Character-Disguise",
+              "documentation": "https://github.com/WiseXin/MaiBot-Character-Disguise#readme",
+              "issues": "https://github.com/WiseXin/MaiBot-Character-Disguise/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text"
+            ],
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "user-check"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.2",
           "tag": "v1.0.2",
           "commit": "c67738d9f418ef3def7143b4d8996412b9d6ff39",
@@ -54053,6 +54515,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "fe7f8df6a2d7e709f597a877ff34bd0475e481b1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T12:04:00Z",
+          "release_url": "https://github.com/Zerlight/maibot-reply-integrity/releases/tag/v1.3.1",
+          "release_notes": "Reply Integrity 1.3.1 明确 Planner 与 Replier 的职责，并扩大已验证的版本覆盖范围。\n\n- Planner 负责工具执行与调度，Replier 负责组织回复；提示词要求执行状态有事实依据，避免将后台计划或禁令当成执行结果与对外承诺。\n- 兼容范围扩大为 MaiBot `1.2.0–1.3.19`、SDK `2.7.1–2.21.0`；同时仍须满足宿主自身的 SDK 依赖要求。\n- 修复 MaiBot `1.3.1–1.3.3` 合并回复原因与参考时，旧草稿残留在聊天历史末尾的问题。\n- Manifest 作者更新为 `Zerlight`，更新中英文 README 与公开版本记录。\n\n配置字段与默认值不变，保留现有 `config.toml` 即可升级。`config_version` 仍为 `1.3.0`。\n\n验证：16 个已发布 SDK 版本均通过现有 7 项单元测试；26 个 MaiBot 正式版本完成 Hook 契约与常规文本提示词构建检查；MaiBot `1.3.19` / SDK `2.20.0` 的隔离环境通过 8 项测试及 manifest 校验。旧版完整部署、多模态与复古模板未逐组合验证，提示词约束也不能保证每次生成都严格遵守。\n\nEnglish:\n\n- Clarifies Planner execution and Replier expression roles, requiring evidence for execution status and discouraging promises based on internal operational notes.\n- Supports MaiBot `1.2.0–1.3.19` and SDK `2.7.1–2.21.0`, subject to the Host's own SDK dependencies.\n- Removes trailing legacy reply reasons on MaiBot `1.3.1–1.3.3`.\n- Updates the manifest author to `Zerlight` and refreshes bilingual documentation.\n\nExisting settings and defaults are preserved; the configuration schema remains `1.3.0`. Validation includes the 7-test unit suite on 16 published SDK versions, prompt-contract checks across 26 Host releases, and 8 tests plus manifest validation in an isolated MaiBot `1.3.19` / SDK `2.20.0` environment. Older full deployments, multimodal paths and retro templates were not tested across every combination; prompt policies remain soft constraints.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zerlight.reply-integrity",
+            "version": "1.3.1",
+            "name": "Reply Integrity",
+            "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
+            "author": {
+              "name": "Zerlight",
+              "url": "https://github.com/Zerlight"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Zerlight/maibot-reply-integrity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.svg"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "953afca624f361fa4187729134b0d02bcbf12b68",
@@ -54165,6 +54675,48 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "7c65c1ec58123ff38012273298ba3f4884b11b15",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T13:03:42Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/releases/tag/v0.1.1",
+          "release_notes": "- 趋势记录新增 `anon_maps`（Linux）：从 `smaps` 按映射种类汇总常驻的匿名内存（主堆、线程堆、按大小分档的其余映射、\n  带名字的映射），并列出最大的 5 块，用来分辨涨的是 malloc 的堆还是堆外的大块映射。线程堆估计改从同一份 `smaps`\n  得出，不再另读 `maps`；没有 `smaps` 的内核照旧读 `maps`，`anon_maps` 记为 `null`。\n- `meta` 新增透明大页设置 `thp`（Linux）。\n- 新增观测 A_Memorix 数据目录下全部 faiss 索引文件的个数与总大小（`dirs.amemorix_faiss_index`）；\n  诊断包的 `meta.json` 另列逐个索引文件的相对路径、大小与修改时间（`amemorix_faiss_indexes`）。\n- 修复：Windows 上每在 Runner 内重载一次插件，旧模块的结构体类就被 ctypes 的全局缓存留住一份（Python 3.13 及以前）。\n- 修复：超过 1 小时的打包残片删不掉时，之后每次打包都会失败；现在新包照常生成，回复里注明删不掉的个数。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyuki.memdiag",
+            "version": "0.1.1",
+            "name": "内存诊断",
+            "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+              "issues": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "b2882a936c6e6d3d4b1b2c5b5de8522b92d49695",
@@ -54216,6 +54768,78 @@
       "repositoryUrl": "https://github.com/ilworkcn/MaiWeave",
       "mode": "releases",
       "versions": [
+        {
+          "version": "0.8.4",
+          "tag": "v0.8.4",
+          "commit": "100ead0f47f81b7f924cb52504f2ecaee91ff113",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T13:30:54Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.8.4",
+          "release_notes": "### 💬 麦麦这次开口了吗？\n\n打开「此刻生活」的主动交流记录，可以看到 MaiBot 是否已受理请求、消息是否实际发出，或 Planner 是否选择了沉默。发送失败时，页面也会显示回执里的原因。\n\n每个聊天流的每日额度和两次主动交流的间隔，现在都按实际发送结算。例如，麦麦把一段读后感拆成三条消息发出，这轮只计一次，从发送时间起算间隔。如果 Planner 调用 `stop` 结束这轮交流，当天的额度会留给下次。\n\n[下载 v0.8.4 ZIP 安装包](https://github.com/ilworkcn/MaiWeave/releases/download/v0.8.4/MaiWeave-0.8.4.zip) · [查看自 v0.8.3 以来的改动](https://github.com/ilworkcn/MaiWeave/compare/v0.8.3...v0.8.4)\n\n<details>\n<summary>安装包 SHA-256</summary>\n\n```text\nf99d9b828882be9d8eb30212819fdb13675f205a7ce872bfe7855803273532f8\n```\n\n</details>\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜阅读与生活",
+            "version": "0.8.4",
+            "description": "麦麦会从书架挑书，记下摘句和疑问，读到有感触的地方还会主动找你聊。你也可以和它约时间、改日程，翻看它写的生活日记。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": "==1.4.8"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2026.1"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "person.get_id",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
         {
           "version": "0.7.5",
           "tag": "v0.7.5",
@@ -54891,6 +55515,73 @@
       "rejected_releases": []
     },
     {
+      "id": "maibot.maimai-feed-bot",
+      "manifest_id": "maibot.maimai-feed-bot",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "6c2fd07136d587870128a106bb50785687b13f14",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T09:04:23Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v1.6.0",
+          "release_notes": "## v1.6.0\n\n- **内置清除风格道具 🥛牛奶（可选）**：WebUI `[shop].builtin_clear_item` 开启后，每个启用群自动上架一条「牛奶」（价格 5、饱食度 +5），投喂后清空本群全部生效投喂风格；**默认关闭——不开启则完全不改动既有商店数据**，也可随时手动「群上架 牛奶」+「设置清除效果 牛奶」\n- **`/商店` 图片菜单**：新增 `[shop].render_image` 开关（WebUI 可改，默认开）——菜单渲染为一张图片，每件道具展示**完整效果**（风格提示词全文与时长 / 清除全部投喂风格）、价格与饱食度，道具再多也不刷长文本；纯本地 PIL 渲染（无浏览器依赖），失败或关闭时自动回退文本菜单\n- **渲染细节**：效果/描述文本 emoji 混排彩显（💥📱🌌 等不再变方框）、多 emoji 道具名对齐、积分加大加粗、饱食度正绿负红、emoji 段按可见宽度紧排；支持插件目录 `fonts/` 自带新版 emoji 字体（覆盖系统旧字体缺字形的问题）\n- manifest 相应新增 `send.image` 能力声明；README 效果示例重写并新增真实菜单参考图（敏感数据已脱敏）\n\n> 兼容性：宿主 1.0.0 ~ 1.3.99 / SDK 2.0.0 ~ 2.16.99；从 1.5.x 升级无需改配置，既有商店数据不会被改动。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "1.6.0",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
       "id": "onebot-ws.goqbot-adapter",
       "manifest_id": "onebot-ws.goqbot-adapter",
       "repositoryUrl": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
@@ -55458,73 +56149,6 @@
           "error": "仓库根目录不能包含 config.toml"
         }
       ]
-    },
-    {
-      "id": "maibot.maimai-feed-bot",
-      "manifest_id": "maibot.maimai-feed-bot",
-      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.6.0",
-          "tag": "v1.6.0",
-          "commit": "6c2fd07136d587870128a106bb50785687b13f14",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-11-01T09:04:23Z",
-          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v1.6.0",
-          "release_notes": "## v1.6.0\n\n- **内置清除风格道具 🥛牛奶（可选）**：WebUI `[shop].builtin_clear_item` 开启后，每个启用群自动上架一条「牛奶」（价格 5、饱食度 +5），投喂后清空本群全部生效投喂风格；**默认关闭——不开启则完全不改动既有商店数据**，也可随时手动「群上架 牛奶」+「设置清除效果 牛奶」\n- **`/商店` 图片菜单**：新增 `[shop].render_image` 开关（WebUI 可改，默认开）——菜单渲染为一张图片，每件道具展示**完整效果**（风格提示词全文与时长 / 清除全部投喂风格）、价格与饱食度，道具再多也不刷长文本；纯本地 PIL 渲染（无浏览器依赖），失败或关闭时自动回退文本菜单\n- **渲染细节**：效果/描述文本 emoji 混排彩显（💥📱🌌 等不再变方框）、多 emoji 道具名对齐、积分加大加粗、饱食度正绿负红、emoji 段按可见宽度紧排；支持插件目录 `fonts/` 自带新版 emoji 字体（覆盖系统旧字体缺字形的问题）\n- manifest 相应新增 `send.image` 能力声明；README 效果示例重写并新增真实菜单参考图（敏感数据已脱敏）\n\n> 兼容性：宿主 1.0.0 ~ 1.3.99 / SDK 2.0.0 ~ 2.16.99；从 1.5.x 升级无需改配置，既有商店数据不会被改动。",
-          "manifest": {
-            "manifest_version": 2,
-            "id": "maibot.maimai-feed-bot",
-            "version": "1.6.0",
-            "name": "麦麦要吃那个！",
-            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
-            "author": {
-              "name": "NetaJuutilainen",
-              "url": "https://github.com/NetaJuutilainen"
-            },
-            "license": "MIT",
-            "plugin_type": "game",
-            "display": {
-              "icon": {
-                "type": "local",
-                "value": "assets/icon.png"
-              }
-            },
-            "urls": {
-              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
-              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
-              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
-              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
-            },
-            "host_application": {
-              "min_version": "1.0.0",
-              "max_version": "1.3.99"
-            },
-            "sdk": {
-              "min_version": "2.0.0",
-              "max_version": "2.16.99"
-            },
-            "dependencies": [],
-            "capabilities": [
-              "send.text",
-              "send.image",
-              "llm.generate",
-              "chat.get_group_streams",
-              "config.get"
-            ],
-            "i18n": {
-              "default_locale": "zh-CN",
-              "supported_locales": [
-                "zh-CN"
-              ]
-            }
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": []
     },
     {
       "id": "MaiBot-Discord-Adapter",
