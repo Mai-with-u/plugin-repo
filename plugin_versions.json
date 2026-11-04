@@ -21894,6 +21894,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "4250fb9882321ab9dc02a6b41c6b97a8425ec946",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T15:47:35Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v1.3.0",
+          "release_notes": "本次更新把 Apple 日历的读取失败与「Apple 端确实删了事件」区分开：读取不完整的一轮只做新增与更新，不再删除本地日程。\n\n\n### 新增\n\n- CalDAV 服务器地址可配（`apple_caldav_host`，默认 `caldav.icloud.com`）：留空使用默认入口，填了就用填的；默认入口被拒绝认证时自动再试一次中国大陆区入口 `caldav.icloud.com.cn`，并说明实际生效的入口。\n- 首次成功发现日历时，日志以 INFO 列出「可用日历（apple_calendar_id 可填下列 UUID）」，逐个给出日历名称与 UUID。\n\n### 修复\n\n- **读取 Apple 日历不再丢弃 HTTP 状态码**：凭据未接受（401）、App 专用密码错误或失效（403）、网络不通、响应里没有 principal URL 分别给出可执行的原因，同一原因只报一次错误，不再笼统显示「CalDAV 未连接，无法创建事件」。\n- **读取不完整时不再删除本地日程**：CalDAV 未连接、列出日历失败、某个日历抓取失败、某个事件文件没拉到、WebCal 读取失败，任一环节失败都只做新增与更新，本轮保留本地日程；读取恢复后才恢复删除。\n- WebCal 读取按状态码判定成败，403/404 的错误页不再被当成「0 个日程」。\n- 工具回执不再虚报成功：没写入 Apple 日历、没更新 Apple 事件、没从 Apple 删除时如实说明。\n\n### 变更\n\n- `get_all_events` 改为返回事件列表与读取问题列表；`sync_from_apple_calendar` 必须显式传入是否允许删除。\n- 删除本地日程时以 INFO 说明条数；本轮未获删除授权时以 DEBUG 说明保留。\n- 创建、更新、删除时「CalDAV 未连接」由 ERROR 降为 WARNING（失败原因已由发现过程报出）。\n- `apple_calendar_id` 的配置提示改为指向日志里的可用日历清单。\n\n### Added\n\n- Configurable CalDAV server address (`apple_caldav_host`, default `caldav.icloud.com`): leave it empty to use the default entry, or fill in your own; when the default entry rejects the credentials the plugin retries the mainland China entry `caldav.icloud.com.cn` once and states which entry is in effect.\n- On the first successful calendar discovery the log lists the available calendars at INFO level with their names and UUIDs, so the value for `apple_calendar_id` can be read off directly.\n\n### Fixed\n\n- **Reading Apple calendars no longer discards HTTP status codes**: unaccepted credentials (401), a wrong or revoked app-specific password (403), an unreachable network, and a response without a principal URL now each produce an actionable reason, reported once per cause, instead of the generic \"CalDAV not connected, cannot create event\".\n- **Local schedules are no longer deleted when a read is incomplete**: CalDAV being unreachable, listing calendars failing, one calendar's fetch failing, one event file missing, or a WebCal read failing now all limit the round to additions and updates, keeping local schedules; deletions resume only after reads recover.\n- WebCal reads judge success by status code, so 403/404 error pages are no longer treated as \"0 events\".\n- Tool replies no longer claim success prematurely: a schedule that was not written to, updated in, or deleted from Apple Calendar is reported as such.\n\n### Changed\n\n- `get_all_events` now returns the event list together with a list of read problems; `sync_from_apple_calendar` requires an explicit delete permission.\n- Deleting local schedules is logged at INFO with the count; a round without delete permission logs at DEBUG why schedules were kept.\n- \"CalDAV not connected\" during create, update, and delete is logged at WARNING instead of ERROR (the cause has already been reported by the discovery step).\n- The `apple_calendar_id` hint now points at the available-calendars list in the log.\n\n\n完整记录见 [CHANGELOG.md](https://github.com/OMSociety/maibot_plugin_schedule_assistant/blob/main/CHANGELOG.md)。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "1.3.0",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.2.3",
           "tag": "v1.2.3",
           "commit": "90417b7356cf210cf2d033ea21a627d7297c24e8",
