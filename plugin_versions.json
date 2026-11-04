@@ -56876,6 +56876,64 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "chartyr.jev-preprocessor",
+      "manifest_id": "chartyr.jev-preprocessor",
+      "repositoryUrl": "https://github.com/CharTyr/MaiBot-JevPreprocessor",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "e0cd9e87eec91a6013e6e16e043d3f2f558a1857",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T17:12:10Z",
+          "release_url": "https://github.com/CharTyr/MaiBot-JevPreprocessor/releases/tag/v0.3.0",
+          "release_notes": "Initial release.\n\nJev Planner preprocessor: filters irrelevant heuristic memories and marks external facts before Planner requests.\n\n- Conservative two-signal delete: low relevance + surface_overlap/unrelated\n- same_entity memories always kept (46% of low-relevance)\n- Fixed fact marker vocabulary (no free-text injection into Planner)\n- Circuit breaker + in-flight merge + SHA-256 cache\n- Stats-only logging (no chat content, no credentials)\n\nTested on MaiBot 1.3.16 / SDK 2.16.0 — 1300+ upstream calls, 0 failures.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.jev-preprocessor",
+            "version": "0.3.0",
+            "name": "Jev Planner 前置处理器",
+            "description": "在 Planner 请求前过滤无关启发式记忆，并标记外部客观事实属性；不判断是否回复，不指导措辞与语气。默认关闭。",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "GPL-v3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "filter"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiBot-JevPreprocessor"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
