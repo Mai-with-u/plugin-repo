@@ -54889,6 +54889,657 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "onebot-ws.goqbot-adapter",
+      "manifest_id": "onebot-ws.goqbot-adapter",
+      "repositoryUrl": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "6e8f3ed1b950414b9c4367ff24e6375f661c2034",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T13:31:52Z",
+          "release_url": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter/releases/tag/v0.2.1",
+          "release_notes": "## 更新内容\r\n\r\n### 禁言工具：只执行白名单用户的固定格式指令\r\n\r\n新增「禁言工具」配置分组。禁言工具现在只执行「允许触发的用户」本人发出的指令，模型不能自己决定禁言谁。\r\n\r\n| 指令 | 说明 |\r\n| --- | --- |\r\n| `禁言 @某人 时长` | 时长可写 `30秒` / `10分钟` / `2小时` / `1天`，纯数字按分钟，不写默认 10 分钟 |\r\n| `解禁 @某人` / `解除禁言 @某人` | 解除禁言 |\r\n\r\n- 禁言对象和时长由插件从它收到的原始群消息中解析，模型只能指出是哪一条指令，不能选择禁言对象或修改时长。\r\n- 指令须在 10 分钟内，且只能执行一次；插件重启前的消息不会被接受。\r\n- 「别禁言 @某人」「他刷屏了禁言他吧」这类话不算指令，不会执行。\r\n- 新增配置项：\r\n  - **允许触发的用户**：留空时任何人都无法触发禁言。\r\n  - **禁言保护名单**：名单里的人不会被禁言，解除禁言不受影响。\r\n  - **允许禁言的群**：留空表示所有群都可用。\r\n  - **最长禁言时长**：从「聊天工具」分组移到这里。\r\n- 每次禁言和解禁都会在日志中记录指令发出者和目标。\r\n\r\n### 互动召回：仅限当前用户，禁止聊天触发\r\n\r\n- 只能召回当前私聊的用户，不能再指定其他用户；工具只在私聊中出现。\r\n- 新增开关「禁止聊天触发召回」（默认开启）：用户最近 60 分钟内在该私聊发过消息时拒绝召回，召回只能由 AI 在用户长时间未互动时自行发起。\r\n\r\n### 其他\r\n\r\n- manifest 新增能力声明 `message.get_recent`，用于查询当前私聊最近的消息。\r\n\r\n## 升级说明\r\n\r\n- 更新后请**重启 MaiBot**。新增的能力声明需要重启才能生效，热重载不会生效。\r\n- 0.2.0 中设置的「禁言最长时长」会自动迁移到新的「禁言工具」分组。\r\n- 禁言指令中的 @ 需要 goqbot 设置 `qq.mention_mode: at`。默认的 `strip` 会删掉 @，所有指令都会被拒绝，但不会误禁言。\r\n- 名单填写 goqbot 下发的数字 `user_id` / `group_id`。同一个人在私聊和不同群中的 `user_id` 可能不同，请按该群聊天记录中显示的 ID 填写。\r\n\r\n## 版本要求\r\n\r\nMaiBot ≥ 1.3.18，goqbot ≥ 1.11.0\r\n\r\n完整说明见 [README](https://github.com/huilongxiji/MaiBot-GoqBot-Adapter#readme)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "onebot-ws.goqbot-adapter",
+            "version": "0.2.1",
+            "name": "goqbot 适配器 / GoqBot Adapter",
+            "description": "通过 OneBot V11 正向/反向 WebSocket 连接 goqbot（QQ 官方机器人协议端），可与 NoneBot 等框架共用同一个机器人",
+            "author": {
+              "name": "huilongxiji",
+              "url": "https://github.com/huilongxiji"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+              "homepage": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter",
+              "documentation": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter#readme",
+              "issues": "https://github.com/huilongxiji/MaiBot-GoqBot-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bot"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "component.disable",
+              "component.enable",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.PPPALab.maibot_plugin_fishing",
+      "manifest_id": "github.PPPALab.maibot_plugin_fishing",
+      "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_fishing",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "52b823ebdbe3475659e96a032d50257acd742d65",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T12:19:53Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_fishing/releases/tag/v1.0.2",
+          "release_notes": "## 更新内容\n- 插件分类补充为 **游戏娱乐**（`plugin_type: game`）。\n- 清理上游遗留且未使用的本机 IP 获取、端口检查、占用进程查询和终止函数，以及相关闲置导入。\n- 插件 ID、权限声明、游戏规则和数据库格式保持不变。\n\n## 升级说明\n- 从 **v1.0.1** 升级无需迁移数据，保留配置与游戏数据，更新源码后重启即可。\n- 从 **v1.0.0** 升级请先按 [README 的迁移说明](https://github.com/PPPALab/maibot_plugin_fishing/blob/v1.0.2/README.md#从-100-升级) 迁移旧插件 ID 的数据。\n- 兼容 MaiBot **1.3.19** / maibot-plugin-sdk **2.20.0**。\n\n## 验证\n- 全量测试 **260 项通过**。\n- Ruff 静态检查与 Git 差异检查通过。\n\n[完整更新记录](https://github.com/PPPALab/maibot_plugin_fishing/blob/v1.0.2/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.PPPALab.maibot_plugin_fishing",
+            "name": "钓鱼小游戏",
+            "plugin_type": "game",
+            "version": "1.0.2",
+            "description": "钓鱼小游戏，支持钓鱼、市场、商店、抽卡等，移植自 AstrBot。",
+            "author": {
+              "name": "xxlemon; sakuradairong upstream contributors; MaiBot native port contributors",
+              "url": "https://github.com/sakuradairong/astrbot_plugin_fishing"
+            },
+            "license": "AGPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.4,<14"
+              },
+              {
+                "type": "python_package",
+                "name": "PyYAML",
+                "version_spec": ">=6,<7"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.10,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "fonttools",
+                "version_spec": ">=4.55,<5"
+              },
+              {
+                "type": "python_package",
+                "name": "hypercorn",
+                "version_spec": ">=0.17,<0.19"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.26,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "quart",
+                "version_spec": ">=0.20,<0.23"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.32,<3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.custom",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_fishing",
+              "documentation": "https://github.com/PPPALab/maibot_plugin_fishing/blob/main/README.md",
+              "issues": "https://github.com/PPPALab/maibot_plugin_fishing/issues"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    },
+    {
+      "id": "kamionichan.search_hub",
+      "manifest_id": "kamionichan.search_hub",
+      "repositoryUrl": "https://github.com/kamionichan/maibot-search-hub",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.5.7",
+          "tag": "0.5.7",
+          "commit": "6789d32b66d1c4ea79f01640d61ad1dd7dd48705",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T15:00:32Z",
+          "release_url": "https://github.com/kamionichan/maibot-search-hub/releases/tag/0.5.7",
+          "release_notes": "- 开启“允许成人向结果”后，SauceNAO 的成人向结果会保留并标注“成人向”（之前保留了但没有标注；trace.moe 本来就有标注）。\n- 工具说明：要求麦麦在闲聊、开玩笑、吐槽时不要搜索，也不要把聊天原句整段拿去搜。\n- 给回复模型的参考资料提示：资料能回答问题时，先把资料里的答案告诉对方，不要撇开资料改用自己的印象；对方要歌词、台词等原文而资料里有时，可以直接引用。\n- README 开头和插件简介写明以图搜图；安装和升级改为以插件市场为主；补充成人向结果、闲聊搜索、歌词原文的说明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.5.7",
+            "name": "MaiBot 搜索中枢",
+            "description": "文字搜索与以图搜图：自动组合多个搜索来源，截图可认番剧、角色和出处；长搜索转后台不占用聊天，结果带编号自然接回对话。",
+            "author": {
+              "name": "kamionichan",
+              "url": "https://github.com/kamionichan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kamionichan/maibot-search-hub",
+              "issues": "https://github.com/kamionichan/maibot-search-hub/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.0"
+            },
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.resolve_image",
+              "send.text",
+              "web.search",
+              "web.fetch",
+              "api.call",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh_CN"
+            },
+            "id": "kamionichan.search_hub",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.svg",
+                "fallback": "search",
+                "background": "#4f7cff"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.5.6",
+          "tag": "0.5.6",
+          "commit": "735307ba6654aa26ecf81c3fceff0d841f65b4e0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:06:42Z",
+          "release_url": "https://github.com/kamionichan/maibot-search-hub/releases/tag/0.5.6",
+          "release_notes": "修复第二轮独立代码审查发现的问题：\n\n- 资源：下载网页和接口数据时，解压的每一步都有大小上限，并限制下载的原始字节数；只接受一层 gzip/deflate 压缩。之前一个很小的压缩包可以让插件短时间占用几十 MB 内存。\n- key 遮挡：换 key 后，旧 key 在一段时间内仍会被遮掉（旧请求可能还没结束）；错误信息先遮挡再截短；搜索结果的标题、摘要，读取的网页正文，以及链接里 `token=`、`key=` 一类的参数也会遮掉；日志里的异常堆栈也会遮挡。\n- 换 key 后，旧 key 请求晚一步返回的“鉴权失败”不会再让新 key 冷却 24 小时。容器 key 改了也会解除冷却。\n- 卸载或重启插件时，所有还在进行的网络请求都会被取消。\n- 以图搜图在核对候选图时被取消或超时，已经找到的候选会保留下来。图片处理改用专用的 2 个线程，不占用 MaiBot 的公共线程。\n- 子代理搜索次数：同一个聊天里多个子代理同时工作时，宁可偶尔多拒绝一次，也不会超出上限；计数按聊天分开，任务 30 分钟没有动静后重新计数。\n- 从 0.5.1 及更早版本升级的数据库，第一次打开时就补好结果编号的计数器，之后清理或清空记录，编号也不会从 S1 重来（升级前就已被删掉的编号无法找回）。\n- 搜索记录里“进过回复参考资料”和“读过原文”分开统计。\n- Exa 默认每日上限从 60 次改为 45 次：本插件用的是 Auto 搜索（$7/千次），每月 $10 免费额度约 1400 次。已经保存过配置的，需要在配置页手动改。\n- 结果卡里过长的链接会标明“已截短”。\n- README、KEYS.md：补全隐私说明（网页默认交给 MaiBot 联网服务或 fetch-url 读取、SearXNG、候选缩略图下载、代理的前提）；改正“不会超额”“key 不会出现在日志”等过于绝对的说法；更正以图搜图深度档的行为、Exa 等来源的额度说明。\n- 发布脚本：拒绝把开发目录的上级目录、子目录、符号链接或非 git 目录当成发布目标；未被 git 跟踪的文件不能进入发布。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.5.6",
+            "name": "MaiBot 搜索中枢",
+            "description": "统一的搜索编排与对话衔接：自动组合多个搜索来源，长搜索转后台不占用聊天，结果带编号自然接回对话。",
+            "author": {
+              "name": "kamionichan",
+              "url": "https://github.com/kamionichan"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/kamionichan/maibot-search-hub",
+              "issues": "https://github.com/kamionichan/maibot-search-hub/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.0"
+            },
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.resolve_image",
+              "send.text",
+              "web.search",
+              "web.fetch",
+              "api.call",
+              "component.list_loaded_plugins"
+            ],
+            "i18n": {
+              "default_locale": "zh_CN"
+            },
+            "id": "kamionichan.search_hub",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<0.29"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.svg",
+                "fallback": "search",
+                "background": "#4f7cff"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "github.winincorce-a11y.news-three-elements",
+      "manifest_id": "github.winincorce-a11y.news-three-elements",
+      "repositoryUrl": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.28.0",
+          "tag": "v1.28.0",
+          "commit": "bcf0f9d13ef3dcbd36157d035390ba26f5673026",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T08:59:00Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.28.0",
+          "release_notes": "### 新增：插件自主识别图片\n\n引用图片时，插件**自己调用视觉模型**取得画面内容，不再依赖宿主是否识别过。\n\n#### 背景\n\n宿主的图片描述只在图片入库时生成一次，之后不会补：\n\n- 表情包走「标签路径」，`description` 只有情绪标签（`大笑,笑死,刷手机`），**没有画面**\n- 普通图片若入库时 VLM 没跑（`vlm_processed=0` 且 `description` 为空），再也没有机会\n\n这两种情况下 `processed_plain_text` 只剩 `[image]` / `[emoji]` 占位符。\n\n#### 实现\n\n宿主 `llm.generate` 的 `prompt` 支持消息列表，图片片段格式为\n`{\"type\": \"image\", \"image_format\": ..., \"image_base64\": ...}`。据此：\n\n- `_recognize_image()`：读图片文件、转 base64、以 `task_name=\"vlm\"` 调视觉模型\n- `_find_image_file()` / `_mbot_root()`：从 `ctx.paths.data_dir` 反推 MaiBot 根目录，\n  优先用 `images.full_path`，再按 `data/images`、`data/emoji` + hash 兜底\n- 单张上限 4 MB；提示词要求「客观描述主体、场景、关键文字，不评论」\n\n#### 兜底顺序\n\n| 顺序 | 来源 |\n| --- | --- |\n| 1 | `images` 表已有描述 |\n| 2 | **插件自建识别**（新增） |\n| 3 | 表情包标签（无画面时当情绪语境） |\n\n#### 图文结合\n\n引用图片时若同时写了素材，两者**合并**而非覆盖：\n\n```\n某项目团队本周开展版本联调，准备上线\n\n（另附一张现场图片，画面内容：两个黄色圆润角色正面对峙，配有血条与计时44。\n请把文字描述与画面内容结合起来写同一条新闻。）\n```\n\n实测引用格斗游戏开发界面图 + `该团队本周进行版本联调，准备上线 （甲一，乙二，丙三）`，\n正文同时包含文字线索（版本联调 / 准备上线）、画面线索（黄色角色 / 血条 / 计时44）\n与自定义名单（甲一 / 乙二 / 丙三）。\n\n#### 名单替换确认\n\n| 场景 | 结果 |\n| --- | --- |\n| 引用图片 + 只给名单 | 素材来自图片，名单生效 |\n| 引用图片 + 文字素材 + 名单 | 三者都在提示词里 |\n| 引用图片 + `（张三，李四）` | 「死亡名单共 2 人」，默认三人不出现 |\n\n#### 文档\n\nREADME 新增「图片识别」章节，说明为什么要自己识别、如何定位文件与调用视觉模型、\n兜底顺序、图文结合机制与依赖（需要 `vlm` 视觉模型任务）。\n\n#### 验证\n\n离线自检 76 项全过，覆盖图片识别、图文结合、名单替换三类场景。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.28.0",
+            "name": "新闻三要素",
+            "description": "把素材或图片改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用文字/图片取素材（插件自主调用视觉模型识别画面）、图文结合、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "database.query"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "newspaper",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
+          "version": "1.23.3",
+          "tag": "v1.23.3",
+          "commit": "41c85e49a2e0ae9283d601145463fdec5ee9497e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T16:43:52Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.23.3",
+          "release_notes": "### 新增插件图标\n\n新增 `assets/icon.webp`（64×64），取自三人并排的迷彩合影，裁掉两侧黑边后居中取正方形，\n并略微提亮、加对比，保证小尺寸下仍可辨认。\n\n`_manifest.json` 的 `display.icon` 改为 `local` 类型：\n\n```json\n\"display\": {\n  \"icon\": {\n    \"type\": \"local\",\n    \"value\": \"assets/icon.webp\",\n    \"fallback\": \"newspaper\",\n    \"background\": \"#1C272C\"\n  }\n}\n```\n\n插件中心的工作流会从本仓库抓取该文件，缩放到 64×64 后存入 `icons/<plugin_id>.webp`；\n抓取失败时回落到 `newspaper` 图标。\n\n### 说明\n\n功能无变化，仅补图标资源。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.23.3",
+            "name": "新闻三要素",
+            "description": "把一段素材改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用取素材、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "newspaper",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
+          "version": "1.23.2",
+          "tag": "v1.23.2",
+          "commit": "d278721a5ab49d614c6ddd2f6675dccc257e702e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T05:37:22Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.23.2",
+          "release_notes": "补齐第二次审核指出的最后一处入口不一致。\n\n### 背景\n\nv1.23.1 已修好 ``plugin.enabled`` 与 ``blocked_stream_ids`` 的守卫，复审确认到位；\n但审核同时指出「平台限制仅命令入口可判」——这是三个入口里唯一还对不齐的一项。\n\n### 改动\n\n- 新增 ``_stream_platform`` 映射：命令入口拿到 ``platform`` 时记下「会话 ID → 平台」\n- 新增 ``_platform_allowed_for_stream()``：按会话 ID 反查平台，无法判断时返回 ``None``\n- ``write_obituary_news`` 工具入口启用平台校验，会话所属平台未被允许则拒绝出稿\n- ``generate_obituary_news`` API 在传入 ``stream_id`` 时同样校验\n\n查不到会话所属平台时按放行处理，避免因为缺少信息就拒绝正常请求。\n\n### 三个入口的一致性\n\n| 检查项 | 命令 | 工具 | API |\n| --- | --- | --- | --- |\n| `plugin.enabled` | ✓ | ✓ | ✓ |\n| `only_platforms` | ✓ 直接判断 | ✓ 按会话反查 | ✓ 按会话反查 |\n| `blocked_stream_ids` | ✓ | ✓ | — |\n\nAPI 只回正文不发送消息，因此不校验 ``blocked_stream_ids``。\n\n### 验证\n\n离线自检 64 项全过，新增 5 项覆盖平台一致性：\n命令入口记录平台、工具继承判定、工具拒绝未启用平台、API 限制与放行、未配置时全放行。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.23.2",
+            "name": "新闻三要素",
+            "description": "把一段素材改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用取素材、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "newspaper",
+                "fallback": "puzzle",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "maibot-team.planner-social",
+      "manifest_id": "maibot-team.planner-social",
+      "repositoryUrl": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "db55a07c8b7571e21f860faeadb3d6e69083cea3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T18:50:01Z",
+          "release_url": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement/releases/tag/v1.0.1",
+          "release_notes": "**Full Changelog**: https://github.com/Mikan-sleep/Maibot-planner-social-improvement/compare/v1.0.0...v1.0.1",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "Planner Social",
+            "description": "为 Maisaka Planner 提供发言对象/话轮判断、LLM 反馈裁判、每群在线学习、群规范反思和可调发言频率；支持可回滚的 stop→reply 深度改写。",
+            "author": {
+              "name": "Planner Social contributors",
+              "url": "https://github.com/Mikan-sleep"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
+              "homepage": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
+              "documentation": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement#readme",
+              "issues": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "frequency.set_adjust",
+              "frequency.get_current_talk_value",
+              "frequency.get_adjust",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "maibot-team.planner-social",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "仓库根目录不能包含 config.toml"
+        }
+      ]
+    },
+    {
+      "id": "maibot.maimai-feed-bot",
+      "manifest_id": "maibot.maimai-feed-bot",
+      "repositoryUrl": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "6c2fd07136d587870128a106bb50785687b13f14",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T09:04:23Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v1.6.0",
+          "release_notes": "## v1.6.0\n\n- **内置清除风格道具 🥛牛奶（可选）**：WebUI `[shop].builtin_clear_item` 开启后，每个启用群自动上架一条「牛奶」（价格 5、饱食度 +5），投喂后清空本群全部生效投喂风格；**默认关闭——不开启则完全不改动既有商店数据**，也可随时手动「群上架 牛奶」+「设置清除效果 牛奶」\n- **`/商店` 图片菜单**：新增 `[shop].render_image` 开关（WebUI 可改，默认开）——菜单渲染为一张图片，每件道具展示**完整效果**（风格提示词全文与时长 / 清除全部投喂风格）、价格与饱食度，道具再多也不刷长文本；纯本地 PIL 渲染（无浏览器依赖），失败或关闭时自动回退文本菜单\n- **渲染细节**：效果/描述文本 emoji 混排彩显（💥📱🌌 等不再变方框）、多 emoji 道具名对齐、积分加大加粗、饱食度正绿负红、emoji 段按可见宽度紧排；支持插件目录 `fonts/` 自带新版 emoji 字体（覆盖系统旧字体缺字形的问题）\n- manifest 相应新增 `send.image` 能力声明；README 效果示例重写并新增真实菜单参考图（敏感数据已脱敏）\n\n> 兼容性：宿主 1.0.0 ~ 1.3.99 / SDK 2.0.0 ~ 2.16.99；从 1.5.x 升级无需改配置，既有商店数据不会被改动。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "1.6.0",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    },
+    {
+      "id": "MaiBot-Discord-Adapter",
+      "manifest_id": "MaiBot-Discord-Adapter",
+      "repositoryUrl": "https://github.com/2829798842/MaiBot-Discord-Adapter",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "1.0.0",
+          "version": "1.0.0",
+          "error": "GitHub 404：/repos/2829798842/MaiBot-Discord-Adapter/contents/_manifest.json?ref=8c5edd2043d091bfa1103be8eb3ffba3b5191e17"
+        }
+      ]
     }
   ]
 }
