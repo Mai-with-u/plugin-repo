@@ -44637,6 +44637,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.16",
+          "tag": "v0.4.16",
+          "commit": "09eb8b26c9e2b77a08de27c0c1d7ce26a284d3fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T17:41:59Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.16",
+          "release_notes": "## 细节\n\n- 身份校验与主人私聊流解析改用 `chat.open_session` / `chat.get_stream_by_user_id`，不再遍历全平台私聊流列表，避免会话分裂与引用回复失败。\n- 目标群解析统一走 `open_session`，失败时给出「打开聊天流失败」的明确提示。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.16",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
           "version": "0.4.14",
           "tag": "v0.4.14",
           "commit": "0b593f11e0d0ad671f499391eb62e79093f254b3",
