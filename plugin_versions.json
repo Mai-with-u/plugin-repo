@@ -56817,6 +56817,65 @@
           "error": "GitHub 404：/repos/2829798842/MaiBot-Discord-Adapter/contents/_manifest.json?ref=8c5edd2043d091bfa1103be8eb3ffba3b5191e17"
         }
       ]
+    },
+    {
+      "id": "github.TommyAAKK.maibot-I-deepseek",
+      "manifest_id": "github.TommyAAKK.maibot-I-deepseek",
+      "repositoryUrl": "https://github.com/TommyAAKK/maibot-I-deepseek",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "a319a15bb2cd9ab9cad23176d079f3fb31a0fbff",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T13:05:13Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-I-deepseek/releases/tag/1.0.0",
+          "release_notes": "第一个正式版本。\n\n**会流动的记忆**：五类情境线索（未闭合话题 / 对方最近的状态 / 你们之间的相处线索 / 她自己要保持一致的设定 / 你们共同的东西）、跨聊天流、想不起来又会忽然想起、随时间慢慢淡忘。\n\n**一颗自己会跳的心**：八基元情绪 + 精力、六维关系、她自己的口味、缺席感、不想理你的边界感。\n\n安装：把仓库内容放到 MaiBot/plugins/ 下（目录名随意），然后在 WebUI 插件管理里启用。config.toml 由宿主首次加载时自动生成，仓库里只提供 config.example.toml 作参考。\n\n细节见 [README](https://github.com/TommyAAKK/maibot-I-deepseek#readme)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.maibot-I-deepseek",
+            "version": "1.0.0",
+            "name": "我，deepseek",
+            "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "homepage": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "documentation": "https://github.com/TommyAAKK/maibot-I-deepseek#readme",
+              "issues": "https://github.com/TommyAAKK/maibot-I-deepseek/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "2.0.0"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "3.0.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
