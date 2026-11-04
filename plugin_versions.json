@@ -26530,6 +26530,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.25.0",
+          "tag": "v1.25.0",
+          "commit": "6502a608db0438349ad931a8b117a5b18fa08fbf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T17:37:06Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.25.0",
+          "release_notes": "### 新增\n\n- **睡醒补读群消息（知晓与事后回复双开关，默认关闭）**：群闸门静默期留痕（每群环形 120 条新的挤最旧、保留 24h），自然醒来后生成补读摘要，**下一次群被动轮一次性注入知晓**；夜间消息明确指明麦麦（@或点名）且开启回复开关时，经 Planner 触发一次群内回应，每群每天最多一次。\n- **写日记占用日程窗口（纯日程驱动）**：日程生成要求晚上包含写日记节点；当前节点命中即写当天日记——**模型没排节点的那天就不写**；历史日只补「框架排了日记节点但缺日记」的日子，`diary_hour` 钟点兜底删除。\n- **昨日日程查看**：overview 日程区「昨日日程」按钮排在今日/明日之前，可回看昨天的历史框架。\n- **日程模板用户自定义加固**：`mai_template.json` 字段级校验（七字段/HH:MM/kind 白名单/数值范围），解析或校验失败**整份弃用回退内置骨架**并逐条日志提示；配置摘要新增 `template_status`。模板文件恢复入库并自带日记节点。\n\n### 修复\n\n- **/麦麦 指令漏进聊天（hook 不干净）**：宿主命令派发是 `search`（消息任意位置），而插件 pattern 带行首 `^` 且兜底只认半角斜杠——中段命令（\"帮我看下/麦麦状态\"）永不派发、全角斜杠（`／麦麦状态`）直接漏进 AI 聊天。现在子命令对齐宿主 search 语义（中段命令照常派发），未识别兜底扩展全角斜杠；`/麦麦` 相关输入只存在「派发或菜单」两种归宿。\n\n### 变更\n\n- **后台维护 tick 分相并行 + 步骤级超时**：并行相（天气/联动检测/记忆上下文/关系结算/清理）单支失败不拖链；串行主链各 LLM 步骤带 120/90/120s 超时，超时跳过等下一 tick 幂等重试——网络挂起不再串行阻塞整条链。\n- **模型输出失败自动重试推广**：新增 `generate_json_retry`（3 次/退避 1s/2s），接入日期抽取/日记/梦境/连续话题/群判定摘要五个纯生成幂等调用点；休息判醒、联网搜索、创作正文保持原样。\n\n### 说明\n\n- 需 MaiBot ≥ 1.3.19（自定义 HTML 页面）；宿主版本上限放宽至 1.4.99。\n- `memory.diary_hour` 配置项删除（旧配置自动忽略）；日记改由日程安排驱动。\n\n- 525 项测试通过（+重试/并行相/日期写入/日程开关/补读等新用例）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.24.10...v1.25.0\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.25.0",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.24.10",
           "tag": "v1.24.10",
           "commit": "dd99f7eeebd64f7003a713f3af3fff5a44c37bf5",
