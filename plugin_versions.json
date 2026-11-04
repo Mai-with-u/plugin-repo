@@ -52734,6 +52734,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.1",
+          "tag": "0.2.1",
+          "commit": "19618979c2a15924650f0e54d891636554e19677",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T16:10:06Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.2.1",
+          "release_notes": "这一版可以在几台手机之间换着玩：用命令、聊天或 WebUI 切换，白名单按设备分。锁屏也不用你管了：玩到一半锁了会自动解开，玩完自动锁上。安卓真机走无线调试时，端口变了插件会自己找到新端口。\r\n\r\n### 主要功能\r\n\r\n- **多台设备**：`multi_device.devices` 里可以再配几台手机，`device.name` 给原来那台起名字。用 `/手机 设备`、`/手机 切换 名字`、聊天里的 `switch_phone` 或 WebUI「连接」里的下拉框换着用。只有管理员能切换，正在玩时不能换，重启后记得用的是哪台；应用可以用 `devices` 标上用在哪些设备。\r\n- **玩到一半锁屏也能自动解开**（iPhone 和安卓真机）：每一步看画面前都查一次锁屏（实测 iPhone 每步多约 0.1 秒，安卓约 0.25 秒），锁着就先解开再接着玩；解不开（设了锁屏密码）就结束这次，WebUI「连接」显示「需要解锁」。\r\n- **玩完锁屏**（`play.lock_after`，默认开）：回桌面后锁屏，下次玩时自动解开。你接管着手机、这次没打开应用也没解过锁、停在设了玩完留在里面的应用（联机游戏）、连不上时不锁；自动解锁失败过的手机先不锁，免得下次又解不开。\r\n- **安卓无线调试自动找端口**：`device.serial` 可以只填手机 IP；配置的端口连不上（开关无线调试、插拔数据线、重启后端口会变）时，插件直接问手机现在的端口再连，亮屏、息屏锁着时都行。\r\n\r\n### 细节\r\n\r\n- 安卓真机：关屏、点亮用专门的按键，滑动锁屏界面直接划掉，设了密码、图案时解不开；用本机地址连的模拟器（127.0.0.1、localhost、emulator-5554）不查锁屏、不锁屏。\r\n- iPhone 屏幕关着、WDA 却说没锁时（实测动过手机后出现过）：前台是桌面、截图全黑时按主屏幕键点亮，不会对着黑屏玩。\r\n- 修复：WebUI 空闲时刷新画面会顺手把 iPhone 解锁。现在只有要玩的时候才解锁。\r\n- 解不开时的提示改成说明原因（设了锁屏密码）和两种处理办法。\r\n- WebUI：「连接」里多了设备下拉框和「切换」按钮，只有一台设备时不显示；新接口 `webui_switch_device`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.2.1",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "0.2.0",
           "commit": "9435d4444db792338b1b05a11f47521ebaef658f",
