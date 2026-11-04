@@ -5,7 +5,7 @@
 
 欢迎来到 [麦麦 (MaiBot)](https://github.com/Mai-with-u) 社区插件中心！这里收录社区开发者分享的插件。
 
-**[插件市场](https://plugins.maibot.chat/)**
+**[插件市场](https://plugin.maibot.chat/)**
 
 ## 文档与索引
 
