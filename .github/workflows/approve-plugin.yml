@@ -382,7 +382,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## 🎉 ${title}\n\n插件 \`${pluginId}\` ${actionText}！${releaseNotice}\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugins.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
+              body: `## 🎉 ${title}\n\n插件 \`${pluginId}\` ${actionText}！${releaseNotice}\n\n| 信息 | 值 |\n|------|----|\n| 批准人 | @${approvedBy} |\n| 关联 Issue | #${context.issue.number} |\n\n插件详情将在下次自动更新后显示在 [插件展示页](https://plugin.maibot.chat/)\n\n感谢您的贡献！ / Thank you for your contribution!`
             });
             
             await github.rest.issues.addLabels({
