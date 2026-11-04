@@ -54237,6 +54237,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "c62f529b6ffddc8596f9afa3193c9e76669bac06",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:23Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.4.1",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。\n- 优化注释：明确 1.4.0 起支持 `allow_abort` 的真实中止，旧版会自动降级。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.4.1",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.4.0",
           "tag": "v0.4.0",
           "commit": "f915ee1f57822f68332ad62018960cf95ffcb8eb",
