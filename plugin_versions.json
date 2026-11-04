@@ -41177,6 +41177,88 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.7",
+          "tag": "v0.8.7",
+          "commit": "026ab4f5cdd7f13f967772a6b298ce3b7c9271ce",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T07:59:59Z",
+          "release_url": "https://github.com/namchengwuqiu/bilibili_autopilot/releases/tag/v0.8.7",
+          "release_notes": "- 修复评论或跟进回复发送结果未知时连带暂停整个插件的问题：继续按原意愿、时间和分析额度浏览，暂缓评论及跟进回复；感兴趣的视频只保存候选，不生成待发送正文。启动、重载和手动预览不再被待核对记录阻断，人工暂停仍保留。\n- 管理页和状态查询明确区分“自主浏览运行中”与“评论发送待核对”；待核对期间推进回复检查时间，避免调度器每秒空转。\n- 保留未知结果的人工核对、事务内发送拦截及永久去重；不自动重试、不把未知结果算作发送成功。登录失效、平台风控和程序异常仍按原规则暂停。\n\n### 验证与升级\n\n- Docker 环境运行 293 项隔离测试：291 项通过，2 项按环境条件跳过。覆盖未知结果后继续浏览、候选不生成正文、评论与跟进发送拦截、重载恢复、手动暂停、核对后不重发及管理页提示。\n- 配置格式、依赖及数据库结构保持不变。升级保留配置、凭据和最新状态库；旧版已因未知结果暂停的实例可用 `start` 恢复浏览，待核对记录仍会拦住发送，须核对后使用 `ack BV号` 解除。升级不会自动核对或补发历史任务。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bilibili-autopilot",
+            "name": "B站自主浏览与评论",
+            "version": "0.8.7",
+            "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+              "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.custom",
+              "api.call",
+              "chat.get_group_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "play",
+                "background": "#E7F9FF"
+              }
+            }
+          }
+        },
+        {
           "version": "0.7.2",
           "tag": "v0.7.2",
           "commit": "d91bfbb69a7941e48147dec08205e5547f31cb6b",
