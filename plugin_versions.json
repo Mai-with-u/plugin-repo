@@ -44124,6 +44124,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.9",
+          "tag": "v0.7.9",
+          "commit": "6fe231d5157c5dd6740a11aefacfd353befc9ae0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T09:03:30Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.9",
+          "release_notes": "## 修复\n\n- 插件市场的 manifest 校验不允许 `host_application.max_version` 的前两位填 99 或 999。原来写的 `999.999.999` 让 0.3.18 之后的每个 Release 都被市场记进 `rejected_releases`，版本索引一直停在 0.3.13。\n- 改为 `1.9.999`：前两位落在允许范围内，第三位仍表示该次版本内的补丁全兼容。`sdk.max_version` 市场不校验，保持原样。\n\n功能没有改动，这一版只为让市场能正常收录。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.9",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.13",
           "tag": "v0.3.13",
           "commit": "5f7ee94fa83bc2eed56eeb92dd219018953bd744",
