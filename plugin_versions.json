@@ -11905,6 +11905,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v1.5.1",
+          "version": "1.5.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v1.5.0",
           "version": "1.5.0",
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
@@ -21578,7 +21583,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.3.1",
+          "version": "1.3.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "deepseek-v4-pro.ongeki-gacha",
@@ -36229,7 +36240,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.4.0",
+          "version": "1.4.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "github.erhan111119.mai-repost-shit",
@@ -44232,6 +44249,11 @@
       ],
       "ignored_tags": [],
       "rejected_releases": [
+        {
+          "tag": "v0.7.8",
+          "version": "0.7.8",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
         {
           "tag": "v0.7.0",
           "version": "0.7.0",

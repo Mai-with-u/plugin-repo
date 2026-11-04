@@ -655,7 +655,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.8",
+      "version": "1.15.10",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -670,8 +670,8 @@
         "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.3.0",
+        "max_version": "1.3.19"
       },
       "sdk": {
         "min_version": "2.5.2",
@@ -699,7 +699,6 @@
         "send.image",
         "send.forward",
         "send.hybrid",
-        "send.custom",
         "api.call",
         "llm.generate",
         "llm.get_available_models",
@@ -3687,7 +3686,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果和新闻，定时采集发送 F1 Meme，并向模型注入可编辑的车手群聊上下文。",
       "author": {
@@ -10939,7 +10938,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mailife.mai-life",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "麦麦生活",
       "description": "自动生成每日日程与生活分享，统一管理当前聊天流的单次定时意图，注入跨天活动并在到期时唤醒规划器。",
       "author": {
@@ -14988,7 +14987,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.opencode-session-header",
-      "version": "1.2.0",
+      "version": "1.4.0",
       "name": "OpenCode 会话头注入",
       "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
       "author": {
@@ -15021,13 +15020,13 @@
           "client_type": "opencode-session",
           "name": "OpenCode 会话头注入（Chat Completions）",
           "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.2.0"
+          "version": "1.4.0"
         },
         {
           "client_type": "opencode-session-responses",
           "name": "OpenCode 会话头注入（Responses）",
           "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.2.0"
+          "version": "1.4.0"
         }
       ],
       "capabilities": [
@@ -16217,7 +16216,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.8.5",
+      "version": "0.8.7",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -16551,7 +16550,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.8.9",
+      "version": "0.8.10",
       "plugin_type": "automation",
       "name": "麦麦模拟盘",
       "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
@@ -16577,7 +16576,7 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -16847,11 +16846,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.16.99"
+        "max_version": "2.21.99"
       },
       "dependencies": [
         {
@@ -16880,7 +16879,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.7.0",
+      "version": "0.7.9",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -16893,7 +16892,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "999.999.999"
+        "max_version": "1.9.999"
       },
       "sdk": {
         "min_version": "2.6.0",
@@ -16934,7 +16933,7 @@
     "id": "github.42yoru.maimai-owner-reminder",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.13",
+      "version": "0.4.14",
       "plugin_type": "automation",
       "name": "主人的叮嘱 (Owner Reminder)",
       "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
@@ -16960,7 +16959,7 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -17376,7 +17375,7 @@
     "id": "github.42yoru.maimai-emoji-label-bridge",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.2.1",
+      "version": "0.2.2",
       "plugin_type": "media",
       "name": "表情标签桥接 (Emoji Label Bridge)",
       "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
@@ -17393,7 +17392,7 @@
       },
       "host_application": {
         "min_version": "1.3.15",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -17478,7 +17477,7 @@
     "id": "github.42yoru.maimai-target-replyer",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.3.11",
+      "version": "0.3.12",
       "plugin_type": "extension",
       "name": "替主人回话 (Target Replyer)",
       "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
@@ -17503,7 +17502,7 @@
       },
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -18288,7 +18287,7 @@
     "id": "github.42yoru.maimai-jargon-boost",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.4.1",
+      "version": "0.4.2",
       "name": "黑话加速器",
       "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
       "author": {
@@ -18305,7 +18304,7 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.15",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -18967,11 +18966,11 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.16.0",
-        "max_version": "2.16.99"
+        "max_version": "2.21.99"
       },
       "capabilities": [
         "send.text",
@@ -19282,11 +19281,11 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.4.0",
-        "max_version": "2.16.99"
+        "max_version": "2.21.99"
       },
       "capabilities": [
         "statistics.local.models",
@@ -20631,7 +20630,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.maimai-reply-guard",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "plugin_type": "management",
       "name": "回复守卫 (Reply Guard)",
       "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
@@ -20656,7 +20655,7 @@
       },
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -21031,7 +21030,8 @@
         "person.get_value",
         "chat.get_all_streams",
         "person.get_id",
-        "llm.get_available_models"
+        "llm.get_available_models",
+        "maisaka.reply.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -21276,7 +21276,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.42yoru.lolicon-setu",
-      "version": "2.4.6",
+      "version": "2.4.7",
       "plugin_type": "media",
       "name": "不发图我看什么",
       "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
@@ -21301,7 +21301,7 @@
       },
       "host_application": {
         "min_version": "1.3.9",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
