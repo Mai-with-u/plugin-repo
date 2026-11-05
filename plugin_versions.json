@@ -53813,6 +53813,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.0",
+          "tag": "v2.1.0",
+          "commit": "9f04e561faf85c1e3881afe5ebfd2221aea303e7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T14:30:43Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.1.0",
+          "release_notes": "## 新增功能\n\n- **概率语音语调自适应**。新增独立开关，可选择 `utils`、`replyer`、`planner`、`vlm` 等 MaiBot 模型任务，沿用任务绑定的模型与服务商。单次超时默认 60 秒，失败后默认重试 3 次，均可调整；仅对启用动态语调的模型和音色生效，推荐选择低延迟模型。\n- **BreezeTTS 动态表达**。支持按官方标签表插入轻笑、叹气、唱歌和停顿等局部音频事件，将 `[语气:描述]`、`[用温柔的语气]` 提取为独立指令，按语气区段合成为一条完整语音。完整事件表可按需查询。\n- **火山引擎音色与语调**。新增文字与图片声音设计、平台试听、复刻与设计音色导入及独立资源绑定；接入 ICL 2.0 expressive 的整段语音指令与 COT，支持固定和动态语调。\n\n## 修复功能\n\n- **BreezeTTS 段间停顿与缓存**。按句末、逗号等标点补足语气区段之间的实际静音，已有停顿计入间隔，避免语气切换后两句话紧贴；缓存按实际区段、指令、事件位置及停顿匹配，隔离旧的无间隔音频。\n- **聊天文字与语音记录**。Breeze 控制标记从保留文字、语音内容记录及工具反馈中隐藏，概率未命中、合成失败或生成回复后保存配置时同样清理，普通括号保持原样。\n- **文字与语音发送**。保留文字时先发送文字，再独立发送语音，修复 SnowLuma 链路中的正文丢失；引用卡片与正文随文字发送，关闭“引用回复保留文本”时引用回复保持文字。\n- **概率语音调用**。先检查整轮概率、长度和聊天范围再调用语调 LLM，分段复用兼容决定；分类保持原文，重试耗尽后使用路由默认语调。\n- **音色选择与 WebUI**。临时音色名称解析为当前模型收藏的音色 ID，同名音色要求明确指定 ID；关闭弹窗时清理旧控件，修复保存回复行为设置时的 `null.status` 报错。\n- **火山引擎参数与配置说明**。补全资源与效果版本匹配、复刻语言、训练状态、音调、码率、方言、末尾静音、SSML 和发音词典等参数；README 新增目录，各平台配置集中在文末。\n\n**运行要求为 MaiBot 1.3.6–1.4.99、插件 SDK 2.13.0–2.21.0、Python 3.10 及以上。**\n\n> 更新后重新加载插件并刷新 WebUI。概率语音 LLM 语调自适应可在「回复行为」中启用，使用所选模型或音色的动态语调设置。\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.1.0/README.md) · [提交反馈或建议](https://github.com/WhiteCloudOL/maimai-tts-plugin/issues/new/choose) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.1.0/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.1.0",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.0.7",
           "tag": "v2.0.7",
           "commit": "04bdc7b20539b22b6923cfb7269cedf7ced4874a",
