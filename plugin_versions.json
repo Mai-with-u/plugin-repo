@@ -58849,6 +58849,93 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.PPPALab.maibot_plugin_quote",
+      "manifest_id": "github.PPPALab.maibot_plugin_quote",
+      "repositoryUrl": "https://github.com/PPPALab/maibot_plugin_quote",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "4f23572fe5382e8ef9536da220d30e3d23c97ac2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T19:19:22Z",
+          "release_url": "https://github.com/PPPALab/maibot_plugin_quote/releases/tag/v1.2.3",
+          "release_notes": "MaiBot 群聊语录库首次公开发布。\n\n- **图片语录**：回复图片上传，各群独立，支持本地 OCR 检索和随机发送。\n- **标签与生成**：支持标签管理，通过聊天命令生成或记录文字语录。\n- **网页管理**：内嵌 MaiBot WebUI，支持浏览、检索、编辑标签和删除，跟随宿主主题及明暗模式。\n- **导入与备份**：支持手动批量导入、服务器端 ZIP 备份及恢复。\n- **内置中文字体**：安装包附带 Noto 中文字体与许可证，字体配置留空即可使用。\n\n**适配版本**：MaiBot 1.3.19–1.4.0，SDK 2.20–2.x。\n\n**下载附件**\n- `maibot_plugin_quote-1.2.3.zip`：插件安装包。\n- `SHA256SUMS`：安装包校验和。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.PPPALab.maibot_plugin_quote",
+            "plugin_type": "other",
+            "version": "1.2.3",
+            "name": "群聊语录库",
+            "description": "回复图片上传群语录，支持群隔离、本地 OCR 检索和随机发送，并可生成文字语录。内嵌 MaiBot Web 管理页，支持标签管理、批量导入及备份恢复。",
+            "author": {
+              "name": "PPPALab",
+              "url": "https://github.com/PPPALab"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg"
+              }
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/PPPALab/maibot_plugin_quote"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.0"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.1,<13"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "jieba",
+                "version_spec": ">=0.42.1,<0.43"
+              },
+              {
+                "type": "python_package",
+                "name": "rapidocr-onnxruntime",
+                "version_spec": ">=1.4.4,<2"
+              }
+            ],
+            "capabilities": [
+              "message.get_by_id",
+              "chat.get_avatar",
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
