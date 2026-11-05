@@ -58070,6 +58070,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "1.1.0",
+          "commit": "de93893decac37bbdcb2074304fc97db09eebb28",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T08:58:07Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-I-deepseek/releases/tag/1.1.0",
+          "release_notes": "**四个新功能：在场感知、历史补抓、自主发言闸门，以及「看见多少」。**\n\n① **在场感知**（`[presence]`）。原来判断缺席只看「现在 - 上次说话」，等于假设她一直醒着。真实数据里，一段「73 小时没说话」的私聊有 33.8 小时是她自己关机——**不在的是她，不是对方**。现在从宿主 `online_time` 表算出在线区间（合并后求交集），把总间隔拆成「她不在」和「她醒着等」两半，只有后者才触发缺席感。四档：`none` / `away`（她大半时间不在，措辞是「你这几天没在」而不是「你怎么没来」）/ `cold`（醒着等了够久）/ `pending`（有没看见的消息，先补洞别谈感情）。\n\n② **历史补抓**（`[backfill]`）。宿主离线期间根本收不到消息（实测 11-03 一整天 `mai_messages` 是 0 条），她会整段漏掉群聊。现在每次抽取前问 SnowLuma 连接器「我不在的时候发生了什么」，把缺的合并进原料。三个坑：分页锚点是 `message_id` 不是文档写的 `message_seq`；`count` 上限 200 且会被内部裁剪；空的 `messages: []` 不是错误，是「这几天确实没有私聊」。另有一个静默故障点——`raw_message[].data` 必须是字符串，适配器给的是段对象，转错不报错只会变成空消息。\n\n③ **自主发言闸门**（`[initiative]`，**默认关**）。`talk_value` 管的是「攒够几条才触发思考」，是延迟不是拒绝；focus 模式下它更是被硬编码的 `1.0` 直接绕过。所以改成在 `maisaka.planner.before_request` 里把 `reply` 和 `send_emoji` 从工具清单里**拿走**——模型没有说的手段。硬过滤在前（开关 → @ → 提及 → 能耗尽 → 边界感），软评分在后（兴趣 0.40 / 好感 0.30 / 心情 0.20 / 精力 0.10，阈值 0.45）。\n\n④ **看见多少**（`[history]`）。补抓把离线那几天的消息捞回来了，可捞回来的 200 条里除最后 30 条外全被丢掉：她 digest 了回来后的那一小时，然后像从头到尾都在场一样接话。既不是监控感，也不是如实缺席，是**假装没缺过席**。现在按人实际掌握信息的程度分四层：**L0 看见**最近 30 条原文（原来的窗口）、**L1 知道有洞**——「昨晚 00:12 到 10:58，这个群积了 199 条，你不在」，**只给条数和时间范围，不含任何正文**、**L2 去翻**——被明确提起时从原文表里按相似度捞 3~5 条、**L3 想不起来**——翻不到时明说没翻到，不许顺着上下文编。L1 只给条数是刻意的，也是整个功能的立身之本：一旦注入内容，她就没法再说「我一条都没看到」。L2 靠线索词触发（昨天/上次/刚才/说过/还记得吗……），不用模型判断——这段跑在 `replyer.before_request` 里只有 6000ms 预算。原文单独存一张表，因为它**是事实，不该被淡忘**，只该被新记录挤出去。\n\n**顺带修掉的四个真 bug**：`analyse()` 把在线/离线算反了（关机一整夜被算成「在线等了一整夜」）；`classify()` 缺总间隔门槛（离开 2.2 小时也要说「我刚才不在」）；**闸门写在 `inject_planner_state()` 末尾，而那个方法在边界感开关不满足时会提前 `return`，默认配置正好不满足——闸门从写下的那天起就没跑过**；`evaluate()` 里用 `at_always_reply` 同时管「被 @」和「被提及」，把两个强度差很远的信号混成了一个开关。\n\n**另：页面整理。** 记忆列表每页从 50 条改成 10 条；「认识的人」和「喜好」默认折起来（这两块加起来比记忆长得多，全摊开会让页面长到要滚很久才看得到记忆，而标题行右边本来就写着「共 14 人」「喜欢 17 / 讨厌 3」），人物每页 5 个（一张人物卡片比一条记忆高得多，10 张一屏放不下），喜好改成「喜欢 / 讨厌」两个页签切换而不是左右分栏（实测 16 条喜欢、4 条讨厌，分栏后右半边基本是空的）。\n\n能力声明 6 → 8 项（`database.query` + `api.call`），配置 145 → 168 项（新增 `[presence]` 4 / `[backfill]` 5 / `[initiative]` 6 / `[history]` 8），数据库 10 → 12 张表（`gap_unread` / `gap_history`）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.maibot-I-deepseek",
+            "version": "1.1.0",
+            "name": "我，deepseek",
+            "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "homepage": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "documentation": "https://github.com/TommyAAKK/maibot-I-deepseek#readme",
+              "issues": "https://github.com/TommyAAKK/maibot-I-deepseek/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "2.0.0"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "3.0.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "database.query",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "1.0.0",
           "commit": "a319a15bb2cd9ab9cad23176d079f3fb31a0fbff",
