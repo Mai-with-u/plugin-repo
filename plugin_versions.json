@@ -58467,6 +58467,65 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.whale-memory",
+      "manifest_id": "local.whale-memory",
+      "repositoryUrl": "https://github.com/idonotl/maibot-whale-memory",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "847bc338eb02a54f0cc19fab1dd990d58fb6912c",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-05T06:03:17Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-memory/releases/tag/v0.2.0",
+          "release_notes": "# 0.2.0 长期交流偏好\n\n- 新增相处复盘，明确的长期交流偏好可以追溯到原消息，支持按属性修订和按场景撤回。\n- 偏好使用独立日限额，与普通词法记忆共享本轮注入预算。可通过 `reflection_enabled` 单独关闭。\n- 保留插件 ID 和原有数据库。升级前备份，并核对私聊、群聊的授权范围。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-memory",
+            "version": "0.2.0",
+            "name": "鱼的记忆 · 麦麦适配试用",
+            "description": "中文词法召回、场景隔离、可追溯及撤回的交流偏好。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-memory",
+              "homepage": "https://github.com/idonotl/maibot-whale-memory",
+              "documentation": "https://github.com/idonotl/maibot-whale-memory/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
