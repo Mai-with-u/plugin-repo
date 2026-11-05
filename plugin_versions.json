@@ -58718,6 +58718,79 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.whale-affect",
+      "manifest_id": "local.whale-affect",
+      "repositoryUrl": "https://github.com/idonotl/maibot-whale-affect",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.6",
+          "tag": "v0.2.6",
+          "commit": "e83d58a4bc2253990aaed06b1aa5b4d9f78b0d3e",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-05T06:03:17Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-affect/releases/tag/v0.2.6",
+          "release_notes": "# 0.2.6 出站表达约束\n\n- 增加出站表达规则与限时改写。只有当前明确引用或模仿才适用相应例外，失败保留原回复。\n- 增加 `local.whale-affect.affinity_hint`，供其他插件读取当前回复对象的关系档位。\n- 继续使用原有插件 ID、心情和好感数据库。升级前备份，安装后确认自己的机器人号和管理授权范围。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-affect",
+            "version": "0.2.6",
+            "name": "小鲸鱼心情与好感度",
+            "description": "每日心情、长期好感、短期情绪及出站表达约束。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-affect",
+              "homepage": "https://github.com/idonotl/maibot-whale-affect",
+              "documentation": "https://github.com/idonotl/maibot-whale-affect/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-affect/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "chat",
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "heart",
+                "background": "#123B4A"
+              }
+            },
+            "capabilities": [
+              "message.get_by_id",
+              "message.get_recent",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "llm.generate",
+              "llm.get_available_models",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
