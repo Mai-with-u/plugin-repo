@@ -58526,6 +58526,80 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.hk560.github-subscriber",
+      "manifest_id": "github.hk560.github-subscriber",
+      "repositoryUrl": "https://github.com/HK560/Maibot-GitHub-Subscriber",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "b15f164f9bedb0668d2659387b21efbcccb1c562",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T08:38:40Z",
+          "release_url": "https://github.com/HK560/Maibot-GitHub-Subscriber/releases/tag/v1.3.0",
+          "release_notes": "## MaiBot GitHub Subscriber v1.3.0\n\n首个公开发布版本。\n\n### 新增\n- 消息模板面板：提交、Release、Issue、PR、Tag 分别使用独立模板，可直接在 WebUI 面板编辑。\n- 支持通用与类型专用占位符（`{header}`、`{repo}`、`{repo_owner}`、`{repo_name}`、`{title}`、`{body}`、`{author}`、`{action}`、`{branch}`、`{time}`、`{meta}`、`{url}`、`{key}`、`{footer}`，以及 `{sha}`、`{tag}`、`{number}`）。\n- 每个订阅仓库可单独配置群聊与私聊目标；未开启「单独配置通知目标」时继承全局通知目标。\n- 仓库级目标可独立留空：开启后某一类留空表示该仓库不向这一类发送，不回退全局。\n- 运行状态、`/githubsub status`、`/githubsub list` 与订阅信息会标注「继承全局」或「单独配置」。\n\n### 变更\n- 插件更名为 **MaiBot GitHub Subscriber**，插件 ID 为 `github.hk560.github-subscriber`。\n- 「消息样式」面板升级为「消息模板」，Issue/PR 默认模板不含 `{body}`，通知默认只显示标题。\n- 仓库地址：https://github.com/HK560/Maibot-GitHub-Subscriber\n\n### 安装\n下载下方 `maibot-github-subscriber-v1.3.0.zip`，在 MaiBot WebUI「插件扩展 → 从 ZIP 安装插件」上传即可。\n\n### 兼容性\n- MaiBot 1.3.17 – 1.3.x\n- 插件 SDK 2.19.0 – 2.98.x\n- Python 3.10+\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hk560.github-subscriber",
+            "name": "MaiBot GitHub Subscriber",
+            "version": "1.3.0",
+            "description": "订阅多个 GitHub 仓库的提交、Release、Issues、Pull Request 与标签变化，按分支和作者筛选后推送到手动填写的群聊或私聊；每个仓库可单独指定通知目标或继承全局配置。",
+            "author": {
+              "name": "HK560",
+              "url": "https://github.com/HK560"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HK560/Maibot-GitHub-Subscriber",
+              "homepage": "https://github.com/HK560/Maibot-GitHub-Subscriber",
+              "documentation": "https://github.com/HK560/Maibot-GitHub-Subscriber/blob/main/README.md",
+              "issues": "https://github.com/HK560/Maibot-GitHub-Subscriber/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "chat.get_group_streams",
+              "chat.get_private_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "github",
+                "fallback": "git-branch",
+                "background": "#0D1117"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
