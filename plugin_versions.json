@@ -46178,6 +46178,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "6eeabfa655b5c8a6998f510e2cb69747a69c010d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T02:33:25Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.3.0",
+          "release_notes": "## 修复\n\n- **修复「一张表情变两张」**。宿主会把 planner 选的表情当独立消息逐条发出（`reply_supplement.compose` 给每个表情组件单开一条 `PostProcessedReplyMessage`，发送循环再逐条调用 `_send_to_target_with_message`）。插件挂在发送层，每次只看得到一条消息，原来的 `dedupe_with_existing_emoji` 只在单条消息内生效，于是「表情包那条」原样放行、「正文那条」又被接出一个表情，群里就出现两张。\n\n  现在按会话记录「最近一次带表情出站的时间」，正文出站时若处于时间窗内，就把标签按「已有表情」处理（默认删除、只发文字）。\n\n## 细节\n\n- 新增配置 `behavior.dedupe_window_seconds`（默认 `20.0`，范围 0~120）。设 `0` 关闭跨消息去重。\n\n  窗口取值依据宿主真实耗时：表情消息模拟打字固定 1 秒，正文按每字符 0.3 秒算且无上限截断，30 字正文就要 9 秒，再叠网络往返。原来的 5 秒覆盖不到这个量级。策略上宁可误吞（少发一张表情），也不漏成文字标签。\n- 时间窗按 `stream_id` 隔离：A 群刚发过表情不影响 B 群。\n- 只记录「带表情的消息」，普通文字消息不会清掉记录；窗口过期自然失效。\n- 新增 5 条测试：跨消息压制、按会话隔离、窗口过期、窗口设 0 关闭、窗口盖住宿主打字延迟；并做了「还原旧实现即失败」的反向验证。\n- 版本号统一：`_manifest.json` 0.2.2 / `PLUGIN_VERSION` 0.2.1 / `config.toml.example` 0.2.0 三处不一致，现统一为 0.3.0。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "v0.2.2",
           "commit": "18f0563059ec430986f60b658c7acda23516fd7e",
