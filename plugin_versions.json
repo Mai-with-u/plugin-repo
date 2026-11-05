@@ -23852,6 +23852,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.16.0",
+          "tag": "v0.16.0",
+          "commit": "cc091a0452d114a2d425a73ed94488ff7710fcea",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T10:19:44Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.16.0",
+          "release_notes": "## MaiWork 0.16.0 · 群聊规划器直接接单 + 看板实时轮次精修 + 主模型对话与独立「技能」中心重做\n\n### 新功能与改进\n\n- **群聊规划器直接接单**：新增 MaiBot 群聊唯一接单工具 `maiwork_handoff`（默认开启，可在 `[quick_judge] planner_tool` 配置），群友 `@` 机器人派活时可在回复同时顺手完成立项登记，普通闲聊自然收尾不再额外消耗判活次数；复杂情形仍由原有判活链路兜底，并按真实发言消息核验发起人身份。\n- **「和 MaiWork 聊」输入坞与交互大升级**：\n  - 双层毛玻璃输入坞：输入 `/` 唤出斜杠指令（`/compact` 压缩上下文、`/clear` 清空、`/new` 新开对话）或为本轮点名选用技能与本群做法；输入 `@` 直接引用任务、目标或构想；\n  - 新增上下文余量微环、生成中一键停止与末尾重试、默认折叠思考块、连续成功工具调用自动折叠组、一键复制，以及侧栏对话重命名与归档；从任务/目标详情和看板抽屉可带引用直达聊天框。\n- **独立「技能」中心与详情抽屉重做**：「设置 → 工具与平台 → 技能」独立成双列目录页，支持胶囊搜索、按角色小鱼筛选、「来自各群的经验」一键提炼或升级为全局技能，以及「新建 / 上传 zip / 在对话中生成技能」；点开任意技能进入阅读级详情抽屉，可常驻开关启停、勾选挂载专岗、复制自定义内置技能、导出 zip 或带着技能跳去对话试用。\n- **总管理员「看板」实时轮次与收拢升级**：活跃轮次实时上板，同栏子交接单自动收拢进父条目并按轮次展开，补齐单步工具摘要、步骤快筛、报错摘要、专岗便条总览与从详情只读回跳；闲时自主探索新做法回合也纳入看板。专岗页「本群工作记录」同步重排为胶囊切换面板。\n- **冷场开场白更自然**：首次运行自动补种可自由编辑或删除的全局技能 `topic-opener`（冷场破冰写法），并加固防思考草稿外漏、字数硬截断与说出自身人设名字/标签的护栏。\n\n### 修复与兼容（含社区贡献 PR #12 / #13）\n\n- 资讯卡片延迟发送（如跨过免打扰时段）或手动重发时，按真实发送时刻对齐时段抬头，并将卡片渲染移出发件箱主循环（PR #12）；\n- 修复受限模式下可选组件探测报错与画图组件安装刷新竞态（PR #13）；\n- 修复资讯页搜索框与顶部分栏零间距粘连问题；\n- 宿主最高适配版本跟进 MaiBot 1.4 升至 **1.4.99**，SDK 兼容上限覆盖至已实测的 **2.21.0**。\n\n### 其他\n\n- 配置版本自动升至 **0.5.5**、数据库库号自动升至 **50**（正常升级**无需手动改配置**，直接覆盖插件文件并保留 `config.toml` 即可）。\n- 如需回滚到 `0.15.x`，请连同升级前备份的插件目录、`config.toml` 与数据目录一起恢复。\n\n详见 [升级说明](docs/guide/upgrade.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.16.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.15.3",
           "tag": "v0.15.3",
           "commit": "ed29864de132622f04c34846ad97ecdf3f9ba0d8",
