@@ -58395,6 +58395,78 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.nethielchou.mai-futures-sim",
+      "manifest_id": "github.nethielchou.mai-futures-sim",
+      "repositoryUrl": "https://github.com/NethielChou/maibot-futures-sim",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.8.6",
+          "tag": "v0.8.6",
+          "commit": "92adbb6c3fbfb9622a7bfdffdf04b326866ca8f2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T13:52:56Z",
+          "release_url": "https://github.com/NethielChou/maibot-futures-sim/releases/tag/v0.8.6",
+          "release_notes": "## [0.8.6] - 2026-11-05\n\n### Fixed\n\n- **夜盘日志刷屏**：日盘品种/非交易时段不再每分钟输出“行情过期”；交易时段内的过期行情也改为每品种每日只提示一次\n- **生猪/鸡蛋**从夜盘品种移除，改为仅日盘（避免夜盘空转刷日志）\n- 日志提示不再把非交易时段行情当成断流告警\n\n### Tests\n\n- 187/187 通过\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.nethielchou.mai-futures-sim",
+            "version": "0.8.6",
+            "plugin_type": "automation",
+            "name": "麦麦期货模拟盘",
+            "description": "让麦麦用自己的判断交易一个本地虚拟期货账户：真实合约行情、模拟成交与结算、程序风控、群内汇报；纯娱乐模拟盘，不接真实交易通道。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#12324A"
+              }
+            },
+            "author": {
+              "name": "NethielChou",
+              "url": "https://github.com/NethielChou"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/NethielChou/maibot-futures-sim",
+              "homepage": "https://github.com/NethielChou/maibot-futures-sim",
+              "documentation": "https://github.com/NethielChou/maibot-futures-sim/blob/main/README.md",
+              "issues": "https://github.com/NethielChou/maibot-futures-sim/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
