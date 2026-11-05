@@ -59150,6 +59150,69 @@
               ]
             }
           }
+        },
+        {
+          "version": "0.2.5",
+          "tag": "v0.2.5",
+          "commit": "c342ba942d38d344db22668c86dba9b0f8b72a3c",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-04T11:24:19Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-affect/releases/tag/v0.2.5",
+          "release_notes": "# 0.2.5 首次公开预发布\r\n\r\n从本地开发版本导出，清理个人账号与机器路径，默认关闭并清空授权范围；提供示例配置、环境依赖和 Agent 接入说明。未携带任何原数据库或 Git 历史。插件ID保留以维持数据与跨插件调用兼容。\r\n\r\n请结合发布前测试报告判断可用范围，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-affect",
+            "version": "0.2.5",
+            "name": "小鲸鱼心情与好感度",
+            "description": "为麦麦提供每日心情、每用户长期好感与短期情绪反应的本地状态系统，并按状态注入自然语气提示。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-affect",
+              "homepage": "https://github.com/idonotl/maibot-whale-affect",
+              "documentation": "https://github.com/idonotl/maibot-whale-affect/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-affect/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "chat",
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "heart",
+                "background": "#123B4A"
+              }
+            },
+            "capabilities": [
+              "message.get_by_id",
+              "message.get_recent",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "llm.generate",
+              "llm.get_available_models",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
