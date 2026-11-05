@@ -7302,7 +7302,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.12.0",
+          "version": "1.12.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "maimai-drawpic-plugin",
@@ -58235,78 +58241,6 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
-    },
-    {
-      "id": "maibot-team.planner-social",
-      "manifest_id": "maibot-team.planner-social",
-      "repositoryUrl": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
-      "mode": "releases",
-      "versions": [
-        {
-          "version": "1.0.1",
-          "tag": "v1.0.1",
-          "commit": "db55a07c8b7571e21f860faeadb3d6e69083cea3",
-          "prerelease": false,
-          "yanked": false,
-          "published_at": "2026-10-31T18:50:01Z",
-          "release_url": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement/releases/tag/v1.0.1",
-          "release_notes": "**Full Changelog**: https://github.com/Mikan-sleep/Maibot-planner-social-improvement/compare/v1.0.0...v1.0.1",
-          "manifest": {
-            "manifest_version": 2,
-            "version": "1.0.1",
-            "name": "Planner Social",
-            "description": "为 Maisaka Planner 提供发言对象/话轮判断、LLM 反馈裁判、每群在线学习、群规范反思和可调发言频率；支持可回滚的 stop→reply 深度改写。",
-            "author": {
-              "name": "Planner Social contributors",
-              "url": "https://github.com/Mikan-sleep"
-            },
-            "license": "GPL-3.0-or-later",
-            "urls": {
-              "repository": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
-              "homepage": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
-              "documentation": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement#readme",
-              "issues": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement/issues"
-            },
-            "changelog": "CHANGELOG.md",
-            "host_application": {
-              "min_version": "1.3.0",
-              "max_version": "1.3.99"
-            },
-            "sdk": {
-              "min_version": "2.0.0",
-              "max_version": "2.99.99"
-            },
-            "dependencies": [],
-            "capabilities": [
-              "frequency.set_adjust",
-              "frequency.get_current_talk_value",
-              "frequency.get_adjust",
-              "llm.generate"
-            ],
-            "i18n": {
-              "default_locale": "zh-CN",
-              "supported_locales": [
-                "zh-CN"
-              ]
-            },
-            "id": "maibot-team.planner-social",
-            "display": {
-              "icon": {
-                "type": "local",
-                "value": "assets/icon.svg"
-              }
-            }
-          }
-        }
-      ],
-      "ignored_tags": [],
-      "rejected_releases": [
-        {
-          "tag": "v1.0.0",
-          "version": "1.0.0",
-          "error": "仓库根目录不能包含 config.toml"
-        }
-      ]
     },
     {
       "id": "MaiBot-Discord-Adapter",

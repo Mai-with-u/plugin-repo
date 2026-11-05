@@ -2344,7 +2344,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.11.1",
+      "version": "1.12.0",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -2381,7 +2381,8 @@
         "message.build_readable",
         "maisaka.context.append",
         "llm.generate",
-        "config.get"
+        "config.get",
+        "personality.get_current"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -12885,13 +12886,13 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.25.0",
+      "version": "1.26.0",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
         "url": "https://github.com/octmicy/Mai_life"
       },
-      "license": "MIT",
+      "license": "GPL-3.0",
       "host_application": {
         "min_version": "1.3.16",
         "max_version": "1.4.99"
@@ -12915,6 +12916,7 @@
         "llm.get_available_models",
         "message.get_by_id",
         "api.call",
+        "webui.claim_upload",
         "maisaka.proactive.trigger",
         "config.get",
         "component.list_loaded_plugins",
@@ -18908,7 +18910,7 @@
       "manifest_version": 2,
       "plugin_type": "tool",
       "id": "github.qrzzzz.music-enhanced",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "麦麦点歌增强",
       "description": "基于 maibot-music 增强的 QQ/网易云点歌插件，支持聚合音源、完整时长校验、转码和本地语音缓存",
       "author": {
@@ -18942,7 +18944,8 @@
       ],
       "capabilities": [
         "send.text",
-        "send.custom"
+        "send.custom",
+        "api.call"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -21640,58 +21643,6 @@
     }
   },
   {
-    "id": "maibot-team.planner-social",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.0.1",
-      "name": "Planner Social",
-      "description": "为 Maisaka Planner 提供发言对象/话轮判断、LLM 反馈裁判、每群在线学习、群规范反思和可调发言频率；支持可回滚的 stop→reply 深度改写。",
-      "author": {
-        "name": "Planner Social contributors",
-        "url": "https://github.com/Mikan-sleep"
-      },
-      "license": "GPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
-        "homepage": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement",
-        "documentation": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement#readme",
-        "issues": "https://github.com/Mikan-sleep/Maibot-planner-social-improvement/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "frequency.set_adjust",
-        "frequency.get_current_talk_value",
-        "frequency.get_adjust",
-        "llm.generate"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "maibot-team.planner-social",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "assets/icon.svg"
-        }
-      }
-    },
-    "assets": {
-      "icon_64": "icons/maibot-team.planner-social.webp"
-    }
-  },
-  {
     "id": "github.TommyAAKK.maibot-I-deepseek",
     "manifest": {
       "manifest_version": 2,
@@ -21774,6 +21725,420 @@
       "urls": {
         "repository": "https://github.com/CharTyr/MaiBot-JevPreprocessor"
       }
+    }
+  },
+  {
+    "id": "github.nethielchou.mai-futures-sim",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.nethielchou.mai-futures-sim",
+      "version": "0.8.6",
+      "plugin_type": "automation",
+      "name": "麦麦期货模拟盘",
+      "description": "让麦麦用自己的判断交易一个本地虚拟期货账户：真实合约行情、模拟成交与结算、程序风控、群内汇报；纯娱乐模拟盘，不接真实交易通道。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "line-chart",
+          "background": "#12324A"
+        }
+      },
+      "author": {
+        "name": "NethielChou",
+        "url": "https://github.com/NethielChou"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/NethielChou/maibot-futures-sim",
+        "homepage": "https://github.com/NethielChou/maibot-futures-sim",
+        "documentation": "https://github.com/NethielChou/maibot-futures-sim/blob/main/README.md",
+        "issues": "https://github.com/NethielChou/maibot-futures-sim/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.13",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "llm.generate",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_recent",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.nethielchou.mai-futures-sim.webp"
+    }
+  },
+  {
+    "id": "local.whale-memory",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.whale-memory",
+      "version": "0.2.0",
+      "name": "鱼的记忆 · 麦麦适配试用",
+      "description": "中文词法召回、场景隔离、可追溯及撤回的交流偏好。",
+      "author": {
+        "name": "idonotl",
+        "url": "https://github.com/idonotl"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/idonotl/maibot-whale-memory",
+        "homepage": "https://github.com/idonotl/maibot-whale-memory",
+        "documentation": "https://github.com/idonotl/maibot-whale-memory/blob/main/README.md",
+        "issues": "https://github.com/idonotl/maibot-whale-memory/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "data",
+      "dependencies": [],
+      "capabilities": [
+        "message.get_by_id",
+        "message.get_by_time_in_chat",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.hk560.github-subscriber",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hk560.github-subscriber",
+      "name": "MaiBot GitHub Subscriber",
+      "version": "1.3.0",
+      "description": "订阅多个 GitHub 仓库的提交、Release、Issues、Pull Request 与标签变化，按分支和作者筛选后推送到手动填写的群聊或私聊；每个仓库可单独指定通知目标或继承全局配置。",
+      "author": {
+        "name": "HK560",
+        "url": "https://github.com/HK560"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/HK560/Maibot-GitHub-Subscriber",
+        "homepage": "https://github.com/HK560/Maibot-GitHub-Subscriber",
+        "documentation": "https://github.com/HK560/Maibot-GitHub-Subscriber/blob/main/README.md",
+        "issues": "https://github.com/HK560/Maibot-GitHub-Subscriber/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.17",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.98.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "chat.get_group_streams",
+        "chat.get_private_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "github",
+          "fallback": "git-branch",
+          "background": "#0D1117"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.OLDnana1.better-reply",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.1",
+      "name": "Better Reply 首条引用",
+      "description": "为每个回复目标的第一条文字消息强制添加引用，同一目标的后续分段不再重复引用",
+      "author": {
+        "name": "OLDnana1",
+        "url": "https://github.com/OLDnana1"
+      },
+      "license": "MIT",
+      "plugin_type": "chat",
+      "urls": {
+        "repository": "https://github.com/OLDnana1/maibot-better-reply",
+        "homepage": "https://github.com/OLDnana1/maibot-better-reply",
+        "documentation": "https://github.com/OLDnana1/maibot-better-reply/blob/main/README.md",
+        "issues": "https://github.com/OLDnana1/maibot-better-reply/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.OLDnana1.better-reply"
+    }
+  },
+  {
+    "id": "local.overstats",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.overstats",
+      "name": "Overstats 守望先锋查询",
+      "version": "1.1.1",
+      "description": "面向 MaiBot 1.3.16 的 Overstats 桥接插件，连接已有后端，支持战绩、单局、榜单和资讯图片。",
+      "author": {
+        "name": "sora-maru; original by Zzzzzzouhang",
+        "url": "https://github.com/sora-maru"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/sora-maru/maibot_plugin_overstats",
+        "documentation": "https://github.com/sora-maru/maibot_plugin_overstats/blob/main/README.md",
+        "issues": "https://github.com/sora-maru/maibot_plugin_overstats/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9,<4"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "local.whale-affect",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.whale-affect",
+      "version": "0.2.6",
+      "name": "小鲸鱼心情与好感度",
+      "description": "每日心情、长期好感、短期情绪及出站表达约束。",
+      "author": {
+        "name": "idonotl",
+        "url": "https://github.com/idonotl"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/idonotl/maibot-whale-affect",
+        "homepage": "https://github.com/idonotl/maibot-whale-affect",
+        "documentation": "https://github.com/idonotl/maibot-whale-affect/blob/main/README.md",
+        "issues": "https://github.com/idonotl/maibot-whale-affect/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "chat",
+      "dependencies": [],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "heart",
+          "background": "#123B4A"
+        }
+      },
+      "capabilities": [
+        "message.get_by_id",
+        "message.get_recent",
+        "message.get_by_time_in_chat",
+        "chat.get_all_streams",
+        "chat.get_stream_by_user_id",
+        "chat.get_stream_by_group_id",
+        "llm.generate",
+        "llm.get_available_models",
+        "config.get_plugin"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/local.whale-affect.webp"
+    }
+  },
+  {
+    "id": "local.bili-topics",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.bili-topics",
+      "version": "0.6.0",
+      "name": "B站话题 · 麦麦适配版",
+      "description": "B站公开话题、弹幕、可选语音转写、关键帧视觉描述与后台深看。",
+      "author": {
+        "name": "idonotl",
+        "url": "https://github.com/idonotl"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/idonotl/maibot-bili-topics",
+        "homepage": "https://github.com/idonotl/maibot-bili-topics",
+        "documentation": "https://github.com/idonotl/maibot-bili-topics/blob/main/README.md",
+        "issues": "https://github.com/idonotl/maibot-bili-topics/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.3.19"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "integration",
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "api.call"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.PPPALab.maibot_plugin_quote",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.PPPALab.maibot_plugin_quote",
+      "plugin_type": "other",
+      "version": "1.2.3",
+      "name": "群聊语录库",
+      "description": "回复图片上传群语录，支持群隔离、本地 OCR 检索和随机发送，并可生成文字语录。内嵌 MaiBot Web 管理页，支持标签管理、批量导入及备份恢复。",
+      "author": {
+        "name": "PPPALab",
+        "url": "https://github.com/PPPALab"
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.jpg"
+        }
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/PPPALab/maibot_plugin_quote"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.4.0"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=11.1,<13"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "jieba",
+          "version_spec": ">=0.42.1,<0.43"
+        },
+        {
+          "type": "python_package",
+          "name": "rapidocr-onnxruntime",
+          "version_spec": ">=1.4.4,<2"
+        }
+      ],
+      "capabilities": [
+        "message.get_by_id",
+        "chat.get_avatar",
+        "chat.open_session",
+        "send.text",
+        "send.image",
+        "component.enable",
+        "component.disable"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.PPPALab.maibot_plugin_quote.webp"
     }
   }
 ]
