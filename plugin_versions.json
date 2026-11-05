@@ -55398,6 +55398,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "30f182e271ebd31bbd5d5359f0149ca0418f029f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T02:14:54Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.5.0",
+          "release_notes": "## 主要功能\n\n- **中文拒答词表补上「帮你 / 帮不了」这一整类形状**。原目标词表只认「协助/提供/处理/回答/生成/满足/帮助/完成/回应」，口语里最常见的「抱歉，我不能帮你做这件事」「不好意思，这个忙我帮不了」一条都不命中：实测 14 条常见中文拒答漏判 7 条（50%）。扩表后 19 条真实拒答漏判降到 6 条，20 条正常陈述误杀 0 条。\n\n## 修复\n\n- **颜文字不再被判成日语**。`・`（U+30FB 片假名中点）落在片假名区块内但属于标点，却在颜文字里极常用。实测日志原样：`别随口胡说啦(・ε・)` 被判 `score=0.45 signals=language_kana`。现在片假名区块内的标点不计入假名，真正的日文仍能识别。\n- **正常分享链接不再被拦**。原先只要出现 `http` 就固定给 0.722，超过 0.65 拦截线。现在按「链接是否占满整条消息」区分：夹在正常句子里只给 0.255（记账不拦），纯链接仍拦下。图片插件的「标题/作者/PID + 链接」说明文本不再挨刀；Markdown 链接语法维持高强度。\n- **中文里夹英文术语不再触发拉丁判据**。汉字数达到 4 个即不再按「拉丁主导」判定，`这个 API 的 response format 和 document 里的 example 不一致` 这类不再被误判。\n\n## 细节\n\n- 基准样本从 81 条扩到 96 条，新增 G（拒答补充形状）、H（补词后的防误杀边界）两组，D 组补上链接分享、中英混排、颜文字三类实测误杀原样。\n- 版本号修正：`_manifest.json` 与 `PLUGIN_VERSION` 此前不一致（0.4.1 / 0.4.0），现在统一为 0.5.0。\n- 四项修复均做了「还原旧实现即失败」的反向验证。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.5.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.4.1",
           "tag": "v0.4.1",
           "commit": "c62f529b6ffddc8596f9afa3193c9e76669bac06",
