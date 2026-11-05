@@ -42798,6 +42798,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.0",
+          "tag": "v0.9.0",
+          "commit": "363d086f4983f72d9e132646b91990eae5f5f37e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T03:35:38Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.9.0",
+          "release_notes": "## 主要功能\n\n- **播报按句分段**。宿主的分段器只服务于 maisaka 的 reply 工具链路，插件的 `send.text` 直通发送层 —— 原先播报整段两三百字一次砸进群里。现在按句末标点切成几条依次发出，条间留 1.5 秒。单句超长时先按逗号/分号切，仍超长才硬切，保证不丢字。\n\n- **播报带上历史**。播报是一次性模型调用，原先看不到自己上一轮说过什么。现在把最近 4 次播报原话存进状态文件，拼进下一轮提示词。\n\n- **播报参考群聊上下文**。拉最近 8 条群消息压成「谁：说了什么」作为语气参考。**只影响播报，不影响决策** —— 群里随口一句「今天亏惨了吧」不该让 bot 去砍仓。过滤掉 bot 自己的发言、表情与图片。\n\n- **播报写进聊天历史**。宿主 `send.text` 的 `sync_to_maisaka_history` 默认是 `False`，插件原先没传，播报只进数据库、不进 Maisaka 对话历史 —— 于是 bot 刚说完「今天赚了多少」，下一轮聊天完全不记得，也就不会等主人接话。\n\n- **多日走势：让模型看得到「已经涨了多少」**。原来每轮只给一行盘中快照（现价/涨跌幅/最高最低/换手），模型知道「在涨」但不知道「涨透了」，于是盲目追已经连涨多日、贴着区间顶部的票 —— 而这类操作在模拟盘里天然赚钱。新增 `kline.py`，决策时附加近 N 日累计涨幅、连涨天数、均线偏离、区间位置，涨得过猛的票会直接标注「涨得有点猛，追进去风险大」。\n\n  数据源用新浪日 K：腾讯的 `web.ifzq.gtimg.cn` 从 2026-11 起对直连请求回 501。拉取失败一律降级为空走势，不阻断决策。\n\n- **成交价冲击成本：让追高真的亏钱**。原来 `slippage` 只作用于限价（挂单能不能吃到），记账和盈亏仍按限价算，等于把真实世界里「买贵了」那部分直接抹掉。新增 `account.impact_cost`（默认 0.2%）：委托仍按限价挂出，但成交价按更差的一侧折算，资金、仓位、盈亏全部按它记账。同价买进卖出现在必然亏钱。\n\n- **散户人设：给它普通人的毛病**。新增 `bias.py` 与 `[bias]` 配置，四个弱点可调强度 0~3（默认 2）：追涨、杀跌、死扛亏损、拿不住盈利。亏钱因此有理由、有性格、有梗，而不是靠调低参数硬压收益。\n\n## 细节\n\n- 新增 `split.py` / `context_feed.py` / `kline.py` / `bias.py`，纯函数部分均可脱离宿主单测。\n- 新增配置：`split_*`（分段）、`context_*`（群聊上下文）、`sync_to_chat_history`、`kline.*`、`bias.*`、`account.impact_cost`。\n- 能力声明新增 `message.get_recent`。\n- 逐条发送时第一条失败即停，避免发出半截播报；只记录真正发送成功的播报进历史。\n- 新增测试覆盖上述功能，并对分段、历史注入、上下文注入、历史同步、走势注入都做了「还原旧实现即失败」的反向验证。\n- 版本号三处不一致（`_manifest.json` 0.8.10 / `PLUGIN_VERSION` 0.8.9 / `config.toml.example` 0.8.2）统一为 0.9.0。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.9.0",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.8.10",
           "tag": "v0.8.10",
           "commit": "f0f3def6c472df12bcca13424a912076b003da63",
