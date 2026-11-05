@@ -58800,6 +58800,52 @@
             },
             "id": "github.OLDnana1.better-reply"
           }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "482dea11a386fe0bb83e27a8d667a59bacf75175",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-03T03:03:17Z",
+          "release_url": "https://github.com/OLDnana1/maibot-better-reply/releases/tag/1.0.0",
+          "release_notes": "## Better Reply 首条引用 1.0.0\r\n\r\n让麦麦在回复某个人时，第一条文字消息必定引用对方那条消息，确保知道麦麦正在回复谁和谁的消息，同时同一目标消息的后续分段不再重复引用。\r\n\r\n### 功能\r\n\r\n- 按（会话，目标消息）强制首条引用，覆盖核心的随机引用抽签\r\n- 同一目标的后续分段自动不引用，避免 A1/A2/A3 每条都带引用\r\n- 纯表情、纯图片、纯语音不占用“首次引用”名额\r\n- 可配置去重窗口、平台范围、仅群聊、判定日志\r\n\r\n### 兼容性\r\n\r\n- MaiBot 1.3.19+\r\n- 插件 SDK 2.20.0+\r\n\r\n### 说明\r\n\r\n- 仓库不包含 `config.toml`，首次加载由 Runner 根据 `config_model` 自动生成\r\n- 建议在行为风格中补充“多人提问时按人分别调用 reply”的说明，详见 README",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "Better Reply 首条引用",
+            "description": "为每个回复目标的第一条文字消息强制添加引用，同一目标的后续分段不再重复引用",
+            "author": {
+              "name": "OLDnana1",
+              "url": "https://github.com/OLDnana1"
+            },
+            "license": "MIT",
+            "plugin_type": "extension",
+            "urls": {
+              "repository": "https://github.com/OLDnana1/maibot-better-reply",
+              "homepage": "https://github.com/OLDnana1/maibot-better-reply",
+              "documentation": "https://github.com/OLDnana1/maibot-better-reply/blob/main/README.md",
+              "issues": "https://github.com/OLDnana1/maibot-better-reply/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.OLDnana1.better-reply"
+          }
         }
       ],
       "ignored_tags": [],
