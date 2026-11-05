@@ -1435,6 +1435,85 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.10",
+          "tag": "v1.15.10",
+          "commit": "1438f52b8ebabde5d1ebb61e4dad899d8c553de9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T05:43:09Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.10",
+          "release_notes": "### 主要功能\n\n- 图片生成改为每个渠道端点独立计时，前一端点耗时不扣减后一端点额度；覆盖绘图指令、多图、自然语言绘图和自拍。每次固定渠道快照，外层保护期限按全部端点等待额度合计，并另留取图、润色、下载和发送时间。\n- 管理页编辑渠道新增“等待上限”（秒），支持保存、清空恢复协议默认值；同渠道内联 Key 和独立 Key 均继承配置，每个端点分别计时。日志显示本端点等待上限。\n\n### 细节\n\n- 最低支持的 MaiBot 版本提高到 `1.3.0`，当前兼容上限仍为 `1.3.19`；实际运行验证版本为 `1.3.19`。\n- 配置中的只读插件版本在加载时同步为当前版本，修复升级后 `plugin.version` 长期停留在旧值的问题；配置升级标记仍由宿主管理，不影响其他配置值。\n- 绘图渠道配置说明优先推荐“插件扩展 → Gemini 绘图管理”，介绍渠道、Key、请求顺序与等待上限设置，聊天指令保留为补充方式。\n- 同步生成超时仍可换端点，已取得图片、异步任务已创建后的保护保留；视频继续沿用原整体时间限制。\n- 图片 RPC 不再被旧的五分钟时限截断，实际处理期限由本次渠道计划控制，超过宿主可表示范围的计划直接拒绝执行。\n\n### 验证\n\n- 插件全量 **795 项测试通过**；Ruff、页面 JavaScript 语法、市场发版校验与发布说明提取均通过。运行中的 MaiBot `1.3.19` / SDK `2.20.0` 已加载 `v1.15.10`，现有配置文件的两个版本字段均已自动更新。\n- 覆盖连续两个端点耗尽各自额度后第三个端点仍获得完整等待时间、管理页保存/清空与非法值、自拍图片与视频的超时策略差异，以及旧配置展示版本归一化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.10",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.15.8",
           "tag": "v1.15.8",
           "commit": "d667eb54b324c1b66ff46bd4b852db0a42ceedac",
