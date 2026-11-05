@@ -50714,6 +50714,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.8",
+          "tag": "v0.1.8",
+          "commit": "99d41750c716491f00c9de62395545ba52f6b27f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T05:41:12Z",
+          "release_url": "https://github.com/JiakeJu/maibot-curator/releases/tag/v0.1.8",
+          "release_notes": "黑话学习提速：新增「收录即学」，并修复新词通道空转与一批审计发现的问题。\n\n## 收录即学（新）\n- 后台每 `watch_interval_seconds`（默认 60 秒）检查宿主新收录的黑话，发现新词立即单独判一轮，不再等 30–240 分钟的巡检\n- 新词默认「出现即学」：`new_word_min_age_hours` 24→0、`new_word_min_evidence` 2→1\n- 每轮最多 `watch_batch_size`（6）个、每小时最多 `watch_max_rounds_per_hour`（20）轮，防止 LLM 被刷爆\n- 判过且证据没变化的词走冷却，不重复判；之前判过的词二次出现（证据变多）会自动再判一次做「巩固」，已自证锁定的去掉「（群内说法，待确认）」\n- `last_report` API 新增 `watch` 字段，可查看最近一次收录即学结果\n\n## 新词通道修复\n- 修复「空转」：判定结果落盘 `jargon_new_words.json`，不再每轮判 60 个却一条不写库\n- 判定提示词放宽为「群里固定使用即收录」，收录门槛改用 `min_confidence`（默认 0.6，仍标注待确认）\n- 新词累计批量识别（阈值 10、批 6）；`max_writes_per_run` 默认 40→120\n\n## 审计驱动修复\n- 数据安全：表情去重只聚类有描述项、常见词过滤改为词表集合、人物卡 `memory_points` 解析失败不再覆盖、`max_writes_per_run=0` 真正不写、dry-run 不再落盘「locked」、写回额度统一\n- 正确性：embedding 条数与维度校验、自证 `attempts` 正常推进、合并计数不虚高、联网预算按检索次数、布尔 `\"false\"` 修正、`_write_json` 原子写、循环异常退避自愈\n- 性能：单轮内复用消息/上下文缓存；日程 dry-run 副本演练；注入截断保住【群友近况】/【关心提示】\n- 配置清理：删除 `[expression] auto_check`，`auto_check_mode`、`persona_mode` 改为下拉选择\n\n## 兼容与升级\n- 兼容 MaiBot 1.3.x、插件 SDK 2.8.0–2.21.x，无额外依赖\n- 升级无需迁移：`config_version` 升到 0.1.8，新配置字段自动补默认值\n- 建议首次升级先用 `writeback = false` 观察一轮报告，再开启写回\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.jiakeju.maibot-curator",
+            "version": "0.1.8",
+            "name": "麦麦很好奇（Memory Keeper）",
+            "description": "后台整理插件：学习群里的黑话、表达方式与表情包，按角色性格精选、查重合并，并整理群友日程。支持 WebUI 配置与 dry-run（只出报告、不改库）。",
+            "author": {
+              "name": "JJK",
+              "url": "https://github.com/JiaKeJu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JiaKeJu/maibot-curator",
+              "homepage": "https://github.com/JiaKeJu/maibot-curator",
+              "documentation": "https://github.com/JiaKeJu/maibot-curator#readme",
+              "issues": "https://github.com/JiaKeJu/maibot-curator/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "sparkles",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "database.query",
+              "llm.generate",
+              "llm.embed",
+              "config.get",
+              "message.get_by_time_in_chat",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "person.get_id",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.7",
           "tag": "v0.1.7",
           "commit": "80d391c3b509322ee7525d53c6b9486738b4e534",
