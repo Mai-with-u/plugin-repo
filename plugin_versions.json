@@ -7232,6 +7232,96 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.5",
+          "tag": "v2.1.5",
+          "commit": "6de11880f843a0ed7e75aec9c68aa721d0c2106c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T14:32:38Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.1.5",
+          "release_notes": "## 新增功能\n\n- **实例反向提示词开关（#12）**：每个平台实例可独立启停反向提示词。NovelAI 默认开启，其余平台默认关闭；关闭后忽略 AI 传入、实例默认和扩展参数中的反向内容，保留风格预设自己的模板内容。\n- **默认反向提示词（#12）**：开启后可选填默认反向词，与本次输入及风格反向词去重合并，并按实例设置进行英文改写；默认反向词独立于风格预设。\n- **NovelAI 多角色反向词（#12）**：支持逐角色去重和英文改写，保留角色顺序、空占位、坐标与协议标记，各角色分别处理；关闭实例反向词后忽略角色反向内容。\n\n## 修复功能\n\n- **默认风格**：修复设置默认风格后，聊天绘图和插件 API 未指定风格时没有自动套用的问题；工作台区分“跟随默认风格”和“不使用预设”，API 可通过 style=\"none\" 跳过本次默认风格。\n- **反向扩展参数（#12）**：旧版 negative_prompt、uc 与 v4_negative_prompt 中的反向文本统一参与实例开关、去重及英文改写，防止扩展参数在发送时覆盖处理结果；备选实例分别读取自己的配置。\n- **NovelAI 旧版 UC 预设（#12）**：关闭实例反向词时不再发送兼容网关的 ucPreset，扩展参数中的同名字段也不能绕过开关；开启时保留兼容网关原有的预设配置行为。\n- **文本扩展参数**：修复 WebUI“文本”类型值携带多余 JSON 引号发送的问题，正确保留文本与数字、布尔和 JSON 的类型区别；兼容参数解析保留 JSON 与文本中的分隔符。\n- **配置加载与错误处理（#12）**：补齐新增配置字段的多语言标签；角色格式错误或改写失败会报告具体序号，并在生成请求发送前终止任务；相关日志记录处理阶段与数量，错误信息统一脱敏。\n- **插件分类**：插件类型声明为 creative。\n- **验证**：242 项相关 Python 回归通过，覆盖文本参数实际请求体、反向词开关、默认风格和 NAI 多角色处理；新增边界测试覆盖兼容网关 UC 预设配置与扩展参数，以及文生图、图生图和官方模型。源码编译与差异检查通过，使用隔离配置与模拟平台，未调用真实收费生图服务。\n\n**运行要求：MaiBot 1.3.6–1.4.99，插件 SDK 2.12.0–2.21.0，Python 3.12 及以上。**\n\n> 升级前请备份配置与数据，更新后重新加载插件或重启 MaiBot，并刷新 WebUI。OpenAI / 兼容服务的反向词默认关闭；如需完全不使用反向内容，还应清空所选风格的反向模板，或选择不使用预设。\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.5/README.md) · [手动配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.5/docs/manual-configuration.md#扩展参数的值类型) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.1.5/changelog.md)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "plugin_type": "creative",
+            "version": "2.1.5",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.4",
           "tag": "v2.1.4",
           "commit": "5ceb096a76c52454592af35cdbbff421468ef720",
