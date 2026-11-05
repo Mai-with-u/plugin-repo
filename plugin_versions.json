@@ -58656,6 +58656,68 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.overstats",
+      "manifest_id": "local.overstats",
+      "repositoryUrl": "https://github.com/sora-maru/maibot_plugin_overstats",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.1",
+          "tag": "1.1.1",
+          "commit": "574a5213959e18ea76731f65ed8f11b868d8122c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T07:30:54Z",
+          "release_url": "https://github.com/sora-maru/maibot_plugin_overstats/releases/tag/1.1.1",
+          "release_notes": "# Overstats for MaiBot 1.3.16\r\n\r\n仓库：[sora-maru/maibot_plugin_overstats](https://github.com/sora-maru/maibot_plugin_overstats)。\r\n\r\n将 [Zzzzzzouhang/astrbot_plugin_overstats](https://github.com/Zzzzzzouhang/astrbot_plugin_overstats) 的守望先锋查询功能移植到 MaiBot。直接连接你已经部署好的 Overstats 后端，后端图片渲染、网易大神凭据和 AI 接口均继续由后端负责。\r\n\r\n目标环境：**MaiBot 1.3.16 + maibot-plugin-sdk >= 2.16.0、< 3.0**。使用新版 SDK 插件入口、Manifest v2、配置模型和消息发送能力。不支持旧的 BasePlugin 运行时。兼容区间声明为 MaiBot 1.3.16～1.3.x；实际源码核对和本地 SDK 验证基于 1.3.16 / SDK 2.16.0，其他版本需自行联调。\r\n\r\n## 从旧版升级到 1.1.1\r\n\r\n1. 停止 MaiBot，备份当前插件目录中的 `config.toml` 和 `data/plugins/local.overstats/` 数据目录（实际路径以实例配置为准）。\r\n2. 解压新版，把包内 `maibot_plugin_overstats` 里的文件覆盖到**已安装插件的原目录**。从 ZIP 安装的目录通常是 `plugins/local_overstats/`；手工安装的可能是 `plugins/maibot_plugin_overstats/`。以包含 `id = local.overstats` 清单的目录为准，不要另建一个重复插件目录。\r\n3. 保留原 `config.toml`，不要用示例覆盖它。新包不包含实际 `config.toml`，新增字段由 SDK 补默认值；配置版本仍为 `1.0.0`，表示兼容的配置格式，插件发布版本已升至 `1.1.1`。\r\n4. 启动 MaiBot 并刷新配置页面。所有分组和字段显示中文；旧配置中的地址、管理员和数据仍可使用。\r\n\r\nMaiBot 1.3.16 的“从 ZIP 安装”不支持覆盖同 ID 的已安装插件，会要求先卸载。升级推荐直接覆盖源文件，避免卸载时误删配置或数据。首次从 ZIP 安装后要重启 MaiBot 才会加载。\r\n\r\n## 安装\r\n\r\n1. 解压安装包，将整个 `maibot_plugin_overstats` 文件夹放进 **MaiBot 实例的 `plugins/` 目录**。最终路径应为 `plugins/maibot_plugin_overstats/plugin.py`，不要多套一层文件夹。\r\n2. 插件运行环境需要 `aiohttp>=3.9,<4`。MaiBot 1.3.16 的依赖已包含 aiohttp；若使用隔离的插件运行环境，按你的 MaiBot 环境管理方式安装本目录 `requirements.txt` 中的依赖。Manifest 同时声明了依赖。\r\n3. 将 `config.toml.example` 复制为同目录的 `config.toml`，修改 `[backend]` 中的 `api_url`。也可以首次加载后在 MaiBot 插件配置面板填写。\r\n4. 重启 MaiBot 或重载插件。如果宿主提示插件能力授权，授权清单只需要 `send.text`、`send.image`。\r\n5. 在聊天中发 `/owhelp`，然后 `/绑定 Player#12345`、`/今日总结`。\r\n\r\n最小配置示例（建议复制完整示例文件后修改地址）：\r\n\r\n```toml\r\n[plugin]\r\nenabled = true\r\nconfig_version = \"1.0.0\"\r\n\r\n[backend]\r\napi_url = \"http://你的Overstats地址:18080/api/v2\"\r\n```\r\n\r\n填 `http://主机:端口` 时会自动补 `/api/v2`。如果通过反向代理暴露 `/overstats/api/v2`，请填完整路径，插件会保留该路径。后端 `/healthz` 和相对图片地址按照去掉末尾 `/api/v2` 的根路径解析。\r\n\r\n**Docker 部署时，127.0.0.1 指向 MaiBot 容器自身。** 请填写 MaiBot 容器能访问的后端容器服务名、宿主地址或服务器 IP。\r\n\r\n管理员可在 `[access]` 的 `admin_users` 填写 `platform:user_id`，例如 `admin_users = [\"qq:123456789\"]`，然后发送 `/ow连接测试` 检查后端 `/healthz`。平台名须与 MaiBot 实际接收到的一致。也信任 MaiBot 命令上下文中的 `is_local_operator`；不从普通消息文字推断管理员身份。普通群管理身份不会自动成为插件管理员。\r\n\r\n## 艾特机器人后发送指令\r\n\r\n1.1.1 支持在真实艾特机器人后发送命令，例如 `@机器人 绑定 Hero#123`、`@机器人 /绑定 Hero#123`、`@机器人 今日总结`。插件在入站 Hook 中去掉开头艾特，再交给正式命令链处理。会根据 MaiBot 的艾特标记和消息段识别群名片、昵称或账号，包括带空格的群名片；无需为真实艾特手工填写昵称。配置的文字艾特昵称仍可使用。\r\n\r\n只去掉消息开头艾特，参数内的艾特保持原样。数字快捷查询也支持艾特后发送数字；仍须先查询最近对局且在五分钟有效期内。\r\n\r\n## 支持的指令\r\n\r\n所有完整指令**带 `/` 或不带 `/` 都能识别**，无需开关。例如 `今日总结`、`绑定 Player#12345`、`单局详细 1`。命令名与参数用空格分隔，只匹配完整指令，不会在普通聊天句子中搜索关键词。可以使用原插件对应别称；`所有指令` 显示完整列表。\r\n\r\n| 功能 | 用法 |\r\n| --- | --- |\r\n| 账号绑定 | `/绑定 Player#12345`、`/我的绑定`、`/解绑` |\r\n| 战绩总结 | `/今日总结`、`/昨日总结`、`/周度总结`、`/赛季总结 [战网ID] [赛季]` |\r\n| 玩家卡片 | `/大神数据 [战网ID] [快速/竞技]` |\r\n| 最近对局 | `/大神对局 [战网ID]` |\r\n| 单局多图 | `/单局详细 [1~20] [战网ID] [锐评关] [全员关]` |\r\n| 历史段位 | `/历史段位 [战网ID] [起始赛季] [终止赛季]` |\r\n| 同玩胜率 | `/同玩查询 [自己的ID] 对方ID` |\r\n| 强度指数 | `/快速强度 [战网ID] [3~12]`、`/竞技强度 [战网ID] [3~12]` |\r\n| 英雄云图 | `/快速英雄云图 [战网ID] [赛季]`、`/竞技英雄云图 [战网ID] [赛季]` |\r\n| 威能与环境 | `/威能 英雄`、`/ow英雄 英雄 [快速/竞技] [段位]`、`/获取段位分布 [模式] [段位]`、`/banpick [模式] [段位]` |\r\n| 资讯 | `/商店`、`/ow赛事`、`/ow活动`、`/mappick`、`/ow更新 [latest/small/big]` |\r\n| 省榜与绝活榜 | `/省榜 北京 tank`、`/绝活榜 北京 安娜 [开放]` |\r\n| 英雄百科 | `/ow百科 安娜 [问题，可含多个词]` |\r\n| 英雄对比 | `/英雄对比 [自己ID] 对方ID [英雄] [快速/竞技] [赛季]` |\r\n| AI 分析 | `/是区吗 [战网ID] [1~25局]`、`/开庭 1 [战网ID]`、`/是区吗结果`、`/开庭结果` |\r\n| 猜猜游戏 | `/ow猜猜 [地图局部/地图模糊/威能/头像/英雄描述/技能描述/技能名/颜色]` |\r\n| 补取图片 | `/获取图片`，重发本用户在当前聊天的最近一组图片 |\r\n| 聊天设置 | `/群设置`、`/群设置 提示 开\\|关`、`/群设置 首次提示 开\\|关`、`/群设置 追加提示 开\\|关` |\r\n| 维护与诊断 | `/维护 维护文字`、`/维护 取消`、`/ow连接测试`（管理员） |\r\n\r\n省略 BattleTag 时使用发送者的绑定。含空格的战网ID或英雄英文名请用双引号包住，例如 `/绑定 \"Space Name#12345\"`。中文全角 `＃` 会自动转成 `#`。\r\n\r\n`/大神对局 Other#12345` 后五分钟内在同一聊天发送 `1`～`20`，查询的仍是 **Other** 的对应单局，而不是自己的绑定。只匹配整条数字消息；可以通过 `chat.number_shortcut = false` 关闭。猜猜游戏进行时，该聊天暂停数字快捷查询。\r\n\r\n完整指令默认支持免斜杠；旧版 `chat.direct_commands` 和聊天级直接指令开关不再参与判断。`chat.auto_bind` 可开启直接发送完整 BattleTag 自动绑定。数字和直接账号绑定可以要求群聊艾特机器人；该限制不影响完整指令。可配置文字艾特昵称，例如 `@麦麦 今日总结`。不复刻 QQ 官方 Markdown 按钮。\r\n\r\n## 后端账号密码验证\r\n\r\n在“后端连接与分流”填写“后端验证账号”和“后端验证密码”，两项均可留空。用于 **HTTP Basic Auth**（浏览器弹出账号密码框的验证）。查询、健康检查、同来源图片下载都会携带验证信息。密码输入框遮罩显示，但 `config.toml` 中仍是明文配置。\r\n\r\n所有配置的后端地址共用这组凭据，请仅填写可信后端。跨来源图片链接会拒绝，不会把凭据转发给其他来源。网页登录表单、验证码、Cloudflare 验证和其他令牌鉴权不能仅靠此配置通过，需要按实际认证协议另做适配。收到登录 HTML 时会给出明确提示。\r\n\r\n## 配置分组与原版对应关系\r\n\r\n所有分组、字段名和说明均显示中文，完整示例见 `config.toml.example`。\r\n\r\n| 配置分组 | 内容 |\r\n| --- | --- |\r\n| 插件设置 | 启用状态、配置版本 |\r\n| 后端连接与分流 | 主/第二/第三地址、可选验证账号密码、是区吗专属节点、特权节点、大小限制、超时、总并发和单人并发 |\r\n| 查询并发与限流 | 单人限制开关、普通/AI 重指令分别限流、周度总结上限，0 表示不限 |\r\n| 指令与聊天提示 | 直接账号绑定、数字查询、艾特昵称、等待提示、每日首次提示、错误提示、猜猜间隔、图片缓存和落盘 |\r\n| 管理员、白名单与访问范围 | 管理员、个人和群白名单、允许群范围、私聊开关 |\r\n| AI 分析与每日次数 | 普通用户开关、普通/白名单/管理员冷却、默认局数、自定义局数权限、单局锐评和每日上限 |\r\n\r\n白名单可绕过维护限制、享受单独 AI 冷却并免锐评次数限制，但没有管理权限，也不能绕过“允许使用的群/私聊”范围。AI 冷却按是区吗、开庭分别记录，结果查询不消耗新生成冷却。全局总并发与轻重池同时生效；若要与原版轻重池完全独立，可将“全部查询并发上限”设为 0。\r\n\r\n原版的后台部署/进程管理、GitHub 加速、大神账号池、赛季全局参数、上游请求限流、AI 模型/密钥/人设、代理和数据库写入属于 **Overstats 后端部署配置**，由你的已有后端维护。读取后端本机 SQLite/日志、AstrBot Web 监控页、QQ 专用公网图片直传和自动违规封禁尚未移植；未添加无效开关。原版未匹配指令指南和平台按钮也未复刻，避免接管其他插件命令。\r\n\r\n## AI 功能\r\n\r\nAI 仍调用后端 `/dashen-shiqu/image`、`/dashen-court/image`，插件不填写或管理 AI 密钥：\r\n\r\n```toml\r\n[ai]\r\nenabled = true\r\nnormal_users = true\r\ncooldown_seconds = 14400\r\nmatch_review = false\r\n```\r\n\r\n`enabled` 默认关闭。开启后，默认仅插件管理员和白名单可用；`normal_users = true` 才开放给普通用户。默认普通用户冷却四小时、白名单半小时、管理员免冷却，三档均可配置。单局锐评普通用户默认每天三次、北京时间凌晨四点重置；请求前预占次数，后端失败不退回，管理员和白名单不受每日上限限制。结果指令不重新生成，也不受生成冷却限制。单局锐评由 `match_review` 单独控制；默认只取图片，不请求 AI 锐评。\r\n\r\nAI 任务最多等待 1800 秒，无自动重试，避免重复调用后端。查询在插件后台任务中执行，指令入口立即返回，不占用宿主命令 RPC 的短超时窗口。重载/卸载插件会取消当前查询；已经发给后端的任务可能仍在后端完成，可随后使用结果指令取图。\r\n\r\n## 运行数据和限制\r\n\r\n- 绑定、聊天设置、维护状态、AI 冷却和最近 AI 目标写到宿主授予的 `data_dir/state.json`。默认路径由 MaiBot 映射到 `data/plugins/local.overstats/`。升级时保留该目录及插件 ID `local.overstats`。\r\n- 图片保存在宿主 `runtime_dir/images/`，按用户与聊天隔离。默认保留 30 分钟，磁盘缓存上限 100 MB；过期和超限时在加载/后续查询时清理。缓存索引在内存中，重启后需重新查询。多图逐张发送，失败不自动重试，可以用 `/获取图片` 补取。\r\n- 默认全局最多四个查询、每用户一个，超额直接提示繁忙。`backend.max_response_mb` 默认限制单响应/单图为 20 MB。长响应不会无限读入内存。HTTPS 使用正常证书校验。\r\n- `/皮肤搜索 关键词` 保留原插件别称入口，但原项目实际也只返回商店卡片；此移植会明确提示不支持关键词筛选。\r\n- `/mappick` 延续原插件行为，返回最新补丁卡片；不是独立地图数据接口。\r\n- 赛季总结、英雄百科、英雄对比、猜猜、AI 等接口是否可用取决于你部署的 Overstats 版本。后端缺失接口时会显示 HTTP 或业务错误，不会尝试更新后端。\r\n- 不包含原插件的后端部署/启停/卸载、读取后端 SQLite/日志、AstrBot Web 监控页、QQ 官方按钮或平台违规自动封禁。没有通用 `/help`，避免占用 MaiBot 其他插件的帮助入口。\r\n- 群设置修改、维护和健康检查只允许明确配置的插件管理员；查询允许范围可通过 `access.allowed_groups` 与 `access.allow_private` 控制。\r\n\r\n## 验证与授权\r\n\r\n本地验证基于 MaiBot `v1.3.16`、SDK `v2.16.0` 的实际源码与 SDK 对象，使用本地 HTTP 模拟后端和消息发送 RPC 验证。详见包内 `VALIDATION.md`。**尚未连接你的真实 MaiBot 实例、QQ 适配器或 Overstats 服务进行端到端联调。**\r\n\r\n原插件版本 v2.10.0，参考提交 `e18c9dc831ca52a271f41f57047a86cbc46c3a5c`。移植日期 2026-11-05，改为 MaiBot SDK 入口与配置、独立 HTTP 桥接、本地状态存储和平台图片发送。本包沿用原项目 **GNU AGPL v3**，保留 `LICENSE` 和上游来源；MaiBot 移植版维护账号为 sora-maru；上方原项目链接用于标注来源，清单中的仓库地址指向独立移植仓库。\r\n\r\n**Full Changelog**: https://github.com/sora-maru/maibot_plugin_overstats/commits/1.1.1",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.overstats",
+            "name": "Overstats 守望先锋查询",
+            "version": "1.1.1",
+            "description": "面向 MaiBot 1.3.16 的 Overstats 桥接插件，连接已有后端，支持战绩、单局、榜单和资讯图片。",
+            "author": {
+              "name": "sora-maru; original by Zzzzzzouhang",
+              "url": "https://github.com/sora-maru"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/sora-maru/maibot_plugin_overstats",
+              "documentation": "https://github.com/sora-maru/maibot_plugin_overstats/blob/main/README.md",
+              "issues": "https://github.com/sora-maru/maibot_plugin_overstats/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
