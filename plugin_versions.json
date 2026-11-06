@@ -50485,6 +50485,58 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.9",
+          "tag": "v1.1.9",
+          "commit": "271b45f4b8c1dc01855fb8daf22fe3e566b8dcbb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T02:51:19Z",
+          "release_url": "https://github.com/CODao/maibot-bible-citation/releases/tag/v1.1.9",
+          "release_notes": "默认按整句匹配。大肥鱼回复中的完整句子可以对应经文中的连续一段。整条回复少于五字时按整条查找。多句回复只标出实际完整命中的那一句。\n\n旧版的 `partial_match` 配置不再启用片段匹配。有需要时可以在新版设置中开启 `allow_fragment_match`。\n\n已在 MaiBot 1.3.19 / SDK 2.21.0 验证加载与运行中自检，SDK 2.19.0 和 2.21.0 的单元测试均通过。包内附经文来源与图标许可说明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bible-citation",
+            "name": "大肥鱼·圣经原句出处",
+            "version": "1.1.9",
+            "description": "QQ 群聊回复中的整句与本机简体和合本的连续文字逐字相同时，自动追加经卷章节。全程本地查询，无需模型。",
+            "author": {
+              "name": "CODao",
+              "url": "https://github.com/CODao"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.21.99"
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/CODao/maibot-bible-citation",
+              "homepage": "https://github.com/CODao/maibot-bible-citation",
+              "documentation": "https://github.com/CODao/maibot-bible-citation/blob/main/README.md",
+              "issues": "https://github.com/CODao/maibot-bible-citation/issues"
+            },
+            "plugin_type": "extension",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/bible-book.png",
+                "fallback": "BookOpen",
+                "background": "#19191E"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.8",
           "tag": "v1.1.8",
           "commit": "017d7576a09ee6091eb421f46bf0bf5459d6a005",
