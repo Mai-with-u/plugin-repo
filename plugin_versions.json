@@ -56127,6 +56127,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.3",
+          "tag": "1.1.3",
+          "commit": "d80caf3f9a651f96bf880ac7e1ea4df0ba4133c1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T02:10:23Z",
+          "release_url": "https://github.com/sora-maru/maibot_plugin_overstats/releases/tag/1.1.3",
+          "release_notes": "新加插件分类和修改插件介绍",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.overstats",
+            "name": "Overstats 守望先锋查询",
+            "version": "1.1.3",
+            "description": "守望先锋战绩查询：支持账号绑定、战绩总结、单局详情、英雄数据、排行榜和 AI 趣味分析。",
+            "author": {
+              "name": "sora-maru; original by Zzzzzzouhang",
+              "url": "https://github.com/sora-maru"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/sora-maru/maibot_plugin_overstats",
+              "documentation": "https://github.com/sora-maru/maibot_plugin_overstats/blob/main/README.md",
+              "issues": "https://github.com/sora-maru/maibot_plugin_overstats/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "gamepad-2",
+                "background": "#20242C"
+              }
+            },
+            "plugin_type": "game"
+          }
+        },
+        {
           "version": "1.1.1",
           "tag": "1.1.1",
           "commit": "574a5213959e18ea76731f65ed8f11b868d8122c",
