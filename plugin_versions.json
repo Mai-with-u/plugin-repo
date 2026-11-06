@@ -3421,6 +3421,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v2.8.0",
+          "version": "2.8.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "2.1.0",
           "version": "2.1.0",
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999\n发布版本改变了插件 ID"
@@ -32581,8 +32586,7 @@
           "version": "1.0.0",
           "error": "Tag 与 manifest.version 不一致"
         }
-      ],
-      "sync_error": "GitHub 504：/repos/CSSQY/token_usage_report/contents/?ref=f206da81b2366b2bfc79939d767828ffab97f1a5"
+      ]
     },
     {
       "id": "github.FleetingEternity-qyt.qq-like",
