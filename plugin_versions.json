@@ -51919,6 +51919,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.4",
+          "tag": "v2.1.4",
+          "commit": "56b1a404638a18200088af910ade91bae3fb7848",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T09:51:17Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.1.4",
+          "release_notes": "## 新增功能\r\n\r\n- **按平台编辑提示词**。11 个平台分别配置语音工具说明、普通动态语调和 LLM 自适应提示词，中、英、日独立保存；GPT-SoVITS 提供工具说明编辑。默认模板显式包含变量，并提供变量用途说明。\r\n- **提示词编辑窗口**。三种类型在回复行为前部平铺，点击进入独立窗口，支持语言切换、插入变量、恢复当前项默认、窗口内保存与 Ctrl/Cmd+S，适配手机和 PC。\r\n- **语调名称与表达指令**。模型和音色可分别编辑现有语调的显示名称与表达指令，普通动态语调和 LLM 自适应共用；语调 ID 保持不变，原生情感枚举组合保持系统定义。\r\n- **Breeze 表演编排**。加强情绪、节奏和局部事件引导；自适应可按原文唯一短语安排最多 3 处音频事件，直接提供当前语种完整的 34 种事件表，保留完整台词。\r\n- **按需语调控制**。普通动态语调与 LLM 自适应均按语境推荐，可省略额外控制并沿用路由默认语调。\r\n\r\n## 修复功能\r\n\r\n- **工具提示链路**。通过 `{{dynamic_tone}}` 展开当前平台的语调规则和允许列表，避免重复附加；工具可用时提示通过 `mmtts_tone_options` 查询完整语调、事件和控制写法，精简传参说明。\r\n- **Breeze 自适应提示**。修复开启 LLM 自适应后，主回复模型收不到局部语气、事件和停顿提示的问题。（[#3](https://github.com/WhiteCloudOL/maimai-tts-plugin/issues/3)）\r\n- **自适应输出截断**。按原生情感、自由语气和 Breeze 事件编排分配输出额度，修复合法长描述或多处事件被截断后反复校验重试的问题；空控制对象正常沿用默认语调。\r\n- **合并指令长度**。内置语调和自定义表达统一检查与已有风格合并后的长度，覆盖 OpenAI 兼容请求与火山 COT 的转义额度。（[#3](https://github.com/WhiteCloudOL/maimai-tts-plugin/issues/3)）\r\n- **标签过滤**。Breeze 未挂概率语音扩展的普通文字回复同样清理控制标记，保留普通括号、Markdown 链接与转义文本。\r\n- **分类与音频缓存**。分类复用区分平台、提示词及语调含义，音频缓存按最终指令和事件匹配；修改显示名称继续复用相同音频，修改表达指令或事件重新合成。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.1.4",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.0",
           "tag": "v2.1.0",
           "commit": "9f04e561faf85c1e3881afe5ebfd2221aea303e7",
