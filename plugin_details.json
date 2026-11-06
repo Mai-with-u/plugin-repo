@@ -999,47 +999,6 @@
     }
   },
   {
-    "id": "saberlights.smart_segmentation_plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "1.1.0",
-      "name": "智能分段插件 (Smart Segmentation Plugin)",
-      "description": "使用 LLM 智能切分回复文本，在语义自然的地方切分，保持原文内容不变，让回复更加灵活自然。",
-      "author": {
-        "name": "久远",
-        "url": "https://github.com/saberlights"
-      },
-      "license": "GPL-v3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/saberlights/smart_segmentation_plugin",
-        "homepage": "https://github.com/saberlights/smart_segmentation_plugin",
-        "documentation": "https://github.com/saberlights/smart_segmentation_plugin",
-        "issues": "https://github.com/saberlights/smart_segmentation_plugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.2.0",
-        "max_version": "999999.0.0"
-      },
-      "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "config.get_all",
-        "send.text",
-        "llm.generate"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "saberlights.smart-segmentation-plugin"
-    }
-  },
-  {
     "id": "Rabbit-Jia-Er.mai_clinic_plugin",
     "manifest": {
       "manifest_version": 2,
@@ -1249,102 +1208,6 @@
         ]
       },
       "id": "A-Dawn.A-Mind"
-    }
-  },
-  {
-    "id": "nguspring.custom_pic_plugin",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "4.0.1",
-      "name": "画家麦麦的日常",
-      "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供内置日程与日程注入、空间/群/私聊多渠道自动自拍、群聊主动图片、聊天设置持久化、额度管理和对外生图 API，并可选对接 MaiTrace。",
-      "plugin_type": "creative",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "image"
-        }
-      },
-      "author": {
-        "name": "Ptrel, Rabbit-Jia-Er, saberlights Kiuon, nguspring",
-        "url": "https://github.com/nguspring/painter_maimai_daily"
-      },
-      "license": "AGPL-3.0-or-later",
-      "urls": {
-        "repository": "https://github.com/nguspring/painter_maimai_daily",
-        "homepage": "https://github.com/nguspring/painter_maimai_daily",
-        "issues": "https://github.com/nguspring/painter_maimai_daily/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.11",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.15.0",
-        "max_version": "2.16.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "maibot-plugin-sdk",
-          "version_spec": ">=2.15.0,<3"
-        },
-        {
-          "type": "python_package",
-          "name": "requests",
-          "version_spec": ">=2.28.0"
-        },
-        {
-          "type": "python_package",
-          "name": "Pillow",
-          "version_spec": ">=10"
-        },
-        {
-          "type": "python_package",
-          "name": "pydantic",
-          "version_spec": ">=2,<3"
-        },
-        {
-          "type": "python_package",
-          "name": "tomlkit",
-          "version_spec": ">=0.12"
-        },
-        {
-          "type": "python_package",
-          "name": "tzdata",
-          "version_spec": ">=2024.1"
-        },
-        {
-          "type": "python_package",
-          "name": "httpx",
-          "version_spec": ">=0.24,<1"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.image",
-        "send.hybrid",
-        "config.get",
-        "llm.generate",
-        "message.get_by_id",
-        "message.get_recent",
-        "chat.get_stream_by_group_id",
-        "chat.get_stream_by_user_id",
-        "chat.get_all_streams",
-        "api.call",
-        "api.list"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "nguspring.painter_maimai_daily"
-    },
-    "assets": {
-      "icon_64": "icons/nguspring.custom_pic_plugin.webp"
     }
   },
   {
@@ -1621,56 +1484,6 @@
         "homepage": "https://github.com/fsqhn/maibot-bgg-plugin"
       },
       "id": "fsqhn.bgg_search_plugin"
-    }
-  },
-  {
-    "id": "nguspring.random-image-api-for-maibot",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "nguspring.random-image-api-for-maibot",
-      "version": "1.2.2",
-      "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
-      "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
-      "author": {
-        "name": "NGU-SprinG",
-        "url": "https://github.com/nguspring"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
-        "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
-        "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
-        "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.8.2",
-        "max_version": "2.16.99"
-      },
-      "dependencies": [
-        {
-          "type": "python_package",
-          "name": "Pillow",
-          "version_spec": ">=9.0.0"
-        }
-      ],
-      "capabilities": [
-        "send.text",
-        "send.image",
-        "send.forward",
-        "send.custom",
-        "config.get"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "plugin_type": "media"
     }
   },
   {
@@ -9246,53 +9059,6 @@
     }
   },
   {
-    "id": "session-model-router",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "session-model-router",
-      "version": "1.2.1",
-      "name": "会话模型路由",
-      "description": "按会话（群聊/私聊、指定群号或用户）为 Maisaka replyer 指定不同的模型，并支持通过命令切换群聊和私聊默认模型。",
-      "author": {
-        "name": "久远",
-        "url": "https://github.com/saberlights"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/saberlights/session_model_router",
-        "homepage": "https://github.com/saberlights/session_model_router",
-        "documentation": "https://github.com/saberlights/session_model_router/blob/main/README.md",
-        "issues": "https://github.com/saberlights/session_model_router/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.1.1",
-        "max_version": "1.99.99"
-      },
-      "sdk": {
-        "min_version": "2.7.1",
-        "max_version": "2.99.99"
-      },
-      "dependencies": [],
-      "plugin_type": "extension",
-      "display": {
-        "icon": {
-          "type": "lucide",
-          "value": "route"
-        }
-      },
-      "capabilities": [
-        "chat.get_all_streams",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "locales_path": null,
-        "supported_locales": []
-      }
-    }
-  },
-  {
     "id": "github.kumburovicbranko682-boop.image-relook",
     "manifest": {
       "manifest_version": 2,
@@ -14336,7 +14102,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "name": "QQ 名片点赞",
       "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令和自然语言点赞",
       "author": {
@@ -14371,7 +14137,7 @@
           "zh-CN"
         ]
       },
-      "plugin_type": "extension",
+      "plugin_type": "tool",
       "changelog": "CHANGELOG.md",
       "display": {
         "icon": {
@@ -14503,9 +14269,9 @@
     "id": "Alcpare.identity",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.0.7",
-      "name": "身份认知（测试版）",
-      "description": "【测试版】手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。",
+      "version": "1.1.0",
+      "name": "身份认知",
+      "description": "【测试版】手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。支持在 WebUI 里自定义身份档位（如「同事」「父亲」），每档可写独立提示词。",
       "author": {
         "name": "Alcpare",
         "url": "https://github.com/Alcpare"
@@ -14518,7 +14284,7 @@
       },
       "changelog": "README.md",
       "host_application": {
-        "min_version": "1.3.6",
+        "min_version": "1.3.19",
         "max_version": "1.3.99"
       },
       "sdk": {
@@ -16549,63 +16315,6 @@
     }
   },
   {
-    "id": "github.42yoru.maimai-sim-trader",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.9.0",
-      "plugin_type": "automation",
-      "name": "麦麦模拟盘",
-      "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "line-chart",
-          "background": "#F3B27A"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai_sim_trader",
-        "homepage": "https://github.com/42yoru/maimai_sim_trader",
-        "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.get_group_streams",
-        "chat.get_private_streams",
-        "config.get",
-        "llm.generate",
-        "message.get_recent",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
-    }
-  },
-  {
     "id": "maibot-team.xiaoheihe-adapter",
     "manifest": {
       "manifest_version": 2,
@@ -16883,9 +16592,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.7.35",
+      "version": "0.7.47",
       "name": "麦麦寻人",
-      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
         "name": "fsqhn",
         "url": "https://github.com/fsqhn"
@@ -16931,64 +16640,6 @@
           "value": "scan-search"
         }
       }
-    }
-  },
-  {
-    "id": "github.42yoru.maimai-owner-reminder",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "0.4.17",
-      "plugin_type": "automation",
-      "name": "主人的叮嘱 (Owner Reminder)",
-      "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "bell-ring",
-          "background": "#FFD69A"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai-owner-reminder",
-        "homepage": "https://github.com/42yoru/maimai-owner-reminder",
-        "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.get_private_streams",
-        "chat.get_stream_by_user_id",
-        "chat.open_session",
-        "config.get",
-        "maisaka.proactive.trigger",
-        "message.get_recent",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "github.42yoru.maimai-owner-reminder"
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-owner-reminder.webp"
     }
   },
   {
@@ -17377,59 +17028,6 @@
     }
   },
   {
-    "id": "github.42yoru.maimai-emoji-label-bridge",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "0.3.0",
-      "plugin_type": "media",
-      "name": "表情标签桥接 (Emoji Label Bridge)",
-      "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
-        "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
-        "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.15",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "database.query",
-        "llm.embed"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "github.42yoru.maimai-emoji-label-bridge",
-      "changelog": "CHANGELOG.md",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "smile",
-          "background": "#FEC872"
-        }
-      }
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-emoji-label-bridge.webp"
-    }
-  },
-  {
     "id": "z1252.pocket-money",
     "manifest": {
       "manifest_version": 2,
@@ -17476,62 +17074,6 @@
       "i18n": {
         "default_locale": "zh-CN"
       }
-    }
-  },
-  {
-    "id": "github.42yoru.maimai-target-replyer",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "0.3.15",
-      "plugin_type": "extension",
-      "name": "替主人回话 (Target Replyer)",
-      "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "message-circle",
-          "background": "#FFD69A"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai-target-replyer",
-        "homepage": "https://github.com/42yoru/maimai-target-replyer",
-        "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.open_session",
-        "config.get",
-        "llm.generate",
-        "message.get_recent",
-        "maisaka.proactive.trigger"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "github.42yoru.maimai-target-replyer",
-      "changelog": "CHANGELOG.md"
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-target-replyer.webp"
     }
   },
   {
@@ -18290,59 +17832,6 @@
     }
   },
   {
-    "id": "github.42yoru.maimai-jargon-boost",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "0.4.2",
-      "name": "黑话加速器",
-      "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai-jargon-boost",
-        "homepage": "https://github.com/42yoru/maimai-jargon-boost",
-        "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.3.15",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "database.query",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "zap",
-          "background": "#FFD69A"
-        }
-      },
-      "plugin_type": "knowledge",
-      "id": "github.42yoru.maimai-jargon-boost"
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-jargon-boost.webp"
-    }
-  },
-  {
     "id": "NetaJuutilainen.mai-mouth-filter",
     "manifest": {
       "manifest_version": 2,
@@ -18910,7 +18399,7 @@
       "manifest_version": 2,
       "plugin_type": "tool",
       "id": "github.qrzzzz.music-enhanced",
-      "version": "1.2.1",
+      "version": "1.3.1",
       "name": "麦麦点歌增强",
       "description": "基于 maibot-music 增强的 QQ/网易云点歌插件，支持聚合音源、完整时长校验、转码和本地语音缓存",
       "author": {
@@ -19484,8 +18973,8 @@
       "manifest_version": 2,
       "id": "local.bible-citation",
       "name": "大肥鱼·圣经原句出处",
-      "version": "1.1.8",
-      "description": "QQ 群聊回复中连续片段与本机简体和合本逐字相同时，自动追加经卷章节；支持部分命中，无需模型。",
+      "version": "1.1.9",
+      "description": "QQ 群聊回复中的整句与本机简体和合本的连续文字逐字相同时，自动追加经卷章节。全程本地查询，无需模型。",
       "author": {
         "name": "CODao",
         "url": "https://github.com/CODao"
@@ -19497,7 +18986,7 @@
       },
       "sdk": {
         "min_version": "2.19.0",
-        "max_version": "2.19.99"
+        "max_version": "2.21.99"
       },
       "capabilities": [],
       "i18n": {
@@ -19907,7 +19396,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -19946,6 +19435,7 @@
         }
       ],
       "capabilities": [
+        "api.call",
         "config.get",
         "llm.generate",
         "maisaka.proactive.trigger",
@@ -20084,7 +19574,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.1.0",
+      "version": "2.1.4",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -20635,58 +20125,6 @@
     }
   },
   {
-    "id": "github.42yoru.maimai-reply-guard",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "github.42yoru.maimai-reply-guard",
-      "version": "0.5.0",
-      "plugin_type": "management",
-      "name": "回复守卫 (Reply Guard)",
-      "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "shield-check",
-          "background": "#9AD0FF"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/maimai-reply-guard",
-        "homepage": "https://github.com/42yoru/maimai-reply-guard",
-        "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
-        "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "config.get"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "changelog": "CHANGELOG.md"
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-reply-guard.webp"
-    }
-  },
-  {
     "id": "tianditongcuo.partner-game-pro",
     "manifest": {
       "manifest_version": 2,
@@ -20922,7 +20360,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.zerlight.reply-integrity",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "Reply Integrity",
       "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
       "author": {
@@ -21002,9 +20440,9 @@
       "manifest_version": 2,
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
-      "name": "MaiWeave · 麦织｜阅读与生活",
-      "version": "0.8.4",
-      "description": "麦麦会从书架挑书，记下摘句和疑问，读到有感触的地方还会主动找你聊。你也可以和它约时间、改日程，翻看它写的生活日记。",
+      "name": "MaiWeave · 麦织｜与你共织日常",
+      "version": "0.9.0",
+      "description": "把对话织进持续的生活：约定影响日程，天气与真实地点参与安排，读过的书留下进度和感想。关联 MaiBot 人物画像，让昨天的经历接上今天的聊天。",
       "author": {
         "name": "ilworkcn",
         "url": "https://github.com/ilworkcn"
@@ -21281,61 +20719,6 @@
           "value": "search"
         }
       }
-    }
-  },
-  {
-    "id": "github.42yoru.lolicon-setu",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "github.42yoru.lolicon-setu",
-      "version": "2.4.8",
-      "plugin_type": "media",
-      "name": "不发图我看什么",
-      "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "image",
-          "background": "#FCF3D9"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/42yoru/lolicon-setu-plugin",
-        "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
-        "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
-        "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "config.get",
-        "send.text",
-        "send.image",
-        "send.forward"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "changelog": "CHANGELOG.md"
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.lolicon-setu.webp"
     }
   },
   {
@@ -21732,7 +21115,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nethielchou.mai-futures-sim",
-      "version": "0.8.6",
+      "version": "0.8.7",
       "plugin_type": "automation",
       "name": "麦麦期货模拟盘",
       "description": "让麦麦用自己的判断交易一个本地虚拟期货账户：真实合约行情、模拟成交与结算、程序风控、群内汇报；纯娱乐模拟盘，不接真实交易通道。",
@@ -21929,8 +21312,8 @@
       "manifest_version": 2,
       "id": "local.overstats",
       "name": "Overstats 守望先锋查询",
-      "version": "1.1.1",
-      "description": "面向 MaiBot 1.3.16 的 Overstats 桥接插件，连接已有后端，支持战绩、单局、榜单和资讯图片。",
+      "version": "1.1.3",
+      "description": "守望先锋战绩查询：支持账号绑定、战绩总结、单局详情、英雄数据、排行榜和 AI 趣味分析。",
       "author": {
         "name": "sora-maru; original by Zzzzzzouhang",
         "url": "https://github.com/sora-maru"
@@ -21965,7 +21348,19 @@
         "supported_locales": [
           "zh-CN"
         ]
-      }
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "gamepad-2",
+          "background": "#20242C"
+        }
+      },
+      "plugin_type": "game"
+    },
+    "assets": {
+      "icon_64": "icons/local.overstats.webp"
     }
   },
   {
