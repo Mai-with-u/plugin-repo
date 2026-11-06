@@ -51445,6 +51445,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.2",
+          "tag": "0.2.2",
+          "commit": "9e545f683d71053e2a6bde9c643aed3c39281ff5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T07:02:53Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.2.2",
+          "release_notes": "这一版可以和[麦生活（Mai_life）](https://github.com/octmicy/Mai_life)联动：自动玩按她的日程来，上班时偶尔摸鱼刷一会儿，玩完把看到的交给麦生活，由它找机会在私聊里提起。只影响自动玩；没装麦生活或查不到日程时，照旧按 `auto_play.active_hours`。\n\n### 主要功能\n\n- **按日程自动玩**（`life_link`，默认开）：休闲、休息、吃饭、在路上时照常按概率玩，睡觉、午睡时不玩；一次最多玩到这段日程结束，开始时告诉她在做什么、在哪，挑内容时参考。\n- **上班摸鱼**：上班、上课时每次按 `slack_probability`（默认 10%）的概率偷偷玩一会儿，最多 `slack_minutes`（默认 5）分钟；会提醒她挑能随时放下的内容，记录里写「摸鱼」。\n- **玩完交给麦生活分享**（`share_after_play`，默认开）：按日程自动玩、自然结束的局，把「刚才自己刷抖音看到的：……」交给麦生活的主动分享，由它按私聊用户的额度、免打扰决定什么时候跟谁提起，也可能不提。\n- **看得到联动情况**：WebUI「今天」和 `/手机` 状态里写着查到的日程和现在能不能自动玩；交没交给麦生活写在操作记录里。\n\n### 细节\n\n- 哪几类日程照常玩、哪几类摸鱼、剩下几分钟就不开始、分享权重，都在「生活联动」里改，日程类别写中文也行。\n- 聊天里叫她玩、`/手机 开始`、WebUI「开始玩」都不看日程；这些局和出错、被叫停的局也不交给麦生活。\n- 剩余时间用麦生活给的两个时刻相减，两边时区设置不一样也不影响。\n- 插件新声明了 `api.call` 能力（插件之间互调接口用）；麦生活那边不用设置，需要 1.23.5 及以上。\n\n### 测试\n\n332 个单元测试。真 Bot 上（麦生活 1.26.0）验证了：上班时段显示「偶尔摸鱼」、按日程不玩时的日志；临时把摸鱼概率调到 1 后，一局摸鱼从开始（B 站，计划 3 分钟）到自己放下、交给麦生活，并在麦生活的数据库里确认收下。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.2.2",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.2.1",
           "tag": "0.2.1",
           "commit": "19618979c2a15924650f0e54d891636554e19677",
