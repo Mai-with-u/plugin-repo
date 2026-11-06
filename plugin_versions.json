@@ -55789,6 +55789,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.7",
+          "tag": "v0.8.7",
+          "commit": "da71a3def704302ba386e2d09ce1f837d6c0001b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T02:05:59Z",
+          "release_url": "https://github.com/NethielChou/maibot-futures-sim/releases/tag/v0.8.7",
+          "release_notes": "## [0.8.7] - 2026-11-06\n\n### Changed\n\n- **插件设置页中文化**：新增 `config_ui.py`，设置页改为「常用 / 交易 / 高级」三栏，所有字段标题、分组和提示改为中文\n- 常用栏只保留群号、管理员、市场、自动交易等日常选项；行情/模型/官方数据等移入「高级」\n- 隐藏未使用或开发者字段：`notify.account_id`、`notify.close_report_delay_minutes`、`storage.history_limit`、`market.source`（固定新浪）\n- **品种设置更友好**：`market.symbols` 高级覆盖现在既接受合约代码，也接受中文品种名（螺纹钢、甲醇、布伦特原油等）\n- README 增加「设置页怎么填（新手）」说明\n\n### Tests\n\n- 192/192 通过（新增设置页中文化/分组、中文品种名覆盖测试）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.nethielchou.mai-futures-sim",
+            "version": "0.8.7",
+            "plugin_type": "automation",
+            "name": "麦麦期货模拟盘",
+            "description": "让麦麦用自己的判断交易一个本地虚拟期货账户：真实合约行情、模拟成交与结算、程序风控、群内汇报；纯娱乐模拟盘，不接真实交易通道。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#12324A"
+              }
+            },
+            "author": {
+              "name": "NethielChou",
+              "url": "https://github.com/NethielChou"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/NethielChou/maibot-futures-sim",
+              "homepage": "https://github.com/NethielChou/maibot-futures-sim",
+              "documentation": "https://github.com/NethielChou/maibot-futures-sim/blob/main/README.md",
+              "issues": "https://github.com/NethielChou/maibot-futures-sim/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.8.6",
           "tag": "v0.8.6",
           "commit": "92adbb6c3fbfb9622a7bfdffdf04b326866ca8f2",
