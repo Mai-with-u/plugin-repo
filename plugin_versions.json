@@ -53988,6 +53988,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "dcc2f8aed5726cbdd989a743bba544c0845505e7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T14:26:20Z",
+          "release_url": "https://github.com/Zerlight/maibot-reply-integrity/releases/tag/v1.3.2",
+          "release_notes": "Reply Integrity 1.3.2 将额外注入 Planner 正文改为显式选项。\n\n- 默认优先使用非空 `reply_reference`，仅在参考为空时回退到 `reply_reason`，避免同时传入不必要的 Planner 正文。\n- 新增 SDK 设置页开关 **强制注入 reply_reason**（`force_reply_reason`，默认 `false`）。开启后，在 `separate_reply_style = true` 时额外注入非空正文；参考为空时不会重复注入回退内容。\n- 新配置版本为 `1.3.2`，升级保留已有设置，并以关闭状态加入新开关。中英文 README 已同步。\n\n强制注入可能增加回复模型复述后台正文的风险；该选项不会获取宿主未提供的推理内容，也不能过滤已经写入 `reply_reference` 的草稿。\n\n兼容范围不变：MaiBot `1.2.0–1.3.19`、SDK `2.7.1–2.21.0`，仍须满足宿主自身的依赖约束。\n\n验证：现有 7 项单元测试在 16 个 SDK 版本上通过；26 个宿主版本的原生提示词构建函数在隔离夹具中通过开关两种状态的检查；Ruff 通过。独立插件测试环境未加载完整宿主，宿主集成测试跳过；未进行真实模型输出评测。\n\nEnglish:\n\n- Prefer a nonempty `reply_reference` by default, falling back to `reply_reason` only when the reference is empty.\n- Add **Force reply_reason injection** to the SDK settings UI (`force_reply_reason`, default `false`). With `separate_reply_style = true`, it includes a nonempty body alongside an explicit reference. Empty references retain a single fallback copy.\n- Migrate configuration to `1.3.2`, preserving existing settings and adding the new switch in its disabled state. Update both READMEs.\n\nEnabling this option may increase copying of background notes. It cannot retrieve reasoning the Host did not provide or remove drafts already placed inside `reply_reference`.\n\nCompatibility remains MaiBot `1.2.0–1.3.19` and SDK `2.7.1–2.21.0`, subject to the Host's own dependency constraints.\n\nValidation: the existing 7-test suite passes on 16 SDK versions; isolated fixtures exercise the original prompt builders from 26 Host releases with the switch both off and on; Ruff passes. The standalone plugin test environment does not load the full Host, so the Host integration test is skipped. Live model output was not evaluated.\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.zerlight.reply-integrity",
+            "version": "1.3.2",
+            "name": "Reply Integrity",
+            "description": "保留 Planner 事实、隔离草稿文风，让回复器按聊天语气表达。",
+            "author": {
+              "name": "Zerlight",
+              "url": "https://github.com/Zerlight"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Zerlight/maibot-reply-integrity"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.svg"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "fe7f8df6a2d7e709f597a877ff34bd0475e481b1",
