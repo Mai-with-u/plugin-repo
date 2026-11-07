@@ -51127,6 +51127,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "0f73f4271795f3d46fd37a6db228a222a9a82a6e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T17:31:34Z",
+          "release_url": "https://github.com/Lbcheng1145/maibot-cost-report/releases/tag/v1.1.0",
+          "release_notes": "## 1.1.0 主要更新\n\n### 卡片重做，对齐 WebUI 统计页\n\n`/开销` 出的图从「模型花费列表」改成五个区块的统计看板：\n\n| 区块 | 内容 |\n|---|---|\n| 统计概览 | 总花费 / 总请求数 / 总Token数 / 总消息数，各带环比徽章和迷你柱状图 |\n| Prompt 缓存 | 总命中率 + 分模型进度条 |\n| 模型花费分布 | 横向堆叠条 + 图例 |\n| Token 流向拆解 | 缓存命中 / 未命中 / 无缓存信息 / 输出，附输入输出比 |\n| 单位成本与效率 | 六项指标 + 与上一等长周期的环比 |\n\n### 新增 magpie 集成（可选，默认关闭）\n\n如果你自己跑了 magpie 这类本地反代网关，可以打开 `report.magpie_enabled`，卡片底部会多一个区块：\n\n- 本窗口调用次数、输入/输出 token、按公开价折算的账面成本\n- 上游订阅的配额消耗（7 天 / 5 小时两个窗口）和**重置时间**\n- 只展示 MaiBot 实际调过的模型对应的配额池，没调过的不占版面\n\n没装 magpie 的用户完全不受影响——关着的时候插件不发任何额外请求，卡片上也不多区块。\n\n### 成本口径修正（重要）\n\nmagpie 返回的 `cost` 和 `/v1/models` 的定价都是**美元**，之前直接当人民币加进总花费了，差了 7 倍多。\n\n现在改成：\n\n1. 从 magpie 的 `/v1/models` 拿单价（美元 / token）\n2. 从宿主 `llm_usage` 拿**完整历史**的 token 量（缓存命中 / 未命中 / 输出分开算）\n3. 乘**实时汇率**换算成人民币\n\n不用网关的明细成本，是因为 `/v1/magpie/usage/requests` 只返回最近 500 条（约 2.6 天），窗口一长就截断；`llm_usage` 没有这个限制。\n\n**汇率自动抓取**：每 6 小时从公开汇率源取一次（主备两个源），抓不到才退回 `report.magpie_usd_rate` 的兜底值，10 分钟后重试。实测抓到的汇率和之前硬编码的 7.2 差了 7.6%。\n\n### 修复\n\n- **在线时长算错**：`online_time.duration_minutes` 字段恒为 5（表里 28 条全是 5），改按 `start_timestamp` / `end_timestamp` 与窗口求交集，和宿主的算法一致\n- **长窗口时间序列挤成一片**：固定按小时分桶，30 天 456 个点每个不到 1px。改成按窗口自适应——≤2 天按小时，更长按天\n- **Prompt 缓存撑爆布局**：30 天有 23 个模型全列出来，把整行拉到 700px 高。限制为 `top_models` 个\n- **统计概览大片留白**：卡片等高拉伸但内容矮，迷你柱状图改成自适应高度填充\n- **上下两行列边界错位**：两行各自用 flex 比例，`gap` 被扣的次数不同导致算出来的像素差几 px。改成 CSS Grid 共享列定义\n- **两处对齐**：Prompt 缓存的模型名挤压百分比、效率区块数值列右边缘不齐\n- **命令与图片行为不一致**：宿主统计能力不可用时 `/开销` 报「查询失败」但图片照样能出，加了直连库兜底\n- **长窗口账面成本被截断**：网关明细 500 条上限，改用 `llm_usage` 完整历史统计\n\n### 数据来源说明\n\n新增 `dashboard.py` / `render.py` / `magpie.py` 三个模块，**只用标准库**。看板数据直连宿主 SQLite 读聚合表，这在能力体系之外——宿主的 7 个 `statistics.local.*` 能力拿不到输入/输出拆分、缓存命中、回复率和环比。README 已完整披露读了哪几张表、失效时怎么降级。\n\n### 测试\n\n`tests/test_dashboard.py`，**453 个断言 × 3 轮全过**。\n\n---\n\n## 历史版本\n\n### v1.0.2\n适配 MaiBot 1.4.0 / SDK 2.21.0。1.4.0 移除旧 `@Action` 组件，本插件未使用；新增的组件 `timeout_ms` 元数据、`maisaka.replyer.before_model_request` Hook 均向后兼容。\n\n### v1.0.1\n修掉三个会让功能静默失效的问题：\n- **群聊里发卡片图会发到发言人私聊**：宿主注入的 `chat_id` 其实是当前会话的 session_id 而不是群号，原来拿它当群号反查，查不到就退回「按发言人查私聊流」\n- **发送失败被当成成功**：SDK 的 `send.image` 失败时返回 `False` 而不抛异常，原来不看返回值，图没发出去也当成功\n- **查询失败显示成「还没有模型调用记录」**：`statistics.local.models()` 会把查询失败归一成空列表，改用 `call_capability` 拿原始返回\n\n### v1.0.0\n首个公开版本。`/开销 [天数]` 命令出卡片图、`check_cost` 工具供 LLM 自查，标题、货币单位、展示模型数、输出形式都可在 WebUI 配置。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.cost-report",
+            "version": "1.1.0",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.21.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.2",
           "tag": "v1.0.2",
           "commit": "378fa10f2264f104a35ba4e05dc327019f9b98ca",
