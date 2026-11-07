@@ -57512,6 +57512,62 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "valleywinds.feihua-ling",
+      "manifest_id": "valleywinds.feihua-ling",
+      "repositoryUrl": "https://github.com/ValleyWinds/Feihua-Ling",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "197d7726c45c178301e85b51e2cee60271a41724",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T06:23:46Z",
+          "release_url": "https://github.com/ValleyWinds/Feihua-Ling/releases/tag/v1.0.0",
+          "release_notes": "## 主要功能\n\n- 群聊飞花令游戏：`/fhl` 随机或指定令字开局，群友轮流说出含令字的诗句，跟了别人说过的会被当场提醒\n- bot 接令绝不重复：bot 每次回复前自动带上完整的已用诗句清单，自己说过的也不会重复\n- 游戏收官：`/fhl end` 手动结束并发战报排行；超过设定时长无新诗句自动静默收官；`/fhl status` 查看进度、`/fhl history` 回看上一局\n- 游戏记录持久化：MaiBot 重启不丢局，正在玩的局照常继续，早已超时的局自动清理、不打扰群聊\n\n## 细节\n\n- 诗句判重支持整句与半句互查、繁体与简体互通\n- bot 主动接令（可选）：每 N 条玩家诗句后 bot 自动作诗一句，连续三次对不上就「江郎才尽」认输；默认关闭\n- 令字池、超时时长、bot 是否主动接令等均可在插件配置中调整，零配置即可开玩\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "valleywinds.feihua-ling",
+            "name": "飞花令",
+            "version": "1.0.0",
+            "description": "群聊飞花令游戏：记录所有已用诗句并在 bot 生成回复前注入清单，让 bot 接令时绝不重复任何人（包括自己）说过的诗句",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Feihua-Ling",
+              "homepage": "https://github.com/ValleyWinds/Feihua-Ling"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
