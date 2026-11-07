@@ -55014,6 +55014,48 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "c20141f5b6c85080b3ce80e686c029855da4e32a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T11:35:27Z",
+          "release_url": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/releases/tag/v0.1.2",
+          "release_notes": "- 适配 MaiBot 1.4.0。1.4.0 起由宿主进程管理各个 Bot，对外的 WebUI 端口在宿主进程里，开关与端口挪到了宿主的\n  `host/config.toml`；0.1.1 读 `webui.enabled` 得到空值，在 1.4.0 上加载失败。现在有宿主运行契约时从\n  `host/config.toml` 读这两项，WebUI 连接按宿主进程（Worker 的父进程）的 socket 统计，`meta` 新增 `webui_owner`。\n- 每轮 RPC 探测改读 `a_memorix.storage.data_dir`：原来借用的 `webui.enabled` 在 1.4.0 上不存在，探测会每轮失败。\n- 清单声明兼容宿主 1.2.3 至 1.4.x。1.4.0 起宿主不再生成统计报告 HTML，`files.statistics_report` 记为 `null`。\n- 端到端验证：官方 Docker 镜像 1.4.0（全新部署时新建在 `bots/` 下的 Bot，SDK 2.21.0）、1.3.17、1.3.8、1.2.3。\n  1.4.0 上从 1.3.x 原地升级来的 Bot 没有单独跑过。\n\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "shinoyuki.memdiag",
+            "version": "0.1.2",
+            "name": "内存诊断",
+            "description": "从进程外周期采集 Worker 内存、cgroup、WebUI 连接队列、主库只读统计与关键文件大小，写入插件数据目录；/memdiag 回复摘要，/memdiag pack 生成诊断包",
+            "author": {
+              "name": "ShinoyukiMiyako",
+              "url": "https://github.com/ShinoyukiMiyako"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics",
+              "issues": "https://github.com/ShinoyukiMiyako/maibot-memory-diagnostics/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "7c65c1ec58123ff38012273298ba3f4884b11b15",
