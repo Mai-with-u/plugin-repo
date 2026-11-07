@@ -56477,6 +56477,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.1",
+          "tag": "1.2.1",
+          "commit": "5ee6917323e166cd21aacaf44e9e40466ad72446",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T10:01:26Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-I-deepseek/releases/tag/1.2.1",
+          "release_notes": "历史补抓上线两天，一次都没成功过。\n\n报错是 `api_action_get_friend_msg_history() got an unexpected keyword argument 'user_id'`。适配器签名是 `async def api_action_xxx(self, params: Dict = None)`——只接一个 params，而我们写成 `ctx.api.call(name, params)`，把 `user_id` / `group_id` 当独立关键字递了过去。\n\n为什么两天没发现：宿主 `_cap_api_call` 把异常包成 `{\"success\": False, \"error\": ...}` 正常返回，插件侧看不到「抛了」；而解析器只认 `status` / `retcode` / `data.messages` 那几种外形，认不出这个壳就落到 `return [], \"\"`——0 条消息、没有错误。补抓循环于是当成「翻到底了」，日志写的是「补抓 0 条，已到缓存尽头」。一句谎话，把真错误盖了两天。\n\n修三处：① 参数裹进 `params=`；② 解析器认出失败壳，错误必须和「没有数据」分开；③ 宿主返回了一页但一条都转不成宿主格式时也算错误（原来会静默跳过）。\n\n新增两道防线：`real_sdk_check.py` 第 11 节静态扫「`api.call` 用了 `` 展开」（反向验证有效：把正确写法改回 `params` 立刻 FAIL）；`tests.py` 补 21 条断言——包括「调用失败绝不能说成已到缓存尽头」这条事故回归，以及分页锚点必须是 `message_id` 不是 `message_seq`。\n\n另：`tests.py` 1299 → 1320 项，`real_sdk_check.py` 10 → 11 节。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.maibot-I-deepseek",
+            "version": "1.2.1",
+            "name": "我，deepseek",
+            "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "homepage": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "documentation": "https://github.com/TommyAAKK/maibot-I-deepseek#readme",
+              "issues": "https://github.com/TommyAAKK/maibot-I-deepseek/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "2.0.0"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "3.0.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "database.query",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "1.1.0",
           "commit": "de93893decac37bbdcb2074304fc97db09eebb28",
