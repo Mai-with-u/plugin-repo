@@ -57644,6 +57644,73 @@
           "error": "发布版本改变了插件 ID"
         }
       ]
+    },
+    {
+      "id": "github.hekat87.group-wake",
+      "manifest_id": "github.hekat87.group-wake",
+      "repositoryUrl": "https://github.com/Hekat87/maibot-group-wake",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "2ed30c78f2586bcd56ce4d3ce7f8545d17b8bdf6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T12:53:32Z",
+          "release_url": "https://github.com/Hekat87/maibot-group-wake/releases/tag/v1.0.0",
+          "release_notes": "首个公开版本\n\n- 插件 ID：`github.hekat87.group-wake`\n- 显示名：没叫你别说话",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "没叫你别说话",
+            "description": "指定群平时完全静默（不主动说话），只有被 @ 时短暂唤醒；窗口时长可配置。",
+            "author": {
+              "name": "dsh",
+              "url": "https://github.com/Hekat87"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Hekat87/maibot-group-wake",
+              "homepage": "https://github.com/Hekat87/maibot-group-wake",
+              "documentation": "https://github.com/Hekat87/maibot-group-wake/blob/main/README.md",
+              "issues": "https://github.com/Hekat87/maibot-group-wake/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "bell",
+                "background": "#1C272C"
+              }
+            },
+            "capabilities": [
+              "frequency.set_adjust",
+              "frequency.get_current_talk_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.hekat87.group-wake"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
