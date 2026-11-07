@@ -2794,6 +2794,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.8.1",
+          "tag": "v2.8.1",
+          "commit": "2745ba5d47ac1b0bced746588ef63dbf91cb3e86",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T18:09:57Z",
+          "release_url": "https://github.com/TAIY2020/group_muter_plugin/releases/tag/v2.8.1",
+          "release_notes": "## 主要更新\r\n\r\n修正主程序版本上限，重新发布 v2.8.0 的全部更新\r\n\r\n> **说明**：v2.8.0 的 `host_application.max_version` 填写为 `1.99.99`，不符合插件市场「版本号前两位不能为 99 / 999」的校验规则，没能上架。本版本只改了这一处版本声明，功能与 v2.8.0 完全相同；从 v2.7.0 升级的用户会一并获得以下全部更新。\r\n\r\n- 版本声明：`host_application.max_version` 由 `1.99.99` 改为 `1.4.99`。主程序 1.5.x 会以兼容模式加载（日志中会有提示），更高版本请等待插件后续更新\r\n- 配置页静音状态：WebUI 插件设置页显示当前静音的群、剩余时间，以及处于\"纯窥屏\"、\"窥屏待确认\"还是\"入站拦截\"，并提示等待恢复发言频率的聊天流数量；状态只读内存，不产生额外 RPC\r\n- 解除全部静音：设置页新增按钮，二次确认后解除所有群的静音并恢复被纯窥屏覆盖的发言频率；不在群里发送解除回复，也不写入 Maisaka 上下文；频率恢复失败的聊天流保留记录，可再次点击重试\r\n- silence 工具仅群聊可见：私聊时不再出现在 Planner 的可用工具列表里，减少无效调用。`chat_scope` 必须写在组件声明顶层，`@Tool(chat_scope=...)` 关键字写法会落进 metadata、注册结果仍是 `all`；旧版主程序忽略该字段时，工具内部的群聊校验照常拒绝私聊调用\r\n- 旧版默认提示词迁移：配置升级只保留用户已有值，从旧版本升级的用户会一直停在不含 `{personality}`、`{reply_style}` 的旧模板上。现在 `mute.llm_reply_prompt` 与历史默认原文完全一致时自动迁移为当前默认模板，改动过的自定义提示词保持不变",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "2.8.1",
+            "name": "群聊静音插件 | GroupMuter Plugin",
+            "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/group_muter_plugin",
+              "homepage": "https://github.com/TAIY2020/group_muter_plugin",
+              "documentation": "https://github.com/TAIY2020/group_muter_plugin",
+              "issues": "https://github.com/TAIY2020/group_muter_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "chat.get_group_streams",
+              "api.call",
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.context.append"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.webp"
+              }
+            },
+            "id": "TAIY2020.group-muter-plugin"
+          }
+        },
+        {
           "version": "2.7.0",
           "tag": "v2.7.0",
           "commit": "d70c2e6277853c7c18a47e5c0f31b9f7fde158ac",
