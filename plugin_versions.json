@@ -52447,6 +52447,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.5",
+          "tag": "v2.1.5",
+          "commit": "1cca34a718232939675457d9e0f00fff063eb2bc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T08:31:04Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.1.5",
+          "release_notes": "## 新增功能\n\n- **Breeze 音色目录筛选**。支持按语言和关键词同步官方音色目录，默认同步中文音色，保留已收藏的声音。\n- **路由默认音色展示**。直接显示当前沿用的模型默认音色；Breeze 未选中音色时，提示对应的模型和路由配置位置。\n\n## 修复功能\n\n- **MiniMax 官方合成**。修复 HTTP、SSE 和 WebSocket 合成请求遗漏模型字段导致无法正常合成的问题。\n- **MiniMax WebSocket**。修复建连成功后任务无法启动、部分无事件名音频消息被忽略的问题，完善任务开始与结束的顺序检查。\n- **Breeze 后台合成**。修复正常的 `streaming` 进度被误判为失败的问题，持续等待音频生成完成。\n- **音色继承**。路由或工具未指定音色时沿用模型默认值，修复已保存音色 ID 仍提示未选中音色的问题。\n- **模型默认音色**。修复旧的顶层编辑值覆盖模型已保存音色的问题；临时切换音色保留模型原有默认设置。\n- **目录与音频缓存**。音色目录按语言、关键词分别缓存，调整目录筛选继续复用相同合成音频，切换实际音色时生成对应音频。\n- **云端音色保护**。按继承后的实际路由音色判断占用状态，阻止删除正在使用的声音。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.1.5",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.4",
           "tag": "v2.1.4",
           "commit": "56b1a404638a18200088af910ade91bae3fb7848",
