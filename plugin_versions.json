@@ -29894,6 +29894,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "716e28b1e1c78be9be59d901896c88aa63c7123b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T10:38:40Z",
+          "release_url": "https://github.com/ValleyWinds/Sleep-Manager-Next/releases/tag/v1.4.1",
+          "release_notes": "**⚠️ 升级注意**：本版本为安全修复，升级后**所有 `/sleep` 命令默认对所有人不可用**，需在配置「管理员用户 ID」里填写至少一个用户 ID 才能启用命令。配置字段 `force_sleep_commands_enabled` 改名 `admin_sleep_commands_enabled`（作用不变），旧配置里显式设过 `false` 的需重新设置。\n\n### 主要功能\n\n**安全**\n\n- 命令权限全面收紧：全部 `/sleep` 命令统一受\"管理员用户 ID\"控制，留空时（默认）所有命令对所有人不可用；此前 `/sleep help`、`/sleep status` 等控制命令对所有人开放\n- 新增\"无权限静默拦截\"开关（默认关闭）：开启后无权限命令零回复、仅拦截并记录日志，不希望 Bot 因命令暴露插件存在的场景适用；\"管理入睡命令已关闭\"提示同样受它控制\n\n**开发文档与结构**\n\n- 仓库根目录脚本按职责归入 `config/`、`commands/`、`hooks/`、`core/`、`features/` 五个子包，入口文件位置不变，功能与安装方式不受影响\n- 新增 `docs/` 开发文档：架构与数据流、环境与测试、命令与权限模型\n\n### 细节\n\n- 无权限提示统一为「你没有使用睡眠管理命令的权限」，不泄露管理命令的存在\n- 命令调用与拒绝都会记录到本地日志（含命令名、用户、聊天流、是否静默）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.4.1",
+            "name": "睡眠管理Next",
+            "description": "当 Bot 在合适时间主动说出晚安或准备睡觉时，进入临时睡眠状态，并在睡眠期间暂停新消息、表达学习、Planner 结果和出站消息",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Sleep-Manager-Next",
+              "homepage": "https://github.com/ValleyWinds/Sleep-Manager-Next",
+              "documentation": "https://github.com/ValleyWinds/Sleep-Manager-Next",
+              "issues": "https://github.com/ValleyWinds/Sleep-Manager-Next/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "changelog": "CHANGELOG.md",
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "valleywinds.sleep-manager"
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "6f551a168ceea8026365762d65f3604c1448449e",
