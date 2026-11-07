@@ -30434,6 +30434,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.3",
+          "tag": "v0.2.3",
+          "commit": "c755d4d24b4732a16898416df11e2ac849e6fdb4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T17:24:18Z",
+          "release_url": "https://github.com/TouristH/HelldiversPatchFeed/releases/tag/v0.2.3",
+          "release_notes": "# HelldiversPatchFeed 已停用\n\n`v0.2.3` 是最后一次停用与迁移公告版本，此后不再维护功能或发布新版本。原代码、历史版本和第三方署名继续保留。本版本不会自动关闭用户本地已安装的旧插件，请在 MaiBot 插件管理中手动停用。\n\n![红色潜兵头盔摇头：旧插件已停用](https://raw.githubusercontent.com/TouristH/HelldiversPatchFeed/v0.2.3/assets/icon.webp)\n\n旧插件采用红色摇头图标表示停用；新配装插件采用绿色点头图标。\n\n## 功能精简原因与替代项目\n\n社区已有覆盖更广的战况和资讯插件。继续重复建设上游接口、公告筛选、订阅和投递功能会分散维护精力，因此将随机配装部分独立，聚焦配装娱乐。\n\n- 随机配装、单格重抽、离线图卡和群白名单：[绝地潜兵 2：民主帮你选择 · Helldivers2DemocracyChooses](https://github.com/TouristH/Helldivers2DemocracyChooses)。新 ID：`github.touristh.helldivers2-democracy-chooses`。不包含更新推送、运行时 Steam/Wiki 查询或订阅。\n- 更齐全的战况、地图、任务、Steam 公告查询、Wiki/军需簿和资讯订阅：[fiatlux2333 的绝地潜兵 2 情报助手](https://github.com/fiatlux2333/maibot_plugin_Helldivers)。截图、翻译和订阅配置以对方 README 为准。\n\n迁移前请备份旧配置并停用旧插件；按新仓库说明独立安装，再在新 `config.toml` 的 `allowed_groups` 中填写允许群。空名单不开放任何群，管理员不能绕过。旧订阅与公告数据库不迁移。\n\n## 本次变更与验证\n\n- README、manifest 和 CHANGELOG 明确停用状态与迁移方向；USER_AGENT 和 manifest 同步为 `0.2.3`，保留旧插件 ID。\n- 修正当前插件中心不接受的 Host 上限 `999.999.999` 为 `1.3.99`；没有新增真实 Host 端到端兼容性验证。\n- 将一条测试公告的发布时间保持在其要验证的近期窗口，避免固定日期随时间过期；旧功能运行逻辑未更改。\n- 140 项回归测试分别在 SDK 2.7.1 与 2.21.0 下通过。\n\n请将本次更新视为停用公告和迁移说明，后续配装功能使用新插件。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-patch-feed",
+            "version": "0.2.3",
+            "name": "Helldivers 2 更新推送（已停用）",
+            "description": "已停止维护。本版本为最终停用与迁移公告；随机配装请迁移至 Helldivers2DemocracyChooses，综合情报功能推荐 maibot_plugin_Helldivers。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/HelldiversPatchFeed",
+              "homepage": "https://github.com/TouristH/HelldiversPatchFeed",
+              "documentation": "https://github.com/TouristH/HelldiversPatchFeed/blob/main/README.md",
+              "issues": "https://github.com/TouristH/HelldiversPatchFeed/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "capabilities": [
+              "chat.open_session",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "archive"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "v0.2.2",
           "commit": "555c3a53df5ff0239be7ab417a1dcf6c0adccf6e",
