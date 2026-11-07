@@ -55730,6 +55730,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.2",
+          "tag": "v0.9.2",
+          "commit": "a1a7c9227b8895cd9ced070c7a8c58ac01b0ff4e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T15:59:03Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.9.2",
+          "release_notes": "## 🏡 搬进 MaiBot 1.4，日常照常\n\n这次更新适配 MaiBot 1.4 的统一登录、多 Bot 记忆访问和共享联网服务。人物资料、生活记忆与地点搜索沿用新的连接方式，生活页面也搬到了 WebUI 侧栏。\n\n### 更新内容\n\n- **登录自动衔接**：读取统一登录凭据，复用登录会话，并在会话过期后重新登录。\n- **记忆跟着当前 Bot 走**：人物画像和原生记忆通过当前 Bot 的接口访问。\n- **联网服务同步适配**：从共享模型目录读取服务定义，结合当前 Bot 的任务分配识别可用搜索服务。\n- **侧栏进入生活页面**：在 WebUI 侧栏打开麦织的各个生活页面。\n\n### 📦 安装与升级\n\n下载 **MaiWeave-0.9.2.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n| 项目 | 版本 |\n| --- | --- |\n| MaiBot | 1.3.19–1.4.x |\n| 插件 SDK | 2.21.x |\n| MaiWeave | 0.9.2 |\n| 配置版本 | 0.9.0，沿用已有设置 |\n\n本机连接自动读取 `host/webui.json` 的登录凭据。连接远程 MaiBot 1.4 时，网页地址填写 `http://地址:端口/api/host/bots/BotID/proxy`，网页登录凭据填写登录密码；Bot ID 可在 WebUI 的 Bot 管理中查看。\n\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.9.2/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.9.2/docs/配置指南.md) · [本次改动](https://github.com/ilworkcn/MaiWeave/compare/v0.9.1...v0.9.2)\n\n<details>\n<summary>安装包校验 · SHA-256</summary>\n\n```text\na9d747916717e6c2bb52debac7b9118fe92e1ba177aa8a628236a06c81690718\n```\n\n</details>\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜与你共织日常",
+            "version": "0.9.2",
+            "description": "把对话织进持续的生活：约定影响日程，天气与真实地点参与安排，读过的书留下进度和感想。关联 MaiBot 人物画像，让昨天的经历接上今天的聊天。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": "==1.4.8"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2026.1"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "person.get_id",
+              "llm.get_available_models",
+              "maisaka.reply.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.1",
           "tag": "v0.9.1",
           "commit": "d4202b7319fac9c323ed4e0189eddbb750820dc9",
