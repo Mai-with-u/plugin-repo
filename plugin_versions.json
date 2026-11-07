@@ -41137,6 +41137,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.1",
+          "tag": "v0.8.1",
+          "commit": "471b23caf227e3af328bdd5ac931651250635328",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T13:52:15Z",
+          "release_url": "https://github.com/orge-8/char-recog/releases/tag/v0.8.1",
+          "release_notes": "## 0.8.1 · 适配 MaiBot 1.4.0 / SDK 2.21.0\n\n兼容性基线更新，识别、训练、存储逻辑不变。\n\n### 验证方式\n- 官方最新宿主 **MaiBot 1.4.0** 源码的真实 `PluginLoader(host_version=\"1.4.0\")` 严格模式。\n- 官方最新 **SDK 2.21.0** 隔离运行环境。\n- 官方宿主 **1.3.7** loader 与 WebUI schema 向后验证。\n\n### 结果\n- 加载 `org.civetc.char-recog 0.8.1`：51 个组件、6 个 WebUI 页面。\n- `failed={}`、`warnings=[]`、`errors=[]`（1.4.0 与 1.3.7 均为零警告）。\n- `pytest`：466 passed / 3 skipped（全量 469 项）。\n- 发布包 SHA256：`94e668ffd51fb2424f57722a5985a9ac5268560275bebfe62eaf45068bb4322d`。\n\n### 变更\n- `host_application.max_version`：`1.3.99` → `1.4.99`\n- `sdk.max_version`：`2.13.99` → `2.21.99`\n- 移除 6 个页面已被 1.4.0 停用的 `placement` 字段；页面改由宿主侧栏承载。\n- 新增 WebUI 契约测试，防止 `placement` 回流。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.8.1",
+            "name": "角色识别",
+            "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/orge-8/char-recog",
+              "homepage": "https://github.com/orge-8/char-recog",
+              "documentation": "https://github.com/orge-8/char-recog#readme",
+              "issues": "https://github.com/orge-8/char-recog/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.11.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<14"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=2,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "imagehash",
+                "version_spec": ">=4.3,<5"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "org.civetc.char-recog",
+            "plugin_type": "media",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "scan-face",
+                "background": "#F7F1E4"
+              }
+            }
+          }
+        },
+        {
           "version": "0.8.0",
           "tag": "v0.8.0",
           "commit": "3d4a2b6c95796af14b8d541f90a2db334ee490f9",
