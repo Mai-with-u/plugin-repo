@@ -57865,6 +57865,52 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "52b6b364646810457ef09b4869e12bdca3d92a12",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T06:41:25Z",
+          "release_url": "https://github.com/ValleyWinds/Feihua-Ling/releases/tag/v1.0.1",
+          "release_notes": "## 细节\n\n- `/fhl history` 现在只展示本群的上一局战报；此前在多个群同时使用时会显示其他群的排行与参与者昵称",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "valleywinds.feihua-ling",
+            "name": "飞花令",
+            "version": "1.0.1",
+            "description": "群聊飞花令游戏：记录所有已用诗句并在 bot 生成回复前注入清单，让 bot 接令时绝不重复任何人（包括自己）说过的诗句",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Feihua-Ling",
+              "homepage": "https://github.com/ValleyWinds/Feihua-Ling"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "197d7726c45c178301e85b51e2cee60271a41724",
