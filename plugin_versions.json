@@ -57104,6 +57104,98 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.chatgpt-maibot-connect",
+      "manifest_id": "local.chatgpt-maibot-connect",
+      "repositoryUrl": "https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.3",
+          "tag": "v0.2.3",
+          "commit": "769ac3e5981543e8969bfad471913199a5280e8f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T12:25:27Z",
+          "release_url": "https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin/releases/tag/v0.2.3",
+          "release_notes": "本版适配 **MaiBot 1.4.0** 的原生联网配置。通过 **Sign in with ChatGPT** 授权后，麦麦可以调用账号可用的聊天模型，也可以让聊天和使用 `ctx.web` 的麦生活共用 GPT 搜索与公开网页正文读取。\r\n\r\n## 主要功能\r\n\r\n- **聊天模型** 支持文本、图片输入、函数工具调用和 JSON 输出。可用模型以账号授权后查询到的列表为准。 [安装与授权](https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin#安装与授权)\r\n- **统一联网** 通过 MaiBot 内置的 `deepseek` 适配器连接插件的本机接口。搜索由 GPT 内置搜索处理，网页正文由插件直接抓取。 [统一联网配置](https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin/blob/main/UNIFIED_WEB_BACKEND.md)\r\n\r\n## 安装与升级\r\n\r\n基础桥接要求 **Python 3.12+**、**MaiBot 1.3.14–1.4.0** 和**插件 SDK 2.16.0+**。首次安装请按说明安装依赖、完成浏览器授权，再选择账号可用的模型。\r\n\r\n**联网默认关闭。** 在 MaiBot 1.4.0 上，从旧方案升级时，将 `gpt_builtin` 的 `adapter` 从 `plugin` 改为 `deepseek`，并在插件与 MaiBot 两处配置中使用相同的本机端口和接口密钥。接口仅监听 `127.0.0.1`。\r\n\r\n## 验证\r\n\r\n**229 项回归测试通过**。在隔离环境中，使用官方 MaiBot 1.4.0 安装包验证了新配置的加载，并通过本机接口完成了一次真实 GPT 搜索和一次公开网页正文抓取。 [验证记录](https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin/blob/main/TESTING.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.chatgpt-maibot-connect",
+            "version": "0.2.3",
+            "name": "ChatGPT-MaiBot-connect-plugin",
+            "description": "通过 Sign in with ChatGPT 提供 Responses、GPT 内置搜索与公开网页正文读取",
+            "author": {
+              "name": "Caeruvis",
+              "url": "https://github.com/Caeruvis"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Caeruvis/ChatGPT-MaiBot-connect-plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.4.0"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "PyJWT",
+                "version_spec": ">=2.13.0,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=50.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "jsonschema",
+                "version_spec": ">=4.26.0,<5"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12,<5"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              }
+            ],
+            "plugin_type": "provider",
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "llm_providers": [
+              {
+                "client_type": "openai_chatgpt_plan_siwc",
+                "name": "ChatGPT Plan",
+                "description": "Sign in with ChatGPT Responses Provider",
+                "version": "0.2.3"
+              }
+            ]
+          }
+        }
+      ],
+      "ignored_tags": [
+        "stable"
+      ],
+      "rejected_releases": []
     }
   ]
 }
