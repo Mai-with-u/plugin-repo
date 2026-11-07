@@ -50473,6 +50473,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "378fa10f2264f104a35ba4e05dc327019f9b98ca",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T11:03:06Z",
+          "release_url": "https://github.com/Lbcheng1145/maibot-cost-report/releases/tag/v1.0.2",
+          "release_notes": "适配 **MaiBot 1.4.0**（正式版）与 **maibot-plugin-sdk 2.21.0**。\n\n**兼容性**\n\nmanifest 版本区间放宽为 `host 1.3.0 ～ 1.4.99`、`sdk 2.4.0 ～ 2.21.99`（本插件实际下界见 manifest）。\n\n1.4.0 对插件的破坏性改动只有一条——**移除旧 `@Action` 组件**，本插件未使用。\n新增的组件 `metadata` 可声明 `timeout_ms`、新 Hook `maisaka.replyer.before_model_request`\n均为向后兼容；SDK 2.21.0 里 `Tool` / `Command` / `HookHandler` 装饰器签名、\n`send.*` 的 bool 返回语义、`call_capability` 均未变。\n\n**实测环境**\n\n东京生产服务器：MaiBot `1.4.0` + SDK `2.21.0`，插件在真实群聊中运行，日志零 error。\n\n**本版状态**\n\n升级后实测：组件注册完成，`statistics.local.models` 与 `render.html2png` 调用正常。\n\n（上一版 v1.0.1 修掉了「群聊发到发言人私聊」「发送失败当成功」「查询失败显示成没记录」三个问题，\n若你还在更早的版本，本次升级会一并带上。）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.cost-report",
+            "version": "1.0.2",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，默认看最近 24 小时。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Lbcheng1145",
+              "url": "https://github.com/Lbcheng1145"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Lbcheng1145/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.21.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "e420fd7dbca7ca6abebd8ef8c509ec10ca318982",
