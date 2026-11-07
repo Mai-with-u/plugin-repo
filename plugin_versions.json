@@ -56550,6 +56550,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.0",
+          "tag": "1.3.0",
+          "commit": "cce340e216d114885743537c4c2f82f9f7325634",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T13:32:53Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-I-deepseek/releases/tag/1.3.0",
+          "release_notes": "念头：她自己有点想法，偶尔不顺着。\n\n用户的原话：「不是单纯的、代码和规则上的拒绝，而是在一个她完全可以继续有用、继续正确、继续被喜欢的时刻，说一句让场面冷下来的话——而且说完不补救。」\n\n① 念头不是事实。新表 `gap_thoughts`（13 张表），绝不写进 `gap_items`——不参与记忆注入、不参与显著度衰减、不参与相似度合并。每条必须带 `source`（原样摘一句真实聊天记录），抽取时缺 `source` 的直接丢，这是唯一能真的拦住它的地方。念头引用的记忆被淡忘或被解决，念头跟着作废（`prune_orphan_thoughts`）。寿命 40 分钟到 36 小时按显著度映射——真正重要的牵挂本来就在 `open_loop` 里活 30 天，念头不该复制第二套长期记忆。没有这一条，「猜他不开心 → 想关心 → 把关心当证据 → 判定他确实不开心」转两圈就会在她记忆库里留下一条从没发生过的事。\n\n② 三种结局，都不算失败。自然回响（当前话题碰到来源，想起但不一定说）/ 主动兑现（说出口）/ 自然消散（到期，不惩罚不记账）。第三行是刻意的，也是最容易被优化掉的一行：只要统计「产生了多少、发出了多少」，系统就会长成一个话术候选池。从未说出口的念头并不是没有价值。\n\n③ 两条来源。记下来的念头（抽取时最多 2 条，大多数轮次应该是空的）+ 当场信号（同一件事问到第三遍 / 对方连着敷衍 / 近几轮 75% 都是问句且没人跟她说话）。当场信号里刻意没有「精力低」和「深夜」——那是「她本来就做不到」，属于精力门控和边界感，混进来就等于做了第二个精力门控。\n\n④ 冷场兜底。人设写着「喜欢用颜文字」「语气自然轻快」，生成出来的「不顺着」经常是「没看过啊，不过你要是想看我可以陪你一起看！」——一个语气词都没有，但它是为了让场面好接。所以生成完判一次：致命项（太长 / 缓和词 / 开头找补 / 提供帮助或交出选择 / 多个感叹号）单独成立就重生成，轻项（颜文字 / 结尾追问）两项同时成立才重生成——「没看过。(｡･ω･｡)」加个颜文字仍然是冷的，去掉就够冷了，宁可漏判也不要误判：把一句本来就冷的话拉回去重说只会说得更热。走宿主自己的 `retry` 机制，默认只重生成 1 次。为此 `maisaka.replyer.after_response` 从 OBSERVE 改成 BLOCKING——观察型的 `modified_kwargs` 会被宿主直接丢掉。\n\n⑤ 理由只进日志，不进提示词。写进提示词她就会把理由说出来（「我今天有点累，不太想聊这个」），而解释是为了让人理解，也就是为了让人舒服——正好是反面。用户要的恰恰是「她说不出理由地不想接」。\n\n默认开，但很保守：两次之间至少 6 小时、每天最多 2 次。这两个数字是拍的，第一次上线宁可太少见——太少见只是没注意到，太常见就变成人设崩了。\n\n这个功能不该有指标。WebUI 上不会出现「本周拒绝 3 次」这样的汇总，一旦有了这个数字，之后所有调优都会朝它走——讨好表演只是换成了叛逆表演，两种都不是活人。\n\n另：配置 170 → 179 项（新增 `[thought]` 9 项），数据库 12 → 13 张表，`tests.py` 1320 → 1436 项（新增 [18] 念头 / [19] 不顺着两节，外加念头跨 planner→replyer→after_response 的端到端 8 组断言）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.maibot-I-deepseek",
+            "version": "1.3.0",
+            "name": "我，deepseek",
+            "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "homepage": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "documentation": "https://github.com/TommyAAKK/maibot-I-deepseek#readme",
+              "issues": "https://github.com/TommyAAKK/maibot-I-deepseek/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "2.0.0"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "3.0.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "database.query",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.2.1",
           "tag": "1.2.1",
           "commit": "5ee6917323e166cd21aacaf44e9e40466ad72446",
