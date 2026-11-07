@@ -6700,6 +6700,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.12.1",
+          "tag": "v1.12.1",
+          "commit": "88b9156444feaa4fb3e7e158c3be0551d48625ed",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T18:14:00Z",
+          "release_url": "https://github.com/TAIY2020/smart_poke_plugin/releases/tag/v1.12.1",
+          "release_notes": "## 主要更新\r\n\r\n修正主程序版本上限，重新发布 v1.12.0 的全部更新（v1.12.1）\r\n\r\n> **说明**：v1.12.0 的 `host_application.max_version` 填写为 `1.99.99`，不符合插件市场「版本号前两位不能为 99 / 999」的校验规则，没能上架。本版本只改了这一处版本声明，功能与 v1.12.0 完全相同；从 v1.11.1 升级的用户会一并获得以下全部更新。\r\n\r\n### 修复\r\n\r\n- **插件市场未收录 v1.12.0**：`host_application.max_version` 由 `1.99.99` 改为 `1.4.99`，通过市场校验。主程序 1.5.x 会以兼容模式加载（日志中会有提示），更高版本请等待插件后续更新。\r\n- **主动戳把麦麦自己算进活跃度、甚至戳到自己**：SnowLuma 适配器 1.1.5 起只在消息顶层写 `account_id`，不再写 `additional_config.self_id`；插件此前只从后者学习 bot 账号，收到第一条戳一戳通知前一直不知道自己是谁——麦麦自己的发言会被计入群活跃门槛，`random_recent` 策略还可能挑中麦麦自己。现在与路由身份同口径：优先读消息顶层，取不到再回退 `additional_config`，旧适配器行为不变。\r\n\r\n### 优化\r\n\r\n- **戳一戳钩子超时放宽到 8000ms(#8)**：放宽超时避免整个插件被熔断，让性能弱的机器更稳。感谢 @NetaJuutilainen 在 #8 中贡献优化。\r\n- **LLM 回复人设与主聊天对齐**：`llm_persona` 留空时，改用 SDK 2.20 新增的 `ctx.personality.get_current()` 读取当前人设，按主程序回复器的口径拼装：\r\n  - 开头注入「你的名字是X」（取自 `bot.nickname`）；\r\n  - 人格之外补上表达风格 `reply_style`，并按 `multiple_probability` 概率改用备用风格，与主聊天随机换风格的行为一致；\r\n  - 每次生成都实时读取，WebUI 或其他插件切换人设后立即生效；\r\n  - 群聊 / 私聊提示词是写给\"读聊天记录再回复\"的长段说明，与一句话回戳无关，刻意不注入。\r\n- 旧版 SDK（没有 `ctx.personality`）或旧版主程序不支持该能力时，自动回退为只读 `personality.personality`，SDK 最低版本仍为 2.6.0。\r\n- 清单新增 `personality.get_current` 能力声明；补充 self_id 学习与人设解析的单元测试，README 同步 `llm_persona` 说明。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.12.1",
+            "name": "智能戳一戳插件 | Smart Poke Plugin",
+            "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/smart_poke_plugin",
+              "homepage": "https://github.com/TAIY2020/smart_poke_plugin",
+              "documentation": "https://github.com/TAIY2020/smart_poke_plugin",
+              "issues": "https://github.com/TAIY2020/smart_poke_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "api.call",
+              "emoji.get_random",
+              "emoji.get_by_description",
+              "emoji.get_emotions",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "message.get_recent",
+              "message.build_readable",
+              "maisaka.context.append",
+              "llm.generate",
+              "config.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.webp"
+              }
+            },
+            "id": "TAIY2020.smart_poke_plugin"
+          }
+        },
+        {
           "version": "1.11.1",
           "tag": "v1.11.1",
           "commit": "59ff292b4d912a5cbe5d09cce32381e8497d350f",
