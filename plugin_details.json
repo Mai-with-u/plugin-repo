@@ -729,7 +729,7 @@
     "id": "TAIY2020.custom_commands_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.7.0",
+      "version": "2.8.0",
       "name": "自定义命令插件 | CustomCommands Plugin",
       "description": "一个允许你通过聊天命令动态添加、删除、列出和触发自定义回复的强大插件，支持群组数据隔离与自定义分组映射。",
       "author": {
@@ -744,18 +744,19 @@
         "issues": "https://github.com/TAIY2020/custom_commands_plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.3.18",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.6.0",
+        "min_version": "2.19.0",
         "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
         "send.text",
         "send.image",
-        "api.call",
+        "send.forward",
+        "config.get",
         "chat.open_session",
         "component.get_all_plugins",
         "component.reload_plugin"
@@ -784,7 +785,7 @@
     "id": "TAIY2020.group_muter_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "2.8.0",
+      "version": "2.8.1",
       "name": "群聊静音插件 | GroupMuter Plugin",
       "description": "一个允许管理员通过聊天命令、或麦麦主动让指定群聊临时进入“静音状态”（闭嘴）的群组管理插件。",
       "author": {
@@ -800,7 +801,7 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.8.2",
@@ -2157,7 +2158,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.12.0",
+      "version": "1.12.1",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -2173,7 +2174,7 @@
       },
       "host_application": {
         "min_version": "1.2.5",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.6.0",
@@ -10277,8 +10278,8 @@
         "issues": "https://github.com/cateyemizuki/cateye_set_msg_emoji_like_api_modify/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.2.0",
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -12202,7 +12203,7 @@
       "id": "github.cateye.better-post-processing",
       "version": "1.4.2",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因；1.4.2：新增「独占 @」（[plugin] strip_external_at，默认开启）——本轮回复的发送在 before_send 入口无条件剥离宿主 attach_at/其它插件注入的 at 组件，由插件按权重决定唯一的一个 @，并新增 LATE 兜底清掉后序插件新注入的 at（只放行插件登记的目标），消除「真实 at + 正文手写假 @」重叠；修复多段发送首段截回把宿主 attach_at 的 [at, 空格, 正文] 空格组件当正文替换掉导致 at 与正文粘连的问题（截回现在保留紧跟 at 的空白段）",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因；1.4.2：新增「独占 @」（[plugin] strip_external_at，默认开启）——本轮回复的发送在 before_send 入口无条件剥离宿主 attach_at/其它插件注入的 at 组件，由插件按权重决定唯一的一个 @，并新增 LATE 兜底清掉后序插件新注入的 at（只放行插件登记的目标），消除「真实 at + 正文手写假 @」重叠；修复多段发送首段截回把宿主 attach_at 的 [at, 空格, 正文] 空格组件当正文替换掉导致 at 与正文粘连的问题（截回现在保留紧跟 at 的空白段）；main 分支冻结在 1.4.2，仅支持 MaiBot <=1.3.99；MaiBot 1.4.0+ 请使用 host-1.4.0 分支（1.4.3 起移除已从宿主删除的 emoji.maisaka.before_select Hook）",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -13519,9 +13520,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.touristh.helldivers2-patch-feed",
-      "version": "0.2.2",
-      "name": "Helldivers 2 更新推送",
-      "description": "自治检查 Helldivers 2 官方更新并向订阅 QQ 群推送，同时提供 Wiki 查询与随机配装。",
+      "version": "0.2.3",
+      "name": "Helldivers 2 更新推送（已停用）",
+      "description": "已停止维护。本版本为最终停用与迁移公告；随机配装请迁移至 Helldivers2DemocracyChooses，综合情报功能推荐 maibot_plugin_Helldivers。",
       "author": {
         "name": "TouristH",
         "url": "https://github.com/TouristH"
@@ -13535,7 +13536,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "999.999.999"
+        "max_version": "1.3.99"
       },
       "sdk": {
         "min_version": "2.7.1",
@@ -13557,8 +13558,9 @@
       ],
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "satellite"
+          "type": "local",
+          "value": "assets/icon.webp",
+          "fallback": "archive"
         }
       },
       "i18n": {
@@ -13567,6 +13569,9 @@
           "zh-CN"
         ]
       }
+    },
+    "assets": {
+      "icon_64": "icons/github.touristh.helldivers2-patch-feed.webp"
     }
   },
   {
@@ -14430,7 +14435,7 @@
       "version": "1.2.4",
       "id": "mai-play-ygo",
       "name": "麦麦玩游戏王",
-      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页��看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
       "author": {
         "name": "erhan111119",
         "url": "https://github.com/erhan111119"
@@ -15574,7 +15579,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.0",
+      "version": "0.8.1",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -15590,11 +15595,11 @@
       },
       "host_application": {
         "min_version": "1.3.6",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.11.0",
-        "max_version": "2.13.99"
+        "max_version": "2.21.99"
       },
       "dependencies": [
         {
@@ -18772,9 +18777,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.cost-report",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "name": "开销统计",
-      "description": "查询麦麦的 token 消耗和模型花费，默认看最近 24 小时。支持命令和 LLM 工具调用。",
+      "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
       "author": {
         "name": "Lbcheng1145",
         "url": "https://github.com/Lbcheng1145"
@@ -20450,7 +20455,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜与你共织日常",
-      "version": "0.9.1",
+      "version": "0.9.2",
       "description": "把对话织进持续的生活：约定影响日程，天气与真实地点参与安排，读过的书留下进度和感想。关联 MaiBot 人物画像，让昨天的经历接上今天的聊天。",
       "author": {
         "name": "ilworkcn",
@@ -20459,7 +20464,7 @@
       "license": "GPL-3.0-only",
       "host_application": {
         "min_version": "1.3.19",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.21.0",
@@ -21624,7 +21629,7 @@
       "manifest_version": 2,
       "id": "github.haoxiangxia.omp-agent",
       "plugin_type": "tool",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "OMP Agent 插件",
       "description": "提供 /omp 显式指令直通调用宿主机 OMP 执行代码与开发任务，内置 RPC-UI 流式双向交互、Bubblewrap 沙盒隔离、原生扩展状态监听与 QQ 原生卡片回传",
       "author": {
@@ -21641,7 +21646,7 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.0.0",
@@ -21998,6 +22003,63 @@
     },
     "assets": {
       "icon_64": "icons/github.hekat87.group-wake.webp"
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-sim-trader",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.42yoru.maimai-sim-trader",
+      "version": "0.10.0",
+      "plugin_type": "automation",
+      "name": "麦麦模拟盘",
+      "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "line-chart",
+          "background": "#F3B27A"
+        }
+      },
+      "author": {
+        "name": "42yoru",
+        "url": "https://github.com/42yoru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/46yoru/maimai_sim_trader",
+        "homepage": "https://github.com/46yoru/maimai_sim_trader",
+        "documentation": "https://github.com/46yoru/maimai_sim_trader/blob/main/README.md",
+        "issues": "https://github.com/46yoru/maimai_sim_trader/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.9",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.50.50"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.get_group_streams",
+        "chat.get_private_streams",
+        "config.get",
+        "llm.generate",
+        "message.get_recent",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
     }
   }
 ]
