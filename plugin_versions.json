@@ -45425,6 +45425,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.4",
+          "tag": "v0.5.4",
+          "commit": "0ab88e227e52bb5882c44509126a35fedb331ef7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T14:21:21Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.4",
+          "release_notes": "### 新增\n\n- **点名优先**（`trigger.mention_priority`，默认关）：被 @ 或文本里点到 bot 的名字后，把**下一次**回复的语音概率抬到 `mention_probability`（默认 0.6，与 `probability` 取较大值）；用掉即清，没用到在 `mention_ttl_seconds`（90 秒）后作废，@所有人不算点名。点名那一次跳过 `random_requires_chinese`（用户点名就是想听声音），但英文仍按 `english_policy` 清洗，短句上限照旧生效。\n- **情绪加权**（`trigger.emotion_weighting`，默认关）：回复里出现感叹号、连续问号、波浪号、省略号、叠字、拟声词、emoji 时按项加分（每项 `emotion_step` = 0.04，最多 `emotion_cap` = 0.2）；只抬概率，不改写文本。判定用**清洗前**的原始回复：`sanitize_for_tts` 会把 `？？` 折成 `？`、`～`/`…` 折成逗号、emoji 删掉，所以「问句 / 波浪号 / 省略号 / emoji」四类规则在用清洗后的文本判断时**永远无法命中**。「感叹 / 叠字 / 拟声」三类不受影响——11-05 → 11-07 的 73 条语音里 `来源=emotion` 已有 13 条（12 条感叹 + 1 条拟声），本次修复是把剩下四类接上。\n- **触发来源埋点**：成功行追加 `来源=random|mention|emotion(标签)|llm_request|voice_only|llm_trigger，概率=0.15`；`core/trigger.py` 的规则与窗口独立可测。\n- **埋点补字数与音频时长**：成功行变成 `语音合成耗时：3.42s（timeout 25.0s，第 1 次，12 字，音频 3.33s）`，失败行补 `，12 字`。0.5.3 复盘时只有耗时、没有字数，只能拿相邻事件硬配，样本对不齐（75 对里相关系数 0.065，等于白算）。\n- 新增 `tests/test_trigger.py`（情绪规则、一次性窗口与过期、点名/短句/英文的交互、确定性模式）。\n\n### 修改\n\n- **超时收敛成「一次请求 + 固定 25 秒」**：`general.timeout` 默认 25 秒；`general.timeout_mode`（auto/fixed）与 `mimo.retry_on_timeout` 两个配置项**删除**，「超时后补发」与「p80 自适应超时」整套代码一并删掉。\n  依据（11-06 名额实验，见 `docs/analysis-dual-draft.md`）：MiMo 每个账号的 TTS 并发名额只有 1，第二条并发请求 0.3–0.5 秒内被 429 拒绝；客户端超时后服务端那条仍在生成、仍占名额（实测最长 72.7 秒），所以「超时后补发」必然 429，等待时间也不是变量。自适应超时（p80×1.4、12–25 秒）算的是\"我们愿意等多久\"，补发没了就没有存在意义。\n  为什么是 25 秒：线上 102 条成功合成里，20–25 秒区间 **0 条**（25 秒与 20 秒等价），25–30 秒 3 条、30–33 秒 3 条——25 秒丢掉约 6% 的长尾，换来失败时早 5 秒回文字。\n- **429 的处理口径**（README 新增「429 与超时」一节）：\n  - 429 在首次请求上**从未出现**（四天 101 次尝试，0 次），只在\"同一时刻已有合成在跑\"时出现（0.3–0.5 秒被拒），所以不需要为它准备重试兜底。\n  - 超时**不重试、不补发**：`mimo.retry_attempts` 默认 0，只保留给 5xx / 网络错误；超时那条在服务端仍占名额，重发只会再吃一次 429。\n  - 本地并发固定 1 路 + `delivery.skip_when_busy = true`：自己已经有合成在跑时新消息直接发文字，避免自己撞自己的名额。\n  - 429 / 超时 / 音频异常一律按 `delivery.fallback_to_text` 回退文字，不会让这条回复消失。\n- **内置音色「可爱少女」的参考换成原样 8.41 秒版**（`presets/reference-keai.wav`，403792 B）：同一份素材做了 A/B/C 三个版本实测（3 句 × 2 次、temperature 0.15）——两句拼接 3.83 s 距离中位 7.10 dB、最大 12.49 dB；单句 1.98 s 中位 8.66、最大 14.18（明显更差）；**原样 8.41 s 中位 7.62、最大 8.77**，离群值最少且试听更自然。代价是每次请求多传 220 KB，且参考时长超出「2–5 秒」建议值——内置预设本就跳过运行时瘦身，这里是有意的例外。\n- 配置项 `config_version` 同步 0.5.4。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.4",
+            "name": "MiMo TTS 语音回复",
+            "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.3",
           "tag": "v0.5.3",
           "commit": "c8d935badf2c5952fbae8bc0d0ce7cb599935ab4",
