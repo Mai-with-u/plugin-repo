@@ -70,6 +70,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.0",
+          "tag": "v2.1.0",
+          "commit": "436f5881fd9fcba7f1076123c8f48280fc88a0b9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T02:40:52Z",
+          "release_url": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/releases/tag/v2.1.0",
+          "release_notes": "# v2.1.0 — 灵契秘仪原创牌组\n\n新增可选原创牌组「灵契秘仪 / Kindred Arcana」，这是塔罗工坊第一次接入**独立牌组资源包**。\n\n## 新增牌组\n\n- 78 张原创牌面（RWS-78 结构），独立牌组仓库：<https://github.com/NethielChou/kindred-arcana>\n- 资源版本 `1.0.0-rc.5`，固定版本 Release 分发；插件内置 manifest/ZIP SHA-256 锁，不追随 latest\n- 首次 `/tarots switch kindred-arcana` 自动下载（约 214 MiB）→ 校验 ZIP/manifest/78 张图片摘要 → 本地缓存\n- 之后抽牌、重启、离线使用都从本地读取；下载失败可用 `/tarots import <本地zip>` 导入同一版本\n- 使用稳定 cardId（`major-00`…`major-21`，`cups/pentacles/swords/wands` 各 14 张；8=力量、11=正义）\n- 正逆位共用正位图，逆位只旋转 180°；牌义复用插件原有牌义库（`manifest.interpretation` 仅作画面叙事）\n- 升级先暂存验证、成功后原子切换，失败保留旧版本；当前牌局固定原资源版本\n\n## 使用\n\n```text\n/tarots list                              # 查看灵契秘仪安装状态\n/tarots switch kindred-arcana             # 首次启用：下载 + 校验 + 安装\n/tarots cache                             # 资源包牌组：校验本地资源（无需联网）\n/tarots import D:\\kindred-arcana-1.0.0-rc.5-public.zip   # 下载失败时本地导入\n```\n\n配置新增 `[deck_pack]`：可关闭功能、关闭自动下载、或填写镜像地址（仍校验固定摘要）。\n\n## 兼容性\n\n- MaiBot 1.3.13 – 1.3.99 / 插件 SDK 2.16.0 – 2.99.99（本次真机验证 1.3.19 / SDK 2.21.0）\n- 原有 `classical` / `elaine` / `bilibili` / `east` 牌组与全部功能保持不变\n- 插件仓库不包含任何牌面图片；图片只在牌组仓库 Release 中分发\n\n## 测试\n\n- 69 个单元测试通过（含真实公开发布包 78 图 SHA/尺寸校验、损坏包拒绝、升级失败回滚、离线重启）\n- manifest 预检 0 error / 0 warning\n- 宿主级验收：切换、3 张牌阵布局图、8/11 映射、逆位旋转、离线重启全部通过\n- 资源包：`kindred-arcana-1.0.0-rc.5-public.zip`，224,506,403 字节，SHA-256 `47969bf8015f3025d1d5af6e84caff0a9e6c2461688c5aef6792bb20c5480a1b`\n\n## 许可\n\n- 插件代码：AGPL-3.0\n- 灵契秘仪牌面：`LicenseRef-Kindred-Arcana-Artwork`，仅授权随插件下载与使用，禁止单独转售/再分发/商用；详见牌组仓库 `LICENSE-ARTWORK.md`、`RIGHTS.md`、`ATTRIBUTION.md`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.a0000xz.maibot-tarots-plugin",
+            "version": "2.1.0",
+            "name": "塔罗工坊",
+            "description": "面向 MaiBot 新版插件系统的塔罗占卜插件：11 种牌阵、可自定义牌阵与牌组、桌布风布局图、麦麦人设解牌；支持独立牌组资源包「灵契秘仪」（首次启用下载并校验）",
+            "author": {
+              "name": "A肆零西烛",
+              "url": "https://github.com/A0000Xz"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "homepage": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "documentation": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/blob/main/README.md",
+              "issues": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "sparkles"
+              }
+            }
+          }
+        },
+        {
           "version": "2.0.1",
           "tag": "v2.0.1",
           "commit": "7b51e4844233fc8d5ff5628757dcee04d09040cf",
