@@ -57196,6 +57196,65 @@
         "stable"
       ],
       "rejected_releases": []
+    },
+    {
+      "id": "github.haoxiangxia.omp-agent",
+      "manifest_id": "github.haoxiangxia.omp-agent",
+      "repositoryUrl": "https://github.com/HaoxiangXia/maibot-omp-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "f488b2c2de653a81d49c7242be6d93e736e2d643",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T08:23:49Z",
+          "release_url": "https://github.com/HaoxiangXia/maibot-omp-plugin/releases/tag/v1.2.0",
+          "release_notes": "架构升级为 Ephemeral RPC-UI 流式双向交互；双层动态心跳看门狗；OMP 原生扩展与 Unix Domain Socket 外部状态监听；ask 决策窗口与跨环境 Session 互斥锁；RPC 周期性进展卡片；HTML 导出开关解耦。\n\n发布准备：按插件市场规范对齐 manifest（host 兼容上限 1.3.99、精简 capabilities、补充 plugin_type），补全 GPLv3 许可证全文，新增 config.example.toml；修复未配置代理时继承失效代理变量的问题。\n\n完整变更见 CHANGELOG.md [1.2.0]。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.haoxiangxia.omp-agent",
+            "plugin_type": "tool",
+            "version": "1.2.0",
+            "name": "OMP Agent 插件",
+            "description": "提供 /omp 显式指令直通调用宿主机 OMP 执行代码与开发任务，内置 RPC-UI 流式双向交互、Bubblewrap 沙盒隔离、原生扩展状态监听与 QQ 原生卡片回传",
+            "author": {
+              "name": "HaoxiangXia",
+              "url": "https://github.com/HaoxiangXia"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/HaoxiangXia/maibot-omp-plugin",
+              "homepage": "https://github.com/HaoxiangXia/maibot-omp-plugin",
+              "documentation": "https://github.com/HaoxiangXia/maibot-omp-plugin/blob/main/README.md",
+              "issues": "https://github.com/HaoxiangXia/maibot-omp-plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
