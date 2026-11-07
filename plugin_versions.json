@@ -57458,6 +57458,60 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "Alcpare.chat_guard",
+      "manifest_id": "Alcpare.chat_guard",
+      "repositoryUrl": "https://github.com/Alcpare/maibot_chat_guard_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.7.0",
+          "tag": "0.7.0",
+          "commit": "e323990940568180b9a97b14889269c8680f5992",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-06T14:05:38Z",
+          "release_url": "https://github.com/Alcpare/maibot_chat_guard_plugin/releases/tag/0.7.0",
+          "release_notes": "联系方式：1373558257@qq.com\n\n> ⚠️ **这是测试版。** 建议先在小号或测试群观察一段时间，别直接上正式群。\n\n## 这个插件做什么\n\n给麦麦的回复加一层护栏。四个模块，各自管一件事，都能单独开关。\n\n---\n\n## 1️⃣ 打字节奏\n\n**解决什么**：她回得太快，一眼就是机器。\n\n只对 **2~24 字**的消息设置 typing，让短回复也有「正在输入」的过程。\n\n- 太短的（「在」「嗯」）不处理——本来就该立刻发\n- 太长的宿主自己会等，再叠加就让人等太久\n\n配置项：字数上限 / 字数下限 / 跳过的消息（正则）\n\n---\n\n## 2️⃣ 回复规则（核心）\n\n**解决什么**：她说话像写文章、像台词，不像微信里随手打的。\n\n每轮往提示词里写规则，两个模板管两个阶段：\n\n| 模板 | 注入到 | 管什么 |\n|---|---|---|\n| `template` | **Replyer**（写回复的模型） | 她这一轮该怎么说话 |\n| `planner_template` | **Planner**（决定回不回、怎么回的模型） | 它该怎么写「回复指引」 |\n\n**为什么两个阶段都要注入**：Planner 定方向、Replyer 写话。只改 Replyer 的话，Planner 给的指引可能已经是「平淡接一句」，Replyer 只能照着写，规则白设。\n\n字段里带 ①②③ 编号，对应注入顺序。\n\n用词黑名单有 42 个词，会替换进 `template` 的 `{words}` 占位符。加词就写在词表里，不用改模板。\n\n---\n\n## 3️⃣ 系统文案拦截\n\n**解决什么**：框架有些硬编码文案（「我暂时失忆了」「已清空 Maisaka 历史上下文」）会在某些情况下被当成她说的话发出去，一看就穿帮。\n\n在发送前扫一遍，命中正则就拦掉。\n\n---\n\n## 4️⃣ 学习守卫\n\n**解决什么**：她有个表达学习机制，会把群里的说法学进表达库复用。但它有时候会把「句尾加个感叹号」这种死板模板也学进去，之后每句都套同一个尾巴。\n\n在 `expression.learn.before_upsert` 上拦一道：\n\n- **白名单**（`vary_marks`）：描述里有「用」「换」「每次」这类可变特征 → 放行\n- **黑名单**（`guard_patterns`）：固定尾缀 / 行为模板 / 纯引号原话 → 拦掉\n\n---\n\n## 用了哪些 Hook\n\n| Hook | 用在哪个模块 |\n|---|---|\n| `send_service.before_send` | 打字节奏 + 系统文案拦截 |\n| `maisaka.replyer.before_model_request` | 回复规则（Replyer 侧） |\n| `maisaka.planner.before_request` | 回复规则（Planner 侧） |\n| `expression.learn.before_upsert` | 学习守卫 |\n\n全部是 SDK 正式内置 Hook，不是私有补丁。\n\n---\n\n## 兼容性\n\n- MaiBot **1.3.19 ~ 1.3.99**（需要 `custom_pages` 之外的常规能力）\n- 插件 SDK **2.9.0 ~ 2.21.99**\n\n---\n\n## 已知限制\n\n- `system_text.patterns` 和 `learn.guard_patterns` 是正则，写错了该条规则会失效（启动时会打 warning，可在日志搜 `[护栏]`）\n- 回复规则依赖宿主的 `SystemMessageItem` 结构，宿主改了这个结构注入会失败\n- 学习守卫只拦「新入库」，已经入库的旧表达不会自动清理，需要手动删\n\n---\n\n## 更新日志\n\n### v0.7.0（测试版，首个公开版本）\n\n精简为四个模块。相比早期内部版本，去掉了三个模块：\n\n- `duel`（怼人句式监控）— 和注入规则重复\n- `dedupe`（重复文本防抖）— 一直是观察模式，没实际拦过\n- `literary`（文学腔监控）— 词表和 `inject.words` 完全重叠，已合并（18 → 42 词）\n\n同时移除了所有模块的 `action`（force/log）字段，行为固定——切 log 只观察的用法在调好之后就不需要了。\n\n---\n\nMIT License\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.7.0",
+            "name": "mai输出拟人强化",
+            "description": "让麦麦说话更像人：打字节奏（短回复也打一会儿字）/ 每轮注入回复规则（Replyer + Planner 双阶段）/ 拦截系统话术外泄 / 学习守卫（防止固定模板学进表达库）",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_chat_guard_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_chat_guard_plugin",
+              "issues": "https://github.com/Alcpare/maibot_chat_guard_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.chat_guard"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
