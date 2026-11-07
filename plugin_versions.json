@@ -21334,6 +21334,51 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "c791d966295fa4e93dcc883664db95ebe6cb68ed",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T06:39:43Z",
+          "release_url": "https://github.com/ValleyWinds/Filter-sama/releases/tag/v1.2.0",
+          "release_notes": "# v1.2.0\n\n## 主要功能\n\n- 拦截：聊天回复命中关键词后，先自动让麦麦重新生成（默认 2 次，可在 WebUI 调整），多次重试仍命中才拦截不发送，不再一刀切吞掉本可挽救的回复\n- 拦截：新增「重试约束提示」配置项，可按机器人人设自定义触发重新生成时告知模型的要求说明\n- 命令：`/filter_test` 的生成结果被拦截时，会话内会收到「[已拦截]」提示（此前只在日志留痕）\n\n## 细节\n\n- 拦截：重试次数受主程序硬上限（3 次）约束，配置超过时按上限生效；重试仅对聊天回复生效，主动发言等不经回复链的出站消息仍直接拦截\n- 兼容：版本区间锁定 MaiBot 1.2.0 ~ 1.3.99 / Plugin SDK 2.6.0 ~ 2.99.99\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.valleywinds.filter-sama",
+            "version": "1.2.0",
+            "name": "出站消息过滤器(Filter-sama)",
+            "description": "出站消息过滤器：当 MaiBot 的回复命中你配置的提示词时，先请求模型重新生成（次数可配置），多次重试仍命中则直接拦截不发送，只在日志中留一条记录。支持多条提示词与 contains / exact / regex 三种匹配模式；可选开启 /filter_test 命令，跳过 planner 直接把消息喂给 reply 模型生成并发送，用于联调验证。",
+            "author": {
+              "name": "ValleyWinds",
+              "url": "https://github.com/ValleyWinds"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ValleyWinds/Filter-sama",
+              "homepage": "https://github.com/ValleyWinds/Filter-sama",
+              "documentation": "https://github.com/ValleyWinds/Filter-sama#readme"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "changelog": "CHANGELOG.md",
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.4",
           "tag": "v1.1.4",
           "commit": "abd6ffcd1c7d362a0a111ee056715f580f72500b",
