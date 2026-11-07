@@ -40740,6 +40740,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.0",
+          "tag": "v0.8.0",
+          "commit": "3d4a2b6c95796af14b8d541f90a2db334ee490f9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T13:08:11Z",
+          "release_url": "https://github.com/orge-8/char-recog/releases/tag/v0.8.0",
+          "release_notes": "## 0.8.0 · 性能、内存与运行数据治理\n\n纯工程优化，不改变模型结构、权重格式、判定公式或阈值语义；旧 `weights.pt`、暂停断点、报告与回滚链继续可用。\n\n### 主要变化\n- 推理运行时就绪与模型加载拆分，不再预热全部角色模型；模型缓存默认 16 个、LRU 淘汰。\n- 每个推理 worker 一个常驻 I/O 线程，替代每请求线程；推理默认 1 个 CPU 线程。\n- 训练批解码预取、验证集确定性缓存（上限 128 MiB）、RSS/进度降频、流式 SHA256。\n- 新增查询索引与长宽比预筛；模型状态合并查询；报告 JSON mtime 缓存。\n- 缩略图单页一次清理并按 96 MiB + 4096 条 LRU；固定轮询改为活动驱动。\n- 原图内容寻址 `blobs/` + 硬链接，启动时幂等迁移旧重复文件；缓存清理仅处理可再生成内容。\n- 运行环境页新增存储与模型缓存面板；新增单包发布与同机微基准工具。\n\n### 验证\n- devkit 门禁：PASS 3 / SKIP 0 / FAIL 0\n- pytest：465 passed / 3 skipped / 468 collected\n- check_plugin：PASS 75 / WARN 14 / FAIL 0\n- 发布包 `char-recog-0.8.0.zip` SHA256：`0b4f698a4f9da8b160ed082e95f84955c50931fd547b7d78bc764d01ad923ac4`\n\n### 说明\n- 本轮未在 MaiBot 1.4.0 / SDK 2.21.0 真机验证，manifest 兼容上限保持不变。\n- `torch`/`torchvision`/`psutil` 由管理员显式安装到插件依赖覆盖层，不写入 manifest 以避免宿主强制安装约 2.7 GB 的 GPU 包。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.8.0",
+            "name": "角色识别",
+            "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/orge-8/char-recog",
+              "homepage": "https://github.com/orge-8/char-recog",
+              "documentation": "https://github.com/orge-8/char-recog#readme",
+              "issues": "https://github.com/orge-8/char-recog/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.11.0",
+              "max_version": "2.13.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<14"
+              },
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=2,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "imagehash",
+                "version_spec": ">=4.3,<5"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "org.civetc.char-recog",
+            "plugin_type": "media",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "scan-face",
+                "background": "#F7F1E4"
+              }
+            }
+          }
+        },
+        {
           "version": "0.7.0",
           "tag": "v0.7.0",
           "commit": "383b4040c601d30d2ed5dbca7ad43af7b678879a",
