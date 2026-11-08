@@ -57895,6 +57895,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "2.0.0",
+          "commit": "e1e61ba8cddc461ba29a007e5368afbd83e68fca",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T09:38:58Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-I-deepseek/releases/tag/2.0.0",
+          "release_notes": "「浪费」和「主动」两个原型，以及落在 WebUI 上的念头。\n\n① 留念：一条不衰减的保留理由。新表 `gap_keepsakes`，里面刻意没有 `salience` 列、没有 `expires_at` 列。整套记忆是显著度驱动的，每一条都在问同一个问题——这东西值不值得占地方？参数调到再宽问的还是这句话，只要还在问，答案迟早是「不值得」。所以这里换一条理由：她不想扔。淘汰规则也跟着反过来了：满了（12 件）不会自动清理，只注入一句「放不下了，可以挑一件放掉，也可以什么都不做」，而且刻意不列出是哪几条——列出来模型就会按「哪条最没用」排序，那正是要避免的价值观。按时间淘汰恰好淘汰掉最像留念的那些，所以「满了得她自己挑」是唯一自洽的规则；只要自动淘汰存在，它就退化成「12 个格子的收藏夹」。收集判据不是「重不重要」而是有没有用（说错的一个词 → 收；「他说下周要考试」→ 待办，不收）。出口只有一个：说出来，或者你手动放掉。代码里刻意没有任何往回复器注入留念的 `render_*` 函数——一个东西被收下来之后如果立刻用来改善回复，那它就不是没用的东西了。\n\n② 主动：只能翻她自己的记忆。先说限制：宿主没有 `web.search` / `web.fetch`（78 项能力里 0 项 `web.*`），所以「好奇 → 自己去查」做不了，做出来也是编的，而编出来的东西会违反她自己人设里那句「不现编」。能真做的替代是回读自己的过去：`gap_history` 的几百条原文 / `open_loop` 里悬着的事 / `gap_keepsakes` 里的东西。于是「主动」变成「刚才那句我好像没听明白 → 空闲时回去翻 → 发现原来是这样，或者翻完还是不认同」——这是真好奇，不需要假装见过任何东西。出口是宿主的 `maisaka.proactive.trigger`，宿主自己在任务提示里写着「自行决定是否回复以及如何表达」，所以传过去的 `intent` 是状态不是命令（三段模板里没有一句「你该去跟他说」）。八道闸之后才可能开口（开关 / 素材 / 精力 / 免打扰 / 边界感 / 空闲 90 分钟 / 冷却 8 小时 / 每天 1 次），每一次跳过都写进库并带上原因——主动功能最难排查的从来不是「她为什么说了」，而是「她为什么又没说话」。默认关着，因为这一块真的会主动发消息。\n\n③ WebUI 补上三块面板（念头 / 留念 / 主动），都默认折叠、都排在记忆下面。三块都没有编辑入口，只能删掉 / 放掉——能改内容就等于替她想，而「她想什么」正好是这个功能本身。念头卡片必须显示它出自哪一句话（没有来源的念头在入库时就被丢掉了，这是她「不是在背后议论人」的唯一可见证据）；留念不显示「已用 3/12」（那个数字会读成待办进度条，暗示该清理了）；主动栏连「没开口」也列出来并写明原因（只显示成功的话，出问题时那一页永远是空的，看不出是没触发还是被哪个闸挡住了）。顺带修了个旧问题：刷新按钮原来只重载记忆那三样，情绪 / 人物 / 喜好 / 新三块全停在旧数据上，点了刷新会以为「情绪没变」。\n\n④ 「洞」的判据漏了最重要的一种。用户实测报告说，早上 6:00–11:00 没开机，群里照样有人说话。我去翻了连接器，那 10 条确实都在、也确实被补抓回来了；可是插件这边的 `gap_unread` / `gap_history` 一直是 0 行——也就是说她读到那 20 条之后，表现得像那天全程都在场。根因在切分的判据上：原来只把「超出最后 30 条读窗口的那部分」算洞，而补抓回来的 20 条全都落在窗口里，洞永远是空的。「补回来」不等于「她当时看见了」，这两件事之间差着一个「那会儿她在不在」。改成拿宿主的 `online_time` 算出她真正离线的区间，落在那段里的消息无论在第几条都算洞，并且要从读窗口里扣掉——告诉她「这 10 条你一条都没看到」又把同一批塞进她的读窗口，等于自相矛盾。判据整体依赖同一份在线数据，所以读不到时退回旧算法：不知道 ≠ 不在，把「不知道」猜成「不在」会让每个老会话一启动就报「你错过了一大段」。现在那条真机的洞长这样：「今天 06:42 到 10:47 之间积了 10 条消息，你不在。」\n\n另：配置 179 → 192 项（新增 `[keepsake]` 4 / `[proactive]` 9），数据库 13 → 15 张表（`gap_keepsakes` / `gap_sparks`），`@API` 21 → 27 个，`tests.py` 1436 → 1568 项（新增 [20] 留念 / [21] 主动，外加三个面板的全套接口断言、以及洞判据的 18 组断言），`check_page.py` 203 → 234 项（新增 [17] 三块面板）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.TommyAAKK.maibot-I-deepseek",
+            "version": "2.0.0",
+            "name": "我，deepseek",
+            "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "homepage": "https://github.com/TommyAAKK/maibot-I-deepseek",
+              "documentation": "https://github.com/TommyAAKK/maibot-I-deepseek#readme",
+              "issues": "https://github.com/TommyAAKK/maibot-I-deepseek/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "2.0.0"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "3.0.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate",
+              "frequency.get_adjust",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger",
+              "database.query",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "1.3.0",
           "commit": "cce340e216d114885743537c4c2f82f9f7325634",
