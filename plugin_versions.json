@@ -24423,6 +24423,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.16.1",
+          "tag": "v0.16.1",
+          "commit": "bde256b8fc5d98b6080d61f9896637126afa23b7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T03:57:00Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.16.1",
+          "release_notes": "## MaiWork 0.16.1 · 随口一问收口 + 构想先手小样 + 个人资讯顺口提 + 闲时探索改稿\n\n### 新功能与改进\n\n- **群友「随口一问」更轻快精准**：代码统一钉死随口一问任务的只读感知与网页检索工具集、跳过多余技能与报告模板，回复原文支持文件或结构化交回双通道自动落盘；同时区分「查外部事实」与「纯写稿 / 改写 / 整理群聊」，不再逼纯写文案的活硬塞无关链接。\n- **构想自带「先手小样」**：可执行类构想在专岗调查阶段若已真打开外部页面核实到具体实情，会自动把结论摘要、要点与核实过的出处链接存成先手小样（网页构想卡片打「附先手小样」标并露一句实情，点开详情可直接查看要点与核实外链）；群友自己聊到相关话题时，也会把查到的实情与出处递给 MaiBot 顺手接话。\n- **关注成员「个人资讯顺口提」开关（按群默认关闭）**：「群页 → 本群设置 → 主动发言」新增「个人资讯顺口提」开关（默认关，不占群每日主动发言额度）。开启后，仅当在册关注成员本人刚发最后一条消息且命中其本人近 3 天高分个人资讯关键词时，才往 MaiBot 备忘塞一条经隐私脱敏的自然提示（「别说怎么留意到的」），受 30 分钟冷却与 24 小时次数上限节制。\n- **闲时探索与自我学习减少误杀**：英文 `ignore` 只拦独立单词（兼容全角与零宽变形），不再误伤 `.gitignore`、`ignore_errors` 等正常代码标识；闲时探索通过外部文档打开与沙箱真机试跑两道硬门槛后，若仅因格式或正文误带裸网址卡住，先脱敏打码再给主模型 1 次原地修正机会（重过全部检查才入库，涉成员私下画像直接丢弃不送改）。\n\n### 修复与保鲜\n\n- 群画像每类条目增加代码硬上限，「最近在聊」超过 7 天未再提及自动清理，派活提示词改为按类别轮流取条目，固定提炼规则移入系统提示以利缓存命中；\n- 修复派活接手双回执、工作会话澄清死循环与待批提醒；\n- 资讯标题查重提速并移出事件循环，每日清理覆盖已移出服务群的历史消息副本。\n\n### 其他\n\n- 配置版本保持 **0.5.5**、数据库库号保持 **50**（均无变化，**直接覆盖插件文件并保留 `config.toml` 即可升级**）。\n\n详见 [升级说明](docs/guide/upgrade.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.16.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.16.0",
           "tag": "v0.16.0",
           "commit": "cc091a0452d114a2d425a73ed94488ff7710fcea",
