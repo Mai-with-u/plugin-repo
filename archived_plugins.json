@@ -13717,5 +13717,140 @@
       "ignored_tags": [],
       "rejected_releases": []
     }
+  },
+  {
+    "id": "github.42yoru.maimai-sim-trader",
+    "repositoryUrl": "https://github.com/46yoru/maimai_sim_trader",
+    "archived_at": "2026-11-08T21:48:01.736Z",
+    "checked_at": "2026-11-08T21:48:01.736Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "github.42yoru.maimai-sim-trader",
+        "version": "0.10.0",
+        "plugin_type": "automation",
+        "name": "麦麦模拟盘",
+        "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "line-chart",
+            "background": "#F3B27A"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/46yoru/maimai_sim_trader",
+          "homepage": "https://github.com/46yoru/maimai_sim_trader",
+          "documentation": "https://github.com/46yoru/maimai_sim_trader/blob/main/README.md",
+          "issues": "https://github.com/46yoru/maimai_sim_trader/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "chat.get_group_streams",
+          "chat.get_private_streams",
+          "config.get",
+          "llm.generate",
+          "message.get_recent",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        }
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest_id": "github.42yoru.maimai-sim-trader",
+      "repositoryUrl": "https://github.com/46yoru/maimai_sim_trader",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.10.0",
+          "tag": "v0.10.0",
+          "commit": "06faaf6970316474ae35e675254aef7b2f2f7620",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T16:25:04Z",
+          "release_url": "https://github.com/46yoru/maimai_sim_trader/releases/tag/v0.10.0",
+          "release_notes": "### 主要功能\n\n- **播报知道「现在几点」了**。播报提示词补上「现在是 YYYY-MM-DD（周X）HH:MM」，\n  群聊上下文每句话前面也带上发生时刻（`10:42` / `昨天 22:41` / `11-04 22:41`）。\n  原来这两处都没有时间：模型拿到「群里刚才在聊」，只能默认那是刚刚，\n  于是一早的播报还在接前一晚的「晚安要抱抱」。\n\n- **群聊上下文按年龄注入**。宿主 `message.get_recent` 的窗口固定是最近 24 小时，\n  早上群里还没人说话时，拿回来的最新几条全是昨晚的，而且会一轮一轮原样重注。\n  新增 `notify.context_max_age_minutes`（默认 120）：最新一条超过这个年龄就整块不注入，\n  等于告诉模型「群里现在没人聊」。取消息时也多要一倍，避免 bot 自己发言和超龄消息\n  把新鲜的那几条挤掉。\n\n- **行情新鲜度按「交易时钟」逐只校验**。原来只比对日期，同一交易日内行情源停在\n  上午十点也照样下单；而且是集合判断 —— 20 只票里 1 只是今天的、19 只是昨天的也放行。\n  现在逐只算落后多少「交易时钟」秒（午休不算落后，13:00 刚开盘不会被误判成落后一个半小时），\n  过期的票仍然给模型看，但不允许下单。新增 `[quote] max_lag_seconds`（默认 120）。\n\n- **下单前复核报价，漂移过大就放弃这一笔**。行情在每轮开头拉一次，之后要跑 K 线、\n  等模型思考几十秒才下单 —— 日志实测「决策完成→下单成功」只隔几十毫秒，\n  说明漂移窗口全在模型那一段。新增 `[quote] recheck_before_order` 与\n  `drift_tolerance_pct`（默认 1.5%）：下单前重拉一次待操作的票，用新价算限价，\n  偏离超过阈值就记一笔「决策价 X、现价 Y」并跳过；复核失败则本轮一律不下单。\n\n- **`plugin.py` 按职责分层**。2177 行的单文件拆成：`config.py`（配置模型）、\n  `constants.py`（共用常量）、`limits.py`（风险档与额度块）、`util.py`（字段兼容小工具）、\n  `market_hours.py`（交易时段与交易时钟）、以及五个 Mixin —— `command_mixin.py`、\n  `tool_mixin.py`、`execution_mixin.py`、`round_flow_mixin.py`、`broadcast_mixin.py`。\n  `plugin.py` 只剩装配、生命周期与调度，426 行。行为不变，测试一条没改。\n\n### 细节\n\n- 播报记录的 `at`、轮次记录的时间改用 `%Y-%m-%d %H:%M`（带年份），\n  且与本轮决策用的是同一个时刻，不再各自 `datetime.now()`\n- `Quote` 增加 `updated_datetime` / `updated_hhmmss`，`to_brief()` 末尾带上快照时刻\n- 配置模版补上漏掉的 `[schedule] timezone`（代码里一直有这个字段）\n- 新增结构不变量测试：多继承下 Mixin 之间不允许方法重名、Mixin 不允许定义 `__init__`\n- 新增 `tests/test_context_time.py`（11 项）与 `tests/test_quote_freshness.py`（16 项）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.10.0",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
   }
 ]

@@ -2224,7 +2224,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.1.5",
+      "version": "2.1.6",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -2244,7 +2244,7 @@
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.21.0"
+        "max_version": "2.22.1"
       },
       "dependencies": [
         {
@@ -12655,7 +12655,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.26.2",
+      "version": "1.26.4",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -16442,7 +16442,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.azurlane.blhx-wiki-maibot",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "plugin_type": "tool",
       "name": "碧蓝航线 wiki",
       "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
@@ -22004,63 +22004,6 @@
     },
     "assets": {
       "icon_64": "icons/github.hekat87.group-wake.webp"
-    }
-  },
-  {
-    "id": "github.42yoru.maimai-sim-trader",
-    "manifest": {
-      "manifest_version": 2,
-      "id": "github.42yoru.maimai-sim-trader",
-      "version": "0.10.0",
-      "plugin_type": "automation",
-      "name": "麦麦模拟盘",
-      "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
-      "display": {
-        "icon": {
-          "type": "local",
-          "value": "icon.png",
-          "fallback": "line-chart",
-          "background": "#F3B27A"
-        }
-      },
-      "author": {
-        "name": "42yoru",
-        "url": "https://github.com/42yoru"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/46yoru/maimai_sim_trader",
-        "homepage": "https://github.com/46yoru/maimai_sim_trader",
-        "documentation": "https://github.com/46yoru/maimai_sim_trader/blob/main/README.md",
-        "issues": "https://github.com/46yoru/maimai_sim_trader/issues"
-      },
-      "changelog": "CHANGELOG.md",
-      "host_application": {
-        "min_version": "1.3.9",
-        "max_version": "1.4.99"
-      },
-      "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.50.50"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "chat.get_group_streams",
-        "chat.get_private_streams",
-        "config.get",
-        "llm.generate",
-        "message.get_recent",
-        "send.text"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      }
-    },
-    "assets": {
-      "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
     }
   }
 ]
