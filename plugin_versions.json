@@ -44741,6 +44741,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "8063a6f67493c347c2c0219d4d71203db96e9bca",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T15:33:31Z",
+          "release_url": "https://github.com/senhan1337/MaiBot-blhx-wiki/releases/tag/v0.1.3",
+          "release_notes": "fix: 猜老婆动态立绘与超时修复、Tool 查询结果直发、wiki clear 判定兜底\r\n\r\n* 猜老婆：立绘每局从 wiki 动态抓取（内存裁切不落盘，wiki clear/清缓存不再影响），失败自动换舰娘重试，错误选项改从名称列表抽取\r\n* 猜老婆：超时清理核对同一局，修复旧任务误清新一局导致的秒超时；每条消息到期兜底，空闲期收尾不再滞后；裁切区域 200→150\r\n* commands.py：Tool 查询结果直接发送到会话（原先图片被丢弃，群里无输出）\r\n* commands.py：wiki clear 管理员判定加 message.user_info.user_id 兜底\r\n* text.py：新增 user_id_from_kwargs 兜底函数\r\n* tests：新增 test_text.py（user_id 兜底）、test_quiz.py（候选抽取）\r\n\r\nchore: Tool 描述合并、文案与日志清理\r\n\r\n* plugin.py：@Tool 描述双字段合并为单一 description（新版文档口径）\r\n* quiz.py：删排障日志块，图片不足提示改「先查询几次舰娘」\r\n* tech.py：格式提示[科技分类]改[属性]\r\n* commands.py：help_text 大图/皮肤原图标注（暂未实现）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.azurlane.blhx-wiki-maibot",
+            "version": "0.1.3",
+            "plugin_type": "tool",
+            "name": "碧蓝航线 wiki",
+            "description": "碧蓝航线 wiki 查询插件：舰娘、装备、配装、关卡、榜单查询，猜老婆小游戏。",
+            "author": {
+              "name": "senhan1337",
+              "url": "https://github.com/senhan1337"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/senhan1337/MaiBot-blhx-wiki"
+            },
+            "host_application": {
+              "min_version": "0.10.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=5.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "b0f2396371d9319ce3a01788658895bc94f56186",
