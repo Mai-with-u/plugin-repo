@@ -27447,6 +27447,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.26.4",
+          "tag": "v1.26.4",
+          "commit": "e454c413e941093a57b9fcc6a529dae1e8b03125",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T15:25:05Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.26.4",
+          "release_notes": "### 修复\n\n- **休息积压在生成前即标记消费（#24）**：`_prompt_payload(consume_backlog=True)` 此前在生成前就调用 `consume_rest_backlogs` 将积压标记 `consumed=1`——生成/发送失败后积压不再补读。现在改为 `take_rest_backlogs`（只取不标），确认推迟到 `on_send_after` 回复成功发送后按 id 幂等确认；失败/抑制/裁剪的积压保留补读资格，下一轮重新注入。\n- **冷启动主动任务提示推荐无效 msg_id（#25）**：`planner_instruction` 在取不到最近真实消息号时不再输出「把 msg_id 设为该任务编号」的旧措辞（宿主 reply 无法识别 proactive:xxx 编号，模型照做必然报错重试）；改为明确说明「本轮没有可引用的真实用户消息锚点」并保留防误用约束。\n- **参考图直发未确认请求查询语义（#26）**：RPC 结果未知时登记未确认 `request_id` 并在下次触发时先查询原请求（`drawpic_request_v2`）——确认已受理则本轮不重画也不设 fail 标记（任务可能在生成中）；确认从未受理则设当日标记回退文字引导。受理前措辞改为「正在请求生成」（不再声称「已生成」）。未确认期间 guide 返回空串，不注入任何生成相关提示。\n\n### 说明\n\n- 合并 PR #23（by BardKing-CN）：参考图直发适配绘图插件 v2 契约——显式 `task_type=edit_image`、v2 回执 `accepted/task_id` 解析。\n- 旧配置无需改动：新增配置均有默认值。\n\n- 536 项测试通过（+5：积压 take/confirm、冷启动措辞、未确认查询）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.26.3...v1.26.4\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.26.4",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "GPL-3.0",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "webui.claim_upload",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.26.2",
           "tag": "v1.26.2",
           "commit": "8af6cf107004fe4c7632a908a6b049f9bc551bb9",
