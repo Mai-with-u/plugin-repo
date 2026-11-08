@@ -655,7 +655,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.15.10",
+      "version": "1.15.11",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -9948,7 +9948,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maitu.photo-studio",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "name": "麦麦写真",
       "description": "让麦麦更真实地发送照片：真实照片生成、人物/服装/场景参考图库与聊天连续性。",
       "author": {
@@ -9964,7 +9964,7 @@
       },
       "host_application": {
         "min_version": "1.3.6",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -10708,7 +10708,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "mailife.mai-life",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "麦麦生活",
       "description": "自动生成每日日程与生活分享，统一管理当前聊天流的单次定时意图，注入跨天活动并在到期时唤醒规划器。",
       "author": {
@@ -10724,7 +10724,7 @@
       },
       "host_application": {
         "min_version": "1.3.1",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.7.1",
@@ -12201,9 +12201,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "1.4.2",
+      "version": "1.4.4",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因；1.4.2：新增「独占 @」（[plugin] strip_external_at，默认开启）——本轮回复的发送在 before_send 入口无条件剥离宿主 attach_at/其它插件注入的 at 组件，由插件按权重决定唯一的一个 @，并新增 LATE 兜底清掉后序插件新注入的 at（只放行插件登记的目标），消除「真实 at + 正文手写假 @」重叠；修复多段发送首段截回把宿主 attach_at 的 [at, 空格, 正文] 空格组件当正文替换掉导致 at 与正文粘连的问题（截回现在保留紧跟 at 的空白段）；main 分支冻结在 1.4.2，仅支持 MaiBot <=1.3.99；MaiBot 1.4.0+ 请使用 host-1.4.0 分支（1.4.3 起移除已从宿主删除的 emoji.maisaka.before_select Hook）",
+      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换或整条覆盖；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因；1.4.2：新增「独占 @」（[plugin] strip_external_at，默认开启）——本轮回复的发送在 before_send 入口无条件剥离宿主 attach_at/其它插件注入的 at 组件，由插件按权重决定唯一的一个 @，并新增 LATE 兜底清掉后序插件新注入的 at（只放行插件登记的目标），消除「真实 at + 正文手写假 @」重叠；修复多段发送首段截回把宿主 attach_at 的 [at, 空格, 正文] 空格组件当正文替换掉导致 at 与正文粘连的问题（截回现在保留紧跟 at 的空白段）；1.4.4：分段后回车处理默认改为「额外拆分一段」（只拆第一处，其余回车压成空格，避免同一条消息内出现换行）；main 分支继续维护 MaiBot <=1.3.99 兼容线；MaiBot 1.4.0+ 请使用 host-1.4.0 分支（1.4.3 起移除已从宿主删除的 emoji.maisaka.before_select Hook）",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -12503,7 +12503,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.16.0",
+      "version": "0.16.1",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -12655,7 +12655,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.26.1",
+      "version": "1.26.2",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -13428,9 +13428,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "name": "better-diary 日记插件",
-      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；天气与归档术语以当天原文为据，线索不足时只按氛围选。权限 fail-closed：先配 admin_ids 才可用。",
+      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；选材兼顾分数与人物/题材多样性（同人最多 2 件、群趣闻可回填），篇幅按素材量分短中长三档；天气与归档术语以当天原文为据，线索不足时只按氛围选。权限 fail-closed：先配 admin_ids 才可用。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -13441,7 +13441,7 @@
       },
       "host_application": {
         "min_version": "1.2.3",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.8.0",
@@ -14110,9 +14110,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "name": "QQ 名片点赞",
-      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令和自然语言点赞",
+      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令、自然语言和每日定时点赞",
       "author": {
         "name": "FleetingEternity-qyt",
         "url": "https://github.com/FleetingEternity-qyt"
@@ -14126,7 +14126,7 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.7.1",
@@ -15579,7 +15579,7 @@
     "id": "org.civetc.char-recog",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.8.1",
+      "version": "0.8.2",
       "name": "角色识别",
       "description": "按角色标注、训练与版本管理（每角色一个二分类模型）；自动识别收到的图片中的角色并添加上下文提示。基于 SengokuCola/MaiSelfPlugin 泛化改造。",
       "author": {
@@ -16605,7 +16605,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.7.47",
+      "version": "0.7.49",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -18608,7 +18608,7 @@
       "manifest_version": 2,
       "id": "yayimiko.moss-image",
       "name": "MOSS 绘图",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "description": "MaiBot 的 MOSS 生图插件：原文直出、漫画/表情包、风格与 OC、图片反推，通过 ComfyUI 发送到 QQ。",
       "author": {
         "name": "YayiMiko",
@@ -18623,11 +18623,11 @@
       "plugin_type": "media",
       "host_application": {
         "min_version": "1.3.1",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.8.2",
-        "max_version": "2.13.99"
+        "max_version": "2.21.99"
       },
       "i18n": {
         "default_locale": "zh-CN",
@@ -18649,7 +18649,7 @@
         {
           "type": "python_package",
           "name": "pillow",
-          "version_spec": ">=11,<13"
+          "version_spec": ">=11"
         }
       ],
       "capabilities": [
@@ -18777,7 +18777,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.lbcheng1145.cost-report",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "开销统计",
       "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
       "author": {
@@ -19587,7 +19587,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.1.5",
+      "version": "2.1.6",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -20454,9 +20454,9 @@
       "manifest_version": 2,
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
-      "name": "MaiWeave · 麦织｜与你共织日常",
-      "version": "0.9.2",
-      "description": "把对话织进持续的生活：约定影响日程，天气与真实地点参与安排，读过的书留下进度和感想。关联 MaiBot 人物画像，让昨天的经历接上今天的聊天。",
+      "name": "MaiWeave · 麦织｜角色生活引擎",
+      "version": "0.9.4",
+      "description": "让麦麦有自己的生活，也让你参与其中：自主安排作息、读书、出门、写日记，一句邀约就能改变日程。私聊说过的晚安，到了群里也记得；读你上传的书，接着上次的感想与疑问继续读。结合真实天气和城市地点安排活动，带着当天的经历来聊天、道早晚安、分享小事。",
       "author": {
         "name": "ilworkcn",
         "url": "https://github.com/ilworkcn"
@@ -20930,7 +20930,7 @@
     "id": "kamionichan.search_hub",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.5.7",
+      "version": "0.6.0",
       "name": "MaiBot 搜索中枢",
       "description": "文字搜索与以图搜图：自动组合多个搜索来源，截图可认番剧、角色和出处；长搜索转后台不占用聊天，结果带编号自然接回对话。",
       "author": {
@@ -20957,7 +20957,8 @@
         "web.search",
         "web.fetch",
         "api.call",
-        "component.list_loaded_plugins"
+        "component.list_loaded_plugins",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh_CN"
@@ -21044,7 +21045,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.TommyAAKK.maibot-I-deepseek",
-      "version": "1.3.0",
+      "version": "2.0.0",
       "name": "我，deepseek",
       "description": "为 MaiBot 补充 A_Memorix 未覆盖的情境连续性记忆：未闭合话题、对方情绪、关系线索、自身连续性、共创线索，并在 replyer 阶段以额外回复要求的形式注入。",
       "author": {
