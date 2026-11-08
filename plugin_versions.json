@@ -51381,6 +51381,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "7d1a45c10b0ea301c99fbcdc413d14f3ce82b71f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T06:53:29Z",
+          "release_url": "https://github.com/YayiMiko/maibot_plugin_moss_image/releases/tag/v0.3.1",
+          "release_notes": "## MOSS 绘图 v0.3.1\n\n修复 MaiBot 1.4.x 上本插件导致 Bot 无法启动的问题。\n\n- 依赖声明 `pillow>=11,<13` 放宽为 `pillow>=11`。MaiBot 1.4.x 自带 Pillow 13，原声明会被判定为「插件依赖与共享环境冲突」，直接阻止整个 Bot 启动。\n- `pyproject.toml` 与 CI 仍保持 `pillow>=11,<13`（实际验证过的开发环境），只放宽宿主加载所读取的 `_manifest.json`。\n\n## 如果已经卡在 0.3.0 无法启动\n\nMaiBot 在依赖检查阶段就会拒绝启动，进不去 WebUI 更新插件，需要手动处理一次：\n\n1. 停止 MaiBot。\n2. 把插件目录（仓库名 `maibot_plugin_moss_image`）改名或删除。插件数据在 `data/plugins/yayimiko.moss-image/`，不受影响。\n3. 启动 MaiBot，在 WebUI 插件库安装 0.3.1；或直接把 0.3.1 的 `_manifest.json` 覆盖进插件目录后再启动。\n\n升级方式：在插件库更新到 0.3.1，或替换插件目录后重启 MaiBot。\n\n完整更新记录见 [docs/CHANGELOG.md](https://github.com/YayiMiko/maibot_plugin_moss_image/blob/main/docs/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "yayimiko.moss-image",
+            "name": "MOSS 绘图",
+            "version": "0.3.1",
+            "description": "MaiBot 的 MOSS 生图插件：原文直出、漫画/表情包、风格与 OC、图片反推，通过 ComfyUI 发送到 QQ。",
+            "author": {
+              "name": "YayiMiko",
+              "url": "https://github.com/YayiMiko"
+            },
+            "urls": {
+              "repository": "https://github.com/YayiMiko/maibot_plugin_moss_image",
+              "documentation": "https://github.com/YayiMiko/maibot_plugin_moss_image/blob/main/README.md",
+              "issues": "https://github.com/YayiMiko/maibot_plugin_moss_image/issues"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "host_application": {
+              "min_version": "1.3.1",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.21.99"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.32,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=11"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.image",
+              "send.forward",
+              "api.call"
+            ]
+          }
+        },
+        {
           "version": "0.3.0",
           "tag": "v0.3.0",
           "commit": "cbdba448c2d897097f6ece4dc11cb5abbfcad053",
