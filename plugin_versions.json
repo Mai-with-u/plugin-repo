@@ -27221,6 +27221,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.26.2",
+          "tag": "v1.26.2",
+          "commit": "8af6cf107004fe4c7632a908a6b049f9bc551bb9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T09:34:07Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.26.2",
+          "release_notes": "### 修复\n\n- **「记忆与牵挂」联网见闻 Tab 无法加载的加固（#22）**：见闻摘要的数值解析改为宽容降级（脏时间戳/文本分数不再拖垮整个 Tab，降级为「未知」与 0）；搜索历史时间戳钳制到合法区间；`news_full_text`/`explorations_full_text` 全文拼接加 200K 字符上限——避免数据积累后触及宿主网关 512KiB 响应上限导致该页 502 无法加载。\n- 确认：麦麦绘图联动（含参考图直发）只在私聊生效，群聊不注入。\n\n### 说明\n\n- 若更新后联网见闻页仍无法加载，请提交页面顶部错误横幅的完整文字（截图或复制均可），那里面包含具体错误信息。\n- 官方 QQ 网关管理员绑定流程见 `docs/qq-official-gateway.md`。\n\n- 531 项测试通过（+1 见闻脏行降级回归）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.26.1...v1.26.2\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.26.2",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "GPL-3.0",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "webui.claim_upload",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.26.1",
           "tag": "v1.26.1",
           "commit": "d2d3b36fbc18e9af50192c4ab3e4d072efa19162",
