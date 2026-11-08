@@ -53489,6 +53489,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.6",
+          "tag": "v2.1.6",
+          "commit": "1702d771f1193112295a90bbebd0b50dc14cebce",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T05:42:59Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.1.6",
+          "release_notes": "## 新增功能\r\n\r\n- **整数秒语音输出**：新增默认开启的「输出整数秒语音」选项，在 SILK 聊天语音末尾补静音，将实际时长向上补齐至整数秒\r\n\r\n## 修复功能\r\n\r\n- **聊天语音尾音**：修复 SILK 转码未排出编码器尾部声音导致语音末尾不完整的问题，保留完整末尾采样并补足短结束间隔，覆盖各服务商的聊天转码链路\r\n- **转码缓存**：按编码版本和整数秒开关区分缓存，避免复用旧的截尾结果；\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.1.6",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.5",
           "tag": "v2.1.5",
           "commit": "1cca34a718232939675457d9e0f00fff063eb2bc",
