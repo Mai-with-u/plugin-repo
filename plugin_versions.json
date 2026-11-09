@@ -10500,6 +10500,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.0",
+          "tag": "v1.7.0",
+          "commit": "60841f7d914ad673a22019bf41b1f40adeadb8cc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T15:08:35Z",
+          "release_url": "https://github.com/TAIY2020/llm_balance_plugin/releases/tag/v1.7.0",
+          "release_notes": "## 主要更新\r\n\r\n/余额 改由主程序「命令管理」统一鉴权，配置页支持一键查询余额\r\n\r\n### 升级须知\r\n\r\n* **先配管理员再升级**：`/余额` 不再读取插件自己的管理员列表。升级前请在主程序「插件 → 插件管理权限」中加入自己（格式 `qq:号码`），或在「命令管理」里给 `/余额` 单独授权，否则升级后只有 WebUI 本地控制台能查询\r\n* **`admin_only = false` 不再生效**：原来所有人可用的部署会变为仅管理员可用；如需放开给某个群，请在「命令管理」中为 `/余额` 额外授权该聊天\r\n* **版本要求**：主程序 ≥ 1.3.17，SDK ≥ 2.19.0\r\n\r\n### 新增\r\n\r\n* **配置页一键查询**：插件配置页新增「立即查询余额」按钮，每个已启用平台一行显示余额或错误，并按状态配色，填完凭证当场就能验证。查询的是已保存的配置，在后台进行，与 `/余额` 共用同一轮请求；修改配置后旧结果自动清除\r\n* **使用权限摘要**：配置页显示 `/余额` 当前的管理员人数、本命令额外授权的用户与聊天数；无人可用时标红、命令被停用时标黄，并列出旧管理员列表里尚未迁移的 QQ 号；主程序配置变更后实时刷新\r\n\r\n### 变更\r\n\r\n* **鉴权**：`/余额` 声明为主程序受保护命令（`permission=\"operator\"`），由主程序在调用前统一检查：全局管理员与本命令额外授权的用户/聊天可用，其他插件代发的消息一律无权；无权限时由主程序回复，开启「不显示无权限提示」后静默拦截\r\n* **弃用配置**：`admin_only` / `admin_user_ids` 保留在配置中仅用于迁移提示，启动日志会列出待迁移的 `qq:号码`；配置结构未变，无需手动迁移 `config.toml`",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.7.0",
+            "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
+            "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 和阿里云账号余额，支持 HTML 卡片可视化输出和配置页一键查询，仅依赖 Python 标准库。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/llm_balance_plugin",
+              "homepage": "https://github.com/TAIY2020/llm_balance_plugin",
+              "documentation": "https://github.com/TAIY2020/llm_balance_plugin",
+              "issues": "https://github.com/TAIY2020/llm_balance_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.svg"
+              }
+            },
+            "id": "TAIY2020.llm-balance-plugin"
+          }
+        },
+        {
           "version": "1.6.4",
           "tag": "v1.6.4",
           "commit": "0285da227f8c16ff5fc8ef4af609d2add48b7da7",
