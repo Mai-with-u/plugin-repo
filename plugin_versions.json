@@ -55583,6 +55583,88 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.10.9",
+          "tag": "v1.10.9",
+          "commit": "3b80645a877a239dc34800a2cfb794e20cc3f0f7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T11:37:42Z",
+          "release_url": "https://github.com/uFay0411/maibot-group-timetable/releases/tag/v1.10.9",
+          "release_notes": "新增 AstrBot OneBot v11 群聊适配。\n\n- AstrBot 4.5.7+（例如 NapCat）：下载 astrbot_plugin_group_timetable.zip，在 AstrBot 插件页从文件安装。\n- MaiBot：下载 group_timetable-1.10.9.zip。\n- 支持课表指令、群友看板、ICS 和 WakeUp 导入、自然语言查询与管理、图片识别草稿，以及调用 AstrBot 模型生成的课前提醒。\n- AstrBot 使用独立数据目录，代管权限使用 AstrBot 管理员设置。\n\n验证：MaiBot 回归 383 项通过。使用 AstrBot 4.5.7 官方安装与事件模块验证 ZIP 解包、9 个工具注册、群隔离、管理员、引用导入、PNG、重载及提醒去重。QQ 和模型调用为模拟，未联调实际群聊。",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "tool",
+            "id": "wu.group-timetable",
+            "name": "群聊个人课表提醒",
+            "version": "1.10.9",
+            "description": "群友今日课程状态看板：头像、进行中、下一节、已结束与倒计时；保留群聊课表管理和提醒",
+            "author": {
+              "name": "Wu",
+              "url": "https://github.com/uFay0411"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/uFay0411/maibot-group-timetable",
+              "homepage": "https://github.com/uFay0411/maibot-group-timetable",
+              "documentation": "https://github.com/uFay0411/maibot-group-timetable/blob/main/README.md",
+              "issues": "https://github.com/uFay0411/maibot-group-timetable/issues"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "icalendar",
+                "version_spec": ">=6.3,<8"
+              },
+              {
+                "type": "python_package",
+                "name": "recurring-ical-events",
+                "version_spec": ">=3.8,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2025.1"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<14"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "maisaka.reply.generate",
+              "message.get_by_id",
+              "api.call",
+              "api.list",
+              "llm.generate",
+              "maisaka.context.resolve_image",
+              "config.get",
+              "chat.get_avatar"
+            ]
+          }
+        },
+        {
           "version": "1.10.8",
           "tag": "v1.10.8",
           "commit": "c0cb84446ee63ab54bd94aacb76c4e23fe627946",
