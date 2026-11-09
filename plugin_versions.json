@@ -57851,6 +57851,47 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "2.0.0",
+          "commit": "64864dcb9560013cf2fdcaa0686c508e6a950166",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T02:36:03Z",
+          "release_url": "https://github.com/TommyAAKK/maibot-antibait/releases/tag/2.0.0",
+          "release_notes": "## 改名字了\n\n**AI八股拦截 → 麦麦说人话（原AI八股拦截）**\n\n`id` 没变（仍是 `TommyAAKK.antibait`），老用户不用重装、数据不会丢。\n\n## 从「拦八股」改成「拦太长」\n\n翻了自己 728 条真实回复，原来那 12 条八股规则只命中过 **1 条**——因为这个 bot 压根不说「总的来说」「不是…而是…」。\n\n真正的 AI 味是话太多：\n\n| | 我 | 人类 |\n|---|---|---|\n| 中位字数 | 33 字 | 9 字 |\n| 结尾带颜文字 | 83% | 1% |\n| 带逗号 | 92% | 29% |\n\n所以 2.0 的核心是一条**长度闸门**：\n\n- 盲评「像真人」分：**3.12 → 4.28**（真人参照 4.95）\n- 切题度 **3.42**，改前是 3.41，内容质量零损失\n- 打回理由会明确要求「别变正经，颜文字和语气词照用」，不然越改越像客服（实测不提这句，颜文字只剩 35%）\n\n信号强度是原来 12 条规则的 **16 倍**，而且几乎零重叠。\n\n## 配置界面全中文\n\n原来 30 多个字段只有 `description`，WebUI 上显示的是英文字段名、没有任何说明。\n\n现在 36 个字段全部有中文名 + 说明，并按功能拆成 7 个配置节：\n\n> 插件开关 / 长度闸门（最有效）/ 规则与打分 / 打回与择优 / 赦免（防误杀）/ 口癖库 / 监控记录\n\n## ⚠️ 破坏性变更：配置结构变了\n\n配置从扁平字段改成了 7 个子节（`gate` / `rules` / `retry` / `amnesty` / `tics` / `monitor` / `plugin`）。\n\n**旧配置会自动迁移，你的设置不会丢。** 升级时会通过 `model_validator` 在校验阶段把顶层字段搬到对应子节里。\n\n如果你是从 1.x 升上来的，建议升级后在 WebUI 里过一眼配置页，确认设置都还在。发现异常请开 issue。\n\n## 顺手修的\n\n- 修复 `kaomoji` 不在任何意图允许集里 —— 导致带颜文字的回复永远走不通「对方要求总结」的豁免\n- 修复无 pydantic 环境下，多个插件实例共享同一份配置子对象（改一个全改）\n\n## 测试\n\n```\n145 项回归 + 42 项闸门专项 + 159 项配置链路 + 15 项配置迁移\n两套 Python 环境（有/无 pydantic）全过\n```\n\n## 调参提示\n\n长度闸门默认阈值 35 字（打回约 45%，真人误伤 2.7%）。换上你自己的 bot 后**建议先 `dry_run = true` 跑两三天**，翻 `monitor.jsonl` 看误杀再决定。参数不是通用的。\n\n---\n\n**完整说明见 [README](https://github.com/TommyAAKK/maibot-antibait#readme)**\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "TommyAAKK.antibait",
+            "version": "2.0.0",
+            "name": "麦麦说人话（原AI八股拦截）",
+            "description": "让麦麦别再说 AI 腔：太长就打断，八股、附和、堆砌都拦，顺手清掉标签残留这类硬伤。实测能把「像真人」分从 3.12 拉到 4.28",
+            "author": {
+              "name": "TommyAAKK",
+              "url": "https://github.com/TommyAAKK"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TommyAAKK/maibot-antibait"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "capabilities": [
+              "config.get",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "1.0.0",
           "commit": "43cd77a18d031e23270eabb63074ea800c89b546",
