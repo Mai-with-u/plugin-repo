@@ -13852,5 +13852,549 @@
       "ignored_tags": [],
       "rejected_releases": []
     }
+  },
+  {
+    "id": "fsqhn.bgg_search_plugin",
+    "repositoryUrl": "https://github.com/fsqhn/maibot-bgg-plugin",
+    "archived_at": "2026-11-09T17:14:44.528Z",
+    "checked_at": "2026-11-09T17:14:44.528Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "fsqhn.bgg_search_plugin",
+      "manifest": {
+        "manifest_version": 2,
+        "name": "桌游搜索插件 (bgg_search_plugin)",
+        "version": "0.0.8",
+        "description": "利用集石、DDGS 和 LLM 查询桌游英文名，然后从 BGG 网站获取游戏的相关基本信息",
+        "author": {
+          "name": "山上的小丘",
+          "url": "https://github.com/fsqhn"
+        },
+        "license": "GPL-v3.0-or-later",
+        "host_application": {
+          "min_version": "1.0.0",
+          "max_version": "1.99.99"
+        },
+        "sdk": {
+          "min_version": "1.0.0",
+          "max_version": "2.99.99"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "httpx",
+            "version_spec": ">=0.26.0"
+          },
+          {
+            "type": "python_package",
+            "name": "beautifulsoup4",
+            "version_spec": ">=4.12"
+          },
+          {
+            "type": "python_package",
+            "name": "ddgs",
+            "version_spec": ">=0.1.0"
+          }
+        ],
+        "capabilities": [
+          "llm.generate",
+          "send.text",
+          "send.image"
+        ],
+        "plugin_type": "tool",
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "urls": {
+          "repository": "https://github.com/fsqhn/maibot-bgg-plugin",
+          "homepage": "https://github.com/fsqhn/maibot-bgg-plugin"
+        },
+        "id": "fsqhn.bgg_search_plugin"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "fsqhn.bgg_search_plugin",
+      "manifest_id": "fsqhn.bgg_search_plugin",
+      "repositoryUrl": "https://github.com/fsqhn/maibot-bgg-plugin",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "com.fsqhn.image-searcher",
+    "repositoryUrl": "https://github.com/fsqhn/com.fsqhn.image-searcher",
+    "archived_at": "2026-11-09T17:14:44.529Z",
+    "checked_at": "2026-11-09T17:14:44.529Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "com.fsqhn.image-searcher",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "com.fsqhn.image-searcher",
+        "version": "0.7.49",
+        "name": "麦麦寻人",
+        "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+        "author": {
+          "name": "fsqhn",
+          "url": "https://github.com/fsqhn"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+        },
+        "host_application": {
+          "min_version": "1.0.0",
+          "max_version": "1.9.999"
+        },
+        "sdk": {
+          "min_version": "2.6.0",
+          "max_version": "999.999.999"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "Pillow",
+            "version_spec": ">=10.0.0"
+          },
+          {
+            "type": "python_package",
+            "name": "requests",
+            "version_spec": ">=2.31.0"
+          }
+        ],
+        "capabilities": [
+          "send.text",
+          "send.forward",
+          "message.get_by_id",
+          "message.get_recent",
+          "llm.generate"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN"
+        },
+        "plugin_type": "tool",
+        "display": {
+          "icon": {
+            "type": "lucide",
+            "value": "scan-search"
+          }
+        }
+      }
+    },
+    "version_index_snapshot": {
+      "id": "com.fsqhn.image-searcher",
+      "manifest_id": "com.fsqhn.image-searcher",
+      "repositoryUrl": "https://github.com/fsqhn/com.fsqhn.image-searcher",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.7.47",
+          "tag": "v0.7.47",
+          "commit": "47ce788d31c1734d0beff994f9872cba9aa91b9d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T10:23:21Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.47",
+          "release_notes": "## 修两处「说反了」和「认错人」\n\n**Grok 已经找到原帖，尾部却还在说没找到。** 上半截写着「找到 X 上的原帖」并给了链接，下半截参考区又从空的最佳结果里取结论，于是接了一句「未找到可靠出处」，同一份转发里两种说法。现在只要 Grok 拿到的是一条具体帖子，那行改成「找到的原帖和依据见上一条，下面是参考图与候选」。\n\n**疑似 X 账号认错了人。** 搬运站的标题常把几个别名并列抄进来，旧逻辑按粉丝数取最大的那个，于是挑中了标题里顺带出现的无关大号，真正的主人在同一条标题里却粉丝少得多。改成候选 URL 路径里出现过的名字优先，其次才比粉丝——路径是站点自己认定的主人名。实测一单路径是 `fapeza.com/heyymimimi/62/`、标题写着「cw / heyimbee / heyymimimi」，按粉丝会选 56.9 万的那个，按路径才回到 2.28 万的正主。\n\n**付费线索用同一套取舍。** 路径里的名字在泄露站没有收录页时，不再拿标题里并列的名字顶上——少一行「疑似同一个人的 OnlyFans」比把别人的付费号安上来好。\n\n366 项测试通过，其中新增三条覆盖路径名与粉丝数的取舍（路径命中优先、路径没命中仍按粉丝、空名单返回空）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.47",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.7.34",
+          "tag": "v0.7.34",
+          "commit": "1ead0df605be8fb90a5a3a4729bac8f69060f07f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T09:19:38Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.34",
+          "release_notes": "## 0.7.34\n\n### 改动\n\n- **深度检索改为默认开启。** `deep_scan` 默认值从 `false` 改成 `true`，每个引擎按 `deep_scan_limit`（默认 20）取满，验证阶段每引擎比对 `deep_verify_top_n`（默认 8）条。实测漏掉原帖最常见的原因是候选没取够，代价是一次搜索多花半分钟到一分钟，嫌慢可以在「基础设置 → 深度检索」里关掉。\n\n### 文档\n\n- README 删掉过时的「实际效果」，顺序改为「它长什么样 → 它是怎么搜的」：先看结果长什么样，再看它一步步怎么搜。\n- 新增「怎么从结果里捞出命中的那条」：把取数、社交补验、模型调用写成三层漏斗，并给出加量优先级——先调 `social_verify_limit`，再调 `deep_scan_limit`，最后才加模型调用。\n- 社交补验写清现状：它排在每引擎配额之后补，不是先验；另有总上限 `social_verify_limit`（默认 20）；X 镜像站只认 `sotwe.com` 与 `twstalker.com`，nitter、xcancel 不在名单；插画路线不补验。\n- 费用口径修正：视觉复核走宿主 `vlm` 任务组，按该模型的单价计费，不是免费；Grok 改为按官网价估算（输入 ¥2/百万 token、输出 ¥6/百万 token），一次约 ¥0.10（4.6）到 ¥0.28（4.7）。\n- AGENTS 的取数说明同步成「深度档在前」，并记下补验的边界。\n\n### 测试\n\n- 323 项单元测试全过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.34",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.7.9",
+          "tag": "v0.7.9",
+          "commit": "6fe231d5157c5dd6740a11aefacfd353befc9ae0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T09:03:30Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.9",
+          "release_notes": "## 修复\n\n- 插件市场的 manifest 校验不允许 `host_application.max_version` 的前两位填 99 或 999。原来写的 `999.999.999` 让 0.3.18 之后的每个 Release 都被市场记进 `rejected_releases`，版本索引一直停在 0.3.13。\n- 改为 `1.9.999`：前两位落在允许范围内，第三位仍表示该次版本内的补丁全兼容。`sdk.max_version` 市场不校验，保持原样。\n\n功能没有改动，这一版只为让市场能正常收录。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.9",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.13",
+          "tag": "v0.3.13",
+          "commit": "5f7ee94fa83bc2eed56eeb92dd219018953bd744",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T15:05:32Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.13",
+          "release_notes": "更新了深度搜索",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.13",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.9",
+          "tag": "v0.3.9",
+          "commit": "fc2530a160b3b69a2a48b5c418972efa90071e5f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T17:08:17Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.9",
+          "release_notes": "通过增加搜索时长来提高成功率",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.9",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.2",
+          "tag": "v0.3.2",
+          "commit": "3d9861b020295f36a3a9c86170e58bc80a7e2040",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T23:46:21Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.2",
+          "release_notes": "按要求进行整改",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.2",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.7.8",
+          "version": "0.7.8",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.7.0",
+          "version": "0.7.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.6",
+          "version": "0.5.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.5",
+          "version": "0.5.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.18",
+          "version": "0.3.18",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.0",
+          "version": "0.3.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    }
   }
 ]
