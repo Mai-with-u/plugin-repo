@@ -61154,6 +61154,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.3",
+          "tag": "v1.0.3",
+          "commit": "c1a4dbd7ca0492bdabddff7a727dfa68fa45df96",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T16:18:29Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.0.3",
+          "release_notes": "修评论与发帖的五个真机缺陷。\n\n## 评论\n\n- **「正文没生成」**：原来跳过评论只回一个 `comments_sent=0`，什么原因都没有。\n  现在每条跳过都带中文原因（拿不到帖子 / 没素材 / 模型没返回 / 护栏拦截），\n  返回值和日志都能看到。\n- **评论里冒出 `cube_xxx`**：模型会写「缺括号」的表情，原实现一律当残渣删，\n  连带吃掉半句话，极端情况整条评论变空——正是上一条的成因之一。\n  现在认得出来就补括号保住（`今天真累cube_doge` → `今天真累[cube_doge]`）。\n- **同一人连发多条，回复变复读机**：同一 (帖子, 楼层, 人) 本轮只回一次，\n  且把本轮说过的句子传给生成侧要求换说法。\n\n## 发帖\n\n- **「请选择2个以内的分区」**：分区上限从 5 收到 2（平台硬限制）。\n- **「只能单独选择 XX 分区」**：这类分区现在会从报错里学到 id 并落盘\n  （`data/exclusive_partitions.json`），下次单独挂、也不再当补位项。\n- **「标题必须为 1–80 字」**：标题上限按 UTF-8 字节算（10 个汉字 = 30 字节），\n  改为按字节截断、不截半个 emoji，标题为空时用正文首句兜底。\n\n## 验证\n\n本地 382 条测试通过（2 条为缺宿主 SDK 的环境错误）。\n真机：分区自动收敛到 2 个，独占分区已学到 7214，连续三条帖子发出并回读核验通过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.0.3",
+            "name": "回响",
+            "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "cee89aa1c4daeccdadc20eca8f742c9f2a3fceac",
