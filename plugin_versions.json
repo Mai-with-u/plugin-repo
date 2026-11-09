@@ -60316,6 +60316,90 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.huixiang-operator",
+      "manifest_id": "local.huixiang-operator",
+      "repositoryUrl": "https://github.com/1519160235/huixiang-operator",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "cee89aa1c4daeccdadc20eca8f742c9f2a3fceac",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T16:02:24Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.0.1",
+          "release_notes": "补齐 manifest 里缺失的能力声明。\n\n## 修复\n\n插件市场自动审核发现两处声明缺口：\n\n- `plugin.py` 用 `ctx.send.image` 发登录二维码，但 `capabilities` 只声明了 `send.text`\n- `webui.json` 的 `required_capabilities` 要求 `structured_arguments`，manifest 未声明\n\n宿主按能力名精确比对，缺声明时调用会被拒绝，对用户的表现是\n「`/hx_login` 出不来二维码」或后台页面不加载。已在 `capabilities` 补上：\n\n```json\n[\"api.call\", \"llm.generate\", \"send.text\", \"declarative_basic\", \"send.image\", \"structured_arguments\"]\n```\n\n功能与配置无变化，从 1.0.0 升级无需改配置。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.0.1",
+            "name": "回响",
+            "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "message-circle"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
