@@ -61079,6 +61079,48 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "648d9112e859ad0e293b7f4f51cedc0eea008bfa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T12:32:25Z",
+          "release_url": "https://github.com/Caeruvis/MaiBot-LaTeX/releases/tag/v0.1.2",
+          "release_notes": "## 更新内容\n\n- 改用本机 **XeLaTeX** 和 **Poppler** 离线渲染。含公式的回复会将说明文字和公式一起排成一张 PNG，支持 `align`、TikZ 等 LaTeX 环境。\n- 新增模型工具 `render_latex_reply`，可将整段回答预渲染为图片。`/latex`、`/tex`、`/公式` 也使用同一套渲染后端。\n- 修复多公式、数学块首尾空行和长公式超宽导致的渲染失败。检测到横向溢出时，在配置的宽度上限内按需加宽并重试一次。\n\n## 升级要求\n\n目标环境为 **MaiBot 1.3.19** 和 **插件 SDK 2.21.0**。请在运行 Runner 的机器安装 **TeX Live** 和 **Poppler**。macOS 使用标准路径安装的 MacTeX 和系统隔离，Debian / Ubuntu 需要 Bubblewrap 及可用的用户命名空间。按说明应用随附的宿主补丁。补丁启用期间，插件停用或不可用会暂停经宿主发送服务的出站消息。 [安装与回滚说明](https://github.com/Caeruvis/MaiBot-LaTeX/blob/v0.1.2/README.md#安装)\n\n## 验证\n\n**96 项自动化测试**通过。本机 macOS 已验证图文混排、`align`、TikZ 和触发超宽重试的完整回复。真实 QQ 投递与完整 Host / Runner 联调仍待验证。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "caeruvis.latex",
+            "version": "0.1.2",
+            "name": "MaiBot LaTeX 公式渲染",
+            "description": "用 TeX Live 将含公式的整段回复渲染成一张图片，支持模型工具和 /latex 命令。",
+            "author": {
+              "name": "Caeruvis",
+              "url": "https://github.com/Caeruvis"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Caeruvis/MaiBot-LaTeX"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.0"
+            },
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.hybrid",
+              "send.text"
+            ],
+            "dependencies": [],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "823e9bb3258f49b151eca94757d36c05e3dfc781",
