@@ -60400,6 +60400,84 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "souknow.feishu-adapter",
+      "manifest_id": "souknow.feishu-adapter",
+      "repositoryUrl": "https://github.com/SoukNow/MaiBot-Feishu-Adapter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "037e06918810b5860f6d8d627790c29fe5be3c53",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T16:08:11Z",
+          "release_url": "https://github.com/SoukNow/MaiBot-Feishu-Adapter/releases/tag/v0.1.3",
+          "release_notes": "# v0.1.3\n\n首个公开版本。直连飞书 / Lark 开放平台官方 API 的 **长连接（WebSocket）** 适配器，\n不需要公网 IP、域名或回调地址，服务器放在内网也能收消息。\n\n## 功能\n\n- 群聊与私聊双向收发\n- `@` 提及识别（群内 @ 机器人可触发回复）\n- 引用回复（回复某条消息）\n- **图片收发**：用户发的图会下载后交给主程序多模态模型识别，机器人也能主动发图\n- 富文本（图文混排）消息完整解析\n- 断线自动重连、消息去重\n- WebUI 插件页可直接查看连接状态、手动重连\n\n## 本版修复\n\n### 图文混排的富文本消息丢图\n\n飞书在输入框里「带图发字」时，消息类型不是 `image` 而是 `post`（富文本）。\n原实现只在 `message_type == \"image\"` 时下载图片，`post` 分支更是把 `img` 标签直接\n降级成纯文本 `[图片]`，图片二进制从未进入主程序——主程序只收到一句占位文本，\n自然认不出图。现在会取出富文本里的全部 `image_key`，统一下载后以标准二进制图片段\n透传，交给主程序落盘、识别并生成描述。\n\n### 入站图片下载接口用错\n\n`GET /im/v1/images/{image_key}` 按飞书官方文档「**只能下载由当前机器人上传的图片**」，\n用户发来的图用它一律返回 `234001 Invalid request param`。用户消息里的图必须走\n`GET /im/v1/messages/{message_id}/resources/{file_key}?type=image`\n（`file_key` 要与 `message_id` 匹配，机器人要在该会话内）。\n现在入站优先用消息资源接口，失败再退回图片下载接口。\n\n### 出站图片上传报 `Invalid request param`\n\n客户端给 httpx 设了默认 `Content-Type: application/json`，multipart 上传时 httpx 自己\n生成的 `multipart/form-data; boundary=...` 头被覆盖，请求体是 multipart 而头写着 json，\n飞书收不到 `image` 字段直接报 code 234001。现在不再设置默认 Content-Type，\n交给 httpx 按请求体类型自动生成。出站图片此前从未真正跑通。\n\n### 其他\n\n- 富文本里的 `@` 提及原先被当成纯文本 `@名字`，现在还原成标准 `at` 段，\n  群聊里 @ 机器人能正确触发。\n- 图片下载失败不再吞掉整条消息：下载不到二进制时降级为 `[图片无法读取]` 占位文本，\n  用户说的话仍能进入对话；此前纯图片消息会整条被丢弃。\n- `is_picture` 改为按实际消息段判定，图文混排的消息也能被识别为图片消息。\n\n## 依赖\n\n`lark-oapi>=1.5.0,<2`、`httpx>=0.28,<1`，插件加载时自动安装。\n\n## 安装与配置\n\n见仓库 [README](https://github.com/SoukNow/MaiBot-Feishu-Adapter#readme)，\n权限清单与配置项都在里面。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "souknow.feishu-adapter",
+            "version": "0.1.3",
+            "name": "飞书适配器",
+            "description": "直连飞书/Lark 开放平台官方 API 的长连接适配器，支持群聊与私聊的文本、@ 提及、引用回复与图片收发，不需要公网 IP 或回调地址。",
+            "author": {
+              "name": "SoukNow",
+              "url": "https://github.com/SoukNow"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/SoukNow/MaiBot-Feishu-Adapter",
+              "homepage": "https://github.com/SoukNow/MaiBot-Feishu-Adapter",
+              "documentation": "https://github.com/SoukNow/MaiBot-Feishu-Adapter/blob/main/README.md",
+              "issues": "https://github.com/SoukNow/MaiBot-Feishu-Adapter/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "plug",
+                "background": "#00D6C9"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.98.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lark-oapi",
+                "version_spec": ">=1.5.0,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28,<1"
+              }
+            ],
+            "capabilities": [
+              "gateway.route_message",
+              "gateway.update_state"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
