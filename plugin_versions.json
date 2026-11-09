@@ -56340,6 +56340,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "54f9c6b77378c30fd25441ef9d66e4ef89833946",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T06:11:31Z",
+          "release_url": "https://github.com/YukiSakiko/cnmeme_plugin/releases/tag/v0.1.5",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "YukiSakiko.cnmeme-plugin",
+            "version": "0.1.5",
+            "name": "麦麦梗百科插件",
+            "description": "唯独你没懂——按需查询网络梗和陌生词，为麦麦理解聊天提供内部参考，不主动发送词义解释。",
+            "changelog": "CHANGELOG.md",
+            "author": {
+              "name": "YukiSakiko",
+              "url": "https://github.com/YukiSakiko"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/YukiSakiko/cnmeme_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              }
+            ],
+            "capabilities": [
+              "database.get",
+              "database.save"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.4",
           "tag": "v0.1.4",
           "commit": "dc2f17d69a64baa30b13fd88fd1eea7af3e3211c",
