@@ -1493,6 +1493,85 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.15.11",
+          "tag": "v1.15.11",
+          "commit": "77dd60aa599159ecd480e72b53efd9d950aae01a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T05:25:01Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.15.11",
+          "release_notes": "### 主要功能\n\n- Gemini 绘图管理为所有图片渠道提供 **1K、2K、4K** 档位，支持文生图和参考图请求。插件按协议传递尺寸；留在「渠道默认」时沿用原有行为，实际尺寸由上游决定。\n\n### 修复\n\n- Agnes 图片请求现在会读取渠道的「返回格式」。选择 **Base64 JSON** 后可直接接收图片数据，避免图床下载因 Fake IP 被安全策略拦截。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.15.11",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.15.10",
           "tag": "v1.15.10",
           "commit": "1438f52b8ebabde5d1ebb61e4dad899d8c553de9",
