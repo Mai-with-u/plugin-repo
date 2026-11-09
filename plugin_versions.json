@@ -61496,6 +61496,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "0863fe1623d68af9b53b9afdc94b9b01e03d14aa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T10:05:51Z",
+          "release_url": "https://github.com/naiiyo/maibot-acg-search/releases/tag/v0.1.2",
+          "release_notes": "## 本次更新\r\n\r\n1. **部分来源没回应，查到的资料也能带回来。** 以前同一轮里有一个来源迟迟没回，另一个来源已经找到的简介或网页结果也可能一起丢掉。现在插件会保留已返回的结果，先回答能确认的部分。比如批评空间超时时，仍可使用 VNDB 或已核实的 Steam 条目。首发年份、官方中文和指定平台等条件依然需要对应的证据。\r\n\r\n2. **对比多部作品时，逐部补齐缺少的资料。** 例如你问「两部 Galgame 各讲了什么」，即使第一部已有简介，插件也会继续查第二部。问「第一部的 Steam 评价、第二部的 VNDB 评分」时，会分别按作品和所指定的平台补查。遇到同名作品时会列出候选供确认，仍缺资料的项目会单独标出。网页搜索找到的链接会列为待核对的线索。\r\n\r\n## 安装与升级\r\n\r\n- 在 Assets 下载 `maibot_acg_search_v0.1.2.zip`，通过 MaiBot 插件管理页安装。市场版本会在官方审核通过后上架。\r\n- 手动覆盖升级前，请备份原插件目录并保留 `config.toml`。支持 MaiBot `1.3.16–1.4.99` 和插件 SDK `2.17.0–2.22.99`。\r\n\r\n[安装与配置](https://github.com/naiiyo/maibot-acg-search#安装) · [完整更新记录](https://github.com/naiiyo/maibot-acg-search/blob/v0.1.2/CHANGELOG.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "naiiyo.acg-search",
+            "version": "0.1.2",
+            "name": "二次元特化搜索",
+            "description": "分来源查询 Galgame 作品、热度和发行版本，查找番剧放送、漫画与二游资料，并按需调用原生或自定义网页搜索。",
+            "author": {
+              "name": "naiiyo",
+              "url": "https://github.com/naiiyo"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/naiiyo/maibot-acg-search",
+              "documentation": "https://github.com/naiiyo/maibot-acg-search#readme",
+              "issues": "https://github.com/naiiyo/maibot-acg-search/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.17.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              }
+            ],
+            "capabilities": [
+              "web.search",
+              "web.fetch",
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool"
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "e50135af728090b23c19c9c9993b9ee9174461b2",
