@@ -60233,6 +60233,89 @@
         "stable"
       ],
       "rejected_releases": []
+    },
+    {
+      "id": "hhjju.maibot-antigravity",
+      "manifest_id": "hhjju.maibot-antigravity",
+      "repositoryUrl": "https://github.com/sunfish1728/maibot-antigravity",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "21ad540dc15ae6a0346dce918901af8ccfd85fd3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T15:22:15Z",
+          "release_url": "https://github.com/sunfish1728/maibot-antigravity/releases/tag/v0.1.0",
+          "release_notes": "第一版。\n\n- Google 帳號登入（設定頁按鈕 / 私聊 `/agy login` / 貼回轉址網址）\n- Gemini、Claude、GPT-OSS 模型，支援工具呼叫、思考、圖片\n- 自動同步模型到 `model_config.toml`（`agy-` 開頭）\n- 額度用完直接報錯，交給 MaiBot 換模型\n\nMaiBot 1.4.2 實測過。請用副帳號，有封號風險。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hhjju.maibot-antigravity",
+            "version": "0.1.0",
+            "name": "MaiBot Agy（反重力額度）",
+            "description": "用 Google 帳號登入 Antigravity，把它的 Gemini / Claude 額度當成 MaiBot 的 LLM Provider，不需要 API Key。",
+            "author": {
+              "name": "adp",
+              "url": "https://github.com/sunfish1728"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/sunfish1728/maibot-antigravity",
+              "homepage": "https://github.com/sunfish1728/maibot-antigravity",
+              "documentation": "https://github.com/sunfish1728/maibot-antigravity/blob/main/README.md",
+              "issues": "https://github.com/sunfish1728/maibot-antigravity/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "🪐",
+                "fallback": "rocket"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.11"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "llm_providers": [
+              {
+                "client_type": "antigravity",
+                "name": "Antigravity（反重力）",
+                "description": "Google 帳號登入，使用 Antigravity 額度（Gemini / Claude）。",
+                "version": "0.1.0"
+              }
+            ],
+            "i18n": {
+              "default_locale": "zh-TW",
+              "supported_locales": [
+                "zh-TW"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
