@@ -57515,6 +57515,60 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "a56326e5c778134367054545dc7e6e1810d30b5e",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-09T00:58:03Z",
+          "release_url": "https://github.com/suodeovo/MaiBot-Doubao-TTS/releases/tag/v1.0.2",
+          "release_notes": "# 豆包语音合成 2.0 插件 v1.0.2\n\n- 兼容声明上限更新为 MaiBot 1.4.3 和 SDK 2.22.1。\n- 新增使用说明，包含下载 MaiBot、选择 Bot 实例、安装插件、配置火山引擎和发送 `/豆包 你好` 试用。\n\n本次更新了版本声明和文档，加载验证沿用历史记录。首次使用请先阅读 [使用说明](https://github.com/suodeovo/MaiBot-Doubao-TTS/blob/v1.0.2/INSTALL.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.volc.tts2",
+            "version": "1.0.2",
+            "name": "豆包语音合成 2.0",
+            "description": "MaiBot 的豆包语音合成 2.0 插件，提供文字转语音工具、调试命令与公开合成 API，支持音色、情绪标记和缓存。",
+            "author": {
+              "name": "suodeovo",
+              "url": "https://github.com/suodeovo"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/suodeovo/MaiBot-Doubao-TTS",
+              "homepage": "https://github.com/suodeovo/MaiBot-Doubao-TTS",
+              "documentation": "https://github.com/suodeovo/MaiBot-Doubao-TTS/blob/main/README.md",
+              "issues": "https://github.com/suodeovo/MaiBot-Doubao-TTS/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.3"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.22.1"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "1b61d7a861a35f4d4704543b51fbde47251279c2",
