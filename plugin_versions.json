@@ -60478,6 +60478,71 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "naiiyo.acg-search",
+      "manifest_id": "naiiyo.acg-search",
+      "repositoryUrl": "https://github.com/naiiyo/maibot-acg-search",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "e50135af728090b23c19c9c9993b9ee9174461b2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-08T16:23:00Z",
+          "release_url": "https://github.com/naiiyo/maibot-acg-search/releases/tag/v0.1.0",
+          "release_notes": "二次元特化搜索首次公开发布，面向 MaiBot v1.4.3 和插件 SDK 2.22.1。\r\n\r\n- Galgame 推荐、比较、资料与档期查询。用 Bangumi、VNDB、月幕 Galgame、批评空间和 Steam 核对作品与版本，并标注证据缺口。\r\n- 查询番剧排期与分集进度、漫画和二次元游戏，分别呈现目录日期、官方放送与平台上线资料。\r\n- 支持自然语言工具 `acg_search` 和命令 `/二次元搜索`、`/acgsearch`。通用搜索默认走 MaiBot 原生联网，可切换 Tavily 或 AnySearch 兼容接口。\r\n\r\n安装、配置和旧版迁移见 [README](https://github.com/naiiyo/maibot-acg-search/blob/v0.1.0/README.md)。\r\n\r\n插件 ID `naiiyo.acg-search`。作者 Codex，构想和需求来自 naiiyo。许可证 `AGPL-3.0-or-later`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "naiiyo.acg-search",
+            "version": "0.1.0",
+            "name": "二次元特化搜索",
+            "description": "五源核验 Galgame 作品和发行版本，查询番剧放送、漫画与二游资料，并按需调用原生或自定义网页搜索。",
+            "author": {
+              "name": "Codex",
+              "url": "https://openai.com/codex/"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/naiiyo/maibot-acg-search",
+              "documentation": "https://github.com/naiiyo/maibot-acg-search#readme",
+              "issues": "https://github.com/naiiyo/maibot-acg-search/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.4.3",
+              "max_version": "1.4.3"
+            },
+            "sdk": {
+              "min_version": "2.22.1",
+              "max_version": "2.22.1"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              }
+            ],
+            "capabilities": [
+              "web.search",
+              "web.fetch",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
