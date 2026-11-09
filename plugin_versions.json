@@ -34954,6 +34954,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "91664a3ed8e826772a346559851e0e66f85c9d94",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T12:08:41Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.4.0",
+          "release_notes": "> 本版核心改动来自 [@Cypas](https://github.com/Cypas) 的 [PR #4](https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/pull/4)，合并后由维护者补充宿主版本口径 docs 修正。\r\n\r\n### 官方 QQ 机器人（QQ 开放平台）适配：群友昵称与头像正常回显\r\n\r\n此前插件把「群友 ID」一律当作数字 QQ 号处理，头像直接拼 `q1.qlogo.cn/g?b=qq&nk={uid}`，\r\n昵称也是「名片 → 昵称 → ID」的链式取值。接入官方 QQ 机器人（`qq_official_adapter`）后，\r\n消息里的 `user_id` 是 32 位大小写字母数字的 **OpenID**（如 `2C9FD5BC5264B1C0999D8F47C5E809F8`），\r\n不是 QQ 号：头像 URL 拼出来必然 404（全员灰头像），昵称为空时报告里满屏裸 OpenID。\r\n\r\n本版按 ID 形态分流处理，纯数字 QQ 号（NapCat / OneBot 等）行为完全不变：\r\n\r\n- **新增能力声明 `chat.get_avatar`**（`_manifest.json`），头像改由宿主统一解析：\r\n  非纯数字 ID 交给平台适配器取头像——官方 QQ 适配器会按 AppID + OpenID 路由到\r\n  `q.qlogo.cn/qqapp/{app_id}/{openid}/100`，其它平台由各自适配器处理。\r\n  同时把 `host_application.max_version` 抬到 `1.4.99`（宿主已发布 1.4.x 版本线，抬上界保证新宿主可加载）。\r\n  版本口径说明：`chat.get_avatar` 能力自宿主 **1.3.2** 起即提供；真正需要宿主 **≥1.4.0** 的是内置\r\n  官方 QQ 适配器（`qq_official_adapter`，1.4.0 起内置）。低版本宿主仍可加载本插件，只是 OpenID 头像留空走默认头像。\r\n- **头像解析异步化**：新增 `_attach_avatars`，仅对 ID 非纯数字的群友按当日发言量\r\n  Top 60 并发（4 路）查询，单次超时 8s；任何失败（能力缺失 / 平台未知 / 适配器\r\n  unsupported / 网络异常）都只留空，由既有默认头像兜底，不影响日报生成。\r\n- **昵称兜底**：OpenID 形态的群友若无昵称（或昵称就是 ID 本身），显示为\r\n  `群友` + ID 后 6 位（如 `群友E809F8`），不再把 32 位 OpenID 直接印在报告里。\r\n- **引用正则放宽**：LLM 输出里的 `[用户ID]` 引用原本只匹配 `\\d{4,}`，无法命中 OpenID，\r\n  导致话题贡献者、称号理由、金句出处的胶囊渲染整体失效。现统一为\r\n  `[0-9A-Za-z_-]{4,64}`，并叠加「必须是本群统计内 ID」的白名单，避免误伤\r\n  `[图片]`、`[CQ:at,...]` 等方括号内容。\r\n- **头像磁盘缓存键安全化**：32 位 OpenID 直接做文件名不合法且易碰撞，改为\r\n  「安全化前缀 + SHA1 前 8 位」。\r\n- 统计桶新增记录 `platform` / `account_id` / `scope`（实时收集与 24h 重建两条路径\r\n  都会补），供 `chat.get_avatar` 路由到正确适配器；旧 `stats.json` 缺这些字段时\r\n  自动跳过能力调用，行为与旧版一致。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.4.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.16.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "f55c38d03e94c3815bfa999cdcb87cecf381aede",
