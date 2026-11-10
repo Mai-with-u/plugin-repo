@@ -54117,6 +54117,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "0.3.0",
+          "commit": "92b4725bac54f75c8028ccea36cc759dae1c3e3e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T14:20:36Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.3.0",
+          "release_notes": "这一版适配 MaiBot 1.4，并把她玩手机的样子搬到了内置桌宠上：扩展菜单里有个「手机」按钮，点开就能看截图、开始或停止；玩的时候桌宠会冒出她此刻的想法。\n\n**只支持 MaiBot 1.4.0–1.4.99**（SDK 2.21.0–2.22.99），不再以兼容模式加载。还在用 MaiBot 1.3 的请继续用 [0.2.2](https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.2.2)。\n\n### 主要功能\n\n配置在「桌宠」里，默认都开：\n\n- **「手机」按钮**（`desktop_pet.button`）：在桌宠的「插件扩展」菜单里，按钮上写着「正在玩：哔哩哔哩 3/10 分钟」「空闲 · 今天玩了 2 次」这样的状态，她拿起手机、每走一步、暂停、被接管、放下手机时自动更新。\n- **手机面板**：点开按钮是一个小面板，三行左右的文字（在玩什么、想做什么、此刻的想法）加整张手机截图；按当前状态给出「开始玩」「暂停」「继续」「停止」「我来操作」「交还控制」「刷新」。在桌宠上开始的那次，记录里写「桌宠」，玩完不往聊天里发消息。\n- **拿起、放下手机的气泡**（`desktop_pet.bubbles`）：「拿起手机：打开哔哩哔哩，看猫猫视频」（摸鱼时是「偷偷摸鱼：……」），放下时是「放下手机：」加她的感想。\n- **想法气泡**（`desktop_pet.thought_bubbles`）：玩的时候把新想法冒成「💭 ……」，不打开面板也知道她在看什么；两个气泡至少隔 20 秒（`desktop_pet.thought_bubble_seconds`，5–600），同一句不重复。\n\n### 细节\n\n- 气泡只在桌面上显示，不进聊天记录，也不调用模型；桌宠没开、还没就绪时跳过。气泡或按钮刷新出错只记日志，不影响她玩手机；插件重载时不会冒「放下手机」。\n- 面板不会自己刷新（宿主只在点按钮、点操作时更新面板），想看新画面点「刷新」；截图超过 3 秒没回来就先显示上一张。\n- 桌宠在跑 MaiBot 的那台电脑上，面板里的截图和操作只有能看到这台电脑屏幕的人能用。\n- 插件重载的那几秒里，宿主读按钮状态会失败，菜单里暂时看不到按钮；重新打开扩展菜单就好。\n- 修复：说起上一次玩了什么时（聊天、`/手机` 状态、玩完的感想）会出现「。：」「。；」这样的重复标点。\n- 插件新声明了 `desktop_pet.status`、`desktop_pet.say`、`desktop_pet.refresh_buttons` 能力。\n\n### 测试\n\n349 个单元测试。真 Bot 上（MaiBot 1.4.3、SDK 2.22.1，iPhone）验证了：插件不再以兼容模式加载；桌宠面板的文字、截图和操作按钮；在桌宠上开始一局（哔哩哔哩，玩够 12 分钟），记录里写「桌宠」；另一局（小红书）里桌宠冒出了想法气泡，按钮上的字跟着她的状态变。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.3.0",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "desktop_pet.refresh_buttons",
+              "desktop_pet.say",
+              "desktop_pet.status",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "0.2.2",
           "commit": "9e545f683d71053e2a6bde9c643aed3c39281ff5",
