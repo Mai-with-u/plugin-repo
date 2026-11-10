@@ -46917,6 +46917,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.5.6",
+          "tag": "v0.5.6",
+          "commit": "accced2a2d668745a34be6e5bf25024888e6030a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T17:01:14Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.5.6",
+          "release_notes": "### 新增\n\n- **触发词**：群里 @ 机器人（或被点名）后，文本里出现触发词就让这条消息对应的回复改用语音；私聊不需要 @。命中只写一个一次性标记，**不剥词、不改消息**，回复仍由模型正常生成。\n- **三档位置，不写正则**：规则只有「词 + 位置」两栏（`任意` / `头` / `尾`）；匹配前归一化（去空白、`casefold`、剥首尾标点），`头` 额外容忍开头的 `@昵称`，全程 `startswith` / `endswith` / `in`，没有回溯风险；文本先截 2000 字。\n- **窗口与限流**：窗口 = `general.timeout + 10` 秒（默认 35 秒），过期作废；同会话 5 秒内只记一次；命令消息（以 `/` 或 `／` 开头）不参与匹配。\n- **来源埋点**：成功日志新增 `来源=trigger:<词>`，`mai-tools/source_breakdown.py` 可按它统计。\n- **`/voice status`** 新增触发词一段：是否启用、窗口秒数、已配置条目（前 5 条）。\n- **默认带一条触发词**「用语音 / 任意」：装好即可用，可在设置页增删。\n\n### 修改\n\n- 触发词优先于短句上限与「随机需纯中文」，但受放行规则与 `/voice off` 约束；合成失败/超时/忙时静默回退文字。\n- `plugin.config_version` 升到 0.5.6；`config.example.toml` 新增 `[triggers]` 段（含 `[[triggers.rules]]` 示例）。\n- **点名优先与情绪加权改为默认开**（`trigger.mention_priority` / `trigger.emotion_weighting`）：线上两周观察这两个加权表现稳定，不再需要手动开启。\n- **去掉 `commands.say_targets`**：不再限制 `/voice say` 的目标（改由 `commands.admins` 控制谁能用）；旧配置里残留这个键会被忽略。\n- **`commands.admins` 启动校验**：写成昵称、带空格等永远匹配不到的条目会告警并跳过；全是无效条目时提示「没有可用的账号」。\n- **`/voice status` 补失败类型分布**：失败次数后面带上分类计数（如 `429×2、network×1`），来自进程内统计。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.5.6",
+            "name": "MiMo TTS 语音回复",
+            "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.5",
           "tag": "v0.5.5",
           "commit": "f519fa0d07bc8af76a6d13eccead3a86a3d13cda",
