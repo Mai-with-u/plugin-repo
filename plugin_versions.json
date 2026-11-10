@@ -52329,6 +52329,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "56348ee628d36f7e5c90937860479e59451965a9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T14:13:38Z",
+          "release_url": "https://github.com/Akenari011/maibot-beg-for-money/releases/tag/v1.1.0",
+          "release_notes": "## 1.1.0\n\n### 插件 ID 变更\n\n- 旧 ID：`github.lbcheng1145.beg-for-money`\n- 新 ID：`github.akenari011.beg-for-money`\n\n### 数据目录自动兼容（重要）\n\nMaiBot 按 manifest.id 给每个插件分配 `data/plugins/<id>/`。换 ID 后老用户的账本在旧目录里，\n新版本会在 `on_load` 时自动识别：\n\n- **旧目录有数据、新目录为空** → 继续使用旧目录（账本、待确认记录原样保留）\n- **全新安装** → 使用新目录\n\n实现上不看 `base.exists()`，因为 MaiBot 在调用 `on_load` 之前就会把 data_dir 建出来（空目录），\n必须用「目录里有没有实际文件」判断。\n\n### 验证\n\n- 自审 3 遍：29 项全过\n- 测试 3 遍：6 项全过\n- 真实环境：升级后账本正确读到 **3 笔 36.45 元**（走旧目录）\n\n---\n\n## 完整更新历史\n\n### v1.0.5\nGitHub 用户名修正。\n\n### v1.0.4\n`sdk.max_version` → 2.22.99，适配 MaiBot 1.4.3。\n\n### v1.0.3\n适配 MaiBot 1.4.0 / SDK 2.21.0。\n\n### v1.0.2\n修复群聊发到私聊、发送失败当成功。\n\n### v1.0.1 / v1.0.0\n工具可见性修复 / 首个公开版本。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.beg-for-money",
+            "version": "1.1.0",
+            "name": "讨饭",
+            "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-beg-for-money"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.22.99"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#F59E0B"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.5",
           "tag": "v1.0.5",
           "commit": "310c230aa69aaaa23841cace0d0dc41e20d9c674",
