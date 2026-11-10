@@ -1788,7 +1788,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "OneBot 适配器",
       "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
       "author": {
@@ -1810,7 +1810,7 @@
         }
       },
       "host_application": {
-        "min_version": "1.3.18",
+        "min_version": "1.4.4",
         "max_version": "1.4.99"
       },
       "sdk": {
@@ -2103,7 +2103,7 @@
     "id": "TAIY2020.smart_poke_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.12.1",
+      "version": "1.13.0",
       "name": "智能戳一戳插件 | Smart Poke Plugin",
       "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
       "author": {
@@ -2169,7 +2169,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.1.6",
+      "version": "2.1.7",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -3447,7 +3447,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chi8wah.f1-info-plugin",
-      "version": "1.5.3",
+      "version": "1.5.4",
       "name": "F1 资讯插件",
       "description": "查询 F1 赛历、赛果和新闻，定时采集发送 F1 Meme，并向模型注入可编辑的车手群聊上下文。",
       "author": {
@@ -3463,16 +3463,15 @@
       },
       "host_application": {
         "min_version": "1.0.12",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.7.0",
-        "max_version": "2.16.99"
+        "max_version": "2.22.99"
       },
       "dependencies": [],
       "capabilities": [
         "send.text",
-        "send.image",
         "send.hybrid",
         "chat.get_stream_by_group_id",
         "render.html2png",
@@ -14710,7 +14709,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.opencode-session-header",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "OpenCode 会话头注入",
       "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
       "author": {
@@ -14743,13 +14742,13 @@
           "client_type": "opencode-session",
           "name": "OpenCode 会话头注入（Chat Completions）",
           "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "client_type": "opencode-session-responses",
           "name": "OpenCode 会话头注入（Responses）",
           "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ],
       "capabilities": [
@@ -16493,8 +16492,8 @@
     "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
     "manifest": {
       "manifest_version": 2,
-      "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
-      "version": "1.6.4",
+      "id": "github.akenari011.gpt-sovits-voice-plugin",
+      "version": "1.7.0",
       "plugin_type": "media",
       "name": "GPT-SoVITS 语音插件（优化版）",
       "display": {
@@ -16504,17 +16503,17 @@
           "fallback": "mic"
         }
       },
-      "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Lbcheng1145 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+      "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Akenari011 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
       "author": {
-        "name": "Lbcheng1145",
-        "url": "https://github.com/Lbcheng1145"
+        "name": "Akenari011",
+        "url": "https://github.com/Akenari011"
       },
       "license": "AGPL-3.0-or-later",
       "urls": {
-        "repository": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
-        "homepage": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin",
-        "documentation": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/blob/main/README.md",
-        "issues": "https://github.com/Lbcheng1145/gpt-sovits-voice-plugin/issues"
+        "repository": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+        "homepage": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+        "documentation": "https://github.com/Akenari011/gpt-sovits-voice-plugin/blob/main/README.md",
+        "issues": "https://github.com/Akenari011/gpt-sovits-voice-plugin/issues"
       },
       "host_application": {
         "min_version": "1.0.0",
@@ -16522,7 +16521,7 @@
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.21.99"
+        "max_version": "2.22.99"
       },
       "dependencies": [
         {
@@ -18358,17 +18357,17 @@
     "id": "github.lbcheng1145.beg-for-money",
     "manifest": {
       "manifest_version": 2,
-      "id": "github.lbcheng1145.beg-for-money",
-      "version": "1.0.3",
+      "id": "github.akenari011.beg-for-money",
+      "version": "1.1.0",
       "name": "讨饭",
       "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
       "author": {
-        "name": "Lbcheng1145",
-        "url": "https://github.com/Lbcheng1145"
+        "name": "Akenari011",
+        "url": "https://github.com/Akenari011"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Lbcheng1145/maibot-beg-for-money"
+        "repository": "https://github.com/Akenari011/maibot-beg-for-money"
       },
       "host_application": {
         "min_version": "1.3.0",
@@ -18376,7 +18375,7 @@
       },
       "sdk": {
         "min_version": "2.16.0",
-        "max_version": "2.21.99"
+        "max_version": "2.22.99"
       },
       "capabilities": [
         "send.text",
@@ -18673,17 +18672,17 @@
     "id": "github.lbcheng1145.cost-report",
     "manifest": {
       "manifest_version": 2,
-      "id": "github.lbcheng1145.cost-report",
-      "version": "1.1.1",
+      "id": "github.akenari011.cost-report",
+      "version": "1.3.1",
       "name": "开销统计",
       "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
       "author": {
-        "name": "Lbcheng1145",
-        "url": "https://github.com/Lbcheng1145"
+        "name": "Akenari011",
+        "url": "https://github.com/Akenari011"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Lbcheng1145/maibot-cost-report"
+        "repository": "https://github.com/Akenari011/maibot-cost-report"
       },
       "host_application": {
         "min_version": "1.3.0",
@@ -18691,7 +18690,7 @@
       },
       "sdk": {
         "min_version": "2.4.0",
-        "max_version": "2.21.99"
+        "max_version": "2.22.99"
       },
       "capabilities": [
         "statistics.local.models",
@@ -19306,7 +19305,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.2.2",
+      "version": "0.3.0",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -19325,12 +19324,12 @@
         }
       },
       "host_application": {
-        "min_version": "1.3.6",
-        "max_version": "1.3.99"
+        "min_version": "1.4.0",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.12.0",
-        "max_version": "2.20.99"
+        "min_version": "2.21.0",
+        "max_version": "2.22.99"
       },
       "dependencies": [
         {
@@ -19347,6 +19346,9 @@
       "capabilities": [
         "api.call",
         "config.get",
+        "desktop_pet.refresh_buttons",
+        "desktop_pet.say",
+        "desktop_pet.status",
         "llm.generate",
         "maisaka.proactive.trigger",
         "send.image",
@@ -19484,7 +19486,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -19505,7 +19507,7 @@
       },
       "sdk": {
         "min_version": "2.13.0",
-        "max_version": "2.21.0"
+        "max_version": "2.22.1"
       },
       "dependencies": [
         {
@@ -20352,7 +20354,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.10.2",
+      "version": "0.11.0",
       "description": "让麦麦有自己的生活，也让你参与其中：自主安排作息、读书、出门，一句邀约就能改变日程。私聊道过晚安，群里再见也记得；读你上传的书，接着上次的感想与疑问继续读。结合真实天气和城市地点安排活动，按兴趣上网寻找新见闻，带着经历来聊天、道早晚安，还能把当天日记整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -22010,7 +22012,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "local.huixiang-operator",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "name": "回响",
       "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
       "author": {
@@ -22058,7 +22060,8 @@
         "send.text",
         "declarative_basic",
         "send.image",
-        "structured_arguments"
+        "structured_arguments",
+        "llm.get_available_models"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -22187,6 +22190,235 @@
         ]
       },
       "plugin_type": "tool"
+    }
+  },
+  {
+    "id": "jasdewstarfield.github-monitor-plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "jasdewstarfield.github-monitor-plugin",
+      "version": "2.0.0",
+      "name": "GitHub 监控插件",
+      "description": "定期扫描 GitHub 仓库的新提交并推送到 MaiBot 群聊",
+      "author": {
+        "name": "Jasdew Starfield",
+        "url": "https://github.com/JasdewStarfield"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin",
+        "homepage": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin",
+        "documentation": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin#readme",
+        "issues": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.4.3",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.22.1",
+        "max_version": "2.22.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.14.3,<4"
+        },
+        {
+          "type": "python_package",
+          "name": "pydantic",
+          "version_spec": ">=2.11.7,<3"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bell"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "chat.get_stream_by_group_id",
+        "maisaka.proactive.trigger"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.tang-bai.maibot-daily-life",
+    "manifest": {
+      "manifest_version": 2,
+      "plugin_type": "automation",
+      "id": "github.tang-bai.maibot-daily-life",
+      "name": "麦麦日常图文空间",
+      "version": "0.1.7",
+      "description": "读取 MaiWeave 当前活动，通过 OpenAI 兼容接口生成配文与插画，并使用 SnowLuma 发布到 QQ 空间。依赖 MaiWeave；默认关闭自动发布。",
+      "author": {
+        "name": "MaiBot Daily Life Contributors",
+        "url": "https://github.com/tang-bai"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tang-bai/maibot-daily-life",
+        "homepage": "https://github.com/tang-bai/maibot-daily-life",
+        "documentation": "https://github.com/tang-bai/maibot-daily-life/blob/main/README.md",
+        "issues": "https://github.com/tang-bai/maibot-daily-life/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.10,<4"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10,<14"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2025.2"
+        }
+      ],
+      "capabilities": [
+        "api.call",
+        "api.get",
+        "llm.generate",
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.lava-xa.codex-reset_notify_plugin",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.lava-xa.codex-reset_notify_plugin",
+      "version": "1.0.0",
+      "name": "Codex 额度重置通知",
+      "description": "每五分钟监控 codex-resets.com，并将新的 Codex 额度重置与对应公告截图发送到 QQ 白名单。",
+      "author": {
+        "name": "lava",
+        "url": "https://github.com/lava-xa"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/lava-xa/codex-reset_notify_plugin",
+        "homepage": "https://github.com/lava-xa/codex-reset_notify_plugin",
+        "documentation": "https://github.com/lava-xa/codex-reset_notify_plugin/blob/main/README.md",
+        "issues": "https://github.com/lava-xa/codex-reset_notify_plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.90.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.12.14"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.54.0"
+        }
+      ],
+      "plugin_type": "automation",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "bell-ring"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "local.qwen-tts",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.qwen-tts",
+      "version": "1.0.0",
+      "name": "Qwen3-TTS QQ 语音",
+      "description": "使用本机 Qwen3-TTS 模型合成语音，并通过 SnowLuma 发到当前 QQ 会话。",
+      "author": {
+        "name": "feli77",
+        "url": "https://github.com/feli77"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/feli77/maibot-qwen-tts"
+      },
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.22.99"
+      },
+      "plugin_type": "media",
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=1.1.13,<2.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "maibot-plugin-sdk",
+          "version_spec": ">=2.19,<3"
+        }
+      ],
+      "capabilities": [
+        "send.custom",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
     }
   }
 ]
