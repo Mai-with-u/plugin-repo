@@ -1788,9 +1788,9 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.13",
-      "name": "SnowLuma 适配器/ SnowLuma Adapter",
-      "description": "QQ适配器，同时支持 SnowLuma 与 NapCat 客户端",
+      "version": "1.3.0",
+      "name": "OneBot 适配器",
+      "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
       "author": {
         "name": "MaiBot Team",
         "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
@@ -1806,12 +1806,12 @@
       "display": {
         "icon": {
           "type": "local",
-          "value": "assets/icon.jpg"
+          "value": "assets/icon-v2.png"
         }
       },
       "host_application": {
         "min_version": "1.3.18",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.19.0",
@@ -1825,6 +1825,7 @@
         }
       ],
       "capabilities": [
+        "runtime.set_status_badges",
         "chat.get_all_streams",
         "chat.open_session",
         "component.disable",
@@ -20887,7 +20888,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.winincorce-a11y.news-three-elements",
-      "version": "1.28.0",
+      "version": "1.29.0",
       "name": "新闻三要素",
       "description": "把素材或图片改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用文字/图片取素材（插件自主调用视觉模型识别画面）、图文结合、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
       "author": {
@@ -20903,7 +20904,7 @@
       },
       "host_application": {
         "min_version": "1.3.13",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.7.0",
