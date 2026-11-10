@@ -52099,6 +52099,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.5",
+          "tag": "v1.0.5",
+          "commit": "310c230aa69aaaa23841cace0d0dc41e20d9c674",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T14:00:02Z",
+          "release_url": "https://github.com/Akenari011/maibot-beg-for-money/releases/tag/v1.0.5",
+          "release_notes": "## 1.0.5\n\n### GitHub 用户名修正\n\n账号改名 `Lbcheng1145` → `Akenari011`，旧地址已不再重定向（`github.com/Lbcheng1145` 返回 404）。\n\nmanifest 里的 `author.name` / `author.url` / `repository` 同步到新用户名。\n\n**插件 id 保持不变**（`github.lbcheng1145.beg-for-money`）—— 它是已安装插件的唯一标识，不能改。\n\n### 验证\n\n- 自审 3 遍：29 项全过\n- 测试 3 遍：6 项全过（语法 / manifest / 版本协商 / 账本可读）\n\n---\n\n## 完整更新历史\n\n### v1.0.4\n`sdk.max_version` 升到 2.22.99，适配 MaiBot 1.4.3。\n\n### v1.0.3\n适配 MaiBot 1.4.0 / SDK 2.21.0。\n\n### v1.0.2\n修掉两个静默失效：群聊里发卡片会发到发言人私聊、发送失败被当成成功。\n\n### v1.0.1\n修复工具可见性与记账门槛。\n\n### v1.0.0\n首个公开版本。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.beg-for-money",
+            "version": "1.0.5",
+            "name": "讨饭",
+            "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-beg-for-money"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.22.99"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#F59E0B"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.0.3",
           "tag": "v1.0.3",
           "commit": "dd8b354c856434436cfc608175fd1c8007726a22",
