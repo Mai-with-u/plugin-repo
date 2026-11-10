@@ -11973,6 +11973,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.4",
+          "tag": "v1.5.4",
+          "commit": "8f99ad27b088f06350471c7b0497435cab1634de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T10:03:33Z",
+          "release_url": "https://github.com/Chi8wah/f1-info-plugin/releases/tag/v1.5.4",
+          "release_notes": "- 定时新闻、`/f1` 卡片和定时 Meme 发送成功后同步为麦麦自己的发言。新闻和查询卡片附带图中文字，供后续对话参考。\n- Meme 在图片前显示原帖正文和作者署名，附文随图文写入麦麦的消息记录。\n- 修复配置页渲染车手号码、定时新闻条数和 Meme 发送间隔时的崩溃。车手号码填 `0` 表示未填写。\n- 将 MaiBot 和 SDK 的兼容上限更新为 `1.4.99` 和 `2.22.99`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chi8wah.f1-info-plugin",
+            "version": "1.5.4",
+            "name": "F1 资讯插件",
+            "description": "查询 F1 赛历、赛果和新闻，定时采集发送 F1 Meme，并向模型注入可编辑的车手群聊上下文。",
+            "author": {
+              "name": "chi8wah",
+              "url": "https://github.com/Chi8wah"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Chi8wah/f1-info-plugin",
+              "homepage": "https://github.com/Chi8wah/f1-info-plugin",
+              "documentation": "https://github.com/Chi8wah/f1-info-plugin/blob/main/README.md",
+              "issues": "https://github.com/Chi8wah/f1-info-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "chat.get_stream_by_group_id",
+              "render.html2png",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./poleposition.png"
+              }
+            }
+          }
+        },
+        {
           "version": "1.5.3",
           "tag": "v1.5.3",
           "commit": "7c178fe365d20dad7f069e9385e8e1b00537984c",
