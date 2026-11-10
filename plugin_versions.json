@@ -63026,6 +63026,89 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.sora-maru.apis",
+      "manifest_id": "github.sora-maru.apis",
+      "repositoryUrl": "https://github.com/sora-maru/maibot_plugin_apis",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.6",
+          "tag": "1.0.6",
+          "commit": "2997080ecffdb0ab14bd998927c7c4615bbed4ba",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T09:01:39Z",
+          "release_url": "https://github.com/sora-maru/maibot_plugin_apis/releases/tag/1.0.6",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.sora-maru.apis",
+            "version": "1.0.6",
+            "name": "API 聚合",
+            "plugin_type": "extension",
+            "description": "关键词调用各类实用与娱乐 API，支持文字、图片、视频和语音，提供接口管理、批量测试与本地缓存。",
+            "author": {
+              "name": "sora-maru（MaiBot 移植）；Zhalslar 及原项目贡献者（上游）",
+              "url": "https://github.com/sora-maru"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/sora-maru/maibot_plugin_apis",
+              "homepage": "https://github.com/sora-maru/maibot_plugin_apis",
+              "documentation": "https://github.com/sora-maru/maibot_plugin_apis#readme",
+              "issues": "https://github.com/sora-maru/maibot_plugin_apis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=1.1.9,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12,<5"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.custom",
+              "chat.open_session"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
