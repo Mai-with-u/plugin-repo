@@ -58942,6 +58942,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.29.0",
+          "tag": "v1.29.0",
+          "commit": "b8abc11adc4ebaf2dd9c7120a4061856b8c58f8c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T00:25:58Z",
+          "release_url": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/releases/tag/v1.29.0",
+          "release_notes": "### 适配 MaiBot 1.4.x\n\n宿主从 **MaiBot 1.3.18 / SDK 2.19.0** 升级到 **MaiBot 1.4.3 / SDK 2.22.1**。\n\n#### 必须修的：版本声明\n\n原 `host_application.max_version` 是 `1.3.99`，**不包含 1.4.x**，新宿主会判定插件不兼容。\n\n- 改为 `{\"min_version\": \"1.3.13\", \"max_version\": \"1.4.99\"}`，同时覆盖 1.3 与 1.4 两个系列\n- `sdk` 保持 `2.7.0 ~ 2.99.99`（2.22.1 已在范围内）\n\n> 插件中心规则要求 `max_version` 前两位不能是 99，所以上限写 `1.4.99` 而非 `1.99.99`。\n\n#### 兼容性核查（逐项实测）\n\n| 项目 | 结果 |\n| --- | --- |\n| 模块导入 / 实例化 | ✅ 正常 |\n| 组件注册（API / 2 命令 / Tool / 首页卡片 / 2 Hook） | ✅ 全部注册 |\n| 宿主 `normalize_tool_option` 校验 | ✅ 通过 |\n| `PluginContext` 能力（send/llm/message/db/paths/logger） | ✅ 全部存在 |\n| 多模态图片段格式 | ✅ 未变 |\n| `database.query` 返回值形态 | ✅ 未变 |\n| Hook 的 `modified_kwargs` 约定 | ✅ 未变 |\n| 官方 manifest 校验 | ✅ 通过 |\n| 离线自检 76 项（新环境） | ✅ 全过 |\n| **真实 VLM 识别** | ✅ 成功，产出 152 字画面描述 |\n\n#### 顺带修复\n\n`_mbot_root()` 之前返回 `<root>/data` 而非 `<root>`。虽然靠兜底仍能定位图片，但逻辑不严谨。\n改为从 `data_dir` 逐级向上、取最外层同时含 `data/` 与 `MaiBot.db` 的目录，\n现在正确返回 `D:\\Maibot\\Maibot`。\n\n#### 说明\n\n- SDK 2.22.1 新增 `knowledge` / `render` / `statistics` 等能力，本插件未使用\n- 插件 ID、命令名、配置结构均未变，升级无需迁移\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.winincorce-a11y.news-three-elements",
+            "version": "1.29.0",
+            "name": "新闻三要素",
+            "description": "把素材或图片改写成新闻体短讯，并把指定人物的死讯自然织进报道；支持自定义名单、引用文字/图片取素材（插件自主调用视觉模型识别画面）、图文结合、按用户设置署名社名与开头。纯属玩梗，与现实无关。",
+            "author": {
+              "name": "winincorce-a11y",
+              "url": "https://github.com/winincorce-a11y"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "homepage": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements",
+              "documentation": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/blob/main/README.md",
+              "issues": "https://github.com/winincorce-a11y/MaiBot-NewsThreeElements/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "database.query"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "newspaper",
+                "background": "#1C272C"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
           "version": "1.28.0",
           "tag": "v1.28.0",
           "commit": "bcf0f9d13ef3dcbd36157d035390ba26f5673026",
