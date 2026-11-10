@@ -13163,7 +13163,7 @@
           "tag": "v0.1.3",
           "commit": "24664a1cc17e44412dd24229e7fc95a33eb7ae60",
           "prerelease": false,
-          "yanked": true,
+          "yanked": false,
           "published_at": "2026-10-06T14:27:21Z",
           "release_url": "https://github.com/SengokuCola/statistics-chart-plugin/releases/tag/v0.1.3",
           "release_notes": "## 0.1.3\r\n\r\n- 主程序兼容：支持 MaiBot `1.3.0–1.3.99`。\r\n",
@@ -13231,7 +13231,7 @@
           "tag": "v0.1.2",
           "commit": "b228e164b3a6cf2e0b2a91b50afebc10b9b72005",
           "prerelease": false,
-          "yanked": true,
+          "yanked": false,
           "published_at": "2026-10-06T14:22:38Z",
           "release_url": "https://github.com/SengokuCola/statistics-chart-plugin/releases/tag/v0.1.2",
           "release_notes": "# 更新记录\n\n## 0.1.2\n\n### 主要功能\n\n- 统计绘图：适配 MaiBot 1.3.4 和插件 SDK 2.9.0。\n- 图表渲染：发布包自带预编译 React/Recharts 脚本，普通安装环境也能直接绘图。\n\n### 细节\n\n- 异步运行：数据库查询、图表脚本读取和图片编码在线程中执行，避免阻塞插件事件循环。\n- 浏览器：支持 Playwright Chromium 和 `MAIBOT_CHART_BROWSER` 指定路径，保留具体错误信息。\n- 插件展示：增加本地图标。\n",
@@ -38759,6 +38759,11 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
+          "tag": "v1.5.1",
+          "version": "1.5.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
           "tag": "v1.5.0",
           "version": "1.5.0",
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
@@ -52255,8 +52260,18 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.1.0",
-          "version": "1.1.0",
+          "tag": "v1.0.4",
+          "version": "1.0.4",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v1.0.1",
+          "version": "1.0.1",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
           "error": "发布版本改变了插件 ID"
         }
       ]
@@ -52839,13 +52854,18 @@
       "ignored_tags": [],
       "rejected_releases": [
         {
-          "tag": "v1.3.1",
-          "version": "1.3.1",
+          "tag": "v1.2.0",
+          "version": "1.2.0",
           "error": "发布版本改变了插件 ID"
         },
         {
-          "tag": "v1.3.0",
-          "version": "1.3.0",
+          "tag": "v1.1.1",
+          "version": "1.1.1",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
           "error": "发布版本改变了插件 ID"
         }
       ]

@@ -2169,7 +2169,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.1.7",
+      "version": "2.2.0",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -12599,7 +12599,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.26.4",
+      "version": "1.26.5",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -14380,7 +14380,7 @@
       "version": "1.2.4",
       "id": "mai-play-ygo",
       "name": "麦麦玩游戏王",
-      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡组页��看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
+      "description": "让麦麦陪你打牌、也帮你查牌：一条指令开一局游戏王（自动建房并把地址与房间口令发到群里，群友用 MDPro3 / YGOMobile 连进来对战，打完结账播报并写进聊天记忆）；同时提供游戏王百科检索——查卡（中文/日文/英文名、效果、攻守、FAQ）与发卡图。仅支持 Windows 系统（对局内核与出牌引擎都是 Windows 可执行文件）。对局内核 ygopro 与出牌大脑 WindBot 两个虚拟客户端随插件自带（clients/），开箱即用；支持 /查房 看棋盘图、卡组码导入与卡组池随机（卡组码只能用指令导入）。随包内容按权利状态分三类：ygopro 与卡牌脚本为 GPL-2.0、WindBot 为 MIT（许可证随包）；cards.cdb、先行卡包与卡图上游从未声明许可，作为社区资料原样随包（随包是默认形态，仓库与该版本 Release 都带着），不主张权利，来源逐项见 clients/README.md，权利方要求即删（Issue 提一句即可），不想带的部署者可删掉这两项并让使用者跑 tools/setup_clients.py 从自己的客户端同步。插件自带一个本机面板（总览 / 卡组 / 对局 / 训练台 / 日志五页，每个接口都要密钥）：卡���页能看卡表、把卡组加入随机池或删除，并逐副牌设「AI 决策档位」（跟随全局 / 不问 / 只问目标 / 目标+要不要交）；对局页每 2 秒画双方整张牌桌（额外怪兽区、场地、灵摆、三堆计数，每张牌给卡图卡名与当前攻守，里侧只画卡背）；训练台只有四件事，都在面板里发起、不在群里加命令——卡组互打（选另一副卡组对打）、编写脚本（读卡文写 C# 出牌脚本并编译进 WindBot，每张卡一个处理函数、分批写所以第一次就写足量）（填了 llm.search_model 时，写脚本前会自己联网查这套牌怎么打：先查卡组名、再查系列 combo、再查关键卡，资料存 train/research/）、卡组迭代（推演 → 写脚本 → 跟另一副牌打 → 按逐局战况指出该改哪个函数 → 再改一轮）、复盘优化（读对局记录 + 当前脚本的结构摘要与源码 + 那一局的 WindBot 决策日志，指出该改哪个函数/分支，并给可落地的补丁）。",
       "author": {
         "name": "erhan111119",
         "url": "https://github.com/erhan111119"
@@ -14709,7 +14709,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.opencode-session-header",
-      "version": "1.5.0",
+      "version": "1.5.2",
       "name": "OpenCode 会话头注入",
       "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
       "author": {
@@ -14723,7 +14723,7 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "999.999.999"
+        "max_version": "1.9.99"
       },
       "sdk": {
         "min_version": "2.10.0",
@@ -14742,13 +14742,13 @@
           "client_type": "opencode-session",
           "name": "OpenCode 会话头注入（Chat Completions）",
           "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.5.0"
+          "version": "1.5.2"
         },
         {
           "client_type": "opencode-session-responses",
           "name": "OpenCode 会话头注入（Responses）",
           "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
-          "version": "1.5.0"
+          "version": "1.5.2"
         }
       ],
       "capabilities": [
@@ -16550,7 +16550,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.5.5",
+      "version": "0.5.6",
       "name": "MiMo TTS 语音回复",
       "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
       "author": {
@@ -18397,7 +18397,7 @@
       }
     },
     "assets": {
-      "icon_64": "icons/github.lbcheng1145.beg-for-money.webp"
+      "icon_64": "icons/github.akenari011.beg-for-money.webp"
     }
   },
   {
@@ -18711,7 +18711,7 @@
       }
     },
     "assets": {
-      "icon_64": "icons/github.lbcheng1145.cost-report.webp"
+      "icon_64": "icons/github.akenari011.cost-report.webp"
     }
   },
   {
@@ -20354,7 +20354,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.11.0",
+      "version": "0.11.1",
       "description": "让麦麦有自己的生活，也让你参与其中：自主安排作息、读书、出门，一句邀约就能改变日程。私聊道过晚安，群里再见也记得；读你上传的书，接着上次的感想与疑问继续读。结合真实天气和城市地点安排活动，按兴趣上网寻找新见闻，带着经历来聊天、道早晚安，还能把当天日记整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -22419,6 +22419,290 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "github.ling-cay.cayrememberyou",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.ling-cay.cayrememberyou",
+      "version": "3.9.0",
+      "name": "CAYRememberYou（跨群记忆）",
+      "description": "让麦麦记得你在其他群聊里说过的话，并在合适时机自然提起。默认纯本地关键词检索，不消耗任何 Token；向量语义为可选开关，开启后才会产生 embedding 费用。",
+      "author": {
+        "name": "LING",
+        "url": "https://github.com/Ling-CAY"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Ling-CAY/PROJECT-CAY",
+        "issues": "https://github.com/Ling-CAY/PROJECT-CAY/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.9.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "capabilities": [
+        "send.text",
+        "llm.embed"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "locales_path": "i18n",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "database"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.ling-cay.cayrememberyou.webp"
+    }
+  },
+  {
+    "id": "github.tang-bai.heybox-operator",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.tang-bai.heybox-operator",
+      "version": "0.14.2",
+      "name": "刷小黑盒",
+      "description": "MaiBot 小黑盒社区运营插件：扫码/Cookie 登录、人设逛帖点赞评论、私信自动回复、浏览总结发帖与 WebUI 仪表盘。",
+      "author": {
+        "name": "tang-bai",
+        "url": "https://github.com/tang-bai"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/tang-bai/heybox-operator",
+        "homepage": "https://github.com/tang-bai/heybox-operator",
+        "documentation": "https://github.com/tang-bai/heybox-operator/blob/main/README.md",
+        "issues": "https://github.com/tang-bai/heybox-operator/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.6",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "api.call",
+        "config.get",
+        "llm.generate",
+        "chat.open_session",
+        "maisaka.reply.generate"
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "package",
+          "background": "#f1f2f4"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "plugin_type": "integration"
+    },
+    "assets": {
+      "icon_64": "icons/github.tang-bai.heybox-operator.webp"
+    }
+  },
+  {
+    "id": "github.nethielchou.mai-fx-sim",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.nethielchou.mai-fx-sim",
+      "version": "0.3.4",
+      "plugin_type": "game",
+      "name": "麦麦炒外汇",
+      "description": "让麦麦在群聊里用自己的判断交易一个本地虚拟外汇账户：零售 FX 规则（虚拟人民币计价、默认 10 倍杠杆、1 万货币、强制平仓、隔夜利息、点差/滑点），真实公开行情，纯娱乐模拟盘，不接真实交易通道、不构成投资建议。",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "coins",
+          "background": "#1F3A5F"
+        }
+      },
+      "author": {
+        "name": "NethielChou",
+        "url": "https://github.com/NethielChou"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/NethielChou/maibot-fx-sim",
+        "homepage": "https://github.com/NethielChou/maibot-fx-sim",
+        "documentation": "https://github.com/NethielChou/maibot-fx-sim/blob/main/README.md",
+        "issues": "https://github.com/NethielChou/maibot-fx-sim/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.13",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.22.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "llm.generate",
+        "chat.get_stream_by_group_id",
+        "chat.get_stream_by_user_id",
+        "message.get_recent",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.nethielchou.mai-fx-sim.webp"
+    }
+  },
+  {
+    "id": "github.littlesleepy.maizhishi-theme",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.littlesleepy.maizhishi-theme",
+      "version": "0.1.5",
+      "name": "麦之诗(界面风格)",
+      "description": "以《影之诗：超凡世界》的美术风格装点界面，淡金边框搭配青白与夜蓝两套配色。",
+      "author": {
+        "name": "littlesleepy",
+        "url": "https://github.com/Littlesleepy"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/Littlesleepy/maizhishi-theme"
+      },
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.3.18"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.19.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "maibot-dashboard",
+          "version_spec": "==1.9.12"
+        }
+      ],
+      "plugin_type": "other",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "palette"
+        }
+      },
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.littlesleepy.maizhishi-theme.webp"
+    }
+  },
+  {
+    "id": "github.sora-maru.apis",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.sora-maru.apis",
+      "version": "1.0.6",
+      "name": "API 聚合",
+      "plugin_type": "extension",
+      "description": "关键词调用各类实用与娱乐 API，支持文字、图片、视频和语音，提供接口管理、批量测试与本地缓存。",
+      "author": {
+        "name": "sora-maru（MaiBot 移植）；Zhalslar 及原项目贡献者（上游）",
+        "url": "https://github.com/sora-maru"
+      },
+      "license": "AGPL-3.0-only",
+      "urls": {
+        "repository": "https://github.com/sora-maru/maibot_plugin_apis",
+        "homepage": "https://github.com/sora-maru/maibot_plugin_apis",
+        "documentation": "https://github.com/sora-maru/maibot_plugin_apis#readme",
+        "issues": "https://github.com/sora-maru/maibot_plugin_apis/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "plugin",
+          "id": "maibot-team.snowluma-adapter",
+          "version_spec": ">=1.1.9,<2"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.9,<4"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12,<5"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.custom",
+        "chat.open_session"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "logo.png"
+        }
+      },
+      "changelog": "CHANGELOG.md"
+    },
+    "assets": {
+      "icon_64": "icons/github.sora-maru.apis.webp"
     }
   }
 ]
