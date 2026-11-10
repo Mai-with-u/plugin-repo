@@ -61964,6 +61964,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.qwen-tts",
+      "manifest_id": "local.qwen-tts",
+      "repositoryUrl": "https://github.com/feli77/maibot-qwen-tts",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "7e3e32de90295cd2ab4bde4b5ac8aca862071a6b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T14:22:10Z",
+          "release_url": "https://github.com/feli77/maibot-qwen-tts/releases/tag/v1.0.0",
+          "release_notes": "首个正式版本。\r\n\r\n- 使用本机 Qwen3-TTS 模型生成语音，通过 SnowLuma 发送至当前 QQ 群聊或私聊。\r\n- 支持 `/tts` 朗读命令和 MaiBot 按需语音回复。\r\n- 支持 CustomVoice、VoiceDesign 和 Base 模型。\r\n\r\n兼容 MaiBot 1.3.18–1.3.x。安装和配置步骤见 [README](https://github.com/feli77/maibot-qwen-tts/blob/v1.0.0/README.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.qwen-tts",
+            "version": "1.0.0",
+            "name": "Qwen3-TTS QQ 语音",
+            "description": "使用本机 Qwen3-TTS 模型合成语音，并通过 SnowLuma 发到当前 QQ 会话。",
+            "author": {
+              "name": "feli77",
+              "url": "https://github.com/feli77"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/feli77/maibot-qwen-tts"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.22.99"
+            },
+            "plugin_type": "media",
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=1.1.13,<2.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "maibot-plugin-sdk",
+                "version_spec": ">=2.19,<3"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
