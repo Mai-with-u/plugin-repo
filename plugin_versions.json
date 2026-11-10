@@ -46046,6 +46046,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.6",
+          "tag": "v1.6.6",
+          "commit": "7b4a91f740ff148a7defb57247add41cff6a95f0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T14:00:42Z",
+          "release_url": "https://github.com/Akenari011/gpt-sovits-voice-plugin/releases/tag/v1.6.6",
+          "release_notes": "## 1.6.6\n\n### GitHub 用户名修正\n\n账号改名 `Lbcheng1145` → `Akenari011`，旧地址已不再重定向。\n\nmanifest 的 `author.name` / `author.url` / `repository` / `homepage` / `documentation` / `issues`\n和 README 里的 Issues 链接全部更新到新用户名。\n\n**插件 id 保持不变**（`github.lbcheng1145.gpt-sovits-voice-plugin`）—— 它是已安装插件的唯一标识。\n\n### 验证\n\n- 自审 3 遍：22 项全过\n- 测试 3 遍：7 项全过（8 个源码文件编译 / manifest / 版本协商）\n\n---\n\n## 完整更新历史\n\n### v1.6.5\n`sdk.max_version` 升到 2.22.99，适配 MaiBot 1.4.3。\n\n### v1.6.4\n适配 MaiBot 1.4.0 / SDK 2.21.0。\n\n### v1.6.3\n支持连远程 GPT-SoVITS 服务。\n\n### v1.6.2 及更早\n语音合成、随机音色、风格路由等基础功能。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lbcheng1145.gpt-sovits-voice-plugin",
+            "version": "1.6.6",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Akenari011 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Akenari011/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Akenari011/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.4",
           "tag": "v1.6.4",
           "commit": "8d331e380e0a0e22e88d5e8716f23ceca90f920f",
