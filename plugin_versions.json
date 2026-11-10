@@ -61816,6 +61816,82 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "66cbb77311405ee666c51fe435d1c1a66ddfc93c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T11:33:53Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.0.4",
+          "release_notes": "修「连本体都没搞明白」——给插件补上系列常识。\n\n## 事故\n\n《丝之歌》实体版手册那条帖子下，我们连发两条：\n\n> 不急，先把本体端上来再说吧\n> 等本体都等成化石了，现在居然连都有饼了\n\n评论区当场判定为 AI：「你是 ai 吗」「现在 AI 模仿傻子这么像了吗」「本体又来本传的」。\n\n**根因是世界知识，不是语气。** 帖子里的「本体」指丝之歌这款游戏自己（相对于 DLC），\n模型理解成了《空洞骑士》初代，等于在说「丝之歌还没发售」。\n\n## 改动\n\n- 新增 `layers/series.py` + `series_kb.json`（29 个热门系列）：认到游戏就把\n  「系列里都有谁、本体指哪一部」注入评论提示词\n- 认不到系列时禁止使用「本体 / 本传 / 前作 / 续作 / 初代」，生成后仍出现则整条作废\n- 评论发出后记录全文与所在帖子（此前只有条数，复盘只能靠事后扒接口）\n- `runtime` 修「把任务名当模型名」的误判，模型不可用告警消失\n- 配置：`text_model` 改 `ds-official`；`daily_quota_comment` 200 → 40\n\n## 数据来源说明\n\nTwitch 的 2FA 在国内收不到短信，而 Twitch 要求先过短信才能添加验证器，IGDB 暂时走不通。\n改用免登录的 Steam 公开接口核对事实（丝之歌 `type=game`、2025-09-04 发售），\n关系数据人工维护，后续 IGDB 能开通再补权威数据。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.0.4",
+            "name": "回响",
+            "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.3",
           "tag": "v1.0.3",
           "commit": "c1a4dbd7ca0492bdabddff7a727dfa68fa45df96",
