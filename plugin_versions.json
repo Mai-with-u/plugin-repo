@@ -54721,6 +54721,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.2.1",
+          "tag": "v2.2.1",
+          "commit": "ec9051fd598f7cc6132fa3b8d1dd576d1fe0d824",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T07:42:10Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.2.1",
+          "release_notes": "## 新增功能\n\n- **语音参数重生成**：普通动态语调、工具调用和自适应参数校验失败后，携带原提示、原文、失败输出与校验原因，按平台规则重新生成有效 TTS 参数\n- **共用重试次数**：LLM 调用失败与参数校验失败共用重试预算，下拉选择 0–5 次，默认 2 次，0 关闭重试\n- **TTS 请求日志**：INFO 级日志记录实际请求的文本、模型、音色、语调、指令和合成参数，Breeze 多区段逐段记录，凭据脱敏，缓存命中单独记录来源\n\n## 修复功能\n\n- **聊天错误提示**：修复诊断文案写入聊天正文的问题，错误通过日志与 LLM 回执返回，语音失败后保留可见原文\n- **标签与平台参数**：修复标签独占分段时的误报，按实际接口校验语调 ID、Breeze 事件和语速范围，校验通过后执行 TTS\n- **正文与 JSON 校验**：保留原始可见正文，拦截正文改写、额外字段、重复字段和非法参数；平台专属提示同步中、英、日，明确参数结构与示例\n- **发送与缓存**：参数重生成失败后停止本次 TTS，沿用已确认的文字发送回执，音频缓存按最终有效参数复用，失败判断按调用隔离\n- **配置与文档**：统一重试设置的读取与范围校验，补充[语音参数重生成与请求日志说明](https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/v2.2.1/docs/speech-control.md)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.2.1",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.22.1"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.2.0",
           "tag": "v2.2.0",
           "commit": "407d095636c744e77b556b6ccb006c41ff37165d",
