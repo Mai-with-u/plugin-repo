@@ -7025,6 +7025,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.13.0",
+          "tag": "v1.13.0",
+          "commit": "df29e929bde938789360569a27fb1171f40325cd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T15:18:49Z",
+          "release_url": "https://github.com/TAIY2020/smart_poke_plugin/releases/tag/v1.13.0",
+          "release_notes": "## 主要更新\r\n\r\n被戳反应支持自定义静音时段，麦麦在夜间 / 午休被戳不再出声（v1.13.0）\r\n\r\n### 新增\r\n\r\n- **被戳反应静音时段（#9）**：「反应行为」新增「静音时段」（`reaction.quiet_periods`），按宿主本地时间配置每日静音时段，格式 `HH:MM-HH:MM`，例如 `23:30-07:00` 加 `12:30-13:30`。感谢 @BardKing-CN 在 #9 中提出建议。\r\n  - 精确到分钟，支持多段和跨午夜；起点含、终点不含（`07:00` 整即恢复）；\r\n  - 时段内群聊和私聊被戳都不作任何反应——不回戳，也不改发文字、表情、LLM 回复或「沉默回复池」里的话；\r\n  - 静音开始前被戳、思考延迟拖到静音开始后才要发出的反应会被放弃；发送失败后的回戳 / 文字兜底同样不会在静音时段内发出；\r\n  - 静音中的戳不消耗冷却和每分钟反应上限，但仍记入戳次数，主动戳的「避开戳过麦麦的人」照常生效；\r\n  - 只管被戳后的反应，跟风戳和主动戳不受影响（主动戳有自己的活跃时段）；\r\n  - 默认为空，也就是不静音，升级后原有行为不变。\r\n- 配置 schema 版本升到 `1.10.0`，Runner 启动时会自动补齐新字段，原有配置保留。\r\n\r\n> **说明**：静音时事件是否吞掉沿用「沉默时吞事件」（`swallow_when_silent`）。保持开启（默认）才是真正安静；关闭后事件会放行给主程序，主程序可能用自带的戳一戳回应出声。\r\n\r\n### 优化\r\n\r\n- 时段写法容错：全角冒号与 `–` / `~` / `至` 等连接符会自动归一化为 `HH:MM-HH:MM` 并去重；写法不合法或起止相同（如 `08:00-08:00`）的项会被忽略并在日志里提示，不影响配置加载。想全天不响应请直接关闭「群聊响应」/「私聊响应」。\r\n- 补充静音时段解析、判定与发送闸门的单元测试，README 新增「静音时段」说明。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.13.0",
+            "name": "智能戳一戳插件 | Smart Poke Plugin",
+            "description": "一个让麦麦在 QQ 戳一戳里尽量像真人一样反应的拟人化交互插件。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/smart_poke_plugin",
+              "homepage": "https://github.com/TAIY2020/smart_poke_plugin",
+              "documentation": "https://github.com/TAIY2020/smart_poke_plugin",
+              "issues": "https://github.com/TAIY2020/smart_poke_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "api.call",
+              "emoji.get_random",
+              "emoji.get_by_description",
+              "emoji.get_emotions",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "message.get_recent",
+              "message.build_readable",
+              "maisaka.context.append",
+              "llm.generate",
+              "config.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.webp"
+              }
+            },
+            "id": "TAIY2020.smart_poke_plugin"
+          }
+        },
+        {
           "version": "1.12.1",
           "tag": "v1.12.1",
           "commit": "88b9156444feaa4fb3e7e158c3be0551d48625ed",
