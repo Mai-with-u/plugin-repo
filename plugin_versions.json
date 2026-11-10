@@ -61809,6 +61809,83 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.tang-bai.maibot-daily-life",
+      "manifest_id": "github.tang-bai.maibot-daily-life",
+      "repositoryUrl": "https://github.com/tang-bai/maibot-daily-life",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.7",
+          "tag": "v0.1.7",
+          "commit": "71cddb36c459f87e9b30c3449217a701cfd5bb23",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T01:50:24Z",
+          "release_url": "https://github.com/tang-bai/maibot-daily-life/releases/tag/v0.1.7",
+          "release_notes": "麦麦日常图文空间 0.1.7\n\n**依赖 [MaiWeave](https://github.com/ilworkcn/MaiWeave)**，需在同一 MaiBot 实例中安装并启用。\n\n## 功能\n\n- 读取 MaiWeave 当前活动，调用 OpenAI 兼容绘图接口生成配文与插画\n- 通过 SnowLuma 适配器发布 QQ 空间说说，默认好友可见，一图一文\n- 自动发布默认关闭；活动变化后稳定 2 分钟才触发，含去重、冷却与每日上限\n- 管理员命令：`/daily status`、`/daily preview`、`/daily post`、`/daily publish <草稿ID>`、`/daily retry <任务ID>`\n- 管理员手动命令不受本插件冷却与每日次数限制；自动任务仍限流\n- 绘图密钥只保存在插件配置中，不读取环境变量；日志与数据库不含密钥\n\n## 安装\n\n下载本 Release 的源码包或用仓库 ZIP，将内容放入 `plugins/maibot-daily-life/`，根目录需直接包含 `_manifest.json` 与 `plugin.py`。随后按 README 配置管理员、角色外貌、绘图接口与密钥。\n\n## 说明\n\n- 兼容声明：MaiBot 1.3.19–1.3.99、插件 SDK 2.21.x\n- 插件 ID 由 `local.maibot-daily-life` 更名，旧数据目录会自动复制迁移\n- 未使用真实账号与收费接口做端到端验证，请先用 `/daily preview` 确认",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "automation",
+            "id": "github.tang-bai.maibot-daily-life",
+            "name": "麦麦日常图文空间",
+            "version": "0.1.7",
+            "description": "读取 MaiWeave 当前活动，通过 OpenAI 兼容接口生成配文与插画，并使用 SnowLuma 发布到 QQ 空间。依赖 MaiWeave；默认关闭自动发布。",
+            "author": {
+              "name": "MaiBot Daily Life Contributors",
+              "url": "https://github.com/tang-bai"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/tang-bai/maibot-daily-life",
+              "homepage": "https://github.com/tang-bai/maibot-daily-life",
+              "documentation": "https://github.com/tang-bai/maibot-daily-life/blob/main/README.md",
+              "issues": "https://github.com/tang-bai/maibot-daily-life/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.10,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10,<14"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2025.2"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "api.get",
+              "llm.generate",
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
