@@ -61733,6 +61733,82 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "jasdewstarfield.github-monitor-plugin",
+      "manifest_id": "jasdewstarfield.github-monitor-plugin",
+      "repositoryUrl": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "ea0df2b47312d1a244f08d37845d97b9db6e6c30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T09:42:55Z",
+          "release_url": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin/releases/tag/v2.0.0",
+          "release_notes": "# GitHub 监控插件 2.0.0\n\n监控 GitHub 仓库指定分支，将新提交推送到 MaiBot 群聊。\n\n## 功能与改进\n\n- 同一仓库、同一分支在一轮检查内发现的多条提交合并为一条通知，按旧到新排列。\n- 可选让 Maisaka 在每批通知后补一句简短点评；关闭 `enable_commentary` 即只发送基础通知。\n- 失败群在后续轮询中重试，已成功群不会因其他群失败而重复收到同一批通知。\n- 隔离单个群和仓库的异常，为发送与点评设置超时，避免影响其他仓库的监控。\n- 新增 `max_message_chars` 配置，默认 2000，允许 512–4000；超长通知改为提交标题摘要，保留完整记录链接。\n- 补充安装与配置说明、直接依赖声明和明确的 Host / SDK 兼容范围。\n\n## 环境要求\n\n- Python 3.12+\n- MaiBot Host 1.4.3–1.4.99\n- maibot-plugin-sdk 2.22.1–2.22.99\n- Python 依赖：`aiohttp>=3.14.3,<4`、`pydantic>=2.11.7,<3`\n\n使用 Manifest v2，面向当前 MaiBot 插件运行环境。安装及配置示例见仓库 README。\n\n## 配置兼容与使用说明\n\n- 保留 `[global_]` 配置及旧的 `[global]` 别名；旧配置未填写 `max_message_chars` 时自动使用默认值。\n- 首次启动只建立基线，不补发历史提交。未命中旧提交基线时只通知最新一条。\n- 重试状态保存在内存，重启后不会恢复未发送通知；同仓库的失败批次会延迟该仓库后续更新。\n- GitHub 接口当前只读取第一页提交；不保证补齐大量积压或停机期间的更新。\n\n已在远端 VPS 的真实 MaiBot 环境中验证仓库推送后的通知发送；自动化回归覆盖汇总、重试、超时、取消、长度限制与配置兼容。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "jasdewstarfield.github-monitor-plugin",
+            "version": "2.0.0",
+            "name": "GitHub 监控插件",
+            "description": "定期扫描 GitHub 仓库的新提交并推送到 MaiBot 群聊",
+            "author": {
+              "name": "Jasdew Starfield",
+              "url": "https://github.com/JasdewStarfield"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin",
+              "homepage": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin",
+              "documentation": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin#readme",
+              "issues": "https://github.com/JasdewStarfield/MaiBot-Github-Monitor-Plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.3",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.1",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.11.7,<3"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bell"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "chat.get_stream_by_group_id",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
