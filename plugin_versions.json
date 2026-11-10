@@ -61886,6 +61886,84 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.lava-xa.codex-reset_notify_plugin",
+      "manifest_id": "github.lava-xa.codex-reset_notify_plugin",
+      "repositoryUrl": "https://github.com/lava-xa/codex-reset_notify_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "9b39e6ebd41a4925621d09634d5c863695b7b8c6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T13:07:44Z",
+          "release_url": "https://github.com/lava-xa/codex-reset_notify_plugin/releases/tag/v1.0.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.lava-xa.codex-reset_notify_plugin",
+            "version": "1.0.0",
+            "name": "Codex 额度重置通知",
+            "description": "每五分钟监控 codex-resets.com，并将新的 Codex 额度重置与对应公告截图发送到 QQ 白名单。",
+            "author": {
+              "name": "lava",
+              "url": "https://github.com/lava-xa"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/lava-xa/codex-reset_notify_plugin",
+              "homepage": "https://github.com/lava-xa/codex-reset_notify_plugin",
+              "documentation": "https://github.com/lava-xa/codex-reset_notify_plugin/blob/main/README.md",
+              "issues": "https://github.com/lava-xa/codex-reset_notify_plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.90.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12.14"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "bell-ring"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
