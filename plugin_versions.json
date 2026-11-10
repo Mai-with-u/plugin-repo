@@ -52977,6 +52977,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "e214e8e730091a7063bb54ebdccd2e7e2deaaf69",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T14:37:26Z",
+          "release_url": "https://github.com/Akenari011/maibot-cost-report/releases/tag/v1.3.1",
+          "release_notes": "## 1.3.1\n\n修一个会让出图路径整体失效的 bug，建议 1.3.0 用户升级。\n\n### 修复\n\n- **magpie 关闭时出图崩溃**（默认配置必现）。`count_cost` 原先只在 `if self.config.report.magpie_enabled:` 分支里赋值，而 `_collect_dashboard` 的调用在分支外面。默认配置 `magpie_enabled=false`，走到那里就抛 `UnboundLocalError`，整条出图路径静默失败——命令只回文字、工具不回图，而且不报错，日志里看不出异常。\n  现在 `count_cost` 和 `pricing` / `usd_rate` 一起在分支外初始化。\n\n### 测试\n\n- 新增 `test_send_image_default_config`：用默认配置完整走一遍 `_send_image` → `_collect_dashboard` → `render.html2png` → `send.image`。反向验证过，还原旧写法该测试会 FAIL。\n- 测试套件 525 个断言 × 3 轮全过；自检 41 项全过。\n\n### 说明\n\n本次只改 `plugin.py` 里 `_send_image` 的初始化位置和测试，功能与配置项无变化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.cost-report",
+            "version": "1.3.1",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.22.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "0f73f4271795f3d46fd37a6db228a222a9a82a6e",
