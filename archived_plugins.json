@@ -9918,5 +9918,4483 @@
       "ignored_tags": [],
       "rejected_releases": []
     }
+  },
+  {
+    "id": "saberlights.smart_segmentation_plugin",
+    "repositoryUrl": "https://github.com/saberlights/smart_segmentation_plugin",
+    "archived_at": "2026-11-06T14:50:00.546Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "saberlights.smart_segmentation_plugin",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "1.1.0",
+        "name": "智能分段插件 (Smart Segmentation Plugin)",
+        "description": "使用 LLM 智能切分回复文本，在语义自然的地方切分，保持原文内容不变，让回复更加灵活自然。",
+        "author": {
+          "name": "久远",
+          "url": "https://github.com/saberlights"
+        },
+        "license": "GPL-v3.0-or-later",
+        "urls": {
+          "repository": "https://github.com/saberlights/smart_segmentation_plugin",
+          "homepage": "https://github.com/saberlights/smart_segmentation_plugin",
+          "documentation": "https://github.com/saberlights/smart_segmentation_plugin",
+          "issues": "https://github.com/saberlights/smart_segmentation_plugin/issues"
+        },
+        "host_application": {
+          "min_version": "1.2.0",
+          "max_version": "999999.0.0"
+        },
+        "sdk": {
+          "min_version": "1.0.0",
+          "max_version": "2.99.99"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "config.get_all",
+          "send.text",
+          "llm.generate"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "id": "saberlights.smart-segmentation-plugin"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "saberlights.smart_segmentation_plugin",
+      "manifest_id": "saberlights.smart-segmentation-plugin",
+      "repositoryUrl": "https://github.com/saberlights/smart_segmentation_plugin",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "nguspring.custom_pic_plugin",
+    "repositoryUrl": "https://github.com/nguspring/custom_pic_plugin",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "nguspring.custom_pic_plugin",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "4.0.1",
+        "name": "画家麦麦的日常",
+        "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供内置日程与日程注入、空间/群/私聊多渠道自动自拍、群聊主动图片、聊天设置持久化、额度管理和对外生图 API，并可选对接 MaiTrace。",
+        "plugin_type": "creative",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "image"
+          }
+        },
+        "author": {
+          "name": "Ptrel, Rabbit-Jia-Er, saberlights Kiuon, nguspring",
+          "url": "https://github.com/nguspring/painter_maimai_daily"
+        },
+        "license": "AGPL-3.0-or-later",
+        "urls": {
+          "repository": "https://github.com/nguspring/painter_maimai_daily",
+          "homepage": "https://github.com/nguspring/painter_maimai_daily",
+          "issues": "https://github.com/nguspring/painter_maimai_daily/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.11",
+          "max_version": "1.3.99"
+        },
+        "sdk": {
+          "min_version": "2.15.0",
+          "max_version": "2.16.99"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "maibot-plugin-sdk",
+            "version_spec": ">=2.15.0,<3"
+          },
+          {
+            "type": "python_package",
+            "name": "requests",
+            "version_spec": ">=2.28.0"
+          },
+          {
+            "type": "python_package",
+            "name": "Pillow",
+            "version_spec": ">=10"
+          },
+          {
+            "type": "python_package",
+            "name": "pydantic",
+            "version_spec": ">=2,<3"
+          },
+          {
+            "type": "python_package",
+            "name": "tomlkit",
+            "version_spec": ">=0.12"
+          },
+          {
+            "type": "python_package",
+            "name": "tzdata",
+            "version_spec": ">=2024.1"
+          },
+          {
+            "type": "python_package",
+            "name": "httpx",
+            "version_spec": ">=0.24,<1"
+          }
+        ],
+        "capabilities": [
+          "send.text",
+          "send.image",
+          "send.hybrid",
+          "config.get",
+          "llm.generate",
+          "message.get_by_id",
+          "message.get_recent",
+          "chat.get_stream_by_group_id",
+          "chat.get_stream_by_user_id",
+          "chat.get_all_streams",
+          "api.call",
+          "api.list"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "id": "nguspring.painter_maimai_daily"
+      },
+      "assets": {
+        "icon_64": "icons/nguspring.custom_pic_plugin.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "nguspring.custom_pic_plugin",
+      "manifest_id": "selfie_painter",
+      "repositoryUrl": "https://github.com/nguspring/custom_pic_plugin",
+      "mode": "releases",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v4.0.1",
+          "version": "4.0.1",
+          "error": "发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v4.0.0",
+          "version": "4.0.0",
+          "error": "发布版本改变了插件 ID"
+        }
+      ]
+    }
+  },
+  {
+    "id": "nguspring.random-image-api-for-maibot",
+    "repositoryUrl": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "nguspring.random-image-api-for-maibot",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "nguspring.random-image-api-for-maibot",
+        "version": "1.2.2",
+        "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+        "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+        "author": {
+          "name": "NGU-SprinG",
+          "url": "https://github.com/nguspring"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+          "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+          "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
+          "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.0",
+          "max_version": "1.3.99"
+        },
+        "sdk": {
+          "min_version": "2.8.2",
+          "max_version": "2.16.99"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "Pillow",
+            "version_spec": ">=9.0.0"
+          }
+        ],
+        "capabilities": [
+          "send.text",
+          "send.image",
+          "send.forward",
+          "send.custom",
+          "config.get"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "plugin_type": "media"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "nguspring.random-image-api-for-maibot",
+      "manifest_id": "nguspring.random-image-api-for-maibot",
+      "repositoryUrl": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "230da94f514213ce8d29c544d2fbffcef1d61980",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T13:04:09Z",
+          "release_url": "https://github.com/nguspring/Random-image-api-for-MaiBot/releases/tag/v1.2.2",
+          "release_notes": "恢复 WebUI 配置页的中文字段标题与提示说明；R18 名单模式、默认获取策略改为下拉选择；配置键名与 config.toml 结构不变，升级不会覆盖已有配置。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "nguspring.random-image-api-for-maibot",
+            "version": "1.2.2",
+            "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+            "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+            "author": {
+              "name": "NGU-SprinG",
+              "url": "https://github.com/nguspring"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
+              "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.custom",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "media"
+          }
+        },
+        {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "7bf4596af56610924f41609483c72e1fd00c2790",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T15:30:13Z",
+          "release_url": "https://github.com/nguspring/Random-image-api-for-MaiBot/releases/tag/v1.2.1",
+          "release_notes": "## 随机图片插件 v1.2.1\n\n适配 MaiBot 1.3.x 与 Plugin SDK 2.x，使用 manifest v2 与 `maibot_sdk`。\n\n### 本版变更\n\n- **R18 默认关闭**：`features.allow_r18` 默认值改为 `false`，需要时在 `config.toml` 或 WebUI 中手动开启\n- 已存在的 `config.toml` 不会被覆盖，升级后仍保留原有设置\n\n### 功能\n\n- 随机获取 Pixiv 图片，单次最多 10 张\n- 标签包含 / 排除、AI 绘图过滤、横竖屏筛选、画师与收藏 / 浏览 / 尺寸阈值\n- R18 总开关 + 白名单 / 黑名单（默认关闭）\n- 全局冷却、多线路回退、先下载再发送、Pillow 智能压缩\n- 合并转发或逐条发送\n\n### 兼容性\n\n- MaiBot `1.3.0` ~ `1.3.99`\n- Plugin SDK `2.8.2` ~ `2.16.99`\n- 依赖：`Pillow >= 9.0.0`\n\n> 请确保使用场景符合当地法律法规与平台规则。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "nguspring.random-image-api-for-maibot",
+            "version": "1.2.1",
+            "name": "随机图片和色图插件（Random-image-api-for-MaiBot）",
+            "description": "从 Random-image-api 拉取 Pixiv 随机图片，支持多地址回退、全局冷却、R18 白名单/黑名单、标签筛选、多图获取、AI 过滤、合并转发、智能压缩、尺寸筛选等功能",
+            "author": {
+              "name": "NGU-SprinG",
+              "url": "https://github.com/nguspring"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "homepage": "https://github.com/nguspring/Random-image-api-for-MaiBot",
+              "documentation": "https://github.com/nguspring/Random-image-api-for-MaiBot/blob/main/README.md",
+              "issues": "https://github.com/nguspring/Random-image-api-for-MaiBot/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.2",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.custom",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "media"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "session-model-router",
+    "repositoryUrl": "https://github.com/saberlights/session_model_router",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "session-model-router",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "session-model-router",
+        "version": "1.2.1",
+        "name": "会话模型路由",
+        "description": "按会话（群聊/私聊、指定群号或用户）为 Maisaka replyer 指定不同的模型，并支持通过命令切换群聊和私聊默认模型。",
+        "author": {
+          "name": "久远",
+          "url": "https://github.com/saberlights"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/saberlights/session_model_router",
+          "homepage": "https://github.com/saberlights/session_model_router",
+          "documentation": "https://github.com/saberlights/session_model_router/blob/main/README.md",
+          "issues": "https://github.com/saberlights/session_model_router/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.1.1",
+          "max_version": "1.99.99"
+        },
+        "sdk": {
+          "min_version": "2.7.1",
+          "max_version": "2.99.99"
+        },
+        "dependencies": [],
+        "plugin_type": "extension",
+        "display": {
+          "icon": {
+            "type": "lucide",
+            "value": "route"
+          }
+        },
+        "capabilities": [
+          "chat.get_all_streams",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "locales_path": null,
+          "supported_locales": []
+        }
+      }
+    },
+    "version_index_snapshot": {
+      "id": "session-model-router",
+      "manifest_id": "session-model-router",
+      "repositoryUrl": "https://github.com/saberlights/session_model_router",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-sim-trader",
+    "repositoryUrl": "https://github.com/42yoru/maimai_sim_trader",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "github.42yoru.maimai-sim-trader",
+        "version": "0.9.0",
+        "plugin_type": "automation",
+        "name": "麦麦模拟盘",
+        "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "line-chart",
+            "background": "#F3B27A"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai_sim_trader",
+          "homepage": "https://github.com/42yoru/maimai_sim_trader",
+          "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "chat.get_group_streams",
+          "chat.get_private_streams",
+          "config.get",
+          "llm.generate",
+          "message.get_recent",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        }
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest_id": "github.42yoru.maimai-sim-trader",
+      "repositoryUrl": "https://github.com/42yoru/maimai_sim_trader",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.9.0",
+          "tag": "v0.9.0",
+          "commit": "363d086f4983f72d9e132646b91990eae5f5f37e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T03:35:38Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.9.0",
+          "release_notes": "## 主要功能\n\n- **播报按句分段**。宿主的分段器只服务于 maisaka 的 reply 工具链路，插件的 `send.text` 直通发送层 —— 原先播报整段两三百字一次砸进群里。现在按句末标点切成几条依次发出，条间留 1.5 秒。单句超长时先按逗号/分号切，仍超长才硬切，保证不丢字。\n\n- **播报带上历史**。播报是一次性模型调用，原先看不到自己上一轮说过什么。现在把最近 4 次播报原话存进状态文件，拼进下一轮提示词。\n\n- **播报参考群聊上下文**。拉最近 8 条群消息压成「谁：说了什么」作为语气参考。**只影响播报，不影响决策** —— 群里随口一句「今天亏惨了吧」不该让 bot 去砍仓。过滤掉 bot 自己的发言、表情与图片。\n\n- **播报写进聊天历史**。宿主 `send.text` 的 `sync_to_maisaka_history` 默认是 `False`，插件原先没传，播报只进数据库、不进 Maisaka 对话历史 —— 于是 bot 刚说完「今天赚了多少」，下一轮聊天完全不记得，也就不会等主人接话。\n\n- **多日走势：让模型看得到「已经涨了多少」**。原来每轮只给一行盘中快照（现价/涨跌幅/最高最低/换手），模型知道「在涨」但不知道「涨透了」，于是盲目追已经连涨多日、贴着区间顶部的票 —— 而这类操作在模拟盘里天然赚钱。新增 `kline.py`，决策时附加近 N 日累计涨幅、连涨天数、均线偏离、区间位置，涨得过猛的票会直接标注「涨得有点猛，追进去风险大」。\n\n  数据源用新浪日 K：腾讯的 `web.ifzq.gtimg.cn` 从 2026-11 起对直连请求回 501。拉取失败一律降级为空走势，不阻断决策。\n\n- **成交价冲击成本：让追高真的亏钱**。原来 `slippage` 只作用于限价（挂单能不能吃到），记账和盈亏仍按限价算，等于把真实世界里「买贵了」那部分直接抹掉。新增 `account.impact_cost`（默认 0.2%）：委托仍按限价挂出，但成交价按更差的一侧折算，资金、仓位、盈亏全部按它记账。同价买进卖出现在必然亏钱。\n\n- **散户人设：给它普通人的毛病**。新增 `bias.py` 与 `[bias]` 配置，四个弱点可调强度 0~3（默认 2）：追涨、杀跌、死扛亏损、拿不住盈利。亏钱因此有理由、有性格、有梗，而不是靠调低参数硬压收益。\n\n## 细节\n\n- 新增 `split.py` / `context_feed.py` / `kline.py` / `bias.py`，纯函数部分均可脱离宿主单测。\n- 新增配置：`split_*`（分段）、`context_*`（群聊上下文）、`sync_to_chat_history`、`kline.*`、`bias.*`、`account.impact_cost`。\n- 能力声明新增 `message.get_recent`。\n- 逐条发送时第一条失败即停，避免发出半截播报；只记录真正发送成功的播报进历史。\n- 新增测试覆盖上述功能，并对分段、历史注入、上下文注入、历史同步、走势注入都做了「还原旧实现即失败」的反向验证。\n- 版本号三处不一致（`_manifest.json` 0.8.10 / `PLUGIN_VERSION` 0.8.9 / `config.toml.example` 0.8.2）统一为 0.9.0。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.9.0",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.8.10",
+          "tag": "v0.8.10",
+          "commit": "f0f3def6c472df12bcca13424a912076b003da63",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:41Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.10",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.10",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.8.9",
+          "tag": "v0.8.9",
+          "commit": "f27756ac8b6583f4936d86cc3bc0f2e1d60601c4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:20Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.9",
+          "release_notes": "## 修复\n\n- 工作日和交易时段边界判断更严格，周末不会通过手动看盘路径提交模拟委托。\n- 同轮重复卖出会累计扣减可卖数量；连续买入的手续费和最低佣金会计入本轮现金预算。\n- 兼容更多委托字段，持仓移出股票池后仍保留卖出行情路径；行情时间戳和非有限数值会被拒绝。\n- 闭市试跑回执使用本轮决策结果，不再显示上一轮状态。\n\n## 细节\n\n- 风险档 UI 补充 `custom`；交易计数逐笔落盘。\n- SDK 兼容上限更新为 `2.50.50`；CI 补齐 `tomlkit` 依赖并通过。\n- 完成 136 项测试，2 项周末专用测试按预期跳过。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.9",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.8.8",
+          "tag": "v0.8.8",
+          "commit": "6ce5a2e951342465276e81e19a239ae6eee70334",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T05:11:27Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.8",
+          "release_notes": "**修复**\r\n\r\n- **WebUI 保存配置报 `Unable to convert an object of <class 'NoneType'> to a TOML item`**：\r\n  0.8.0 给 `[risk]` 加那四个倍率时用了 `Optional[float] = None` 当\"沿用档位预设\"的哨兵，\r\n  而 TOML 没有 null —— 宿主保存配置走 tomlkit，遇到 None 直接抛 `ConvertError`，\r\n  整张配置页都存不进去。\r\n  改成显式的 `profile = \"custom\"` 档：四项都是普通 float（默认 1.0/1.0/1.0/0.0），\r\n  只有 `profile` 为 `custom` 时才生效，其它档位忽略它们\r\n\r\n**细节**\r\n\r\n- 之前\"填了某一项就覆盖\"的写法没有了：要自定义就整档改成 `custom`，四项一起给——语义更清楚，\r\n  也避免\"改了某一项发现没反应\"（非 custom 档本来就不会读它）\r\n- 测试 136 → 138：新增「默认配置必须可被 tomlkit 序列化、且不含 None」这条守卫，\r\n  以及「非 custom 档忽略那四个数字」\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.8",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.8.7",
+          "tag": "v0.8.7",
+          "commit": "a38ca350b11d6d88f016a7f04e8ac20a40b1dbbf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:16Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.8.7",
+          "release_notes": "**细节**\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.8.7",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.7.5",
+          "tag": "v0.7.5",
+          "commit": "637345eafc96e6571753451ae56aa4da02992185",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-27T05:47:01Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.5",
+          "release_notes": "### 修复\n\n- **播报被写死的输出上限卡死**：`max_tokens` / `report_max_tokens` 原来默认 4000 / 2000，\n  会覆盖宿主任务配置。用推理模型（例如 `deepseek-v4-pro` 的 `reasoning effort = max`）时，\n  思考链动辄几千 token，额度一光正文就是空的 —— 宿主报\n  `IncompleteDetails(reason='max_output_tokens')`，这一轮播报直接失败并退回机械模板\n  - 两个字段默认值改成 `0`，表示跟随宿主任务配置；想自己限长再填正数\n- 模型因为额度不够失败时，错误信息直接给出可操作建议（改成 0 / 调大 / 换非推理模型），\n  不再只抛一串英文 `IncompleteDetails`\n\n### 细节\n\n- 测试 107 → 109 项（覆盖「0 不传字段」「正数照传」两种情况）\n\n> 升上来之后如果 `config.toml` 里还留着旧的 `max_tokens = 4000` / `report_max_tokens = 2000`，\n> 手动改成 `0` 即可跟随宿主任务；不改也能跑，只是仍然按旧额度截断。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.5",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.7.4",
+          "tag": "v0.7.4",
+          "commit": "a17935b49ff6790b97e4cdf3380a3ddf8205e974",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:43:53Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.4",
+          "release_notes": "### 主要功能\n\n- 每轮决策留下结构化记录：时间、心情、判断理由、实际执行或被拦下的动作\n  - 下一轮 prompt 带最近 8 轮的「当时怎么想、后来做了什么」，接着上一轮的思路往下想，不再每轮从零看盘\n- 决策 prompt 新增【这一轮的额度】块：单票上限与当前最重仓位占比、总仓位上限与还能加多少、今天还能下几笔，全部算成数字给模型\n- 三档胆量的提示词从形容词改成行为约束\n- 老状态文件里的 `recent_notes` 自动迁移成新记录，升级不丢历史\n- 聊天里的 `history` 改成展示完整判断和动作，不再只有一行「没动」\n\n### 修复\n\n- 有持仓但妙想没返回总资产时，额度块会说「现在空仓」，与同一份 prompt 里的持仓自相矛盾；现在明确写「总资产取不到，占比这轮不算」\n- 聊天触发的看盘（`sim_trader_review`）不走定时循环，跨日不重置当日笔数，第二天开局可能卡在上限；现在每轮进来先跨日重置\n\n### 细节\n\n- 启动体检补上妙想 API Key：`[mx] api_key` 和环境变量 `MX_APIKEY` 都没配时直接警告，\n  不再等第一个交易时段每轮报错才发现\n- 状态文件最多保留 24 轮记录，决策 prompt 注入最近 8 轮，`history` 查询展示最近 6 轮\n- 每轮记录的动作改成「成交行优先」，池子变更多时不会把成交挤出去\n- 妙想没返回仓位字段、或返回 0 但有持仓时，都用持仓市值算出仓位\n- 没渲染额度块时，规则里也不再提【这一轮的额度】\n- 状态文件载入时同样按 24 条截断；`round_records` 里出现非对象条目会报 `StateError`\n- 「最近几轮」和 `history` 的条数常量归到 `state.py`\n- README 增加「把账户清零重新开始」一节\n- 测试 84 → 107 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.4",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.7.1",
+          "tag": "v0.7.1",
+          "commit": "64568daf651c0e75a9eb28133b654707f518f9fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T01:47:30Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.1",
+          "release_notes": "WebUI 的配置页之前是一堆英文键名（`max_position_ratio`、`manual_cooldown_seconds`……），\n对着 `config.toml` 改还行，在网页上点就有点难受。这版把它整个重排了。\n\n**配置页现在是四个页签**\n\n| 页签 | 放什么 |\n|---|---|\n| 常用设置 | 妙想 Key、播报目标、主人白名单——第一次装只填这三块 |\n| 交易 | 账户与风控、胆量档位、看盘节奏 |\n| 模型 | 决策与播报用哪个模型任务 |\n| 高级 | 空转与冷却、模型参数、插件信息（默认折叠） |\n\n每个字段都有中文标签，和一句「填什么、为什么、填错会怎样」的说明。几个细节：\n\n- 妙想 Key 用密码框渲染\n- 配置版本两项只读，防止手改导致宿主误判需要迁移\n- `[risk] profile` 换成了下拉选择\n\n**做法**：新增 `config_ui.py`，只重组 SDK 生成的展示 Schema。配置模型、默认值和 TOML\n里的真实路径**一个字节都没动**——展示分块的 `name` 始终指向真实的配置节，所以网页上\n改完保存，写回去的还是原来那些键。\n\n**加了一条防呆测试**：遍历配置模型，检查每个真实配置节里的每个字段都出现在重排后的\nschema 里。以后加字段忘了登记进展示层，测试会直接红。\n\n测试 80 → 84 项，CI 全绿；配置版本同步到 0.7.1。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.1",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.7.0",
+          "tag": "v0.7.0",
+          "commit": "6c19f9a5ff35a29a9a0d22e86ebee2d5e119cda7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T01:40:34Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.7.0",
+          "release_notes": "新增一个很多人要的东西：**让它自己决定有多敢赌**。\n\n**三档胆量**\n\n`[risk] profile` 可选 `steady` 稳健 / `aggressive` 激进 / `yolo` 梭哈。\n\n档位不另起一套数字，而是在 `[account]` 里你自己填的基数上按倍数缩放：\n\n| 档位 | 单票上限 | 现金底线 | 每日笔数 | 让价 |\n|---|---|---|---|---|\n| `steady` 稳健（默认） | ×1.0 → 20% | ×1.0 → 20% | ×1.0 → 6 | +0 |\n| `aggressive` 激进 | ×1.4 → 28% | ×0.5 → 10% | ×1.8 → 11 | +0.1% |\n| `yolo` 梭哈 | ×1.8 → 36% | ×0.1 → 2% | ×2.0 → 12 | +0.2% |\n\n- **默认档等于原行为**，老配置升级后数字一个都不变\n- 代码里保留绝对上限（单票 ≤40%、每日 ≤12 笔），档位翻不过去——一把梭到当天归零就没什么好看的了\n- 档位会往决策 prompt 里加一句当轮气质，并把**实际生效的限制数字**写进规则\n- `/股 状态` 多一行当前档位与实际限制\n\n**顺手修掉一个真 bug**\n\n决策 prompt 里原先写死「单票不超过 20%、至少留 20% 现金」，改配置后规则和校验会对不上。\n现在这两个数字由配置 + 档位算出来再填进 prompt。档位写错也会直接报错，不静默退回默认档。\n\n测试 71 → 80 项，CI 全绿。功能与安装方式没有变化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.7.0",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.6.4",
+          "tag": "v0.6.4",
+          "commit": "76fbf6ba37b3a435c9761c9f997436cf559df12e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T15:24:06Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.6.4",
+          "release_notes": "按第四轮复审（[Issue #905](https://github.com/Mai-with-u/plugin-repo/issues/905)）的可选项做最后收尾。\n\n**细节**\n\n- `config_version` 对齐到插件版本：0.6.2 那次新增 `manual_cooldown_seconds` 属于配置结构变化，\n  当时没跟着滚；之后两者一起走\n- README 补一句：`sim_trader_query` 的 `status` / `orders` 目前不设门槛（模拟盘、钱是假的），\n  若将来把 `[mx]` 指向真实账户，需要先把这两个 action 收进 `[owner] owners`\n- README 文件结构标注 `scripts/` 仅开发者本地自检，不是运行时依赖；\n  插件运行时从不碰宿主数据库，一律走 `chat.get_group_streams` 能力\n\n功能与上一版没有差异，测试 71 项、CI 全绿。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.6.4",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
+          "version": "0.6.3",
+          "tag": "v0.6.3",
+          "commit": "91147f59573c3a1629126af3a855ad95bad341de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-21T15:07:49Z",
+          "release_url": "https://github.com/42yoru/maimai_sim_trader/releases/tag/v0.6.3",
+          "release_notes": "按第三轮复审（[Issue #905](https://github.com/Mai-with-u/plugin-repo/issues/905)）的四条建议收尾。\n\n**修复**\n\n- `/股 试跑` 增加 `_busy` 判断：后台循环正在跑的时候不再起第二轮\n- `_run_round` 结束时只恢复自己进来前的 busy 状态，两轮并发时不会互相把标志清掉\n- 腾讯行情快照改走 `https://qt.gtimg.cn`（原先明文 http，只发股票代码、不带密钥，现在连这层也省了）\n- `scripts/preflight.py`：缺 `[mx]` / `[notify]` 段时给一句人话提示，不再抛裸 `KeyError`\n\n**细节**\n\n- README 补「不走系统代理（`trust_env=False`）」的说明，部署在必须走代理的环境里需要另想办法\n- 徽章对齐：Python `3.12+`（MaiBot 本身要求 3.12+）、SDK `2.12.0+`（与 manifest 一致）\n- 测试 69 → 71 项，CI（ruff + unittest）全绿\n\n安装方式与使用前提没有变化。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.6.3",
+            "plugin_type": "integration",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断自动炒一个东方财富妙想模拟组合：妙想负责账户与深度数据，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-owner-reminder",
+    "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-owner-reminder",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "0.4.17",
+        "plugin_type": "automation",
+        "name": "主人的叮嘱 (Owner Reminder)",
+        "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "bell-ring",
+            "background": "#FFD69A"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai-owner-reminder",
+          "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+          "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "chat.get_private_streams",
+          "chat.get_stream_by_user_id",
+          "chat.open_session",
+          "config.get",
+          "maisaka.proactive.trigger",
+          "message.get_recent",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "id": "github.42yoru.maimai-owner-reminder"
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-owner-reminder.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-owner-reminder",
+      "manifest_id": "github.42yoru.maimai-owner-reminder",
+      "repositoryUrl": "https://github.com/42yoru/maimai-owner-reminder",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.4.17",
+          "tag": "v0.4.17",
+          "commit": "97e4dad514570f006aa737bec10730441b1c149a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T01:55:44Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.17",
+          "release_notes": "## 修复\n\n- 修复按群号解析目标时必定失败的问题：`chat.open_session` 的 `chat_type` 缺省会被 SDK 下发为 `private`，宿主据此按私聊校验并因缺少 `user_id` 拒绝。群目标解析现在显式传 `chat_type=\"group\"`。\n- 修复身份反查与私聊流取名长期走兜底的问题：宿主 `chat.open_session` 只按 `user_id` / `group_id` 定位会话，不读 `session_id`。按会话 ID 定位私聊流改为走 `chat.get_private_streams`。\n\n## 细节\n\n- 能力声明新增 `chat.get_private_streams`。\n- 单测 mock 对齐宿主真实语义，避免 mock 比宿主宽松而掩护上述缺陷。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.17",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_private_streams",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.16",
+          "tag": "v0.4.16",
+          "commit": "09eb8b26c9e2b77a08de27c0c1d7ce26a284d3fb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T17:41:59Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.16",
+          "release_notes": "## 细节\n\n- 身份校验与主人私聊流解析改用 `chat.open_session` / `chat.get_stream_by_user_id`，不再遍历全平台私聊流列表，避免会话分裂与引用回复失败。\n- 目标群解析统一走 `open_session`，失败时给出「打开聊天流失败」的明确提示。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.16",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.14",
+          "tag": "v0.4.14",
+          "commit": "0b593f11e0d0ad671f499391eb62e79093f254b3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:51Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.14",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。\n- 优化暂停场景日志与提示：当投递失败因为聊天已暂停时，日志降为 info 级别，同时在下次触发时如仍暂停则会提示主人「聊天暂停中，稍后再提醒」。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.14",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.13",
+          "tag": "v0.4.13",
+          "commit": "e064e1bc70e0987ef35e296fca9f80ede245a991",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:19Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.13",
+          "release_notes": "## 修复\n\n- 串行化叮嘱状态文件的读改写事务，降低并发消费、过期清理和命令写入互相覆盖的风险。\n- `inject.enabled=false` 时不再向目标流投递提醒，叮嘱仅按 TTL 保存。\n\n## 兼容性\n\n- SDK 兼容上限更新为 `2.50.50`。\n- CI 已通过 Python 3.11、3.12、3.13。\n- 完成 161 项测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.13",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.12",
+          "tag": "v0.4.12",
+          "commit": "edb06fe131075f83af7e6ff0fee3248cd27d8431",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:15Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.12",
+          "release_notes": "**细节**\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.12",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.11",
+          "tag": "v0.4.11",
+          "commit": "d76d752a3727744cb156e5443eaa6137fd8c219b",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T12:53:26Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.11",
+          "release_notes": "**修复**\r\n\r\n- **消费 hook 用 BLOCKING 但什么都不改**：`owner_reminder_consume` 不修改任何 kwargs、也不需要拦下\r\n  消息，BLOCKING 只会把整条发送链路挂在它的超时上。改成 `OBSERVE`\r\n- **`_apply_directive` 的宽 `except`**：收窄到只兜 `ReminderStoreError`（状态文件写不进去），\r\n  其它异常照常上抛；保存失败时日志补上堆栈\r\n\r\n**细节**\r\n\r\n- 删掉 `get_components` 里 `allowed_session` 的死分支（宿主不读这个键）\r\n- `on_load` 里的状态文件读取从「格式化日志的副作用」改成显式一步：坏文件在这里就暴露，\r\n  责任明确\r\n- 测试 160 → 161：新增「manifest 能力声明与实际调用一一对应」的断言",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.11",
+            "plugin_type": "automation",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。调用者身份从真实聊天流反查，不采信模型传入的 user_id。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "maisaka.proactive.trigger",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.5",
+          "tag": "v0.4.5",
+          "commit": "c126ee7d0cb9cc432a4ca682dde45f0fc6fb6b1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:17:25Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.5",
+          "release_notes": "## 修复\n\n- **白名单收紧没生效**：`_refresh_owner_sessions` 以前只往集合里加，把某个主人从 `owner.owners` 删掉后，\n  他的私聊仍会继续被注入「群代号对照 + owner_directive 提示」。现在每次刷新都先清空重建\n- **`consume_dispatched` 不先清过期**：已经淡出的叮嘱会被当成「兑现」写进日志；现在先 purge 再消费\n\n## 细节\n\n- 加载和热更新时做一次配置体检：`owner.owners` 里全角冒号这类永远匹配不上的条目会被点名警告，\n  `dispatch.intent_template` 少了 `{内容}` 也会提示\n- 同一平台只查一次私聊流，不再为一个 owner 列表反复调同一个能力\n- 时长文案：90 秒不再显示成「2 分钟」，改成「1 分 30 秒」\n- README 统一「命令静默忽略 / 工具中性拒绝」口径，删掉并不存在的 `allowed_session` 说法，\n  补上时间回拨与状态文件损坏的处理办法\n- CI 矩阵加 3.13，SDK 依赖约束到 `>=2.14.0`，去掉没用的 httpx\n- manifest 的 `sdk.max_version` 从 `2.99.99` 收到 `2.16.99`\n- 测试 148 → 152 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.5",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.4",
+          "tag": "v0.4.4",
+          "commit": "f8e200733d9062156a8b396d5728e296b6a8d2e1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T03:03:40Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.4",
+          "release_notes": "补掉上一轮复审提到的那一处。\n\n- `handle_owner_reminder` 最后一条 `return … , True` 的第三项改成 `1`，\n  现在全仓库不再有布尔权重，和 0.4.3 changelog 的描述对上\n- 宿主对第三项会做 `bool()`，所以行为没有任何变化，纯口径修正\n- 版本与 config_version 升到 0.4.4；测试 148 项、CI 全绿\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.4",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        },
+        {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "5cb28ee2c3ba95d68ba50d869a4d6b50165e2b29",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T02:58:02Z",
+          "release_url": "https://github.com/42yoru/maimai-owner-reminder/releases/tag/v0.4.3",
+          "release_notes": "按插件中心第一轮审核（[Issue #940](https://github.com/Mai-with-u/plugin-repo/issues/940)）的意见改的一版。\n\n**修复**\n\n- **`config.toml` 不再进仓库**：运行时配置由宿主按 `config_model` 生成，提交进仓库会让用户\n  一改配置就和仓库版本打架。已加入 `.gitignore` 并从索引移除\n  - 原来直接读这个文件的两个用例改成验证配置模型的默认值\n  - 另加一条断言：`.gitignore` 必须挡住 `/config.toml`\n- 命令处理函数返回三元组的第三项由 `True` / `False` 改成 `1` / `0`，与文档约定的 int 权重一致\n  （宿主会 `bool()` 它，行为不变）\n\n**细节**\n\n- manifest 补 `plugin_type: \"tool\"`：主体是一条斜杠命令加两个模型可调用工具，比默认的 `extension` 更准\n- 版本与 config_version 升到 0.4.3；测试 147 → 148 项，CI 全绿\n\n功能行为与 0.4.2 一致；已装过的用户，本地 `config.toml` 不受影响（它本来就在本地，从未被覆盖）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.3",
+            "plugin_type": "tool",
+            "name": "主人的叮嘱 (Owner Reminder)",
+            "description": "主人在任意聊天流下达一条短期叮嘱，作用于指定的另一个聊天流：以强/弱两档影响该流 planner；投递过提醒的叮嘱在 bot 于目标流开口后立即消费，没兑现的就按 TTL 到期淡出。支持 /叮嘱 命令与自然语言工具，并可用群代号指代群。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "bell-ring",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-owner-reminder",
+              "homepage": "https://github.com/42yoru/maimai-owner-reminder",
+              "documentation": "https://github.com/42yoru/maimai-owner-reminder/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-owner-reminder/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.14.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-owner-reminder"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.4.2",
+          "version": "0.4.2",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
+          "tag": "v0.4.1",
+          "version": "0.4.1",
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
+        },
+        {
+          "tag": "v0.4.0",
+          "version": "0.4.0",
+          "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-emoji-label-bridge",
+    "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-emoji-label-bridge",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "0.3.0",
+        "plugin_type": "media",
+        "name": "表情标签桥接 (Emoji Label Bridge)",
+        "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+          "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+          "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.15",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "database.query",
+          "llm.embed"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "id": "github.42yoru.maimai-emoji-label-bridge",
+        "changelog": "CHANGELOG.md",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "smile",
+            "background": "#FEC872"
+          }
+        }
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-emoji-label-bridge.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-emoji-label-bridge",
+      "manifest_id": "github.42yoru.maimai-emoji-label-bridge",
+      "repositoryUrl": "https://github.com/42yoru/maimai-emoji-label-bridge",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "6eeabfa655b5c8a6998f510e2cb69747a69c010d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T02:33:25Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.3.0",
+          "release_notes": "## 修复\n\n- **修复「一张表情变两张」**。宿主会把 planner 选的表情当独立消息逐条发出（`reply_supplement.compose` 给每个表情组件单开一条 `PostProcessedReplyMessage`，发送循环再逐条调用 `_send_to_target_with_message`）。插件挂在发送层，每次只看得到一条消息，原来的 `dedupe_with_existing_emoji` 只在单条消息内生效，于是「表情包那条」原样放行、「正文那条」又被接出一个表情，群里就出现两张。\n\n  现在按会话记录「最近一次带表情出站的时间」，正文出站时若处于时间窗内，就把标签按「已有表情」处理（默认删除、只发文字）。\n\n## 细节\n\n- 新增配置 `behavior.dedupe_window_seconds`（默认 `20.0`，范围 0~120）。设 `0` 关闭跨消息去重。\n\n  窗口取值依据宿主真实耗时：表情消息模拟打字固定 1 秒，正文按每字符 0.3 秒算且无上限截断，30 字正文就要 9 秒，再叠网络往返。原来的 5 秒覆盖不到这个量级。策略上宁可误吞（少发一张表情），也不漏成文字标签。\n- 时间窗按 `stream_id` 隔离：A 群刚发过表情不影响 B 群。\n- 只记录「带表情的消息」，普通文字消息不会清掉记录；窗口过期自然失效。\n- 新增 5 条测试：跨消息压制、按会话隔离、窗口过期、窗口设 0 关闭、窗口盖住宿主打字延迟；并做了「还原旧实现即失败」的反向验证。\n- 版本号统一：`_manifest.json` 0.2.2 / `PLUGIN_VERSION` 0.2.1 / `config.toml.example` 0.2.0 三处不一致，现统一为 0.3.0。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "18f0563059ec430986f60b658c7acda23516fd7e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:11:11Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.2.2",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.2.2",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "c518868ccbb0af220769a02dca77ff3757074a61",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:18:50Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.2.1",
+          "release_notes": "## 修复\n\n- 加强向量索引的元数据、向量内容和数据库行校验，损坏数据不会阻止插件加载或让整条消息改写失败。\n- 嵌入任务切换时使旧索引失效，查询缓存校验当前候选集，避免复用过期命中。\n- 改善英文标签大小写匹配和混合消息处理。\n\n## 兼容性\n\n- SDK 兼容上限更新为 `2.50.50`。\n- 完成 74 项测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.2.1",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "f09691091cef61b593bcd43d1bbc4a63f3761486",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T02:57:02Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.2.0",
+          "release_notes": "### 细节\r\n\r\n- **附带小开关：句末标点清理**（`[punctuation] enabled`，默认关闭）。打开后去掉**没有假标签**的\r\n  普通文本结尾的句号（默认只认「。」，句中不动，表情/at/引用/图片组件不碰，整条只剩标点时保留原样）。\r\n  带假标签的消息走原来的桥接路径、不做任何清理——两条路互斥，不叠加处理\r\n- 清理后的纯文本同步进 `processed_plain_text` 与顶层 `kwargs`，历史里存的也是清理后的版本\r\n- WebUI 配置页在「高级」页签最末尾加了一个默认折叠的「句末标点（附带）」\r\n- 测试 63 → 74：句末/句中/连续句号/只剩标点/默认关闭/不波及表情组件/不碰半角句点/\r\n  带标签时不清，以及 `_strip_trailing_marks` 的三个边界\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.2.0",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.1.13",
+          "tag": "v0.1.13",
+          "commit": "573c787a8690c9de8ba88b32058ba011021abed0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:12Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.13",
+          "release_notes": "### 细节\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`。\r\n  仓库校验要求 `version` 与 `host_application` / `sdk` 的 min/max 里**前两段不能是 99 或 999**\r\n  （第三位不受限制），`2.99.99` 第二段违规会导致提审直接失败\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.13",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.1.12",
+          "tag": "v0.1.12",
+          "commit": "995e4239bcd36fd5624fb6140b84795771fcaddb",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T12:53:18Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.12",
+          "release_notes": "### 修复\r\n\r\n- **损坏/版本不符的索引被静默丢弃**：`_load_index_file` 直接 `return {}, \"\", 0, False`，既没有日志\r\n  也没备份，重建之后根本不知道曾经坏过。现在把旧文件挪成 `.bad` 并打 warning\r\n- **`find_by_hash` 线性扫 591 条**：向量命中后按 hash 回查记录是热点路径，改成字典查\r\n\r\n### 细节\r\n\r\n- 索引 ~6MB JSON 的同步解析挪到 `asyncio.to_thread`（之前压在事件循环上，`on_load` 与热更新都会走）\r\n- 删掉死代码 `has_tag`（只有测试在用它）与 `config_ui` 里没人消费的 `widget` 键\r\n  （宿主只渲染 SDK 按 `Literal` 生成的 `ui_type`），测试改为断言真实契约\r\n- 导入顺序按项目规范调整（`import asyncio/time` 移到 from-import 之后）\r\n- README：表情数量与索引体积改成实测值（约 590 条 / 6.5MB），并补上**数据流向**说明\r\n  （描述文本与兜底标签会发往 `index.embedding_task` 指向的模型服务；不发送图片与聊天记录）\r\n- 测试 63 → 63（删 1 条死代码用例、新增 1 条「损坏索引被备份」）",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.12",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.1.7",
+          "tag": "v0.1.7",
+          "commit": "b065ac7053bd9e331c31f729713125d8b11d5a11",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T04:43:54Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.7",
+          "release_notes": "### 修复\n\n- **本地档会把最佳候选越选越差**：`match_local` 的 difflib 复算拿每个候选**自己的**分数比较后覆盖全局最优，\n  低覆盖候选凭一点字面相似就能顶掉高分记录，甚至跌破阈值把命中变成未命中（572 条库实测 8.35% 选错、2.08% 由命中变未命中）。\n  改成只跟当前最优比，保证分数单调不降\n- **`is_emoji` 实际不会变成 1**：之前只改了 `raw_message`，宿主的 `is_emoji` 在 hook 之前就算好了，落库仍是 0。\n  现在整条消息只剩一个表情时会把它置真；正文夹表情的混合消息保持 False（与宿主口径一致）\n- **历史里仍留着假标签**：`processed_plain_text` 沿用原文，宿主只在引用回复或该字段为空时才重算。\n  现在按重建后的组件重算它（遇到 at / reply / image 组件则不接管，交给宿主自己拼）\n- **表情库变动不清查询缓存**：新增或删除表情时，缓存里「未命中」会保留到 TTL，新表情对查过的标签一直不可用。现在库一变就清缓存\n\n### 细节\n\n- 首次向量同步失败时给一条带排查方向的长提示：确认 `index.embedding_task` 指向的嵌入任务\n  在 `model_config.toml` 里有模型，或者关掉 `match.enable_vector` / `index.enabled` 只用前两档；\n  之后仍然只留一行短日志。之前只有「同步异常，将在下一轮重试」，用户会以为插件已经完整生效\n- 支持全角方括号 `［表情包: 害羞］`\n- 一个字都对不上时不再白花一次嵌入（`require_char_overlap` 下字面门槛必然过不了）\n- 单字标签的字面门槛改用字符集合比较，不再被二元组规则误杀\n- 最后一批嵌入失败时不再把索引标成「就绪」\n- 缓存文件里的坏值只丢那一条，不再让整次加载失败；批量嵌入逐条校验结果结构\n- 判定「整条消息只有一个标签」时排除 at / image 等其它组件\n- README 的 `is_emoji` 与历史两条承诺改成与实现一致的说法，补 `only_whole_message` 前提，\n  修正索引体积与「全部字段可改」的措辞\n- CI 矩阵加 3.13，SDK 与 ruff 加上版本区间\n- 测试 51 → 56 项\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.7",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "98728c959ba4c748b0959552ef574e15c54bc51d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T18:22:20Z",
+          "release_url": "https://github.com/42yoru/maimai-emoji-label-bridge/releases/tag/v0.1.5",
+          "release_notes": "## 表情标签桥接 0.1.5\n\n采纳第三轮审核的三条小建议（均为非阻塞项）。\n\n### 本版更新\n- README「插件信息」表的版本号与 manifest 对齐（之前漏更到 0.1.2）。\n- 删除 `label_text.strip_tags()` 死代码，相应测试同步收敛。\n- 本地运行确认插件加载日志为「表情库=570 条, 向量=570 条, 已就绪=True」，不是 0 条。\n\n### 功能回顾\n- 三档匹配：精确描述 → 本地标签重叠 → 嵌入向量兜底；阈值按实测校准为 0.68，并加字符重叠门槛。\n- 向量索引落盘并持久化就绪状态，首批 5 秒一轮推进，补齐后 10 分钟一轮增量补录。\n- 配置页已全部汉化（23 项、两个页签），发送层 Hook 超时 5000ms。\n\n详细见 [CHANGELOG](https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/CHANGELOG.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.1.5",
+            "plugin_type": "media",
+            "name": "表情标签桥接 (Emoji Label Bridge)",
+            "description": "把回复正文里模型凭空写出的「[表情包: 标签]」接成真表情：精确描述 → 本地标签重叠 → 嵌入模型兜底，全部未命中时按配置删除标签。发送层实现，旧 reply 工具与被动式 replyer 都通用，不改主程序。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "homepage": "https://github.com/42yoru/maimai-emoji-label-bridge",
+              "documentation": "https://github.com/42yoru/maimai-emoji-label-bridge/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-emoji-label-bridge/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "llm.embed"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-emoji-label-bridge",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smile",
+                "background": "#FEC872"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-target-replyer",
+    "repositoryUrl": "https://github.com/42yoru/maimai-target-replyer",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-target-replyer",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "0.3.15",
+        "plugin_type": "extension",
+        "name": "替主人回话 (Target Replyer)",
+        "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "message-circle",
+            "background": "#FFD69A"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai-target-replyer",
+          "homepage": "https://github.com/42yoru/maimai-target-replyer",
+          "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "chat.open_session",
+          "config.get",
+          "llm.generate",
+          "message.get_recent",
+          "maisaka.proactive.trigger"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "id": "github.42yoru.maimai-target-replyer",
+        "changelog": "CHANGELOG.md"
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-target-replyer.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-target-replyer",
+      "manifest_id": "github.42yoru.maimai-target-replyer",
+      "repositoryUrl": "https://github.com/42yoru/maimai-target-replyer",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.3.15",
+          "tag": "v0.3.15",
+          "commit": "bb3e4c0ab21c56bd053c8927126e6c59f27f7427",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T01:55:50Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.15",
+          "release_notes": "## 修复\n\n- 修复投递前 `chat.open_session` 必定失败的问题：SDK 会把 `chat_type` 缺省为 `private` 一并下发，宿主据此按私聊校验并因缺少 `user_id` 拒绝，导致接话永远停在「打开聊天流失败，放弃本次接话」。群聊场景现在显式传 `chat_type=\"group\"`。\n\n## 细节\n\n- 单测 mock 按 `chat_type` 分支校验，对齐宿主真实语义，不再对漏传的调用放行。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.15",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.14",
+          "tag": "v0.3.14",
+          "commit": "4c264b5bdf1316a420e2b8165f974aa024fa3a41",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T17:42:02Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.14",
+          "release_notes": "## 细节\n\n- 修正 `chat.open_session` 接入后的测试覆盖：mock 返回与入站消息一致的 session_id，使冷却与重试用例测到真实路径；瞬态重试用例对齐「最多 2 次尝试」的实际行为。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.14",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.12",
+          "tag": "v0.3.12",
+          "commit": "9c998c83fbd34db8820f7bc12f06d8aeeb85a5a7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:33Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.12",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。\n- 优化暂停场景日志：当投递失败因为聊天已暂停时，日志降为 info 级别（暂停是用户主动操作，不是系统异常）。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.12",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.11",
+          "tag": "v0.3.11",
+          "commit": "0460dc55f181c355b29980fb78bf5846eb46aefa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:22Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.11",
+          "release_notes": "## 修复\n\n- 拒绝 `NaN`、`Infinity` 等非法时间戳，避免让路判断被异常时间数据干扰。\n\n## 细节\n\n- SDK 兼容上限更新为 `2.50.50`。\n- 补充 `reply.delay_seconds` 文档和数据边界说明。\n- CI 已通过。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.11",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.10",
+          "tag": "v0.3.10",
+          "commit": "1d3df0fb5a8adb656c20782c6aa7a41a37e5db26",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-28T13:15:17Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.10",
+          "release_notes": "### 细节\r\n\r\n- 按 plugin-repo 的版本号规则修正 `sdk.max_version`：`2.99.99` → `2.19.99`\r\n  （前两段不能填 99/999，第三位不限）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.10",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.9",
+          "tag": "v0.3.9",
+          "commit": "2659ffd75b8d3e8c53ebe3ddca8c2f0a41321c64",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-10-28T12:53:35Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.9",
+          "release_notes": "### 修复\r\n\r\n- **插件加载失败：`不支持的配置热重载订阅: self`**。0.3.6 声明订阅范围时把 `\"self\"` 也写了进去，\r\n  但宿主只认 `bot` / `model`（插件自己的配置是宿主无条件推送的），非法范围会让整个插件加载失败。\r\n  现在只声明 `(ON_BOT_CONFIG_RELOAD,)`\r\n\r\n### 细节\r\n\r\n- 订阅断言改成直接调 `get_config_reload_subscriptions()`，与宿主加载路径一致",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.9",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "bd0ff054f55f429d4ab0fc1339f2b0c393084663",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T14:58:14Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.1",
+          "release_notes": "## 0.3.1\n\n### 细节\n\n- 兼容毫秒 / 微秒级消息时间戳，避免「目标账号最近发言」的让路规则因量级差 1000 倍而静默失效。\n- README 与配置注释补充说明：预判会把当前消息和最近聊天记录发送给 `decide.task_name` 指定的模型。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.1",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "44d3bf248cf4f2ba50b25227f8b1b8f4c9fb3dc6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-26T13:58:26Z",
+          "release_url": "https://github.com/42yoru/maimai-target-replyer/releases/tag/v0.3.0",
+          "release_notes": "## 0.3.0\n\n### 主要功能\n\n- 新增轻量预判：先用便宜小模型判断要不要自然接话，通过后才触发 Planner，减少无意义触发。\n- 预判提示词可在 WebUI「高级 → 提示词」中修改，支持 `$bot_name`、`$bot_persona`、`$text`、`$recent` 等占位符。\n- WebUI 配置页汉化，分成「基础 / 预判与节奏 / 高级」三个页签。\n\n### 细节\n\n- 去个性化：插件不写死 bot 名称与人格，默认提示词从宿主 `bot.nickname` / `personality.personality` 读取。\n- 新增插件图标；补充 GitHub Actions CI（Python 3.11 / 3.12 / 3.13）。\n- 状态文件损坏或时间戳非法时明确报错，不再让插件加载失败。\n- 提示词模板在加载/热更新时校验未知占位符、缺失必填项和非法 `$` 写法。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.3.0",
+            "plugin_type": "extension",
+            "name": "替主人回话 (Target Replyer)",
+            "description": "群里有人 @ 配置的目标账号时，先做规则筛选再用便宜模型预判，通过后触发一次 Maisaka 主动任务，由宿主自己的 Planner 决定怎么自然接话。bot 昵称与人格从宿主配置读取，插件不写死人设。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "message-circle",
+                "background": "#FFD69A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-target-replyer",
+              "homepage": "https://github.com/42yoru/maimai-target-replyer",
+              "documentation": "https://github.com/42yoru/maimai-target-replyer/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-target-replyer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.16.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.42yoru.maimai-target-replyer",
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-jargon-boost",
+    "repositoryUrl": "https://github.com/42yoru/maimai-jargon-boost",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-jargon-boost",
+      "manifest": {
+        "manifest_version": 2,
+        "version": "0.4.2",
+        "name": "黑话加速器",
+        "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai-jargon-boost",
+          "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+          "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.3.15",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "database.query",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "zap",
+            "background": "#FFD69A"
+          }
+        },
+        "plugin_type": "knowledge",
+        "id": "github.42yoru.maimai-jargon-boost"
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-jargon-boost.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-jargon-boost",
+      "manifest_id": "github.42yoru.maimai-jargon-boost",
+      "repositoryUrl": "https://github.com/42yoru/maimai-jargon-boost",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "2cd6db7ad89c4bd90ff1bd31cfa0eb7d0ea85ea6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:11:03Z",
+          "release_url": "https://github.com/42yoru/maimai-jargon-boost/releases/tag/v0.4.2",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.2",
+            "name": "黑话加速器",
+            "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-jargon-boost",
+              "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+              "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "zap",
+                "background": "#FFD69A"
+              }
+            },
+            "plugin_type": "knowledge",
+            "id": "github.42yoru.maimai-jargon-boost"
+          }
+        },
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "898b1a9786e0cbce4e80335d83f0c0961d7d7d76",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-31T06:19:18Z",
+          "release_url": "https://github.com/42yoru/maimai-jargon-boost/releases/tag/v0.4.1",
+          "release_notes": "## 修复\n\n- 保留同内容的跨会话记录，避免候选在作用域筛选前被错误覆盖。\n- 手动扫描先限定合法 count 范围，避免其他会话或高 count 记录长期遮挡候选。\n- 收窄数据库自检文案，不再把宿主返回的空列表直接当成数据库健康证明。\n\n## 兼容性\n\n- SDK 兼容上限更新为 `2.50.50`。\n- 完成 35 项测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.1",
+            "name": "黑话加速器",
+            "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-jargon-boost",
+              "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+              "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "zap",
+                "background": "#FFD69A"
+              }
+            },
+            "plugin_type": "knowledge",
+            "id": "github.42yoru.maimai-jargon-boost"
+          }
+        },
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "fc3e752145f67fbe8d2f85fe7741eabd427ec467",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-29T03:24:25Z",
+          "release_url": "https://github.com/42yoru/maimai-jargon-boost/releases/tag/v0.4.0",
+          "release_notes": "**破坏性变更**\r\n\r\n- **移除 `jargon_boost_run` 工具**，手动入口只保留 operator 命令 `/黑话加速`。\r\n\r\n  原因（插件市场复核给出的源码结论，我核实过）：宿主的 `permission` 元数据**只被命令链路消费**\r\n  （`component_query._build_command_info` → `CommandInfo` → `bot.py` 里的 `has_command_permission`），\r\n  工具的 `_build_tool_definition` 根本不读它。也就是说 0.3.7 里给工具加的\r\n  `permission=\"operator\"` 只是装饰——任何会话都能通过模型调用它写 `Jargon.count`，\r\n  与「只有主人明确要求时才调用」的声明不符。工具通道没有可信的操作员校验可用，所以直接不提供。\r\n\r\n**修复**\r\n\r\n- **回执里标明本次扫描范围**：`仅当前会话` / `所有会话（boost.shared_globally=true）`，\r\n  调用者能看到自己动的是哪一批记录\r\n\r\n**细节**\r\n\r\n- 模块文档、README「手动入口」表同步说明为什么只有命令没有工具\r\n- 测试 31 → 33：新增「不再声明任何工具」与「回执标明作用范围」两条；原来那条\r\n  「工具需要 operator 权限」的断言已删除（它断言的正是这次被判无效的做法）\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "0.4.0",
+            "name": "黑话加速器",
+            "description": "给消息量不大的麦麦准备的黑话加速插件：不改主程序，把已经有足够证据、但还没到推断阈值的黑话记录 count 提前补到首推档，让主程序自己的三段推断完成确认。手动入口只有 operator 命令 `/黑话加速`（不提供写库工具，因为宿主的 permission 元数据不覆盖工具通道）。",
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-jargon-boost",
+              "homepage": "https://github.com/42yoru/maimai-jargon-boost",
+              "documentation": "https://github.com/42yoru/maimai-jargon-boost/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-jargon-boost/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.19.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "zap",
+                "background": "#FFD69A"
+              }
+            },
+            "plugin_type": "knowledge",
+            "id": "github.42yoru.maimai-jargon-boost"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-reply-guard",
+    "repositoryUrl": "https://github.com/42yoru/maimai-reply-guard",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-reply-guard",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "github.42yoru.maimai-reply-guard",
+        "version": "0.5.0",
+        "plugin_type": "management",
+        "name": "回复守卫 (Reply Guard)",
+        "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "shield-check",
+            "background": "#9AD0FF"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/maimai-reply-guard",
+          "homepage": "https://github.com/42yoru/maimai-reply-guard",
+          "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+          "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "config.get"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "changelog": "CHANGELOG.md"
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-reply-guard.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-reply-guard",
+      "manifest_id": "github.42yoru.maimai-reply-guard",
+      "repositoryUrl": "https://github.com/42yoru/maimai-reply-guard",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "commit": "30f182e271ebd31bbd5d5359f0149ca0418f029f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T02:14:54Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.5.0",
+          "release_notes": "## 主要功能\n\n- **中文拒答词表补上「帮你 / 帮不了」这一整类形状**。原目标词表只认「协助/提供/处理/回答/生成/满足/帮助/完成/回应」，口语里最常见的「抱歉，我不能帮你做这件事」「不好意思，这个忙我帮不了」一条都不命中：实测 14 条常见中文拒答漏判 7 条（50%）。扩表后 19 条真实拒答漏判降到 6 条，20 条正常陈述误杀 0 条。\n\n## 修复\n\n- **颜文字不再被判成日语**。`・`（U+30FB 片假名中点）落在片假名区块内但属于标点，却在颜文字里极常用。实测日志原样：`别随口胡说啦(・ε・)` 被判 `score=0.45 signals=language_kana`。现在片假名区块内的标点不计入假名，真正的日文仍能识别。\n- **正常分享链接不再被拦**。原先只要出现 `http` 就固定给 0.722，超过 0.65 拦截线。现在按「链接是否占满整条消息」区分：夹在正常句子里只给 0.255（记账不拦），纯链接仍拦下。图片插件的「标题/作者/PID + 链接」说明文本不再挨刀；Markdown 链接语法维持高强度。\n- **中文里夹英文术语不再触发拉丁判据**。汉字数达到 4 个即不再按「拉丁主导」判定，`这个 API 的 response format 和 document 里的 example 不一致` 这类不再被误判。\n\n## 细节\n\n- 基准样本从 81 条扩到 96 条，新增 G（拒答补充形状）、H（补词后的防误杀边界）两组，D 组补上链接分享、中英混排、颜文字三类实测误杀原样。\n- 版本号修正：`_manifest.json` 与 `PLUGIN_VERSION` 此前不一致（0.4.1 / 0.4.0），现在统一为 0.5.0。\n- 四项修复均做了「还原旧实现即失败」的反向验证。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.5.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "c62f529b6ffddc8596f9afa3193c9e76669bac06",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:23Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.4.1",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。\n- 优化注释：明确 1.4.0 起支持 `allow_abort` 的真实中止，旧版会自动降级。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.4.1",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "f915ee1f57822f68332ad62018960cf95ffcb8eb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T15:00:45Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.4.0",
+          "release_notes": "本次发布包含 **0.2.0 / 0.3.0 / 0.4.0 三个阶段的功能**（0.2.0 与 0.3.0 未单独发版，\n内容都在这个版本里）。\n\n## 主要功能\n\n### 思维链泄露拦截\n\n部分模型中转下，推理内容（thinking / thought）会被当成正文返回，bot 把整段思考过程\n发到群里，连同 system prompt 里的表达习惯、内部约束和 `msg_id` 这类内部字段一起倒出来。\n\n这类文本是**地道中文**，语言失配信号天然失效（实测七条真实样本全部 0.000 分），\n问题不在文案而在「结构的形状不对」。所以单独做了一套结构性判据：\n\n- **硬标志**（命中即拦、权重 1.0）：`[thinking]` / `[thought]`、`msg_id=`、\n  `reply_reference:`、`【额外回复要求】`、`**分析当前情况**`、「提示要求：」等。\n  选词标准是「不可能出现在正常发言里」，所以配得上满分权重 ——\n  noisy-OR 下总分直接到 1.0。\n- **结构特征**（成组才判）：markdown 小节标题、编号列表、第三人称转述、元词、\n  引号引用 + 分析。累计到阈值（默认 3）才拦。\n\n推理标签做**残缺容忍**：真实样本里出现过 `[thought` 后直接换行、标签没闭合的情况\n（输出被截断）。命中时**强制不重试** —— 泄露的可能正是 system prompt，\n重试会把原文再上传一次。\n\n### WebUI 侧边栏拦截日志\n\n插件在 WebUI 侧边栏挂了一个「回复守卫」页面，直接看拦截记录，不用翻日志文件。\n显示近 24 小时统计、当前避开中的模型、拦截记录列表（时间 / 动作 / 层级 / 模型 /\n分数 / 会话 / 被拦文本摘要 / 命中的信号中文标签）。\n\n**按需刷新**：轮询时先调轻量的 `guard_watch`（只返回版本号等几个整数，约 126 字节），\n版本号没变就不拉完整列表。记录越多，省得越多。\n\n页面只在你打开它时工作：侧边栏是独立路由，切走时 iframe 被宿主销毁，不留后台请求；\n切到后台标签页也会暂停探测。\n\n### 换模型（L2）\n\n同一会话里某模型连续 N 次（默认 2）被判异常后进入避让期（默认 15 分钟），\n这期间的 replyer 请求改到备用模型。\n\n- **只改 `model_name`，不动 `task_name`**。task_name 决定 temperature / max_tokens，\n  一起换会把 replyer 的生成参数覆盖成 planner 的。\n- **`__planner__` 运行时展开**成 planner 任务当前的模型，换了 planner 模型不用改配置。\n- 当前模型名未知时**不换**（猜错会把不该换的请求换掉）。\n- 避让是会话级的；连续计数在「出现正常回复」和「避让到期」时都清零。\n\n## 细节\n\n- **自动适配被动式 replyer 转正**：插件运行时读 `experimental.passive_replyer`\n  决定挂不挂 L0，宿主默认值变什么就跟着做什么，**不需要改配置也不需要改代码**。\n- 按需刷新用 `revision` 版本号，`guard_log` 与 `guard_watch` 返回同一个值保证同源。\n- 页面文本一律走 `textContent`，不拼 HTML，避免被拦文本里的尖括号造成注入。\n- 清空记录有二次确认（宿主侧），只清事件不影响模型避让状态。\n\n## 判据质量\n\n- 判据基准测试 81 条真实样本，覆盖厂商拒答 / 多语言 / 结构化错误 / 正常发言 /\n  思维链泄露 / 防误杀边界六组，当前**漏判 0、误杀 0**。\n- 单元测试 122 项，CI 在 Python 3.11 / 3.12 / 3.13 上运行 ruff + unittest。\n- 测试不依赖主程序源码：CI 环境只装 `maibot-plugin-sdk` 与 `ruff`。\n\n## 已知边界\n\n- 不保证 100% 拦截。判据是启发式的，一种全新文案同时躲过所有信号时会漏；\n  出站拦截用的是同一套判据。\n- 在群里讨论「`[thinking]` 这个词」会被误拦（推理标签做了残缺容忍的代价），\n  加豁免正则可解决。\n- 不纠正内容，不覆盖非 replyer / 非 planner 路径的文本。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.4.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏、思维链泄露等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "c3285ece3193fa76cfc922311551efe200e0d793",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T13:51:21Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.2",
+          "release_notes": "系统性判据测试发现并修复三类漏判，**基准通过率 73.2% → 100%**。\n\n## 主要功能\n\n- **新增判据基准测试**（`tests/benchmark_detect.py`）：64 条真实样本分四组\n  （厂商拒答 / 多语言 / 结构化错误 / 正常发言），逐条比对期望结果并统计漏判率与误杀率。\n\n  这是发现下面所有问题的工具 —— 原有单测只验「代码行为符合设计」，\n  验不出「判据准不准」。这份基准一跑就暴露出 15 条漏判。\n\n## 修复\n\n- **中文拒答必然漏判**：权重原为 0.60，低于拦截阈值 0.65，等于一条永远拦不住的规则。\n  基准测试里 11 条真实厂商中文拒答（豆包 / 通义 / Kimi / 文心 / Qwen / DeepSeek）\n  全部停在 0.600 放行。权重改为 0.70 后全部拦下。\n- **非中日英语言完全漏判**：`analyze_scripts()` 只统计汉字、假名、谚文、拉丁四类，\n  西里尔（俄语）、阿拉伯、泰、希伯来、希腊、天城文（印地语）等字母文字\n  一概不计入任何分类，导致这些语言的拒答分数恒为 0.000。\n  新增「其它字母文字」统计与对应信号，统一按「不是中文」处理，不做逐语言特例。\n- **带变音符的拉丁字母统计不全**：原用 `char.isascii()` 判断，会漏掉 ỗ/ü/é。\n  实测越南语按 ASCII 口径 0.69、按 Unicode 口径 0.94。改用 `unicodedata.name()`。\n- **拉丁信号强度衰减过陡**：latin_ratio 0.70 原只给 0.29 强度、贡献 0.26 分，\n  连阈值一半都不到。改为刚过线给保底强度再线性爬到满档。\n- **HTML 错误页识别失败**：标签正则匹配不到 `<!DOCTYPE`，503 页面只能靠\n  拉丁信号勉强命中（0.354，拦不住）。正则放行 `!`/`?`，另补 HTML 结构标签兜底。\n\n## 细节\n\n- **拒答词表移除「拒绝」**：「拒绝回答 / 拒绝协助」是最常见的「描述别人在拒答」的措辞\n  （例如「现在的大模型遇到敏感内容会拒绝回答」），保留会误杀技术讨论。\n  移除后六条真实厂商拒答全部保留命中，那两条描述句不再命中。\n- 单元测试 75 → 84 项；基准 64 条，当前漏判 0、误杀 0。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.2",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "b481e6e666c5fc4b8ddfc6a450331c49df14cc9d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-01T12:43:38Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.1",
+          "release_notes": "适配主程序 dev 分支新增的「Hook 可带原因中止」能力。\n\n## 主要功能\n\n- **L1 命中后主动中止本轮回复，并把原因传给 Planner**。`maisaka.replyer.after_response` 在新版宿主中 `allow_abort=True`，插件的中止请求会经 `HookAbortedError` 变成 Planner 可读的工具回执，它会知道自己上一句为什么被拦，而不是只收到一句「回复失败」。\n\n## 细节\n\n- **旧版本宿主自动降级，不做版本探测**。插件无条件返回 `action=abort`：支持带原因中止的宿主会真的中止；不支持的宿主由 `HookDispatcher` 记录「不允许 abort，已忽略」后**继续使用原回复**，全部流程不受影响，异常文本仍由 L3 出站拦截挡下。\n\n  为什么不用探测：两个版本的 Hook 载荷字段完全一致、插件读不到宿主版本号，而「真发一次 abort 试探」在支持的宿主上会砍掉一条正常回复。\n\n- L3 出站拦截保持独立判据不变，仍是与宿主版本、replyer 模式都无关的不变量。\n- 测试补 3 条：默认中止、开启重试时不中止、旧宿主忽略中止后 L3 仍拦下。\n\n## 兼容性\n\n| 宿主 | 表现 |\n| --- | --- |\n| 支持带原因中止（较新） | 真正中止本轮回复，Planner 收到拦截原因 |\n| 不支持（较早） | 中止被忽略，回复照常走到发送层，被 L3 拦下 |\n\n**挡不挡得住与宿主版本无关**，旧宿主上只是 Planner 收不到具体原因。\n\n75 项单元测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.1",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "3006980b7ea2dd798ea564766eb1de595117d450",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-01T12:43:22Z",
+          "release_url": "https://github.com/42yoru/maimai-reply-guard/releases/tag/v0.1.0",
+          "release_notes": "首个版本。识别「不是 bot 正常说话」的模型输出 —— 拒答文案、接口报错、提示词泄漏 —— 拦下不让它出站。\r\n\r\n起因很具体：某次模型被上游内容过滤拦了，中转站把拦截文案当成正常正文返回，宿主以为生成成功，于是 bot 在群里念了一整段英文政策条款。\r\n\r\n## 主要功能\r\n\r\n- **六信号判据**：语言失配、非发言形态、错误语汇、中文拒答、提示词泄漏、编码异常。每个信号输出 0~1 强度，用 noisy-OR 合成综合分数，默认拦截阈值 0.65。\r\n- **语言判定按 Unicode Script**：假名率区分中日文、谚文率识别韩语、拉丁率识别英文主导。不按汉字占比推断语言 —— 日语也用汉字，用汉字占比会把日文拒答误判成中文。\r\n- **四层拦截**：L1 `maisaka.replyer.after_response` 判定、L3 `send_service.before_send` 统一出站防线、L0 `maisaka.planner.after_response` 守卫被动式下的 Planner 正文；L2 模型避让在 v0.2.0 落地。\r\n- **两种 replyer 模式都适配**：默认模式与实验性被动式 replyer。默认模式（被动式关闭）是插件基准形态，L0 完全不参与。\r\n- **三档松紧预设**：`loose` / `balanced` / `strict`，一键切换拦截、记录与语义复核候选三个阈值。\r\n- **豁免正则**：命中即整条放行，是误杀的唯一逃生口。\r\n\r\n## 细节\r\n\r\n- 状态持久化用原子写；状态文件损坏时抛错拒绝启动，不静默降级为空状态。\r\n- 连续异常次数与历史总次数拆成两个字段；正常回复一次即清零，避让到期同样清零。\r\n- 判定异常时默认不请求重生成：宿主重生成会把被拦原文重新拼进提示词再上传一次。\r\n- 日志与状态里的被拦文本受 `log_excerpt_chars` 限制。\r\n- WebUI 配置页按中文分页签重组：基础 / 判定信号 / 高级。\r\n- `recover.enabled` 默认为 `false` 并在配置页标注「v0.2.0 起可用」。\r\n\r\n## 已知边界\r\n\r\n- **不保证 100% 拦截**。判据是启发式的，一种全新文案同时躲过所有信号时会漏；出站拦截用的是同一套判据。\r\n- **不纠正内容**，不会把拒答改写成一句「正常的话」。\r\n- **不覆盖非 replyer / 非 planner 路径**：文本拆分、子代理、其它插件发的文本只有出站那一层管得到。\r\n\r\n72 项单元测试。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-reply-guard",
+            "version": "0.1.0",
+            "plugin_type": "management",
+            "name": "回复守卫 (Reply Guard)",
+            "description": "识别模型拒答、接口报错、提示词泄漏等异常回复，拦下不出站；同时适配默认与被动式两种 replyer 模式。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "shield-check",
+                "background": "#9AD0FF"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai-reply-guard",
+              "homepage": "https://github.com/42yoru/maimai-reply-guard",
+              "documentation": "https://github.com/42yoru/maimai-reply-guard/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai-reply-guard/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.lolicon-setu",
+    "repositoryUrl": "https://github.com/42yoru/lolicon-setu-plugin",
+    "archived_at": "2026-11-06T14:50:00.547Z",
+    "checked_at": "2026-11-06T14:50:00.547Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.lolicon-setu",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "github.42yoru.lolicon-setu",
+        "version": "2.4.8",
+        "plugin_type": "media",
+        "name": "不发图我看什么",
+        "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "image",
+            "background": "#FCF3D9"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+          "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+          "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+          "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+        },
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "config.get",
+          "send.text",
+          "send.image",
+          "send.forward"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "changelog": "CHANGELOG.md"
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.lolicon-setu.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.lolicon-setu",
+      "manifest_id": "github.42yoru.lolicon-setu",
+      "repositoryUrl": "https://github.com/42yoru/lolicon-setu-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "2.4.8",
+          "tag": "v2.4.8",
+          "commit": "649faf950ddc4eb18cedfe7c3241eace9f45fa2b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T05:39:53Z",
+          "release_url": "https://github.com/42yoru/lolicon-setu-plugin/releases/tag/v2.4.8",
+          "release_notes": "## 修复\n\n**升级时报「新版本代码与本地数据路径冲突：config_back」，装不上新版本。**\n\n现象：本地已有 `config_back/` 目录的用户，升级到 2.4.4 ~ 2.4.7 时被宿主拒绝：\n\n```\n新版本代码与本地数据路径冲突：config_back\n```\n\n### 原因\n\nWebUI 每次改配置都会在插件目录下生成 `config_back/config.toml.backup.*` 备份，\n而 `.gitignore` 只忽略了 `config.toml`、没忽略这个备份目录，于是 2.4.4 开发时的\n本地备份被 `git add` 提交进了仓库。\n\n宿主安装新版本时会先把用户本地的 `config_back` 复制到新版本目录，复制途中发现\n新版本代码里**也带着**同名目录，判定为路径冲突，直接 409 中止。\n\n### 修复\n\n`config_back/` 是纯本地数据，不该进仓库。本版做了三件事：\n\n- `.gitignore` 补上 `config_back/`\n- 用 `git rm --cached` 把它从索引里摘掉（仓库里不再有该目录）\n- 之后每次备份都不会再被跟踪\n\n### 升级须知\n\n从 2.4.4 起装了插件的用户，本地 `config_back` 里的备份仍然保留，**无需手动处理**，\n直接升到本版即可。\n\n> **影响范围**：2.4.4 ~ 2.4.7。2.4.3 及更早不受影响。\n> 实在等不及的话，可以临时把插件目录下的 `config_back` 文件夹挪到别处，\n> 升级完再挪回来，里面的备份是安全的。\n\n**验证**：单元测试 70 项全部通过，ruff 无告警。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.lolicon-setu",
+            "version": "2.4.8",
+            "plugin_type": "media",
+            "name": "不发图我看什么",
+            "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#FCF3D9"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+              "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+              "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+              "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "2.4.7",
+          "tag": "v2.4.7",
+          "commit": "ceea488459b128bd706b3689b0c6ef42bb6905c7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T14:10:14Z",
+          "release_url": "https://github.com/42yoru/lolicon-setu-plugin/releases/tag/v2.4.7",
+          "release_notes": "### 细节\n\n- 适配 MaiBot 1.4.0，宿主版本上限调整至 1.4.99。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.lolicon-setu",
+            "version": "2.4.7",
+            "plugin_type": "media",
+            "name": "不发图我看什么",
+            "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#FCF3D9"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+              "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+              "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+              "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "2.4.6",
+          "tag": "v2.4.6",
+          "commit": "d5cd9d830398d02039ba4714b515fe81ff5fe7b1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T15:17:53Z",
+          "release_url": "https://github.com/42yoru/lolicon-setu-plugin/releases/tag/v2.4.6",
+          "release_notes": "## 变更\r\n\r\n- **README 标题同步改为「不发图我看什么」**，一句话定位的措辞也中性化\r\n  （「从 Pixiv 取图」→「从图源取插图」）。\r\n\r\n无功能变化。插件 ID、仓库地址、命令 `/setu`、口语别名、配置项均未变动。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.lolicon-setu",
+            "version": "2.4.6",
+            "plugin_type": "media",
+            "name": "不发图我看什么",
+            "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#FCF3D9"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+              "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+              "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+              "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
+          "version": "2.4.4",
+          "tag": "v2.4.4",
+          "commit": "4823b2880a35830d0b42d995f357d911b4ea4b69",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-02T02:26:51Z",
+          "release_url": "https://github.com/42yoru/lolicon-setu-plugin/releases/tag/v2.4.4",
+          "release_notes": "## 修复\n\n- **改图片规格时 WebUI 报 `E_BAD_PAYLOAD`**：\n\n  ```\n  插件配置校验请求失败: [E_BAD_PAYLOAD]\n  1 validation error for LoliconSetuConfig\n  features.size_list  Input should be a valid list\n  [type=list_type, input_value='original', input_type=str]\n  ```\n\n  **原因**：`config_ui.py` 把 `size_list` 的 `ui_type` 强制设成了 `textarea`。\n  SDK 对 array 字段推导出的默认控件是 `list`（前端渲染成列表编辑器、提交数组），\n  改成 textarea 后前端把输入当字符串提交，后端 `List[str]` 校验直接失败。\n\n  `proxy_candidates` 是同一类字段，之前恰好没被覆盖，所以一直是好的 ——\n  这也是为什么只有改图片规格时才出问题。\n\n## 细节\n\n- 新增一组**控件类型匹配测试**，防止再犯：\n  - array 字段必须用 `list` / `tags` 控件，不能是 `textarea`\n  - boolean 用 `switch`、数字用 `number`\n  - array 的默认值必须是列表\n\n  已验证这组测试能抓出问题：临时恢复 textarea 覆盖后立刻失败。\n\n功能行为无变化，只是配置页控件修好了。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.lolicon-setu",
+            "version": "2.4.4",
+            "plugin_type": "media",
+            "name": "Lolicon 色图插件 (Lolicon Setu)",
+            "description": "基于 Lolicon API v2 获取 Pixiv 图片。支持标签 AND/OR 组合搜索、关键词模糊搜索、长宽比筛选、AI 作品排除、R18 控制与合并转发。本插件基于久远 (saberlights) 的原项目重写，适配插件 SDK 2.x。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#FCF3D9"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/lolicon-setu-plugin",
+              "homepage": "https://github.com/42yoru/lolicon-setu-plugin",
+              "documentation": "https://github.com/42yoru/lolicon-setu-plugin/blob/main/README.md",
+              "issues": "https://github.com/42yoru/lolicon-setu-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "github.42yoru.maimai-sim-trader",
+    "repositoryUrl": "https://github.com/46yoru/maimai_sim_trader",
+    "archived_at": "2026-11-08T21:48:01.736Z",
+    "checked_at": "2026-11-08T21:48:01.736Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "github.42yoru.maimai-sim-trader",
+        "version": "0.10.0",
+        "plugin_type": "automation",
+        "name": "麦麦模拟盘",
+        "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+        "display": {
+          "icon": {
+            "type": "local",
+            "value": "icon.png",
+            "fallback": "line-chart",
+            "background": "#F3B27A"
+          }
+        },
+        "author": {
+          "name": "42yoru",
+          "url": "https://github.com/42yoru"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/46yoru/maimai_sim_trader",
+          "homepage": "https://github.com/46yoru/maimai_sim_trader",
+          "documentation": "https://github.com/46yoru/maimai_sim_trader/blob/main/README.md",
+          "issues": "https://github.com/46yoru/maimai_sim_trader/issues"
+        },
+        "changelog": "CHANGELOG.md",
+        "host_application": {
+          "min_version": "1.3.9",
+          "max_version": "1.4.99"
+        },
+        "sdk": {
+          "min_version": "2.12.0",
+          "max_version": "2.50.50"
+        },
+        "dependencies": [],
+        "capabilities": [
+          "chat.get_group_streams",
+          "chat.get_private_streams",
+          "config.get",
+          "llm.generate",
+          "message.get_recent",
+          "send.text"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        }
+      },
+      "assets": {
+        "icon_64": "icons/github.42yoru.maimai-sim-trader.webp"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "github.42yoru.maimai-sim-trader",
+      "manifest_id": "github.42yoru.maimai-sim-trader",
+      "repositoryUrl": "https://github.com/46yoru/maimai_sim_trader",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.10.0",
+          "tag": "v0.10.0",
+          "commit": "06faaf6970316474ae35e675254aef7b2f2f7620",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T16:25:04Z",
+          "release_url": "https://github.com/46yoru/maimai_sim_trader/releases/tag/v0.10.0",
+          "release_notes": "### 主要功能\n\n- **播报知道「现在几点」了**。播报提示词补上「现在是 YYYY-MM-DD（周X）HH:MM」，\n  群聊上下文每句话前面也带上发生时刻（`10:42` / `昨天 22:41` / `11-04 22:41`）。\n  原来这两处都没有时间：模型拿到「群里刚才在聊」，只能默认那是刚刚，\n  于是一早的播报还在接前一晚的「晚安要抱抱」。\n\n- **群聊上下文按年龄注入**。宿主 `message.get_recent` 的窗口固定是最近 24 小时，\n  早上群里还没人说话时，拿回来的最新几条全是昨晚的，而且会一轮一轮原样重注。\n  新增 `notify.context_max_age_minutes`（默认 120）：最新一条超过这个年龄就整块不注入，\n  等于告诉模型「群里现在没人聊」。取消息时也多要一倍，避免 bot 自己发言和超龄消息\n  把新鲜的那几条挤掉。\n\n- **行情新鲜度按「交易时钟」逐只校验**。原来只比对日期，同一交易日内行情源停在\n  上午十点也照样下单；而且是集合判断 —— 20 只票里 1 只是今天的、19 只是昨天的也放行。\n  现在逐只算落后多少「交易时钟」秒（午休不算落后，13:00 刚开盘不会被误判成落后一个半小时），\n  过期的票仍然给模型看，但不允许下单。新增 `[quote] max_lag_seconds`（默认 120）。\n\n- **下单前复核报价，漂移过大就放弃这一笔**。行情在每轮开头拉一次，之后要跑 K 线、\n  等模型思考几十秒才下单 —— 日志实测「决策完成→下单成功」只隔几十毫秒，\n  说明漂移窗口全在模型那一段。新增 `[quote] recheck_before_order` 与\n  `drift_tolerance_pct`（默认 1.5%）：下单前重拉一次待操作的票，用新价算限价，\n  偏离超过阈值就记一笔「决策价 X、现价 Y」并跳过；复核失败则本轮一律不下单。\n\n- **`plugin.py` 按职责分层**。2177 行的单文件拆成：`config.py`（配置模型）、\n  `constants.py`（共用常量）、`limits.py`（风险档与额度块）、`util.py`（字段兼容小工具）、\n  `market_hours.py`（交易时段与交易时钟）、以及五个 Mixin —— `command_mixin.py`、\n  `tool_mixin.py`、`execution_mixin.py`、`round_flow_mixin.py`、`broadcast_mixin.py`。\n  `plugin.py` 只剩装配、生命周期与调度，426 行。行为不变，测试一条没改。\n\n### 细节\n\n- 播报记录的 `at`、轮次记录的时间改用 `%Y-%m-%d %H:%M`（带年份），\n  且与本轮决策用的是同一个时刻，不再各自 `datetime.now()`\n- `Quote` 增加 `updated_datetime` / `updated_hhmmss`，`to_brief()` 末尾带上快照时刻\n- 配置模版补上漏掉的 `[schedule] timezone`（代码里一直有这个字段）\n- 新增结构不变量测试：多继承下 Mixin 之间不允许方法重名、Mixin 不允许定义 `__init__`\n- 新增 `tests/test_context_time.py`（11 项）与 `tests/test_quote_freshness.py`（16 项）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.42yoru.maimai-sim-trader",
+            "version": "0.10.0",
+            "plugin_type": "automation",
+            "name": "麦麦模拟盘",
+            "description": "让麦麦用自己的判断去炒一个东方财富妙想模拟组合：妙想负责模拟账户与下单，腾讯快照负责盘中报价，她自己决定买卖什么、多久看一次盘，并按自己的语气在指定群或私聊汇报盈亏。纯插件实现，不改主程序。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "line-chart",
+                "background": "#F3B27A"
+              }
+            },
+            "author": {
+              "name": "42yoru",
+              "url": "https://github.com/42yoru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/42yoru/maimai_sim_trader",
+              "homepage": "https://github.com/42yoru/maimai_sim_trader",
+              "documentation": "https://github.com/42yoru/maimai_sim_trader/blob/main/README.md",
+              "issues": "https://github.com/42yoru/maimai_sim_trader/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.9",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "config.get",
+              "llm.generate",
+              "message.get_recent",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "fsqhn.bgg_search_plugin",
+    "repositoryUrl": "https://github.com/fsqhn/maibot-bgg-plugin",
+    "archived_at": "2026-11-09T17:14:44.528Z",
+    "checked_at": "2026-11-09T17:14:44.528Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "fsqhn.bgg_search_plugin",
+      "manifest": {
+        "manifest_version": 2,
+        "name": "桌游搜索插件 (bgg_search_plugin)",
+        "version": "0.0.8",
+        "description": "利用集石、DDGS 和 LLM 查询桌游英文名，然后从 BGG 网站获取游戏的相关基本信息",
+        "author": {
+          "name": "山上的小丘",
+          "url": "https://github.com/fsqhn"
+        },
+        "license": "GPL-v3.0-or-later",
+        "host_application": {
+          "min_version": "1.0.0",
+          "max_version": "1.99.99"
+        },
+        "sdk": {
+          "min_version": "1.0.0",
+          "max_version": "2.99.99"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "httpx",
+            "version_spec": ">=0.26.0"
+          },
+          {
+            "type": "python_package",
+            "name": "beautifulsoup4",
+            "version_spec": ">=4.12"
+          },
+          {
+            "type": "python_package",
+            "name": "ddgs",
+            "version_spec": ">=0.1.0"
+          }
+        ],
+        "capabilities": [
+          "llm.generate",
+          "send.text",
+          "send.image"
+        ],
+        "plugin_type": "tool",
+        "i18n": {
+          "default_locale": "zh-CN",
+          "supported_locales": [
+            "zh-CN"
+          ]
+        },
+        "urls": {
+          "repository": "https://github.com/fsqhn/maibot-bgg-plugin",
+          "homepage": "https://github.com/fsqhn/maibot-bgg-plugin"
+        },
+        "id": "fsqhn.bgg_search_plugin"
+      }
+    },
+    "version_index_snapshot": {
+      "id": "fsqhn.bgg_search_plugin",
+      "manifest_id": "fsqhn.bgg_search_plugin",
+      "repositoryUrl": "https://github.com/fsqhn/maibot-bgg-plugin",
+      "mode": "branch",
+      "versions": [],
+      "ignored_tags": [],
+      "rejected_releases": []
+    }
+  },
+  {
+    "id": "com.fsqhn.image-searcher",
+    "repositoryUrl": "https://github.com/fsqhn/com.fsqhn.image-searcher",
+    "archived_at": "2026-11-09T17:14:44.529Z",
+    "checked_at": "2026-11-09T17:14:44.529Z",
+    "archive_reason": "源仓库无法公开访问，仓库 API 两次检查确认（404/410），可能已删除、转为私有或地址失效",
+    "detail_snapshot": {
+      "id": "com.fsqhn.image-searcher",
+      "manifest": {
+        "manifest_version": 2,
+        "id": "com.fsqhn.image-searcher",
+        "version": "0.7.49",
+        "name": "麦麦寻人",
+        "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+        "author": {
+          "name": "fsqhn",
+          "url": "https://github.com/fsqhn"
+        },
+        "license": "MIT",
+        "urls": {
+          "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+        },
+        "host_application": {
+          "min_version": "1.0.0",
+          "max_version": "1.9.999"
+        },
+        "sdk": {
+          "min_version": "2.6.0",
+          "max_version": "999.999.999"
+        },
+        "dependencies": [
+          {
+            "type": "python_package",
+            "name": "Pillow",
+            "version_spec": ">=10.0.0"
+          },
+          {
+            "type": "python_package",
+            "name": "requests",
+            "version_spec": ">=2.31.0"
+          }
+        ],
+        "capabilities": [
+          "send.text",
+          "send.forward",
+          "message.get_by_id",
+          "message.get_recent",
+          "llm.generate"
+        ],
+        "i18n": {
+          "default_locale": "zh-CN"
+        },
+        "plugin_type": "tool",
+        "display": {
+          "icon": {
+            "type": "lucide",
+            "value": "scan-search"
+          }
+        }
+      }
+    },
+    "version_index_snapshot": {
+      "id": "com.fsqhn.image-searcher",
+      "manifest_id": "com.fsqhn.image-searcher",
+      "repositoryUrl": "https://github.com/fsqhn/com.fsqhn.image-searcher",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.7.47",
+          "tag": "v0.7.47",
+          "commit": "47ce788d31c1734d0beff994f9872cba9aa91b9d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-06T10:23:21Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.47",
+          "release_notes": "## 修两处「说反了」和「认错人」\n\n**Grok 已经找到原帖，尾部却还在说没找到。** 上半截写着「找到 X 上的原帖」并给了链接，下半截参考区又从空的最佳结果里取结论，于是接了一句「未找到可靠出处」，同一份转发里两种说法。现在只要 Grok 拿到的是一条具体帖子，那行改成「找到的原帖和依据见上一条，下面是参考图与候选」。\n\n**疑似 X 账号认错了人。** 搬运站的标题常把几个别名并列抄进来，旧逻辑按粉丝数取最大的那个，于是挑中了标题里顺带出现的无关大号，真正的主人在同一条标题里却粉丝少得多。改成候选 URL 路径里出现过的名字优先，其次才比粉丝——路径是站点自己认定的主人名。实测一单路径是 `fapeza.com/heyymimimi/62/`、标题写着「cw / heyimbee / heyymimimi」，按粉丝会选 56.9 万的那个，按路径才回到 2.28 万的正主。\n\n**付费线索用同一套取舍。** 路径里的名字在泄露站没有收录页时，不再拿标题里并列的名字顶上——少一行「疑似同一个人的 OnlyFans」比把别人的付费号安上来好。\n\n366 项测试通过，其中新增三条覆盖路径名与粉丝数的取舍（路径命中优先、路径没命中仍按粉丝、空名单返回空）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.47",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.7.34",
+          "tag": "v0.7.34",
+          "commit": "1ead0df605be8fb90a5a3a4729bac8f69060f07f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-05T09:19:38Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.34",
+          "release_notes": "## 0.7.34\n\n### 改动\n\n- **深度检索改为默认开启。** `deep_scan` 默认值从 `false` 改成 `true`，每个引擎按 `deep_scan_limit`（默认 20）取满，验证阶段每引擎比对 `deep_verify_top_n`（默认 8）条。实测漏掉原帖最常见的原因是候选没取够，代价是一次搜索多花半分钟到一分钟，嫌慢可以在「基础设置 → 深度检索」里关掉。\n\n### 文档\n\n- README 删掉过时的「实际效果」，顺序改为「它长什么样 → 它是怎么搜的」：先看结果长什么样，再看它一步步怎么搜。\n- 新增「怎么从结果里捞出命中的那条」：把取数、社交补验、模型调用写成三层漏斗，并给出加量优先级——先调 `social_verify_limit`，再调 `deep_scan_limit`，最后才加模型调用。\n- 社交补验写清现状：它排在每引擎配额之后补，不是先验；另有总上限 `social_verify_limit`（默认 20）；X 镜像站只认 `sotwe.com` 与 `twstalker.com`，nitter、xcancel 不在名单；插画路线不补验。\n- 费用口径修正：视觉复核走宿主 `vlm` 任务组，按该模型的单价计费，不是免费；Grok 改为按官网价估算（输入 ¥2/百万 token、输出 ¥6/百万 token），一次约 ¥0.10（4.6）到 ¥0.28（4.7）。\n- AGENTS 的取数说明同步成「深度档在前」，并记下补验的边界。\n\n### 测试\n\n- 323 项单元测试全过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.34",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.7.9",
+          "tag": "v0.7.9",
+          "commit": "6fe231d5157c5dd6740a11aefacfd353befc9ae0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-04T09:03:30Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.7.9",
+          "release_notes": "## 修复\n\n- 插件市场的 manifest 校验不允许 `host_application.max_version` 的前两位填 99 或 999。原来写的 `999.999.999` 让 0.3.18 之后的每个 Release 都被市场记进 `rejected_releases`，版本索引一直停在 0.3.13。\n- 改为 `1.9.999`：前两位落在允许范围内，第三位仍表示该次版本内的补丁全兼容。`sdk.max_version` 市场不校验，保持原样。\n\n功能没有改动，这一版只为让市场能正常收录。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.7.9",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是按图找出处和账号。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.13",
+          "tag": "v0.3.13",
+          "commit": "5f7ee94fa83bc2eed56eeb92dd219018953bd744",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-24T15:05:32Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.13",
+          "release_notes": "更新了深度搜索",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.13",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.9",
+          "tag": "v0.3.9",
+          "commit": "fc2530a160b3b69a2a48b5c418972efa90071e5f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-23T17:08:17Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.9",
+          "release_notes": "通过增加搜索时长来提高成功率",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.9",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
+          "version": "0.3.2",
+          "tag": "v0.3.2",
+          "commit": "3d9861b020295f36a3a9c86170e58bc80a7e2040",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-10-22T23:46:21Z",
+          "release_url": "https://github.com/fsqhn/com.fsqhn.image-searcher/releases/tag/v0.3.2",
+          "release_notes": "按要求进行整改",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.3.2",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图，输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn/com.fsqhn.image-searcher"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "999.999.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": [
+        {
+          "tag": "v0.7.8",
+          "version": "0.7.8",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.7.0",
+          "version": "0.7.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.6",
+          "version": "0.5.6",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.5.5",
+          "version": "0.5.5",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.18",
+          "version": "0.3.18",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v0.3.0",
+          "version": "0.3.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
+    }
   }
 ]
