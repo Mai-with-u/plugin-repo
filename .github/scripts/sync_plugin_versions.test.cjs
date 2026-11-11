@@ -43,6 +43,21 @@ test('未提供准入许可的新 Release 不收录，也不能退回分支模�
   assert.deepEqual(result.versions, []);
 });
 
+test('已改名条目的历史别名版本移出索引，再次同步也不能重新收录', async () => {
+  const previous = await syncPlugin(plugin, undefined, client([release()]));
+  const original = JSON.stringify(previous.versions);
+  const renamed = { ...plugin, id: 'renamed.demo', aliases: ['example.demo'] };
+  const migrated = { ...previous, id: renamed.id, manifest_id: renamed.id };
+  const result = await syncWithGate(renamed, migrated, client([release()]), renamed.id,
+    async () => assert.fail('旧身份版本不能进入新身份的审核'));
+  assert.deepEqual(result.versions, []);
+  assert.match(result.rejected_releases[0].error, /发布版本改变了插件 ID/);
+  assert.equal(JSON.stringify(previous.versions), original);
+  const repeated = await syncWithGate(renamed, result, client([release()]), renamed.id,
+    async () => assert.fail('旧身份版本不能重新收录'));
+  assert.deepEqual(repeated.versions, []);
+});
+
 test('Release 汇总 config.toml 和多个 manifest 问题后拒绝收录', async () => {
   const invalid = { ...manifest(), version: '99.999.0', author: null,
     host_application: { min_version: '999.0.0', max_version: '999.99.0' }, sdk: null };
@@ -233,17 +248,26 @@ test('插件 ID 或 manifest ID 冲突时跳过后续条目', () => {
 });
 
 
-test('改 ID 后历史快照及审核信息保留，新版按新身份收录', async () => {
+test('改 ID 后移出旧身份版本，保留输入快照并按新身份收录新版', async () => {
   const previous = await syncPlugin(plugin, undefined, client([release()]));
   previous.versions[0].review = { decision: 'approve', issue: 123 };
   const snapshot = structuredClone(previous.versions[0]);
   previous.id = 'new.demo';
   previous.manifest_id = 'new.demo';
-  const result = await syncPlugin({ ...plugin, id: 'new.demo' }, previous,
-    client([release('2.0.0'), release()], { manifest: { ...manifest('2.0.0'), id: 'new.demo' } }));
+  const base = client([release('2.0.0'), release()], { manifest: { ...manifest('2.0.0'), id: 'new.demo' } });
+  const result = await syncPlugin({ ...plugin, id: 'new.demo', aliases: ['example.demo'] }, previous,
+    async url => {
+      if (url.includes('/git/ref/tags/v1.0.0')) return { object: { type: 'commit', sha: 'b'.repeat(40) } };
+      if (url.includes('/contents/_manifest.json?ref=' + 'b'.repeat(40))) {
+        return { type: 'file', encoding: 'base64', content: Buffer.from(JSON.stringify(manifest())).toString('base64') };
+      }
+      return base(url);
+    });
   assert.equal(result.manifest_id, 'new.demo');
-  assert.deepEqual(result.versions.find(item => item.version === '1.0.0'), snapshot);
-  assert.equal(result.versions.length, 2);
+  assert.deepEqual(previous.versions[0], snapshot);
+  assert.equal(result.versions.length, 1);
+  assert.equal(result.versions[0].version, '2.0.0');
+  assert.match(result.rejected_releases[0].error, /发布版本改变了插件 ID/);
 });
 
 

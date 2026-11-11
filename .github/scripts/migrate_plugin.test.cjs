@@ -10,12 +10,12 @@ const newUrl = 'https://github.com/new/repo';
 function fixture(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'plugin-migration-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  const version = { version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40), manifest: { id: 'old.plugin' }, review: { decision: 'approve' }, yanked: true };
+  const version = { version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40), manifest: { manifest_version: 2, id: 'old.plugin' }, review: { decision: 'approve' }, yanked: true };
   const data = [[{ id: 'old.plugin', repositoryUrl: oldUrl }], { schema_version: 1, plugins: [{ id: 'old.plugin', manifest_id: 'old.plugin', repositoryUrl: oldUrl, versions: [version] }] }, [{ id: 'old.plugin', manifest: { id: 'old.plugin' } }], [{ id: 'old.plugin', repositoryUrl: oldUrl, version: '2.0.0', reason: 'rejected' }]];
   FILES.forEach((file, i) => fs.writeFileSync(path.join(root, file), JSON.stringify(data[i])));
   return { root, version, read: file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8')) };
 }
-test('迁移 ID 和仓库保留历史快照、旧封禁并封禁新身份', async t => {
+test('迁移 ID 和仓库移出旧身份版本、保留别名和封禁记录', async t => {
   const f = fixture(t);
   await migratePlugin({ root: f.root, currentPluginId: 'old.plugin', pluginId: 'new.plugin', repoUrl: newUrl,
     request: async url => url.includes('/commits/') ? { sha: 'a'.repeat(40) } : { id: 123, private: false } });
@@ -23,7 +23,7 @@ test('迁移 ID 和仓库保留历史快照、旧封禁并封禁新身份', asyn
   assert.deepEqual(plugin.aliases, ['old.plugin']);
   const index = f.read('plugin_versions.json').plugins[0];
   assert.equal(index.manifest_id, 'new.plugin');
-  assert.deepEqual(index.versions, [f.version]);
+  assert.deepEqual(index.versions, []);
   const blocked = f.read('blocked_release_versions.json');
   assert.equal(blocked.length, 2);
   assert.ok(isBlockedRelease(blocked, plugin, '2.0.0'));
@@ -34,6 +34,7 @@ test('新 ID 留空时仅迁移地址', async t => {
   await migratePlugin({ root: f.root, currentPluginId: 'old.plugin', repoUrl: newUrl,
     request: async url => url.includes('/commits/') ? { sha: 'a'.repeat(40) } : { id: 123, private: false } });
   assert.equal(f.read('plugin_versions.json').plugins[0].id, 'old.plugin');
+  assert.deepEqual(f.read('plugin_versions.json').plugins[0].versions, [f.version]);
 });
 test('目标缺少历史 commit 时所有文件不变', async t => {
   const f = fixture(t);

@@ -37,8 +37,12 @@ async function migratePlugin({ root, currentPluginId, pluginId = currentPluginId
   if (previous) {
     previous.id = pluginId;
     previous.repositoryUrl = destination;
-    if (pluginId !== currentPluginId) previous.manifest_id = pluginId;
-    // 历史 manifest、tag、commit、审核信息及 release_url 原样保留。
+    if (pluginId !== currentPluginId) {
+      previous.manifest_id = pluginId;
+      // 新身份不能安装旧身份的源码；历史快照保留在 Git 历史中，不改写 manifest。
+      previous.versions = previous.versions.filter(version =>
+        version.manifest?.manifest_version !== 2 || version.manifest.id === pluginId);
+    }
   }
   for (const detail of data['plugin_details.json']) {
     if (detail.id === currentPluginId) detail.id = pluginId;

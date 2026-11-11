@@ -48,7 +48,11 @@ async function syncPlugin(plugin, previous, request, expectedId, admit = async (
     if (batch.length < 100) break;
   }
   // 保留已发布的历史快照；远端删除的 Release 标记为撤回，不能继续推荐安装。
-  const versions = new Map((previous?.versions || []).map(item => [item.version, { ...item, yanked: true }]));
+  // 修复已批准改名的旧索引；只移出明确登记为历史别名的身份，不改写源码快照。
+  const migratedIds = new Set(plugin.aliases || []);
+  const retainedVersions = (previous?.versions || []).filter(item =>
+    item.manifest?.manifest_version !== 2 || item.manifest.id === previous.manifest_id || !migratedIds.has(item.manifest.id));
+  const versions = new Map(retainedVersions.map(item => [item.version, { ...item, yanked: true }]));
   const seenVersions = new Set();
   const ignoredTags = [];
   const rejectedReleases = [];
