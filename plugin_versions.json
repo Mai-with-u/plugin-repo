@@ -63738,6 +63738,81 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.hualuoo.maibot-gpt-sovits",
+      "manifest_id": "local.gpt-sovits-tts",
+      "repositoryUrl": "https://github.com/hualuoo/MaiBot-GPT-SoVITS",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "fc0a53d12aed5836a57984dfa640d1a8dd5e594b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T08:41:00Z",
+          "release_url": "https://github.com/hualuoo/MaiBot-GPT-SoVITS/releases/tag/v1.0.0",
+          "release_notes": "## 首个正式版本\r\n\r\nMaiBot GPT-SoVITS 语音合成插件 v1.0.0 正式发布！\r\n\r\n让麦麦用你指定的声音发送语音消息：通过本地部署的 GPT-SoVITS 完成文本转语音，支持参考音频克隆音色，并可为多情感角色自动选择对应语气。\r\n\r\n### ✨ 主要功能\r\n\r\n- **文本转语音**：支持 `/tts 文本` 命令、大模型语音工具和自动语音回复，以 QQ 语音等语音消息发送。\r\n- **CPU/GPU 本地部署**：连接本机或局域网中的 GPT-SoVITS `api_v2.py`，支持 CPU 推理与 GPU 加速；支持 v1～v5 系列底模，扫描后自动识别版本。\r\n- **音色克隆**：普通模式使用 3～10 秒参考音频及对应文字；也可使用训练好的 GPT、SoVITS 完整权重或 LoRA，打造自己的角色声音。\r\n- **情感分类**：角色模式可启用多个情感，由 MaiBot 配置的 LLM 判断每句话的情感，再使用相应模型和参考音频合成；判断失败时使用默认情感，自动语音还支持关键词规则回退。\r\n- **五步中文设置页**：接口测试 → 底模选择 → 声音模式 → 参数与试听 → 自动语音，提供配置检查、状态提示与可选试听。\r\n- **合成日志**：记录请求来源、角色与情感、模型切换、耗时和音频大小，方便定位问题。\r\n\r\n### 🚀 开始使用\r\n\r\n1. 部署 GPT-SoVITS 并启动 `api_v2.py`，确认 API 地址可访问，默认端口为 `9880`。\r\n2. 下载本 Release 附件 **MaiBot-GPT-SoVITS-1.0.0.zip**。\r\n3. 在 MaiBot WebUI「插件管理 → 从 ZIP 安装」中导入，按提示加载插件或重启 MaiBot。\r\n4. 打开 **GPT-SoVITS 语音设置** 工作区，依次完成五步配置。自动语音默认关闭，可按需启用。\r\n5. 在聊天中发送 `/tts 你好，这是一条语音合成测试。`，或让麦麦“用语音说一句你好”。\r\n\r\n参考音频与角色文件应放在 **GPT-SoVITS 安装目录**下，而不是插件目录：\r\n\r\n```text\r\nGPT-SoVITS/\r\n├─ maibot_refs/             # 普通模式的参考音频\r\n└─ maibot_roles/\r\n   └─ 角色名/\r\n      ├─ role.json          # 角色配置\r\n      ├─ GPT / SoVITS 权重\r\n      └─ 各情感参考音频\r\n```\r\n\r\n### 📋 环境与安装说明\r\n\r\n- **MaiBot 兼容范围声明**：1.3.6 ～ 1.4.x；本次宿主校验使用 1.3.19，1.4.x 尚未实机验证。\r\n- **插件 Python 环境**：Python 3.12 及以上，依赖 `aiohttp`、`tomlkit`。GPT-SoVITS 使用独立的运行环境。\r\n- **语音服务接口**：需要 GPT-SoVITS 的 `api_v2.py`，不是 Gradio WebUI 或旧版 `api.py`。\r\n- CPU 可运行，但推理速度取决于硬件、模型版本和文本长度。\r\n- 语音合成在 GPT-SoVITS 服务端进行；情感分类调用的是 MaiBot 配置的 LLM，不代表整个流程一定离线。\r\n\r\n### 📦 附件与文档\r\n\r\n安装包包含插件程序、中文设置页、logo、10 份文档和 10 张截图，**不包含 GPT-SoVITS 程序、预训练模型、角色权重或参考音频**，请按文档单独准备。\r\n\r\n项目首页为 `README.md`；详细说明位于 `docs/`，涵盖安装、部署、五步设置、音色克隆、情感分类、使用方法、配置项及常见问题。\r\n\r\n**更新已有安装时**，请先备份插件配置。MaiBot 卸载插件会删除其目录中的配置与设置进度；角色和参考音频位于 GPT-SoVITS 目录时不受影响。通过源码提供的 `install.ps1 -MaiBotPath \"你的 MaiBot 目录\" -Force` 更新可保留现有配置。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.gpt-sovits-tts",
+            "version": "1.0.0",
+            "name": "GPT-SoVITS 语音合成",
+            "description": "基于 GPT-SoVITS 的文本转语音插件：CPU/GPU 本地部署，几秒参考音频即可音色克隆，LLM 情感分类自动切换语气，以语音消息回复。",
+            "author": {
+              "name": "hualuoo",
+              "url": "https://github.com/hualuoo"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "urls": {
+              "repository": "https://github.com/hualuoo/MaiBot-GPT-SoVITS"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13,<1"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/maibot-microphone-chibi-256.png",
+                "fallback": "bot",
+                "background": "#FFF4E6"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "llm.generate",
+              "llm.get_available_models"
+            ]
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
