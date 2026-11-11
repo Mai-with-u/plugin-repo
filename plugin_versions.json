@@ -63407,6 +63407,54 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "859c394350205a607c4531517cceba05661a2de2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T15:20:52Z",
+          "release_url": "https://github.com/Pawnnwap/maibot-jev-reply-gate/releases/tag/v1.3.1",
+          "release_notes": "采纳审核反馈：对齐 replyer Hook 超时预算。\n\n- replyer Hook 超时从 20s 降到 6s。\n- JEV / LLM 决策请求默认超时改为 5s。\n- LLM 探针限制为 3 个兼容组合，每个 2.5s，降低连续超时触发熔断的风险。\n- 功能与 v1.3.0 一致。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pawnnwap.jev-reply-gate",
+            "version": "1.3.1",
+            "name": "JEV 接话判断",
+            "description": "用 JEV 兼容决策服务或兼容 LLM 的 logprobs 判断私聊是否继续接话、过滤重复低效回复，并在每轮 bot 发话后检测未兑现的承诺或待办，必要时触发一次主动搭话。",
+            "author": {
+              "name": "Pawnnwap",
+              "url": "https://github.com/Pawnnwap"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "homepage": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "documentation": "https://github.com/Pawnnwap/maibot-jev-reply-gate/blob/main/README.md",
+              "issues": "https://github.com/Pawnnwap/maibot-jev-reply-gate/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "chat",
+            "capabilities": [
+              "message.get_by_time_in_chat",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
