@@ -38295,6 +38295,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.2",
+          "tag": "v1.5.2",
+          "commit": "b68de1cc9cf5c031d2bf7fccf62229e7261fb23a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T16:05:20Z",
+          "release_url": "https://github.com/deepseekv41flash/maibot-opencode-session-header/releases/tag/v1.5.2",
+          "release_notes": "## OpenCode 会话头注入 v1.5.2\n\n命中 `opencode.ai` 端点时注入稳定的 `X-OpenCode-Session`，避免网关返回 `400 MissingSessionID`；\n令牌由常见会话头经 SHA-256 截断哈希得到，原始会话 ID 不出网，未命中端点时不加任何头。\n\n### 本版要点：修复插件市场收录（市场版本一直停在 1.2.0）\n\n插件市场索引 `plugin_versions.json` 显示本项目只有 1.2.0 被收录，v1.4.0 / v1.5.0 被**格式校验拒绝**：\n\n```json\n\"rejected_releases\": [\n  {\"tag\": \"v1.5.0\", \"error\": \"host_application.max_version 第一位和第二位不能填写 99 或 999\"},\n  {\"tag\": \"v1.4.0\", \"error\": \"host_application.max_version 第一位和第二位不能填写 99 或 999\"}\n]\n```\n\n原因是 `_manifest.json` 里 `host_application.max_version` 写成了 `999.999.999`。\n市场规则：manifest 的插件版本与兼容范围版本号**前两位不能是 99 或 999**（第三位不受限），\n而「已收录版本不因新增规则追溯下架」——所以 1.2.0 一直保留，新 Release 则全部进不了审核。\n\n- `host_application.max_version`: `999.999.999` → **`1.9.99`**（前两位 1 / 9，第三位 99 合规）；\n- `sdk` 区间保持 `999.999.999`：市场明确不校验 `sdk` 的版本格式与 99 / 999 限制；\n- 版本号 1.5.1 → **1.5.2**：已发布的 Tag / Release 不可改写，且被拒版本不会被重新同步，\n  因此通过发布新版本号恢复收录；\n- **无代码逻辑与配置变更**，`config_version` 保持 `1.4.0`。\n\n### 同时补充文档\n\nREADME 第 8 节新增两条排障条目：\n\n- **成簇的 `Timeout（ReadTimeout；read=108s…）`**：请求已发出但无任何返回，若隔一段时间来一批、\n  中间长时间为 0，通常是连接池里的 keep-alive 长连接被中间设备（NAT / 防火墙 / 云 LB）\n  **静默丢弃**后被复用。处理：`[transport].max_keepalive_connections = 0`；\n- **`ReadError`（读取响应时连接中断）**：对端在返回响应前关闭连接，单次多为瞬时抖动，\n  宿主会自动重试；频繁出现同样优先关闭保活。\n\n### 验证\n\n| 项 | 结果 |\n|---|---|\n| 单元测试 | **68/68 通过** |\n| 宿主 manifest 校验 | `OK maibot.opencode-session-header 1.5.2  min_version='1.3.0' max_version='1.9.99'` |\n| 市场规则预检 | 必需字段 / 三段式 / 前两位非 99-999 / 范围顺序 / URL / 根目录无 `config.toml` / 版本一致性 全部通过 |\n| 交付包 | sha256 `231bcbb1…5b8f`，逐文件 9/9 一致 |\n\n收录后市场会按每日 02:00 / 15:00（北京时间）同步并进入审核。\n\n**完整说明见 [README](https://github.com/deepseekv41flash/maibot-opencode-session-header#readme) 的排障与变更记录。**\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.opencode-session-header",
+            "version": "1.5.2",
+            "name": "OpenCode 会话头注入",
+            "description": "自动识别 opencode.ai 端点并注入稳定的 X-OpenCode-Session 请求头，避免网关返回 400 MissingSessionID；提供 chat_completions 与 responses 两个独立客户端类型，可同时使用；会话 ID 经 SHA-256 截断哈希，其他 Provider 不受影响。",
+            "author": {
+              "name": "deepseekv41flash",
+              "url": "https://github.com/deepseekv41flash"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/deepseekv41flash/maibot-opencode-session-header",
+              "documentation": "https://github.com/deepseekv41flash/maibot-opencode-session-header#readme"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "999.999.999"
+            },
+            "plugin_type": "provider",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "llm_providers": [
+              {
+                "client_type": "opencode-session",
+                "name": "OpenCode 会话头注入（Chat Completions）",
+                "description": "转发 POST /chat/completions，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.5.2"
+              },
+              {
+                "client_type": "opencode-session-responses",
+                "name": "OpenCode 会话头注入（Responses）",
+                "description": "转发 POST /responses，命中 opencode.ai 时注入稳定的 X-OpenCode-Session。",
+                "version": "1.5.2"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "key-round"
+              }
+            }
+          }
+        },
+        {
           "version": "1.2.0",
           "tag": "v1.2.0",
           "commit": "b5bbc61829d487ee5515033388eee3f6af1fd838",
