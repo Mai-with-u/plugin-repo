@@ -60760,6 +60760,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.1",
+          "tag": "v0.7.1",
+          "commit": "3de8c289baad409f344fd6c2a47be3a21702c4a8",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-11T07:32:59Z",
+          "release_url": "https://github.com/idonotl/maibot-bili-topics/releases/tag/v0.7.1",
+          "release_notes": "# 0.7.1 分享的视频先听声音、再看画面\r\n\r\n功能与 v0.7.0 相同，本版修正的是发布仓库里跑不通的部分：`frames.py` 原先在模块顶层导入 PyAV，\r\n没装转写依赖的环境连插件包都无法导入，现在延迟到真正抽帧时才导入；公开导出把各开关默认改为关闭后，\r\n`test_shared_watch` 的聊天接线断言失效，现在测试显式打开 `share_watch_enabled`；\r\n生成真实短视频的那一条改为在缺少 PyAV 的环境里明确跳过，不再让整个模块导入失败。\r\n\r\n- 新增 `media_watch.py`：对用户发来的 B站视频按「完整音轨转写 + 分段画面」联合理解后再回应；由 `share_watch_enabled` 显式开启，`share_watch_frames`、`share_watch_batch` 控制画面预算，`share_watch_timeout_seconds` 统一约束下载、转写与分段分析，剧情汇总单独计时。\r\n- 表达边界写进提示：有标题或简介可以说刷到，有完整声画才能说看完；观众说法按观众看法理解，不编造画面细节。\r\n- 人设代入按字样判定：标题、简介或笔记命中 DeepSeek／大肥鱼类拟人字样时才把角色绑定到自己身上，且绑定证据必须逐字出现在笔记里；其他视频一律不带入，也不借用视频中其余角色的台词。\r\n- 摘要模型改为宿主任务 `summary_task`（默认 `utils`）；开启主动浏览后默认逐条深看（`browse_deep_watch` 默认 `true`），插件总开关 `enabled` 与主动浏览仍默认关闭。\r\n- manifest 增加 `message.get_by_id`、`message.get_by_time_in_chat` 能力，用于定位用户刚分享的那条视频消息。\r\n\r\n四个插件的总开关 `enabled` 默认为 false；导出时清理了真实账号与机器路径，授权名单为空，未携带原数据库、聊天记录或 Git 历史。插件 ID 保留以维持数据与跨插件调用兼容。可用范围请结合 docs/VALIDATION.md 判断，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bili-topics",
+            "version": "0.7.1",
+            "name": "B站话题 · 麦麦适配版",
+            "description": "处理用户分享的 B站视频：先联合理解完整音轨和分段画面，再按人设回应；保留公开搜索、主动浏览与表达学习素材功能。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-bili-topics",
+              "homepage": "https://github.com/idonotl/maibot-bili-topics",
+              "documentation": "https://github.com/idonotl/maibot-bili-topics/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-bili-topics/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "integration",
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "api.call",
+              "message.get_by_id",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.6.0",
           "tag": "v0.6.0",
           "commit": "fc060fa55e25108a1deedb3f8c378633704c1440",
