@@ -60624,6 +60624,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.8",
+          "tag": "v0.2.8",
+          "commit": "5e6bd09bf801dd1d8f66758566599f43ee9c9d51",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-11T07:11:57Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-affect/releases/tag/v0.2.8",
+          "release_notes": "# 0.2.8 复读抑制、情绪判定与可达的赌气\r\n\r\n相对商店已收录的 v0.2.6，本 Release 包含 0.2.7 与 0.2.8 两级变更。\r\n\r\n- 修复出站复读抑制从不生效：送达判定改为字符三元组指纹覆盖 ≥60%，拆句、错别字注入与语气词改写后仍能认出「这条她已经说完」，命中即把本轮回复置空。\r\n- 新增 `scoring.reply_echo_window_seconds`（默认 600 秒），取代此前硬编码的 90 秒窗口。\r\n- 否定式夸奖只承认直接修饰贬义词的否定：「你不觉得他很烦吗」「你不理我我很烦」不再被判为夸奖。\r\n- 明确指向她的不耐烦（「你真烦」「你好烦啊」「别烦我」「你烦不烦」）按轻度攻击计分；「今天真烦，你呢」「麻烦」不算骂她。\r\n- 昵称调侃按好感与哈希抽样偶尔升级为短暂赌气：仅私聊、好感 ≥60、30 分钟冷却、180 秒或 2 次回复先到；群聊调侃与已有 `hurt` 反应不受影响。\r\n- 区分互动方式的讨论、假设和试演与真实争执：没有受伤、介意或负向个人偏移时，安慰仍增进心情，但不再伪造「刚被哄好」的状态。\r\n- 修复宿主 WebUI 契约测试在 `instance/plugins/<插件>` 布局下永久静默跳过的问题，现按 `MAIBOT_HOST_ROOT` 或 `../MaiBot` 定位宿主源码。\r\n- 不改数据库结构，不重写历史好感、心情或记忆，无新增模型调用。\r\n\r\n四个插件的总开关 `enabled` 默认为 false；导出时清理了真实账号与机器路径，授权名单为空，未携带原数据库、聊天记录或 Git 历史。插件 ID 保留以维持数据与跨插件调用兼容。可用范围请结合 docs/VALIDATION.md 判断，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-affect",
+            "version": "0.2.8",
+            "name": "小鲸鱼心情与好感度",
+            "description": "为麦麦提供每日心情、每用户长期好感与短期情绪反应的本地状态系统，并按状态注入自然语气提示。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-affect",
+              "homepage": "https://github.com/idonotl/maibot-whale-affect",
+              "documentation": "https://github.com/idonotl/maibot-whale-affect/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-affect/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "chat",
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "heart",
+                "background": "#123B4A"
+              }
+            },
+            "capabilities": [
+              "message.get_by_id",
+              "message.get_recent",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "llm.generate",
+              "llm.get_available_models",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.6",
           "tag": "v0.2.6",
           "commit": "e83d58a4bc2253990aaed06b1aa5b4d9f78b0d3e",
