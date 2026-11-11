@@ -4532,6 +4532,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "2583f411c33b1e58a5e7d837a95fa283072e5842",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T04:24:59Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.3.1",
+          "release_notes": "### 升级要求\r\n\r\n- 最低宿主版本为 MaiBot 1.4.4，且必须包含插件配置先迁移、后重建的修复。未包含修复的同版本宿主仍有旧配置丢失风险，请先更新宿主；已经丢失的配置需从备份恢复。\r\n- 撤下存在旧配置升级问题的 v1.3.0 Release，使用新的 v1.3.1 标签发布。\r\n\r\n### 细节\r\n\r\n- 配置迁移：在默认值补齐前迁移旧连接段与功能开关，保留远程地址、端口和 Token，支持旧 `host` / `access_token` 字段，并优先保留新配置中显式填写的值；需配合主程序先迁移、后重建配置的修复。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.1",
+            "name": "OneBot 适配器",
+            "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon-v2.png"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "runtime.set_status_badges",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "3748b4b462f21f65ffd8264344a9b476dfea4aed",
