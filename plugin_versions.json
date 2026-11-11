@@ -63813,6 +63813,64 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.pawnnwap.jev-reply-gate",
+      "manifest_id": "github.pawnnwap.jev-reply-gate",
+      "repositoryUrl": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "eb40ea446bf7c4b75fedebe021c9eec1c666e7ea",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-10T12:08:16Z",
+          "release_url": "https://github.com/Pawnnwap/maibot-jev-reply-gate/releases/tag/v1.4.0",
+          "release_notes": "新增可自定义判断 Prompt 与功能开关。\n\n- 接话判断、重复判断标准、未完成事项等 Prompt 全部参数化，并在插件内提供默认值。\n- WebUI 仅展示常用判定标准；系统提示词、问题模板等高级 Prompt 保留配置项但默认隐藏。\n- 新增 [features] 功能开关：接话判断、重复低效过滤、未完成事项；关闭后对应设置区块会在下次打开配置页时折叠。\n- 提示词统一使用“你”指代 bot，不再硬编码角色名。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pawnnwap.jev-reply-gate",
+            "version": "1.4.0",
+            "name": "JEV 接话判断",
+            "description": "用 JEV 兼容决策服务或兼容 LLM 的 logprobs 判断私聊是否继续接话、过滤重复低效回复，并在每轮 bot 发话后检测未兑现的承诺或待办，必要时触发一次主动搭话。",
+            "author": {
+              "name": "Pawnnwap",
+              "url": "https://github.com/Pawnnwap"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "homepage": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "documentation": "https://github.com/Pawnnwap/maibot-jev-reply-gate/blob/main/README.md",
+              "issues": "https://github.com/Pawnnwap/maibot-jev-reply-gate/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "chat",
+            "capabilities": [
+              "message.get_by_time_in_chat",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
