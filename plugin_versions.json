@@ -32071,7 +32071,70 @@
       "manifest_id": "github.touristh.helldivers2-democracy-chooses",
       "repositoryUrl": "https://github.com/TouristH/Helldivers2DemocracyChooses",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "7da04bd4ab1c9f82698b9a08c3bba11334741b3e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T14:01:14Z",
+          "release_url": "https://github.com/TouristH/Helldivers2DemocracyChooses/releases/tag/v0.4.0",
+          "release_notes": "## 实验配装\n\n- 默认关闭。已获准使用插件的群可由插件管理员或宿主操作员执行 `/hd exp on`、`/hd exp off` 和 `/hd exp status`，按群保存状态。\n- 提供 61 套通用及三战线预设。`/hd exp presets 东线` 查看模板 ID，`/hd exp loadout 东线` 按战线抽取，也可以直接指定模板 ID。\n- 实验抽取检查职责覆盖、战备去重、背包与三号位占用。`/hd exp loadout 1-8` 按原模板重抽一格，锁定其余七格。\n- 装备知识库覆盖 221 件装备，支持直接编辑 Excel 标签表，并提供 CSV 回退。\n\n## 安装与验证\n\n把 ZIP 解压到 MaiBot 的 `plugins/Helldivers2DemocracyChooses/`。解压后，`_manifest.json` 和 `plugin.py` 应位于该目录根部。升级时保留自己的 `config.toml` 和实例数据。\n\nSDK 2.7.1、2.21.0 与 2.22.1 各通过 215 项测试。解包后校验了全部预设及模拟宿主的群内启停、抽取和重抽流程。\n\n安装包 SHA-256 `53aedc3ab846267d11a4db6d9ca82d88ca8115c14109bd637a3d5ec7e6e80523`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-democracy-chooses",
+            "version": "0.4.0",
+            "name": "绝地潜兵 2：民主帮你选择",
+            "description": "HELLDIVERS 2（绝地潜兵2）配装插件，支持随机配装、按群启用的实验配装、八格离线图卡、单格重抽、Excel/CSV 配备标签知识库与渲染诊断；兼容 MaiBot 1.4 多实例与命令权限。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "homepage": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "documentation": "https://github.com/TouristH/Helldivers2DemocracyChooses/blob/main/README.md",
+              "issues": "https://github.com/TouristH/Helldivers2DemocracyChooses/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "gamepad-2"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": [
         {
