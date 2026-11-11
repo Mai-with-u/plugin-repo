@@ -63871,6 +63871,122 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.sora-maru.bilibili",
+      "manifest_id": "github.sora-maru.bilibili",
+      "repositoryUrl": "https://github.com/sora-maru/maibot_plugin_bilibili",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.3",
+          "tag": "1.0.3",
+          "commit": "335a1324d83f73522a771e89ef48fd740d472673",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-09T05:59:00Z",
+          "release_url": "https://github.com/sora-maru/maibot_plugin_bilibili/releases/tag/1.0.3",
+          "release_notes": "添加许可证",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.sora-maru.bilibili",
+            "version": "1.0.3",
+            "name": "Bilibili 动态与直播订阅",
+            "description": "移植自 Soulter 的 AstrBot Bilibili 插件，适配 MaiBot 与 SnowLuma",
+            "author": {
+              "name": "sora-maru（MaiBot移植）；Soulter 及原项目贡献者（上游）",
+              "url": "https://github.com/sora-maru"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/sora-maru/maibot_plugin_bilibili",
+              "homepage": "https://github.com/sora-maru/maibot_plugin_bilibili",
+              "documentation": "https://github.com/sora-maru/maibot_plugin_bilibili#readme",
+              "issues": "https://github.com/sora-maru/maibot_plugin_bilibili/issues"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "plugin",
+                "id": "maibot-team.snowluma-adapter",
+                "version_spec": ">=1.1.9,<2"
+              },
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": ">=17.4.1,<18"
+              },
+              {
+                "type": "python_package",
+                "name": "curl_cffi",
+                "version_spec": ">=0.14.0,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "pycryptodomex",
+                "version_spec": ">=3.23.0"
+              },
+              {
+                "type": "python_package",
+                "name": "brotli",
+                "version_spec": ">=1.2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8.2,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11,<13"
+              },
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1.6,<4"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.12,<4"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "send.forward",
+              "render.html2png",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "llm.generate",
+              "api.call",
+              "webui.claim_upload"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/Astrbot.png"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
