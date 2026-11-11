@@ -57475,6 +57475,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.11.3",
+          "tag": "v0.11.3",
+          "commit": "580ec7b3ff631676c511f8c107cc89a1656ba41a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T12:39:20Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.3",
+          "release_notes": "## 📒 翻开小本本\n\n### 🎛️ 设置更好找了\n\n- 新增「模型设置」，阅读、日记、梦境等功能可以各自选择模型任务，也可以继续跟随默认生活模型。用量页面会显示实际使用的任务和模型。\n- 更新间隔、习惯参数、书架容量、上下文长度和数据保留集中放到「高级设置」，各组按需展开。常用开关留在对应功能页。\n\n### 💤 看看麦麦睡了没\n\n- 只读状态 API 补充实际睡眠状态、聊天静默、预计睡眠结束时间和查询时间。临时唤醒到期、续睡日程尚未生成时，也能读到当前睡眠状态。\n- 新增普通对话和主动交流两种状态判断，使用现有作息规则。API 只返回查询结果，生活安排与消息发送仍由各自功能处理。\n\n### 📚 说明书也收拾好了\n\n- 增加文档目录，使用手册按操作场景整理，配置指南与 WebUI 标签页对应。\n- 修正书架容量的设置位置、各功能模型选择和阅读记录的说明，合并重复内容。\n- API 文档补齐调用示例、字段类型、空值含义、睡眠场景、刷新时间与异常说明。\n\n插件与配置版本统一为 `0.11.3`，升级保留已有设置。\n\n## 📦 安装与升级\n\n下载 **MaiWeave-0.11.3.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n插件与配置版本均为 **0.11.3**，升级保留已有设置。\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.2...v0.11.3)\n\n安装包 SHA-256：\n```text\n4243308970a4263f99af978eb92b5f7509519f31c29833efb04530ad9e6aa597\n```\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜角色生活引擎",
+            "version": "0.11.3",
+            "description": "让麦麦有自己的生活，也让你参与其中：自主安排作息、读书、出门，一句邀约就能改变日程。私聊道过晚安，群里再见也记得；读你上传的书，接着上次的感想与疑问继续读。结合真实天气和城市地点安排活动，按兴趣上网寻找新见闻，带着经历来聊天、道早晚安，还能把当天日记整理成随笔发到 QQ 空间。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": "==1.4.8"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2026.1"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "person.get_id",
+              "llm.get_available_models",
+              "maisaka.reply.generate",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.11.2",
           "tag": "v0.11.2",
           "commit": "ac3afec2ac03893cefe5772a578367fc008971ea",
