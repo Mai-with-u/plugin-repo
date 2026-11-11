@@ -61107,6 +61107,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "commit": "f8825695cf87eb6b89797b0b3be0cf20b6f08a24",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-11T07:12:55Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-speakup/releases/tag/v0.1.2",
+          "release_notes": "# 0.1.2 分享一件事只分享一次\r\n\r\n- 新增 `share_turn.py`：主动搭话带视频素材时按「本轮只聊这一条、分享过就退场」管理，避免同一件事反复推送。\r\n- 分享提示改为先交代这是什么视频、主要讲了什么，再挑一处具体内容说清楚，并接一句自己的真实看法；只有标题、简介或弹幕时不得声称看过画面或听过原声。\r\n- 主动开话题的意图收紧：话题已结束、正在等结果或没有自然接话理由时允许安静。\r\n- 旧视频留待对方追问，不占用后续主动发言额度。\r\n\r\n四个插件的总开关 `enabled` 默认为 false；导出时清理了真实账号与机器路径，授权名单为空，未携带原数据库、聊天记录或 Git 历史。插件 ID 保留以维持数据与跨插件调用兼容。可用范围请结合 docs/VALIDATION.md 判断，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-speakup",
+            "version": "0.1.2",
+            "name": "主动搭话 · 麦麦适配版",
+            "description": "在授权的私聊和群聊中本地抽签，满足时机后由麦麦自行决定是否主动开口。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-speakup",
+              "homepage": "https://github.com/idonotl/maibot-whale-speakup",
+              "documentation": "https://github.com/idonotl/maibot-whale-speakup/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-speakup/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "automation",
+            "dependencies": [],
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "chat.open_session",
+              "chat.get_all_streams",
+              "message.get_by_time_in_chat",
+              "api.call",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "b58a9bb8f29e9d31d2560977453dad479f1df6a1",
