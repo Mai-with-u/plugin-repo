@@ -44068,6 +44068,88 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.10",
+          "tag": "v0.8.10",
+          "commit": "d5e677576cb6059e10613a78352fe9417a9d7009",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T04:17:35Z",
+          "release_url": "https://github.com/namchengwuqiu/bilibili_autopilot/releases/tag/v0.8.10",
+          "release_notes": "### 主要功能\n\n- 群分享默认提供 B 站 QQ 小程序卡片：感想通过复核后发送卡片，群记录确认后只发送感想，不重复附加链接。配置页可关闭卡片并使用感想加官方链接。\n- 小程序播放页按 AV 号定位，签发时提供对应视频的官方 b23 地址，保留 QQ 原始签名与来源字段；卡片内可查看视频，当前方案不提供“打开 App”按钮。\n\n### 细节与修复\n\n- SnowLuma 使用完整正式分享模板；卡片发送后回读真实群消息并核对视频地址，识别“发送者版本过低”等替换文本。失败或无法确认时停止发送后续感想，不自动重发。\n- 分享复用已经读取的字幕或摘要摘录；重写按失败草稿和复核原因修正，不再沿用旧判断理由，减少依据过少及无依据描述造成的失败。\n- 分享总时限覆盖生成、复核与润色；润色超时时保留已经通过复核的初稿。管理页区分感想生成超时、感想校验未通过与 QQ 投递失败。\n- 清理未采用的网页卡片实验分支；发布包只包含正式源码、文档、开发工具和回归测试，不包含临时发送脚本、真实卡片签名、对照输出或运行数据。\n\n升级保留现有配置、登录态和最新状态库。配置格式仍为 0.3.0；已有 miniapp_enabled 取值继续生效，需要卡片时在配置页开启。默认 QQ 群列表仍为空，历史失败或待核对任务不会补发。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bilibili-autopilot",
+            "name": "B站自主浏览与评论",
+            "version": "0.8.10",
+            "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "homepage": "https://github.com/namchengwuqiu/bilibili_autopilot",
+              "documentation": "https://github.com/namchengwuqiu/bilibili_autopilot#readme",
+              "issues": "https://github.com/namchengwuqiu/bilibili_autopilot/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.4.3"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": "==17.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "config.get",
+              "send.text",
+              "send.image",
+              "send.custom",
+              "api.call",
+              "chat.get_group_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "play",
+                "background": "#E7F9FF"
+              }
+            }
+          }
+        },
+        {
           "version": "0.8.9",
           "tag": "v0.8.9",
           "commit": "3d2fdf36f8ca3c53d08d4801995ef19b04ca4cb2",
