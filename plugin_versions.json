@@ -63655,6 +63655,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "1250589385.emoji-smart-audit",
+      "manifest_id": "1250589385.emoji-smart-audit",
+      "repositoryUrl": "https://github.com/1250589385/emoji-smart-audit",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "42def060b84ffce8cdcf1fe393258914f86fc158",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-07T16:58:22Z",
+          "release_url": "https://github.com/1250589385/emoji-smart-audit/releases/tag/1.0.0",
+          "release_notes": "首个版本。\n\n### 安装\n\n把 Release 里的 `plugin.py` 等文件按 MaiBot 插件目录放入，或在插件中心搜索本插件。\n\n### 功能\n\n- 发送前用视觉模型看懂表情包内容，结合最近聊天语境判断是否合适\n- 不合适就撤掉表情只发文字；任何异常/超时都放行，不影响正常说话\n- 自动适配宿主视觉模型（读取宿主 model_config.toml，无需手填模型名）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "1250589385.emoji-smart-audit",
+            "version": "1.0.0",
+            "name": "表情包智能审核",
+            "description": "发送前用视觉模型真正看懂表情包内容，再结合最近聊天语境判断配不配这句话；不合适就撤掉表情只发文字。自动适配宿主的视觉模型，任何异常都放行不影响正常说话。",
+            "author": {
+              "name": "1250589385",
+              "url": "https://github.com/1250589385"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1250589385/emoji-smart-audit",
+              "homepage": "https://github.com/1250589385/emoji-smart-audit",
+              "documentation": "https://github.com/1250589385/emoji-smart-audit",
+              "issues": "https://github.com/1250589385/emoji-smart-audit/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "smile",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "i18n",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
