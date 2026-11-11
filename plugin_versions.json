@@ -7818,6 +7818,96 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.2.1",
+          "tag": "v2.2.1",
+          "commit": "4e173bd753d7d89c21fff6bc74069db1dc30526b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T12:04:19Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.2.1",
+          "release_notes": "## 功能新增\r\n\r\n- ComfyUI：设置按连接、文生图、图生图和节点采样分组，按提示词模式展示对应节点，切换保留草稿，节点 ID 改为单行输入；明确工作流目录与配置填写路径的对应关系。\r\n\r\n## 功能修复\r\n\r\n- WebUI：修复固定弹窗底栏后表单读取层级错误，导致 ComfyUI 等平台保存时仍提交旧参数的问题（#14）；缺少设置控件时明确报错。\r\n- ComfyUI：对齐本地上传、排队、历史与图片接口，保留节点校验和运行异常原因；查询受总超时限制，已受理任务不重新排队。\r\n- ComfyUI：提前拒绝错误的 API 工作流、重叠正反向节点和连线输入；无效源图节点不再先上传图片。\r\n- 参数精度：工作台完整保留 64 位随机种子，避免查看或保存时被浏览器舍入。\n\n**运行要求：MaiBot 1.3.6–1.4.99，插件 SDK 2.12.0–2.22.1**\n\n> 更新后重新加载插件或重启 MaiBot，并刷新 WebUI\n\n[使用与配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.2.1/README.md) · [手动配置说明](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.2.1/docs/manual-configuration.md) · [完整更新日志](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/v2.2.1/changelog.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "plugin_type": "creative",
+            "version": "2.2.1",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.22.1"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.2.0",
           "tag": "v2.2.0",
           "commit": "d0ab8a242e6d8b662845c3d9372fde4cf42fabd3",
