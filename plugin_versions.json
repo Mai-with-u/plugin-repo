@@ -62864,6 +62864,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "8951fbc8d5d019204fd2ac76efffd0d037123f1c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T01:03:21Z",
+          "release_url": "https://github.com/feli77/maibot-qwen-tts/releases/tag/v1.2.0",
+          "release_notes": "兼容 MaiBot 1.3.18 至 1.4.x。\r\n\r\n- WebUI 支持一键安装或升级独立推理环境，可自动下载所选的 CustomVoice 模型并复用已有模型。\r\n- 自动选择兼容的 CPU 或 CUDA 构建，支持手动指定 Python 和模型路径。\r\n- `/tts` 和语音回复支持 QQ 官方机器人适配器，也可通过统一 QQ 连接器接入 SnowLuma 或 NapCat。\r\n- 模型默认通过 Hugging Face 的 HTTP 下载，可通过环境变量启用 Xet。\r\n\r\n安装和升级步骤见 [README](https://github.com/feli77/maibot-qwen-tts/blob/v1.2.0/README.md)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.qwen-tts",
+            "version": "1.2.0",
+            "name": "Qwen3-TTS QQ 语音",
+            "description": "使用本机 Qwen3-TTS 模型合成语音，并通过 MaiBot 的 QQ 适配器发到当前会话。",
+            "author": {
+              "name": "feli77",
+              "url": "https://github.com/feli77"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/feli77/maibot-qwen-tts"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "media",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "uv",
+                "version_spec": ">=0.10,<1"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "7e3e32de90295cd2ab4bde4b5ac8aca862071a6b",
