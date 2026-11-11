@@ -25266,6 +25266,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.17.0",
+          "tag": "v0.17.0",
+          "commit": "b89a4f6c25f0c1d60687b6633ae4ff11f1676fe7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T03:47:46Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.17.0",
+          "release_notes": "## MaiWork 0.17.0 · 实时看板与上下文透视 + 设置修改一键撤销 + 开箱体验加固 + 减负瘦身\n\n### 可观测与自我维护升级\n\n- **看板实时流向脉冲（SSE）**：总管理员「看板」接入实时事件流，群聊消息进入、主模型调度、子专岗交接与对外交付时节点实时脉冲亮起，无需等轮询即可看清消息走到了哪一步。\n- **单轮上下文面积地图**：在看板或模型调用记录里点开任意一次调用，直观查看系统提示、历史对话、工具返回与输出分别占了多少上下文面积，一眼定位 Token 大头。\n- **Jev 判断概率条**：待批卡片与派活判断日志新增直观的概率进度条与判定状态标签。\n- **设置修改记录与一键撤销**：无论是网页手动改配置还是在对话里让它改设置，均自动记录修改前后对比（「设置 → 系统 → 修改记录」），支持按单条一键回退（密钥永不入库、永不回显）。\n- **各群专岗常驻索引笔记**：资讯、构想、目标等专岗在各群拥有独立的常驻短笔记（可在专岗抽屉查看与编辑），跨轮记住本群固定口径与踩坑提醒。\n\n### 开箱即用与安全兜底加固\n\n- **首次引导更顺手**：配置向导支持直接为每个服务群填写本群审批人账号，并自动识别 `config.example.toml` 中的示例占位地址（不再把未填写的示例端点当成真实报错）；清除历史遗留的默认示例账号。\n- **每日 Token 硬熔断上限**：「设置 → 用量」新增每日 Token 硬上限（`[usage] hard_limit_daily_tokens`，默认 `0` 不限），超限后自动熔断当日后台定时资讯、构想、冷场开场白与闲时探索，防止账单失控（网页手动点刷新仍放行）。\n- **一键下载脱敏数据库备份**：「设置 → 系统」新增一键下载在线安全备份按钮，自动使用 SQLite 热备份并剔除敏感密钥与会话令牌。\n- **多平台与容器兼容修复**：修复 Docker 容器内缺少 systemd 总线时误判隔离环境的问题；放宽 Telegram 负数群号与 QQ 官方长 ID 的格式校验。\n- **接单、验收与免打扰体验修复**：正在等补充回答的任务若群友另起话题不再吞掉新派活；消除代码标识符与普通中文词组引起的验收误杀；群友主动派的互动任务做完后即使处在免打扰时段也即时交付（免打扰只拦后台主动推送）。\n\n### 减负瘦身与日常打磨\n\n- **「随口一问」真快车道**：群友随口问一句简单问题时，子专岗直接文字作答即可交差，不再空跑结构化重试，主模型也不再为一句简短问答额外跑群空间归档、长期记忆与做法提炼。\n- **自定义专岗免手改提示词**：新建自定义专岗只需填一句「擅长做什么（何时分派给它）」，主模型即可自动识别分派；底层 `SOUL.md` / `AGENTS.md` 默认折叠进高级区，「全局设定」与「各群独立规矩/做法」边界更清晰。\n- **构想与群友分享页简化**：管理员看构想卡片直接显示「直接执行」主按钮，群友口令精简为一行 `@机器人 构想 #编号`；`here.now` 临时公开分享页补齐「好文收录」板块并填入真实机器人名字，群友资讯页隐藏后台配置报错提示。\n\n### 升级说明\n\n- 配置版本保持 **0.5.5**、数据库库号自动升至 **51**（**直接覆盖插件文件并保留 `config.toml` 即可升级**；若需回退到 0.16.x，请连同升级前备份的数据目录一起恢复）。\n\n详见 [升级说明](docs/guide/upgrade.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.17.0",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.16.1",
           "tag": "v0.16.1",
           "commit": "bde256b8fc5d98b6080d61f9896637126afa23b7",
