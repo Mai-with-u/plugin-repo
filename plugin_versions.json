@@ -32280,6 +32280,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "3cae72d17eb49c994ce2d6cb64cc34ded81f353f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T06:01:02Z",
+          "release_url": "https://github.com/TouristH/Helldivers2DemocracyChooses/releases/tag/v0.4.2",
+          "release_notes": "- 在 MaiBot WebUI 的插件设置中可以编辑全局群白名单。空名单仍拒绝所有群。\n- 指令黑名单使用规则列表。每条填写一个命令和一个 QQ 号，保存后可正常新增、修改、删除或清空。\n- 升级时保留原有 `config.toml`。旧版黑名单表可继续读取，首次在 WebUI 保存时转换为规则列表，并归并同一命令的别名和重复账号。\n\n已用 MaiBot 1.4.3 验证新装、旧配置读取、WebUI 配置保存和热重载。手动安装请下载下方 ZIP。\n\n安装包 SHA-256\n\n`2307585bc8ab880fcaa8abe053158fbd45894edc064f5819ccd316892aa78036`",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-democracy-chooses",
+            "version": "0.4.2",
+            "name": "绝地潜兵 2：民主帮你选择",
+            "description": "HELLDIVERS 2（绝地潜兵2）配装插件，支持随机配装、按群启用的实验配装、八格离线图卡、单格重抽、Excel/CSV 配备标签知识库与渲染诊断；兼容 MaiBot 1.4 多实例与命令权限。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "homepage": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "documentation": "https://github.com/TouristH/Helldivers2DemocracyChooses/blob/main/README.md",
+              "issues": "https://github.com/TouristH/Helldivers2DemocracyChooses/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "gamepad-2"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.1",
           "tag": "v0.4.1",
           "commit": "77a352172e426297073ada4239cf8956e1c8e45e",
