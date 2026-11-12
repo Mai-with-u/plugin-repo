@@ -70,6 +70,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.1",
+          "tag": "v2.1.1",
+          "commit": "57332ef00bb4d9a3759434cade171ecffed5b534",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T11:41:47Z",
+          "release_url": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/releases/tag/v2.1.1",
+          "release_notes": "# v2.1.1 — GitHub raw 卡面下载修复\n\n修复部分网络环境下卡面下载频繁报 `WinError 10054`（远程主机强迫关闭连接）、导致抽牌失败的问题。\n\n## 修复内容\n\n- **自动镜像回退**：卡面地址为 `raw.githubusercontent.com` 时，下载失败会自动依次尝试：\n  1. 原始 GitHub raw 地址\n  2. jsDelivr 镜像（`cdn.jsdelivr.net/gh/...`）\n  3. gh-proxy 镜像（`gh-proxy.com/https://raw.githubusercontent.com/...`）\n- 每次重试轮次内逐个尝试原图源与镜像；三个都失败才放弃，并保留原有重试间隔\n- **日志增强**：下载失败日志补充牌组、cardId、牌名、URL；最终失败提示可配置代理或 `/tarots cache`\n- 牌面数据、cardId 映射、抽牌逻辑与牌组结构均不变\n\n## 适用场景\n\n- 国内网络访问 `raw.githubusercontent.com` 被重置/限流\n- 默认牌组 `classical` / `elaine`，以及 `bilibili` / `east` 的远程卡面下载\n- `kindred-arcana` 使用本地资源包，不受此问题影响\n\n## 使用\n\n更新插件后正常抽牌即可；也可以先执行：\n\n```text\n/tarots cache\n```\n\n预缓存当前牌组全部卡面，之后离线可用。如果三个源都失败，再考虑在插件配置 `[proxy]` 开启代理。\n\n## 测试\n\n- 72 个单元测试通过\n- 新增：GitHub raw 失败 → jsDelivr 回退成功、下载候选 URL、最终失败返回\n- manifest 预检 0 error / 0 warning（MaiBot 1.3.19 / SDK 2.21.0）\n\n## 兼容性\n\n- 插件版本：2.1.1\n- 配置版本不变（2.1.0），无需改配置\n- 与 v2.1.0 功能一致，仅增强下载链路\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.a0000xz.maibot-tarots-plugin",
+            "version": "2.1.1",
+            "name": "塔罗工坊",
+            "description": "面向 MaiBot 新版插件系统的塔罗占卜插件：11 种牌阵、可自定义牌阵与牌组、桌布风布局图、麦麦人设解牌；支持独立牌组资源包「灵契秘仪」（首次启用下载并校验）",
+            "author": {
+              "name": "A肆零西烛",
+              "url": "https://github.com/A0000Xz"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "homepage": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin",
+              "documentation": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/blob/main/README.md",
+              "issues": "https://github.com/A0000Xz/MaiBot-Tarots-Plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "maisaka.reply.generate",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "sparkles"
+              }
+            }
+          }
+        },
+        {
           "version": "2.1.0",
           "tag": "v2.1.0",
           "commit": "436f5881fd9fcba7f1076123c8f48280fc88a0b9",
