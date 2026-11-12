@@ -35659,6 +35659,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "0e35f0913165abb098e17acb67abff389483084c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T14:32:13Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.5.0",
+          "release_notes": "- 新增 WebUI 报告库与总览：按群和日期筛选、缩略图、分块原图预览、重发已存成品、删除存档。\n- 日报成品保存在宿主数据目录的 `reports/<群>/<日期>/`，包含 PNG、HTML 和元数据；HTML 直发模式只存 HTML，不额外渲染图片。存档失败不阻断原有发送。\n- 默认保留 90 天，可在日报设置调整；0 表示不自动清理。重复生成同群同日会替换存档，预览和删除校验版本标识。\n- WebUI 生成按钮立即受理，复用已有后台入口，支持状态查看及取消。WebUI、命令、定时与日报漫画联动共用同一后台任务通道：同群互斥、可取消、保留有限历史，总览展示全部来源的任务状态。\n- 历史日期只使用现存的当日统计，不以今天的聊天伪造历史；重发不重新调用模型。\n- 对齐原版报告页：新增「换主题重绘」（免 Token），用已存分析与渲染上下文重新出图并替换存档，不发送群消息；存档同时保存渲染上下文（context.json，超 4 MiB 自动省略并重绘置灰）。\n- 报告列表新增关键词搜索（群名/群号/日期/主题）、类型筛选（图片/仅 HTML）与新旧排序。\n- 宿主自定义页沙箱不支持直接下载，本版明确禁用下载按钮。\n- 新增 WebUI 漫画廊：把日报画成四格漫画 / 单幅海报，经麦麦绘图插件（drawpic 2.x）公开协议协作，需其安装、启用并允许插件联动；未检测到时漫画功能自动降级为不可用，不影响日报。\n- 分镜脚本由分析模型生成，模型不可用时用话题+金句保底拼接；提示词中的用户引用还原为昵称，不携带 QQ 号。\n- 幂等纪律：请求键先落盘再提交；提交回执未知时保留原键，「恢复进度」只读查证原任务（task/request）并读取成图，绝不换键重画、不重复扣额度；已存档未发送的只补发。等待超时（默认 300 秒，可配 60~3600）保留进度供恢复。\n- 漫画与日报同住一份日存档（comic.png / 缩略图 / comic.json）：删除整日报告连带删除当日漫画，单独删除漫画保留日报；预览、重发、删除均校验版本标识。\n- 参考图：最多 4 张静态 PNG / JPEG / WebP（宿主压缩到 4096 边长以内，插件再校验每张 ≤8 MiB），可在插件设置选择绘图时附带，用于固定角色形象与画风。\n- 新增「群聊漫画」设置节：启用开关、默认风格、绘图模型与风格预设、等待预算、参考图开关、提示文字、自动联动群列表；日报发送成功后可对联动群自动追加漫画。新增 /漫画 命令（管理员门禁）。\n- 取消任务会尽力通知绘图端；已提交的绘图请求、存档和发送无法撤回，界面明示。\n- 参考图支持重命名管理：漫画廊内可为每张参考图设置名称（≤40 字，留空清除），名称随数据目录保存；删除参考图时名称一并清理。参考图区只在数据变化时刷新，轮询不再重建卡片造成闪烁。\n- 漫画发送成功后可自动上传 QQ 群相册：与日报相册开关相互独立，可单独指定漫画相册名（留空跟随日报相册设置），严格模式沿用相册设置；重发不上传，上传失败不影响漫画发送。\n- 分析总览改为自定义页：群号与主题改为动态下拉（主题含「默认（按群配置）」），日期用原生日历控件；保留统计、任务状态、最近报告与近7天消息量，每5秒轮询、忙碌跳过。\n- WebUI 连接与功能状态徽章统一为圆点+文字并对齐：绿色=已连接宿主 / 漫画已启用且绘图接口可用，黄色=连接中或接口缺失，红色=连接不可用。\n- 修复统计文件被清空的隐患：宿主在插件注册失败时也会调用卸载钩子，此前会把未加载的空统计写盘覆盖真实数据；现在未成功加载过统计就不落盘。\n- 修复报告列表「类型筛选」默认值被宿主参数校验拒绝的问题（不限=空串此前未列入声明 choices）。\n- 修复同群两个任务在同一秒内提交时，任务状态展示被较旧一条覆盖的问题（started_at 为秒级、快照按新到旧排序，页面去重改为严格比较）。\n- 最低宿主 1.3.19、SDK 2.12.0；声明 Pillow 依赖与参考图上传所需的 `webui.claim_upload` 能力（宿主按 4096 边长压缩后签发上传凭据）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.5.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.22.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "91664a3ed8e826772a346559851e0e66f85c9d94",
