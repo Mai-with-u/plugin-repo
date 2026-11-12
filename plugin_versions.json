@@ -28438,6 +28438,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.26.6",
+          "tag": "v1.26.6",
+          "commit": "9a3479d89a09806298dbb685979bd47da2269162",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T18:09:25Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.26.6",
+          "release_notes": "## 新增\n\n- **Planner lean 注入模式（`context.planner_mode`，默认 lean）**：宿主调研结论——Planner 只是\"决策器 + 指导摘要器\"（产出 reply 工具调用与 reply_reference），正文由 Replyer 用自己的全量背景生成；给 Planner 塞满背景反而让它\"什么都知道\"而不调用工具。lean 模式下正常对话只注入约几百字符的决策背景（关系一行、意图/未完话题/积压、精力/心情/睡眠一行、刚醒/睡前相位提示、≥0.6 热点话题一条），**不碰 system item**——请求前缀完全由宿主内容构成，背景块的分钟级 TTL 变化不再打断前缀缓存（#17/#21 的进一步收敛）。主动任务轮（proactive/relay）仍全量注入（撰写指导需要记忆/见闻素材）。同时利用 `tool_definitions` 判别宿主的表情选择/表达选择/子代理轮（恒为空列表）：这些轮次不再吃到生活背景，也不再触发任务激活副作用。可一键切回 `full`（旧行为）。\n\n## 修复\n\n- **日程近期重复闸门参数不匹配导致插件加载崩溃（v1.26.5 引入）**：`ensure_day` 的 check lambda 给 `_recent_day_overlap` 多传了一个 `day` 参数——LLM 生成路径一执行即 TypeError，`on_load` 失败、宿主回滚旧版本（新装机或新一天首次生成必现）。修正调用参数；新增回归用例并做红绿验证。\n- **dev 版 dashboard 插件设置页崩溃的插件侧适配（上游 [MaiBot#2440](https://github.com/Mai-with-u/MaiBot/issues/2440)）**：SDK 把 `int` 子字段映射为 `\"integer\"`，dashboard 对象数组编辑器没有 integer 分支，数值落入 string 分支对数字调用 `split` → `TypeError: p.split is not a function`（dashboard 1.10.4.dev 起；稳定版不受影响）。`UserProfile.daily_proactive_max` 与 `initial_temperature` 改为 `float`（渲染数字输入框）；旧配置整数值由 pydantic 无缝接收，行为零变化。\n- **移除 webui.json 已废弃的 `placement` 字段**：宿主已停用 `workspace` 页面并告警\"页面已转入侧栏\"；三页均省略 placement（sidebar 为默认值）。对 stable（1.3.19）与 dev（1.4.2）双宿主 `load_webui_extension` 实测通过且零告警。\n\n## 其他\n\n- README 补充群聊日程提示建议：把群加入插件白名单并在群聊提示词中引导先调用 `mai_life_get_schedule` 再回答日程问题。\n\n- 552 项测试通过（+13：日程闸门红绿回归 1、dev dashboard 兼容契约 3、Planner lean 注入 9）。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.26.5...v1.26.6\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.26.6",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "GPL-3.0",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "webui.claim_upload",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.26.5",
           "tag": "v1.26.5",
           "commit": "f9f233e9ca44e95d7f59ccff007a440c6530bdbb",
