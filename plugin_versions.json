@@ -62607,6 +62607,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "cab635b5fc38b313ba76cee11dc53cbb998a0609",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T09:04:20Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.0.6",
+          "release_notes": "## 修了什么\n\n- 写请求 `_rnd` 从 v15（HMAC）升级到线上现行的 **v16（AES-256-GCM）**；hkey 口径不变。\n- 写请求补带 `heybox_id`。\n- 熔断关键词补「你的账号无法使用该功能」等新话术，状态文件改存平台原始原因。\n\n## 为什么\n\n1.0.5 里「web 写端点被平台整体停用」是误判。这次直接从线上前端真实请求取证（主 bundle + 全部懒加载 chunk + 无头浏览器真实加载），发现平台把写接口签名校验切到了 v16，插件还在发 v15，被当成验签失败统一回「评论功能暂不可用」。\n\n真机消融：v16 正确签名 → 进入账号级校验，回「你的账号无法使用该功能」；篡改 `_rnd` → 退回「评论功能暂不可用」；去掉/篡改 hkey → 「缺失参数」/「非法请求」。换 cookie、真实风控 token、IP、平台参数、UA 均不影响结果，`post_comment_permission` 仍为 1。这是账号在 **web 通道**的写限制，App 端不受影响（用户实测可评论）。重新扫码登录无效。\n\n因此本版本**不会让自动发布立刻恢复**，但消除了错误归因、对齐线上协议、让熔断继续拦住烧钱。要立刻恢复需改走 App 协议（App 为另一套签名口径，App 风格参数 + v16 仍回「非法请求」）。\n\n## 验证\n\n- 本地 419 条测试通过（2 条缺宿主 SDK 的环境错误）；线上关键测试 39 条全过。\n- 新增 `tests/test_rnd16.py`：固定 IV 解密校验 v16 明文结构、路径参与签名、随机 IV、v15 兼容、熔断新话术。\n- 线上已部署并重启，80 轮全部被冷却拦下，今日图片停在 328 张不再增长。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.0.6",
+            "name": "回响",
+            "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=3.4"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.4",
           "tag": "v1.0.4",
           "commit": "66cbb77311405ee666c51fe435d1c1a66ddfc93c",
