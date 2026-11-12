@@ -1551,6 +1551,85 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.16.0",
+          "tag": "v1.16.0",
+          "commit": "fff163be3de85fe9398464ed639b48388ef19608",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T05:26:46Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.16.0",
+          "release_notes": "### 主要功能\n\n- 新增 `gemini_autonomous_draw` 工具。麦麦可结合人设、情绪、生活状态与聊天内容，自行决定是否绘图、画什么，也可以只聊天或保持沉默。普通聊天和已有的生活/静默主动任务均可使用。\n- 支持两种模式：`self` 沿用已配置的人设底图和人物/画风约束，自主构思服装、动作与场景；`free` 根据自行构思的提示词文生图，不读取聊天图片或人设底图。\n- 新增 WebUI「自主绘图」配置节，默认关闭。默认每会话每天 2 次、所有会话每天合计 8 次，同会话两次主动提交至少间隔 1 小时；任一每日额度设为 0 即暂停。\n\n### 频率与兼容\n\n- 主动绘图在提交前原子保存次数与冷却，失败、中断也计次，重载和重启不清空记录；每日按配置时区（默认 `Asia/Shanghai`）重置。记录异常时暂停自主绘图，禁止模型自动重试或换工具绕过。\n- 一次最多发送一张，复用媒体生成中保护、共享媒体冷却和同轮回复/重复媒体过滤，兼容带插件命名空间的工具名。\n- 沿用绘图总开关、群黑名单和管理员模式；不新增定时发图任务，既有主动唤醒的白名单、时间与免打扰规则继续生效。用户明确要求时仍使用原有绘图、自拍和视频工具。\n- 现有渠道、Key、自拍底图及用户配置保持不变；发布源码不包含运行配置、人设底图或配置备份。\n\n### 验证\n\n- 插件全量 839 项测试通过，修改的 Python 文件通过 Ruff；发版工作流的版本与市场字段校验、发布说明提取通过。\n- MaiBot 1.4.3 / SDK 2.22.1 下相关 66 项测试通过，运行中的插件已加载 v1.16.0，并已确认新工具及参数枚举在线注册；未触发真实付费出图。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.16.0",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.3"
+            },
+            "sdk": {
+              "min_version": "2.5.2",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
           "version": "1.15.13",
           "tag": "v1.15.13",
           "commit": "e39e51847a0b983afc6cd6c955815ddd20822f3a",
