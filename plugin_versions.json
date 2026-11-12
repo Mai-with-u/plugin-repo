@@ -32143,6 +32143,68 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.1",
+          "tag": "v0.4.1",
+          "commit": "77a352172e426297073ada4239cf8956e1c8e45e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T19:29:34Z",
+          "release_url": "https://github.com/TouristH/Helldivers2DemocracyChooses/releases/tag/v0.4.1",
+          "release_notes": "修复 MaiBot Runner 因缺少 `plugin.config_version` 拒绝加载「绝地潜兵 2：民主帮你选择」的问题。新装时生成的配置和安装包里的配置示例均包含版本号。\n\n从旧版升级时，请保留原有 `config.toml`。如果已有的 `[plugin]` 段缺少版本号，在该段下补一行 `config_version = \"1.0.0\"`，保存后重载插件或重启 MaiBot。原有群白名单、管理员、黑名单和重抽时间窗可继续使用。\n\n手动安装请下载下方的 `Helldivers2DemocracyChooses-v0.4.1.zip`，解压后确保 `_manifest.json` 和 `plugin.py` 位于同一个插件目录的根部。\n\n安装包 SHA-256\n\n`414145cdd263bd8053daa6993391f540d98e7ead24350e2b1934e13f60ce04c6`",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.touristh.helldivers2-democracy-chooses",
+            "version": "0.4.1",
+            "name": "绝地潜兵 2：民主帮你选择",
+            "description": "HELLDIVERS 2（绝地潜兵2）配装插件，支持随机配装、按群启用的实验配装、八格离线图卡、单格重抽、Excel/CSV 配备标签知识库与渲染诊断；兼容 MaiBot 1.4 多实例与命令权限。",
+            "author": {
+              "name": "TouristH",
+              "url": "https://github.com/TouristH"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "homepage": "https://github.com/TouristH/Helldivers2DemocracyChooses",
+              "documentation": "https://github.com/TouristH/Helldivers2DemocracyChooses/blob/main/README.md",
+              "issues": "https://github.com/TouristH/Helldivers2DemocracyChooses/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.54.0"
+              }
+            ],
+            "plugin_type": "game",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.webp",
+                "fallback": "gamepad-2"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.0",
           "tag": "v0.4.0",
           "commit": "7da04bd4ab1c9f82698b9a08c3bba11334741b3e",
