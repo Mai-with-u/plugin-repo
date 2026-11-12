@@ -48506,6 +48506,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.8.0",
+          "tag": "v0.8.0",
+          "commit": "87ec50cd6900767fb4411166ef409e3d3f4c2a90",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T16:07:00Z",
+          "release_url": "https://github.com/HannJia/xiaoheihe-operator/releases/tag/v0.8.0",
+          "release_notes": "每天早上先看稿，再决定是否发布：新增 AI 早报私聊审核流程，包含从 0.5.0 以来的早报、中文一图流、事实核查和评论兼容修复。\n\n## 早报发布\n\n- 默认开始时间改为服务器本地 08:00，开始搜索、写稿、审校，完成后私聊老板。默认不被模拟睡眠延后，可在配置中调整。\n- 早报 `auto` 现在也会先发完整正文和一图流到老板 QQ，只有老板当天在 QQ 私聊单独回复 **可以发送** 才发布到小黑盒。回复 **取消发送** 放弃本稿；未确认不发送，次日旧稿失效。\n- 待确认稿保存在持久数据目录，重启后仍可审核。发布使用相同正文、图片、分区和标签；重复确认不会重复发帖，图片上传失败会暂停，需要重新确认。\n- 新安装仍默认关闭早报、保留 `dry_run`；启用正式流程须填写老板 QQ、登录小黑盒，并将基础和早报模式都设为 `auto`。`/xhh_news_preview` 仍只预览。\n\n## 内容与配图\n\n- 获取原始公开文章并检查首次发布日期；搜索摘要、汇总日期和最后修改时间不能代替原始证据。\n- 独立审校事实、指标、条件、开放状态、简评和重复事件；逐字引句核对，证据不足或审校失败时跳过。模型审校仍可能漏判，建议认真看稿。\n- 早报改为中文资讯一图流，包含来源照片或明确标注的原文摘录。Manifest 声明 httpx、cryptography、Pillow，中文排版另需系统中文字体。\n- 日常生活发帖有独立开关，普通配图不再硬编码账号名或要求社交软件界面。\n\n## 兼容与验证\n\n- 更新网页评论接口 v16 签名和参数；网关 403 不再删除仍有效的凭证。\n- 112 项离线回归通过，真实 SDK 2.20.0 的组件注册、旧配置验证及依赖检查通过（MaiBot 1.3.19）。\n- 不附带运行配置、账号、凭证、数据库或私有聊天记录。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.xiaoheihe-operator",
+            "version": "0.8.0",
+            "name": "小黑盒运营",
+            "description": "让 MaiBot 用自己的人设在小黑盒逛帖、点赞、评论和发帖，可联动生活轨迹和配图。",
+            "author": {
+              "name": "HannJia",
+              "url": "https://github.com/HannJia"
+            },
+            "urls": {
+              "repository": "https://github.com/HannJia/xiaoheihe-operator"
+            },
+            "license": "MIT",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package",
+                "background": "#f1f2f4"
+              }
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=41.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "changelog": "CHANGELOG.md",
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "web.search",
+              "web.fetch",
+              "chat.get_stream_by_user_id",
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        },
+        {
           "version": "0.5.0",
           "tag": "v0.5.0",
           "commit": "3e8b3d51f122c2fe9f7c6b1a1ba0466e399c32af",
