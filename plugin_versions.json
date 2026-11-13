@@ -65368,6 +65368,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.10",
+          "tag": "v0.9.10",
+          "commit": "aab094300579bada4ecb19495e6917ff2d1c6546",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T16:12:18Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.10",
+          "release_notes": "从 v0.8.5 之后累积的一批改动，主线是**微博这条线打通到底**，外加把「读不准」「搜不到」的几种情况兜住。\n\n## 微博：从「只报个主页」变成能给原帖\n\n- **读到微博号就去站内核人**（0.9.2）：水印写着「微博@某某」、`@` 后面跟汉字（X 的 handle 只认 ASCII，带汉字只可能是中文平台昵称），或者那个号在 X 上查无此人，就拿这个名字去微博搜：昵称、UID、粉丝数、主页一起给出来。\n- **同名路人号多，所以设门槛**：低于 `[weibo] min_fans`（默认 200）的号不往结果里塞；一个都没过线就写一句「同名的都是路人号（粉丝最多 102）」，不硬凑。\n- **昵称比对比 X 那边严**（0.9.4）：完全相等直接过；前后缀只在多出 ≤3 个字符时放行；其余按编辑距离（短名容 1、长名容 2）。**光「包含」不算同一个人**——水印把 `adidasneo` 读成 `didasne`，宽松匹配曾把 109.6 万粉的阿迪官方号当线索发出去。\n- **核到人之后翻她的带图帖比指纹**（0.9.6）：对上了才把结论换成那条微博帖，对不上就只当线索——名字只负责找人，认人靠图。\n- **登录 cookie 拆成两格**（0.9.4）：`[weibo] sub` 和 `subp` 分开填（带不带 `SUB=` 前缀都认）；老配置里那一整串 `cookie` 仍然能用。不填也能用，只是搜不了帖子。\n- **登录态失效会明说**（0.9.3）：填了 cookie 又收到 401/432 时，结果里写「登录态失效了，重新复制一次就能恢复」，而不是静默变成「什么都没搜到」。\n\n## 转载页反查：正文就是原微博的正文\n\n候选落点常常是新浪这类转载页——页面不写作者，但正文和原微博一字不差。现在会抓那一页：从页头「某某 / 微博认证：…」认出作者名去核号，核不到再拿正文首行加话题去微博搜帖；找到帖之后**逐张拉配图比指纹**，对上了才把结论换成那条微博帖（`s-20261113-1250-26a8` 靠这条从 `sina.cn` 转载页回到原帖，指纹距离 1）。需要登录 cookie，没填就整条跳过。\n\n## 水印读不准：先定位再放大，而且只作最后兜底\n\n- **两步读**（0.9.5）：整图读不出水印时，先让模型只说「水印在哪」（返回一个相对坐标框，不抄字），再从**原图**裁下来放大到 1600 长边读一次。四周留 8% 余量，框偏一点也不切在字上；最多两次调用，比切六块便宜。整图读到就完全不触发——不频繁烧视觉额度。\n- **中文昵称不再被当成「没读出账号」丢掉**（0.9.6）：水印写着 `@兔子兔子兔w` 这类中文名时，交给微博反查；取号也认 `© Ryomky` 这种署名写法。\n- **命中了却说不出作者，也读一次水印**（0.9.6）：判据从「落点在写死的搬运站名单里」换成「命中落点没有账号」。代价是这类单会多一次视觉调用，不想花就关 `[vision] watermark_on_repost`。\n\n## Lens 整单 0 条：换一份编码再传一次\n\nLens 的空返回有两类：随机空（重试能好），和「图收下了但就是不出结果」（PNG/WebP、带旋转信息的手机竖图常这样）。现在重试完仍为 0 条时，把图重新编码成标准 JPEG（去 EXIF、长边 1600、按体积挑质量）再传最后一次，日志写「Lens 转码重传：xxKB → yyKB，N 条」。只多一次上传、不计搜索额度，顺序仍在 Serper 补枪之前。\n\n## 被重启打断的那一单，会说一声\n\nMaiBot 的插件跑在一个整块运行时里：**任何一个插件的文件被改动，整个运行时都会重启**，正在搜的那单连同内存里的图一起消失。现在卸载前把在跑的单记下来，重新加载 5 秒后往原会话回一句「上一单搜图（task，N 分钟前）因为插件重启被打断了，没出结果，麻烦再发一次」；两小时以前的单不再提示，发完就删记录。只提示，不自动重搜——图已经随进程丢了。\n\n## 输出更干净\n\n- **名字不再带页面后缀**：x.com 的标题固定是「名字 (@handle) / X」，抽走账号后会把空括号和 ` / X` 尾巴一起清掉。\n- **标题并进结论节点**：合并转发从 3 个节点变 2 个，不会再出现一个只有「🔍 盆地找鸡结果」的空节点。\n- **「跟这张图对上的那条」只标给指纹真对上的号**：视觉判的「同一个人」是同一人，不是同一张图，不再挂这句。\n- **同一句话不说两遍**：水印那行「可能读错」只出现一次。\n\n## 之前几版顺手收紧的地方\n\n- 视觉命中但指纹没通过时，要拿帖子作证：翻不到对应帖子就只算线索（0.9.0）。\n- 水印号与标题署名能交叉验证时，可以直接定作者，不再因为「她最近没发这张」判成没找到（0.8.8）。\n- 水印读错一个字母时，按标题署名纠回来（`kufu_xox` → `kuru_xox`，0.8.7）。\n- 标题里「推特xxx」这类署名只当线索，不据此认定作者（0.9.1）。\n- Lens 空结果交给 Serper 补一枪；没找到时的参考图限距 12，不拿一张明显不是同一张的图凑数（0.8.6 / 0.8.9）。\n\n## 升级提示\n\n新增配置项：`[vision] watermark_locate`、`[weibo] repost_search`、`[weibo] min_fans`、`[weibo] sub` / `subp`。老配置不用改——`cookie` 整串仍然认，新开关都有默认值。\n\n**695 项单测全部通过。**\n\n**Full Changelog**: https://github.com/fsqhn2/com.fsqhn.image-searcher/compare/v0.8.5...v0.9.10\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.10",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.8.5",
           "tag": "v0.8.5",
           "commit": "76dfe8e0b85b09565a458a658c0bfd6631006099",
