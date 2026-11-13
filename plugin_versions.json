@@ -65003,6 +65003,85 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.HH233.vertexai-maibot-connect",
+      "manifest_id": "github.HH233.vertexai-maibot-connect",
+      "repositoryUrl": "https://github.com/HH233333/vertexai-maibot-connect",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "0.1.0",
+          "commit": "997357e4d343be208e99d536a981c875f96d9f5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T14:09:44Z",
+          "release_url": "https://github.com/HH233333/vertexai-maibot-connect/releases/tag/0.1.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.HH233.vertexai-maibot-connect",
+            "version": "0.1.0",
+            "name": "Google Vertex AI Connect",
+            "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
+            "author": {
+              "name": "HH233",
+              "url": "https://github.com/HH233333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HH233333/vertexai-maibot-connect"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-auth",
+                "version_spec": ">=2.0.0"
+              }
+            ],
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cloud"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "llm_providers": [
+              {
+                "client_type": "vertex_connect",
+                "name": "Vertex AI Connect",
+                "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
+                "version": "0.1.0"
+              }
+            ]
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
