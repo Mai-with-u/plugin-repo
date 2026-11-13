@@ -65850,6 +65850,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "wtxdew.coopet-adapter",
+      "manifest_id": "wtxdew.coopet-adapter",
+      "repositoryUrl": "https://github.com/wtxdew/maibot-coopet-adapter",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "836798e488938de995df242c6b168dc9e940f9ec",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T17:02:55Z",
+          "release_url": "https://github.com/wtxdew/maibot-coopet-adapter/releases/tag/v0.1.1",
+          "release_notes": "- manifest 补上实际用到的网关能力：`gateway.route_message`、`gateway.update_state`（插件市场审核的建议）。代码没有变化。\n- 第一个正式版本。\n\n适配 MaiBot 1.4.x（≥ 1.4.3），插件 SDK ≥ 2.22.0。配套客户端：[Coopet](https://github.com/wtxdew/coopet-maibot/releases)。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "wtxdew.coopet-adapter",
+            "version": "0.1.1",
+            "name": "Coopet 桌宠适配器",
+            "description": "让 Coopet 桌宠客户端连上 MaiBot：自起 WebSocket 服务，经消息网关收发主人的私聊消息，并推送思考状态。",
+            "author": {
+              "name": "wtxdew",
+              "url": "https://github.com/wtxdew"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/wtxdew/maibot-coopet-adapter",
+              "homepage": "https://github.com/wtxdew/maibot-coopet-adapter",
+              "documentation": "https://github.com/wtxdew/maibot-coopet-adapter/blob/master/README.md",
+              "issues": "https://github.com/wtxdew/maibot-coopet-adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.4.3",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14,<4"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "config.get",
+              "gateway.route_message",
+              "gateway.update_state"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
