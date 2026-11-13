@@ -20727,7 +20727,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "onebot-ws.goqbot-adapter",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "goqbot 适配器 / GoqBot Adapter",
       "description": "通过 OneBot V11 正向/反向 WebSocket 连接 goqbot（QQ 官方机器人协议端），可与 NoneBot 等框架共用同一个机器人",
       "author": {
@@ -20751,7 +20751,7 @@
       },
       "host_application": {
         "min_version": "1.3.18",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.19.0",
@@ -23073,7 +23073,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
@@ -23126,7 +23126,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.8.5",
+      "version": "0.9.10",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -23477,6 +23477,55 @@
           "type": "lucide",
           "value": "chart-no-axes-combined"
         }
+      }
+    }
+  },
+  {
+    "id": "wtxdew.coopet-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "wtxdew.coopet-adapter",
+      "version": "0.1.1",
+      "name": "Coopet 桌宠适配器",
+      "description": "让 Coopet 桌宠客户端连上 MaiBot：自起 WebSocket 服务，经消息网关收发主人的私聊消息，并推送思考状态。",
+      "author": {
+        "name": "wtxdew",
+        "url": "https://github.com/wtxdew"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/wtxdew/maibot-coopet-adapter",
+        "homepage": "https://github.com/wtxdew/maibot-coopet-adapter",
+        "documentation": "https://github.com/wtxdew/maibot-coopet-adapter/blob/master/README.md",
+        "issues": "https://github.com/wtxdew/maibot-coopet-adapter/issues"
+      },
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.4.3",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.22.0",
+        "max_version": "2.98.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.14,<4"
+        }
+      ],
+      "capabilities": [
+        "chat.get_all_streams",
+        "config.get",
+        "gateway.route_message",
+        "gateway.update_state"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   }
