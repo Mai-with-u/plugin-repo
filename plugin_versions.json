@@ -64704,6 +64704,74 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot-body-emulator",
+      "manifest_id": "maibot-body-emulator",
+      "repositoryUrl": "https://github.com/ShuangziG/maibot-body-emulator",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "271bacd294bf311042f4f64c1dc253f7caf7f111",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T14:54:39Z",
+          "release_url": "https://github.com/ShuangziG/maibot-body-emulator/releases/tag/v1.0.1",
+          "release_notes": "## 麦麦身体 v1.0.1 — 适配 MaiBot 1.4.x\n\n本次只有一处改动：**把宿主适配范围从 1.3.15～1.3.99 放宽到 1.3.15～1.4.99**，让 1.4.x 宿主也能装上。功能与 v1.0.0 完全一致。\n\n### 为什么要升版本号\n\n市场索引按 Release 的 commit 快照校验 manifest，v1.0.0 的 Tag 已指向旧 commit。改写已收录的 Tag 会被标记为撤回（yanked），所以用新版本号发布。\n\n### 兼容性\n\n- MaiBot 宿主 **1.3.15 ～ 1.4.99**\n- 插件 SDK 2.16.0 ～ 2.99.99\n- 无第三方 Python 依赖\n\n### 功能\n\n与 v1.0.0 相同：11 个生理系统互相耦合积分，心率、血压、血糖、胃排空、肾滤过、激素反馈实时推进，纯 Python 标准库，不联网、不调用模型、不消耗 token。\n\n### 安装\n\n1. 下载源码包，解压后把文件夹改名为 `maibot-body-emulator`，整个放进宿主的 `plugins/` 目录\n2. 重启宿主，首次启动自动生成 `config.toml`\n3. 日志出现 `[lifebody] 麦麦身体已启动：仿真第 1.0 天 08:00，心率 70` 即为成功\n\n### 默认配置\n\n开箱即用：麦生活联动**关**、濒死自动送医**关**、聊天喂食**关**。\n\n### 许可\n\nMIT\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-body-emulator",
+            "name": "麦麦身体",
+            "version": "1.0.1",
+            "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
+            "author": {
+              "name": "Evil双子",
+              "url": "https://github.com/ShuangziG"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "api.call",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maibody.png",
+                "fallback": "heart-pulse",
+                "background": "#F9D5E5"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/ShuangziG/maibot-body-emulator",
+              "homepage": "https://github.com/ShuangziG/maibot-body-emulator",
+              "documentation": "https://github.com/ShuangziG/maibot-body-emulator/blob/main/README.md"
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
