@@ -65184,6 +65184,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "v1.0.2",
+          "commit": "fe3618a142684de6c40edac93d9d4c8a74dccdf5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T16:27:22Z",
+          "release_url": "https://github.com/ShuangziG/maibot-body-emulator/releases/tag/v1.0.2",
+          "release_notes": "## 本次更新（仅文档与说明，无功能改动）\n\n- **README 开头新增声明**：启用插件联动功能后，需重启 MaiBot 本体。\n- **联动区说明收为一句**，明确「启用后需要重启一次 MaiBot 本体生效」。\n- **急救 / 聊天喂食 / 排泄** 三个配置区的说明精简，去掉冗长解释，只留结论。\n- 版本号 1.0.1 -> 1.0.2。\n\n## 为什么要写这条重启声明\n\n联动开关只在插件加载时读取一次。在 WebUI 里打开「启用联动」后若不重启宿主，\n两边插件都显示正常，但身体拿不到麦生活的作息与日程——表现为「配了却不工作」。\n\n## 安装\n\n把 maibot-body-emulator 整个文件夹放进宿主 plugins 目录，重启宿主即可。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-body-emulator",
+            "name": "麦麦身体",
+            "version": "1.0.2",
+            "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
+            "author": {
+              "name": "Evil双子",
+              "url": "https://github.com/ShuangziG"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "api.call",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maibody.png",
+                "fallback": "heart-pulse",
+                "background": "#F9D5E5"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/ShuangziG/maibot-body-emulator",
+              "homepage": "https://github.com/ShuangziG/maibot-body-emulator",
+              "documentation": "https://github.com/ShuangziG/maibot-body-emulator/blob/main/README.md"
+            }
+          }
+        },
+        {
           "version": "1.0.1",
           "tag": "v1.0.1",
           "commit": "271bacd294bf311042f4f64c1dc253f7caf7f111",
