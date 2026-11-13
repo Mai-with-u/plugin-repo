@@ -2184,11 +2184,11 @@
         "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.3.6",
+        "min_version": "1.3.19",
         "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.12.0",
+        "min_version": "2.20.0",
         "max_version": "2.22.1"
       },
       "dependencies": [
@@ -2225,7 +2225,9 @@
         "chat.get_stream_by_user_id",
         "message.get_recent",
         "message.get_by_id",
-        "webui.claim_upload"
+        "webui.claim_upload",
+        "web.search",
+        "web.fetch"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -8261,7 +8263,7 @@
     "id": "ffdvdgd.bilibili-video-info",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.1.9",
+      "version": "0.1.10",
       "name": "Bilibili 视频信息与 AI 总结",
       "description": "拦截群聊中的 B 站视频链接，提取元数据、字幕或语音转写，并生成简洁总结",
       "author": {
@@ -8273,11 +8275,11 @@
         "repository": "https://github.com/FFDVDGD/bilibili-video-info"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.2.99"
+        "min_version": "1.4.3",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.7.1",
+        "min_version": "2.22.1",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -12447,7 +12449,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "chartyr.maiwork",
-      "version": "0.17.0",
+      "version": "0.17.1",
       "name": "MaiWork",
       "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
       "plugin_type": "extension",
@@ -17640,7 +17642,7 @@
       "manifest_version": 2,
       "id": "maibot-mute-alert",
       "name": "被禁言告警插件",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "监控并在 MaiBot 被群禁言时自动发送告警到指定群聊或指定管理员",
       "author": {
         "name": "lrony22",
@@ -17652,11 +17654,11 @@
       },
       "host_application": {
         "min_version": "1.3.14",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.16.0",
-        "max_version": "2.16.99"
+        "max_version": "2.22.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -19334,7 +19336,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -19375,11 +19377,14 @@
       "capabilities": [
         "api.call",
         "config.get",
+        "desktop_pet.list_animations",
+        "desktop_pet.play_event",
         "desktop_pet.refresh_buttons",
         "desktop_pet.say",
         "desktop_pet.status",
         "llm.generate",
         "maisaka.proactive.trigger",
+        "render.html2png",
         "send.image",
         "send.text"
       ],
@@ -20383,8 +20388,8 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.11.5",
-      "description": "让麦麦有自己的生活，也让你参与其中：自主安排作息、读书、出门，一句邀约就能改变日程。私聊道过晚安，群里再见也记得；读你上传的书，接着上次的感想与疑问继续读。结合真实天气和城市地点安排活动，按兴趣上网寻找新见闻，带着经历来聊天、道早晚安，还能把当天日记整理成随笔发到 QQ 空间。",
+      "version": "0.11.7",
+      "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
         "url": "https://github.com/ilworkcn"
@@ -22043,7 +22048,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "local.huixiang-operator",
-      "version": "1.0.6",
+      "version": "1.1.0",
       "name": "回响",
       "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
       "author": {
@@ -23060,6 +23065,419 @@
     },
     "assets": {
       "icon_64": "icons/github.sora-maru.bilibili.webp"
+    }
+  },
+  {
+    "id": "maibot-body-emulator",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-body-emulator",
+      "name": "麦麦身体",
+      "version": "1.0.1",
+      "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
+      "author": {
+        "name": "Evil双子",
+        "url": "https://github.com/ShuangziG"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "extension",
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "render.html2png",
+        "api.call",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "maibody.png",
+          "fallback": "heart-pulse",
+          "background": "#F9D5E5"
+        }
+      },
+      "urls": {
+        "repository": "https://github.com/ShuangziG/maibot-body-emulator",
+        "homepage": "https://github.com/ShuangziG/maibot-body-emulator",
+        "documentation": "https://github.com/ShuangziG/maibot-body-emulator/blob/main/README.md"
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-body-emulator.webp"
+    }
+  },
+  {
+    "id": "com.fsqhn.image-searcher",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "com.fsqhn.image-searcher",
+      "version": "0.8.5",
+      "name": "麦麦寻人",
+      "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+      "author": {
+        "name": "fsqhn2",
+        "url": "https://github.com/fsqhn2"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+        "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+        "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+        "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.999"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "999.999.999"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "requests",
+          "version_spec": ">=2.31.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.forward",
+        "message.get_by_id",
+        "message.get_recent",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "scan-search"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.deconstructedcube.maibot-plugin-milky",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.deconstructedcube.maibot-plugin-milky",
+      "version": "1.0.2",
+      "name": "Milky 协议适配器",
+      "description": "基于 milky-python-sdk 的 MaiBot Milky 协议 QQ 适配器，支持群聊与私聊消息收发、通知事件、头像协议、公开 API 与 LLM 群管交互工具。",
+      "author": {
+        "name": "DeconstructedCube",
+        "url": "https://github.com/DeconstructedCube"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/DeconstructedCube/maibot-plugin-milky",
+        "homepage": "https://github.com/DeconstructedCube/maibot-plugin-milky",
+        "documentation": "https://github.com/DeconstructedCube/maibot-plugin-milky/blob/main/README.md",
+        "issues": "https://github.com/DeconstructedCube/maibot-plugin-milky/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.22.99"
+      },
+      "plugin_type": "adapter",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "plug"
+        }
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "milky-python-sdk",
+          "version_spec": ">=0.4.2"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.14.3"
+        }
+      ],
+      "capabilities": [
+        "chat.get_all_streams",
+        "chat.open_session",
+        "component.disable",
+        "component.enable",
+        "message.get_by_id",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot.self-check",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot.self-check",
+      "version": "0.2.4",
+      "name": "自像比对 (Self Check)",
+      "description": "收到「像不像你」这类带图消息时，把图片与自备的角色基准图交给视觉模型比对，把结论作为一条客观材料注入 planner 请求尾部。只改本轮请求，不写数据库、不改图片描述、不发消息；无基准图或调用失败时静默跳过。",
+      "author": {
+        "name": "weiyu104",
+        "url": "https://github.com/weiyu104"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "1.3.10",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "2.12.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "capabilities": [
+        "config.get",
+        "message.get_by_id",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "scan-face",
+          "fallback": "user-search"
+        }
+      },
+      "urls": {
+        "repository": "https://github.com/weiyu104/maibot-self-check",
+        "homepage": "https://github.com/weiyu104/maibot-self-check",
+        "documentation": "https://github.com/weiyu104/maibot-self-check/blob/main/README.md",
+        "issues": "https://github.com/weiyu104/maibot-self-check/issues"
+      },
+      "plugin_type": "chat"
+    }
+  },
+  {
+    "id": "github.HH233.vertexai-maibot-connect",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.HH233.vertexai-maibot-connect",
+      "version": "0.1.0",
+      "name": "Google Vertex AI Connect",
+      "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
+      "author": {
+        "name": "HH233",
+        "url": "https://github.com/HH233333"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/HH233333/vertexai-maibot-connect"
+      },
+      "host_application": {
+        "min_version": "1.3.14",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.98.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "google-genai",
+          "version_spec": ">=1.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "google-auth",
+          "version_spec": ">=2.0.0"
+        }
+      ],
+      "plugin_type": "provider",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "cloud"
+        }
+      },
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "llm_providers": [
+        {
+          "client_type": "vertex_connect",
+          "name": "Vertex AI Connect",
+          "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
+          "version": "0.1.0"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github.sora-maru.personal-assistant-webui",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.sora-maru.personal-assistant-webui",
+      "version": "1.2.0",
+      "name": "个人备忘助手 WebUI",
+      "description": "创建可持久化的定时备忘提醒，到期由麦麦自然地通知你；通过 WebUI 搜索、筛选和取消任务，并支持图片与文件附件。",
+      "author": {
+        "name": "sora-maru；基于 LDrumDusk 个人备忘助手修改",
+        "url": "https://github.com/sora-maru"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui",
+        "homepage": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui",
+        "documentation": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/blob/main/README.md",
+        "issues": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.16",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "tomlkit",
+          "version_spec": ">=0.13.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "capabilities": [
+        "config.get",
+        "llm.generate",
+        "llm.generate_with_tools",
+        "send.text",
+        "send.image",
+        "send.custom",
+        "chat.get_stream_by_user_id",
+        "chat.get_stream_by_group_id",
+        "message.get_by_id",
+        "message.get_recent",
+        "message.build_readable",
+        "custom_pages"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "calendar-clock"
+        }
+      }
+    }
+  },
+  {
+    "id": "local.stock-quotes",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "local.stock-quotes",
+      "version": "1.1.0",
+      "name": "股票行情",
+      "description": "支持口语股票问题、A股港股美股报价、大盘指数、分时、涨跌幅榜及基于实际数据的模型分析。",
+      "author": {
+        "name": "LOWRUI",
+        "url": "https://github.com/LOWRUI"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/LOWRUI/maibot-stock-quotes",
+        "documentation": "https://github.com/LOWRUI/maibot-stock-quotes/blob/main/README.md",
+        "issues": "https://github.com/LOWRUI/maibot-stock-quotes/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.22.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2025.2"
+        }
+      ],
+      "plugin_type": "tool",
+      "capabilities": [
+        "send.text",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "chart-no-axes-combined"
+        }
+      }
     }
   }
 ]
