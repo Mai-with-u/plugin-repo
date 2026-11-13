@@ -54506,6 +54506,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.1",
+          "tag": "0.3.1",
+          "commit": "b7e230f9775afdd037aa6fdd1c073e9d80a65560",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T13:58:16Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.3.1",
+          "release_notes": "这一版加了使用周报和桌宠动作，把控制命令的权限交给 MaiBot 后台统一管理，实时画面页也跟上了后台主题。\n\n### 主要功能\n\n- **使用周报**：`/手机 周报` 发一张图，写着最近 7 天拿起手机几次、玩了多久、每天几分钟、玩得最多的应用、看过的内容和她的感想。谁都能用。\n- **桌宠动作**（`desktop_pet.animations`，默认开）：拿起手机时打个招呼，玩够了放下时高兴一下，卡住、出错结束时摇摇头；被叫停的不做。\n- **命令权限交给 MaiBot**：`/手机 开始`、停止、暂停、继续、接管、交还、切换改成 MaiBot 的受保护命令 `phone_control`。插件管理员和本地控制台直接能用，其他人在 MaiBot 后台「命令管理」里按人或按聊天放行。\n- **实时画面页跟上后台主题**：背景、文字颜色、字体跟着后台主题走，包括复古主题的底纹。\n\n### 升级须知\n\n- `admin_user_ids` 现在只管截图（`/手机截图`、让她截屏给你看）和聊天里让她换手机。以前只写在 `admin_user_ids` 里、又不是 MaiBot 插件管理员的账号，要到「命令管理」里给 `phone_control` 放行，才能继续用开始、停止这些命令。\n- 周报的图由 MaiBot 的浏览器渲染生成，MaiBot 配置里「浏览器渲染」的「启用浏览器渲染」要开着（默认开）。电脑上有 Chrome 或 Edge 就直接用，没有时 MaiBot 会自动下载 Chromium。\n- 使用记录里多存一份每天的汇总（留 35 天）。升级时用还留着的最近 30 次游玩记录补上，更早的不算。\n\n### 细节\n\n- 桌宠动作由皮肤决定（皮肤里 greeting、happy、error 对应的动画），皮肤没有这个动作或桌宠藏起来时不做；动作播完才冒气泡，因为气泡一出来桌宠就会停下动作。\n- 修复：实时画面页的状态徽章（在玩、你在操作、连不上）和小按钮的样式被后台主题盖掉了，现在能看到颜色。\n- 插件新声明了 `desktop_pet.list_animations`、`desktop_pet.play_event`、`render.html2png` 能力。\n\n### 测试\n\n363 个单元测试。真 Bot 上（MaiBot 1.4.3、SDK 2.22.1，iPhone）验证了：`/手机 周报` 由 MaiBot 调用本机 Chrome 渲染出图并发到私聊；在桌宠上开一局时桌宠打了招呼，整局没有桌宠调用失败；「命令管理」里 `phone_control` 显示为受保护命令；实时画面页的背景和状态徽章跟着后台主题显示。旧的使用记录升级后补出了 6 天的汇总。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.3.1",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "desktop_pet.list_animations",
+              "desktop_pet.play_event",
+              "desktop_pet.refresh_buttons",
+              "desktop_pet.say",
+              "desktop_pet.status",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "render.html2png",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.3.0",
           "tag": "0.3.0",
           "commit": "92b4725bac54f75c8028ccea36cc759dae1c3e3e",
