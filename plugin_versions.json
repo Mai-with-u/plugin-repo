@@ -64931,6 +64931,78 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot.self-check",
+      "manifest_id": "lanyan.self-check",
+      "repositoryUrl": "https://github.com/weiyu104/maibot-self-check",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.4",
+          "tag": "v0.2.4",
+          "commit": "32b263d284cb89cc97fa1c246b093a1f7cecbd83",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T12:40:04Z",
+          "release_url": "https://github.com/weiyu104/maibot-self-check/releases/tag/v0.2.4",
+          "release_notes": "让麦麦更好的认出自己的形象。首个发布版本，安装与免责声明见 README。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "lanyan.self-check",
+            "version": "0.2.4",
+            "name": "自像比对 (Self Check)",
+            "description": "收到「像不像你」这类带图消息时，把图片与自备的角色基准图交给视觉模型比对，把结论作为一条客观材料注入 planner 请求尾部。只改本轮请求，不写数据库、不改图片描述、不发消息；无基准图或调用失败时静默跳过。",
+            "author": {
+              "name": "weiyu104",
+              "url": "https://github.com/weiyu104"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.10",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "message.get_by_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-face",
+                "fallback": "user-search"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/weiyu104/maibot-self-check",
+              "homepage": "https://github.com/weiyu104/maibot-self-check",
+              "documentation": "https://github.com/weiyu104/maibot-self-check/blob/main/README.md",
+              "issues": "https://github.com/weiyu104/maibot-self-check/issues"
+            },
+            "plugin_type": "chat"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
