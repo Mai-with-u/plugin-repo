@@ -25617,6 +25617,89 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.17.1",
+          "tag": "v0.17.1",
+          "commit": "30ea5a4561cf85fcd81defce66ca36e11de36de4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T07:12:09Z",
+          "release_url": "https://github.com/CharTyr/MaiWork/releases/tag/v0.17.1",
+          "release_notes": "**0.17.1** 是面向日常运行消耗与稳定性的性能优化版本：把群聊日常拉资讯与关注成员个人资讯从「多轮子代理探索」改为「程序并发直抓正文 + 单次轻量评分」，大幅减少模型调用与 Token 开销；同时为不可用模型加入即刻冷却切换、为闲时探索加上 24 小时冷却节流。\n\n> 配置版本 `0.5.5`（不变）、数据库库号 `51`（不变），从 `0.11.x`～`0.17.0` 覆盖升级即可，无需手动改配置或迁库。\n\n### 核心改进\n\n- **常规资讯与个人资讯直抓单次评分，废除常规资讯子代理**\n  - 群聊日常拉资讯（`feeds`）与关注成员个人资讯（`personal`）改由程序直接抓取页面正文并做单次评分筛选入库，不再每轮起子代理反复探索翻找。\n  - 用户或管理员显式发起的主题深挖同样精简为「先由程序抓正文，再单次提炼」，大幅压缩 Token 与延迟。\n  - 管理员对话里的新闻/来源管理与主动探索相关路径同步收口至直抓管线。\n- **不可用模型即刻熔断切换**\n  - 模型端点返回明确的模型不存在、停服或不可用错误时，立即标记模型冷却并切换到候选模型，避免原地反复重试空耗额度。\n- **闲时自主探索 24 小时冷却节流**\n  - 群聊闲时自主探索任务改为每群 24 小时冷却，防止后台空闲期频繁唤醒无效探索轮次。\n\n### 完整更新说明与升级指南\n\n- 升级指南与各版变化：[docs/guide/upgrade.md](docs/guide/upgrade.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chartyr.maiwork",
+            "version": "0.17.1",
+            "name": "MaiWork",
+            "description": "补全MaiBot群聊常驻Agent能力，理解一个群，主动找资讯、提构想、追目标，交付任何工作。包含完整且美观的插件自身WebUI",
+            "plugin_type": "extension",
+            "author": {
+              "name": "CharTyr",
+              "url": "https://github.com/CharTyr"
+            },
+            "license": "AGPL-3.0-or-later",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.1",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "component.enable",
+              "component.disable",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "knowledge.search",
+              "person.get_id",
+              "person.get_value",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "api.call",
+              "api.list",
+              "send.hybrid",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maiwork/console/static/assets/logo.png",
+                "fallback": "briefcase"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/CharTyr/MaiWork",
+              "homepage": "https://github.com/CharTyr/MaiWork",
+              "documentation": "https://github.com/CharTyr/MaiWork/blob/main/README.md",
+              "issues": "https://github.com/CharTyr/MaiWork/issues"
+            }
+          }
+        },
+        {
           "version": "0.17.0",
           "tag": "v0.17.0",
           "commit": "b89a4f6c25f0c1d60687b6633ae4ff11f1676fe7",
