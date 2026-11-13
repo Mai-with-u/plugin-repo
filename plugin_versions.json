@@ -65476,6 +65476,76 @@
               }
             }
           }
+        },
+        {
+          "version": "1.1.2",
+          "tag": "v1.1.2",
+          "commit": "dc195db147a8c4281ca9b785d5532c72e9fc8133",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T03:43:56Z",
+          "release_url": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/releases/tag/v1.1.2",
+          "release_notes": "fix bug",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.sora-maru.personal-assistant-webui",
+            "version": "1.1.2",
+            "name": "个人备忘助手 WebUI",
+            "description": "创建可持久化的定时备忘提醒，到期由麦麦自然地通知你；通过 WebUI 搜索、筛选和取消任务，并支持图片与文件附件。",
+            "author": {
+              "name": "sora-maru；基于 LDrumDusk 个人备忘助手修改",
+              "url": "https://github.com/sora-maru"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui",
+              "homepage": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui",
+              "documentation": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/blob/main/README.md",
+              "issues": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "capabilities": [
+              "config.get",
+              "llm.generate",
+              "llm.generate_with_tools",
+              "send.text",
+              "send.image",
+              "send.custom",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "message.get_by_id",
+              "message.get_recent",
+              "message.build_readable",
+              "custom_pages"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "calendar-clock"
+              }
+            }
+          }
         }
       ],
       "ignored_tags": [],
