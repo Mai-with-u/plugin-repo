@@ -65245,6 +65245,80 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "94028deb7695b9bad65a48ab035563fa7106c951",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-11T22:40:54Z",
+          "release_url": "https://github.com/DeconstructedCube/maibot-plugin-milky/releases/tag/v1.0.1",
+          "release_notes": "Release v1.0.1: Add adapter.files.resolve for MaiBot file service, align all LLM tools and capabilities with MaiBot 1.4.x and OneBot standards, enhance nested reply and forward message parsing.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.deconstructedcube.maibot-plugin-milky",
+            "version": "1.0.1",
+            "name": "Milky 协议适配器",
+            "description": "基于 milky-python-sdk 的 MaiBot Milky 协议 QQ 适配器，支持群聊与私聊消息收发、通知事件、头像协议、公开 API 与 LLM 群管交互工具。",
+            "author": {
+              "name": "DeconstructedCube",
+              "url": "https://github.com/DeconstructedCube"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/DeconstructedCube/maibot-plugin-milky",
+              "homepage": "https://github.com/DeconstructedCube/maibot-plugin-milky",
+              "documentation": "https://github.com/DeconstructedCube/maibot-plugin-milky/blob/main/README.md",
+              "issues": "https://github.com/DeconstructedCube/maibot-plugin-milky/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.22.99"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "plug"
+              }
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "milky-python-sdk",
+                "version_spec": ">=0.4.2"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14.3"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
