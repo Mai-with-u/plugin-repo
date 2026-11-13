@@ -63089,6 +63089,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "65b1e0dcad4230dda7a07618d03cde3456740408",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-13T13:15:59Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.1.0",
+          "release_notes": "## 回响 1.1.0\n\n写通道从「抓包签名硬扛」改为 **web 优先 + App 应急**，并加上主动告警。\n\n### 写通道\n- 实测 App 抓包签名对只有 **300 秒**寿命（269s 通过 / 329s 失败），\n  固定签名无法支撑 7×24，因此默认改回 web v16 签名（服务器本地现算）。\n- App 通道保留为**人工应急**：`app_pairs.json` 支持整条 query + Cookie 注入，\n  签名超 4 分钟直接判过期，不会硬发。\n- 修正两处误判：App 写接口**必须带 Cookie**（缺了回「请重新登录」）；\n  `h_src` / `index` 也属于该次请求上下文，不能只替换 `hkey`/`_time`。\n\n### 告警\n- 新增 `layers/alert.py`：平台写限制 / 登录失效 / App 签名过期，\n  同类事件 30 分钟去重，落 `owner_alerts.jsonl`，并推送 **Server 酱**。\n- 不再占用 QQ 私聊通道；SendKey 支持环境变量 / 配置 / 数据目录文件三种来源。\n\n### 测试\n- 新增 `tests/test_app_protocol.py`（21 条）与 `tests/test_alert.py`（17 条），\n  全量 454 条通过（2 条缺宿主 SDK 的历史环境错误）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.1.0",
+            "name": "回响",
+            "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=3.4"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.6",
           "tag": "v1.0.6",
           "commit": "cab635b5fc38b313ba76cee11dc53cbb998a0609",
