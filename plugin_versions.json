@@ -65162,6 +65162,77 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "local.stock-quotes",
+      "manifest_id": "local.stock-quotes",
+      "repositoryUrl": "https://github.com/LOWRUI/maibot-stock-quotes",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "51cb1c17b29943eb893aa1002e933f175db84745",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-12T08:52:24Z",
+          "release_url": "https://github.com/LOWRUI/maibot-stock-quotes/releases/tag/v1.1.0",
+          "release_notes": "v1.1.0 — 口语查询、大盘分时、涨跌幅榜与模型分析\r\n\r\n本次更新将个股报价查询扩展为股票行情助手，新增大盘指数、分时走势、市场涨跌幅榜，并支持调用麦麦已配置的模型整理行情、比较表现和提供分析见解。\r\n\r\n新增功能\r\n- 口语化查询：支持“今日大盘走势”“今天港股咋样”“跌幅榜”等常见问法。复杂问题可通过 /stock 完整问题 直接触发。\r\n- 大盘指数：覆盖上证指数、深证成指、创业板指、沪深300、科创50、恒生指数、恒生科技指数、道琼斯指数、纳斯达克指数和标普500指数。\r\n- 分时走势：查询个股与指数最近可用交易日的分钟数据，返回文字摘要、代表时点和采样高低点。\r\n- 市场涨跌幅榜：支持 A 股、港股、美股的涨幅榜、跌幅榜及双榜查询，默认每榜10项，最多20项。\r\n- 模型分析：先获取实际行情，再由模型整理事实、推断、风险与观察信号；支持多只股票比较及股票概念解释，无需单独配置模型密钥。\r\n改进与修复\r\n- 原有个股查询入口可以识别大盘、榜单等问题，避免继续按股票名称搜索。\r\n- 分时数据校验证券身份、交易日期与价格基准；Yahoo 分时变化明确标注为相对首个有效分钟，避免误作相对昨收。\r\n- 涨跌幅榜增加备用数据源，并明确榜单覆盖范围、缺失日期及市场差异。\r\n- 模型超时、禁用或调用失败时保留已取得的行情；多项查询中的单项失败不会丢弃其他成功结果。\r\n- 安装包顶层目录固定为 maibot-stock-quotes，不受源码下载或克隆目录名影响。\r\n- 保留原有配置及个股查询命令，旧配置自动补全新增的 analysis 默认项。\r\n兼容与升级\r\n- MaiBot：`1.0.0—1.4.99`\r\n- Plugin SDK：`2.0.0—2.22.99`\r\n- 宿主自身的 Python 和 SDK 依赖要求仍须满足。\r\n- 覆盖更新时保留现有 config.toml；Docker 挂载安装无需重建镜像。\r\n- 新增 llm.generate 能力声明，需要宿主允许该能力并配置可用模型。调用使用麦麦现有模型额度，可通过 analysis.enabled = false 关闭插件主动模型调用。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.stock-quotes",
+            "version": "1.1.0",
+            "name": "股票行情",
+            "description": "支持口语股票问题、A股港股美股报价、大盘指数、分时、涨跌幅榜及基于实际数据的模型分析。",
+            "author": {
+              "name": "LOWRUI",
+              "url": "https://github.com/LOWRUI"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/LOWRUI/maibot-stock-quotes",
+              "documentation": "https://github.com/LOWRUI/maibot-stock-quotes/blob/main/README.md",
+              "issues": "https://github.com/LOWRUI/maibot-stock-quotes/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2025.2"
+              }
+            ],
+            "plugin_type": "tool",
+            "capabilities": [
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "chart-no-axes-combined"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
