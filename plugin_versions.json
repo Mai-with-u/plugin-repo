@@ -32151,6 +32151,61 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.11.0",
+          "tag": "v1.11.0",
+          "commit": "de93170fdd2a0a357cf9c9f489feaf04b890d6a5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T08:09:38Z",
+          "release_url": "https://github.com/orge-8/better-diary/releases/tag/v1.11.0",
+          "release_notes": "## v1.11.0 — 按城市自动获取当日真实天气\n\n天气优先级改为三级：**当天聊天证据 → 按城市查到的当日真实天气 → 配置兜底**。\n此前缺聊天证据时写的是固定兜底值，会连着多天写同一个天气，与真实气象无关。\n\n### 核心：按「日期」取，不按「现在」取\n\n日记会补写昨天/前天，天气必须是那一天的：\n\n| 级别 | 来源 | 覆盖 |\n|---|---|---|\n| ① | Open-Meteo forecast（`past_days=7`） | 今天 + 最近一周，一次请求覆盖补写窗口 |\n| ② | Open-Meteo archive | 超出窗口的历史日期 |\n| ③ | wttr.in | 独立第三方，只有今天起 3 天；**目标日期不在返回里就放弃，绝不拿今天冒充历史某天** |\n\n### 新增配置\n\n```toml\n[weather]\nenabled = true\ncity = \"\"            # 留空 = 不联网（默认）；填 \"杭州\" 或 \"Hangzhou\" 即启用\nlatitude = \"\"        # 与 longitude 同填时优先于城市名，可消除同名歧义\nlongitude = \"\"\ncountry_code = \"CN\"  # 避免「北京」命中重庆的同名村镇\ntimezone = \"auto\"\ntimeout_seconds = 10\n```\n\n### 事实与隐私边界\n\n- **默认不联网**：`city` 留空即不构造天气组件。**不做 IP 定位** —— bot 跑在机房，按 IP 猜的城市不是用户所在地，写进日记就是事实错误。\n- **确定性映射**：WMO 代码 → `晴/多云/阴/雨/雪` 查表；雾/霾按「阴」，混合降水（sleet）按「雪」，未知代码降级不猜。\n- **事实校验联动**：真实天气并入事实核对的证据文本，正文写「外面下着雨」不再被误判为无据虚构；**兜底值不并入**（默认值不构成事实依据）。\n- **prompt 区分数据与对话**：明确「这是气象数据，不是聊天记录，绝不能编造『谁说了下雨』这类没发生过的对话」。\n- **只发城市名或经纬度**，不发聊天内容、不发 QQ 号；日志只记城市与标签，不打印响应体；`trust_env=False` 不走系统代理。\n- 缓存落在 `ctx.paths.data_dir/weather.json`（原子写，留 30 天），失败进 30 分钟退避窗口。\n- **零新增模型调用**：全部是 HTTP + 查表。任何失败都只退回配置兜底，日记照常生成。\n- httpx 仍是**可选依赖**，缺它只是取不到真实天气，插件照常加载。\n- 存档新增 `weather: {label, source}`，可回看每天的天气是查来的还是兜底的。\n\n### 同批包含的 1.10.x 改动\n\n- **1.10.0 场景证据**：事件回查原消息形成现场证据，同一人的连续片段合并为 episode，按 1~4 个场景自然成文（不再凑满 4 件），近三天同人同题材无新进展则跳过，开场/结尾防复读；选材 JSON 解析失败会补跑，无可核验场景则不生成、不发布（移除原始时间线降级路径）。\n- **1.10.1 每日天气**：日期行每天必有天气，由代码强制统一，模型不能自行改写。\n\n### 验证（2026-11-14，官方最新基线）\n\n| 项目 | 结果 |\n|---|---|\n| 官方 MaiBot v1.4.3 源码 `PluginLoader` 加载 | loaded=1 / failed=0 / capabilities=10 / 7 组件 |\n| maibot-plugin-sdk 2.22.1 隔离环境全量 pytest | **277 passed / 0 failed** |\n| FakeHost 冒烟（包式加载，与真机一致） | **PASS 288 / FAIL 0** |\n| devkit 门禁 | **PASS 3 / SKIP 0 / FAIL 0** |\n| 真实接口实测 | 杭州今天=雨、T-2 走 forecast、T-9 自动切 archive、错误城市名降级 |\n\n新增 `tests/test_weather.py` 23 例（全部 MockTransport 打桩、不联网），覆盖映射、历史日期防冒充、同名城市择一、缓存与退避、失败降级、事实依据边界。\n\n### 升级方式\n\n**整个目录替换**，并先删掉插件目录里的 `config.toml`（Runner 生成的配置会原样留存，残留旧配置会导致「插件初始化失败」），然后**完整重启 MaiBot**（热重载不生效）。\n\n要用真实天气，在新 `config.toml` 的 `[weather]` 里填 `city`（或经纬度）；不填则行为与 1.10.1 一致。\n\n完整版本历史见 [CHANGELOG.md](https://github.com/orge-8/better-diary/blob/main/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.orge-8.better-diary",
+            "version": "1.11.0",
+            "name": "better-diary 日记插件",
+            "description": "睡前日记：两阶段生成（先选材，再回查原消息形成场景证据，最后据现场成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；自动合并同一人的连续场景，按 1~4 个场景自然成文，近期同人同题材无新进展时跳过；每日日期行都会写天气，按「当天聊天证据 → 按城市自动获取的当日真实天气 → 配置兜底」三级确定（补写历史日期取的是那一天；默认不配城市即不联网），引用与数字无据时不发布，解析失败会补跑且不再用原始时间线兜底。权限 fail-closed：先配 admin_ids 才可用。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/better-diary"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.22.1"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_all_streams",
+              "message.get_by_time",
+              "message.get_by_time_in_chat",
+              "llm.generate",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.9.0",
           "tag": "v1.9.0",
           "commit": "22fcb03bc6d1606a1254e1c7d9a1a86f72dc0c7d",
