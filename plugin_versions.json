@@ -53606,6 +53606,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "07d1b4076a6d7d6c4d08afd98ff5112db606ed03",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T16:34:29Z",
+          "release_url": "https://github.com/Akenari011/maibot-cost-report/releases/tag/v1.3.2",
+          "release_notes": "## 1.3.2\n\n- `sdk.max_version` 2.22.99 → **2.23.99**，适配 MaiBot 1.4.5 / plugin-sdk 2.23.0\n- 消除启动时的「SDK 版本超出插件声明范围」警告\n\n功能无变化。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.cost-report",
+            "version": "1.3.2",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.23.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "e214e8e730091a7063bb54ebdccd2e7e2deaaf69",
