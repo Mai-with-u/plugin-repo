@@ -2189,7 +2189,7 @@
       },
       "sdk": {
         "min_version": "2.20.0",
-        "max_version": "2.22.1"
+        "max_version": "2.23.0"
       },
       "dependencies": [
         {
@@ -9800,30 +9800,37 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.Chenhui-2.mai-tarot.plugin",
-      "version": "1.0.1",
+      "version": "2.0.0",
       "name": "塔罗牌占卜",
-      "description": "塔罗牌占卜插件，支持单张抽牌和三张牌阵，支持AI解读，可配置指令与AI参数",
+      "description": "塔罗牌占卜插件，支持单张抽牌与三张牌阵、AI 解读、JPG 牌面图片输出，配置项可在 WebUI 中直接编辑",
       "author": {
         "name": "Chenhui",
         "url": "https://github.com/Chenhui-2"
       },
       "license": "MIT",
       "urls": {
-        "repository": "https://github.com/Chenhui-2/mai-tarot"
+        "repository": "https://github.com/Chenhui-2/mai-tarot",
+        "homepage": "https://github.com/Chenhui-2/mai-tarot",
+        "documentation": "https://github.com/Chenhui-2/mai-tarot/blob/main/README.md",
+        "issues": "https://github.com/Chenhui-2/mai-tarot/issues"
       },
+      "changelog": "CHANGELOG.md",
       "host_application": {
-        "min_version": "1.0.0",
+        "min_version": "1.3.0",
         "max_version": "1.99.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
+        "min_version": "2.0.0",
         "max_version": "2.99.99"
       },
+      "dependencies": [],
       "plugin_type": "game",
       "display": {
         "icon": {
           "type": "emoji",
-          "value": "🔮"
+          "value": "🔮",
+          "fallback": "sparkles",
+          "background": "#2A1B3D"
         }
       },
       "capabilities": [
@@ -9832,7 +9839,10 @@
         "llm.generate"
       ],
       "i18n": {
-        "default_locale": "zh-CN"
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
       }
     }
   },
@@ -12111,7 +12121,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.15.1",
+      "version": "2.17.0",
       "name": "中V歌词识别 · 歌曲库",
       "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
@@ -12601,7 +12611,7 @@
       "manifest_version": 2,
       "id": "maibot-community.mai-life",
       "name": "麦生活",
-      "version": "1.26.6",
+      "version": "1.27.0",
       "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
       "author": {
         "name": "octmicy",
@@ -13374,9 +13384,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.orge-8.better-diary",
-      "version": "1.9.0",
+      "version": "1.11.0",
       "name": "better-diary 日记插件",
-      "description": "睡前日记：两阶段生成（先给当天聊天选材打分，再据精选事件成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；选材兼顾分数与人物/题材多样性（同人最多 2 件、群趣闻可回填），篇幅按素材量分短中长三档；天气与归档术语以当天原文为据，线索不足时只按氛围选。权限 fail-closed：先配 admin_ids 才可用。",
+      "description": "睡前日记：两阶段生成（先选材，再回查原消息形成场景证据，最后据现场成文），刻意反 AI 腔，成品只发 QQ 空间，聊天里仅回报状态。功能含定时生成（重启不丢当天）、缺档补写、本地检索；自动合并同一人的连续场景，按 1~4 个场景自然成文，近期同人同题材无新进展时跳过；每日日期行都会写天气，按「当天聊天证据 → 按城市自动获取的当日真实天气 → 配置兜底」三级确定（补写历史日期取的是那一天；默认不配城市即不联网），引用与数字无据时不发布，解析失败会补跑且不再用原始时间线兜底。权限 fail-closed：先配 admin_ids 才可用。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -13391,7 +13401,7 @@
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.21.0"
+        "max_version": "2.22.1"
       },
       "dependencies": [
         {
@@ -14166,7 +14176,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -14210,7 +14220,9 @@
         "chat.get_avatar",
         "webui.claim_upload",
         "api.call",
-        "api.get"
+        "api.get",
+        "statistics.local.token_trend",
+        "statistics.local.token_distribution"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -16847,9 +16859,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.orge-8.music-request",
-      "version": "1.7.6",
+      "version": "1.7.7",
       "name": "点歌插件",
-      "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。",
+      "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。 v1.7.7：卡片解析与链接解析作用域隔离——统一 QQ 连接器会把卡片 jumpUrl 以「链接: <jumpUrl>」拼进正文，关闭自动解析音乐卡片后这段链接不再被链接通道捡走（此前关了开关仍会发歌）；同时卡片正文的跳转链接被单独切出，歌手名不再被链接污染，未配置 NapCat HTTP API 也能按卡片链接精确解析。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -18339,7 +18351,7 @@
       "manifest_version": 2,
       "plugin_type": "tool",
       "id": "github.qrzzzz.music-enhanced",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "麦麦点歌增强",
       "description": "基于 maibot-music 增强的 QQ/网易云点歌插件，支持聚合音源、完整时长校验、转码和本地语音缓存",
       "author": {
@@ -19336,7 +19348,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -19376,6 +19388,7 @@
       ],
       "capabilities": [
         "api.call",
+        "chat.get_stream_by_user_id",
         "config.get",
         "desktop_pet.list_animations",
         "desktop_pet.play_event",
@@ -20388,7 +20401,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.11.7",
+      "version": "0.11.8",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -22929,7 +22942,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.pawnnwap.jev-reply-gate",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "name": "JEV 接话判断",
       "description": "用 JEV 兼容决策服务或兼容 LLM 的 logprobs 判断私聊是否继续接话、过滤重复低效回复，并在每轮 bot 发话后检测未兑现的承诺或待办，必要时触发一次主动搭话。",
       "author": {
@@ -23073,7 +23086,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
@@ -23306,7 +23319,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.HH233.vertexai-maibot-connect",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "name": "Google Vertex AI Connect",
       "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
       "author": {
@@ -23358,7 +23371,7 @@
           "client_type": "vertex_connect",
           "name": "Vertex AI Connect",
           "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
-          "version": "0.1.0"
+          "version": "0.1.1"
         }
       ]
     }
@@ -23485,7 +23498,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "wtxdew.coopet-adapter",
-      "version": "0.1.1",
+      "version": "0.2.1",
       "name": "Coopet 桌宠适配器",
       "description": "让 Coopet 桌宠客户端连上 MaiBot：自起 WebSocket 服务，经消息网关收发主人的私聊消息，并推送思考状态。",
       "author": {
@@ -23519,7 +23532,8 @@
         "chat.get_all_streams",
         "config.get",
         "gateway.route_message",
-        "gateway.update_state"
+        "gateway.update_state",
+        "maisaka.proactive.trigger"
       ],
       "i18n": {
         "default_locale": "zh-CN",
