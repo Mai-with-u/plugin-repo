@@ -66430,6 +66430,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "59080c81ed6114e8201b204c18973a2a0a7ca9de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T11:35:01Z",
+          "release_url": "https://github.com/wtxdew/maibot-coopet-adapter/releases/tag/v0.2.1",
+          "release_notes": "修复版：交给麦麦的通知，现在麦麦会当成外部消息转告你，而不是当成你说的话来接。\n\n- **通知改成主动任务**：0.2.0 把通知作为主人发来的消息交给 MaiBot，麦麦会把它当成你说的话来回应（例如回一句\"挺顺的嘛\"）。现在通知是主人 coopet 私聊里的一个 **Maisaka 主动任务**，写明\"电脑上收到一条外部通知、不是主人发来的消息\"，由麦麦决定要不要转告。转告时会说清从哪来、发生了什么，再加她自己的看法。主人还没在 coopet 上说过话、或者主动任务失败时，退回成通知消息（正文也改成了第三人称）。\n- **转告通知的回复整段发**：只在主人的 coopet 私聊里不按全局设置分句，通知不会被拆成几条；其他平台不变。新增插件设置「回复 → no_split」：`notice`（默认，只有转告通知的那次）/ `all`（Coopet 里的回复都不分句）/ `off`（照全局设置）。\n- 称呼用插件设置里的 `owner_nickname`。\n- 插件能力声明新增 `maisaka.proactive.trigger`。协议和客户端不变。\n\n适配 MaiBot 1.4.x（≥ 1.4.3），插件 SDK ≥ 2.22.0。配套客户端：[Coopet](https://github.com/wtxdew/coopet-maibot/releases)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "wtxdew.coopet-adapter",
+            "version": "0.2.1",
+            "name": "Coopet 桌宠适配器",
+            "description": "让 Coopet 桌宠客户端连上 MaiBot：自起 WebSocket 服务，经消息网关收发主人的私聊消息，并推送思考状态。",
+            "author": {
+              "name": "wtxdew",
+              "url": "https://github.com/wtxdew"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/wtxdew/maibot-coopet-adapter",
+              "homepage": "https://github.com/wtxdew/maibot-coopet-adapter",
+              "documentation": "https://github.com/wtxdew/maibot-coopet-adapter/blob/master/README.md",
+              "issues": "https://github.com/wtxdew/maibot-coopet-adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "host_application": {
+              "min_version": "1.4.3",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.14,<4"
+              }
+            ],
+            "capabilities": [
+              "chat.get_all_streams",
+              "config.get",
+              "gateway.route_message",
+              "gateway.update_state",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "commit": "836798e488938de995df242c6b168dc9e940f9ec",
