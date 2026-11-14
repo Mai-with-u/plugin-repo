@@ -65059,6 +65059,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "0695801c92b5a09c312e894a41b808f5b5417fa5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T08:38:32Z",
+          "release_url": "https://github.com/Pawnnwap/maibot-jev-reply-gate/releases/tag/v1.5.0",
+          "release_notes": "## 主要更新\n\n- 接话判断前移到 planner；判无需回复时移除 `reply` 工具，不生成回复。\n- 统一判断 Prompt：历史按 `用户:/助手:` 合并并标注【最新消息】，规则放在 question，选项使用 Yes/No，移除 system prompt。\n- 重复判断支持规则比对窗口与共享片段阈值；未完成事项 Prompt 同步。\n- 新增隐藏彩蛋：最近 3 条用户消息高度重复时，在 replier 提示中追加一句质问引导。\n- 配置默认值与 `config.example.toml` 同步为当前调参结果。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.pawnnwap.jev-reply-gate",
+            "version": "1.5.0",
+            "name": "JEV 接话判断",
+            "description": "用 JEV 兼容决策服务或兼容 LLM 的 logprobs 判断私聊是否继续接话、过滤重复低效回复，并在每轮 bot 发话后检测未兑现的承诺或待办，必要时触发一次主动搭话。",
+            "author": {
+              "name": "Pawnnwap",
+              "url": "https://github.com/Pawnnwap"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "homepage": "https://github.com/Pawnnwap/maibot-jev-reply-gate",
+              "documentation": "https://github.com/Pawnnwap/maibot-jev-reply-gate/blob/main/README.md",
+              "issues": "https://github.com/Pawnnwap/maibot-jev-reply-gate/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "chat",
+            "capabilities": [
+              "message.get_by_time_in_chat",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "eb40ea446bf7c4b75fedebe021c9eec1c666e7ea",
