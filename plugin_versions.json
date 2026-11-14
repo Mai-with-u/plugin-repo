@@ -52533,6 +52533,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "2bba58c5af406b441b2395ec27a9132a17643852",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T07:09:33Z",
+          "release_url": "https://github.com/Qrzzzz/maibot-music-enhanced/releases/tag/v1.3.2",
+          "release_notes": "# 麦麦点歌增强 1.3.2\n\n- 数字选歌校验显式引用的列表消息 ID，忽略旧列表及其他消息的引用；没有列表回执时仍支持不带引用的数字选歌\n- 聚合音频地址下载失败后清除失效记录，最多回退原平台解析一次，继续执行媒体地址与完整时长校验\n- QQ 原生搜索和详情保留带 Live 等版本信息的展示标题，避免跨平台合并不同版本，基础歌名继续用于身份核验\n- 卡片投递超时或结果未知时停止自动补发链接，保留已选歌曲供用户明确改发；明确不支持或拒绝时仍回退链接\n\n基于磐冰的 maibot-music 增强，音源接入参考 Zhalslar 的 AstrBot 插件。维护者及新增代码作者：Qrzzzz。整体 GPL-3.0-only，保留原 MIT 声明，详见 NOTICE.md。\n\nZIP 解压到 MaiBot/plugins/；迁移前停用原 github.pan-ice.music。本地语音模式需要 FFmpeg / ffprobe，兼容范围与验证边界见该版本 README.md。\n\n源提交：`2bba58c5af406b441b2395ec27a9132a17643852`。\n工作流验证：[Release run](https://github.com/Qrzzzz/maibot-music-enhanced/actions/runs/43569671854)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "tool",
+            "id": "github.qrzzzz.music-enhanced",
+            "version": "1.3.2",
+            "name": "麦麦点歌增强",
+            "description": "基于 maibot-music 增强的 QQ/网易云点歌插件，支持聚合音源、完整时长校验、转码和本地语音缓存",
+            "author": {
+              "name": "Qrzzzz",
+              "url": "https://github.com/Qrzzzz"
+            },
+            "license": "GPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/Qrzzzz/maibot-music-enhanced",
+              "issues": "https://github.com/Qrzzzz/maibot-music-enhanced/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.21.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=42.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "258fe86f1a91dc848911d66328c39c235924c650",
