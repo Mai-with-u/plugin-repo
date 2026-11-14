@@ -35872,6 +35872,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "commit": "a496e0cbb7d26676f8d14cd38391ce565dead4ed",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T11:17:42Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.0",
+          "release_notes": "- WebUI 三页（报告库 / 分析总览 / 漫画廊）接入宿主主题注入：跟随 MaiBot 仪表盘的 modern / 千禧 / 未来复古三套风格与明暗模式实时切换，背景、面板、按钮、输入框、圆角、字体与页面纹理均由宿主 `--maibot-*` 变量驱动；宿主切换主题无需刷新页面。独立打开页面时回退到原有配色，不受影响。\r\n- 卡片细节与字体对齐宿主原版 UI：面板 / 按钮 / 输入框 / 下拉挂宿主组件类（`maibot-card` / `maibot-button` / `maibot-input` / `maibot-select`），阴影、描边、键帽与凹屏外观直接采样宿主组件；千禧恢复丝印标题间距与像素字体数字，未来复古恢复左竖条、角三角装饰与标题尺度字重；宿主主题下按钮悬停反馈交给宿主，独立打开时保留原悬停。\r\n- 未来复古风格下宿主面板采样为透明：弹层（报告详情 / 原图预览 / 参考图灯箱）改用页面底色兜底，保证遮罩上可读；普通面板保持透明以呈现正宗复古纸面观感。\r\n- 漫画廊参考图新增灯箱放大预览：点击缩略图（或聚焦后回车 / 空格）打开大图，最长边 1024 的 JPEG 预览（非原始文件），显示像素尺寸；支持 Esc 关闭、焦点圈定在弹层内、关闭后焦点回到缩略图，背景点击也可关闭。新增 `comic_ref_preview` 查询，逐级降质保证单次响应远低于宿主 512 KiB 上限。\r\n- 语义状态色（成功绿 / 警告黄 / 错误红）保留自有调色：宿主未提供对应文字色，且宿主 danger 为按钮背景色，不适合直接做文字色。\r\n- 可恢复的绘图请求新增「删除」键：仅清除本地恢复记录（不取消远端绘图任务、不删除已存档成品），带确认文案；该群有任务进行中时拒绝删除，避免与「恢复进度」竞态。超时 / 回执未知的挂起记录不再只能一直挂着。\r\n- 修复暗色模式下原生下拉弹层纯白、浅色字看不清：下拉选项行强制使用页面自身面板 / 字色，并让 `color-scheme` 跟随明暗与内嵌状态；modern / 未来复古暗色不再白底浅字，千禧观感保持一致，独立打开不受影响。\r\n- 内嵌宿主时插件桅头改为工作区品牌「群聊分析」+ 该页标语，宿主 header 保留页面名与功能描述，消除大 / 小标题重复显示；独立打开页面仍显示原页面名。\r\n- 新增 LLM 原生工具「查报告」`group_daily_report_lookup`：自然语言日期（今天/昨天/前天/N天前/YYYY-MM-DD，自动回滑最近存档）+ 群号/群名模糊定位，只读返回紧凑 Markdown（话题/称号/金句），数字 ID 脱敏为昵称、40000 字符截断，0 额外模型额度。\r\n- 新增 LLM 原生工具「触发分析」`group_daily_analysis_trigger`：管理员门禁 + 白名单校验，异步受理返回 job 凭证，后台完成后自动发群；普通成员被引导改用查报告工具。\r\n- 漫画风格扩充到 6 套（四格 / 单幅海报 / 像素RPG冒险日志 / 手账剪贴簿 / 复古昭和画报 / 浮世绘单幅），每套独立画风提示词；新增风格轮换（顺序 / 随机 / 洗牌一轮不重复），可选全局或按群进度，漫画廊显示轮换状态并可一键重置。\r\n- 新增漫画角色方案：最多 8 套，每套独立名称 / 人设 / 场景提示 / 参考图勾选；漫画廊可新建 / 编辑 / 删除 / 切换当前方案；开启「每日随机角色」后当天首次生成随机选一套并固定全天；角色参考图优先于全局参考图开关。\r\n- 新增「统计与数据」页：消息 / 报告趋势（48小时 / 7 / 14 / 30 天柱状图 + 区间合计 / 日均），存储分区明细（报告/参考图/上传暂存/缓存），报告存档勾选批量删除（连带当日漫画），运行时缓存一键清理（可重建）。\r\n- 修复可恢复绘图请求删除被拒（`request_id` 实际 38 字符超出声明 32）：放宽到 80，与请求键正则一致。\r\n- 标题层级修正：内嵌宿主时「群聊分析」为最大标题、子页面名由宿主 header 以小字呈现；内嵌检测改为监听宿主 `data-dashboard-style` / context 事件，不依赖页面桥就绪时机，真机不再回退成子页面大标题。\r\n- 统计页补齐宿主背景对齐（`maibot-page`）；暗色下拉弹层改按页面背景亮度自适应 `color-scheme`（正确解析复古 `color(srgb …)` 序列化），选项字色继承宿主采样，复古 / 现代暗色不再发白。\r\n- 漫画风格扩充到 12 套（新增 SCP档案 / 怪盗团剪报 / 经典美式 / 水彩绘本 / Q版萌系 / 黑色电影）；漫画廊新增「风格轮换 / 轮换范围 / 每日随机角色」WebUI 开关（落 data_dir 偏好，优先于插件设置）。\r\n- 统计页新增 Token 审计：区间总 Token / 输入 / 输出 / 调用次数、Token 趋势柱状图、模型占比与任务模块占比、事件时间线；数据来自宿主 `statistics.local.token_trend / token_distribution` 能力（manifest 已声明），宿主未提供时优雅降级为不可用。\r\n- 下拉弹层可读性彻底修复：选项行改用**不透明**页面底 / 字色（`var(--bg)` / `var(--ink)`），原生弹层据此渲染；现代 / 复古暗色实测截图为深色底可读字（此前 inherit / 半透明底在原生弹层上仍显白）。\r\n- 标题层级学习麦生活：内嵌宿主时**隐藏插件内部桅头**，宿主 header 作为唯一标题（子页面名），侧栏导航保持子页面名；独立打开页面保留原桅头。消除「宿主大标题 + 插件大标题」重复。\r\n- Token 审计对齐原版 AstrBot 总览：自记 LLM 调用账本（`llm_usage.json`，真实 prompt/completion/total/模型/成功/耗时，保留 30 天）；统计页含汇总卡片（总 Token/输入输出/调用次数/今日成功率/活跃群）、**折线图**（总/输入/输出）与**堆叠柱**/表格三态切换、**模型/任务模块/服务商三个饼图**、事件时间线；趋势/占比来自宿主本机统计。按用户偏好去掉麦生活式逐任务耗时明细。\r\n- 四个页面（报告库/漫画廊/分析总览/统计与数据）顶部补全跨页跳转按钮，任意页可一键跳到其余三页。\r\n- **合并分析总览入统计与数据**：分析总览的生成/任务/最近报告与报告库重复、消息趋势与统计页重复，故删除分析总览页；其独有的「今日报告 / 最近生成 / 今日消息」三卡并入统计与数据；统计与数据升为侧栏落地页；跨页导航收敛为报告库 / 漫画廊 / 统计与数据三页互跳。\r\n- 趋势切换改为**紧凑分段控件**（指标组 + 图表组并排、joined segments），选中态用 `aria-pressed` 驱动（宿主主题实时正确着色，修复此前 `.primary` 类与宿主样式不同步导致的选中错乱）；表格视图同时展示全部指标，故禁用指标组消除切换冲突。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.22.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "statistics.local.token_trend",
+              "statistics.local.token_distribution"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.5.0",
           "tag": "v1.5.0",
           "commit": "0e35f0913165abb098e17acb67abff389483084c",
