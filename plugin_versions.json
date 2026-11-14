@@ -54707,6 +54707,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.2",
+          "tag": "0.3.2",
+          "commit": "bb9fd6b2bfbd5c8eba297d190ef8c2085db3e1d8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T10:57:09Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.3.2",
+          "release_notes": "这一版让她用手机更像个真人：会看电量，想玩时没电会请你帮忙充电；刷到好东西会发给你看；你让她有空看的会记着去看；卡住了会找你帮忙；交代的事做没做到都会回来说一声。\n\n### 主要功能\n\n- **看电量**（`play.low_battery_percent`，默认 20）：手机快没电又没插电时，她不会自己去玩；聊天里叫她，她会说先充会儿电；玩着的时候没电了，就到点放下。开始玩时、玩的时候每 5 分钟、自动玩拿起手机之前各看一次电量，不点亮屏幕也不解锁。还可以设成只在充电时自动玩（`auto_play.only_when_charging`，默认关）。\n- **想玩时没电会请你帮忙充电**（`auto_play.ask_to_charge`，默认开）：她自己想玩、手机却快没电时，桌宠冒一句「🔌 手机快没电了（剩 12%），能帮我充一下电吗？」，再去你的私聊里用自己的语气问一句。一次没电只问一次，插上电后桌宠会道谢。\n- **刷到好东西会给你看**（`play.share_moments`，默认开）：每局里她连着看得最久的那段视频（至少 30 秒），或者她自己标出的那一下，玩完先把截图发到叫她玩的聊天，再顺口说一句「你看这个」。连着看满一分钟，桌宠会开心一下。截图只发给本来就能看她手机截图的人。\n- **有空要看**：聊天里跟她说「这个视频你有空看看」「回头听听这首」，她会记下来，之后玩手机时去找来看。看到哪了会跟着更新，看完了会在玩完的那句话里提；说「那个不用看了」就划掉。\n- **卡住时会找你帮忙**（`play.help_wait_minutes`，默认 5 分钟）：遇到登录、验证码这类自己过不去的画面，她会停下来，在桌宠和聊天里请你帮忙。你发 `/手机 接管` 处理好，再发 `/手机 交还`，她就接着玩；等不到人就先放下。\n- **交代的事有始有终**（`play.report_requests`，默认开）：聊天里让她在手机上做的事有了编号和状态，手机上的她要在画面上看到结果才算做到。做到了、做不到、被新要求换掉了，都会回到那个聊天说一声。\n\n### 升级须知\n\n- 新配置项都有默认值，不改配置也能用。`play.share_moments`、`play.report_requests`、`auto_play.ask_to_charge` 默认开，不想让她主动发截图或私聊你，就关掉对应的项。`play.low_battery_percent` 设成 0 就不管电量。\n- 请你帮忙充电时，私聊发给 `plugin.admin_user_ids` 里的第一个账号，前提是她和这个账号私聊过。没设置、没私聊过，或者 `play.finish_notice` 是 `off` 时，只冒桌宠气泡。\n- 读不到电量的手机照常玩，不受电量限制。安卓读 `dumpsys battery`，iPhone 读 WebDriverAgent 的电池信息。\n- 以前记下的「看过的视频」没有看到哪了，之后再看到才会记上。\n- 插件新声明了 `chat.get_stream_by_user_id` 能力（用来找主人的私聊），MaiBot 1.4.0 起都支持。\n\n### 细节\n\n- **看过的视频分看到哪了**：分成只点开过、看了一部分、看完了、不感兴趣四种。看了一半的长视频下次可以接着看，WebUI「她记得的」里也能看到。\n- **桌宠气泡变短**：每句只说第一小句，最多两行，不再冒一大段。\n- 修复：她没在玩手机、屏幕关着时，让她截图给你看，会发过去一张黑图。现在她会照实说屏幕关着，不发黑图，桌宠面板也不再放黑图；屏幕亮着、只是画面暗的照常发。玩完发的「这一刻」截图也不会挑到视频黑场。\n- 修复：看视频时被新要求、叫停或接管提前打断，打断前看的那段时间没算进观看时长。\n- 修复：模型在 JSON 后面多写了一段时，整次解析失败，这次就玩不成；现在只取第一段。\n- 修复：她说起玩了什么时，如果目标里已经带着应用名，会说重，比如「在番茄小说里在番茄小说里搜索」。\n\n### 测试\n\n429 个单元测试。真 Bot 上（MaiBot 1.4.3、SDK 2.22.1）验证了这些：\n\n- 聊天里交代的事做到、做不到、被新要求换掉，都回到聊天说了。\n- 在 GitHub 登录页上停下来请主人帮忙。\n- 「有空要看」记下以后，玩手机时找来看了。\n- 玩完先发「这一刻」截图，再说话。\n- iPhone 锁屏时，`/手机截图` 和聊天里让她截图都没有发黑图；聊天里那次她还自己拿起手机，重新截了一张。\n\n电量功能在一台电量真的很低的 OPPO 上验证过：\n\n- 用独立测试实例确认了她不去玩、聊天里叫她会说先充电。\n- 真 Bot 上临时调高了自动玩的频率，她想玩时发现只剩 3%，在桌宠和主人的私聊里请人帮忙充电。\n\n下面这几种情况只有单元测试，还没在真机上遇到过：插上电后桌宠道谢、充着电照常玩、玩到一半电量变低放下、「这一刻」跳过视频黑场。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.3.2",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "chat.get_stream_by_user_id",
+              "config.get",
+              "desktop_pet.list_animations",
+              "desktop_pet.play_event",
+              "desktop_pet.refresh_buttons",
+              "desktop_pet.say",
+              "desktop_pet.status",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "render.html2png",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.3.1",
           "tag": "0.3.1",
           "commit": "b7e230f9775afdd037aa6fdd1c073e9d80a65560",
