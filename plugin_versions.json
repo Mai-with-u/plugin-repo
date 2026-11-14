@@ -28717,6 +28717,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.27.0",
+          "tag": "v1.27.0",
+          "commit": "bf23af46ba9e32daff5f32222e7fca6e08832a0c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T13:05:32Z",
+          "release_url": "https://github.com/octmicy/Mai_life/releases/tag/v1.27.0",
+          "release_notes": "## 新增\n\n- **书柜导入书籍（#35）**：书柜 Tab 新增「导入书籍」入口，支持 `.txt`（UTF-8/GB18030 自动探测、去 BOM）与 `.epub`。宿主上传通道仅收图片，所以文件在 WebUI 页内**本地解析**（epub 用 `DecompressionStream('deflate-raw')` 解 ZIP 容器 → container.xml → OPF 元数据 → spine 章节去标签），不上传原始文件；解析后预览书名/作者/章节数/字数/摘录，按 SHA-256 + 书名查重，确认后经 action **分块传输**文本（64k 字符/块，幂等）落库。导入书存独立分块表（绕过 revision 2 万字符截断），默认 private、不进创作流水线；阅读器分页加载、概览截断 2000 字、全量拼接排除导入书。新增 `creation/book_import.py` 纯逻辑模块、3 张存储表、6 个 WebUI API 与开关配置（单书默认上限 200 万字符）。老浏览器不支持 epub 解压时明确提示改用 txt。\n- **导入书籍作为聊天候选**：`context_for_user` 标记导入书，提示词层新增 `_reading_note`，把最靠前的导入书框架成「最近在读《X》…可以像分享自己的阅读一样自然聊起」；日程生成灵感池标为「在读《X》」活动候选。无导入书时零行为变化。\n- **自定义日程模板 WebUI（#33 评论区需求）**：记忆与牵挂页新增「作息模板」Tab，可视化增删/排序节点，每节点支持**固定时段**（`time_fixed`，起止锁定）与**固定事项**（`content_fixed`，必须出现在当天日程）双约束。模板改存 **DB 优先**，插件目录文件保留为 legacy 来源，存量用户零迁移。生成链路：提示词追加用户硬约束、固定事项缺失带原因重试、固定时段验收后原样注入并裁切重叠自由节点；**固定节点豁免照抄闸门与近期重复闸门**。当天预览展示固定/自由徽章、静音时段联动、上次生成拒绝原因；支持 JSON 导入/导出、「以后生成生效」与显式「重新生成今天」。\n\n## 变更\n\n- **组件名称人性化（生活化·温暖风格）**：12 个设置节与约 140 个字段标签改为描述日常生活的说法（如 `休息回复闸门`→`作息与睡眠`、`被动回复增强`→`聊天时的麦麦`、`模型与成本编排`→`模型与花费`、`Token 监控`→`用量统计`、`闸门生效方式`→`作息生效方式`、`Planner 注入模式`→`决策背景详略`）。**插件设置、私聊用户、群聊设置、主动私聊**四节保持原名。WebUI 六 Tab 同步为「关系与温度 / 重要日期 / 日记与梦 / 书柜与写作 / 见闻与搜索 / 作息模板」，system 页改名「设置与诊断」。仅改显示标签，配置键/标识符/提示词块名/命令输出不变。\n- **回退 v1.26.6 的 int→float 临时规避**：上游 [MaiBot#2440](https://github.com/Mai-with-u/MaiBot/issues/2440) 已修复（dashboard 补 integer 分支），`UserProfile.daily_proactive_max`/`initial_temperature` 恢复为 `int`，旧值兼容不变。\n\n## 测试\n\n- 新增 `tests/test_import_features.py`（38 项），按防卡死硬约束设计：同步解析测试不起事件循环、内存 fixture ≤64KB、轻量插件骨架（不 build_plugin）、零网络/子进程/线程、HTML 契约静态断言。全量 589 项全绿。\n\n**Full Changelog**: https://github.com/octmicy/Mai_life/compare/v1.26.6...v1.27.0\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.mai-life",
+            "name": "麦生活",
+            "version": "1.27.0",
+            "description": "让麦麦拥有持续生活、消息体验、低频联网见闻以及自己的书柜与创作",
+            "author": {
+              "name": "octmicy",
+              "url": "https://github.com/octmicy/Mai_life"
+            },
+            "license": "GPL-3.0",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.91.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_group_streams",
+              "chat.open_session",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_id",
+              "api.call",
+              "webui.claim_upload",
+              "maisaka.proactive.trigger",
+              "config.get",
+              "component.list_loaded_plugins",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/octmicy/Mai_life",
+              "homepage": "https://github.com/octmicy/Mai_life",
+              "documentation": "https://docs.mai-mai.org"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "mailife.png",
+                "fallback": "fish",
+                "background": "#BFE3F2"
+              }
+            }
+          }
+        },
+        {
           "version": "1.26.6",
           "tag": "v1.26.6",
           "commit": "9a3479d89a09806298dbb685979bd47da2269162",
