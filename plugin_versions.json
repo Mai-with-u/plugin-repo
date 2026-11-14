@@ -34645,6 +34645,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.11.2",
+          "tag": "1.11.2",
+          "commit": "b30a21e8d14abad032b085474d5b931aa399189b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T16:37:56Z",
+          "release_url": "https://github.com/CSSQY/token_usage_report/releases/tag/1.11.2",
+          "release_notes": "## [1.11.2]\r\n\r\n### 细节\r\n\r\n- 适配 MaiBot 1.4 系列宿主：`_manifest.json` 的 `host_application.max_version` 由 `1.3.99` 提升到 `1.4.99`，避免在 1.4.x 上以「兼容模式」加载并提示版本不兼容；宿主最低版本仍为 `1.3.0`，SDK 范围不变。已核对 1.4 的 Command / Tool 回调参数、`statistics.local.*`、`database.get`、`send.*` 返回值与本插件用法一致，无需代码改动。\r\n- 无配置变更：`config_version` 保持 `1.11.0`，旧配置可直接继续使用。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.token-usage-report",
+            "version": "1.11.2",
+            "name": "Token 用量统计与播报",
+            "description": "统计 Bot 的 Token 消耗，支持会话维度筛选、图片报告、每日定时播报与 LLM 风格化转述",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/token_usage_report",
+              "homepage": "https://github.com/CSSQY/token_usage_report",
+              "documentation": "https://github.com/CSSQY/token_usage_report/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/token_usage_report/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png",
+              "statistics.local.token_trend",
+              "statistics.local.model_trend",
+              "statistics.local.models",
+              "statistics.local.token_distribution",
+              "statistics.local.message_trend",
+              "statistics.local.tool_trend",
+              "database.get",
+              "database.count"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.11.1",
           "tag": "1.11.1",
           "commit": "4fecf674871761616d86439faf678afc6086e3cc",
