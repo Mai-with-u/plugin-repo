@@ -65809,6 +65809,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.1",
+          "tag": "0.1.1",
+          "commit": "802c271a2c43050aa96d7dae8fcc60d2161ac501",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T04:11:04Z",
+          "release_url": "https://github.com/HH233333/vertexai-maibot-connect/releases/tag/0.1.1",
+          "release_notes": "1. 关闭 Google GenAI SDK 内置长退避重试\r\n更新内容：在客户端 HTTP 选项中注入 HttpRetryOptions(attempts=1)，明确禁用 Google GenAI SDK 底层自带的网络重试行为。\r\n解决问题：SDK 默认遇到服务端错误或网络波动时，会在底层执行长达数十秒的指数退避重试，容易阻塞协程并导致超时，且与 MaiBot 自身的重试调度策略（max_retry、retry_interval）及模型故障降级机制发生冲突。禁用后错误可即时抛出，完全由 MaiBot 本身接管调度。\r\n2. 修复并行多工具调用时的响应轮次聚合问题\r\n更新内容：在消息上下文转换器中增加 FunctionCallOutputItem 的同轮次批处理聚合，并支持依据 call_id 自动回溯补齐可能缺失的 tool_name。\r\n解决问题：当模型单次触发多个工具调用（Parallel Tool Calls）时，此前每个工具的执行结果被切分成了独立的轮次，违反了 Gemini API“所有工具响应必须包裹在同一个紧随其后的 user 轮次”的协议约束，导致触发 400 Invalid argument: Please ensure that function response turns follow function call turns 报错。聚合后确保了多工具调用的上下文符合官方协议规范。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.HH233.vertexai-maibot-connect",
+            "version": "0.1.1",
+            "name": "Google Vertex AI Connect",
+            "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
+            "author": {
+              "name": "HH233",
+              "url": "https://github.com/HH233333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HH233333/vertexai-maibot-connect"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-auth",
+                "version_spec": ">=2.0.0"
+              }
+            ],
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cloud"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "llm_providers": [
+              {
+                "client_type": "vertex_connect",
+                "name": "Vertex AI Connect",
+                "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
+                "version": "0.1.1"
+              }
+            ]
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "0.1.0",
           "commit": "997357e4d343be208e99d536a981c875f96d9f5a",
