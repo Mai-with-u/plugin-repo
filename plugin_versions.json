@@ -47300,6 +47300,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.2",
+          "tag": "v1.7.2",
+          "commit": "96aa0d755edca5694393028f7be17f49645bd300",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T16:34:30Z",
+          "release_url": "https://github.com/Akenari011/gpt-sovits-voice-plugin/releases/tag/v1.7.2",
+          "release_notes": "## 1.7.2\n\n- `sdk.max_version` 2.22.99 → **2.23.99**，适配 MaiBot 1.4.5 / plugin-sdk 2.23.0\n- 消除启动时的「SDK 版本超出插件声明范围」警告\n\n功能无变化。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.gpt-sovits-voice-plugin",
+            "version": "1.7.2",
+            "plugin_type": "media",
+            "name": "GPT-SoVITS 语音插件（优化版）",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            },
+            "description": "基于 GPT-SoVITS 的文本转语音插件，本机或远程服务均可。本版由 Akenari011 基于 CGl123/gpt-sovits-voice-plugin（原作者 CGl123）优化而来。含语音对讲（收到语音后一段时间内的回复都用语音发出，入站消息正常入库）、按内容自动选语气、按语言切换模型、纯数字专用风格、概率自动语音、语速控制、文本清洗、音频校验等功能。注意：本插件与原版 CGl123.gpt-sovits-voice-plugin 功能重叠且共用同一套配置与命令，二者互斥，请勿同时安装。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+              "homepage": "https://github.com/Akenari011/gpt-sovits-voice-plugin",
+              "documentation": "https://github.com/Akenari011/gpt-sovits-voice-plugin/blob/main/README.md",
+              "issues": "https://github.com/Akenari011/gpt-sovits-voice-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "send.custom",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.7.0",
           "tag": "v1.7.0",
           "commit": "6f68b54380f322dede5664bb0c73f80163e9274a",
