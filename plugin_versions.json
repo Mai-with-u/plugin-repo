@@ -5991,6 +5991,11 @@
       ],
       "rejected_releases": [
         {
+          "tag": "1.2.2",
+          "version": "1.2.2",
+          "error": "仓库根目录不能包含 config.toml"
+        },
+        {
           "tag": "v1.2.0",
           "version": "1.2.0",
           "error": "仓库根目录不能包含 config.toml\n发布版本改变了插件 ID"
