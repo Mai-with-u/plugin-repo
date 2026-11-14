@@ -53096,6 +53096,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "d1f78327d02678045aad3eb889084d07ca275f39",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T16:34:29Z",
+          "release_url": "https://github.com/Akenari011/maibot-beg-for-money/releases/tag/v1.1.1",
+          "release_notes": "## 1.1.1\n\n- `sdk.max_version` 2.22.99 → **2.23.99**，适配 MaiBot 1.4.5 / plugin-sdk 2.23.0\n- 消除启动时的「SDK 版本超出插件声明范围」警告\n\n功能无变化。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.beg-for-money",
+            "version": "1.1.1",
+            "name": "讨饭",
+            "description": "群友提到打钱时伸手要饭并发收款码，记账需管理员私聊确认，支持 LLM 自主调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-beg-for-money"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.23.99"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#F59E0B"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "56348ee628d36f7e5c90937860479e59451965a9",
