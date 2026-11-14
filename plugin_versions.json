@@ -43279,6 +43279,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.1",
+          "tag": "1.6.1",
+          "commit": "17da5612e013ad2d32cc678c314875175e4fc35d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-14T16:41:16Z",
+          "release_url": "https://github.com/CSSQY/mai_meal_card/releases/tag/1.6.1",
+          "release_notes": "## [1.6.1] - 2026-11-15\r\n\r\n### 变更\r\n\r\n- **适配 MaiBot 1.4.x**：`_manifest.json` 的 `host_application.max_version` 提升至 `1.4.99`，\r\n  插件在 MaiBot 1.4.x 下不再以兼容模式加载。\r\n- 在 MaiBot 1.4.5 + `maibot-plugin-sdk` 2.23.0 下验证：配置模型、Command / Tool / API 组件注册、\r\n  WebUI 声明（协议 v2）与默认配置生成均正常，无需改动插件代码。\r\n- 插件版本与 `config_version` 同步为 `1.6.1`；配置结构与行为未变。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cssqy.mai-meal-card",
+            "version": "1.6.1",
+            "plugin_type": "automation",
+            "name": "麦麦饭卡",
+            "description": "额度/用量查询与播报：LLM 工具 + /饭卡 指令 + 定时播报 + 条件警报 + WebUI 趋势页；支持多个平台与自定义平台（内置 MiniMax TokenPlan、DeepSeek 开放平台、火山方舟 Agent Plan）",
+            "author": {
+              "name": "CSSQY",
+              "url": "https://github.com/CSSQY"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/CSSQY/mai_meal_card",
+              "homepage": "https://github.com/CSSQY/mai_meal_card",
+              "documentation": "https://github.com/CSSQY/mai_meal_card/blob/main/README.md",
+              "issues": "https://github.com/CSSQY/mai_meal_card/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.10.0",
+              "max_version": "2.99.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=12.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "config.get",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.0",
           "tag": "1.6.0",
           "commit": "49e054c18ac5498f186c542224f5704a8d90616a",
