@@ -25024,6 +25024,50 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.19.0",
+          "tag": "v2.19.0",
+          "commit": "6b677f8e8a952c8175ae3ec8f235cffa5873181c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T03:45:19Z",
+          "release_url": "https://github.com/orge-8/cv_lyric_context/releases/tag/v2.19.0",
+          "release_notes": "## cv_lyric_context v2.19.0\n\n本版本聚合 2.16.0 ~ 2.19.0 的全部变更（插件中心上次收录为 2.15.1）。\n\n### 识别与注入\n- **2.16.0** 同步库漏行按歌合并（不再因「已索引」整首跳过）；子串匹配改按**最长连续共享段**取胜，修复《绝体绝命》跨行拼接误判。\n- **2.17.0** 注入按**证据强度分级**（长度 ≥6 字 + 覆盖率 ≥60% 双判据），弱命中不报歌名，防 4 字整句撞车。\n- **2.18.0** 多来源字段级补全（只补空 / 不覆盖 / 歧义拒绝）。\n\n### 2.19.0 新增\n- **点歌联动加固**（与 music-request v1.8.0 配套）：跨插件契约单一事实源、只读 API `timeout_ms=3000`、注入前可用性探测降级。\n- **WebUI 歌词页 custom 化**：声明式页 → 原创 custom HTML 大屏（视觉参考 Mai_life，代码全部原创，MIT），9 个 `lyrics.*` API 原样绑定、后端零改动；KPI 瓦片 / SVG 覆盖率仪表 / 分栏阅读 / 暗色跟随。\n- **分发包瘦身**：内置素材 gzip 压缩随包（`knowledge_db.db.gz` + `song_lyric_keywords.txt.gz`，**13.0MB → 4.3MB，减重 67%**），加载期解压到数据目录 `asset_cache/` 缓存（源 mtime+size 校验失效），**识别质量零改动**（解压索引与原始基线逐项一致）。\n\n### 兼容性\n- 官方最新 **MaiBot v1.4.5** PluginLoader 加载探针实测通过（28 组件 / 4 能力）；`host_application.max_version` 放宽至 **1.4.5**。\n- SDK 2.23.0；devkit(SDK 2.22.1) 与 SDK 2.23.0 双环境 pytest **239 passed / 7 skipped**；gate.sh **PASS 4 / SKIP 0 / FAIL 0**。\n\n### 部署\n整目录替换 + 完整重启 MaiBot（capabilities 含 `custom_pages`，改动需完整重启）。首启自动解压素材到数据目录 `asset_cache/`（可安全删除、下次自动重建）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.cv-lyric-context",
+            "version": "2.19.0",
+            "name": "中V歌词识别 · 歌曲库",
+            "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.orge-8.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "urls": {
+              "repository": "https://github.com/orge-8/cv_lyric_context",
+              "homepage": "https://github.com/orge-8/cv_lyric_context",
+              "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.1.0",
+              "max_version": "2.23.0"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "custom_pages",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "2.15.1",
           "tag": "v2.15.1",
           "commit": "11e63849d037f620f41dc79e093c5b9a2a66ab15",
