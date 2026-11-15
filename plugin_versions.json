@@ -36152,6 +36152,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.1",
+          "tag": "v1.6.1",
+          "commit": "669f1cfd1fe20466eda327ac57c3bdc949fde2ef",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T14:01:32Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.1",
+          "release_notes": "- 统计页 Token 审计改为本插件专属口径：趋势 / 占比 / 区间卡片全部由插件自己的 LLM 调用账本（llm_usage.json）计算，不再读取宿主全机统计，避免混入宿主其他模块的消耗；无调用记录时显示全 0 而非「宿主统计不可用」。移除「服务商占比」饼图（账本不记录服务商），保留模型 / 任务两个饼图；相应移除 statistics.local.token_trend / token_distribution 能力声明。\n- Token 柱状图对齐调用次数柱的观感：零值日显示浅色底柱而非完全隐形；Token 柱状模式新增「输入 / 输出」颜色图例；柱顶默认只显示总量，悬停或键盘聚焦任意柱弹出明细气泡（日期 / 输入 / 输出 / 总量 / 调用次数）。\n- 统计页新增花费统计：区间总花费卡片与按模型「花费占比」饼图，金额取自宿主按模型配置单价（含分时 / 缓存价）对本插件每次调用的逐次计费记录（`database.query` 读取宿主 ModelUsage 表并按 request_type 过滤本插件），页面注明为按配置单价的估算、非实际账单；宿主未提供时优雅降级为「—」；相应新增 database.query 能力声明。\n- 存档物理重命名：日报 / 漫画成品文件改为「群名_主题_日期.png / .html」（漫画用风格名），群名自动清理非法字符并截断 40 字；meta.json / comic.json 等索引保持固定名。旧固定文件名存档继续可读、可重发 / 重绘 / 删除，不做批量迁移；漫画换风格重绘时清理旧命名残留。\n- 新增本地存盘开关 `local_archive_enabled`（默认开）：关闭后新日报 / 漫画不再落盘，发群与上传相册不受影响，旧存档保留。WebUI「统计与数据」存储管理新增存盘开关、保留天数与「立即清理过期」按钮，与设置页同源且 WebUI 保存值优先；过期清理保持启动自动执行 + 手动立即清理，不新增周期任务。自动刷新不覆盖用户正在编辑的控件。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.1",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.22.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.0",
           "tag": "v1.6.0",
           "commit": "a496e0cbb7d26676f8d14cd38391ce565dead4ed",
