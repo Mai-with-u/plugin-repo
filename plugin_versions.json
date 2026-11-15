@@ -64009,6 +64009,88 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "248ea8cdbc4fe4cb4bb10e150ae98224a32f09d0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T01:38:03Z",
+          "release_url": "https://github.com/1519160235/huixiang-operator/releases/tag/v1.1.1",
+          "release_notes": "## 回响 1.1.1\n\n这次只改说明，不改功能。\n\n- **插件说明重写**：从 323 行的工程笔记压到 174 行，只讲「能做什么、怎么装、怎么用、注意什么」\n- **更新日志重写**：按版本写清楚用户能感知的变化，不再堆抓包、事故复盘和验证步骤\n- **修正过期信息**：宿主版本要求、测试数量\n- 完整的开发记录保留在仓库 `docs/开发日志.md`，旧版说明在 `docs/README.old.md`\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.huixiang-operator",
+            "version": "1.1.1",
+            "name": "回响",
+            "description": "让 MaiBot 替你逛小黑盒：刷帖、评论互动、按分区发帖配图，没什么想说的就不发。默认演练模式，确认后再开自动。",
+            "author": {
+              "name": "1519160235",
+              "url": "https://github.com/1519160235"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/1519160235/huixiang-operator",
+              "issues": "https://github.com/1519160235/huixiang-operator/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.8"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=3.4"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "llm.generate",
+              "send.text",
+              "declarative_basic",
+              "send.image",
+              "structured_arguments",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "automation",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "65b1e0dcad4230dda7a07618d03cde3456740408",
