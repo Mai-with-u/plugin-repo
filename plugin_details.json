@@ -2169,7 +2169,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.2.1",
+      "version": "2.3.0",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -9852,8 +9852,8 @@
       "manifest_version": 2,
       "id": "fulawa.maibot-expenses-summary-plus",
       "name": "麦麦财务总结优化",
-      "version": "2.0.9",
-      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。",
+      "version": "2.0.11",
+      "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。v2.0.10 修复价带错配导致的变更卡自相矛盾，并在卡片上标注供应商。v2.0.11 接入中国法定节假日与调休日历，峰谷时段判定不再误算节假日和补班日。",
       "author": {
         "name": "fulawa",
         "url": "https://github.com/ji-or-ji"
@@ -12121,9 +12121,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.cv-lyric-context",
-      "version": "2.17.0",
+      "version": "2.20.0",
       "name": "中V歌词识别 · 歌曲库",
-      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.cateye.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+      "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.orge-8.music-request）的 search_and_play_music 工具把歌发到当前会话。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -12136,16 +12136,17 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.5"
       },
       "sdk": {
         "min_version": "2.1.0",
-        "max_version": "2.16.99"
+        "max_version": "2.23.0"
       },
       "capabilities": [
         "send.text",
         "llm.generate",
-        "declarative_basic"
+        "custom_pages",
+        "api.list"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -14176,7 +14177,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -14215,14 +14216,13 @@
         "send.text",
         "llm.generate",
         "llm.get_available_models",
+        "database.query",
         "render.html2png",
         "message.get_by_time_in_chat",
         "chat.get_avatar",
         "webui.claim_upload",
         "api.call",
-        "api.get",
-        "statistics.local.token_trend",
-        "statistics.local.token_distribution"
+        "api.get"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -14243,9 +14243,9 @@
     "id": "Alcpare.identity",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.1.0",
+      "version": "1.2.0",
       "name": "身份认知",
-      "description": "【测试版】手动白名单：让她知道当前对话者是主人 / 朋友 / 普通群友，从而用对态度。QQ 号只用于内部识别，永不进入提示词。支持在 WebUI 里自定义身份档位（如「同事」「父亲」），每档可写独立提示词。",
+      "description": "让她知道当前对话者是谁（主人 / 朋友 / 群友），从而用对态度。支持自定义身份档位与独立提示词，还可以上传 AI 画像让她记住自己的样子。纯手动白名单，不调用 LLM、不写宿主数据库；QQ 号只用于内部识别，永不进入提示词。",
       "author": {
         "name": "Alcpare",
         "url": "https://github.com/Alcpare"
@@ -14259,14 +14259,18 @@
       "changelog": "README.md",
       "host_application": {
         "min_version": "1.3.19",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.9.0",
-        "max_version": "2.21.99"
+        "max_version": "2.22.99"
       },
       "dependencies": [],
-      "capabilities": [],
+      "capabilities": [
+        "send.text",
+        "webui.claim_upload",
+        "llm.generate"
+      ],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -16859,7 +16863,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.orge-8.music-request",
-      "version": "1.7.7",
+      "version": "1.8.0",
       "name": "点歌插件",
       "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。 v1.7.7：卡片解析与链接解析作用域隔离——统一 QQ 连接器会把卡片 jumpUrl 以「链接: <jumpUrl>」拼进正文，关闭自动解析音乐卡片后这段链接不再被链接通道捡走（此前关了开关仍会发歌）；同时卡片正文的跳转链接被单独切出，歌手名不再被链接污染，未配置 NapCat HTTP API 也能按卡片链接精确解析。",
       "author": {
@@ -16872,11 +16876,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.5"
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.16.99"
+        "max_version": "2.23.0"
       },
       "dependencies": [
         {
@@ -16894,7 +16898,8 @@
         "send.text",
         "send.custom",
         "chat.get_all_streams",
-        "api.call"
+        "api.call",
+        "api.list"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -19654,49 +19659,6 @@
     }
   },
   {
-    "id": "mai-persona.mai-persona",
-    "manifest": {
-      "manifest_version": 2,
-      "version": "0.3.3",
-      "name": "Mai Persona 内在引擎",
-      "description": "维护 MaiBot 角色的情绪、生活节奏、事件线与关系状态，增强长期互动的连续拟人表现；不替代 MaiBot 自有人格、行为准则或回复风格。",
-      "author": {
-        "name": "Orxil.V",
-        "url": "https://github.com/hedgehogovo"
-      },
-      "license": "MIT",
-      "urls": {
-        "repository": "https://github.com/hedgehogovo/mai-persona",
-        "homepage": "https://github.com/hedgehogovo/mai-persona",
-        "documentation": "https://github.com/hedgehogovo/mai-persona/blob/main/README.md",
-        "issues": "https://github.com/hedgehogovo/mai-persona/issues"
-      },
-      "host_application": {
-        "min_version": "1.3.0",
-        "max_version": "1.3.99"
-      },
-      "sdk": {
-        "min_version": "2.20.0",
-        "max_version": "2.20.99"
-      },
-      "dependencies": [],
-      "capabilities": [
-        "knowledge.search",
-        "message.get_by_id",
-        "api.call",
-        "send.text",
-        "maisaka.proactive.trigger"
-      ],
-      "i18n": {
-        "default_locale": "zh-CN",
-        "supported_locales": [
-          "zh-CN"
-        ]
-      },
-      "id": "mai-persona.mai-persona"
-    }
-  },
-  {
     "id": "local.nai-plugin",
     "manifest": {
       "manifest_version": 2,
@@ -20414,18 +20376,23 @@
       },
       "sdk": {
         "min_version": "2.21.0",
-        "max_version": "2.21.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "lunar_python",
-          "version_spec": "==1.4.8"
+          "version_spec": ">=1.4.8,<2.0"
         },
         {
           "type": "python_package",
           "name": "tzdata",
           "version_spec": ">=2026.1"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0"
         }
       ],
       "capabilities": [
@@ -20439,6 +20406,7 @@
         "chat.open_session",
         "person.get_value",
         "chat.get_all_streams",
+        "message.get_by_time_in_chat",
         "person.get_id",
         "llm.get_available_models",
         "maisaka.reply.generate",
@@ -20687,7 +20655,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.maimai-feed-bot",
-      "version": "1.6.1",
+      "version": "1.7.0",
       "name": "麦麦要吃那个！",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
       "author": {
@@ -20714,7 +20682,7 @@
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.22.99"
+        "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -20722,7 +20690,8 @@
         "send.image",
         "llm.generate",
         "chat.get_group_streams",
-        "config.get"
+        "config.get",
+        "api.call"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -22061,9 +22030,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "local.huixiang-operator",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "name": "回响",
-      "description": "让 MaiBot 自己逛小黑盒：扫码登录、按分区发帖、评论互动、AI 配图，有想说的才发一条。默认演练模式，不开启不发帖。",
+      "description": "让 MaiBot 替你逛小黑盒：刷帖、评论互动、按分区发帖配图，没什么想说的就不发。默认演练模式，确认后再开自动。",
       "author": {
         "name": "1519160235",
         "url": "https://github.com/1519160235"
@@ -22127,7 +22096,8 @@
           "value": "assets/icon.png",
           "fallback": "package"
         }
-      }
+      },
+      "changelog": "CHANGELOG.md"
     },
     "assets": {
       "icon_64": "icons/local.huixiang-operator.webp"
@@ -23086,7 +23056,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
@@ -23139,7 +23109,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.9.10",
+      "version": "0.9.15",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -23541,6 +23511,136 @@
           "zh-CN"
         ]
       }
+    }
+  },
+  {
+    "id": "stanley.matrix-adapter",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "stanley.matrix-adapter",
+      "version": "0.1.0",
+      "name": "Matrix 适配器",
+      "description": "基于 matrix-nio 与 vodozemac 的 Matrix 双向消息网关，支持加密房间、图片、表情、语音、@、回复引用与表态通知。",
+      "author": {
+        "name": "Stanley-233",
+        "url": "https://github.com/Stanley-233"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Stanley-233/MaiBot-Matrix-Adapter",
+        "homepage": "https://github.com/Stanley-233/MaiBot-Matrix-Adapter",
+        "documentation": "https://github.com/Stanley-233/MaiBot-Matrix-Adapter/blob/main/README.md",
+        "issues": "https://github.com/Stanley-233/MaiBot-Matrix-Adapter/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "plugin_type": "adapter",
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "matrix-nio",
+          "version_spec": ">=0.26.0,<0.27"
+        },
+        {
+          "type": "python_package",
+          "name": "vodozemac",
+          "version_spec": ">=0.9.0.post2,<0.11"
+        },
+        {
+          "type": "python_package",
+          "name": "peewee",
+          "version_spec": "~=3.14"
+        },
+        {
+          "type": "python_package",
+          "name": "cachetools",
+          "version_spec": ">=5.3"
+        },
+        {
+          "type": "python_package",
+          "name": "atomicwrites",
+          "version_spec": "~=1.4"
+        },
+        {
+          "type": "python_package",
+          "name": "msgpack",
+          "version_spec": ">=1.0"
+        }
+      ],
+      "capabilities": [
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "orxilv.mi_mai",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "orxilv.mi_mai",
+      "name": "Mi Mai",
+      "version": "1.0.1",
+      "description": "通过米家账号查看设备状态、管理设备白名单并安全控制设备与场景。",
+      "author": {
+        "name": "Orxil.V",
+        "url": "https://github.com/hedgehogovo"
+      },
+      "license": "GPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/hedgehogovo/Mi-Mai"
+      },
+      "host_application": {
+        "min_version": "1.4.5",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.22.1",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "mijiaAPI",
+          "version_spec": ">=5.0.0,<6.0.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/logo.jpg",
+          "fallback": "home",
+          "background": "#e8f3ec"
+        }
+      },
+      "capabilities": [
+        "api.call",
+        "send.text",
+        "component.enable",
+        "component.disable",
+        "custom_pages"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/orxilv.mi_mai.webp"
     }
   }
 ]
