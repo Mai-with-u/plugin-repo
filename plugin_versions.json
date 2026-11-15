@@ -48683,6 +48683,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.8.0",
+          "tag": "v1.8.0",
+          "commit": "6ee36bc69b58de20fd834339506696b1bd7ea1b4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T04:09:40Z",
+          "release_url": "https://github.com/orge-8/music-request/releases/tag/v1.8.0",
+          "release_notes": "## music-request v1.8.0\n\n点歌插件（搜索点歌 / 音乐链接与分享卡片解析 / 本地歌曲库 / B站兜底平台）。本版本聚焦**与 cv_lyric_context 的点歌联动加固**与 **WebUI 显示优化**，纯显示层与联动可靠性改进，不改配置键与校验语义。\n\n### 新增（点歌联动加固，与 cv_lyric_context v2.19.0 配套）\n\n- **跨插件契约单一事实源**：`get_song_bilibili` 的键集 / 类型 / `schema_version` / match 枚举固化到契约文件，双侧测试从同一事实源加载断言，门禁校验镜像逐字节一致（漂移即 FAIL）。\n- **契约版本协商**：校验返回的 `schema_version`，缺失按 v1 宽容处理，显式非 1 归类 `schema_mismatch` 回退搜索，绝不按 v1 语义误读未来契约。\n- **失败七分类 + `/点歌联动自检` 命令**：`hit` / `not_found_or_no_bvid` / `timeout` / `not_installed` / `no_api_proxy` / `schema_mismatch` / `error`，内存计数重启清零；自检命令三段输出（api.list 可见性 / 真实探针 / 七类运行计数）。\n- **真实对端端到端测试**：经 fakehost 包式加载真实 cv_lyric_context 模块，覆盖原曲歌手采纳、点名翻唱回退等路径（对端不存在时 skip，单仓库可跑）。\n\n### 变更\n\n- **跨插件调用 3 秒硬超时**：`asyncio.wait_for(..., 3.0)` 包住 `ctx.api.call`（提供方 `@API` 同步声明 `timeout_ms=3000`，双闸），超时静默回退平台搜索，不再被慢查询拖满整条点歌链。\n- capabilities 增加 `api.list`（自检可见性探测用，**改动 capabilities 需完整重启 MaiBot**）。\n- **工具描述修复（SDK 2.22+ 生产回归）**：SDK 2.22 起 `description` 非空时静默丢弃 `detailed_description`，已把参数指导并入 `description`。\n\n### WebUI 显示优化（纯显示层）\n\n- 配置页 8 节平铺改为**三页签**（点歌行为 / 平台与登录 / 本地与缓存）。\n- 修复 **7 处自动推导的半句话 label**；**13 个凭据/路径/格式敏感字段补 placeholder**。\n- 可选节默认收起（cache / library / bilibili）；节内字段分组。\n\n### 兼容范围（官方最新实测）\n\n- **MaiBot v1.4.5** 源码 PluginLoader 加载探针：加载成功，**10 组件 / 5 能力**，严格区间 host 1.0.0~1.4.5 无兼容警告。\n- **SDK 2.23.0** 隔离环境全量 pytest：**577 passed / 0 skipped**。\n- `gate.sh` **PASS 4 / SKIP 0 / FAIL 0**（check_plugin PASS 47 / WARN 0）。\n- host_application.max_version 1.4.4 → **1.4.5**（实测后才放宽）；sdk max 2.23.0。\n\n### 说明\n\n- 删除插件内过时的 `check_plugin.py` 副本（基线 Host 1.2.3 / SDK 2.8.0），改走 devkit 统一检查器。\n- 新增 `.gitattributes` 强制契约镜像 LF，杜绝 Windows autocrlf 造成的假漂移。\n- 超时收紧与自检命令**未真机验证**，需真机回归。\n\n完整变更见仓库 `CHANGELOG.md`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.orge-8.music-request",
+            "version": "1.8.0",
+            "name": "点歌插件",
+            "description": "搜索点歌、解析音乐链接与分享卡片，发送语音音频或音乐卡片，支持网易云音乐与QQ音乐；可启用本地歌曲库，直接播放磁盘上的音频文件（文件上传或语音）。新增B站平台：搜索B站视频并提取DASH音频轨（m4a），固定以文件形态发送，作为163/qq之后的LLM兜底平台。搜索结果按相关度排序并做相对过滤，避免最佳匹配因版权不可播时改播无关歌曲；点名歌手时校验候选歌手、不匹配即剔除，平台被歌手名带偏时按歌名重搜兜底。 v1.6.4 起可选优先查歌词曲库（cv_lyric_context）的 VCPedia 原曲标识，命中则跳过 B站搜索直接按原曲 aid/BV 取流，避开翻唱误匹配；支持 av 号（自动转 BV，因 playurl 不接受 aid），并会自动在 PCDN 直链被 CDN 白名单拒绝时改选官方 backupUrl。 v1.7.7：卡片解析与链接解析作用域隔离——统一 QQ 连接器会把卡片 jumpUrl 以「链接: <jumpUrl>」拼进正文，关闭自动解析音乐卡片后这段链接不再被链接通道捡走（此前关了开关仍会发歌）；同时卡片正文的跳转链接被单独切出，歌手名不再被链接污染，未配置 NapCat HTTP API 也能按卡片链接精确解析。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/music-request"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=42.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_all_streams",
+              "api.call",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        },
+        {
           "version": "1.7.6",
           "tag": "v1.7.6",
           "commit": "34ce89e4817ee8515aa77a54aacc02b136e5af04",
