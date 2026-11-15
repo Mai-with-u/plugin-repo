@@ -66477,6 +66477,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.15",
+          "tag": "v0.9.15",
+          "commit": "3f5faca2a8e32cbd57e88c72f7ac6f27195e2dbe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T02:31:52Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.15",
+          "release_notes": "从 0.9.10 之后累积的一批改动：三个线上故障修掉、省额度的账算清楚、README 重写成流程图。\n\n## 三个故障\n\n- **没搜到却一张图都没有**（0.9.12）：Grok 只给到账号时整单被标成「搜到了」，配图那一步以为「命中了只给结论」直接跳过，结果 8 个节点全是文字。现在判据从「status 是不是 ok」换成「有没有结论」，没结论就按引擎各下一张图；视觉那条单独补一张；Grok 只给账号时把它核对过的那张挪过来配（原图不会冒充成 Grok 的配图）。同一单重跑，图数 0 → 5。\n- **lens 被外层超时砍掉**（0.9.14）：lens 内部要「上传图 + 检索」两步，各 50 秒，外层却只给 55 秒，哪步慢一点整条就没了，重传和 Serper 补枪都跑不到。现在引擎按步数领时间（`deadline_factor`，lens=2，默认 105 秒）；超时后的 key 冷却从 60 秒降到 15 秒——超时通常是网络抖动，没必要占住 key 一分钟，401/403 仍冷却 5 分钟。\n- **SauceNAO 一次 TLS 握手失败整条没结果**（0.9.15）：它原来只走代理一条线，不像 Yandex 有直连兜底。现在网络层失败自动换线路重试，两条都不通才报错，且报错写清哪条线路挂的；key 类错误（401/403/429）仍直接放弃、不换线也不冷却。\n\n## 省额度\n\n- **额度用尽的 key 按自然月记住**（0.9.13）：哪把 key 把月额度跑完就写进数据目录的 `key_quota.json`，下次轮询直接跳过，重启也不忘；到期（下月 1 号加一天缓冲，SerpAPI 按 UTC 重置）自动恢复，不用手动删文件。文件里只存 key 的 sha256 前 16 位。\n- 只有明确写着 run out / quota / exceeded 这类错误才记成「本月用尽」；key 填错、临时限流还是只冷却 5 分钟，免得一个笔误把 key 关一个月。\n\n## 文档\n\n- **「它是怎么搜的」和「功能」两章改成流程图**：主链路图画清 8 种结论（指纹命中、反查命中、Grok 原帖、视觉命中、账号线索、未找到·线索降级、没搜到、搜索失败）和三处分叉，另配一张「哪一步会产生模型调用」。\n- **每处 LLM 调用都标了大概 token**：视觉复核约 2.3k（线上用量表实测均值 2,613），原图读水印约 1.8k，水印定位、裁图读字、候选图读水印各约 0.6k，Grok 一次调用内含多轮工具检索约 5k~20k。指纹命中时一次都不调。\n- 「功能」那章的 29 条长条目并成 20 条，配置项名、上限数值全部保留。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.15",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.10",
           "tag": "v0.9.10",
           "commit": "aab094300579bada4ecb19495e6917ff2d1c6546",
