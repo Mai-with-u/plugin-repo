@@ -36457,6 +36457,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "1.2.0",
+          "commit": "5d8e56ce5b4a95b11e7d1f1541299a0bac2a1a7e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T05:45:46Z",
+          "release_url": "https://github.com/Alcpare/maibot_identity_plugin/releases/tag/1.2.0",
+          "release_notes": "## v1.2.0 ·\r\n\r\n去掉测试版标记。核心是**AI 画像**：让她知道自己长什么样。\r\n\r\n### 🆕 AI 画像\r\n\r\n- **WebUI 上传图片**：自动调用视觉模型生成一句外形描述（发色瞳色、服装、姿态），也可以手写补充，两者拼接\r\n- **QQ 命令**：`/image` 查看、`/image add 描述` 追加、`/image clear` 清空\r\n- **注入位置**：身份之后紧跟一行「你长这样：…」，最多 2 条、每条 80 字\r\n- **缩略图预览**：160px JPEG（约 1.4 KB/张），远低于宿主 64 KB 参数上限\r\n\r\n### 🎨 界面\r\n\r\n- **扇形图按人分块**：每块 = 一个人的（聊天次数 + 注入次数），排行榜按总量排序\r\n- **排行榜**：显示名次、身份、用户 ID，与扇形颜色一一对应\r\n- **去掉内部数据展示**：不再显示「聊天 N + 注入 M」，悬停只给百分比\r\n- **统计卡**：「名单外的人」换成「运行时间」，每秒刷新；移除顶栏运行时药丸\r\n- **文案**：「今日」→「今日活跃人数」，「身份档位」→「身份档」\r\n\r\n### 🐛 修复\r\n\r\n- **跨平台 ID 被清空**：名单解析和保存时用正则删掉所有非数字字符，Beeper 这类平台 ID 被清成空串，加进名单后永远匹配不上。现在只做全角转半角 + 去首尾空白，不删除任何字符\r\n- **删除按钮点击无反应**：宿主 sandbox 无 `allow-modals`，`window.confirm()` 恒返回 `false`，改为页面内确认框\r\n- **WebUI 保存会清空画像**：保存时未带 `portraits` 字段，每次点保存都会覆盖掉已上传的画像\r\n- **页面加载失败会清空名单**：接口返回不完整时状态变空壳，随后自动保存写回空名单。现在校验数据完整性，并拒绝「原有名单非空却提交空名单」的保存\r\n- **长数字导致注入静默失效**：画像描述含长数字（时钟、门牌）会触发脱敏自检整条拒绝，改为就地打码\r\n- **能力声明缺失**：`capabilities` 原为空数组，宿主不签发令牌，命令执行成功但回复被拒绝\r\n\r\n### 📋 多平台支持\r\n\r\n用户 ID **不要求纯数字**。QQ / NapCat 的 ID 是数字，Beeper 这类桥接平台给的是\r\n`@I-9NcLz...:local-facebook.localhost` 这样的字符串，现在能正常加入名单并匹配。\r\n\r\n用户 ID **不要求纯数字**。QQ / NapCat 的 ID 是数字，Beeper 这类桥接平台给的是\n`@I-9NcLz...:local-facebook.localhost` 这样的字符串，现在能正常加入名单并匹配。\n\n同一个 ID 在多个平台都有人用时，可以用 **`platform:id`** 形式加平台前缀精确区分：\n\n```toml\nroster = [\n  { user_id = \"napcat:123456\", label = \"主人\", care_level = 4 },   # 只匹配 napcat\n  { user_id = \"beeper:123456\", label = \"朋友\", care_level = 2 },   # 只匹配 beeper\n  { user_id = \"789\",           label = \"群友\", care_level = 3 },   # 任意平台都匹配\n]\n```\n\n不带前缀的写法继续有效，行为不变（匹配任意平台）。\n\n### 🔧 兼容性\r\n\r\n- MaiBot **1.3.19 ~ 1.4.99**（需要 `custom_pages` + `image_upload` 能力）\r\n- 插件 SDK **2.9.0 ~ 2.22.99**\r\n\r\n### 安装\r\n\r\n1. 放到 `plugins/` 目录，或从插件市场安装\r\n2. 重启或热加载\r\n3. 在 WebUI「身份认知」页面添加人、设定身份；想加画像就上传图片\r\n\r\n---\r\n\r\nMIT License\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.2.0",
+            "name": "身份认知",
+            "description": "让她知道当前对话者是谁（主人 / 朋友 / 群友），从而用对态度。支持自定义身份档位与独立提示词，还可以上传 AI 画像让她记住自己的样子。纯手动白名单，不调用 LLM、不写宿主数据库；QQ 号只用于内部识别，永不进入提示词。",
+            "author": {
+              "name": "Alcpare",
+              "url": "https://github.com/Alcpare"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Alcpare/maibot_identity_plugin",
+              "homepage": "https://github.com/Alcpare/maibot_identity_plugin",
+              "issues": "https://github.com/Alcpare/maibot_identity_plugin/issues"
+            },
+            "changelog": "README.md",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.9.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "webui.claim_upload",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "Alcpare.identity"
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "1.1.0",
           "commit": "34f43845617968e0198fee8424287d23d755e796",
