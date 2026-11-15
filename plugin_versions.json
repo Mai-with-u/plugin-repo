@@ -20934,6 +20934,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.11",
+          "tag": "v2.0.11",
+          "commit": "df165330b9ae7edddafee5c590221c3f432c0e10",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T05:34:38Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/releases/tag/v2.0.11",
+          "release_notes": "## v2.0.11\n\n### 新功能\n\n- **接入中国法定节假日与调休日历**。官方牌价的高峰时段写明「不含中国法定节假日」，此前只按星期几判断：春节、国庆这类长假的白天会被按高峰价计（贵一倍），调休补班的周末又会被当成空闲价（少算）。现在按年拉一份放假日历，节假日全天走空闲价，补班的周末走高峰价。\n\n### 实现细节\n\n- 数据源主用 `api.apihubs.cn`（全年每日 workday 标记，含调休），失败退回 `date.nager.at`（只有节日当天、无调休）。\n- 日历按年在数据目录缓存为 `holidays.json`；主源 7 天刷新一次，兜底源只缓存 1 天以便隔天重试主源。\n- 主源失败后隔 3 秒重试一次，再退备用源；两者都取不到时自动退回纯星期判断，绝不阻塞计费。\n- 新增配置项：`[pricing].holiday_aware`（默认 `true`）、`holiday_source`、`holiday_fallback_source`。\n\n### 验证\n\n- 2026-02-17（春节，周二）判定为空闲档；2026-02-14（调休补班，周六）判定为高峰档；普通周一仍为高峰、普通周六仍为空闲。\n- 服务器实机读取缓存后，春节 / 补班 / 普通工作日三种日期均返回预期状态。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "fulawa.maibot-expenses-summary-plus",
+            "name": "麦麦财务总结优化",
+            "version": "2.0.11",
+            "description": "统计当天模型调用次数和花费，支持按量/订阅/混合三种计费口径（续费日周期、自动汇率），以默认或麦晨风模式生成转发消息财报。v2.0 起改为定时抓取官方价格页、按缓存命中/未命中/输出三分与峰谷时段计价，支持超阈值挂起与管理员确认，并可用真实牌价重建账本。v2.0.2 起比价前先按币种归一化，避免 USD/CNY 混比造成误报。v2.0.8 让 /价格刷新 成功后也发一张价目表卡片。v2.0.10 修复价带错配导致的变更卡自相矛盾，并在卡片上标注供应商。v2.0.11 接入中国法定节假日与调休日历，峰谷时段判定不再误算节假日和补班日。",
+            "author": {
+              "name": "fulawa",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "homepage": "https://github.com/ji-or-ji/maibot-expenses-summary-plus",
+              "documentation": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-expenses-summary-plus/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.2.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.8.99"
+            },
+            "dependencies": [],
+            "plugin_type": "utility",
+            "capabilities": [
+              "send.forward",
+              "send.text",
+              "send.image",
+              "chat",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "render.html2png",
+              "llm.generate",
+              "statistics.local.model_trend",
+              "statistics.local.message_trend"
+            ],
+            "display": {
+              "icon": {
+                "type": "emoji",
+                "value": "💸"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "2.0.8",
           "tag": "v2.0.8",
           "commit": "9406dcf1e08d43f7bc20915e344cfccdb04951ca",
