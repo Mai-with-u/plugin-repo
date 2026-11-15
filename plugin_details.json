@@ -11024,24 +11024,27 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.schedule-assistant",
-      "version": "1.3.0",
+      "version": "2.0.0",
       "name": "日程提醒助手",
-      "description": "贴心日程管家，支持早安播报、习惯提醒、LLM 智能日程管理、Apple 日历双向同步、Notion 待办同步",
+      "description": "贴心日程管家：早安播报、习惯提醒、日程管理与提醒，全部推送交给 Maisaka 主动发起",
       "author": {
         "name": "OMSociety",
         "url": "https://github.com/OMSociety"
       },
       "license": "AGPL-3.0",
       "urls": {
-        "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant"
+        "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+        "homepage": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+        "documentation": "https://github.com/OMSociety/maibot_plugin_schedule_assistant#readme",
+        "issues": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.3.99"
+        "min_version": "1.4.5",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
+        "min_version": "2.23.0",
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {
@@ -11069,13 +11072,8 @@
         }
       },
       "capabilities": [
-        "send.text",
-        "send.custom",
         "chat.get_stream_by_user_id",
-        "maisaka.proactive.trigger",
-        "message.get_recent",
-        "llm.generate",
-        "config.get"
+        "maisaka.proactive.trigger"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -12158,9 +12156,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "1.4.8",
+      "version": "1.5.0",
       "name": "更好的消息后处理",
-      "description": "出站消息增强：宿主关闭「回复后处理总开关」/「启用错别字」且丰富回复未开启（新版宿主已无该功能）时，以与 MaiBot 一致的原逻辑接管错别字注入与分段，并按宿主分段结果每段一条消息发送（首段走宿主原生链路，其余由插件补发并模拟打字）；错字纠正方式（直接发送 / 引用纠正 / 撤回重发 / 不纠正，可延迟到最后）恒由权重池决定，@昵称不会被错字污染、也不会重复 @，错字黑名单可护住人名与专有名词；宿主「启用引用回复」关闭时按权重抽取直接/引用/@/引用＋@回复方式（群聊与私聊权重、「同一消息只引用一次」各自独立，私聊恒不 @）；planner 回复未带表情包时按概率补发；群友连续发表情包时按情绪跟风；支持对 bot 纯文本做词替换/过滤或整条替换/过滤（r:/c: 新格式，c 无替换文本时整条不发送）；维护表情包准确含义库并把含义注入 replyer 上下文；replyer 一条正文都没生成时可按开关补一条兜底消息（默认关闭，避免「已读不回」），兜底文本与自称统一在「回复兜底」板块配置；私聊里默认不把「撤回重发」放进抽签池（私聊撤回会被适配器渲染成「用户撤回」而误导 bot），压根不会抽到撤回，群聊不受影响；/bpp 命令用合并转发发送模块状态一图流（渲染失败退回文字），/bpp fallback 引用消息可实测自定义异常兜底提示词（支持 {bot_name}/{user_name} 占位，留空 = 宿主自带）；1.2.0（阶段 3 合并自 cateye_duplicate_reply_guard 与 cateye_mai_cross-chat_recall）：新增「自回复拦截」「重复回复拦截」（默认关闭：生成前从 output_items 剔除违规 reply 调用 + 发送前兜底 abort，「已回复」只在送达回执后登记；拦截行为可写插件数据目录下的独立 JSONL 日志）、「跨聊私聊回忆」（默认关闭：扫描群友私聊→LLM 总结→注入群聊 planner/replyer 上下文，并按粘性时长保留工具主动召回结果）、LLM 工具 recall_private_chat（仅群聊可用，按昵称或 QQ 号召回私聊概括）；/ccr debug test、/ccr clean 两个操作员命令随模块迁入；旧插件持久化数据在加载时一次性 copy 迁移（不删源）；1.3.0：自回复拦截新增私聊豁免上限（默认 2 次，0 = 无上限）与群聊豁免开关（默认关闭、次数默认 1），兜底文本并入「回复兜底」板块，并调整配置板块顺序；1.3.1：多段发送时 reply 工具结果改为记录完整回复全文（实际发送仍为第 1 段 + 插件补发），避免 planner 收尾轮误以为消息未发完而重复 reply；平台支持明确为 QQ NapCat / SnowLuma；1.3.2：planner 请求前按 items 中实际缺失的分段补齐上下文（只补缺失，不重复已同步段）；1.3.3：新增分段后回车最终处理（保持原样/取消回车/额外拆分一段，额外拆分无视条数上限，超限不分段时不处理），并修复撤回重发头部消息丢失引用与 @ 的问题；1.3.4：宿主新版已移除「丰富回复」开关，读取不到时视为丰富回复能力未开启（两个接管照常生效，只有明确读到 true 才要求关闭），/bpp 状态面板改为纸底墨字单红强调的编辑风版式（左侧事实轨 + 竖分隔线 + 右侧编号分节，替代原圆角卡片）；1.4.0：新增出站表情文本清洗（默认开启：回复正文生成后、引用/@ 与分段之前，删除中括号内含「表情」的整段文本并清理粘连标点）与每聊天流独立的 @ 冷却（默认开启、15 秒：首次出站扫描上下文里 bot 的 @ 初始化，冷却内清洗宿主/其它插件的 at 组件并阻止插件自己抽 @）；1.4.1：兼容新版宿主已移除「启用引用回复」（chat.reply_style.enable_reply_quote 读不到 = 视为关闭，引用回复接管照常生效；/bpp 概览新增「宿主引用回复」栏），/bpp 一图流渲染偶发失败（宿主 Playwright 驱动冷启动）改为隔 1.2 秒重试一次、仍失败时在文字版末行写明原因；1.4.2：新增「独占 @」（[plugin] strip_external_at，默认开启）——本轮回复的发送在 before_send 入口无条件剥离宿主 attach_at/其它插件注入的 at 组件，由插件按权重决定唯一的一个 @，并新增 LATE 兜底清掉后序插件新注入的 at（只放行插件登记的目标），消除「真实 at + 正文手写假 @」重叠；修复多段发送首段截回把宿主 attach_at 的 [at, 空格, 正文] 空格组件当正文替换掉导致 at 与正文粘连的问题（截回现在保留紧跟 at 的空白段）；1.4.4：分段后回车处理默认改为「额外拆分一段」（只拆第一处，其余回车压成空格，避免同一条消息内出现换行）；1.4.5：新增「replyer后处理」板块（[replyer_post_process]，紧跟 [plugin]）——原 [plugin] 里除总开关与配置版本外的五个出站开关（丰富回复门控/过滤假 @/出站清洗表情文本/@ 后补空格/独占 @）整体搬入并登记配置迁移（升级自动搬、改过的值不丢）；新增「替换宿主 replyer 尾部提示词」（默认关闭）：planner 的 reply 工具传 reply_style=简短表达时宿主追加的短回复提示（1.3.16「请简短的回复，允许句子残缺，奇怪表达，倒装，省略…」/1.4.0 起「请简短的回复，符合口语习惯，1-2句短句即可…」）在 replyer 模型请求前 Hook 里逐字替换为配置文案（默认「像平常在群里接一句话。可以简短、省略，但保持通顺；有话再补，意思到了就停。」），只替换这一句，正常回复/长回复的尾部提示词不受影响；1.4.6：文本替换规则改为每行一条的 r:/c: 格式——r:词/替换词 词替换、r:词 过滤该词；c:内容/替换文本 整条替换、c:内容 整条过滤不发送（旧格式仍兼容）；1.4.7：文本规则整条过滤后向 planner 注入 <system-reminder> 拦截通知（最新消息之后、尾部系统提示词之前），说明这是插件预期拦截、不要重复调用 reply 重试，修复宿主 1.3.x 拿不到 abort_message 导致的 reply 重试循环；1.4.8：新增与「属于麦麦的生活」（life）的跨插件认领桥——进程内 TTL 认领表（默认 10 秒、单轮、同流覆盖）与 @API bpp_life_bridge（claim/release/status，full_text 预留恒拒绝）；life 在每轮回复后处理前登记认领，只有本插件后处理接管实际生效时才消费认领并模拟打字（typing_owner 恒为 bpp），life 据此让位、避免双重等待；无认领时后处理路径逐字不变（fail-open），life 未安装/未开启/超时/被拒绝时照常走自身打字链；新增 [life_bridge] 4 键配置板块（默认无认领零行为变化）；main 分支继续维护 MaiBot <=1.3.99 兼容线；MaiBot 1.4.0+ 请使用 host-1.4.0 分支（1.4.3 起移除已从宿主删除的 emoji.maisaka.before_select Hook）",
+      "description": "增强 QQ 消息回复：支持分段与打字节奏、错字注入和纠正、引用与 @ 权重、文本替换和过滤、表情包互动，以及自回复与重复回复拦截、跨聊私聊回忆。表情包含义库使用视觉模型识别内容与梗，GIF 通过抽帧和时序拼图理解动作变化。适用于 MaiBot 1.2.3–1.3.x，含义补充到 planner 与 replyer 请求上下文。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -13633,7 +13631,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.scp-article",
-      "version": "0.3.4",
+      "version": "0.3.5",
       "name": "SCP 条目查询",
       "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
       "author": {
@@ -13648,12 +13646,12 @@
         "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.3.19",
+        "max_version": "1.3.99"
       },
       "sdk": {
-        "min_version": "2.5.0",
-        "max_version": "2.99.99"
+        "min_version": "2.20.0",
+        "max_version": "2.20.99"
       },
       "dependencies": [
         {
@@ -14177,7 +14175,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -14196,7 +14194,7 @@
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.22.99"
+        "max_version": "2.23.99"
       },
       "plugin_type": "data",
       "dependencies": [
@@ -20655,7 +20653,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.maimai-feed-bot",
-      "version": "1.7.0",
+      "version": "1.9.1",
       "name": "麦麦要吃那个！",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
       "author": {
