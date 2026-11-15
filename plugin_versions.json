@@ -33351,6 +33351,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.5",
+          "tag": "v0.3.5",
+          "commit": "4f64a55cc511798de92dfa00b6d257150ae8270f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T15:47:56Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_scp_article/releases/tag/v0.3.5",
+          "release_notes": "修复帮助、编号解析与聊天误触发，并改善分页和发送回退。\n\n- `/scp`、`/scp help` 以单节点合并转发发送完整帮助，失败时回退文本。\n- `1`、`96` 自动补零为 `001`、`096`，中站和带 SCP 前缀的编号同样适用。\n- 只接受消息开头的完整 `/scp` 单行命令；裸 `scp`、`/sc`、句中提及、多行引用和旧别名不再触发本插件。修复其他 bot 的闲聊回复被误作 SCP 搜索的问题。\n- 目录刷新统一为 `/scp refresh` 或 `/scp 刷新目录`，原 `/scp刷新目录` 停用。\n- 修复图片页码、后续分页丢失文字/英文模式、超大图片发送护栏及部分送达后的重复回退。\n- 修复非法页号、强制刷新失败误报成功、冷却为 0 不生效、相对重定向和畸形站点配置；PNG 解压在输出分配前限制体积。\n\n适用范围：MaiBot 1.3.19–1.3.99，maibot-plugin-sdk 2.20.0–2.20.99；验证基线为 1.3.19 + 2.20.0。更早宿主/SDK 不在此版验证范围内。\n\n升级会保留既有配置值与目录缓存，配置版本同步至 0.3.5。Manifest 能力清单无新增。\n\n验证：76 项离线回归检查、原安全检查、真实宿主 Manifest/加载/命令注册校验通过；使用官网 HTML 在真实宿主渲染器完成文本和图片管线验证，消息投递使用隔离接收端。官网即时抓取仍依赖部署环境的 DNS 与外网连通性。\n\nZIP 可用于 WebUI 离线安装，内含运行文件、官方页头兜底素材与许可声明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.scp-article",
+            "version": "0.3.5",
+            "name": "SCP 条目查询",
+            "description": "【非商业插件：SCP 基金会各分部维基的文本内容与官方页头素材依 CC BY-SA 3.0 授权（署名与修改说明见仓库 NOTICE.md），插件仅做只读抓取与即时展示，不缓存不转载正文；插件代码按 MIT 提供】按编号或关键字查询 SCP 基金会条目：/scp 查询国际站，/scp cn 查询中文分部。文章默认渲染为图片发送（内嵌对应分部官方页头 logo 与横幅底纹，抓取失败依次回退本机缓存与插件内置兜底资源，经宿主 render.html2png 渲染、send.image 发送，失败自动回退文本合并转发）；本地维护条目目录（编号+标题）实现关键字搜索与随机抽选，长文自动分页。仅提供 /scp 指令，不注册给 LLM 调用的工具。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_scp_article",
+              "homepage": "https://github.com/cateyemizuki/cateye_scp_article",
+              "documentation": "https://github.com/cateyemizuki/cateye_scp_article/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_scp_article/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.image",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "file-search",
+                "fallback": "package"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "0.3.4",
           "tag": "v0.3.4",
           "commit": "404159e68a6ce183c2f5ecc664f35102a2e52a1f",
