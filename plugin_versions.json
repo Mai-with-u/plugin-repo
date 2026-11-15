@@ -23668,6 +23668,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "bf747ee35c557c17e77223f454bbc11ba8e5edf4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T19:33:05Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v2.0.0",
+          "release_notes": "## [2.0.0] - 2026-11-16\n\n\n### 新增\n\n- 全托管推送：早安、洗澡、睡觉、喝水与日程提醒统一交给 Maisaka 的 `proactive.trigger` 处理，插件不再直接发送消息，也不再补发。\n- 基础设置新增 `timezone`（IANA 时区名，默认 `Asia/Shanghai`），调度、日程时间解释与 Apple 日历读写统一使用该时区；Apple 写入的 `TZID` 跟随配置，不再硬编码。\n- 五份 intent 模板：`prompt_morning`、`prompt_bath`、`prompt_sleep`、`prompt_water`、`prompt_schedule`；非空模板整段接管，插件不再追加约束。\n- Notion 待办三态：未配置不出现待办行，读取失败显示「获取失败」，成功但为空显示「暂无」。\n\n### 变更\n\n- 早安播报改为装配数据后交给 Maisaka 开口，不再由插件调用 LLM 直发；移除称呼与「昨夜入睡」数据。\n- 推送统一为纯文本，移除 Markdown 渲染与 `qq_markdown` 降级路径。\n- 日程提醒触发成功即写防重标记，不再依赖补发结果。\n- 时间解析修正：「晚上12点」解释为次日 00:00，「中午12点」保持 12:00。\n- 插件清单基线升级：宿主 `1.4.5–1.4.99`、SDK `2.23.0–2.23.99`；capabilities 收敛为 `chat.get_stream_by_user_id`、`maisaka.proactive.trigger`。\n- 破坏性变更：日程工具改用 ISO 8601 结构化时间（`start` / `end` / `all_day`），移除自然语言解析器；拒绝过去时间与 2100 年之后的时间。\n- 存储键与 `user_ids` 配置格式统一为 `platform:裸ID`，启动时把旧的裸 ID 存储键迁移到新键并删除旧键。\n\n### 修复\n\n- 日程扫描与 `list_schedules` 不再混用 aware / 朴素时间，提醒与查询恢复。\n- 定时任务使用配置时区，并设置 300 秒 misfire 宽限；查不到聊天流或宿主未接受任务时记录 warning。\n- Apple 同步不再删除同步窗口之外的本地条目，空事件列表也不触发删除。\n- 删除日程先删 Apple 事件，失败时保留本地条目并报错。\n- CalDAV / WebCal 请求不再跟随重定向，3xx 直接失败。\n- 只配置 `webcal_urls` 也能启用 Apple 日历同步。\n- 未配置 Notion 时不再输出空的「待办：」段。\n\n### 移除\n\n- 移除 `enable_schedule_reminder_fallback` 与插件直发补发链路。\n- 移除 `message_render.markdown_enabled`、`persona_hint`、`user_nickname` 配置。\n- 移除 habits / water_last 存储键、`_users` 已知用户兜底、`temp_override` / `recur` / `snoozed_until` 字段与清理任务。\n\n### Added\n\n- Fully delegated delivery: morning briefing, bath, sleep, water and schedule reminders are all handed to Maisaka through `proactive.trigger`; the plugin no longer sends messages directly or re-sends them.\n- New `timezone` setting (IANA name, default `Asia/Shanghai`) shared by scheduling, schedule-time interpretation and Apple CalDAV reads/writes; the Apple `TZID` now follows the configured zone instead of the hard-coded value.\n- Five intent templates: `prompt_morning`, `prompt_bath`, `prompt_sleep`, `prompt_water`, `prompt_schedule`; a non-empty template takes over completely with no plugin-appended constraints.\n- Notion todos now distinguish three states: not configured (no todo line), read failure (`获取失败`), and empty (`暂无`).\n\n### Changed\n\n- The morning briefing assembles data and hands it to Maisaka instead of calling an LLM and sending the result itself; the greeting name and late-night data are gone.\n- All pushes are plain text; Markdown rendering and the `qq_markdown` fallback path were removed.\n- A schedule reminder marks the item as triggered once the proactive request is accepted, independent of any fallback result.\n- Time parsing fix: `晚上12点` now means the next day at 00:00, while `中午12点` stays at 12:00.\n- Manifest baseline raised to host `1.4.5–1.4.99` and SDK `2.23.0–2.23.99`; capabilities reduced to `chat.get_stream_by_user_id` and `maisaka.proactive.trigger`.\n- Breaking change: schedule tools now take ISO 8601 `start` / `end` / `all_day` instead of natural-language text; past times and years beyond 2100 are rejected.\n- Storage keys and the `user_ids` config format are now `platform:bare-id`; legacy bare-id storage keys are migrated to the new key on startup and removed.\n\n### Fixed\n\n- Schedule scanning and `list_schedules` no longer mix aware and naive datetimes.\n- Cron jobs use the configured timezone and a 300-second misfire grace; missing streams and rejected proactive tasks are logged as warnings.\n- Apple sync never deletes entries outside the sync window, and an empty event list never triggers deletion.\n- Deleting a schedule removes the Apple event first; a failed delete keeps the local entry and reports the error.\n- CalDAV / WebCal requests no longer follow redirects; 3xx responses fail.\n- WebCal-only configuration can enable Apple calendar sync.\n- No empty \"待办：\" section is rendered when Notion is not configured.\n\n### Removed\n\n- Removed `enable_schedule_reminder_fallback` and the plugin-side direct-send fallback path.\n- Removed the `message_render.markdown_enabled`, `persona_hint` and `user_nickname` settings.\n- Removed the habits / water_last storage keys, the `_users` known-user fallback, the `temp_override` / `recur` / `snoozed_until` fields, and the expired-override cleanup job.\n\n完整记录见 [CHANGELOG.md](https://github.com/OMSociety/maibot_plugin_schedule_assistant/blob/main/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "2.0.0",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家：早安播报、习惯提醒、日程管理与提醒，全部推送交给 Maisaka 主动发起",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+              "homepage": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+              "documentation": "https://github.com/OMSociety/maibot_plugin_schedule_assistant#readme",
+              "issues": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "4250fb9882321ab9dc02a6b41c6b97a8425ec946",
