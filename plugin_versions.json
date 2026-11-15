@@ -25398,6 +25398,92 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "fc7b15b5da4e041a626ecbc1c8ea72ecfbdd17c5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T17:38:52Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_better_post-processing/releases/tag/v1.5.0",
+          "release_notes": "适用于 **MaiBot 1.2.3–1.3.x**（最高 1.3.99），对应 `main` 兼容线。\n\n## 更新内容\n\n- **GIF 时序识别**：GIF 与其它动图按播放时长抽取最多 9 帧，包含首尾帧，拼图标注帧序和时间后交给视觉模型，识别动作、表情与文字的变化。抽帧在线程中执行，失败时不再退回首帧识别。\n- **旧 GIF 自动重识别**：从 1.5.0 以下版本升级时，含义库中的全部历史 GIF 进入持久化队列；空库或没有 GIF 时直接跳过。按现有批次和重试配置处理，失败保留旧含义，重启继续未完成项，成功项不重复识别。\n- **精简插件简介**：manifest 只保留用途与宿主兼容范围，功能更新记录统一放在 CHANGELOG。\n\n## 升级说明\n\n保留已有配置，无需清空含义库。升级队列沿用 `worker_interval_seconds`、`batch_size` 和重试上限，后台分批更新。旧宿主兼容线继续向 planner/replyer 请求上下文补充含义。\n\n本版本也包含此前兼容线的文本规则、过滤后避免重复回复、replyer 后处理配置及 life 联动维护更新，完整记录见 [CHANGELOG](https://github.com/cateyemizuki/cateye_better_post-processing/blob/v1.5.0/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.better-post-processing",
+            "version": "1.5.0",
+            "name": "更好的消息后处理",
+            "description": "增强 QQ 消息回复：支持分段与打字节奏、错字注入和纠正、引用与 @ 权重、文本替换和过滤、表情包互动，以及自回复与重复回复拦截、跨聊私聊回忆。表情包含义库使用视觉模型识别内容与梗，GIF 通过抽帧和时序拼图理解动作变化。适用于 MaiBot 1.2.3–1.3.x，含义补充到 planner 与 replyer 请求上下文。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_better_post-processing"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jieba",
+                "version_spec": ">=0.42.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pypinyin",
+                "version_spec": ">=0.54.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "emoji.get_by_description",
+              "emoji.get_random",
+              "emoji.get_count",
+              "database.query",
+              "llm.generate",
+              "send.emoji",
+              "send.text",
+              "send.image",
+              "send.forward",
+              "render.html2png",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.png",
+                "fallback": "package",
+                "background": "#F2F1ED"
+              }
+            }
+          }
+        },
+        {
           "version": "1.4.5",
           "tag": "v1.4.5",
           "commit": "18652c37dba6fc0340a393daaf636faa901fb3a3",
