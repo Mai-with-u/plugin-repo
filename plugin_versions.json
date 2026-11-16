@@ -39717,6 +39717,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.1",
+          "tag": "v1.5.1",
+          "commit": "700aa346f22165ef583c29bb5b51c94d30ee55cd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T15:08:10Z",
+          "release_url": "https://github.com/orge-8/file-reader/releases/tag/v1.5.1",
+          "release_notes": "## v1.5.1（含 v1.5.0 音频文件理解）\n\n### 新增：音频文件理解（v1.5.0）\n- mp3/wav/flac/ogg/m4a/aac 上传后经 Omni 模型（默认阿里云百炼 qwen3-omni-flash，OpenAI 兼容接口）**听一次 → 理解文本入库**，追问走既有向量+BM25 混合检索，不重发音频\n- 产出按内容自适应：语音→完整转写+要点；音乐→赏析（风格/编曲/人声/结构/歌词意象）\n- fail-closed 预检：时长 ≤20 分钟、原始 ≤7MB（base64 后 <10MB 接口硬上限，不可配置放宽）、时长读不出一律拒绝，**不截断不分段**\n- silk/slk/amr/wma（QQ 语音等）明确拒绝并提示转格式；未配 API Key 给友好开通指引\n- 新增 [audio] 配置节（8 字段）；依赖增 mutagen>=1.47\n\n### 修复：Planner 公告补音频语义（v1.5.1）\n- 真机日志发现：公告只说「已读入 mp3（N 字）」时，planner 不知道音频已被听过，纠结「mp3 哪来文本/我没耳朵」，首轮回复不敢基于内容作答\n- 现在音频文件单独公告：明示「已由音频理解模型完整听过并转成理解文本」，可据此给听感评价；文档公告口径不变\n\n### 兼容与验证\n- host_application: 1.2.0 ~ **1.4.5**；sdk: 2.5.1 ~ **2.23.0**（官方最新实测后放宽）\n- 官方 MaiBot v1.4.5 源码 PluginLoader 严格区间加载 PASS（8 组件）；SDK 2.23.0 隔离环境 242 passed；devkit 门禁 PASS 3 / FAIL 0\n- 真机端到端闭环验证通过：预检 → Omni 赏析入库 → search_file/replyer 双通道供给 → 基于内容的具体听感回复\n\n完整细节见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.file-reader",
+            "version": "1.5.1",
+            "name": "文件读取（File Reader）",
+            "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本/音频等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。音频文件（mp3/wav/flac/ogg/m4a/aac）经 Omni 模型听一次产出文本入库，追问免费；需配置 [audio] 接口密钥，超限直接拒绝不截断。支持追问改写、解析失败原因回传模型、文件滑动续期。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/file-reader"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.23.0"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "pdfminer.six",
+                "version_spec": ">=20221105"
+              },
+              {
+                "type": "python_package",
+                "name": "pypdfium2",
+                "version_spec": ">=4.30"
+              },
+              {
+                "type": "python_package",
+                "name": "mutagen",
+                "version_spec": ">=1.47"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "llm.embed",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "e4d2daf516ac2761beb4a30f667bc80edb9dc638",
