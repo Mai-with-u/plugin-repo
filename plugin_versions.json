@@ -23668,6 +23668,79 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.1",
+          "tag": "v2.0.1",
+          "commit": "c4dfae202fcdfaf98ef3eff081a1dcd75b41b031",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T07:31:53Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/releases/tag/v2.0.1",
+          "release_notes": "## [2.0.1] - 2026-11-16\n\n### 修复\n\n- 日程扫描、早安议程与 Apple 同步统一按 `platform:裸ID` 读取存储：工具创建的日程会进入提醒，Apple 导入的日程能在日程列表中查看与删除。\n- 日程提醒的到期判定先把当前时间归一到朴素本地时间，带时区的当前时间不再让扫描抛异常。\n- 日程工具改用 `apple_calendar` 执行 Apple 写入、更新与删除；修改日程时更新同一个 Apple 事件，更新失败清空 `apple_uid`，删除失败保留本地日程。\n\n### 变更\n\n- 启动迁移会把旧裸 ID 键与完整键下的日程合并，按条目 ID 与 Apple UID 去重后删除旧键。\n\n### 移除\n\n- 移除工具侧未使用的 `_cancel_pending` 辅助函数。\n\n### Fixed\n\n- Schedule scanning, the morning agenda and Apple sync now read storage by the full `platform:bare-id` key: schedules created through tools reach reminders, and Apple-imported events can be listed and deleted.\n- Due-time evaluation normalizes the current time to a naive local datetime first, so an aware current time no longer makes the scan raise.\n- Schedule tools use `apple_calendar` for Apple create, update and delete; editing a schedule updates the same Apple event, a failed update clears `apple_uid`, and a failed delete keeps the local schedule.\n\n### Changed\n\n- Startup migration merges schedules under the legacy bare-id key and the full key, de-duplicating by item ID and Apple UID before removing the old key.\n\n### Removed\n\n- Removed the unused `_cancel_pending` helper from the tools module.\n\n完整记录见 [CHANGELOG.md](https://github.com/OMSociety/maibot_plugin_schedule_assistant/blob/main/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.schedule-assistant",
+            "version": "2.0.1",
+            "name": "日程提醒助手",
+            "description": "贴心日程管家：早安播报、习惯提醒、日程管理与提醒，全部推送交给 Maisaka 主动发起",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+              "homepage": "https://github.com/OMSociety/maibot_plugin_schedule_assistant",
+              "documentation": "https://github.com/OMSociety/maibot_plugin_schedule_assistant#readme",
+              "issues": "https://github.com/OMSociety/maibot_plugin_schedule_assistant/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "apscheduler",
+                "version_spec": ">=3.10.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "python-dateutil",
+                "version_spec": ">=2.8.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [
+              "chat.get_stream_by_user_id",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "2.0.0",
           "tag": "v2.0.0",
           "commit": "bf747ee35c557c17e77223f454bbc11ba8e5edf4",
