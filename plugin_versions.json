@@ -1551,6 +1551,85 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.16.1",
+          "tag": "v1.16.1",
+          "commit": "d857b7afa2ebe16163f31265658ce25e0c88a881",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T02:57:34Z",
+          "release_url": "https://github.com/namchengwuqiu/gemini_drawer/releases/tag/v1.16.1",
+          "release_notes": "### 修复\n\n- **旧配置迁移**：在宿主配置归一化时保存旧 TOML 的渠道、Key 和提示词，成功后才允许清理旧字段；先校验普通配置，写入失败完整抛出错误并保留原配置，部分保存可重复迁移。迁移前备份原始 TOML，已有新渠道、提示词及 Key 状态优先。\n- **实例数据隔离**：持久化数据改用 `ctx.paths.data_dir`；首次绑定复制当前 Bot 的旧目录，并保留词库、视频防重和主动绘图额度。新位置已有文件不覆盖，旧文件保留为备份；迁移标记防止重复导入旧数据。模块导入不再读写公共数据目录。\n- **兼容声明**：需要包含配置迁移顺序修复的 MaiBot 1.4.4–1.4.5，最低 SDK 2.23.0。视频共享目录和自拍底图路径继续使用原配置。\n\n### 验证\n\n- 插件全量 **851 项测试通过**，覆盖旧字段迁移、已有设置优先、写入失败重试、配置错误保留、保护记录迁移和多 Bot 隔离。修改的 Python 文件通过 Ruff。\n- MaiBot 1.4.5 / SDK 2.23.0 的真实 Runner 已验证先持久化再裁剪、版本重建、原配置备份和重复加载；测试使用临时数据及模拟生成接口。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "namchengwuqiu.gemini_drawer",
+            "version": "1.16.1",
+            "name": "Gemini 绘图",
+            "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
+            "author": {
+              "name": "sakura桜花",
+              "url": "https://github.com/namchengwuqiu"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/namchengwuqiu/gemini_drawer",
+              "homepage": "https://github.com/namchengwuqiu/gemini_drawer",
+              "documentation": "https://github.com/namchengwuqiu/gemini_drawer#readme",
+              "issues": "https://github.com/namchengwuqiu/gemini_drawer/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.26.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "toml",
+                "version_spec": ">=0.10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "api.call",
+              "llm.generate",
+              "llm.get_available_models",
+              "message.get_by_time_in_chat",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image",
+                "background": "#071b3d"
+              }
+            },
+            "plugin_type": "creative"
+          }
+        },
+        {
           "version": "1.16.0",
           "tag": "v1.16.0",
           "commit": "fff163be3de85fe9398464ed639b48388ef19608",
