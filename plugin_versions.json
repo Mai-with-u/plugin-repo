@@ -67714,6 +67714,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "0.2.0",
+          "commit": "0a51a8f50c6c5bea0516db7312d04909386053b5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T05:03:51Z",
+          "release_url": "https://github.com/HH233333/vertexai-maibot-connect/releases/tag/0.2.0",
+          "release_notes": "###  新特性与优化\r\n\r\n1. **分代智能思考控制与 `enable_thinking` 支持**\r\n   - **更新内容**：支持按 Gemini 模型世代（2.5 / 3 / 4）自动适配思考参数，并接入 `enable_thinking` 开关。当 `enable_thinking = true` 且未指定具体级别/预算时，自动选取当前模型可用的最低思考配置（Gemini 4 / 3 Pro -> `LOW`，Gemini 3 Flash -> `MINIMAL`，Gemini 2.5 -> `128`）；关闭时自动对齐各世代最低/关闭策略。\r\n   - **解决问题**：解决了此前配置 `enable_thinking` 无效、以及手动跨代配置易触发接口报错的问题。\r\n\r\n2. **配置冲突兜底与 `WARNING` 级日志告警**\r\n   - **更新内容**：增加思考参数的互斥检查与世代边界校验，遇到异常配置时自动安全纠偏并在日志输出 `WARNING` 告警。\r\n   - **解决问题**：彻底防止以下会触发 Google API `HTTP 400` 报错的误配：\r\n     - `thinking_level` 与 `thinking_budget` 双传冲突；\r\n     - Gemini 4 系列或 Gemini 3 Pro 传入不受支持的 `MINIMAL` 级别；\r\n     - Gemini 2.5 Pro 尝试设置 `thinking_budget = 0` 或小于 `128`；\r\n     - 跨世代参数混用（自动按量级互转）或给 Gemini 1.x 传入思考配置。\r\n\r\n3. **完善文档说明**\r\n   - **更新内容**：在 `README.md` 中补充了 Gemini 2.5 / 3 / 4 思考参数的设置注意事项、兼容表格及 TOML 示例。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.HH233.vertexai-maibot-connect",
+            "version": "0.2.0",
+            "name": "Google Vertex AI Connect",
+            "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
+            "author": {
+              "name": "HH233",
+              "url": "https://github.com/HH233333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HH233333/vertexai-maibot-connect"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-auth",
+                "version_spec": ">=2.0.0"
+              }
+            ],
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cloud"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "llm_providers": [
+              {
+                "client_type": "vertex_connect",
+                "name": "Vertex AI Connect",
+                "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
+                "version": "0.2.0"
+              }
+            ]
+          }
+        },
+        {
           "version": "0.1.1",
           "tag": "0.1.1",
           "commit": "802c271a2c43050aa96d7dae8fcc60d2161ac501",
