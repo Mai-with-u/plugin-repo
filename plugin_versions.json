@@ -61536,6 +61536,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.0.0",
+          "tag": "v2.0.0",
+          "commit": "a85c4c63205ede315b23f697b0392a40f894e976",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T15:36:40Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v2.0.0",
+          "release_notes": "## 2.0.0 — 2026-11-16「身体联动版」\r\n\r\n跨插件联动系统 + WebUI 管理页的代际更新。\r\n\r\n### 跨插件联动核心\r\n\r\n- **麦麦身体**（[maibot-body-emulator](https://github.com/ShuangziG/maibot-body-emulator) v1.2.0+）：\r\n  映射道具的投喂**真的写进身体**——食物进胃、血糖升高、胃排空、酒精按固定速率代谢；\r\n  投喂回复注入吃后真实状态、`/饱食度` 追加身体摘要行、求投喂文案参考真实饥饿感。\r\n  `[linkage].body_enabled` 开关（默认关）。\r\n- **麦生活**（[octmicy/Mai_life](https://github.com/octmicy/Mai_life)）：投喂成功后经\r\n  `create_proactive_opportunity` 塞分享契机（可能引发私聊主动聊起），求投喂文案参考生活状态。\r\n  `[linkage].mai_life_enabled` 开关（默认关）。\r\n- **门卫（省道具模式）**：投喂前先问身体——睡着 / BAC 超标 / 胃满 / 份数为 0 → 整单礼貌拒绝\r\n  （**道具不消耗**）；通过则只消耗身体实际接受的份数，剩余留背包。身体不可用时降级纯游戏结算。\r\n  映射词身体认不出时不阻断投喂（按纯游戏结算并在日志提示管理员修映射）。\r\n- **克数记账**：映射可设「每份克数」，按食物基准克数换算比例——小克数 = 小份，不容易一次喂饱。\r\n  **组合映射（定食/套餐）的克数 = 整份总量，按食物数平均分配**。\r\n- **组合映射（定食）**：食物词支持逗号组合（如「米饭,猪肉,青菜」），一次投喂吃下整组食材。\r\n- 兼容性：所有联动调用失败一律静默降级；未开启 `[linkage]` 或未映射的道具行为与 1.6.x 完全一致。\r\n\r\n### 管理命令（群管理员·群内 / Bot 管理员·私聊）\r\n\r\n- `/投喂管理 映射 <道具名> [食物词] [meal|snack|drink] [每份克数]`——食物词留空返回身体词表候选\r\n  （模糊匹配含公共子串层）；支持逗号组合 = 定食。\r\n- `/投喂管理 解除映射 <道具名>` / `/投喂管理 映射列表`（✓/✗ 解析校验）。\r\n- 映射存 `shop_items.body_food/body_kind/body_grams` 新列（自动迁移）。\r\n\r\n### WebUI「投喂商店管理」页（侧边栏设置分组）\r\n\r\n- **🏪 投喂商店管理**：作用域切换（📋 全部 / 🌐 全局 / 🏠 各启用群，显示**群名**）、行内编辑\r\n  价格/饱食度/emoji、上下架；**✏️ 完整编辑悬浮卡片**可改全部字段（名称查重/描述/映射/类型/克数），\r\n  映射词清空保存 = 恢复普通道具——**普通 ↔ 联动自由切换**。\r\n- **❤️ 麦麦身体联动**：映射词/类型/克数行内编辑 + ✓✗ 解析校验；克数语义与推荐范围说明\r\n  （饮品 100–350 / 主食品 100–300 / 大餐 500–800 / 酒类 150–500，组合映射 = 整份总量）。\r\n- **📖 选词悬浮卡片**：可搜索、按词表分组（主食/菜品/饮品/酒类…）点选，**多选高亮 + 已选列表**，\r\n  组合自动逗号追加；词表 311 种食物 + 473 别名；点浮层外部自动关闭。\r\n- **➕ 新建道具**：作用域点选 + 全字段表单，上架 + 映射一步完成（校验白名单群）。\r\n- **⚙ 插件设置**：白名单 22 项配置分组可编辑（Bot 属性/签到/LLM/风格/商店/联动），\r\n  保存写 config.toml（写前 tomllib 校验，失败不落盘）由宿主热重载生效；越界值夹紧提示。\r\n- **适配**：三种 dashboard 风格 × 明暗全部走宿主 `--maibot-*` 变量；\r\n  页内兼容宿主桥的两种返回形态，桥未注入给出明确指引。\r\n\r\n### 商店展示\r\n\r\n- `/商店` 把带映射的道具自动归入「❤️ 身体食堂」分区（全局/群内各自保留），文本菜单与图片菜单同步；\r\n  映射道具带进身类型与克数标注。\r\n\r\n### 兼容性\r\n\r\n- manifest：`capabilities` 新增 `api.call`；`sdk.max_version` → 2.99.99（适配宿主 1.4.5 + SDK 2.23.0）。\r\n- 数据：`shop_items` 三新列自动迁移，旧库升级无感；未映射道具与联动关闭时行为同 1.6.x。\r\n- 修复：求投喂门卫文案与实际结算对齐；预检未识别映射不再误报「胃满」；映射行选词写错目标框。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "2.0.0",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.6.1",
           "tag": "v1.6.1",
           "commit": "bf96ce0f89e4a2d8067fbc990b6da766ae928630",
