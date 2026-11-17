@@ -69419,6 +69419,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "926f10835cbcc674a774fff847d83d5ea6d32ef0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T14:05:37Z",
+          "release_url": "https://github.com/met-tk/maibot-cmd-sandbox/releases/tag/v1.4.1",
+          "release_notes": "## maibot-cmd-sandbox v1.4.1\n\n### 更新内容\n- 新增本地矢量插件图标 `assets/icon.svg`（电脑显示器与终端命令行主题视觉设计，128x128 SVG）。\n- 在 `_manifest.json` 中配置 `display.icon` 节点指向 `assets/icon.svg`，并递增插件版本至 `1.4.1`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-cmd-sandbox",
+            "version": "1.4.1",
+            "name": "沙盒终端与全能系统控制 | Sandbox Terminal & Full System Control",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "terminal"
+              }
+            },
+            "description": "为麦麦提供多显示器桌面截图、文件安全读写与沙盒约束、终端命令执行、进程管理、应用启动及系统电源控制，支持私聊与指定授权群聊自然语言及前缀指令。",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "homepage": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "documentation": "https://github.com/met-tk/maibot-cmd-sandbox#readme",
+              "issues": "https://github.com/met-tk/maibot-cmd-sandbox/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "mss",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "chat.get_private_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_stream_by_group_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "de8c44ec7b2700880319da2c9a1ab02bdd927a5f",
