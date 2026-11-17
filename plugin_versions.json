@@ -60077,6 +60077,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.12.0",
+          "tag": "v0.12.0",
+          "commit": "9bb7a86439beb380be0024257a06b2b33e0d34f5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T17:44:45Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.12.0",
+          "release_notes": "### 🧣 天冷添件衣服，回家换回毛衣\n\n- 配图会结合经历地点、室内外环境和近期天气安排穿着，明确说过的衣服优先，同一日程参考已有画面。\n- 角色参考图继续提供外貌，穿着随本次场景调整；物件近景中的袖口等细节也会跟着变化。\n- 新试画重新读取环境，图片重试沿用本次素材；旧经历的环境取自原素材。\n- README 新增室内外实机配图，看看麦麦从公园回到厨房的样子。\n\n### 🖼️ 图片没出来，再试试\n\n- 图片服务临时超时、连接中断，或返回 429、502、503、504 时，默认最多重试 3 次，每次间隔 3 秒，继续使用本次画面描述和参考图。\n- 在「插件配置 → 高级设置 → 图片生成重试」调整次数；3 次重试加上首次请求，共最多请求 4 次，设为 0 可关闭自动重试。\n- 聊天追问、两种主动分享、空间配图和配置测试共用设置；页面显示当前重试次数和累计用时。\n- 生成成功后只发送一次图片；重试耗尽后记录失败原因，聊天追问收到一次失败提示。配图继续沿用原分享的发送次数。\n\n### 🤝 换个聊天，也认得你\n\n- 同一人物的自动关系判断同步到关联档案，主动交流、早晚安和日程调整使用一致的亲密等级。\n- 重新建档后，已关联的人物资料即可用于跨聊天识别，手动设置的等级也会随之生效。\n- 修改手动档案里的生日、纪念日时，关联自动档案继续保留自己的判断结果。\n\n   饭做好了，手工也收尾了。这次，麦麦可以把这些小事画出来，带着图片来找你。📮\n\n### 🔘 图片开关，现在一起生效\n\n- 关闭图片生成服务后，聊天只在有可复用图片时提供发图工具，直接展示已有图片。\n- 关闭聊天图片后，隐藏发图工具；关闭图片服务时，角色试画也一起禁用。\n- 空间已有配图仍可查看和发布，文字交流与空间随笔照常使用。\n\n### 💞 认出彼此，再判断关系\n\n- 自动判断读取 MaiBot 当前昵称和别名，明确机器人与档案对象的身份，正确理解画像里的情侣、男朋友和女朋友关系。\n- 重新核对采用当前原生画像与相处事实，旧的自动判断理由留在核对记录中；手动关系设置继续沿用。\n- 已有自动档案可以在「人物与纪念日」重新保存，让关系按当前画像重新判断。\n\n### 📸 做好了，想给你看看\n\n- 聊天中可以追问生活图片，两种主动交流模式也能随话题配图。文字发送后再展示图片，同一经历继续复用已有图片；经历更正后按新内容生成。\n- 新增共用角色卡：填写外貌与常用穿着，也可以根据 MaiBot 人设生成草稿，再修改保存。\n- 在「角色与图片」上传、预览、替换和移除参考图。人物入镜时优先使用参考图外貌，文字设定补充细节；自拍沿用同一套角色设定。\n- 空间与聊天画风分别设置，共用负面提示词。完善日系日常插画的光影、景深和手绘细节，将画风与前置自拍构图分开，保留本次拍摄要求。\n- 新增「试画一张」，支持自拍和物件近景，显示图片、模型、日期、用时和请求超时，点击预览可看大图。\n- 模型设置集中管理图片服务、用途开关和连接测试。新增「图片生成提示词模型」，用于聊天配图和空间画面描述补充，用量单独统计。\n- 支持 OpenAI 图片编辑、通义兼容、OpenAI Chat、Gemini 原生、DashScope 多模态和 Unsloth 原生图片接口。新图统一采用横版 4:3，默认请求 1024×768。\n- 图片默认保留 90 天、最多 500 张、合计 1 GiB，可在高级设置修改；生成后检查容量，每日整理过期图片与遗留文件。\n\n### 📝 把今天写下来，也发给朋友看看\n\n- 完善日记取材，结合当天的活动、聊天片刻、阅读与联网见闻，同一件事合并叙述，保留素材来源与聊天归属。\n- 私人日记保存文字，空间随笔单独整理文案和配图。可以自动配图，也能手动修改画面描述、重画、预览和移除。\n- 空间发布接入 NapCat，通过适配器获取登录信息，再上传图片、发布随笔；SnowLuma 沿用原生接口，两者共用配图和发布记录。\n- 修正空间正文更改后沿用旧图片描述、跨午夜漏发已完成日记对应随笔的问题。\n- 完善图片请求错误提示和模型用量记录，修复图片预览大小与数据库读取问题；聊天生图失败后会在原聊天告知，可再次请求。\n\n### 💬 原来你在这里呀\n\n- 主动私聊还没回复，或刚说去睡了又在群里冒泡，麦麦会结合当前群聊决定是否接一句。\n- 群里实际接话后，同一人在原群或私聊回应，都能继续聊起刚才的事。\n- 完善带 @ 和晚安的睡觉声明识别，修正把声明本身当成后续群聊活动的问题。\n\n### 🌙 晚一点睡，也有自己的节奏\n\n- 完善凌晨作息，自主安排与聊天参考实际入睡时间，睡前半小时再收尾，自动日记提前完成。\n- 低精力休息期间照常聊天；修正临时唤醒到期、等待续睡时页面仍显示清醒的问题。\n- 明确饥饿值越高越饿，高饥饿时自主活动优先解决用餐。\n- 接续候选按最近更新时间选取，展示与校验使用同一组候选，让刚有进展的旧念头也能接着安排。\n- 完善资料核对，兼容模型返回的分类冲突说明；关系身份使用界面已有选项，与亲密等级分别保存。\n- 修正凌晨作息、临时唤醒和阅读关联同时出现时，小预算上下文遗漏资料确认入口的问题。\n\n### 🏡 页面与使用说明\n\n- 「角色与图片」采用紧凑分组，集中管理外貌、参考图、画风和试画，预设按钮改为「使用默认风格」。\n- 更新 README 生活面板与图文聊天展示，补齐图片服务、角色参考图、试画和空间发布说明。\n- 放宽 lunar_python 与插件 SDK 依赖范围，支持 lunar_python 1.4.9 和 SDK 2.21–2.23。\n\n### 📷 实机演示\n\n#### 🧣 出门裹暖一点，回家轻松一点\n\n穿着也跟着生活走。户外气温 -4.3℃，麦麦穿上羽绒服、围好围巾；回到温暖的厨房，换成米白色毛衣。右图使用左图作为人物参考，沿用外貌，按室内场景调整穿着。\n\n<table>\n  <tr>\n    <th width=\"50%\">🍂 公园散步</th>\n    <th width=\"50%\">🏡 厨房里的小日常</th>\n  </tr>\n  <tr>\n    <td><a href=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-outdoor-outfit.png\"><img src=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-outdoor-outfit.png\" width=\"400\" alt=\"零下天气里，麦麦穿羽绒服、围巾和手套在公园自拍\"></a></td>\n    <td><a href=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-indoor-outfit.png\"><img src=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-indoor-outfit.png\" width=\"400\" alt=\"沿用户外图的人物外貌，麦麦换上米白色毛衣，在温暖厨房展示小兔子\"></a></td>\n  </tr>\n</table>\n\n\n\n#### 🏡 生活面板 · 今天过得怎么样？\n\n![生活面板](https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-overview.png)\n\n#### 📸 图文分享 · 做好了，想给你看看\n\n![本地聊天室图文展示](https://raw.githubusercontent.com/ilworkcn/MaiWeave/v0.12.0/assets/life-image-chat.png)\n\n### 📦 安装与设置\n\n下载下方 `MaiWeave-0.12.0.zip`，在 MaiBot「插件扩展 → 更多操作 → 从 ZIP 安装插件」中安装或更新。\n\n图片服务在「插件配置 → 模型设置」连接，聊天配图与空间自动配图在「图片用途」开启。角色、参考图与画风在「此刻生活 → 角色与图片」设置，保存后可以先试画一张。\n\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.12.0/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.12.0/docs/配置指南.md)\n\n<details>\n<summary>安装包校验 · SHA-256</summary>\n\n```text\nffe3be94ed630b26ce393af50310e8df823537535ce25e8cd5ece474619243bb\n```\n\n</details>\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜角色生活引擎",
+            "version": "0.12.0",
+            "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": ">=1.4.8,<2.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2026.1"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "message.get_by_time_in_chat",
+              "person.get_id",
+              "llm.get_available_models",
+              "maisaka.reply.generate",
+              "api.call",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.11.8",
           "tag": "v0.11.8",
           "commit": "3e2bcc607301cf4d2075231e159f10a86fbfafcc",
