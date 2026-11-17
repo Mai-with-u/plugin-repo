@@ -69339,6 +69339,80 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot-cmd-sandbox",
+      "manifest_id": "maibot-cmd-sandbox",
+      "repositoryUrl": "https://github.com/met-tk/maibot-cmd-sandbox",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "de8c44ec7b2700880319da2c9a1ab02bdd927a5f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T00:10:03Z",
+          "release_url": "https://github.com/met-tk/maibot-cmd-sandbox/releases/tag/v1.4.0",
+          "release_notes": "## maibot-cmd-sandbox v1.4.0\n\n为 MaiBot（麦麦）打造的 Windows 原生沙盒终端执行、多显示器自适应截图、系统资源监控与桌面全能控制插件。\n\n### 主要功能\n- **多显示器自适应截图**：支持主显示器、全屏幕拼接（all）及指定显示器序号截图并自动发送至会话。\n- **沙盒文件管控与双重确认**：支持在沙盒工作区自由读写与编写脚本；沙盒外部写入受 60 秒管理员二次确认（/确认写入）保护。\n- **系统硬件与资源监控**：一键查询物理内存使用率、各磁盘空间与开机运行时长。\n- **进程管理与应用启动**：支持关键字检索活跃进程、按进程名或 PID 结束进程，以及启动常用应用或打开网址。\n- **原生 PowerShell 终端**：支持执行命令与脚本，内置超时截断与进程树级联清理。\n- **权限与群聊白名单**：强制管理员校验，支持群聊总开关与白名单动态管理（/cmd_group）。\n- **大模型自然语言工具**：支持通过自然语言直接驱动截图、文件管理、系统查询、进程与电源控制。\n\n### 安装提示\n1. 安装 Python 依赖：pip install pillow>=9.0.0 mss>=9.0.0\n2. 复制 config.example.toml 为 config.toml，并在 \u0007dmin_users 中配置管理员账号。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-cmd-sandbox",
+            "version": "1.4.0",
+            "name": "沙盒终端与全能系统控制 | Sandbox Terminal & Full System Control",
+            "description": "为麦麦提供多显示器桌面截图、文件安全读写与沙盒约束、终端命令执行、进程管理、应用启动及系统电源控制，支持私聊与指定授权群聊自然语言及前缀指令。",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "homepage": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "documentation": "https://github.com/met-tk/maibot-cmd-sandbox#readme",
+              "issues": "https://github.com/met-tk/maibot-cmd-sandbox/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "mss",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "chat.get_private_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_stream_by_group_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
