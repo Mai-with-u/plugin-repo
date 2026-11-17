@@ -68908,6 +68908,68 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.lin-414.proactive-chat",
+      "manifest_id": "github.lin-414.proactive-chat",
+      "repositoryUrl": "https://github.com/lin-414/maibot_plugin_proactive_chat",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "123f62139aff84420d77371df3348e03d1945ae9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T10:33:27Z",
+          "release_url": "https://github.com/lin-414/maibot_plugin_proactive_chat/releases/tag/v1.0.0",
+          "release_notes": "首个正式版本。\n\n移植自 [astrbot_plugin_proactive_chat](https://github.com/Pancakes-Labs/astrbot_plugin_proactive_chat)（AGPL-3.0），按 MaiBot 插件 SDK v2 重写。\n\n- 每会话持久化随机间隔定时任务、群冷场倒计时破冰、启动静默自动触发、管理员手动触发\n- 上下文感知（最近聊天记录注入）、人格注入（current / custom / none）\n- 未回复计数上限、免打扰时段、分段发送（模拟打字节奏）、生成期间新消息检测\n- 指令：/主动对话、/主动对话状态、/主动对话发送、/主动对话开关、/主动对话重载",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.0",
+            "name": "主动对话 (Proactive Chat)",
+            "description": "私聊/群聊沉默后按随机间隔主动发起上下文感知、符合人设的对话；支持群冷场破冰、启动静默触发、未回复上限、免打扰时段与分段发送。移植自 astrbot_plugin_proactive_chat。",
+            "author": {
+              "name": "lin-414",
+              "url": "https://github.com/lin-414"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/lin-414/maibot_plugin_proactive_chat",
+              "homepage": "https://github.com/lin-414/maibot_plugin_proactive_chat",
+              "documentation": "https://github.com/lin-414/maibot_plugin_proactive_chat#readme",
+              "issues": "https://github.com/lin-414/maibot_plugin_proactive_chat/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "chat",
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "message.get_recent",
+              "chat.open_session",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "github.lin-414.proactive-chat"
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
