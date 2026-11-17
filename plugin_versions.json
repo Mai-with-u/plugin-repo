@@ -68841,6 +68841,67 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "3ed0b85ef05604a61dee649c856b856fadf51dcc",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T07:29:42Z",
+          "release_url": "https://github.com/hedgehogovo/Mi-Mai/releases/tag/1.0.0",
+          "release_notes": "**Full Changelog**: https://github.com/hedgehogovo/Mi-Mai/commits/1.0.0",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "orxilv.mi_mai",
+            "name": "Mi Mai",
+            "version": "1.0.0",
+            "description": "通过米家账号查看设备状态、管理设备白名单并安全控制设备与场景。",
+            "author": {
+              "name": "Orxil.V",
+              "url": "https://github.com/hedgehogovo"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hedgehogovo/Mi-Mai"
+            },
+            "host_application": {
+              "min_version": "1.4.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.1",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "mijiaAPI",
+                "version_spec": ">=5.0.0,<6.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.jpg",
+                "fallback": "home",
+                "background": "#e8f3ec"
+              }
+            },
+            "capabilities": [
+              "api.call",
+              "send.text",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
