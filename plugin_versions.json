@@ -69052,6 +69052,66 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "custom.maibot-fishaudio-voice-pro",
+      "manifest_id": "custom.maibot-fishaudio-voice-pro",
+      "repositoryUrl": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "50d1f00cfe0f8e7f071d47db3dca75f69bd539de",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T00:44:46Z",
+          "release_url": "https://github.com/met-tk/maibot-fishaudio-voice-pro/releases/tag/v1.0.0",
+          "release_notes": "Fish Audio TTS 与音色克隆 MaiBot 插件初始开源版本（v1.0.0），支持 /v1/tts、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "custom.maibot-fishaudio-voice-pro",
+            "name": "Fish Audio TTS Voice Clone (Pro)",
+            "version": "1.0.0",
+            "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "homepage": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "documentation": "https://github.com/met-tk/maibot-fishaudio-voice-pro#readme",
+              "issues": "https://github.com/met-tk/maibot-fishaudio-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
