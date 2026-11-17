@@ -69478,6 +69478,71 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.gyyxjsj.weknora-qa",
+      "manifest_id": "github.gyyxjsj.weknora-qa",
+      "repositoryUrl": "https://github.com/GYyxjsj/weknora_qa_plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "5d675ce0e276473847433f80032bb8e118e3a543",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T16:09:13Z",
+          "release_url": "https://github.com/GYyxjsj/weknora_qa_plugin/releases/tag/v1.1.0",
+          "release_notes": "## WeKnora 知识库检索 v1.1.0\n\n从自建 WeKnora 知识库拉回原文片段，交给麦麦自己思考作答。\n\n### 主要功能\n- 纯检索：只调 `POST /api/v1/knowledge-search` 取原文片段，不在 WeKnora 侧生成答案\n- 模型工具 `weknora_search`，用户也可直接发 `/提问`\n- `/提问` 走 MaiBot 自己的 `planner` 模型组织答案\n- 向量模型核对：建库 Embedding 模型与 MaiBot `embedding` 配置不一致时告警\n- 检索配置：`knowledge_base`、`match_count`、`max_chars_per_chunk`\n\n### 安装\n放入 MaiBot 的 `plugins/` 目录，复制 `config.example.toml` 为 `config.toml`，填入 WeKnora 服务地址与 API Key 后启用。要求 MaiBot 1.3.x、maibot-plugin-sdk >= 2.7.0。\n\n### 合规调整\nmanifest v2 补齐 `id`（`github.gyyxjsj.weknora-qa`）、`author`、`plugin_type`，新增示例配置，`config.toml` 保持本地不入库。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.gyyxjsj.weknora-qa",
+            "version": "1.1.0",
+            "name": "WeKnora 知识库检索",
+            "description": "从自建 WeKnora 知识库拉回原文片段，交给麦麦自己思考：规划器可调用 weknora_search 工具，用户也可直接发 /提问",
+            "author": {
+              "name": "GYyxjsj",
+              "url": "https://github.com/GYyxjsj"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/GYyxjsj/weknora_qa_plugin",
+              "homepage": "https://github.com/GYyxjsj/weknora_qa_plugin",
+              "documentation": "https://github.com/GYyxjsj/weknora_qa_plugin/blob/main/README.md",
+              "issues": "https://github.com/GYyxjsj/weknora_qa_plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "capabilities": [
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "database"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
