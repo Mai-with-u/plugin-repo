@@ -69202,6 +69202,82 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.hataxin.milobot-warframe",
+      "manifest_id": "github.hataxin.milobot-warframe",
+      "repositoryUrl": "https://github.com/hataxin/milobot-warframe",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "941f921face0cd68e9b8a2fec17915408ede0ae2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T01:26:21Z",
+          "release_url": "https://github.com/hataxin/milobot-warframe/releases/tag/v1.0.0",
+          "release_notes": "# 更新日志\n\n## 1.0.0\n\n- **MaiBot 原生插件正式发布**：提供国际服 PC Warframe 世界状态卡片、效率工具、市场与紫卡/玄骸拍卖查价、私聊生成、订阅推送与铸造提醒（支持 `/` 指令与 `@Tool` 调用，暂未添加紫卡分析功能）。\n- **兼容性验证**：完成 MaiBot `1.4.5` 实测验证（`_manifest.json` 兼容区间 `1.3.19 ～ 1.4.99`）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.hataxin.milobot-warframe",
+            "version": "1.0.0",
+            "name": "Milo bot · Warframe 助手",
+            "description": "面向 MaiBot（麦麦）的 Warframe 国际服 PC 助手插件，提供世界状态图文卡片、科研/瓦奇娅/仲裁/开核桃、翻译/融合/升级计算、市场与紫卡/玄骸拍卖查价、私聊生成、订阅推送与个人铸造提醒（支持 / 指令与 @Tool，暂未添加紫卡分析）。",
+            "author": {
+              "name": "hataxin",
+              "url": "https://github.com/hataxin/milobot-warframe"
+            },
+            "urls": {
+              "repository": "https://github.com/hataxin/milobot-warframe",
+              "homepage": "https://github.com/hataxin/milobot-warframe",
+              "documentation": "https://github.com/hataxin/milobot-warframe#readme",
+              "issues": "https://github.com/hataxin/milobot-warframe/issues"
+            },
+            "license": "AGPL-3.0",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.21.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.28.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=13.0.0"
+              }
+            ],
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "gamepad-2"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
