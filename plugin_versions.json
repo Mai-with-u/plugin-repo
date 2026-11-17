@@ -68845,6 +68845,69 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maibot-drunk",
+      "manifest_id": "maibot-drunk",
+      "repositoryUrl": "https://github.com/saddoge114514/maibot-drunk",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5006f148fbf0fd6dd49ad01077e9321464746318",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T14:27:44Z",
+          "release_url": "https://github.com/saddoge114514/maibot-drunk/releases/tag/v0.2.2",
+          "release_notes": "## 0.2.2 — 名单内的人不用再被推回去\n\n### 修复\n\n- **名单内的人劝酒，她也在反复推辞。** 0.2.1 之前只做了「名单外→拒绝」，\n  名单内等于什么都不提示，于是全靠角色自己拿捏，容易出现\n  「主人劝一杯也一直说不行」的过度抗拒。\n  现在名单内的人劝酒时给一条放行提示：可以顺着他喝，不必反复解释，\n  份量仍由她自己定（说好一杯就一杯）。\n- 只在**对方这句话像劝酒**（含「喝／干杯／一杯／陪／酒」等）时才注入，\n  闲聊时不会多一段话干扰。\n\n### 用法\n\n```toml\n[allow]\nusers = [\"18219509\"]   # 名单内可劝；留空 = 所有人可劝\ngroups = []\n```\n\n名单外的人劝酒仍然走 0.2.0 的软拦（明确拒绝，但不篡改记账）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-drunk",
+            "name": "麦麦身体-更好的喝酒吧",
+            "version": "0.2.2",
+            "description": "把麦麦的醉酒表达单独接管：从「麦麦身体」读取血液酒精浓度，写进她的措辞、迟钝、断片静默与主动说话；她自己说过「我喝了」也会补记一笔。生理真值仍由麦麦身体负责。",
+            "plugin_type": "chat",
+            "author": {
+              "name": "saddoge114514",
+              "url": "https://github.com/saddoge114514"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/saddoge114514/maibot-drunk",
+              "homepage": "https://github.com/saddoge114514/maibot-drunk",
+              "documentation": "https://github.com/saddoge114514/maibot-drunk/blob/main/README.md",
+              "issues": "https://github.com/saddoge114514/maibot-drunk/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "chat.get_private_streams",
+              "chat.get_group_streams",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
