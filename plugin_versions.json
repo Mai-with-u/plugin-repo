@@ -36778,6 +36778,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.4",
+          "tag": "v1.6.4",
+          "commit": "6e5e57b1a3dce13cc9f084de0388693204380e2f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T13:17:53Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.4",
+          "release_notes": "## 修复：麦麦绘图 2.3.0 起漫画全不可用\n\n麦麦绘图 2.3.0 把旧的联动接口 `drawpic_*_v2`（调用时带 `version=\"2\"`）重构为 17 个统一的无后缀 `drawpic_*` 接口，并移除了旧协议实现。本插件此前只探测旧接口名，导致：\n\n- WebUI 漫画廊显示「**漫画已启用 · 未检测到绘图接口**」（黄灯，「画漫画 / 恢复进度」按钮被禁用）；\n- 日报发送成功后的自动联动漫画直接跳过（日志 `[comic] 群 xxx 自动漫画跳过：未检测到绘图插件接口`）；\n- 手动 /漫画、WebUI 下单同样不可用。\n\n这一版修好了它。\n\n## 改动\n\n- 探测与调用改为**双协议自适应**：先试 2.3.0+ 的无后缀接口，探测不到再回落旧版 `_v2`——仍停在麦麦绘图 2.2.x 的用户同样可用。\n- `DrawpicClient` 首次调用时解析一次接口形态并缓存；WebUI 状态徽章的探测（300s TTL）复用同一逻辑。\n- 两代接口都探测不到时，提示「未检测到绘图插件接口（需安装并启用麦麦绘图）」，不再笼统报调用失败。\n\n## 升级说明\n\n- 无需改任何配置，升级后自动生效；对宿主 / SDK 版本要求不变。\n- 已在麦麦绘图 2.3.0 上实测：提交任务 → 分块取图 → 发群，全链路通过。\n- 若你仍在麦麦绘图 2.2.x，行为与之前完全一致。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.4",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.3",
           "tag": "v1.6.3",
           "commit": "d1005d6d00f9697be3b59f0bff5bb4674fee35f7",
