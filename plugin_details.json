@@ -1026,7 +1026,7 @@
       },
       "host_application": {
         "min_version": "1.3.11",
-        "max_version": "1.3.99"
+        "max_version": "1.99.99"
       },
       "sdk": {
         "min_version": "2.15.0",
@@ -1091,7 +1091,7 @@
       }
     },
     "assets": {
-      "icon_64": "icons/Rabbit-Jia-Er.mai_clinic_plugin.webp"
+      "icon_64": "icons/Rabbit-Jia-Er.MaiTrace.webp"
     }
   },
   {
@@ -14175,7 +14175,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.3",
+      "version": "1.6.4",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -22735,7 +22735,7 @@
       "manifest_version": 2,
       "id": "maibot-community.fgogacha",
       "plugin_type": "game",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "name": "FGO小助手",
       "description": "面向 FGO 国服的 QQ 助手，支持模拟抽卡、卡池与活动查询、素材来源、真实出率统计、羁绊挖矿计算及青铜果实兑换。",
       "author": {
@@ -22751,11 +22751,11 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.3.19"
+        "max_version": "1.4.5"
       },
       "sdk": {
         "min_version": "2.12.0",
-        "max_version": "2.21.0"
+        "max_version": "2.23.0"
       },
       "dependencies": [
         {
@@ -23062,7 +23062,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.2.3",
+      "version": "1.2.4",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
@@ -23647,6 +23647,420 @@
     },
     "assets": {
       "icon_64": "icons/orxilv.mi_mai.webp"
+    }
+  },
+  {
+    "id": "maibot-drunk",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-drunk",
+      "name": "麦麦身体-更好的喝酒吧",
+      "version": "0.2.2",
+      "description": "把麦麦的醉酒表达单独接管：从「麦麦身体」读取血液酒精浓度，写进她的措辞、迟钝、断片静默与主动说话；她自己说过「我喝了」也会补记一笔。生理真值仍由麦麦身体负责。",
+      "plugin_type": "chat",
+      "author": {
+        "name": "saddoge114514",
+        "url": "https://github.com/saddoge114514"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/saddoge114514/maibot-drunk",
+        "homepage": "https://github.com/saddoge114514/maibot-drunk",
+        "documentation": "https://github.com/saddoge114514/maibot-drunk/blob/main/README.md",
+        "issues": "https://github.com/saddoge114514/maibot-drunk/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.15",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "api.call",
+        "maisaka.proactive.trigger",
+        "chat.get_private_streams",
+        "chat.get_group_streams",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.lin-414.proactive-chat",
+    "manifest": {
+      "manifest_version": 2,
+      "version": "1.0.0",
+      "name": "主动对话 (Proactive Chat)",
+      "description": "私聊/群聊沉默后按随机间隔主动发起上下文感知、符合人设的对话；支持群冷场破冰、启动静默触发、未回复上限、免打扰时段与分段发送。移植自 astrbot_plugin_proactive_chat。",
+      "author": {
+        "name": "lin-414",
+        "url": "https://github.com/lin-414"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/lin-414/maibot_plugin_proactive_chat",
+        "homepage": "https://github.com/lin-414/maibot_plugin_proactive_chat",
+        "documentation": "https://github.com/lin-414/maibot_plugin_proactive_chat#readme",
+        "issues": "https://github.com/lin-414/maibot_plugin_proactive_chat/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "chat",
+      "capabilities": [
+        "send.text",
+        "llm.generate",
+        "message.get_recent",
+        "chat.open_session",
+        "personality.get_current"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "id": "github.lin-414.proactive-chat"
+    }
+  },
+  {
+    "id": "mi-tuan.breeze-claim",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "mi-tuan.breeze-claim",
+      "version": "1.0.4",
+      "name": "Breeze 积分助手",
+      "description": "为 BreezeBlue 自动领取每日积分，支持云服务器与本地部署。自动识别运行环境，云端在配置页导入登录态，无需浏览器；本地可用 Edge 登录，支持余额查询、定时领取和失败重试。",
+      "author": {
+        "name": "CharQin",
+        "url": "https://github.com/CharQin"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/CharQin/maibot-breeze-points",
+        "homepage": "https://github.com/CharQin/maibot-breeze-points",
+        "documentation": "https://github.com/CharQin/maibot-breeze-points/blob/main/README.md",
+        "issues": "https://github.com/CharQin/maibot-breeze-points/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "tzdata",
+          "version_spec": ">=2024.1"
+        },
+        {
+          "type": "python_package",
+          "name": "playwright",
+          "version_spec": ">=1.45,<2"
+        }
+      ],
+      "capabilities": [
+        "send.text"
+      ],
+      "plugin_type": "automation",
+      "changelog": "CHANGELOG.md",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "coins",
+          "background": "#0F766E"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/mi-tuan.breeze-claim.webp"
+    }
+  },
+  {
+    "id": "custom.maibot-fishaudio-voice-pro",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "custom.maibot-fishaudio-voice-pro",
+      "name": "Fish Audio TTS Voice Clone (Pro)",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "volume-2"
+        }
+      },
+      "version": "1.1.1",
+      "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持 Planner 自主决策语音回复、独立温度/概率滑块、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
+      "author": {
+        "name": "met-tk",
+        "url": "https://github.com/met-tk"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "urls": {
+        "repository": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+        "homepage": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+        "documentation": "https://github.com/met-tk/maibot-fishaudio-voice-pro#readme",
+        "issues": "https://github.com/met-tk/maibot-fishaudio-voice-pro/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.text",
+        "send.custom",
+        "message.get_by_id",
+        "chat.get_all_streams"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/custom.maibot-fishaudio-voice-pro.webp"
+    }
+  },
+  {
+    "id": "ilworkcn.openai-oauth",
+    "manifest": {
+      "manifest_version": 2,
+      "plugin_type": "provider",
+      "id": "ilworkcn.openai-oauth",
+      "name": "OpenAI OAuth · 麦麦账号连接",
+      "version": "0.1.2",
+      "description": "在 WebUI 授权 ChatGPT 账号，让麦麦使用账号中的聊天模型；支持 Docker、图片理解与工具调用。",
+      "author": {
+        "name": "ilworkcn",
+        "url": "https://github.com/ilworkcn"
+      },
+      "license": "GPL-3.0-only",
+      "host_application": {
+        "min_version": "1.4.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.23.0",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27,<1"
+        },
+        {
+          "type": "python_package",
+          "name": "PyJWT",
+          "version_spec": ">=2.13,<3"
+        },
+        {
+          "type": "python_package",
+          "name": "cryptography",
+          "version_spec": ">=46"
+        },
+        {
+          "type": "python_package",
+          "name": "jsonschema",
+          "version_spec": ">=4.26,<5"
+        }
+      ],
+      "capabilities": [
+        "custom_pages",
+        "structured_arguments"
+      ],
+      "urls": {
+        "repository": "https://github.com/ilworkcn/OpenAI-OAuth-MaiMbot"
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "llm_providers": [
+        {
+          "client_type": "openai_oauth_maimbot",
+          "name": "ChatGPT 账号授权",
+          "description": "使用已授权的 ChatGPT 账号调用模型",
+          "version": "0.1.2"
+        }
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/ilworkcn.openai-oauth.webp"
+    }
+  },
+  {
+    "id": "github.hataxin.milobot-warframe",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.hataxin.milobot-warframe",
+      "version": "1.0.0",
+      "name": "Milo bot · Warframe 助手",
+      "description": "面向 MaiBot（麦麦）的 Warframe 国际服 PC 助手插件，提供世界状态图文卡片、科研/瓦奇娅/仲裁/开核桃、翻译/融合/升级计算、市场与紫卡/玄骸拍卖查价、私聊生成、订阅推送与个人铸造提醒（支持 / 指令与 @Tool，暂未添加紫卡分析）。",
+      "author": {
+        "name": "hataxin",
+        "url": "https://github.com/hataxin/milobot-warframe"
+      },
+      "urls": {
+        "repository": "https://github.com/hataxin/milobot-warframe",
+        "homepage": "https://github.com/hataxin/milobot-warframe",
+        "documentation": "https://github.com/hataxin/milobot-warframe#readme",
+        "issues": "https://github.com/hataxin/milobot-warframe/issues"
+      },
+      "license": "AGPL-3.0",
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.21.0",
+        "max_version": "2.21.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.28.1"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=13.0.0"
+        }
+      ],
+      "changelog": "CHANGELOG.md",
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "gamepad-2"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "maibot-cmd-sandbox",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maibot-cmd-sandbox",
+      "version": "1.4.1",
+      "name": "沙盒终端与全能系统控制 | Sandbox Terminal & Full System Control",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "terminal"
+        }
+      },
+      "description": "为麦麦提供多显示器桌面截图、文件安全读写与沙盒约束、终端命令执行、进程管理、应用启动及系统电源控制，支持私聊与指定授权群聊自然语言及前缀指令。",
+      "author": {
+        "name": "met-tk",
+        "url": "https://github.com/met-tk"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/met-tk/maibot-cmd-sandbox",
+        "homepage": "https://github.com/met-tk/maibot-cmd-sandbox",
+        "documentation": "https://github.com/met-tk/maibot-cmd-sandbox#readme",
+        "issues": "https://github.com/met-tk/maibot-cmd-sandbox/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.9.99"
+      },
+      "sdk": {
+        "min_version": "1.0.0",
+        "max_version": "2.9.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=9.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "mss",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "config.get",
+        "chat.get_private_streams",
+        "chat.get_stream_by_user_id",
+        "chat.get_group_streams",
+        "chat.get_stream_by_group_id",
+        "message.get_recent"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maibot-cmd-sandbox.webp"
     }
   }
 ]
