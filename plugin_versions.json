@@ -69037,6 +69037,59 @@
               ]
             }
           }
+        },
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "83d160d72a365f0b6c18d6f212f2c5b9400c9070",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-15T10:39:27Z",
+          "release_url": "https://github.com/saddoge114514/maibot-drunk/releases/tag/v0.2.1",
+          "release_notes": "## 0.2.1 — 补记看语境（「干杯」也能记上）\n\n### 修复\n\n- **补记只看单句，判不出「干杯」这类省略酒名的说法。**\n  现在插件会记住最近 3 条对方消息，她自己那句没点酒名时回看语境：\n  群友说「那来几瓶雪花？」、她说「干杯……这杯喝完我就放下杯子了」，也能记成一笔啤酒。\n- **宾语前置句被误判。**「这杯喝完我就放下杯子了」里动词在「我」前面，\n  旧规则要求「我」必须在动词之前，于是整句被丢掉；\n  现在 `[杯瓶罐听] + 喝/干/灌/闷/抿` 这种宾语前置形式同样认。\n- 单测从 18 例加到 19 例，仍全绿。\n\n### 不会变的部分\n\n- 拒绝（我不喝 / 别闹）、未然（待会儿喝 / 等我喝完）、假设（要是喝了）、\n  转述（你说你喝了）、喝水喝茶喝汤 —— 依然一律不记。\n- 语境只在「她这句完全没有酒名」时才用来补，\n  句子里自己写了「白酒/啤酒」仍以句内为准。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-drunk",
+            "name": "麦麦身体-更好的喝酒吧",
+            "version": "0.2.1",
+            "description": "把麦麦的醉酒表达单独接管：从「麦麦身体」读取血液酒精浓度，写进她的措辞、迟钝、断片静默与主动说话；她自己说过「我喝了」也会补记一笔。生理真值仍由麦麦身体负责。",
+            "plugin_type": "chat",
+            "author": {
+              "name": "saddoge114514",
+              "url": "https://github.com/saddoge114514"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/saddoge114514/maibot-drunk",
+              "homepage": "https://github.com/saddoge114514/maibot-drunk",
+              "documentation": "https://github.com/saddoge114514/maibot-drunk/blob/main/README.md",
+              "issues": "https://github.com/saddoge114514/maibot-drunk/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "maisaka.proactive.trigger",
+              "chat.get_private_streams",
+              "chat.get_group_streams",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
