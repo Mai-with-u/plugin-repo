@@ -36778,6 +36778,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.3",
+          "tag": "v1.6.3",
+          "commit": "d1005d6d00f9697be3b59f0bff5bb4674fee35f7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T21:43:02Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.3",
+          "release_notes": "## 1.6.3\n\n**新功能**\n- 报告库页新增「分析人设」面板：来源三选一——通用口吻 / 自定义文本 / **跟随麦麦实时人设**（宿主官方能力 `personality.get_current`，TTL 缓存 + 失败优雅降级）；设置页实时同步\n- 人设模板库（12 套上限）：保存 / 切换 / 删除模板；「抓取麦麦当前人设填入」\n- 「当前生效」绿色高亮提示：按来源显示实际注入内容摘要（字数 / 40 字预览 / 模板名回显 / 空文本警告）\n- 漫画角色方案新增「跟随麦麦实时人设」勾选：换麦麦人设，漫画形象跟随变化；参考图照常手动叠加\n\n**修复**\n- 「抓取麦麦当前人设填入」无效：`call_capability` 第二个位置参数是 `timeout_ms`，无参能力调用误传空字典被当超时（宿主 ValueError）\n- WebUI 轮询回填改为「服务端值变化才覆盖」：分析人设文本 / 漫画文案等未保存输入不再被刷新冲掉\n- 角色方案区防呆：当前角色下拉移标题行、保存前拦截全空方案\n\n**其他**\n- manifest 能力声明新增 `personality.get_current`（只读；人设切换仍在麦麦自己的界面进行）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.3",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.2",
           "tag": "v1.6.2",
           "commit": "32c0f9503cac6b87a4d24aaa31a65cb1b0d11af7",
