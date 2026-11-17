@@ -69543,6 +69543,87 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.Akenari011.maibot-manga",
+      "manifest_id": "github.Akenari011.maibot-manga",
+      "repositoryUrl": "https://github.com/Akenari011/maibot-manga",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "c229a2f2471a5deb756ff92862c221bf16bc3dce",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T13:49:49Z",
+          "release_url": "https://github.com/Akenari011/maibot-manga/releases/tag/v1.1.0",
+          "release_notes": "### 新增\n\n- 多渠道支持：拷贝漫画、G站漫画，各自内置多镜像域名并支持并发探活\n- `/搜漫画`、`/搜标签` 跨渠道搜索，中文站优先、结果交错排列\n- `/今日推荐`：从各启用渠道各抓一本候选，交给 LLM 挑选后推送\n- 定时推送：`daily_time` / `daily_targets` / `daily_count` / `daily_cover` / `daily_forward`\n- `/copy`、`/gm` 按 slug 查询详情\n- 自动繁简转换（`t2s_enabled`，基于 zhconv）\n- 分流设置合并为三个并行检测区（jmcomic / 拷贝漫画 / G站漫画），支持检测 + 手动指定\n\n### 改进\n\n- 代理设置对所有渠道生效\n- 全年龄站封面默认原图直发，不再送打码服务（`sfw_cover_mask` 可强制开启）\n- 私聊自动降级：合并转发不可用时改为文字 + 图片分开发\n- 发送三级降级：合并转发 → 图文混合 → 分开发\n- WebUI 重排为五个折叠分组，加宽至 1560px 并改为自适应网格\n- 帮助内容跟随配置动态生成，关闭的功能不显示\n\n### 修复\n\n- 搜索结果被单一渠道占满，后续渠道拿不到名额\n- `sfw_only` 把过滤词错误地加到了不支持该语法的渠道\n- 私聊会话 ID 格式导致合并转发判断错误\n\n### 变更\n\n- 插件 ID：`github.Akenari011.maibot-manga`\n- 仓库地址：https://github.com/Akenari011/maibot-manga\n- `config.toml` 移出版本控制，改由 `config.example.toml` 提供示例\n- `plugin_type` 改为 `tool`\n- `capabilities` 补充 `llm.generate`",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Akenari011.maibot-manga",
+            "version": "1.1.0",
+            "name": "麦麦漫画",
+            "description": "跨渠道漫画查询与推荐。支持拷贝漫画、G站漫画等站点，可按关键词或标签搜索并返回链接；封面可选本地打码，按群或私聊单独控制；每天定时从各渠道各抓一本，由 LLM 挑选后推送今日推荐。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-manga",
+              "homepage": "https://github.com/Akenari011/maibot-manga",
+              "issues": "https://github.com/Akenari011/maibot-manga/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jmcomic",
+                "version_spec": ">=2.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.20"
+              },
+              {
+                "type": "python_package",
+                "name": "zhconv",
+                "version_spec": ">=1.4.0"
+              }
+            ],
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "tool",
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "send.forward",
+              "llm.generate"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg",
+                "fallback": "image"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
