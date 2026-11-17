@@ -14175,7 +14175,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.2",
+      "version": "1.6.3",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -14220,7 +14220,8 @@
         "chat.get_avatar",
         "webui.claim_upload",
         "api.call",
-        "api.get"
+        "api.get",
+        "personality.get_current"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -20366,7 +20367,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.11.8",
+      "version": "0.12.0",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",

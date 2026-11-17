@@ -59937,7 +59937,7 @@
           "tag": "v0.11.8",
           "commit": "3e2bcc607301cf4d2075231e159f10a86fbfafcc",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-14T07:42:22Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.8",
           "release_notes": "💌 饭做得不错，读到一句喜欢的话，散步时有个新发现……有些小事，也想告诉熟悉的你。\n\n### 💞 越来越熟，也有更多想聊的\n\n这次完善了主动分享选题。麦麦会结合你的原生人物画像、相关记忆和最近聊天，从几件候选经历里挑一件想告诉你的事。\n\n普通、熟悉的朋友可以聊共同兴趣和关心的进展；到了亲近，日常的小满足、小发现也会进入考虑。自然交流和主动表达都沿用这套判断，次数、间隔和作息继续按你的设置执行。发过的内容和你的回应，也会带进之后的判断与聊天。\n\n### 🌙 晚安说完，再安心睡\n\n完善了临时醒来陪伴后的告别，整轮晚安回复发完再续睡，午睡和夜间睡眠都适用。也修好了回复过程中提前睡回去的问题，并完善“晚安啦”“早安呀”等口语问候和跨午夜的去重。\n\n### 🗓️ 安排改了，后面的事也跟着改\n\n取消、暂停出行时，页面和聊天里的移动状态一起结束。重复规则改期、停用、跳过，以及聊天里的取消和调休，会一并处理相关的待调整日程与出行。\n\n目标重新分阶段、地点改名和路线恢复也补齐了衔接；停机错过的日记，恢复后会补写。\n\n### 🛠️ 几处用着别扭的地方，也修好了\n\n- 补齐「一天的节奏」里做饭活动的暖橘色，时间条、图例和活动卡片都能清楚显示。\n- 人物详情和资料核对读取最新的原生画像。\n- 地点搜索留空时，会查找公园、书店、咖啡馆等日常场所。\n- 修正聊天约定工具的参数引用，解决 DeepSeek 加载工具时的 HTTP 400。\n- 分享判断与格式纠错继续遵循现有上下文预算。\n\n### 🏡 今天的变化，一眼就能看见\n\n「今天的状态」换上最近的精力和心情变化，直接对比近两小时内已有的记录，标出对比时间。原来的机制说明移除了，卡片布局也更紧凑。\n\n### 📖 README 也收拾了一遍\n\n特色互动、主要功能和实机演示分开展示，补充了亲密等级带来的变化，以及麦麦如何结合状态、天气和之前的经历选择后续活动。配置说明和使用文档一并更新。\n\n### 📦 更新方式\n\n下载下方 **MaiWeave-0.11.8.zip**，在 MaiBot 插件管理中上传更新。插件与配置版本统一为 **0.11.8**，已有设置会保留。\n\n感谢大家的反馈和陪伴 🧡\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.7...v0.11.8)\n\n安装包 SHA-256：\n```text\nc82976f308e06f2514d4bbc4c9eb63aaeced507ab5da0c1c21e32c6095e00c82\n```\n",
@@ -60011,7 +60011,7 @@
           "tag": "v0.11.7",
           "commit": "bdd372832bf23e4f59bbb884220566449fa357b0",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-13T13:10:58Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.7",
           "release_notes": "💬 早上说好下午调休，下午就安心歇一歇。聊天里的约定，麦麦会带进接下来的生活。\n\n### 🗓️ 说好的事，日程也记着\n完善聊天与自主安排的衔接。你和麦麦聊定的角色调休、请假、临时改期，会保存具体时间和原话依据；麦麦自己实际说出的安排，也会从聊天记录中接续下来。\n\n已经排好的对应活动会跟着调整，关联出行一起处理。当天调休，其他日期的重复上班照常。\n\n### 🐾 你的假期和我的假期，分清楚啦\n“我下午请假”会结合发言人判断是谁的安排。约定可以继续修改或取消，聊天里的记录沿用原有归属规则。\n\n### 📖 打开页面，也能找到约定\n日程页面的提醒会显示约定内容、依据和有效时间。聊天上下文沿用现有字符预算，“聊天安排”的模型用量一起计入 Token 统计，使用自主活动的模型配置。\n\n这次没有新增设置，README 和使用文档也同步整理了。\n\n### 📦 更新\n下载下方 **MaiWeave-0.11.7.zip**，在 MaiBot 插件管理中上传更新。插件与配置版本均为 **0.11.7**，已有设置会保留。\n\n感谢 [#13](https://github.com/ilworkcn/MaiWeave/issues/13) 的反馈 🧡\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.6...v0.11.7)\n\n安装包 SHA-256：\n```text\nbf902e9ed33a4fe656b83091d717cc1cc7e64917a8cca3d0807318830bf1acc4\n```\n",
@@ -60085,7 +60085,7 @@
           "tag": "v0.11.5",
           "commit": "47ba9829764c4a59df1bcbf7bcff00d4db7df861",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-12T16:13:11Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.5",
           "release_notes": "🌙 饭要好好吃，新鲜事慢慢聊。困的时候，也可能因为你的一句话醒过来。\r\n\r\n### 💤 再陪你一小会儿\r\n普通私聊现在可以按概率唤醒麦麦，默认 **0%**，可在 WebUI 配置里调整。午睡和夜间睡眠都适用，醒来后沿用临时清醒和聊天延期，到期再接着睡。\r\n\r\n### 💬 聊点新的\r\n完善「自然交流」和「主动表达」的分享判断，会参考最近聊天与已经发过的内容，重复的日常话题先放一放。主动表达围绕一件事简短展开，分享记录也会留下实际发出的内容。\r\n\r\n### 🍜 做好了，再慢慢吃\r\n做饭和吃饭分开记录：饭做好后接着安排用餐，吃完才降低饥饿值。吃多久会结合饭菜、身体状态和日程空档选择。\r\n\r\n### 🧵 几处小修补\r\n- 同步到原生记忆的生活事实也能按关键词找到，更新后读取当前有效版本。\r\n- 修正书架预约阅读时间在日程中显示偏移的问题。\r\n- 空间连接或发布失败时，显示实际原因。\r\n- 补齐跨过午夜才写完的日记自动发布处理。\r\n\r\n### 📦 更新方式\r\n下载下方 **MaiWeave-0.11.5.zip**，在 MaiBot 插件管理中上传更新。\r\n\r\n插件与配置版本统一为 **0.11.5**，保留已有设置并补齐新增配置的默认值。概率唤醒默认关闭，想试试可以自行调整。\r\n\r\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.4...v0.11.5)\r\n\r\n安装包 SHA-256：\r\n```text\r\nb50649a41ff740e82d73e1b7033c5aef1d3ce4380809597a8b2fef845bc90105\r\n```\r\n",
@@ -60159,7 +60159,7 @@
           "tag": "v0.11.4",
           "commit": "e569331ebbb30a24da340ca94687506c1b20e704",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-11T15:56:37Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.4",
           "release_notes": "📚 读一会儿，也出门转转。这次把阅读节奏和生活接续收拾了一下。\r\n\r\n### 🌿 出门有自己的事\r\n自主安排先考虑做什么，再选地点。散步、看风景、逛店和买日用品都能单独成行；带书出门时，会结合这次想读的内容说明缘由。\r\n\r\n### 📖 读书的时间自己定\r\n- 每日自主阅读默认最多 **90 分钟**，`-1` 表示每日无上限，`0` 表示关闭自主阅读。\r\n- **高级设置 → 自主阅读节奏**：单次上限默认 **40 分钟**，两次间隔默认 **60 分钟**，都可以修改。\r\n- 聊天和书架里的手动安排沿用你选择的时长。\r\n\r\n### 🧂 惦记的小事，接着办\r\n完善已有的活动接续：做饭发现缺盐，可以在下次空闲时去买。后续经历会留下接续缘由，已经排好的事项按原日程进行，办完后自然收尾。\r\n\r\n同时修正跨活动接续的类别、阅读完成后的事项更新，以及暂停续读和跨日阅读的时长统计，补齐接续记录的聊天归属校验。\r\n\r\n### 💤 累了就歇一会儿\r\n精力较低时，普通主动分享等恢复后再聊，重要经历和提醒继续处理。聊天表达也会参考当前疲惫程度。\r\n\r\n### 🛠️ 更新与验证\r\n插件和配置版本统一为 **0.11.4**，升级保留已有设置，并补齐新增配置的默认值。使用手册、配置指南和更新记录已同步整理。\r\n\r\n📦 下载下方 **MaiWeave-0.11.4.zip**，通过 MaiBot 插件管理上传安装。\r\n\r\n<details>\r\n<summary>安装包校验 · SHA-256</summary>\r\n\r\n```text\r\nd0846a27c56ed1f28b39b3644e379447d1f63f53a61bd5cc706e8e2da9e2887c\r\n```\r\n\r\n</details>\r\n",
@@ -60233,7 +60233,7 @@
           "tag": "v0.11.3",
           "commit": "580ec7b3ff631676c511f8c107cc89a1656ba41a",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-11T12:39:20Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.3",
           "release_notes": "## 📒 翻开小本本\n\n### 🎛️ 设置更好找了\n\n- 新增「模型设置」，阅读、日记、梦境等功能可以各自选择模型任务，也可以继续跟随默认生活模型。用量页面会显示实际使用的任务和模型。\n- 更新间隔、习惯参数、书架容量、上下文长度和数据保留集中放到「高级设置」，各组按需展开。常用开关留在对应功能页。\n\n### 💤 看看麦麦睡了没\n\n- 只读状态 API 补充实际睡眠状态、聊天静默、预计睡眠结束时间和查询时间。临时唤醒到期、续睡日程尚未生成时，也能读到当前睡眠状态。\n- 新增普通对话和主动交流两种状态判断，使用现有作息规则。API 只返回查询结果，生活安排与消息发送仍由各自功能处理。\n\n### 📚 说明书也收拾好了\n\n- 增加文档目录，使用手册按操作场景整理，配置指南与 WebUI 标签页对应。\n- 修正书架容量的设置位置、各功能模型选择和阅读记录的说明，合并重复内容。\n- API 文档补齐调用示例、字段类型、空值含义、睡眠场景、刷新时间与异常说明。\n\n插件与配置版本统一为 `0.11.3`，升级保留已有设置。\n\n## 📦 安装与升级\n\n下载 **MaiWeave-0.11.3.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n插件与配置版本均为 **0.11.3**，升级保留已有设置。\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.2...v0.11.3)\n\n安装包 SHA-256：\n```text\n4243308970a4263f99af978eb92b5f7509519f31c29833efb04530ad9e6aa597\n```\n",
@@ -60307,7 +60307,7 @@
           "tag": "v0.11.2",
           "commit": "ac3afec2ac03893cefe5772a578367fc008971ea",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-11T04:06:54Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.2",
           "release_notes": "## 换本书，接着读\n\n- 修复 WebUI 调整聊天创建的阅读日程时，立即换读、指定章节和跳章提示归属不符的问题；调整后的日程保留原聊天归属。\n- 状态曲线下方的说明简化为「过去24小时」。\n- 配置分组「何时聊」「聊多少」改为「交流时段与间隔」「每日发送额度」。\n- 插件与配置版本统一更新为 `0.11.2`，保留已有设置。\n\n## 安装与升级\n\n下载 **MaiWeave-0.11.2.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n插件与配置版本均为 **0.11.2**，升级保留已有设置。\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.1...v0.11.2)\n\n安装包 SHA-256：\n```text\n36b44e34eca8d2398cb5e6c9de13d97e9abdda631fc46dc5c5619a19181a0a7b\n```\n",
@@ -60381,7 +60381,7 @@
           "tag": "v0.11.1",
           "commit": "db244a92e5ec29e1efbbca81cb605d6995a1c1e8",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-10T15:34:01Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.11.1",
           "release_notes": "## WebUI 主页布局\n\n- 主动交流卡显示联系人或群名、平台与账号，展示今日额度、上次发送、最近判断及预计下次检查时间。\n- 主动交流卡标明当前模式，并说明自然交流可能选择静默，本轮不发送消息。\n- 主动交流卡移到「一天的节奏」下方，加入交流图标、额度进度条、判断记录线和待跟进分区。\n- 状态曲线、书架与生活积累在左列依次排列，片刻记录与日记在右列排列，减少卡片高度差造成的留白；手机端使用单列布局。\n- 日记卡展示五行预览，可通过「全文」打开日记页面。\n- 插件与配置版本统一更新为 `0.11.1`，保留已有设置。\n\n## 安装与升级\n\n下载 **MaiWeave-0.11.1.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n插件与配置版本均为 **0.11.1**，升级保留已有设置。\n\n[完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.11.0...v0.11.1)\n\n安装包 SHA-256：\n```text\ned0ee343ada9f32fef3986e740f7a64674bd4bad1a327562b634ce793adf19e5\n```\n",
@@ -60455,7 +60455,7 @@
           "tag": "v0.10.2",
           "commit": "8fa9b0a06941c7798a58991bb4e78bbae22a80ef",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-09T11:25:53Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.10.2",
           "release_notes": "## 🍃 带着日常，轻装聊天\n\n这次整理了麦麦带进对话的生活信息：合并重复内容，把更多篇幅留给当前话题，也让睡眠唤醒的处理更清楚。\n\n### 💬 生活细节，少一些重复\n\n- **当前活动单独呈现**，后续日程中去掉同一条活动。\n- 经历、生活接续和情绪影响按实际选入的内容去重，保留来源、进度、下一步和操作需要的关联。\n- 经历没有被选入时，接续内容会带上自己的背景；已完成活动按当前话题选取。\n- 上下文用量按最终内容统计，省下的字符预算用于其他相关生活信息。完整记录继续保存在生活档案中。\n\n### 💤 睡眠与唤醒\n\n唤醒未成功时，明确结束当前轮次，减少模型重复请求唤醒；较小的字符预算下也保留必要的睡眠规则。\n\n同时修复了多次筛选候选内容时，情绪影响可能关联到其他经历的问题。\n\n### 📦 安装与升级\n\n下载 **MaiWeave-0.10.2.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n插件版本 **0.10.2**，配置版本沿用 **0.10.1**，已有设置继续保留。\n\n适配 **MaiBot 1.3.19–1.4.x · 插件 SDK 2.21.x**。\n\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.10.2/docs/使用手册.md) · [聊天上下文设置](https://github.com/ilworkcn/MaiWeave/blob/v0.10.2/docs/配置指南.md#聊天上下文) · [完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.10.1...v0.10.2)\n\n<details>\n<summary>安装包校验 · SHA-256</summary>\n\n```text\n1174569d533cb4babb46bc7af316dcf5bb2d81d7fb2a77a88f76c7ff4ba57c95\n```\n\n</details>\n",
@@ -60529,7 +60529,7 @@
           "tag": "v0.9.4",
           "commit": "e755977b93d710871bec9a4f75c3dda7bcf6b44c",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-08T05:47:03Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.9.4",
           "release_notes": "## 🌱 日子接着过，话题接着聊\n\n今天做了多久、上次做到哪儿、你刚刚接了什么话，都能影响麦麦接下来的安排。这次更新，让生活里的念头和聊天里的回应接得更紧一些。\n\n### 🗓️ 下一件事，从今天的生活里长出来\n\n- 自主规划参考当天各类活动时长、连续次数和最近进展，再结合习惯、目标与未完念头选择下一步。\n- 活动回顾可以留下具体疑问、想尝试的事，以及适合继续做这件事的日期。\n- 点击首页时间线，可以查看安排缘由、日程修改、天气调整、活动结果和留下的念头。\n\n### 💬 你接了话，麦麦也接着聊\n\n- 主动分享关联实际发送和用户回应，同类话题的候选顺序会参考接话情况。\n- 用户接话后，为当前话题留出交流时间，再结合人物忙闲状态调整下一次主动分享。\n- 人物近况在群聊与私聊间接续，状态更新或到期后重新判断主动交流时机。\n\n### 🛠️ 页面和记录也整理了一遍\n\n- 日程、日记、经历等记录的翻页按钮放到对应表格下方。\n- 详情与冲突确认弹窗统一右上角关闭入口，长内容滚动时也能关闭；修复弹窗顶部被 MaiBot 提示栏遮挡的问题。\n- 修复部分发送回执缺少时区时的时间比较，正确关联用户回应并计算发送间隔。\n- 纪念日等提醒的判定记录直接显示本次提醒主题。\n\n本版包含 0.9.3 的 WebUI 布局优化。\n\n### 📦 安装与升级\n\n下载 **MaiWeave-0.9.4.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n| 项目 | 版本 |\n| --- | --- |\n| MaiBot | 1.3.19–1.4.x |\n| 插件 SDK | 2.21.x |\n| MaiWeave | 0.9.4 |\n| 配置版本 | 0.9.0，已有设置继续生效 |\n\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.9.4/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.9.4/docs/配置指南.md) · [本次改动](https://github.com/ilworkcn/MaiWeave/compare/v0.9.2...v0.9.4)\n\n<details>\n<summary>安装包校验 · SHA-256</summary>\n\n```text\na685b5acbd306b0635afc17a3996c7ec04ef09de6062a9e5aad446027cafb9ef\n```\n\n</details>\n",
@@ -60602,7 +60602,7 @@
           "tag": "v0.9.2",
           "commit": "a1a7c9227b8895cd9ced070c7a8c58ac01b0ff4e",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-07T15:59:03Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.9.2",
           "release_notes": "## 🏡 搬进 MaiBot 1.4，日常照常\n\n这次更新适配 MaiBot 1.4 的统一登录、多 Bot 记忆访问和共享联网服务。人物资料、生活记忆与地点搜索沿用新的连接方式，生活页面也搬到了 WebUI 侧栏。\n\n### 更新内容\n\n- **登录自动衔接**：读取统一登录凭据，复用登录会话，并在会话过期后重新登录。\n- **记忆跟着当前 Bot 走**：人物画像和原生记忆通过当前 Bot 的接口访问。\n- **联网服务同步适配**：从共享模型目录读取服务定义，结合当前 Bot 的任务分配识别可用搜索服务。\n- **侧栏进入生活页面**：在 WebUI 侧栏打开麦织的各个生活页面。\n\n### 📦 安装与升级\n\n下载 **MaiWeave-0.9.2.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\n\n| 项目 | 版本 |\n| --- | --- |\n| MaiBot | 1.3.19–1.4.x |\n| 插件 SDK | 2.21.x |\n| MaiWeave | 0.9.2 |\n| 配置版本 | 0.9.0，沿用已有设置 |\n\n本机连接自动读取 `host/webui.json` 的登录凭据。连接远程 MaiBot 1.4 时，网页地址填写 `http://地址:端口/api/host/bots/BotID/proxy`，网页登录凭据填写登录密码；Bot ID 可在 WebUI 的 Bot 管理中查看。\n\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.9.2/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.9.2/docs/配置指南.md) · [本次改动](https://github.com/ilworkcn/MaiWeave/compare/v0.9.1...v0.9.2)\n\n<details>\n<summary>安装包校验 · SHA-256</summary>\n\n```text\na9d747916717e6c2bb52debac7b9118fe92e1ba177aa8a628236a06c81690718\n```\n\n</details>\n",
@@ -60675,7 +60675,7 @@
           "tag": "v0.9.1",
           "commit": "d4202b7319fac9c323ed4e0189eddbb750820dc9",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-07T03:55:31Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.9.1",
           "release_notes": "## 🚶 出行顺畅，日常继续\r\n\r\n修复了出行途中出现的 `No module named '_maibot_plugin_ilworkcn_maiweave'` 错误。麦麦可以继续走完路程、更新当前位置，到达后接上下一个安排。\r\n\r\n### 这次修好了什么\r\n\r\n- 恢复出行期间的生活推进、生活调整与聊天上下文读取。\r\n- 出行结束后正常衔接后续活动，返家后也能按日程入睡。\r\n\r\n### 🏡 从 0.9.0 预发布升级\r\n\r\n本版包含新版生活面板、自然早晚安、跨聊天流状态接续、只读状态 API，以及数据保留与每日清理功能。\r\n\r\n<p align=\"center\">\r\n  <img src=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/d4202b7319fac9c323ed4e0189eddbb750820dc9/assets/life-overview.png\" width=\"1000\" alt=\"MaiWeave 此刻生活实机演示：当前活动、状态与全天时间线\">\r\n</p>\r\n\r\n### 📦 安装与升级\r\n\r\n下载 **MaiWeave-0.9.1.zip**，在 MaiBot WebUI 的插件管理中安装或更新。\r\n\r\n\r\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.9.1/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.9.1/docs/配置指南.md) · [本次改动](https://github.com/ilworkcn/MaiWeave/compare/v0.9.0...v0.9.1)\r\n\r\n<details>\r\n<summary>安装包校验 · SHA-256</summary>\r\n\r\n```text\r\ne67d43a9c7b671cc15b0ac42e3d69dd5f5d315b2d633d85d2235cbf51413cd1b\r\n```\r\n\r\n</details>\r\n",
@@ -60748,7 +60748,7 @@
           "tag": "v0.9.0",
           "commit": "70976f517c051a8b341f81aca3dfffbc1e1990e7",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-06T07:05:09Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.9.0",
           "release_notes": "<div align=\"center\">\r\n\r\n<img src=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/58a269642af63e0c26150f3e5ea46152d8aa44d2/assets/icon.png\" width=\"160\" height=\"160\" alt=\"麦麦与窗外的日常\">\r\n\r\n## 早晚问个好，日常收收好\r\n\r\n**早晚的一句问候，读到一半的书，还有昨天没聊完的事。**\r\n\r\nMaiWeave v0.9.0\r\n\r\n</div>\r\n\r\n这次更新加入自然早晚安、跨聊天流状态接续和公开状态 API，也补齐了生活记录的保留与清理设置。读书、出行和日常小事继续成为聊天的话题，积累下来的记录也更好管理。\r\n\r\n### 🌤️ 相处有了更多自然的小瞬间\r\n\r\n- **自然早晚安**：开启后，结合起床、入睡、人物关系与近期聊天，由 Planner 决定何时问候。\r\n\r\n- **小事也值得分享**：做饭的一点进步、散步时的感受，都有机会成为话题；挑选经历时也会考虑最近分享过的活动，让内容更丰富。\r\n\r\n- **换个地方聊天，还是熟悉的你**：同一人物的关系与近期状态在群聊、私聊间接续，睡前收尾和唤醒也能衔接。\r\n\r\n- **选择开口的方式**：「自然交流」由 Planner 结合聊天决定；「主动表达」生成后直接发送。两种模式共用发送时段、额度与间隔。\r\n\r\n### 📖 带着一本书，走进今天的天气\r\n\r\n阅读可以安排在公园、图书馆、咖啡馆等地点。出门前预留路程，天气变化后可以回到室内续读，笔记也会记下这次阅读的地点。\r\n\r\n自主规划会考虑返家与睡前收尾，让活动之间的切换更顺畅。\r\n\r\n### 🏡 换个更好逛的生活页面\r\n\r\n「此刻生活」重新排了版：当前活动、进行到哪一步、今天的状态和全天时间线放在一起，阅读感想与日记也能顺手翻看。主动交流回执和运行详情展开即可查看。\r\n\r\n其他页面统一了卡片、表单、导航与表格样式，地点搜索收进折叠区域，模型用量页也换上新布局。\r\n\r\n<p align=\"center\">\r\n  <a href=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/70976f517c051a8b341f81aca3dfffbc1e1990e7/assets/life-overview.png\"><img src=\"https://raw.githubusercontent.com/ilworkcn/MaiWeave/70976f517c051a8b341f81aca3dfffbc1e1990e7/assets/life-overview.png\" width=\"1000\" alt=\"新版此刻生活实机演示：晚饭安排、活动进度、精力心情和全天时间线\"></a><br>\r\n  <sub>麦麦正在厨房做晚饭，今天的安排和状态一眼就能看到。</sub>\r\n</p>\r\n\r\n### 🗂️ 生活记录，按需要留存\r\n\r\n「经历与记忆」新增清理预览、立即清理和经历长期保留。保留规则可在 **插件配置 → 交流与记忆 → 数据保留** 中调整。\r\n\r\n每日自动清理默认开启，按保留天数和条数上限整理记录：\r\n\r\n| 记录 | 默认保留天数 | 默认条数上限 |\r\n| --- | --- | --- |\r\n| 运行记录 | 7 天 | 每类 1,000 条 |\r\n| 已结束日程 | 90 天 | 2,000 条 |\r\n| 普通经历 | 180 天 | 3,000 条 |\r\n\r\n每条经历保留最近 10 次修订。7 分及以上的经历、标记为长期保留的经历，以及当前生活仍在使用的关联继续保存。清理旧日程后，阅读笔记、续读感想和日记仍可查看。\r\n\r\n### 🛠️ 记录更好翻，运行更轻一些\r\n\r\n- 日程、日记、经历与接续记录支持翻页；日记素材和修订历史按需分段读取。\r\n\r\n- 修复日记素材展开显示，完善跨页编辑与保存。\r\n\r\n- 生活状态放到本轮请求末尾，时间按分钟展示，改善稳定提示词前缀的缓存复用。\r\n\r\n- 整理 Python 模块目录，按数据、生活功能、服务连接与交互接口归类。\r\n\r\n### 🔌 让其他插件读懂麦麦的近况\r\n\r\n新增公开只读接口 **`ilworkcn.maiweave.get_life_status`**，可读取作息、当前活动、下一项安排、地点、精力和心情，用于插件联动或制作状态面板。\r\n\r\n在调用方插件的 `_manifest.json` 中，将 `\"api.call\"` 加入 `capabilities` 数组：\r\n\r\n```python\r\nresponse = await self.ctx.api.call(\r\n    \"ilworkcn.maiweave.get_life_status\",\r\n    version=\"1\",\r\n)\r\n```\r\n\r\n`response` 就是生活状态字典，可直接读取 `response[\"current\"]`、`response[\"sleeping\"]` 等字段。查询读取已有生活记录。[查看接入示例与字段说明 →](https://github.com/ilworkcn/MaiWeave/blob/v0.9.0/docs/只读状态API.md)\r\n\r\n### 📦 安装与升级\r\n\r\n下载下方 **`MaiWeave-0.9.0.zip`**，在 MaiBot WebUI 的插件管理中安装或更新。\r\n\r\n使用中遇到问题或有新想法，欢迎通过 [问题反馈与功能建议](https://github.com/ilworkcn/MaiWeave/issues/new/choose) 告诉我。\r\n\r\n[使用手册](https://github.com/ilworkcn/MaiWeave/blob/v0.9.0/docs/使用手册.md) · [配置指南](https://github.com/ilworkcn/MaiWeave/blob/v0.9.0/docs/配置指南.md) · [完整改动](https://github.com/ilworkcn/MaiWeave/compare/v0.8.4...v0.9.0)\r\n\r\n\r\n<details>\r\n<summary>安装包校验 · SHA-256</summary>\r\n\r\n```text\r\n3809d31d07db58f61f0cbd2554737c4e3e83165f07164a3f9c9d443cc6c8fa2f\r\n```\r\n\r\n</details>\r\n",
@@ -60821,7 +60821,7 @@
           "tag": "v0.8.4",
           "commit": "100ead0f47f81b7f924cb52504f2ecaee91ff113",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-03T13:30:54Z",
           "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.8.4",
           "release_notes": "### 💬 麦麦这次开口了吗？\n\n打开「此刻生活」的主动交流记录，可以看到 MaiBot 是否已受理请求、消息是否实际发出，或 Planner 是否选择了沉默。发送失败时，页面也会显示回执里的原因。\n\n每个聊天流的每日额度和两次主动交流的间隔，现在都按实际发送结算。例如，麦麦把一段读后感拆成三条消息发出，这轮只计一次，从发送时间起算间隔。如果 Planner 调用 `stop` 结束这轮交流，当天的额度会留给下次。\n\n[下载 v0.8.4 ZIP 安装包](https://github.com/ilworkcn/MaiWeave/releases/download/v0.8.4/MaiWeave-0.8.4.zip) · [查看自 v0.8.3 以来的改动](https://github.com/ilworkcn/MaiWeave/compare/v0.8.3...v0.8.4)\n\n<details>\n<summary>安装包 SHA-256</summary>\n\n```text\nf99d9b828882be9d8eb30212819fdb13675f205a7ce872bfe7855803273532f8\n```\n\n</details>\n",
@@ -61019,7 +61019,73 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v0.11.8",
+          "version": "0.11.8",
+          "error": "已发布版本 0.11.8 的 commit 被修改（actual 6077f69e78946a7729fe331ee7342ec151f85854 / expected 3e2bcc607301cf4d2075231e159f10a86fbfafcc）"
+        },
+        {
+          "tag": "v0.11.7",
+          "version": "0.11.7",
+          "error": "已发布版本 0.11.7 的 commit 被修改（actual 62a004e14b930f3f7602c33f02397caed068ecf7 / expected bdd372832bf23e4f59bbb884220566449fa357b0）"
+        },
+        {
+          "tag": "v0.11.5",
+          "version": "0.11.5",
+          "error": "已发布版本 0.11.5 的 commit 被修改（actual c7154885fd3a0c73b8fde820358d517907ca7898 / expected 47ba9829764c4a59df1bcbf7bcff00d4db7df861）"
+        },
+        {
+          "tag": "v0.11.4",
+          "version": "0.11.4",
+          "error": "已发布版本 0.11.4 的 commit 被修改（actual f4848a97f863ee1f35a51f083a5c467d286486a2 / expected e569331ebbb30a24da340ca94687506c1b20e704）"
+        },
+        {
+          "tag": "v0.11.3",
+          "version": "0.11.3",
+          "error": "已发布版本 0.11.3 的 commit 被修改（actual e7812062559ff50a36133b2dabfc39a5d42f207c / expected 580ec7b3ff631676c511f8c107cc89a1656ba41a）"
+        },
+        {
+          "tag": "v0.11.2",
+          "version": "0.11.2",
+          "error": "已发布版本 0.11.2 的 commit 被修改（actual 5d96c7de1f1af1cab9bdad89108a42cc93850205 / expected ac3afec2ac03893cefe5772a578367fc008971ea）"
+        },
+        {
+          "tag": "v0.11.1",
+          "version": "0.11.1",
+          "error": "已发布版本 0.11.1 的 commit 被修改（actual 45aa432eb56668c1adfd4cd39ea75417465b06d5 / expected db244a92e5ec29e1efbbca81cb605d6995a1c1e8）"
+        },
+        {
+          "tag": "v0.10.2",
+          "version": "0.10.2",
+          "error": "已发布版本 0.10.2 的 commit 被修改（actual d7131f0360ef0450fa8227cad04161c7ac924f25 / expected 8fa9b0a06941c7798a58991bb4e78bbae22a80ef）"
+        },
+        {
+          "tag": "v0.9.4",
+          "version": "0.9.4",
+          "error": "已发布版本 0.9.4 的 commit 被修改（actual 9650e7f319fd50de381793b64da8f39c3c6be90e / expected e755977b93d710871bec9a4f75c3dda7bcf6b44c）"
+        },
+        {
+          "tag": "v0.9.2",
+          "version": "0.9.2",
+          "error": "已发布版本 0.9.2 的 commit 被修改（actual 49b72bb354a063d7413e79b3a691464cb78649a5 / expected a1a7c9227b8895cd9ced070c7a8c58ac01b0ff4e）"
+        },
+        {
+          "tag": "v0.9.1",
+          "version": "0.9.1",
+          "error": "已发布版本 0.9.1 的 commit 被修改（actual fb3d71eb5356350e1090b1ce04085a9bdd173650 / expected d4202b7319fac9c323ed4e0189eddbb750820dc9）"
+        },
+        {
+          "tag": "v0.9.0",
+          "version": "0.9.0",
+          "error": "已发布版本 0.9.0 的 commit 被修改（actual 59752ffc008d86f6c30a8abc928a6b53865d22d4 / expected 70976f517c051a8b341f81aca3dfffbc1e1990e7）"
+        },
+        {
+          "tag": "v0.8.4",
+          "version": "0.8.4",
+          "error": "已发布版本 0.8.4 的 commit 被修改（actual 9c3acca9325a4b2f3f4ff8ad93eb53fbf94d0715 / expected 100ead0f47f81b7f924cb52504f2ecaee91ff113）"
+        }
+      ]
     },
     {
       "id": "local.volc.tts2",
