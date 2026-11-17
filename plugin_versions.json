@@ -69385,6 +69385,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "783791b307e27dd4420b4e926c068c0f62958e62",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T14:05:38Z",
+          "release_url": "https://github.com/met-tk/maibot-fishaudio-voice-pro/releases/tag/v1.1.1",
+          "release_notes": "## Fish Audio TTS Voice Clone (Pro) v1.1.1\n\n### 更新内容\n- 新增基于 Fish Audio 官方鲸鱼声波标识制作的本地矢量图标 `assets/icon.svg`（128x128 SVG）。\n- 在 `_manifest.json` 中配置 `display.icon` 节点指向 `assets/icon.svg`，并递增插件版本至 `1.1.1`。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "custom.maibot-fishaudio-voice-pro",
+            "name": "Fish Audio TTS Voice Clone (Pro)",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "volume-2"
+              }
+            },
+            "version": "1.1.1",
+            "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持 Planner 自主决策语音回复、独立温度/概率滑块、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "homepage": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "documentation": "https://github.com/met-tk/maibot-fishaudio-voice-pro#readme",
+              "issues": "https://github.com/met-tk/maibot-fishaudio-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "50d1f00cfe0f8e7f071d47db3dca75f69bd539de",
