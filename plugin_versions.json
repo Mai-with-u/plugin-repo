@@ -68970,6 +68970,88 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "mi-tuan.breeze-claim",
+      "manifest_id": "mi-tuan.breeze-claim",
+      "repositoryUrl": "https://github.com/CharQin/maibot-breeze-points",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "8fb67071b3359d81a4cb418d98d35d6d3c56cc8e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T12:46:29Z",
+          "release_url": "https://github.com/CharQin/maibot-breeze-points/releases/tag/v1.0.4",
+          "release_notes": "Maibot插件：自动领 BreezeBlue 每日400免费积分",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "mi-tuan.breeze-claim",
+            "version": "1.0.4",
+            "name": "Breeze 积分助手",
+            "description": "为 BreezeBlue 自动领取每日积分，支持云服务器与本地部署。自动识别运行环境，云端在配置页导入登录态，无需浏览器；本地可用 Edge 登录，支持余额查询、定时领取和失败重试。",
+            "author": {
+              "name": "CharQin",
+              "url": "https://github.com/CharQin"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/CharQin/maibot-breeze-points",
+              "homepage": "https://github.com/CharQin/maibot-breeze-points",
+              "documentation": "https://github.com/CharQin/maibot-breeze-points/blob/main/README.md",
+              "issues": "https://github.com/CharQin/maibot-breeze-points/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "playwright",
+                "version_spec": ">=1.45,<2"
+              }
+            ],
+            "capabilities": [
+              "send.text"
+            ],
+            "plugin_type": "automation",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "coins",
+                "background": "#0F766E"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
