@@ -69413,6 +69413,71 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.gyyxjsj.polite-silence",
+      "manifest_id": "github.gyyxjsj.polite-silence",
+      "repositoryUrl": "https://github.com/GYyxjsj/maibot-plugin_polite_silence",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "ec4fbeba8cf9a84fd7ece7a7a2a0ab77129c2be1",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T16:09:11Z",
+          "release_url": "https://github.com/GYyxjsj/maibot-plugin_polite_silence/releases/tag/v1.1.0",
+          "release_notes": "## 礼貌性沉默 v1.1.0\n\nMaiBot 移植版。AI 在被骚扰、谩骂或提不当要求时，可通过 `ignore_qq_user` 工具把对方加入沉默名单，插件在设定时长内忽略该用户的消息。\n\n### 主要功能\n- 工具化拒答：模型直接调用 `ignore_qq_user`，不再依赖提示词注入\n- 入站拦截：拒答期内该用户消息在 `chat.receive.before_process` 阶段中止，不进入聊天记录\n- 本地持久化：名单写入插件数据目录，重载或重启后自动恢复\n- 作用域可选：全局或仅触发拒答的聊天流\n- 白名单与时长上下限，支持永久拒答（-1）\n- 管理指令：`/ignore`、`/ignorelist`、`/unignore`\n- `[plugin].enable_log` 日志开关\n\n### 安装\n放入 MaiBot 的 `plugins/` 目录，按 `config.example.toml` 创建本地 `config.toml` 后启用。要求 MaiBot 1.3.x、maibot-plugin-sdk >= 2.6.0。\n\n### 合规调整\nmanifest v2（id: `github.gyyxjsj.polite-silence`）、补充 MIT 许可证、`config.toml` 移出版本库。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.gyyxjsj.polite-silence",
+            "name": "礼貌性沉默",
+            "version": "1.1.0",
+            "description": "让 AI 通过 ignore_qq_user 工具主动沉默骚扰者：插件在设定时长内忽略指定 QQ 用户的消息，支持全局或单聊天流作用域、白名单与本地持久化。",
+            "author": {
+              "name": "GYyxjsj",
+              "url": "https://github.com/GYyxjsj"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/GYyxjsj/maibot-plugin_polite_silence",
+              "homepage": "https://github.com/GYyxjsj/maibot-plugin_polite_silence",
+              "documentation": "https://github.com/GYyxjsj/maibot-plugin_polite_silence/blob/main/README.md",
+              "issues": "https://github.com/GYyxjsj/maibot-plugin_polite_silence/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "management",
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "volume-x"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
