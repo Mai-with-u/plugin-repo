@@ -57637,6 +57637,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.2.5",
+          "tag": "v2.2.5",
+          "commit": "c30e83fa0eada30579853fa1e7df62eabfec6d38",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T15:45:41Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-tts-plugin/releases/tag/v2.2.5",
+          "release_notes": "# Features\n\n- **括号动作描写清理**：在「通用设置 → 语音输出」新增可选开关。开启后，朗读跳过含中文的圆括号描述，聊天文字与语音历史保留动作描写。([PR #8](https://github.com/WhiteCloudOL/maimai-tts-plugin/pull/8))\n\n# Fixes\n\n- **Breeze 音频事件**：概率语音和插件 API 按同一份朗读正文生成、校验和插入事件。语调分析返回 `spoken_text`，分析结果中的原文和控制参数可以直接用于高级合成。([PR #8](https://github.com/WhiteCloudOL/maimai-tts-plugin/pull/8))\n- **Breeze 局部语气**：语音工具和概率语音按清理后的朗读正文校验控制标记，插件 API 依据同一正文判断是否需要自动语调。局部语气指令可含括号，原文中的动作描写仍可供 LLM 判断语气。([PR #8](https://github.com/WhiteCloudOL/maimai-tts-plugin/pull/8))\n\n## New Contributors\n\n- @NewB2001 首次为麦麦多平台TTS语音贡献代码。([PR #8](https://github.com/WhiteCloudOL/maimai-tts-plugin/pull/8))\n\n运行要求为 MaiBot **1.3.6–1.4.99**、插件 SDK **2.13.0–2.23.0**。升级后重载插件并刷新 WebUI。括号动作描写清理默认关闭，可在「通用设置 → 语音输出」开启并保存。\n\n**Full Changelog**: [v2.2.4...v2.2.5](https://github.com/WhiteCloudOL/maimai-tts-plugin/compare/v2.2.4...v2.2.5)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "WhiteCloudOL.maimai-tts-plugin",
+            "version": "2.2.5",
+            "name": "麦麦多平台TTS语音",
+            "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
+            "plugin_type": "media",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-tts-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-tts-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-tts-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0,<4.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2.0.0,<3.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "av",
+                "version_spec": ">=14.0.0,<17.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8,<0.3.0"
+              }
+            ],
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "speech",
+                "background": "#D8EAD7"
+              }
+            }
+          }
+        },
+        {
           "version": "2.2.3",
           "tag": "v2.2.3",
           "commit": "908e8425827748a126fcb47e6ee4a5e263daeffa",
