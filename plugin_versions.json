@@ -25510,6 +25510,50 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.22.0",
+          "tag": "v2.22.0",
+          "commit": "cea71dcbb5a7181738d0cef5e5c83e8e6d5c2be7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T05:26:08Z",
+          "release_url": "https://github.com/orge-8/cv_lyric_context/releases/tag/v2.22.0",
+          "release_notes": "## v2.22.0 — 提交合规整改 + 版本范围放宽（识别/注入行为零变化）\n\n- **安全加固**：移除「关闭 TLS 证书校验」开关（旧 crawler.verify_ssl），证书链校验恒开启；中间人代理场景统一走 crawler.ca_bundle（在系统根证书库之上追加信任，校验仍开启）。\n- **修复** annotate_emotions.py 的 ca_bundle 用 cafile 丢系统根证书库缺陷（改先建默认上下文再追加 CA）。\n- **版本范围放宽**：host_application.max_version 1.4.6 → 1.4.99；sdk.max_version 2.23.0 → 2.23.99（覆盖已实测的 MaiBot v1.4.6 / SDK 2.23.0）。\n- extra_song_dbs 配置占位符去盘符绝对路径。\n\n### 验收\n- 插件中心自查 check_submission：PASS 26 / FAIL 0 / WARN 3（WARN 均误报）。\n- 全量 pytest：262 passed / 7 skipped；门禁 check/contracts/smoke 全 PASS。\n- 官方 MaiBot v1.4.6 PluginLoader 加载 OK（28 组件，非兼容模式）。\n\n详见 CHANGELOG.md。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.cv-lyric-context",
+            "version": "2.22.0",
+            "name": "中V歌词识别 · 歌曲库",
+            "description": "入站消息命中中文VOCALOID歌词时，同时向规划器（maisaka.planner.before_request）与回复器（maisaka.replyer.before_request 的 extra_prompt）两条 LLM 链路注入歌曲名/歌手/P主，让 bot 的工具决策与最终回复都能接住歌词话题。内置 3412 首中V词库；可丢 .txt/.lrc 歌词文件进收件箱扩充，也能从 VCPedia 同步 4000+ 首歌曲（含作词作曲等完整信息）并用「/歌词」系列命令或聊天直接查询。重任务命令（同步/补歌词/重抓）默认关闭，需先在配置「同步与权限」页签的管理员 QQ 号里填上允许触发的号（配置文件键名 crawler.sync_admin_ids）。附情绪标签体系：同步后自动为新歌标注，LLM 可通过 recommend_cv_song 按对话氛围推荐歌曲（自带歌手归属校验与最近推荐去重）。 另含点歌联动（integration 配置节）：识别出歌词时为前几首歌生成「歌名 歌手」可点播查询串，并提示规划器在用户表示想听时调用点歌插件（github.orge-8.music-request）的 search_and_play_music 工具把歌发到当前会话。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "urls": {
+              "repository": "https://github.com/orge-8/cv_lyric_context",
+              "homepage": "https://github.com/orge-8/cv_lyric_context",
+              "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.1.0",
+              "max_version": "2.23.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "custom_pages",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "2.19.0",
           "tag": "v2.19.0",
           "commit": "6b677f8e8a952c8175ae3ec8f235cffa5873181c",
