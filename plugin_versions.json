@@ -70688,6 +70688,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "bc358d592a2e9ef99fead8d6f554c3d19f1712fd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T06:49:53Z",
+          "release_url": "https://github.com/Akenari011/maibot-manga/releases/tag/v1.2.0",
+          "release_notes": "## 1.2.0\n### 新增\n\n- 首次加载自动部署打码服务：检测到不可用时按平台从 jm-mask-rs Release\n  下载二进制与运行时（约 53-80 MB），解压到插件数据目录并启动，无需手动操作\n- 配置「自动安装打码服务」（默认开启）：可关闭以避免首次加载下载\n- 配置「插件托管打码进程」：由插件启动/停止，卸载时自动回收\n- 配置「安装目录」：自定义打码服务落地路径\n\n### 改进\n\n- 已有 systemd 实例占用端口时自动跳过托管，不会重复启动或抢端口\n- 打码部署文档改为推荐 jm-mask-rs 便携版（4 个文件、约 104 MB、无需 Python）",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Akenari011.maibot-manga",
+            "version": "1.2.0",
+            "name": "麦麦漫画",
+            "description": "跨渠道漫画查询与推荐。支持拷贝漫画、G站漫画等站点，可按关键词或标签搜索并返回链接；封面可选本地打码，按群或私聊单独控制；每天定时从各渠道各抓一本，由 LLM 挑选后推送今日推荐。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-manga",
+              "homepage": "https://github.com/Akenari011/maibot-manga",
+              "issues": "https://github.com/Akenari011/maibot-manga/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jmcomic",
+                "version_spec": ">=2.7.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.20"
+              },
+              {
+                "type": "python_package",
+                "name": "zhconv",
+                "version_spec": ">=1.4.0"
+              }
+            ],
+            "changelog": "CHANGELOG.md",
+            "plugin_type": "tool",
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "send.forward",
+              "llm.generate",
+              "chat.get_all_streams"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.jpg",
+                "fallback": "image"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "c229a2f2471a5deb756ff92862c221bf16bc3dce",
