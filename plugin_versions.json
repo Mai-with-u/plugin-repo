@@ -4032,7 +4032,7 @@
           "tag": "v6.3.1",
           "commit": "d8f09b5d79fb184ce68d7448287f0fa38f64c3dd",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-16T16:02:47Z",
           "release_url": "https://github.com/Yae-Miko-Rabbit/MaiTrace/releases/tag/v6.3.1",
           "release_notes": "本版本修复插件市场登记与发版校验，并更新 GitHub 改名后的项目信息。\n\n- 将 MaiBot 兼容范围修正为 `1.3.11–1.3.99`，避免原 `1.99.99` 上限触发市场校验限制。\n- 更新作者、个人主页、仓库与反馈链接为 `Yae-Miko-Rabbit`。\n- 保留运行时插件 ID `Rabbit-Jia-Er.MaiTrace`，继续使用原数据目录与跨插件 API 命名空间。\n\n本次不修改插件功能及配置结构，配置模板版本继续使用 `6.3.0`。\n\n插件市场修改申请请填写：当前登记 ID `Rabbit-Jia-Er.mai_clinic_plugin`，新登记 ID `Rabbit-Jia-Er.MaiTrace`，新仓库地址 `https://github.com/Yae-Miko-Rabbit/MaiTrace`。\n\n已使用插件中心的 manifest 校验脚本检查通过，并核对 manifest 与项目版本均为 `6.3.1`。\n",
@@ -4128,7 +4128,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v6.7.4",
+          "version": "6.7.4",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "khiqwq.Maibot_daily_analysis",

@@ -1004,7 +1004,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "Rabbit-Jia-Er.MaiTrace",
-      "version": "6.3.1",
+      "version": "6.7.4",
       "name": "MaiTrace（麦时迹）",
       "description": "MaiBot 的生活与 QQ 空间插件：让麦麦拥有每日作息、精力心情、睡眠梦境，并在合适的时候分享近况。",
       "plugin_type": "chat",
@@ -1062,6 +1062,11 @@
           "type": "python_package",
           "name": "lunar-python",
           "version_spec": ">=1.4.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0"
         }
       ],
       "capabilities": [
@@ -13584,7 +13589,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.netajuutilainen.immersive-control",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "name": "麦麦我真得控制你了",
       "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
       "author": {
@@ -13602,13 +13607,14 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.22.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [],
       "capabilities": [
         "send.text",
         "maisaka.proactive.trigger",
-        "maisaka.context.append"
+        "maisaka.context.append",
+        "api.call"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -14175,7 +14181,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.4",
+      "version": "1.6.6",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
       "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
@@ -24061,6 +24067,172 @@
     },
     "assets": {
       "icon_64": "icons/maibot-cmd-sandbox.webp"
+    }
+  },
+  {
+    "id": "github.gyyxjsj.polite-silence",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.gyyxjsj.polite-silence",
+      "name": "礼貌性沉默",
+      "version": "1.1.0",
+      "description": "让 AI 通过 ignore_qq_user 工具主动沉默骚扰者：插件在设定时长内忽略指定 QQ 用户的消息，支持全局或单聊天流作用域、白名单与本地持久化。",
+      "author": {
+        "name": "GYyxjsj",
+        "url": "https://github.com/GYyxjsj"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/GYyxjsj/maibot-plugin_polite_silence",
+        "homepage": "https://github.com/GYyxjsj/maibot-plugin_polite_silence",
+        "documentation": "https://github.com/GYyxjsj/maibot-plugin_polite_silence/blob/main/README.md",
+        "issues": "https://github.com/GYyxjsj/maibot-plugin_polite_silence/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.6.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "management",
+      "capabilities": [
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "volume-x"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.gyyxjsj.polite-silence.webp"
+    }
+  },
+  {
+    "id": "github.gyyxjsj.weknora-qa",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.gyyxjsj.weknora-qa",
+      "version": "1.1.0",
+      "name": "WeKnora 知识库检索",
+      "description": "从自建 WeKnora 知识库拉回原文片段，交给麦麦自己思考：规划器可调用 weknora_search 工具，用户也可直接发 /提问",
+      "author": {
+        "name": "GYyxjsj",
+        "url": "https://github.com/GYyxjsj"
+      },
+      "license": "AGPL-3.0-or-later",
+      "urls": {
+        "repository": "https://github.com/GYyxjsj/weknora_qa_plugin",
+        "homepage": "https://github.com/GYyxjsj/weknora_qa_plugin",
+        "documentation": "https://github.com/GYyxjsj/weknora_qa_plugin/blob/main/README.md",
+        "issues": "https://github.com/GYyxjsj/weknora_qa_plugin/issues"
+      },
+      "changelog": "CHANGELOG.md",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.7.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "plugin_type": "data",
+      "capabilities": [
+        "send.text",
+        "llm.generate"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "lucide",
+          "value": "database"
+        }
+      }
+    }
+  },
+  {
+    "id": "github.Akenari011.maibot-manga",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.Akenari011.maibot-manga",
+      "version": "1.1.0",
+      "name": "麦麦漫画",
+      "description": "跨渠道漫画查询与推荐。支持拷贝漫画、G站漫画等站点，可按关键词或标签搜索并返回链接；封面可选本地打码，按群或私聊单独控制；每天定时从各渠道各抓一本，由 LLM 挑选后推送今日推荐。",
+      "author": {
+        "name": "Akenari011",
+        "url": "https://github.com/Akenari011"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Akenari011/maibot-manga",
+        "homepage": "https://github.com/Akenari011/maibot-manga",
+        "issues": "https://github.com/Akenari011/maibot-manga/issues"
+      },
+      "host_application": {
+        "min_version": "1.4.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.16.0",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "jmcomic",
+          "version_spec": ">=2.7.0"
+        },
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.20"
+        },
+        {
+          "type": "python_package",
+          "name": "zhconv",
+          "version_spec": ">=1.4.0"
+        }
+      ],
+      "changelog": "CHANGELOG.md",
+      "plugin_type": "tool",
+      "i18n": {
+        "default_locale": "zh-CN"
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.hybrid",
+        "send.forward",
+        "llm.generate"
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.jpg",
+          "fallback": "image"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.Akenari011.maibot-manga.webp"
     }
   }
 ]
