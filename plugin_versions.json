@@ -68586,6 +68586,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.20",
+          "tag": "v0.9.20",
+          "commit": "600b9910a62162f9b4cc0152c367c84034ee2976",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T15:14:11Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.20",
+          "release_notes": "## 付费页按 URL 直连\n\n`best` 本身就是 Patreon／FANBOX 帖子时，直接按链接反推 campaign 与帖子，不再依赖「先拿到作者账号」；单帖接口里顺手取回作者 X 号，结果里多一行 `🐦 她的 X`。只在指纹命中且地址能解析出帖子 id 时触发。\n\n## 转载页中文不再乱码\n\n页面没写 charset 时按「响应头 → 页面 meta → utf-8 → gb18030」的顺序解码。以前新浪那类页面会解成 `Cosæ­£ç7`，拿去做微博检索只能回几条无关帖。\n\n## reddit 这类搬运页只认署名\n\nreddit 帖子的标题是「求图／约炮」这类整句话，逐词抽名字会抽出 `@Choose`、`looking` 这种普通词，卡片上就多出两段毫不相干的线索。现在这类站点不参与自由抽词，但显式署名照认——`cosplay by XXX`、`credit: XXX`、`推特XXX`、以及标题里直接贴着的 `x.com/<号>`——认出来还要翻到那个号自己的带图帖里有这张图才算数，翻不到就什么都不写。\n\n（reddit 正文抓不到：页面直接回 403，`.json`／`old.reddit`／`.rss` 都不通，所以正文里写的原帖链接拿不到，只认标题这一层。）\n\n## 未找到时的文案\n\n「未找到可靠出处」和「仅能找到其他网站的转发」合成一行，不再重复说同一件事。\n\n## 文档\n\nREADME 补上署名口径，AGENTS 加了 reddit 抓取、字符集解码、付费页直连三条平台事实与踩坑记录，cases 收录这三单。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.20",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.hybrid",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.15",
           "tag": "v0.9.15",
           "commit": "3f5faca2a8e32cbd57e88c72f7ac6f27195e2dbe",
