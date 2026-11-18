@@ -36972,6 +36972,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.7",
+          "tag": "v1.6.7",
+          "commit": "5c63076c3756a6aa3bcb65f2a4d0f91c842ddad6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T15:52:05Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.7",
+          "release_notes": "## 1.6.7\n\n- 修复「漫画发送回执失败后不再上传群相册」：协议端动作超时 15s 就判发送失败，但大图 highway 上传仍在继续（2026-11-18 实测 12 MB 漫画传了 150 秒，图最终正常入群）；旧逻辑把相册上传写在「发送成功」分支里，这种「图已送达、回执为失败」的情况整段被跳过 → 相册漏图。现在只要漫画已存档，回执失败也会补传相册（等 180 秒让图传完再传，避免两条上传抢带宽）。\n- 相册上传超时 120s → 600s（同一晚服务器上行异常时，12 MB 补传实测耗时 263 秒）。\n- 漫画发送前压缩：超过 4 MB 的图转 JPEG q90（4:4:4、不缩放），实测 12.19 MB → 2.50 MB（PSNR 43.0 dB，肉眼无感，文字边缘清晰），存档仍保留原 PNG；漫画廊「重发」同样走压缩。\n- 回归测试：回执失败仍上传相册（含参数校验）；相册开关关闭时不触发；大图压缩为 JPEG、小图原样返回；发送使用压缩后的字节。全量 170 项测试通过（新增 4 条）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.7",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.6",
           "tag": "v1.6.6",
           "commit": "56ba8a5bc400e12e6a78cdfd1315485a6d28cb44",
