@@ -49143,6 +49143,70 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.6.0",
+          "tag": "v0.6.0",
+          "commit": "6606dced505f5dc70efabad2c167d121fbc82f71",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T05:16:32Z",
+          "release_url": "https://github.com/SoulString-Dev/maibot-mimo-voice/releases/tag/v0.6.0",
+          "release_notes": "### 新增\n\n- **语音 + 文字并存**（`delivery.keep_text`，默认 `false`）：打开后回复拆成**两条消息**——文字（模型原始回复）与语音（清洗后的朗读版本）。`delivery.text_first` 控制顺序（默认文字先）。文字等语音合成完再发，最坏等 `general.timeout`（25 秒）；合成失败只发文字，不额外说明。\n- **内建定时语音**（`[scheduled]`，默认 `false`）：`[[scheduled.entries]]` 支持 `time`（`HH:MM`）、`days`（每天 / 工作日 / 周末 / `mon-fri` / `1-5` / `1,3,5`）、`target`（`g群号` / `uQQ号`，无前缀先群后私聊）、`text`、`content`。每条每天最多一次；最多 20 条；时间/星期写错的条目启动时告警并跳过。目标会话被 `/voice off` 关掉或正在合成时跳过并记日志。\n- **对外 API `voice_say`**：`text` 必填；给 `stream_id` 就发送、不给只返回 base64（`return_audio` 可让「发送 + 返回音频」同时成立）；失败一律返回 `{\"success\": false, \"error\": ...}`，不抛异常。\n- **CI**：`.github/workflows/ci.yml` 在每次 push / PR 上跑 ruff、mypy 与全部单测（Python 3.13）。\n\n### 修改\n\n- `plugin.config_version` 升到 0.6.0；`config.example.toml` 新增 `[delivery]` 两项、`[api]` 与 `[scheduled]` 段。\n- **API 鉴权用 `api.token` 而非插件白名单**：宿主 `_cap_api_call` 只透传 `args[\"args\"]`，不注入调用方身份，按插件 id 限制无法实现。`token` 留空 = 不校验；另加全局 `api.rate_limit_seconds`（默认 5 秒）与 `general.max_text_length` 长度上限。\n- 定时与 API 共用 `_resolve_stream`（`g` / `u` 前缀或自动判断），命令层的 `/voice say` 行为不变。\n- **并存改为两条消息**：一条消息里混 `[文字, 语音]` 时，部分适配器只落地语音段（2026-11-16 线上实测：四条回复的文字都没出现）。现在语音单独一条，文字用 `ctx.send.text` 另发；`text_first = false` 时文字延迟 1.5 秒补发，避免与语音抢顺序。\n- **自己发的文字不再被转成语音**：`ctx.send.text` 发出的文字会再次经过 `send_service.before_send`，此前被当成模型回复又转一次语音，导致开 `keep_text` 时一条回复连出 2–3 条语音（2026-11-17 群 864688950 实测），`/voice say` 的回执也会被读出来。现在发文字时按 `(会话, 文本)` 记一条 10 秒标记，再进钩子直接放行；标记一次性，用完即删。\n- `/voice test`、`/voice say` 与其它发送方式一致：开 `keep_text` 时也把文字一起发（`test` 发到当前私聊，`say` 发到目标会话）。定时语音与自动转换共用同一条发送路径（`_deliver_voice`）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.SoulString-Dev.maibot-mimo-voice",
+            "version": "0.6.0",
+            "name": "MiMo TTS 语音回复",
+            "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
+            "author": {
+              "name": "SoulString",
+              "url": "https://github.com/SoulString-Dev"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "homepage": "https://github.com/SoulString-Dev/maibot-mimo-voice",
+              "documentation": "https://github.com/SoulString-Dev/maibot-mimo-voice/blob/main/README.md",
+              "issues": "https://github.com/SoulString-Dev/maibot-mimo-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.12.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "0.5.6",
           "tag": "v0.5.6",
           "commit": "accced2a2d668745a34be6e5bf25024888e6030a",
