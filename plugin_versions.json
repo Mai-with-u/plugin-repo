@@ -36784,6 +36784,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.6.6",
+          "tag": "v1.6.6",
+          "commit": "56ba8a5bc400e12e6a78cdfd1315485a6d28cb44",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T20:28:24Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.6.6",
+          "release_notes": "- 修复「每次插件更新 / 热重载后，漫画当前角色方案被重置」：`comic_character_set_active` 只改了内存里的配置对象，**从未写回 `config.toml`**；插件热重载时配置从文件重建，`active_character` 回到空值，看起来就是「角色方案设置被顶掉」（角色方案列表与参考图本身仍在 `data/plugins/<id>/comic_characters.json`）。现切换当前角色时落盘 `[comic].active_character`（tomlkit 保留注释）；删除当前角色时同步写回空值。\r\n- 回归测试：切换后 `config.toml` 必须含 `active_character = \"<id>\"`；删除当前角色后必须回到 `\"\"`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.6.6",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "personality.get_current"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.4",
           "tag": "v1.6.4",
           "commit": "6e5e57b1a3dce13cc9f084de0388693204380e2f",
