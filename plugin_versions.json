@@ -12727,6 +12727,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.5",
+          "tag": "v1.5.5",
+          "commit": "52d635ef8c4c4fff6009e31629969113c6d6828b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T07:13:06Z",
+          "release_url": "https://github.com/Chi8wah/f1-info-plugin/releases/tag/v1.5.5",
+          "release_notes": "- 将插件 SDK 兼容上限提高至 `2.23.99`，消除 MaiBot `1.4.6` 搭配 SDK `2.23.0` 时的清单版本警告。\n- 安装文档列出 MaiBot 主程序和插件 SDK 的完整支持范围。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "chi8wah.f1-info-plugin",
+            "version": "1.5.5",
+            "name": "F1 资讯插件",
+            "description": "查询 F1 赛历、赛果和新闻，定时采集发送 F1 Meme，并向模型注入可编辑的车手群聊上下文。",
+            "author": {
+              "name": "chi8wah",
+              "url": "https://github.com/Chi8wah"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Chi8wah/f1-info-plugin",
+              "homepage": "https://github.com/Chi8wah/f1-info-plugin",
+              "documentation": "https://github.com/Chi8wah/f1-info-plugin/blob/main/README.md",
+              "issues": "https://github.com/Chi8wah/f1-info-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.12",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "chat.get_stream_by_group_id",
+              "render.html2png",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./poleposition.png"
+              }
+            }
+          }
+        },
+        {
           "version": "1.5.4",
           "tag": "v1.5.4",
           "commit": "8f99ad27b088f06350471c7b0497435cab1634de",
