@@ -40897,6 +40897,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.9.1",
+          "tag": "v1.9.1",
+          "commit": "b136eb4cc1abd59e2215a5ff36767aeb06c8bb5a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T15:08:37Z",
+          "release_url": "https://github.com/orge-8/file-reader/releases/tag/v1.9.1",
+          "release_notes": "## v1.9.1（2026-11-19）\n\n### 本版主题：QQ「视频」消息（video 段）接入读取链路\n\n真机日志驱动：QQ 里直接「发视频」走 OneBot video 段，适配器降级成 `[视频] 文件: xxx.mp4，大小: N` 纯文本。旧版三道门全只认 file 段，视频消息被整体丢弃（全程零日志），模型因此误称「看不了视频」。\n\n- `[视频]` 降级文本解析（含可选 `文件:` 前缀、多行合并、链接/file_ref 尾巴）\n- video 段提取与 OneBot 段匹配（url / base64 / 本地路径 / 仅 file_id 各形态）\n- 新增适配器 RPC 回溯：`adapter.napcat.action.call_data` 调 `get_msg` 取原始事件（负数 message_id 合法），video 段 URL 走既有 SSRF 防护下载（可信来源语义），**不依赖 NapCat HTTP 服务**\n- 兜底链：SL file_id 通道（有 file_id 仍首选）→ RPC 回溯 → NapCat HTTP（也接 video URL）\n- 新配置 `[snowluma].msg_backtrack_api`（置空关闭），config_version 1.7.0 → 1.9.1\n\n### 同版收录（v1.9.0 / v1.8.2 / v1.8.1 / v1.8.0 / v1.7.0 起未发布的全部变更）\n\n- **v1.9.0** 音频默认模型升级百炼 qwen3.8-omni-flash：时长闸门 20 分钟 → 1 小时、显式关思考（7MB 大小闸门不变，base64 10MB 为通道通用硬上限）\n- **v1.8.2** 视频链路热修：Files API 上传后轮询预处理状态至 active 再调 Chat（修 403 InvalidState 竞态）；统一音视频日志回调口径（真机复验通过，41.88s 入库）\n- **v1.8.1** QQ 离线文件裸 IP+HTTP 链接按可信来源首跳公网校验（内网仍拒）\n- **v1.8.0** 视频理解：豆包 seed-2.1-lite 画面+音轨一次调用，Files API 流式上传，大小/时长闸门 + 日预算\n- **v1.7.0** SnowLuma 适配器取文件通道（api.call 换 URL）+ size 预检 + css/scss/less\n- **v1.6.0** 性能与内存专项；**v1.5.1** Planner 公告音频语义\n\n### 兼容声明\n\n- host_application: 1.2.0 – **1.4.99**；sdk: 2.5.1 – **2.23.99**（实测基线 host 1.4.6 / SDK 2.23.0，2026-11-19 门禁全绿）\n\n### 验证\n\n- 全量 399 passed；gate PASS 3 / SKIP 0 / FAIL 0；多组反向验证红绿闭环\n- 详见 CHANGELOG.md\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.file-reader",
+            "version": "1.9.1",
+            "name": "文件读取（File Reader）",
+            "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本/音频/视频等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。音频经 Omni 模型听一次、视频经豆包 seed-2.1-lite 看一次（Files API 上传，画面+音轨一次调用）产出文本入库，追问免费。v1.9.1 QQ「视频」消息（video 段）接入读取链路：[视频] 降级文本解析 + 适配器 RPC get_msg 回溯取下载地址（不依赖 NapCat HTTP 服务），修视频消息全程零日志、模型误称看不了视频。v1.9.0 音频默认模型升级百炼 qwen3.8-omni-flash：时长闸门放宽到 1 小时、显式关思考防挤占转写输出预算（7MB 大小闸门不变，base64 10MB 为通道通用硬上限）。v1.8.2 视频链路真机热修：Files API 上传后轮询预处理状态至 active 再调用模型（修 403 InvalidState 竞态），统一音视频日志回调口径（修 Logging error 刷屏）。v1.8.1 修复 QQ 离线文件（裸 IP+HTTP 链接）被下载白名单误拒：适配器返回的 URL 按可信来源做公网地址校验（内网仍拒、重定向回退白名单、消息正文 URL 不受影响）。v1.8.0 新增视频理解：mp4/mov/m4v/avi/mkv/webm，大小/时长闸门、每日预算防刷屏、超限只登记不解析（通知注入模型不发群）。v1.7.0 适配 SnowLuma 适配器取文件通道（api.call 换 URL，无需 NapCat HTTP 服务）+ size 预检 + css/scss/less。v1.6.0 统一临时文件获取、入库预建索引、全局数据/队列预算、解析解压上限与磁盘重试包。URL 下载默认只允许 QQ 文件域并拒绝内网/回环地址。参考 astrbot_plugin_file_reader_pro 移植。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/file-reader"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.1",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "numpy",
+                "version_spec": ">=1.24"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24"
+              },
+              {
+                "type": "python_package",
+                "name": "pdfminer.six",
+                "version_spec": ">=20221105"
+              },
+              {
+                "type": "python_package",
+                "name": "pypdfium2",
+                "version_spec": ">=4.30"
+              },
+              {
+                "type": "python_package",
+                "name": "mutagen",
+                "version_spec": ">=1.47"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "llm.embed",
+              "llm.generate",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.5.1",
           "tag": "v1.5.1",
           "commit": "700aa346f22165ef583c29bb5b51c94d30ee55cd",
