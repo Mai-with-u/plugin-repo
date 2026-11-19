@@ -69611,6 +69611,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.21",
+          "tag": "v0.9.21",
+          "commit": "e9a6855b7a53aea6babc3f3a1ee80e70de5c66b0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T15:01:56Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.21",
+          "release_notes": "## 0.9.21\n\n**头图**\n\n- 插件头图换成「侦探麦麦」：`assets/icon.png`，manifest 的 `display.icon` 指向它\n\n**结果展示**\n\n- 没搜到时，首条回复补一行 `🤖 AI 生成概率`（只在检测真跑过时出现；≥75% 写成「疑似 AI 生成」）\n- 结论落在 fantia / 图集站 / Patreon 这类付费图包上时，补一句「这类图通常只在付费页，公开索引里没有原帖」\n- 合并转发的页尾贴回本次搜索的原图；图多时页脚单独成块，避开单条 6 张图的上限\n\n**反查原作者**\n\n- picazor 这类图集站：从发布者主页的 X 链接认人（帖子页 → 发布者主页 → X，两跳）\n- 水印里的模板词（`PHOTOGRAPHER`、`Photo by`……）不再当账号，改取后面跟着的那个词\n- 转载页标题抽名字：剥掉开头的分类标签（`[Cosplay] ran3` 和丢了左括号的 `Cosplay] ran3` 都要取到 `ran3`），颜色、修饰词进排除表\n- 新增 `[title_author]` 开关：默认把「从标题里认作者名」交给 MaiBot 的 `utils` 任务组；模型没回、答复解析不了时自动退回固定规则\n- 抽名字时把页面标题和正文片段一起给模型（模型不联网，只给链接等于没给）\n- 名字和英文 id 拆成 `name` / `handle` 两栏，展示时分开写（「染三ran3」→ 名字「染三」+ 账号 `ran3`），走模型时注明名字是哪来的；比对 X 显示名仍用原样整串\n- 查 X 资料失败不再静默：404 记「查无此号」直接收手，429／5xx／超时记状态码并重试一次；名字认出来但公开帖里没图时，继续拿这个号查她的付费页\n\n**配置**\n\n新增 `[title_author]` 段，详见 README：\n\n```toml\n[title_author]\nenabled = true\ntask = \"utils\"\nmodel = \"\"\ntimeout = 60\n```\n\n测试 846 项全过。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.21",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.hybrid",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.20",
           "tag": "v0.9.20",
           "commit": "600b9910a62162f9b4cc0152c367c84034ee2976",
