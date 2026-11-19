@@ -19639,7 +19639,71 @@
       "manifest_id": "qq-official-adapter",
       "repositoryUrl": "https://github.com/WhiteCloudOL/qq-official-adapter",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.2.2",
+          "tag": "v1.2.2",
+          "commit": "16a8959a739478f73391576f5d7e84161b89c335",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T11:34:07Z",
+          "release_url": "https://github.com/WhiteCloudOL/qq-official-adapter/releases/tag/v1.2.2",
+          "release_notes": "# Fixes\r\n\r\n- 许可证：补齐 [LICENSE](https://github.com/WhiteCloudOL/qq-official-adapter/blob/v1.2.2/LICENSE) 全文，并将项目标识统一为 `AGPL-3.0-only`，仅适用 3.0，不包含后续版本。\r\n- 项目配置：移除不再使用的 `pyproject.toml`，保留插件清单和依赖文件。\r\n\r\n**升级提示：** 新安装或已使用新版 MaiBot 的用户，推荐使用 MaiBot 团队维护的内置「QQ 官方机器人适配器」（`Mai-with-u.qq-adapter`）。切换前请先停用本插件；使用文字子频道或频道私信的用户，请先确认内置版覆盖所需场景。本版保留 v1.2.1 的重连修复（[#7](https://github.com/WhiteCloudOL/qq-official-adapter/issues/7)）。\r\n\r\n**运行要求：** MaiBot 1.0.6–1.4.99，插件 SDK 2.8.0–2.23.0，Python 3.11 或更新版本。更新后请重新加载插件或重启 MaiBot。\r\n\r\n[使用说明](https://github.com/WhiteCloudOL/qq-official-adapter/blob/v1.2.2/README.md) · [内置适配器配置指南](https://docs.meowyun.cn/qqbot/maibot/adapters/qq-official/) · [更新日志](https://github.com/WhiteCloudOL/qq-official-adapter/blob/v1.2.2/CHANGELOG.md)\r\n\r\n**Full Changelog:** [v1.2.1...v1.2.2](https://github.com/WhiteCloudOL/qq-official-adapter/compare/v1.2.1...v1.2.2)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "qq-official-adapter",
+            "version": "1.2.2",
+            "name": "QQ 官方机器人适配器",
+            "description": "通过 QQ 官方 WebSocket 与 OpenAPI 接入群聊、单聊和频道消息的 MaiBot 适配器。",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0-only",
+            "plugin_type": "adapter",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/qq-official-adapter",
+              "homepage": "https://github.com/WhiteCloudOL/qq-official-adapter",
+              "documentation": "https://github.com/WhiteCloudOL/qq-official-adapter#readme",
+              "issues": "https://github.com/WhiteCloudOL/qq-official-adapter/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.6",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [
+              "config.get",
+              "gateway.route_message",
+              "gateway.update_state"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eaf6ff"
+              }
+            }
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
