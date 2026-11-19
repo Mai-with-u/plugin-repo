@@ -4107,6 +4107,110 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "6.7.4",
+          "tag": "v6.7.4",
+          "commit": "d1ea75d822557378aa274c767a766dca56b5c976",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T21:26:19Z",
+          "release_url": "https://github.com/Yae-Miko-Rabbit/MaiTrace/releases/tag/v6.7.4",
+          "release_notes": "内置日程现在结合身体需要、近期进度和生活事务安排一天，减少机械重复。日程图片支持自定义背景，配置界面按六个功能页面整理。\n\n## 主要更新\n\n- 自然生活：持续保存口渴、疲劳、困意、洗漱需要和身体不适，随活动与休息逐步恢复；角色月经周期可单独配置，默认关闭。\n- 生活接续：记录活动结果和没做完的事项，在真实空档补充必要起居或接续活动，保护已有约定。支持读取麦生活的状态与场景。\n- 日程重复检查：对近期主要活动进行比较和模型复核，保留正常起居、熟悉习惯及有进展的项目；机械重复在已有生成轮数内反馈改进。\n- 日程图片：支持本地背景、铺满或完整显示、背景位置和卡片不透明度。\n\n## 细节与修复\n\n- 跨夜时间显示为 `23:00–次日08:30`，保留内部时间计算及绘卷互调接口。\n- 配置页按开始使用、每日生活、主动私聊、日程图片、QQ 空间和高级设置分页，补充易懂说明与填写示例。全部由插件和现有 SDK 提供。\n- 日程图片与角色月经周期改为独立配置区，自动迁移旧字段并保留已填写设置。\n\n## 安装与升级\n\n- 需要 MaiBot 1.3.11+、插件 SDK `>=2.15.0,<3` 和符合主程序要求的 Python 3.12+。\n- 下载 `MaiTrace-v6.7.4.zip`，将其中的 `MaiTrace` 文件夹放入 MaiBot 的 `plugins` 目录。升级时保留自己的 `config.toml`、背景图片及运行数据，然后重载插件。\n- 原配置与生活数据继续使用。背景设置可直接用于已有日程；重复检查只影响后续生成，需立即更新今日安排时执行 `/zn plan regenerate`。\n- 安装包不包含个人配置、登录缓存或个人背景。自定义背景需自行放置图片，README 中的日程图片为示例。\n\n验证：离线回归通过 399 项测试及 115 项子测试；配置字段、文档链接和示例已核对。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "Rabbit-Jia-Er.MaiTrace",
+            "version": "6.7.4",
+            "name": "MaiTrace（麦时迹）",
+            "description": "MaiBot 的生活与 QQ 空间插件：让麦麦拥有每日作息、精力心情、睡眠梦境，并在合适的时候分享近况。",
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png"
+              }
+            },
+            "author": {
+              "name": "Yae-Miko-Rabbit",
+              "url": "https://github.com/Yae-Miko-Rabbit"
+            },
+            "license": "AGPL-3.0-only",
+            "urls": {
+              "repository": "https://github.com/Yae-Miko-Rabbit/MaiTrace",
+              "homepage": "https://github.com/Yae-Miko-Rabbit/MaiTrace",
+              "issues": "https://github.com/Yae-Miko-Rabbit/MaiTrace/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.11",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "json5",
+                "version_spec": ">=0.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "chinese-calendar",
+                "version_spec": ">=1.11.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lunar-python",
+                "version_spec": ">=1.4.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "config.get_plugin",
+              "llm.generate",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "emoji.get_by_description",
+              "database.get",
+              "api.call",
+              "api.list",
+              "knowledge.search",
+              "render.html2png",
+              "frequency.set_adjust",
+              "maisaka.proactive.trigger"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "6.3.1",
           "tag": "v6.3.1",
           "commit": "d8f09b5d79fb184ce68d7448287f0fa38f64c3dd",
