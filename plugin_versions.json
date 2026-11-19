@@ -330,7 +330,107 @@
       "manifest_id": "1021143806.mais_art_journal",
       "repositoryUrl": "https://github.com/1021143806/mais_art_journal",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "4.6.8",
+          "tag": "v4.6.8",
+          "commit": "b408528fd3b06337c8e6a85231ed7db9c975637a",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T20:26:15Z",
+          "release_url": "https://github.com/ptrel1/mais_art_journal/releases/tag/v4.6.8",
+          "release_notes": "麦麦绘卷 v4.6.8 修复同一用户请求被智能生图工具反复重画的问题，并统一自拍视角、景别、动作与实际请求中的约束。\n\n## 主要功能\n\n- 新增 `basic.max_draws_per_request`，UI 名称为「每次用户请求最多生图几次」。默认 1，0 不限制次数。按宿主核验的最新真实用户消息计数，并发预占及次数记录在插件重载、重启后保留。\n- 超限调用在进入生图服务前被拒绝。明确尚未进入客户端且未投递的失败释放名额；可能已提交、计费或投递的失败保留名额，避免超时和发送失败诱发重复计费。\n- 自拍明确要求全身、下半身或腿脚取景时，先选择兼容的拍摄视角，再统一生成景别、动作和正负提示词；合适的全身镜场景继续支持对镜全身照。\n\n## 修复与细节\n\n- 前置自拍明确为前摄直接捕捉的画面，手机与持机手应在画面外；对镜自拍允许手机在反射中出现。\n- 穿袜子、裤子等服装本身不强制扩大景别。普通自拍清理「展示袜子、手放膝盖」等与当前取景范围冲突的动作，保留服装设定。\n- 局部取景明确裁切边界，仅强调画面内可见的身份特征，避免脸部、发型和表情把构图拉回上半身。\n- 自拍提示词要求单一角色与指定场景，排除额外人物、摄影团队和器材；参考图用于保持角色设计，不要求复制原图背景与构图。\n- 豆包没有独立负面提示词参数，合并后的负面要求现在写入实际提交的提示词。\n- 中文、英文、日文场景模板同步更新。\n\n## 使用范围与升级\n\n- 次数上限针对聊天智能生图 Tool；`/dr`、UI 绘图、主动图片和对外 API 沿用各自规则。0 仅关闭次数限制，触发消息核验仍生效。\n- 共用自拍规则适用于各支持的后端及文生图、图生图。聊天与主动自拍的日程读取链路保留；UI 独立绘图不自动读取日程。\n- 次数记录按真实用户消息计算，不等同于宿主回复轮次；生图模型仍可能偏离精确裁切、服装或细节要求，不自动通过连续重画弥补偏差。\n- 重载插件后生效，已有配置升级时补充新字段。安装依赖方式保持不变。\n\n相关问题：#43、#44。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "4.6.8",
+            "name": "麦麦绘卷（Claude MAInet）",
+            "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供日程自拍、群聊主动图片、聊天设置持久化、群/私聊额度管理和对外生图 API，与 MaiTrace 双向配合。",
+            "plugin_type": "creative",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image"
+              }
+            },
+            "author": {
+              "name": "Ptrel, Rabbit-Jia-Er, saberlights Kiuon",
+              "url": "https://github.com/1021143806/mais_art_journal"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/1021143806/mais_art_journal",
+              "homepage": "https://github.com/1021143806/mais_art_journal",
+              "issues": "https://github.com/1021143806/mais_art_journal/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.11",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "maibot-plugin-sdk",
+                "version_spec": ">=2.15.0,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.28.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10"
+              },
+              {
+                "type": "python_package",
+                "name": "pydantic",
+                "version_spec": ">=2,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.12"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              }
+            ],
+            "capabilities": [
+              "webui.claim_upload",
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "config.get",
+              "config.get_plugin",
+              "llm.generate",
+              "tool.get_definitions",
+              "maisaka.proactive.trigger",
+              "message.get_by_time_in_chat",
+              "message.get_by_id",
+              "message.get_recent",
+              "chat.get_stream_by_group_id",
+              "chat.get_all_streams",
+              "api.call",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "1021143806.mais_art_journal"
+          }
+        }
+      ],
       "ignored_tags": [
         "0.8.x"
       ],
