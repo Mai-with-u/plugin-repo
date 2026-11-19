@@ -2177,7 +2177,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.3.1",
+      "version": "2.3.3",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -8028,14 +8028,14 @@
     "manifest": {
       "manifest_version": 2,
       "id": "qq-official-adapter",
-      "version": "1.2.0",
+      "version": "1.2.2",
       "name": "QQ 官方机器人适配器",
       "description": "通过 QQ 官方 WebSocket 与 OpenAPI 接入群聊、单聊和频道消息的 MaiBot 适配器。",
       "author": {
         "name": "清蒸云鸭",
         "url": "https://github.com/WhiteCloudOL"
       },
-      "license": "AGPL-3.0",
+      "license": "AGPL-3.0-only",
       "plugin_type": "adapter",
       "urls": {
         "repository": "https://github.com/WhiteCloudOL/qq-official-adapter",
@@ -8045,11 +8045,11 @@
       },
       "host_application": {
         "min_version": "1.0.6",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.8.0",
-        "max_version": "2.99.99"
+        "max_version": "2.23.0"
       },
       "dependencies": [
         {
@@ -10227,7 +10227,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.set-msg-emoji-like",
-      "version": "0.3.2",
+      "version": "0.3.4",
       "name": "表情回应",
       "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji），默认/兜底表情与「群友是🐷」自动贴表情的 ID 均可配置；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
       "author": {
@@ -10243,10 +10243,10 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.7"
       },
       "sdk": {
-        "min_version": "2.0.0",
+        "min_version": "2.7.1",
         "max_version": "2.99.99"
       },
       "dependencies": [
@@ -10771,9 +10771,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.mai-forward",
-      "version": "0.1.3",
+      "version": "0.1.5",
       "name": "麦麦转发",
-      "description": "消息打包转发/复读/收藏分享：内容从 NapCat/宿主数据库原样读取（不从 LLM 文本构造）；提供 forward_messages（转发到其他聊天，群聊注入 [转发工具] 标注记录、私聊只真发不入库）、repeat_message（复读）、pack_chat_messages（把感兴趣的消息打包到本地，返回 pack_id）、list_message_packs（列包+概括）、share_message_pack（把打包内容以合并转发分享到当前聊天，受名单限制，支持分享后销毁/最大分享次数）。",
+      "description": "从 NapCat 或宿主消息库读取原始消息，支持转发、复读、打包收藏和分享。群聊记录补录可独立开关，支持群聊与私聊转发名单、分享后销毁和最大分享次数。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -10787,7 +10787,7 @@
       },
       "host_application": {
         "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.5.0",
@@ -12164,7 +12164,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.better-post-processing",
-      "version": "2.5.1",
+      "version": "2.5.2",
       "name": "更好的消息后处理",
       "description": "增强 QQ 消息回复：支持分段与打字节奏、错字注入和纠正、引用与 @ 权重、文本替换和过滤、表情包互动，以及自回复与重复回复拦截、跨聊私聊回忆。表情包含义库使用视觉模型识别内容与梗，GIF 通过抽帧和时序拼图理解动作变化。适用于 MaiBot 1.4.x，含义直接附加到聊天流消息。",
       "author": {
@@ -12212,7 +12212,7 @@
         "llm.generate",
         "send.emoji",
         "send.text",
-        "send.image",
+        "send.hybrid",
         "send.forward",
         "render.html2png",
         "chat.get_all_streams",
@@ -14591,9 +14591,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.mai-mai.file-reader",
-      "version": "1.5.1",
+      "version": "1.9.1",
       "name": "文件读取（File Reader）",
-      "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本/音频等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。音频文件（mp3/wav/flac/ogg/m4a/aac）经 Omni 模型听一次产出文本入库，追问免费；需配置 [audio] 接口密钥，超限直接拒绝不截断。支持追问改写、解析失败原因回传模型、文件滑动续期。URL 类文件下载默认只允许 QQ 文件域并拒绝内网/回环地址（可配置）。参考 astrbot_plugin_file_reader_pro 移植。",
+      "description": "解析 QQ 群/私聊上传的文件（pdf/docx/xlsx/pptx/odt/epub/html/ipynb/csv/代码/文本/音频/视频等），分块后做「向量 + BM25 词法」混合检索（RRF 融合），把最相关内容注入 LLM 上下文，实现低开销的文件问答。音频经 Omni 模型听一次、视频经豆包 seed-2.1-lite 看一次（Files API 上传，画面+音轨一次调用）产出文本入库，追问免费。v1.9.1 QQ「视频」消息（video 段）接入读取链路：[视频] 降级文本解析 + 适配器 RPC get_msg 回溯取下载地址（不依赖 NapCat HTTP 服务），修视频消息全程零日志、模型误称看不了视频。v1.9.0 音频默认模型升级百炼 qwen3.8-omni-flash：时长闸门放宽到 1 小时、显式关思考防挤占转写输出预算（7MB 大小闸门不变，base64 10MB 为通道通用硬上限）。v1.8.2 视频链路真机热修：Files API 上传后轮询预处理状态至 active 再调用模型（修 403 InvalidState 竞态），统一音视频日志回调口径（修 Logging error 刷屏）。v1.8.1 修复 QQ 离线文件（裸 IP+HTTP 链接）被下载白名单误拒：适配器返回的 URL 按可信来源做公网地址校验（内网仍拒、重定向回退���名单、消息正文 URL 不受影响）。v1.8.0 新增视频理解：mp4/mov/m4v/avi/mkv/webm，大小/时长闸门、每日预算防刷屏、超限只登记不解析（通知注入模型不发群）。v1.7.0 适配 SnowLuma 适配器取文件通道（api.call 换 URL，无需 NapCat HTTP 服务）+ size 预检 + css/scss/less。v1.6.0 统一临时文件获取、入库预建索引、全局数据/队列预算、解析解压上限与磁盘重试包。URL 下载默认只允许 QQ 文件域并拒绝内网/回环地址。参考 astrbot_plugin_file_reader_pro 移植。",
       "author": {
         "name": "orge-8",
         "url": "https://github.com/orge-8"
@@ -14604,11 +14604,11 @@
       },
       "host_application": {
         "min_version": "1.2.0",
-        "max_version": "1.4.5"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.5.1",
-        "max_version": "2.23.0"
+        "max_version": "2.23.99"
       },
       "plugin_type": "data",
       "dependencies": [
@@ -14641,7 +14641,8 @@
       "capabilities": [
         "send.text",
         "llm.embed",
-        "llm.generate"
+        "llm.generate",
+        "api.call"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -15982,7 +15983,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.8.10",
+      "version": "0.8.11",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -15997,7 +15998,7 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.3.10",
-        "max_version": "1.4.3"
+        "max_version": "1.4.7"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -16599,7 +16600,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.SoulString-Dev.maibot-mimo-voice",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "name": "MiMo TTS 语音回复",
       "description": "用 MiMo 免费 API 音色克隆把回复按比例换成语音：内置理塘王、可爱少女、MiMo 默认女音色，可换自定义参考音频；含朗读清洗与风格指令、音色对齐与尾音修正，随机/模型请求双触发，超时自动回退文字。",
       "author": {
@@ -19562,7 +19563,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "WhiteCloudOL.maimai-tts-plugin",
-      "version": "2.2.5",
+      "version": "2.2.6",
       "name": "麦麦多平台TTS语音",
       "description": "多平台文本转语音，内置插件WebUI，支持模型管理、音色管理、音频复刻等，支持OpenAI、阿里百炼、Minimax、火山引擎、BreezeTTS等多个API服务商",
       "plugin_type": "media",
@@ -20387,7 +20388,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.12.3",
+      "version": "0.12.5",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -20406,12 +20407,12 @@
         {
           "type": "python_package",
           "name": "lunar_python",
-          "version_spec": ">=1.4.8,<2.0"
+          "version_spec": ">=1.4.8"
         },
         {
           "type": "python_package",
           "name": "tzdata",
-          "version_spec": ">=2026.1"
+          "version_spec": ">=2024.1"
         },
         {
           "type": "python_package",
@@ -23082,7 +23083,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.2.4",
+      "version": "1.3.0",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
@@ -23135,7 +23136,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.9.20",
+      "version": "0.9.21",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -23183,10 +23184,14 @@
       "plugin_type": "tool",
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "scan-search"
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "scan-search"
         }
       }
+    },
+    "assets": {
+      "icon_64": "icons/com.fsqhn.image-searcher.webp"
     }
   },
   {
