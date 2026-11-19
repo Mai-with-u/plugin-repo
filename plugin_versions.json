@@ -8421,6 +8421,98 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.3.3",
+          "tag": "v2.3.3",
+          "commit": "fb5ebae8ccb2b9f04d179e665048948e55e4d852",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T14:57:58Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.3.3",
+          "release_notes": "# Features\n\n- 「预设参考 → 自我参考」新增可编辑的通用提示词。实际使用自我参考图时加入一次，默认按本次需求重新构图并保留角色特征。联动 API 和 DrawingClient 可读取及更新。\n- 「预设参考 → 素材来源」新增「多图参考」。默认聊天记录和网络取材合计最多加入一张图。开启并确认模型支持多图后，可为多个明确需求取图。\n\n# Fixes\n\n- 修复素材需求、自我识别和候选图匹配读取宿主模型响应时的错误。失败时保留脱敏后的宿主原因，空内容、无效 JSON 和超时有明确提示。\n- 明确要求机器人画自己的自画像或自拍时直接使用自我图库。合照等任务只有缺额外素材时才取材，已有匹配参考图时跳过网络搜索。\n- 精简绘图工具说明和 Planner 提醒，保留原话要求、真实源图、风格预设适用模式和避免重复提交的规则。\n- 阿里百炼新建平台默认提供 Qwen Image 3.0 Pro 和 3.0，两者均继承平台默认分辨率。可按需添加其他模型和设置尺寸覆盖。\n- 调整绘图日志级别。审核通过、额度检查、接口成功和逐张发送进度归入 DEBUG，任务结果和异常按级别记录。\n\n**升级提示**　升级后重新加载插件并刷新 WebUI。\n\n**运行要求**　MaiBot 1.3.19–1.4.99，插件 SDK 2.20.0–2.23.0，Python 3.12 或更高版本。\n\n**Full Changelog** [v2.3.2...v2.3.3](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/compare/v2.3.2...v2.3.3)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "plugin_type": "creative",
+            "version": "2.3.3",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.3.1",
           "tag": "v2.3.1",
           "commit": "8530ee3d7c876905cff696260aed9e6f8c01c03f",
