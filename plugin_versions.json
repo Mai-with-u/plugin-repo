@@ -24268,6 +24268,66 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.5",
+          "tag": "v0.1.5",
+          "commit": "f343752f0715a2407a655b2feb5d07f7a3758b01",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T02:18:25Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_mai_forward/releases/tag/v0.1.5",
+          "release_notes": "## 更新\n\n- 「群聊记录补录」默认关闭。已有显式设置继续生效。\n- 关闭后停止补录并注销 QQ 补录网关，转发、复读、分享和本地审计照常。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.mai-forward",
+            "version": "0.1.5",
+            "name": "麦麦转发",
+            "description": "从 NapCat 或宿主消息库读取原始消息，支持转发、复读、打包收藏和分享。群聊记录补录可独立开关，支持群聊与私聊转发名单、分享后销毁和最大分享次数。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_mai_forward",
+              "homepage": "https://github.com/cateyemizuki/cateye_mai_forward",
+              "documentation": "https://github.com/cateyemizuki/cateye_mai_forward/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_mai_forward/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.emoji",
+              "send.hybrid",
+              "send.forward",
+              "message.get_by_id",
+              "chat.get_all_streams",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "api.call"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "forward",
+                "fallback": "mai-forward"
+              }
+            }
+          }
+        },
+        {
           "version": "0.1.3",
           "tag": "v0.1.3",
           "commit": "5986a9a4d4abe759e2e4ee9cae2ebb46bf04f117",
