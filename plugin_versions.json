@@ -26476,6 +26476,92 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.5.2",
+          "tag": "v2.5.2",
+          "commit": "36e19ff685368a610dde68fd6cd6c559866d021b",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T00:40:42Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_better_post-processing/releases/tag/v2.5.2",
+          "release_notes": "## 兼容性\n\n适用于 MaiBot **1.4.0–1.4.99**，插件 SDK **2.20.0–2.99.99**。\n\n## 修复\n\n- 分段补发按送达回执推进。超时或送达不明时停止本轮补发，避免原请求迟到造成重复。并发回复分别关联各自的首段、引用和 `@`。\n- 宿主没提供回复目标时继续分段和错字纠正，回复直接发送。群聊撤回使用 bot 消息的送达 ID，缺少 ID 时直接补发更正。私聊将撤回权重计入直接更正，回复不带 `@`。\n- 文本规则支持跨组件匹配并保留附件位置。并发的首次表情识别复用结果。\n- QQ 的 `/bpp` 状态使用合并转发，其他平台发文字。送达不明时停止补发。\n\n本版清单改用 `send.hybrid`。升级后重启 MaiBot 以加载新的能力声明。\n\n从 v2.4.7 升级还会获得 GIF 时序识别、聊天流表情包含义和分段边界修复。详见 [完整更新日志](https://github.com/cateyemizuki/cateye_better_post-processing/blob/v2.5.2/CHANGELOG.md)。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.better-post-processing",
+            "version": "2.5.2",
+            "name": "更好的消息后处理",
+            "description": "增强 QQ 消息回复：支持分段与打字节奏、错字注入和纠正、引用与 @ 权重、文本替换和过滤、表情包互动，以及自回复与重复回复拦截、跨聊私聊回忆。表情包含义库使用视觉模型识别内容与梗，GIF 通过抽帧和时序拼图理解动作变化。适用于 MaiBot 1.4.x，含义直接附加到聊天流消息。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_better_post-processing"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jieba",
+                "version_spec": ">=0.42.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pypinyin",
+                "version_spec": ">=0.54.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "emoji.get_by_description",
+              "emoji.get_random",
+              "emoji.get_count",
+              "database.query",
+              "llm.generate",
+              "send.emoji",
+              "send.text",
+              "send.hybrid",
+              "send.forward",
+              "render.html2png",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.png",
+                "fallback": "package",
+                "background": "#F2F1ED"
+              }
+            }
+          }
+        },
+        {
           "version": "2.4.7",
           "tag": "v2.4.7",
           "commit": "d1ea2d531821474db46e837b29b6d2192e3ead0f",
