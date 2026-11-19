@@ -8321,6 +8321,98 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.3.1",
+          "tag": "v2.3.1",
+          "commit": "8530ee3d7c876905cff696260aed9e6f8c01c03f",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T16:24:23Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.3.1",
+          "release_notes": "# Features\n\n- README 新增绘图流程图，可查看 MaiBot 如何从聊天请求进入绘图，以及插件何时选择自我参考图、读取聊天图片或搜索网络素材。\n\n# Fixes\n\n- 聊天工具的 `auto` 只使用宿主传入的本轮用户原话。拿不到原话、漏填模式或模式无效时，跳过自我参考并继续绘图。明确要求画机器人时仍可使用 `required`。感谢 @NetaJuutilainen 报告缺少原话导致绘图失败的问题。[#18](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/pull/18)\n- 关闭自我参考后，插件会跳过自身识别、选图和专用提示。任务中途关闭时，已选的自我图片也会在后续素材匹配和提交绘图前重新检查。关闭期间更换多图组合，重新启用时需确认新组合。\n- 图生图现在按实际可用的源图检查请求。可直接使用图库图片或绘图预设提供的图片，缺图时会在创建任务前提示。\n- “失败通知附带原因”关闭时，非命令绘图的报错只记入日志和任务状态。开启时会向原会话发送简短原因。聊天命令遇到错误仍会即时通知。\n- “预设参考”的测试提醒统一显示在页面顶部，切换绘图预设、自我参考或素材来源时都能看到反馈入口。\n\n**升级提示**　从 2.3.0 升级后，请重新加载插件或重启 MaiBot，并刷新 WebUI。联动插件可继续使用 2.3.0 的 DrawingClient 和公开 API。\n\n**运行要求**　MaiBot 1.3.19–1.4.99，插件 SDK 2.20.0–2.23.0，Python 3.12 或更高版本。\n\n**Full Changelog** [v2.3.0...v2.3.1](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/compare/v2.3.0...v2.3.1)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "plugin_type": "creative",
+            "version": "2.3.1",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.3.0",
           "tag": "v2.3.0",
           "commit": "fa4890f38fccdb4819bc8b40dfca7c5e986cf390",
