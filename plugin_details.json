@@ -106,7 +106,7 @@
     "id": "1021143806.mais_art_journal",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.6.8",
+      "version": "4.6.9",
       "name": "麦麦绘卷（Claude MAInet）",
       "description": "基于 MaiBot 的多模型智能绘图插件，支持原生 NovelAI、OpenAI、Gemini、豆包、百炼、ComfyUI 等接口。提供日程自拍、群聊主动图片、聊天设置持久化、群/私聊额度管理和对外生图 API，与 MaiTrace 双向配合。",
       "plugin_type": "creative",
@@ -379,19 +379,19 @@
     "id": "XXXxx7258.google_search_plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "4.1.1",
+      "version": "4.2.1",
       "name": "麦麦联网插件（search plugin）",
       "description": "支持多个搜索引擎的网络搜索、缩写翻译以及图片搜索，并提供自动降级能力。",
       "author": {
         "name": "晴空",
-        "url": "https://github.com/XXXxx7258"
+        "url": "https://github.com/YukiSakiko"
       },
       "license": "AGPL",
       "urls": {
-        "repository": "https://github.com/XXXxx7258/google_search_plugin",
-        "homepage": "https://github.com/XXXxx7258/google_search_plugin",
-        "documentation": "https://github.com/XXXxx7258/google_search_plugin#readme",
-        "issues": "https://github.com/XXXxx7258/google_search_plugin/issues"
+        "repository": "https://github.com/YukiSakiko/google_search_plugin",
+        "homepage": "https://github.com/YukiSakiko/google_search_plugin",
+        "documentation": "https://github.com/YukiSakiko/google_search_plugin#readme",
+        "issues": "https://github.com/YukiSakiko/google_search_plugin/issues"
       },
       "host_application": {
         "min_version": "0.10.0",
@@ -405,7 +405,12 @@
         {
           "type": "python_package",
           "name": "aiohttp",
-          "version_spec": ">=3.8.0"
+          "version_spec": ">=3.9.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=10.0.0"
         },
         {
           "type": "python_package",
@@ -470,7 +475,8 @@
         "send.image",
         "send.forward",
         "component.enable",
-        "component.disable"
+        "component.disable",
+        "maisaka.context.resolve_image"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -658,7 +664,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "namchengwuqiu.gemini_drawer",
-      "version": "1.16.2",
+      "version": "1.16.3",
       "name": "Gemini 绘图",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
@@ -1796,7 +1802,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "OneBot 适配器",
       "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
       "author": {
@@ -2177,7 +2183,7 @@
       "manifest_version": 2,
       "id": "maimai-drawpic-plugin",
       "plugin_type": "creative",
-      "version": "2.3.3",
+      "version": "2.3.5",
       "name": "麦麦绘图",
       "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
       "author": {
@@ -16427,7 +16433,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "org.azurlane.blhx-wiki-maibot",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "plugin_type": "tool",
       "display": {
         "icon": {
@@ -20389,7 +20395,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.12.5",
+      "version": "0.12.6",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -21271,7 +21277,7 @@
       "manifest_version": 2,
       "id": "local.overstats",
       "name": "Overstats 守望先锋查询",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "description": "守望先锋战绩查询：支持账号绑定、战绩总结、单局详情、英雄数据、排行榜和 AI 趣味分析。",
       "author": {
         "name": "sora-maru; original by Zzzzzzouhang",
@@ -21285,7 +21291,7 @@
       },
       "host_application": {
         "min_version": "1.3.16",
-        "max_version": "1.3.99"
+        "max_version": "1.4.7"
       },
       "sdk": {
         "min_version": "2.16.0",
@@ -22688,7 +22694,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.sora-maru.apis",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "name": "API 聚合",
       "plugin_type": "extension",
       "description": "关键词调用各类实用与娱乐 API，支持文字、图片、视频和语音，提供接口管理、批量测试与本地缓存。",
@@ -22705,7 +22711,7 @@
       },
       "host_application": {
         "min_version": "1.3.16",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.16.0",
@@ -22982,7 +22988,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.sora-maru.bilibili",
-      "version": "1.0.4",
+      "version": "1.1.0",
       "name": "Bilibili 动态与直播订阅",
       "description": "移植自 Soulter 的 AstrBot Bilibili 插件，适配 MaiBot 与 SnowLuma",
       "author": {
@@ -23003,18 +23009,18 @@
         ]
       },
       "host_application": {
-        "min_version": "1.3.16",
-        "max_version": "1.3.99"
+        "min_version": "1.4.4",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.16.0",
+        "min_version": "2.23.0",
         "max_version": "2.99.99"
       },
       "dependencies": [
         {
           "type": "plugin",
           "id": "maibot-team.snowluma-adapter",
-          "version_spec": ">=1.1.9,<2"
+          "version_spec": ">=1.3.1,<2"
         },
         {
           "type": "python_package",
@@ -23385,7 +23391,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.sora-maru.personal-assistant-webui",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "name": "个人备忘助手 WebUI",
       "description": "创建可持久化的定时备忘提醒，到期由麦麦自然地通知你；通过 WebUI 搜索、筛选和取消任务，并支持图片与文件附件。",
       "author": {
@@ -23400,34 +23406,30 @@
         "issues": "https://github.com/sora-maru/maibot_plugin_personal_assistant_webui/issues"
       },
       "host_application": {
-        "min_version": "1.3.16",
-        "max_version": "1.3.99"
+        "min_version": "1.4.7",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "2.16.0",
-        "max_version": "2.21.99"
+        "min_version": "2.23.0",
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "tomlkit",
-          "version_spec": ">=0.13.0"
+          "version_spec": ">=0.13.3,<1"
         }
       ],
       "plugin_type": "tool",
       "capabilities": [
         "config.get",
         "llm.generate",
-        "llm.generate_with_tools",
         "send.text",
         "send.image",
         "send.custom",
         "chat.get_stream_by_user_id",
         "chat.get_stream_by_group_id",
-        "message.get_by_id",
-        "message.get_recent",
-        "message.build_readable",
-        "custom_pages"
+        "message.get_by_id"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -23849,8 +23851,8 @@
           "fallback": "volume-2"
         }
       },
-      "version": "1.1.1",
-      "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持 Planner 自主决策语音回复、独立温度/概率滑块、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
+      "version": "1.2.0",
+      "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持行内情绪与语气标签自动注入（LLM + 规则混合与原文防篡改校验）、/fishaudio [emo] 强制语音命令、Planner 自主决策语音回复、独立温度/概率滑块、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
       "author": {
         "name": "met-tk",
         "url": "https://github.com/met-tk"
@@ -23876,7 +23878,8 @@
         "send.text",
         "send.custom",
         "message.get_by_id",
-        "chat.get_all_streams"
+        "chat.get_all_streams",
+        "llm.generate"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -23990,7 +23993,7 @@
       },
       "sdk": {
         "min_version": "2.21.0",
-        "max_version": "2.21.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {

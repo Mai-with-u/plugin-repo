@@ -71545,7 +71545,7 @@
           "tag": "v1.0.0",
           "commit": "941f921face0cd68e9b8a2fec17915408ede0ae2",
           "prerelease": false,
-          "yanked": false,
+          "yanked": true,
           "published_at": "2026-11-17T01:26:21Z",
           "release_url": "https://github.com/hataxin/milobot-warframe/releases/tag/v1.0.0",
           "release_notes": "# 更新日志\n\n## 1.0.0\n\n- **MaiBot 原生插件正式发布**：提供国际服 PC Warframe 世界状态卡片、效率工具、市场与紫卡/玄骸拍卖查价、私聊生成、订阅推送与铸造提醒（支持 `/` 指令与 `@Tool` 调用，暂未添加紫卡分析功能）。\n- **兼容性验证**：完成 MaiBot `1.4.5` 实测验证（`_manifest.json` 兼容区间 `1.3.19 ～ 1.4.99`）。\n",
@@ -71608,7 +71608,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.0.0",
+          "version": "1.0.0",
+          "error": "已发布版本 1.0.0 的 commit 被修改（actual 239627a4bb60945b373ffe503b55d29a1de76b07 / expected 941f921face0cd68e9b8a2fec17915408ede0ae2）"
+        }
+      ]
     },
     {
       "id": "maibot-cmd-sandbox",
