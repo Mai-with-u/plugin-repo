@@ -2485,9 +2485,9 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.7.0",
+      "version": "1.8.0",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
-      "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow 和阿里云账号余额，支持 HTML 卡片可视化输出和配置页一键查询，仅依赖 Python 标准库。",
+      "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow、阿里云和最多 3 个自定义源（New API / One API、DeepSeek 风格、JSON 字段映射）余额，支持 HTML 卡片可视化输出和配置页一键查询，仅依赖 Python 标准库。",
       "author": {
         "name": "TaiYang",
         "url": "https://github.com/TAIY2020"
@@ -23091,7 +23091,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.3.0",
+      "version": "1.3.1-dev",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
       "author": {
         "name": "Evil双子",
