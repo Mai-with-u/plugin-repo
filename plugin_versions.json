@@ -72247,6 +72247,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "4567570689cc07f63a960883397ff21b13abbe13",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-20T07:56:06Z",
+          "release_url": "https://github.com/met-tk/maibot-fishaudio-voice-pro/releases/tag/v1.2.0",
+          "release_notes": "## Fish Audio TTS Voice Clone (Pro) v1.2.0\n\n### 核心更新内容\n1. **行内情绪与语气标签自动注入（`[emotion]`，默认开启）**\n   - 新增 `EmotionSectionConfig`（支持 WebUI 可视化调节），在发送 Fish Audio `/v1/tts` 前自动在句首及句中起伏转折处插入 `[开心的语气]`、`[平静]`、`[语气激动]`、`[哼歌]` 等行内控制标签（`s1` 模型自动切换为圆括号 `(标签)`）。\n   - 支持三种运行模式：`hybrid`（默认，优先调用宿主大模型细腻标注，超时/失败无感回退本地规则）、`llm`（仅大模型标注）与 `rule`（纯本地启发式规则零延迟注入）。\n   - 内置 `reconcile_injected_text` 原文防篡改校验，确保无论大模型如何改写，原始台词字符与标点保持 100% 一致；长文本分段发送仅全局调用一次大模型标注并跨段延续活跃情绪标签。\n2. **实际转换文本可视化与日志展示**\n   - 在 `inject_emotion_tags` 与 `tts_service.py` 的请求 `INFO` 日志中直接输出包含情绪标签的实际转换文本。\n   - 新增 `show_injected_text`（默认 `true`），支持在语音消息元信息及 WebUI 观察面板直接展示带 `[情绪标签]` 的文本；降级发纯文本时仍自动剥离标签。\n   - 新增 `send_injected_text_to_chat`（默认 `false`），开启后可在发送语音时同步在聊天窗口发一条带情绪标签的转换文本预览（带防环回保护）。\n3. **新增 `/fishaudio [emo]` 强制语音转换命令**\n   - `/fishaudio <文本>`：强制将后续内容合成为语音发送（不受 `[auto_voice].mode` 限制），并遵循当前 `[emotion].enabled` 开关。\n   - `/fishaudio emo <文本>`：强制触发情绪与语气自动注入后再合成为语音发送。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "custom.maibot-fishaudio-voice-pro",
+            "name": "Fish Audio TTS Voice Clone (Pro)",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "volume-2"
+              }
+            },
+            "version": "1.2.0",
+            "description": "Fish Audio TTS 与音色克隆 MaiBot 插件，适配 /v1/tts (s2.1-pro-free / s2.1-pro / s2-pro / drama-3)，支持行内情绪与语气标签自动注入（LLM + 规则混合与原文防篡改校验）、/fishaudio [emo] 强制语音命令、Planner 自主决策语音回复、独立温度/概率滑块、云端 reference_id 与本地 voices/ MessagePack 即时复刻、三段式超时控制、退避重试、失败自动退回文字与 ffmpeg 本地调音",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "homepage": "https://github.com/met-tk/maibot-fishaudio-voice-pro",
+              "documentation": "https://github.com/met-tk/maibot-fishaudio-voice-pro#readme",
+              "issues": "https://github.com/met-tk/maibot-fishaudio-voice-pro/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "message.get_by_id",
+              "chat.get_all_streams",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.1",
           "tag": "v1.1.1",
           "commit": "783791b307e27dd4420b4e926c068c0f62958e62",
