@@ -13592,9 +13592,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.netajuutilainen.immersive-control",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "name": "麦麦我真得控制你了",
-      "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。",
+      "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。可选与麦麦身体（body 1.3.0+）联动：体征文案、压力写回与顶点/余韵情绪。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -16635,7 +16635,8 @@
         "send.hybrid",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
-        "chat.open_session"
+        "chat.open_session",
+        "api.call"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -20681,7 +20682,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.maimai-feed-bot",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "name": "麦麦要吃那个！",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
       "author": {
@@ -20708,7 +20709,7 @@
       },
       "sdk": {
         "min_version": "2.0.0",
-        "max_version": "2.99.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -20717,7 +20718,8 @@
         "llm.generate",
         "chat.get_group_streams",
         "config.get",
-        "api.call"
+        "api.call",
+        "custom_pages"
       ],
       "i18n": {
         "default_locale": "zh-CN",
