@@ -8664,6 +8664,98 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.3.5",
+          "tag": "v2.3.5",
+          "commit": "adac51a7b7ac0a4914aa25c72065ff2e7076662d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-20T15:42:33Z",
+          "release_url": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/releases/tag/v2.3.5",
+          "release_notes": "# Features\n\n- 「预设参考 → 素材来源」支持设置视觉识别超时和尝试次数。默认单次最多 60 秒，每张候选图最多尝试 3 次，含首次。超时或连接中断时可重试，整个素材准备限时 90 秒。\n- 聊天模型可以根据对话直接提供角色或物件名称来查找参考图。插件按该对象搜索，核对候选图后将图片随图生图请求发送。\n\n# Fixes\n\n- 修复聊天显式选择取材来源后，缺少本轮原话导致绘图请求被拒绝的问题。可用简短说明或绘图描述补足取材上下文。\n- 简化参考选项校验提示，直接显示错误原因。\n\n**升级提示**　升级后重新加载插件并刷新 WebUI。视觉识别设置位于「预设参考 → 素材来源」。\n\n**运行要求**　MaiBot 1.3.19–1.4.99，插件 SDK 2.20.0–2.23.0，Python 3.12 或更高版本。\n\n**Full Changelog** [v2.3.4...v2.3.5](https://github.com/WhiteCloudOL/maimai-drawpic-plugin/compare/v2.3.4...v2.3.5)\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maimai-drawpic-plugin",
+            "plugin_type": "creative",
+            "version": "2.3.5",
+            "name": "麦麦绘图",
+            "description": "让麦麦拥有绘图能力，提供LLM工具、命令调用、在线WebUI，支持多平台多实例、文生图与图生图、模型与风格管理、任务追踪及插件联动",
+            "author": {
+              "name": "清蒸云鸭",
+              "url": "https://github.com/WhiteCloudOL"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "homepage": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin",
+              "documentation": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/blob/main/README.md",
+              "issues": "https://github.com/WhiteCloudOL/maimai-drawpic-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.58.0"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "tomlkit",
+                "version_spec": ">=0.13.3"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_group_streams",
+              "chat.get_private_streams",
+              "chat.open_session",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "message.get_recent",
+              "message.get_by_id",
+              "webui.claim_upload",
+              "web.search",
+              "web.fetch"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP",
+                "ko-KR"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "database",
+                "background": "#eff6fe"
+              }
+            }
+          }
+        },
+        {
           "version": "2.3.3",
           "tag": "v2.3.3",
           "commit": "fb5ebae8ccb2b9f04d179e665048948e55e4d852",
