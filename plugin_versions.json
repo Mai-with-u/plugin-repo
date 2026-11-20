@@ -27158,6 +27158,92 @@
           }
         },
         {
+          "version": "1.5.1",
+          "tag": "v1.5.1",
+          "commit": "353b107bb13c87a6fddffce5871f814a5af06051",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-20T18:23:41Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_better_post-processing/releases/tag/v1.5.1",
+          "release_notes": "适用于 MaiBot 1.2.3–1.3.x（维护分支：`legacy-1.3`）。MaiBot 1.4.x 请使用 2.x 发行版。\n\n- 修正分段标点归属，保留独立回复的段首省略号；改善引号、链接、行内代码和小数的分段边界。\n- 补发分段按送达回执推进；无法确认送达时停止后续动作，避免重复发送，并发回复分别匹配各自的回执。\n- 没有回复目标时仍可分段和纠错；私聊不撤回也不带 @，群聊只用已送达消息的平台 ID 撤回。\n- 按最终送达组件记录引用和 @；文本规则支持跨组件匹配并保留附件。QQ 上的 /bpp 使用合并转发，其它平台发文字。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.cateye.better-post-processing",
+            "version": "1.5.1",
+            "name": "更好的消息后处理",
+            "description": "增强 QQ 消息回复：支持分段与打字节奏、错字注入和纠正、引用与 @ 权重、文本替换和过滤、表情包互动，以及自回复与重复回复拦截、跨聊私聊回忆。表情包含义库使用视觉模型识别内容与梗，GIF 通过抽帧和时序拼图理解动作变化。适用于 MaiBot 1.2.3–1.3.x，含义补充到 planner 与 replyer 请求上下文。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_better_post-processing"
+            },
+            "host_application": {
+              "min_version": "1.2.3",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jieba",
+                "version_spec": ">=0.42.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pypinyin",
+                "version_spec": ">=0.54.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=11.3.0"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "config.get",
+              "message.get_by_id",
+              "message.get_by_time_in_chat",
+              "emoji.get_by_description",
+              "emoji.get_random",
+              "emoji.get_count",
+              "database.query",
+              "llm.generate",
+              "send.emoji",
+              "send.text",
+              "send.hybrid",
+              "send.forward",
+              "render.html2png",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en"
+              ]
+            },
+            "plugin_type": "extension",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo.png",
+                "fallback": "package",
+                "background": "#F2F1ED"
+              }
+            }
+          }
+        },
+        {
           "version": "1.5.0",
           "tag": "v1.5.0",
           "commit": "fc7b15b5da4e041a626ecbc1c8ea72ecfbdd17c5",
