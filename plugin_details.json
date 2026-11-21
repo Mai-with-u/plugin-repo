@@ -1802,7 +1802,7 @@
     "id": "maibot-team.snowluma-adapter",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.3.2",
+      "version": "1.3.3",
       "name": "OneBot 适配器",
       "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
       "author": {
@@ -1844,7 +1844,8 @@
         "chat.open_session",
         "component.disable",
         "component.enable",
-        "message.get_by_id"
+        "message.get_by_id",
+        "send.forward"
       ],
       "i18n": {
         "default_locale": "zh-CN",
@@ -24185,6 +24186,435 @@
     },
     "assets": {
       "icon_64": "icons/github.Akenari011.maibot-manga.webp"
+    }
+  },
+  {
+    "id": "github.Saria-Gins.maibot-hyperos4-theme",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.Saria-Gins.maibot-hyperos4-theme",
+      "version": "6.6.3",
+      "name": "麦麦 HyperOS 4 主题",
+      "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+      "author": {
+        "name": "Saria-Gins",
+        "url": "https://github.com/Saria-Gins"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+        "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+      },
+      "host_application": {
+        "min_version": "1.4.4",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.99.99"
+      },
+      "plugin_type": "other",
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "capabilities": [],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.Saria-Gins.maibot-hyperos4-theme.webp"
+    }
+  },
+  {
+    "id": "github.yunshanluan0714.anime-image-alert",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.yunshanluan0714.anime-image-alert",
+      "version": "1.3.1",
+      "plugin_type": "media",
+      "name": "二次元/COS图片提醒",
+      "description": "仅观察已配置白名单 QQ 群的普通图片，命中精品二次元女性角色插画、黑白漫画或真人 COS 摄影后，结合以图搜图查明作品、角色、画师与原帖出处，并以原生 @ 和引用提醒指定用户。",
+      "author": {
+        "name": "yunshanluan0714",
+        "url": "https://github.com/yunshanluan0714"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+        "homepage": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+        "documentation": "https://github.com/yunshanluan0714/maibot-anime-image-alert/blob/main/README.md",
+        "issues": "https://github.com/yunshanluan0714/maibot-anime-image-alert/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.30.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "send.hybrid",
+        "llm.generate",
+        "database.get",
+        "config.get"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.yunshanluan0714.zzz-wiki",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.yunshanluan0714.zzz-wiki",
+      "version": "0.1.0",
+      "plugin_type": "tool",
+      "name": "绝区零维基",
+      "description": "查询绝区零（Zenless Zone Zero）中文维基（B站维基）的角色属性、天赋、配装推荐、阵容搭配，以及驱动盘、音擎、怪物等词条，支持可选本地离线语料加速。",
+      "author": {
+        "name": "yunshanluan0714",
+        "url": "https://github.com/yunshanluan0714"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+        "homepage": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+        "documentation": "https://github.com/yunshanluan0714/maibot-zzz-wiki/blob/main/README.md",
+        "issues": "https://github.com/yunshanluan0714/maibot-zzz-wiki/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.30.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.8.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "omsociety.rsshub",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "omsociety.rsshub",
+      "version": "1.0.0",
+      "name": "RSSHub 订阅推送",
+      "description": "RSS/Atom/JSON Feed 订阅、定时轮询与人格化推送，支持四级配置继承、推送历史审计与富媒体渲染",
+      "author": {
+        "name": "OMSociety",
+        "url": "https://github.com/OMSociety"
+      },
+      "license": "AGPL-3.0",
+      "urls": {
+        "repository": "https://github.com/OMSociety/maibot_plugin_rsshub",
+        "homepage": "https://github.com/OMSociety/maibot_plugin_rsshub",
+        "documentation": "https://github.com/OMSociety/maibot_plugin_rsshub/blob/main/README.md",
+        "issues": "https://github.com/OMSociety/maibot_plugin_rsshub/issues"
+      },
+      "host_application": {
+        "min_version": "1.4.5",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.23.0",
+        "max_version": "2.23.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "feedparser",
+          "version_spec": ">=6.0.11"
+        },
+        {
+          "type": "python_package",
+          "name": "beautifulsoup4",
+          "version_spec": ">=4.12.0"
+        },
+        {
+          "type": "python_package",
+          "name": "lxml",
+          "version_spec": ">=5.0.0"
+        },
+        {
+          "type": "python_package",
+          "name": "socksio",
+          "version_spec": ">=1.0.0"
+        }
+      ],
+      "plugin_type": "tool",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "package",
+          "background": "#EA580C"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.hybrid",
+        "send.forward",
+        "files.upload",
+        "files.send",
+        "maisaka.reply.generate",
+        "maisaka.context.append",
+        "maisaka.proactive.trigger",
+        "llm.generate",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/omsociety.rsshub.webp"
+    }
+  },
+  {
+    "id": "github.husiya.breeze-voice",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.husiya.breeze-voice",
+      "version": "1.1.0",
+      "name": "BreezeBlue 语音",
+      "description": "用 BreezeBlue 云端 TTS 把模型请求或按概率随机选中的短回复合成语音条，带字数/每日用量限制与文字回退，不改变人设、记忆和 QQ 连接。",
+      "author": {
+        "name": "HuaSiya",
+        "url": "https://github.com/HuaSiya"
+      },
+      "license": "MIT",
+      "plugin_type": "media",
+      "urls": {
+        "repository": "https://github.com/HuaSiya/breeze-voice",
+        "homepage": "https://github.com/HuaSiya/breeze-voice",
+        "documentation": "https://github.com/HuaSiya/breeze-voice/blob/main/README.md",
+        "issues": "https://github.com/HuaSiya/breeze-voice/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.19.99"
+      },
+      "changelog": "CHANGELOG.md",
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "aiohttp",
+          "version_spec": ">=3.0"
+        }
+      ],
+      "capabilities": [],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "mic"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.husiya.breeze-voice.webp"
+    }
+  },
+  {
+    "id": "github.husiya.comment-talk-learner",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.husiya.comment-talk-learner",
+      "version": "0.3.2",
+      "name": "B站+贴吧学说话 / Comment Talk Learner",
+      "description": "每天从B站热门/指定来源的评论区与百度贴吧楼层提取真人说话方式，去重过滤后写入麦麦的表达方式库，让麦麦的日常回复更像群友。",
+      "author": {
+        "name": "HuaSiya",
+        "url": "https://github.com/HuaSiya"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/HuaSiya/comment-talk-learner",
+        "homepage": "https://github.com/HuaSiya/comment-talk-learner",
+        "documentation": "https://github.com/HuaSiya/comment-talk-learner/blob/main/README.md",
+        "issues": "https://github.com/HuaSiya/comment-talk-learner/issues"
+      },
+      "plugin_type": "integration",
+      "host_application": {
+        "min_version": "1.3.18",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.20.99"
+      },
+      "changelog": "CHANGELOG.md",
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "database.query",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "github.husiya.tieba-meme",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.husiya.tieba-meme",
+      "version": "1.0.0",
+      "name": "贴吧学梗 / Tieba Meme Learner",
+      "description": "从百度贴吧帖子学梗，并理解群友分享的帖子：读楼层、挑高赞/解释性回复，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、吧内搜索与每周自动学习。",
+      "author": {
+        "name": "HuaSiya",
+        "url": "https://github.com/HuaSiya"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/HuaSiya/tieba-meme",
+        "homepage": "https://github.com/HuaSiya/tieba-meme",
+        "documentation": "https://github.com/HuaSiya/tieba-meme/blob/main/README.md",
+        "issues": "https://github.com/HuaSiya/tieba-meme/issues"
+      },
+      "plugin_type": "integration",
+      "host_application": {
+        "min_version": "1.3.0",
+        "max_version": "1.3.99"
+      },
+      "sdk": {
+        "min_version": "2.19.0",
+        "max_version": "2.20.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "llm.generate",
+        "database.query",
+        "send.text"
+      ],
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.svg",
+          "fallback": "message-square",
+          "background": "#1C272C"
+        }
+      },
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/github.husiya.tieba-meme.webp"
+    }
+  },
+  {
+    "id": "feiyu.voice-cover",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "feiyu.voice-cover",
+      "version": "0.2.0",
+      "name": "麦弦",
+      "description": "麦弦（MaiChord）：点歌翻唱、清唱猜歌与本地音色工作室，群里点一首歌，用麦麦的声音唱出来",
+      "author": {
+        "name": "Allure-Gui",
+        "url": "https://github.com/Allure-Gui"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+        "homepage": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+        "documentation": "https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/README.md",
+        "issues": "https://github.com/Allure-Gui/feiyu-cover-plugin/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.13.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "plugin_type": "media",
+      "capabilities": [
+        "config.get",
+        "send.hybrid",
+        "send.text",
+        "send.image",
+        "chat.get_all_streams",
+        "message.get_recent",
+        "maisaka.context.append",
+        "render.html2png",
+        "desktop_pet.say",
+        "desktop_pet.play_event"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "music",
+          "background": "#DBE7FB"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/feiyu.voice-cover.webp"
     }
   }
 ]
