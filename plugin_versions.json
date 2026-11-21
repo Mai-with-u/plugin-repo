@@ -73393,6 +73393,66 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.yunshanluan0714.anime-image-alert",
+      "manifest_id": "github.yunshanluan0714.anime-image-alert",
+      "repositoryUrl": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "commit": "e87ce966a574ae9fc3b6e8c9778b60073f476d20",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T07:44:28Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-anime-image-alert/releases/tag/v1.3.0",
+          "release_notes": "## 首次公开发布 v1.3.0\n\n- 旁路复用 MaiBot 宿主已完成的图片描述，通过 `fast_model` 严格筛选全年龄精品二次元女性角色插画、黑白漫画与真人 COS 摄影，自动过滤表情包、GIF、UI 截图与不当内容\n- 支持 SauceNAO / IQDB / Danbooru / trace.moe 多引擎以图搜图与本地持久化缓存；可选启用 SerpApi（Google Lens / Bing）反搜，第三方临时图床上传默认关闭（`source.allow_temp_image_upload = false`）需用户显式开启\n- 默认 `alert.groups` 与 `alert.target_user_id` 留空待命，支持 WebUI 热更新、跨群 24h 去重及按群冷却/每小时上限\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.anime-image-alert",
+            "version": "1.3.0",
+            "plugin_type": "media",
+            "name": "二次元/COS图片提醒",
+            "description": "仅观察已配置白名单 QQ 群的普通图片，命中精品二次元女性角色插画、黑白漫画或真人 COS 摄影后，结合以图搜图查明作品、角色、画师与原帖出处，并以原生 @ 和引用提醒指定用户。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "homepage": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "documentation": "https://github.com/yunshanluan0714/maibot-anime-image-alert/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-anime-image-alert/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "llm.generate",
+              "database.get",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
