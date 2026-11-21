@@ -73487,6 +73487,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "6.6.3",
+          "tag": "v6.6.3",
+          "commit": "d5c6c48021216123b4f90e81b783a6eb8f42a1eb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T19:56:53Z",
+          "release_url": "https://github.com/Saria-Gins/maibot-hyperos4-theme/releases/tag/v6.6.3",
+          "release_notes": "# 麦麦 HyperOS 4 主题 6.6.3\r\n\r\n### 折叠侧栏\r\n\r\n- 补回「麦麦自己」的头像入口（Dashboard 1.10.8 折叠态不再渲染 local 条目）\r\n- 头像统一为 40×40 圆角方块：外层容器固定尺寸，图片 `contain` 完整显示\r\n- 条目间距恢复 12px，折叠态隐藏竖排小节标题\r\n- hover 1px 淡蓝、选中 2px 实蓝，描边画在条目本体，几何完全一致\r\n- 去掉 `hyperos4.css` 与主题内联样式叠加造成的双描边、38px 白圈\r\n\r\n### 全站打磨\r\n\r\n- 卡片统一 22px 圆角 + 发丝描边 + 双层柔和阴影，内嵌小卡 16px 且不叠阴影\r\n- 顶部分类标签改为胶囊分段控件，选中项白底 + 主色字\r\n- 输入框 14px 圆角，聚焦主色描边 + 3px 光晕；按钮统一 14px 圆角与过渡\r\n- 表格行悬停染色、分隔线统一发丝色\r\n- 滚动条改细条圆角，焦点环统一 2px 主色\r\n\r\n### 字号统一\r\n\r\n- 全站字号吸附到 12 / 13 / 14 / 15 / 16 / 18 / 22 / 26 八级刻度\r\n- 行高按字号给（≤14px 用 1.55，>14px 用 1.4）\r\n- 消除 10.4px、11px 等零散字号，≥30px 的展示数字保持原样\r\n\r\n---\r\n\r\n安装：下载 `maibot-hyperos4-theme-v6.6.3.zip`，解压到 `MaiBot/plugins/local_dps_hyperos4_theme/`，重启麦麦。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Saria-Gins.maibot-hyperos4-theme",
+            "version": "6.6.3",
+            "name": "麦麦 HyperOS 4 主题",
+            "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+            "author": {
+              "name": "Saria-Gins",
+              "url": "https://github.com/Saria-Gins"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+              "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "other",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "6.6.1",
           "tag": "v6.6.1",
           "commit": "87146f2b6d07ae95f8926ce098d3e120c8238483",
