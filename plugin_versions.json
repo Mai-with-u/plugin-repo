@@ -73876,6 +73876,79 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "feiyu.voice-cover",
+      "manifest_id": "feiyu.voice-cover",
+      "repositoryUrl": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.6",
+          "tag": "v0.1.6",
+          "commit": "95f8ce2a5ae82137dfe07dee99c7a94e076a7e30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T12:48:51Z",
+          "release_url": "https://github.com/Allure-Gui/feiyu-cover-plugin/releases/tag/v0.1.6",
+          "release_notes": "WebUI 增加「重新检测」按钮，可主动触发服务拉起并观察状态变化。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.voice-cover",
+            "version": "0.1.6",
+            "name": "鲸歌",
+            "description": "点歌翻唱：群里说一句想听的歌，用鲸歌的声音唱出来，成品直接发到群里",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "homepage": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "documentation": "https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/feiyu-cover-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "send.hybrid",
+              "send.text",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "music",
+                "background": "#DBE7FB"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
