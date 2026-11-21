@@ -5428,6 +5428,72 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.3",
+          "tag": "v1.3.3",
+          "commit": "bc3e98d1bae330d8e6ef633ad4bf14b3d727b883",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T16:16:55Z",
+          "release_url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/releases/tag/v1.3.3",
+          "release_notes": "- 修复跨会话合并转发后，目标群聊或私聊缺少转发记录的问题。发送成功后会保存完整转发内容，并同步到目标会话正在运行的麦麦上下文。",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.3.3",
+            "name": "OneBot 适配器",
+            "description": "QQ OneBot v11 适配器，支持通用标准模式和特殊适配",
+            "author": {
+              "name": "MaiBot Team",
+              "url": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter"
+            },
+            "license": "GPL-v3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "homepage": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "documentation": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter",
+              "issues": "https://github.com/Mai-with-u/MaiBot-SnowLuma-Adapter/issues"
+            },
+            "plugin_type": "adapter",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon-v2.png"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "silk-python",
+                "version_spec": ">=0.2.8"
+              }
+            ],
+            "capabilities": [
+              "runtime.set_status_badges",
+              "chat.get_all_streams",
+              "chat.open_session",
+              "component.disable",
+              "component.enable",
+              "message.get_by_id",
+              "send.forward"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            },
+            "id": "maibot-team.snowluma-adapter"
+          }
+        },
+        {
           "version": "1.3.2",
           "tag": "v1.3.2",
           "commit": "2878783964f8d325f1655626148bf44b0f852ef5",
