@@ -71271,6 +71271,75 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "0.3.0",
+          "commit": "2c0ac20b7bc46150ee355a9fe82f7f1dd695fadd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T06:37:51Z",
+          "release_url": "https://github.com/HH233333/vertexai-maibot-connect/releases/tag/0.3.0",
+          "release_notes": "## v0.3.0 Release Notes\r\n\r\n###  主要功能\r\n\r\n- **新增多模态图片嵌入支持（`image_embedding`）**\r\n  - 全面适配 Google **Gemini Embedding 2**（`gemini-embedding-2-preview` / `gemini-embedding-2`）多模态统一向量空间接口，无缝对接 MaiBot 图片记忆与 WebUI 模型测试。\r\n- **完善文本/图片嵌入参数控制与用量统计**\r\n  - 新增 `EmbedContentConfig` 构建支持：支持 MRL 降维参数（`dimensions` / `output_dimensionality`，推荐在配置中填写 `dimensions` 以协同宿主向量指纹计算），并支持 `auto_truncate`、`document_ocr`、`audio_track_extraction`；\r\n  - 解析嵌入响应中的 `token_count` 并向 MaiBot 上报 `usage` 开销统计。\r\n\r\n###  重要变更\r\n\r\n- **移除已下线老一代模型支持**（因 Google 上游已停服老模型，配置已淘汰模型名将直接报错提示升级）：\r\n  - **对话 / 多模态 / 语音**：仅支持现役 **Gemini 2.5 / 3 / 4** 系列（移除 `gemini-1.x`、`gemini-2.0` 支持）；\r\n  - **文本 / 图片嵌入**：仅支持 **Gemini Embedding 2** 系列（移除 `text-embedding-*`、`text-multilingual-embedding-002`、`gemini-embedding-001`、`multimodalembedding@001` 支持）。\r\n\r\n###  细节与优化\r\n\r\n- **Provider & Converter**\r\n  - 为 `image_embedding` 与 `embedding` 统一合并读取 `model_info.extra_params` 与请求侧 `extra_params`；\r\n  - 检测并拦截 `dimensions` 与 `output_dimensionality` 冲突及非正数维度配置；\r\n  - 对 Gemini Embedding 2 不再支持的老一代参数（`task_type`、`task`、`title`）自动过滤并输出 `WARNING` 告警，防止触发接口 `400` 报错；\r\n  - 当输入超出长度上限被服务端自动截断（`truncated=True`）时，输出 `WARNING` 日志提示。\r\n- **指令与文档**\r\n  - 更新 `/vertex_models` 指令的现役推荐模型列表；\r\n  - 更新 `README.md`，补充 `image_embedding` 配置示例、维度选型建议与老模型移除说明；",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.HH233.vertexai-maibot-connect",
+            "version": "0.3.0",
+            "name": "Google Vertex AI Connect",
+            "description": "Google Cloud Vertex AI (现已改名Agent Platform)官方接入插件，提供多模态对话、VLM 识图、语音识别与向量嵌入",
+            "author": {
+              "name": "HH233",
+              "url": "https://github.com/HH233333"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HH233333/vertexai-maibot-connect"
+            },
+            "host_application": {
+              "min_version": "1.3.14",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "google-genai",
+                "version_spec": ">=1.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "google-auth",
+                "version_spec": ">=2.0.0"
+              }
+            ],
+            "plugin_type": "provider",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "cloud"
+              }
+            },
+            "capabilities": [
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "llm_providers": [
+              {
+                "client_type": "vertex_connect",
+                "name": "Vertex AI Connect",
+                "description": "Google Cloud Vertex AI 官方 SDK 接入通道",
+                "version": "0.3.0"
+              }
+            ]
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "0.2.0",
           "commit": "0a51a8f50c6c5bea0516db7312d04909386053b5",
