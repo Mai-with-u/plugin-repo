@@ -58331,6 +58331,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.3",
+          "tag": "0.3.3",
+          "commit": "118e366c10d1b864508ab17a9b206b12d2af64d5",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T07:03:15Z",
+          "release_url": "https://github.com/hatsuhoq/maibot-phone-play/releases/tag/0.3.3",
+          "release_notes": "这一版有三处改进：手机连不上时她会告诉你；模型服务临时出错时她不再马上放弃；插件声明兼容 MaiBot 1.4.5 带的 SDK 2.23。\n\n### 主要功能\n\n- **手机连不上时会告诉你**：自动玩决定要去玩之后，先看看手机连不连得上。和玩到一半断开一样，最多等 45 秒，偶尔断开十几秒就恢复的不算；这一步不解锁屏幕。\n  - 连不上：这一轮不开局，也不调用模型。桌宠冒一句「📵 手机连不上了，能帮我看看吗？」，再去你的私聊里用她自己的语气说一声。\n  - 一次断开只说一次。连上以后桌宠说「📱 手机连上啦」，之后再断开会再说。\n  - 以前她每次想玩都开一局再失败。没打开应用就失败的那一局不记录、也不提示，手机断了几天都没人知道。\n\n### 升级须知\n\n- 没有新的配置项。告诉主人的私聊发给 `plugin.admin_user_ids` 里的第一个账号，前提是她和这个账号私聊过。\n- 说法跟着 `play.finish_notice`：`template` 时消息里带上连不上的原因，方便去查；`off`、或者没和她私聊过时，只冒桌宠气泡。\n- 插件声明的 SDK 范围放宽到 2.21.0–2.23.99，MaiBot 1.4.5（SDK 2.23.0）加载时不再提示「SDK 版本超出插件声明范围」。MaiBot 的版本要求不变，还是 1.4.0–1.4.99。\n- 自动玩在拿起手机之前多了一次连接检查，手机连不上时这一轮最多多等 45 秒。这一步在后台进行，不影响聊天。\n\n### 细节\n\n- 修复：模型服务临时出错（比如服务器负载过高）时，隔几秒连试三次就结束了这一局。现在等 15 秒再看，接着还失败就等 30 秒；等的时候不截图比对，免得视频一动就提前醒来。\n- 修复：这类失败以前被当成她输出的格式不对，她的操作记录里会写「请严格按格式只输出一个 JSON」。现在写的是「模型调用失败」，只有真的格式写错时才提醒格式。\n- 修复：模型调用失败以前会被算进「同一个问题出现好几次」的卡住判断，一局里零星失败 4 次，就会被当成在手机上卡住而提前结束。现在不再算进去；连着失败超过 `play.max_consecutive_errors` 次，照样结束这一局。\n\n### 测试\n\n437 个单元测试，在 SDK 2.23.0 下运行。\n\n另外用隔离测试实例接真实 iPhone（WDA），中间加一层故障注入代理验证了下面这些。它们是真机加故障注入的结果，不是自然发生的情况：\n\n- 拒绝连接、收下连接却不回话时，这一轮不开局、不调用模型，只告诉主人一次。\n- 连接恢复后，桌宠说连上了，照常开局。\n- 断开 12 秒又恢复，不算连不上，不打扰主人。\n- 后来又断开时，会再告诉一次。\n- 给模型调用注入两次「服务器负载过高」：两次看屏幕之间实际隔了 15.8 秒和 31.1 秒，这一局正常结束；第三次交给模型的操作记录写的是模型调用失败。\n\n没在真机上验证的：锁着屏时检查连接不会解锁（测试时手机本来就没锁），以及真的往私聊发消息。这两项只有单元测试。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "hohoko-chan.phone-play",
+            "plugin_type": "game",
+            "version": "0.3.3",
+            "name": "刷会儿手机",
+            "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
+            "author": {
+              "name": "hatsuhoq",
+              "url": "https://github.com/hatsuhoq"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/hatsuhoq/maibot-phone-play"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "smartphone"
+              }
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.1"
+              }
+            ],
+            "capabilities": [
+              "api.call",
+              "chat.get_stream_by_user_id",
+              "config.get",
+              "desktop_pet.list_animations",
+              "desktop_pet.play_event",
+              "desktop_pet.refresh_buttons",
+              "desktop_pet.say",
+              "desktop_pet.status",
+              "llm.generate",
+              "maisaka.proactive.trigger",
+              "render.html2png",
+              "send.image",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "changelog": "changelog.md"
+          }
+        },
+        {
           "version": "0.3.2",
           "tag": "0.3.2",
           "commit": "bb9fd6b2bfbd5c8eba297d190ef8c2085db3e1d8",
