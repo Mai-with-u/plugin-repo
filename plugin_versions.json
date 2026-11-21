@@ -73453,6 +73453,67 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.yunshanluan0714.zzz-wiki",
+      "manifest_id": "github.yunshanluan0714.zzz-wiki",
+      "repositoryUrl": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "9cf99f508c9ca22d23d0b81c2863dfd03450bc35",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T07:19:02Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-zzz-wiki/releases/tag/v0.1.0",
+          "release_notes": "## 首次公开发布 v0.1.0\n\n- 注册 `zzz_wiki_lookup` 工具，开箱即用实时查询 `wiki.biligame.com/zzz` MediaWiki API\n- 支持查询词后缀自动剥离、重定向标题解析、模糊搜索回退、结构化摘要清洗与内存 TTL 缓存\n- 支持在插件数据目录自备可选离线语料库加速，零额外高危能力权限（`capabilities: []`）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.zzz-wiki",
+            "version": "0.1.0",
+            "plugin_type": "tool",
+            "name": "绝区零维基",
+            "description": "查询绝区零（Zenless Zone Zero）中文维基（B站维基）的角色属性、天赋、配装推荐、阵容搭配，以及驱动盘、音擎、怪物等词条，支持可选本地离线语料加速。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+              "homepage": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+              "documentation": "https://github.com/yunshanluan0714/maibot-zzz-wiki/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-zzz-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
