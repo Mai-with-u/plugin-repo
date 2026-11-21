@@ -73587,6 +73587,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "06e5f547af745cede5c73369ea9fd669db3a1e31",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T10:17:56Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-anime-image-alert/releases/tag/v1.3.1",
+          "release_notes": "### 修复\n- 忽略目标接收人（`alert.target_user_id`）自己发送的图片，不再对自己发的图触发识别与 `@` 提醒。\n- 补充对应单元测试 `test_target_user_own_image_is_skipped`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.anime-image-alert",
+            "version": "1.3.1",
+            "plugin_type": "media",
+            "name": "二次元/COS图片提醒",
+            "description": "仅观察已配置白名单 QQ 群的普通图片，命中精品二次元女性角色插画、黑白漫画或真人 COS 摄影后，结合以图搜图查明作品、角色、画师与原帖出处，并以原生 @ 和引用提醒指定用户。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "homepage": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "documentation": "https://github.com/yunshanluan0714/maibot-anime-image-alert/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-anime-image-alert/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "llm.generate",
+              "database.get",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "e87ce966a574ae9fc3b6e8c9778b60073f476d20",
