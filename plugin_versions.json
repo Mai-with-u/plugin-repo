@@ -73860,6 +73860,65 @@
               }
             }
           }
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "732999d8559e435d930d229972743faa6e6803a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T02:16:17Z",
+          "release_url": "https://github.com/HuaSiya/breeze-voice/releases/tag/v1.0.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.husiya.breeze-voice",
+            "version": "1.0.0",
+            "name": "BreezeBlue 按需语音",
+            "description": "用 BreezeBlue 云端 TTS 把模型明确要求语音的回复合成语音条，带字数/每日用量限制与文字回退，不改变人设、记忆和 QQ 连接。",
+            "author": {
+              "name": "HuaSiya",
+              "url": "https://github.com/HuaSiya"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/HuaSiya/breeze-voice",
+              "homepage": "https://github.com/HuaSiya/breeze-voice",
+              "documentation": "https://github.com/HuaSiya/breeze-voice/blob/main/README.md",
+              "issues": "https://github.com/HuaSiya/breeze-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.19.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
         }
       ],
       "ignored_tags": [],
