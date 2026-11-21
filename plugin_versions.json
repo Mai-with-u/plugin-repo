@@ -74058,6 +74058,76 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "232ef3e3f76ae746c6e3250bfa177a2865c7d69d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T20:28:48Z",
+          "release_url": "https://github.com/Allure-Gui/feiyu-cover-plugin/releases/tag/v0.2.0",
+          "release_notes": "主要更新：\n- 正式更名为「麦弦 (MaiChord)」，统一插件图标、WebUI 顶栏图标、黑胶单曲卡与榜单样式（插件 ID 仍为 `feiyu.voice-cover`，老配置与预设直接继承）。\n- 侧边栏重做为「音色路由 / 试听工坊 / 干声工坊」三页，新增外部 RVC 模型导入弹窗，修复智能变调/共振峰/音高微修与滑块的禁用联动及预设回显问题。\n- 新增 58 秒副歌高潮直出、黑胶单曲卡、清唱猜歌与分群排行榜（支持热重载不丢局）、玩法开关与群/私聊黑白名单。\n- 插件设置页去掉命令行框，支持 Windows 一键包与 WSL2 自动探测拉起和卸载清理。\n- 补齐 QQ OneBot / QQ 官方机器人 / Telegram / 微信 ClawBot / 内置聊天的多平台兼容。\n\n建议搭配 `feiyu-cover-api >= v0.3.0` 使用，完整记录见 `CHANGELOG.md`。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.voice-cover",
+            "version": "0.2.0",
+            "name": "麦弦",
+            "description": "麦弦（MaiChord）：点歌翻唱、清唱猜歌与本地音色工作室，群里点一首歌，用麦麦的声音唱出来",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "homepage": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "documentation": "https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/feiyu-cover-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "config.get",
+              "send.hybrid",
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "message.get_recent",
+              "maisaka.context.append",
+              "render.html2png",
+              "desktop_pet.say",
+              "desktop_pet.play_event"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "music",
+                "background": "#DBE7FB"
+              }
+            }
+          }
+        },
+        {
           "version": "0.1.6",
           "tag": "v0.1.6",
           "commit": "95f8ce2a5ae82137dfe07dee99c7a94e076a7e30",
