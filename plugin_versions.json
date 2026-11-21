@@ -73341,6 +73341,58 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.Saria-Gins.maibot-hyperos4-theme",
+      "manifest_id": "github.Saria-Gins.maibot-hyperos4-theme",
+      "repositoryUrl": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "6.6.1",
+          "tag": "v6.6.1",
+          "commit": "87146f2b6d07ae95f8926ce098d3e120c8238483",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T11:51:00Z",
+          "release_url": "https://github.com/Saria-Gins/maibot-hyperos4-theme/releases/tag/v6.6.1",
+          "release_notes": "官方 dist 备份按 dashboard 版本区分，修复跨版本卸载还原错误构建。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Saria-Gins.maibot-hyperos4-theme",
+            "version": "6.6.1",
+            "name": "麦麦 HyperOS 4 主题",
+            "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+            "author": {
+              "name": "Saria-Gins",
+              "url": "https://github.com/Saria-Gins"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+              "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "other",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": []
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
