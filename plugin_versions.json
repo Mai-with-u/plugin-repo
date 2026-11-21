@@ -56930,6 +56930,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.0",
+          "tag": "v1.4.0",
+          "commit": "8148f413613ad4fb3f6d717accac2f8b2c5b8ba3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T06:10:42Z",
+          "release_url": "https://github.com/Akenari011/maibot-cost-report/releases/tag/v1.4.0",
+          "release_notes": "插件改为纯本地统计：只读宿主 `llm_usage`，不再向任何外部地址发请求。\n\n### 移除\n- `magpie.py` 整个文件\n- 4 个配置项：`report.magpie_enabled` / `magpie_url` / `magpie_count_cost` / `magpie_usd_rate`\n- 卡片底部的「订阅用量」区块（配额条、重置时间提示）\n\n### 清理\n- 随之失效的定价层：`priced_cost`、`priced_usage`、`_apply_extra_by_model`、`_recompute_derived`、`_reset_hint`，共约 400 行\n- 17 个只测这些死代码的用例；补回被误删的 `test_render_blocks`\n\n### 兼容性\n旧 `config.toml` 里残留的 `magpie_*` 键会被忽略（`extra='ignore'`），**不需要手动清理**，升级后直接可用。\n\n### 验证\n- 225 个断言 × 3 轮全 PASS\n- 真实数据渲染：含五个统计区块，无订阅用量区块\n- 主路径、简易卡片回退、无数据库降级三条路径均正常\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.akenari011.cost-report",
+            "version": "1.4.0",
+            "name": "开销统计",
+            "description": "查询麦麦的 token 消耗和模型花费，卡片布局对齐 WebUI 统计页：统计概览（含环比与迷你柱状图）、Prompt 缓存、模型花费分布、Token 流向拆解、单位成本与效率。支持命令和 LLM 工具调用。",
+            "author": {
+              "name": "Akenari011",
+              "url": "https://github.com/Akenari011"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Akenari011/maibot-cost-report"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.4.0",
+              "max_version": "2.23.99"
+            },
+            "capabilities": [
+              "statistics.local.models",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#3B82F6"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "1.3.2",
           "tag": "v1.3.2",
           "commit": "07d1b4076a6d7d6c4d08afd98ff5112db606ed03",
