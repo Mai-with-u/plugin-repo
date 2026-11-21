@@ -73749,6 +73749,66 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.husiya.comment-talk-learner",
+      "manifest_id": "github.husiya.comment-talk-learner",
+      "repositoryUrl": "https://github.com/HuaSiya/comment-talk-learner",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.5",
+          "tag": "v0.2.5",
+          "commit": "5a33de81852800a6be259886709585ee872617f4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T02:17:21Z",
+          "release_url": "https://github.com/HuaSiya/comment-talk-learner/releases/tag/v0.2.5",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.husiya.comment-talk-learner",
+            "version": "0.2.5",
+            "name": "B站+贴吧学说话 / Comment Talk Learner",
+            "description": "每天从B站热门/指定来源的评论区与百度贴吧楼层提取真人说话方式，去重过滤后写入麦麦的表达方式库，让麦麦的日常回复更像群友。",
+            "author": {
+              "name": "HuaSiya",
+              "url": "https://github.com/HuaSiya"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HuaSiya/comment-talk-learner",
+              "homepage": "https://github.com/HuaSiya/comment-talk-learner",
+              "documentation": "https://github.com/HuaSiya/comment-talk-learner/blob/main/README.md",
+              "issues": "https://github.com/HuaSiya/comment-talk-learner/issues"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.19.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "database.query",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
