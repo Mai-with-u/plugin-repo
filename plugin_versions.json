@@ -73809,6 +73809,73 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.husiya.tieba-meme",
+      "manifest_id": "github.husiya.tieba-meme",
+      "repositoryUrl": "https://github.com/HuaSiya/tieba-meme",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "3c2a2c412b142b69b491a5c530cd87287187fdf3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-16T01:57:07Z",
+          "release_url": "https://github.com/HuaSiya/tieba-meme/releases/tag/v1.0.0",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.husiya.tieba-meme",
+            "version": "1.0.0",
+            "name": "贴吧学梗 / Tieba Meme Learner",
+            "description": "从百度贴吧帖子学梗，并理解群友分享的帖子：读楼层、挑高赞/解释性回复，用本地模型整理成结构化梗卡写入麦麦黑话库；含敏感度判定、吧内搜索与每周自动学习。",
+            "author": {
+              "name": "HuaSiya",
+              "url": "https://github.com/HuaSiya"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/HuaSiya/tieba-meme",
+              "homepage": "https://github.com/HuaSiya/tieba-meme",
+              "documentation": "https://github.com/HuaSiya/tieba-meme/blob/main/README.md",
+              "issues": "https://github.com/HuaSiya/tieba-meme/issues"
+            },
+            "plugin_type": "integration",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.3.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.20.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "database.query",
+              "send.text"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "message-square",
+                "background": "#1C272C"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
