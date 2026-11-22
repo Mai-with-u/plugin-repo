@@ -74421,6 +74421,71 @@
           "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
         }
       ]
+    },
+    {
+      "id": "local.wake-call",
+      "manifest_id": "local.wake-call",
+      "repositoryUrl": "https://github.com/mamaipiye/maibot-wake-call",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "1.0.0",
+          "commit": "87dfea6a914485792c0747e303706c18b5ef04a8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T17:08:03Z",
+          "release_url": "https://github.com/mamaipiye/maibot-wake-call/releases/tag/1.0.0",
+          "release_notes": "> **单向播放，不能对话。** 接通后只有手机能听到麦麦说话，你对着手机说什么它都听不见，\n> 台词播完自动挂断。插件没有麦克风采集通路，这是设计如此，不是线路故障。\n\n## 麦麦电话闹钟 v1.0.0\n\n到点给你的手机打一通**真的电话**：模型按任务提示词生成一句话，语音合成后由 baresip 发起 SIP 呼叫，\n手机弹出原生来电界面并响铃。不依赖 QQ 通道，也不会因为 QQ 掉线而错过。\n\n### 功能\n- **多个定时任务**：每个任务有自己的时间与提示词，可设重复日\n- **台词由宿主生成**：走 `llm.generate`（可用 replyer 任务，口吻更像本人）\n- **四家 TTS**：edge-tts / OpenAI 兼容 `/v1/audio/speech` / MiniMax / 豆包，某家失败自动回退 edge\n- **台词守门**：模型返回限流、拒答文本时改用本地备用台词，合成前硬性限制字数\n- **内网直呼分层发现**：验缓存 → 同主机重扫端口 → 扫网关 → 手填地址 → 同网段 5060\n- **换 IP 也能找回**：对方只是换了 IP（SIP App 未重启、端口不变）时，先扫历史命中过的 /24 再扫本机网段\n- **公共网络自律**：本段活跃设备超过 8 台时停止扫描陌生设备，整段找回按 5/15/30/60 分钟退避，临近任务压回 5 分钟\n- **云端可部署**：服务器地址支持 `host:port` 与 IPv6，可指定 TCP 传输，baresip 模块目录多路径兜底\n\n### 安装\n1. 把 `local_wake_call` 目录放进 MaiBot 的 `plugins/` 下\n2. 重启 MaiBot，在侧边栏「插件」里打开配置页\n3. 先配好一个 TTS 与 SIP 账号，用「试拨」验证链接通\n\n### 运行前置\n- **ffmpeg**（必须）：负责把 mp3 转成 baresip 需要的 8k 单声道 WAV。缺失时现象是电话接通但全程无声。\n  - Debian/Ubuntu：`apt install -y ffmpeg`\n  - macOS：`brew install ffmpeg`\n  - Windows：从 gyan.dev 下载，装完把 `bin` 加进 PATH\n  - 插件启动会自检，缺了会在配置页显示红字提示\n- **baresip**：SIP 客户端，需能调用 `baresip` 命令\n- 一个能收发媒体的 SIP 账号（推荐 sip2sip.info，支持 NAT 中继）\n\n### 已知限制\n- **只能单向播放，不能对话**：不做麦克风采集，手机端的声音不会传回 MaiBot\n- 电话能否接通取决于 SIP 服务商与运营商线路，语音质量受网络影响\n- 内网扫描依赖对端在 5060 端口监听 SIP；对端开了随机端口就扫不到，需要手填地址\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.wake-call",
+            "version": "1.0.0",
+            "plugin_type": "automation",
+            "name": "麦麦电话闹钟",
+            "description": "到点给手机打一通真的电话：模型按任务提示词生成一句话，经语音合成与 ffmpeg 转码后由 baresip 发起 SIP 呼叫，手机出现原生来电界面，不依赖 QQ 通道。只单向播放：手机那头能听到，你说话它听不见，不能对话，台词播完自动挂断。支持多个定时任务，每个任务有自己的时间和提示词。台词走宿主 llm.generate（可用 replyer 任务，口吻更像本人）；语音支持 edge-tts、OpenAI 兼容 /v1/audio/speech、MiniMax、豆包四家，某家失败自动退回 edge。台词守门会在模型返回限流或拒答文本时改用本地备用台词，并在合成前硬性限制字数（词表、上限、备用台词都可在侧边栏改，也可整体关闭）。内网直呼分层自动发现对端：验缓存、同一主机重扫端口、扫网关、手填地址、同网段 5060；对方只是换了 IP（App 未重启、SIP 端口不变）时会拿记住的端口先扫历史命中过的 /24、再扫本机网段把它找回，校园网换 /24（甚至漂到本机 /20 之外的另一段）也不用重填。检测到公共网络（本段活跃设备超过 8 台）时停止扫描网关与陌生设备，整段找回改为按 5/15/30/60 分钟逐级退避，临近任务触发再压回 5 分钟，平时不往陌生设备灌包。也可以部署在带公网 IP 的云服务器上走自建 SIP：服务器地址可带端口（如 1.2.3.4:5080）、可指定 TCP 传输，baresip 模块目录会在 Ubuntu/源码编译/Alpine 等常见路径间自动兜底，关掉内网直呼即可。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "phone-call",
+                "background": "#B2EBF2"
+              }
+            },
+            "author": {
+              "name": "mamaipiye",
+              "url": "https://github.com/mamaipiye"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mamaipiye/maibot-wake-call",
+              "homepage": "https://github.com/mamaipiye/maibot-wake-call",
+              "documentation": "https://github.com/mamaipiye/maibot-wake-call#readme",
+              "issues": "https://github.com/mamaipiye/maibot-wake-call/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
