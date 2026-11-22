@@ -74681,6 +74681,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "ded9d795bfa04784c43fe54a95fa9be03d760627",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T16:03:40Z",
+          "release_url": "https://github.com/fsqhn2/MaiBot-torrent-analyze/releases/tag/v1.0.1",
+          "release_notes": "## 新增\n\n- 插件图标：`assets/icon.png`，manifest 的 `display.icon` 改为 `local`，兜底 `clipboard-check`\n\n## 修复\n\n- `parse_torrent_meta` 捕获 `RecursionError`：解析 itorrents 返回的畸形或深度嵌套 `.torrent` 时按解析失败降级，不再把异常抛给宿主\n- 补充对应的解析单测\n\n完整变更：https://github.com/fsqhn2/MaiBot-torrent-analyze/compare/v1.0.0...v1.0.1",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.torrent-analyze",
+            "version": "1.0.1",
+            "name": "麦麦验车",
+            "description": "把磁力链或种子哈希丢给 whatslink.info，返回种子名称、类型、大小、文件数与截图卡片。支持指令、LLM 工具调用，以及引用/合并转发里的磁链自动识别。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn2"
+            },
+            "urls": {
+              "repository": "https://github.com/fsqhn2/MaiBot-torrent-analyze",
+              "homepage": "https://github.com/fsqhn2/MaiBot-torrent-analyze"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get"
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "clipboard-check"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "e903a3c12c717a06cd3fec01f5f5fc4a77d52edb",
