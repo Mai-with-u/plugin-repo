@@ -62595,6 +62595,87 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.12.7",
+          "tag": "v0.12.7",
+          "commit": "9f39457bab227f71ee74f1108aae36308864610e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T15:58:49Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.12.7",
+          "release_notes": "🌙 想让麦麦睡个好觉？打开「日常作息 → 睡眠时普通群聊跳过 Planner」，安静午睡或夜里睡着时，群里的普通消息就让她睡过去。亲近的人说出设好的唤醒词，她还能醒来陪你聊两句。\n\n💌 如果只想收到私聊，在「主动交流对象」里关掉「允许群聊主动交流」。自然交流和主动表达都会把分享、问候和提醒留给选定的私聊。\n\n📖 修好了有聊天记录时日记可能一直写不出来的问题。麦麦会按素材编号把当天的聊天写进日记。遇到格式问题还可以从日记本重新安排写作。\n\n[完整更新记录](https://github.com/ilworkcn/MaiWeave/blob/v0.12.7/CHANGELOG.md) · [安装与实机演示](https://github.com/ilworkcn/MaiWeave/blob/v0.12.7/README.md)\n\n**安装包** `MaiWeave-0.12.7.zip`  \n**对应提交** `9f39457bab227f71ee74f1108aae36308864610e`  \n**SHA-256** `e908c4eb05abd5f28ff6270e79ba35123dbe366b8ab799de2ccd40a54df7e328`",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜角色生活引擎",
+            "version": "0.12.7",
+            "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": ">=1.4.8"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "message.get_by_time_in_chat",
+              "person.get_id",
+              "llm.get_available_models",
+              "maisaka.reply.generate",
+              "api.call",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.12.6",
           "tag": "v0.12.6",
           "commit": "f56b954edbb6090a50df27d58e5ab4d05c20a55c",
