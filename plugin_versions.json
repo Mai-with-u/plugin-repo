@@ -73616,6 +73616,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "6.6.4",
+          "tag": "v6.6.4",
+          "commit": "193224136bb7ff2f34899f2b63e59b9fa0c36cdd",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T13:38:16Z",
+          "release_url": "https://github.com/Saria-Gins/maibot-hyperos4-theme/releases/tag/v6.6.4",
+          "release_notes": "# 麦麦 HyperOS 4 主题 6.6.4\r\n\r\n- `apply()` 不再每 180ms 无条件重写 6 个 CSS 变量，改为值变化时才写入（此前每次都会触发全站样式重算）\r\n- 字号归一化 `normalizeType()` 去重（原先一次调度被调用两次），改用 WeakSet 跳过已处理节点，并放到 `requestIdleCallback` 里执行，限频 2.5s\r\n- 分页扫描 `markPager()` 降到 1.2s 一次，仅在路由变化时全量执行\r\n- 调度回调在页面隐藏时直接返回，不再后台空转\r\n- 移除普通卡片上的 `backdrop-filter`（原先几乎每个 `rounded + border` 容器都在做背景模糊，滚动时 GPU 压力很大），只保留浮层磨砂，卡片改用 `contain: paint`\r\n- 新增滚动降载：滚动期间临时关闭侧栏 / 顶栏 / 底栏磨砂，停止滚动 160ms 后恢复\r\n- 移除普通卡片上的 `contain: paint`（该属性会把「兼容模式」等悬挂在卡片边缘的徽标裁掉一半）\r\n\r\n---\r\n\r\n安装：下载 `maibot-hyperos4-theme-v6.6.4.zip`，解压到 `MaiBot/plugins/local_dps_hyperos4_theme/`，重启麦麦。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Saria-Gins.maibot-hyperos4-theme",
+            "version": "6.6.4",
+            "name": "麦麦 HyperOS 4 主题",
+            "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+            "author": {
+              "name": "Saria-Gins",
+              "url": "https://github.com/Saria-Gins"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+              "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "other",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "6.6.3",
           "tag": "v6.6.3",
           "commit": "d5c6c48021216123b4f90e81b783a6eb8f42a1eb",
