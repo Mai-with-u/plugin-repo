@@ -74802,6 +74802,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "commit": "2f20598d0cf38c9768cd8abfb2fd15a6624b7a1e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T13:57:51Z",
+          "release_url": "https://github.com/HuaSiya/ai-cover/releases/tag/v1.3.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.husiya.ai-cover",
+            "version": "1.3.1",
+            "name": "AI 翻唱点歌",
+            "description": "支持 /翻唱、/点歌 和 @机器人 翻唱XX/唱XX/点歌XX：在 B 站搜索 AI 翻唱或歌曲音频，自动选择并下载音频，通过 QQ 语音消息发送。包含候选打分、音频缓存、冷却与每日上限。",
+            "author": {
+              "name": "HuaSiya",
+              "url": "https://github.com/HuaSiya"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/HuaSiya/ai-cover",
+              "homepage": "https://github.com/HuaSiya/ai-cover",
+              "documentation": "https://github.com/HuaSiya/ai-cover/blob/main/README.md",
+              "issues": "https://github.com/HuaSiya/ai-cover/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "music",
+                "background": "#1C272C"
+              }
+            },
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.3.0",
           "tag": "v1.3.0",
           "commit": "badf13dc91f958d6b2f3ed60341e0ae9bce52056",
