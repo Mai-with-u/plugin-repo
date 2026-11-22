@@ -74243,6 +74243,80 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "com.fsqhn.torrent-analyze",
+      "manifest_id": "com.fsqhn.torrent-analyze",
+      "repositoryUrl": "https://github.com/fsqhn2/MaiBot-torrent-analyze",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "e903a3c12c717a06cd3fec01f5f5fc4a77d52edb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-19T01:26:01Z",
+          "release_url": "https://github.com/fsqhn2/MaiBot-torrent-analyze/releases/tag/v1.0.0",
+          "release_notes": "首次发布。\n\n- 指令 `验车 <哈希|磁链>`、LLM 工具调用、引用与合并转发触发\n- whatslink 截图卡片，支持群白名单：名单内不模糊，名单外按半径模糊\n- whatslink 不可用时自动切换 itorrents，输出文字与文件清单\n- 合并转发自动验车默认关闭，可在配置里打开\n- 结果按种子哈希缓存 7 天，可配",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.torrent-analyze",
+            "version": "1.0.0",
+            "name": "麦麦验车",
+            "description": "把磁力链或种子哈希丢给 whatslink.info，返回种子名称、类型、大小、文件数与截图卡片。支持指令、LLM 工具调用，以及引用/合并转发里的磁链自动识别。",
+            "author": {
+              "name": "fsqhn",
+              "url": "https://github.com/fsqhn2"
+            },
+            "urls": {
+              "repository": "https://github.com/fsqhn2/MaiBot-torrent-analyze",
+              "homepage": "https://github.com/fsqhn2/MaiBot-torrent-analyze"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.3.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.25.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get"
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "magnet"
+              }
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
