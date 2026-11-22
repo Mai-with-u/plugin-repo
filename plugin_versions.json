@@ -73982,6 +73982,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "55b2c7ecb7eaf4336a6f39c9f92110c42cb52523",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T13:55:27Z",
+          "release_url": "https://github.com/HuaSiya/breeze-voice/releases/tag/v1.1.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.husiya.breeze-voice",
+            "version": "1.1.1",
+            "name": "BreezeBlue 语音",
+            "description": "用 BreezeBlue 云端 TTS 把模型请求或按概率随机选中的短回复合成语音条，带字数/每日用量限制与文字回退，不改变人设、记忆和 QQ 连接。",
+            "author": {
+              "name": "HuaSiya",
+              "url": "https://github.com/HuaSiya"
+            },
+            "license": "MIT",
+            "plugin_type": "media",
+            "urls": {
+              "repository": "https://github.com/HuaSiya/breeze-voice",
+              "homepage": "https://github.com/HuaSiya/breeze-voice",
+              "documentation": "https://github.com/HuaSiya/breeze-voice/blob/main/README.md",
+              "issues": "https://github.com/HuaSiya/breeze-voice/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.18",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.98.99"
+            },
+            "changelog": "CHANGELOG.md",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "mic"
+              }
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "71f414e0fc2fa6296b4a4cf759b7744064087e38",
