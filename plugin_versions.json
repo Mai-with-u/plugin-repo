@@ -26128,7 +26128,18 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "v1.5.1",
+          "version": "1.5.1",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        },
+        {
+          "tag": "v1.5.0",
+          "version": "1.5.0",
+          "error": "host_application.max_version 第一位和第二位不能填写 99 或 999"
+        }
+      ]
     },
     {
       "id": "maibot.fun-pack",
@@ -67818,8 +67829,7 @@
       "ignored_tags": [
         "stable"
       ],
-      "rejected_releases": [],
-      "sync_error": "GitHub 502：/repos/Caeruvis/MaiBot-LaTeX/git/ref/tags/v0.1.2"
+      "rejected_releases": []
     },
     {
       "id": "hhjju.maibot-antigravity",
@@ -74485,7 +74495,13 @@
         }
       ],
       "ignored_tags": [],
-      "rejected_releases": []
+      "rejected_releases": [
+        {
+          "tag": "1.0.1",
+          "version": "1.0.1",
+          "error": "Tag 与 manifest.version 不一致"
+        }
+      ]
     },
     {
       "id": "ji-or-ji.maibot-reach-out",
