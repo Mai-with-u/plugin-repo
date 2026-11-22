@@ -68597,6 +68597,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "9bf4c995e33fe9d6d0de9d2fdfc439f942b3dced",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T14:52:46Z",
+          "release_url": "https://github.com/naiiyo/maibot-acg-search/releases/tag/v0.1.3",
+          "release_notes": "### 这次能做什么\r\n\r\n1. **推荐完，可以接着问。** 麦麦刚推荐了三部作品，你可以直接问「第二部有官中吗？」或「把前两部比一下」，不用再打一次片名。说「换掉第一部」时，会保留原来的年份、题材和排除条件。群里其他人的清单各算各的。\r\n2. **发链接就能查到具体版本。** 支持 Bangumi、VNDB、Steam 和月幕，一次最多四条。比如把同一部游戏的 VNDB 原作页和 Steam 页一起发来，就能分别看原作和商店版的资料。链接指向试玩版、DLC 或补丁时，也会按查到的记录说明。\r\n3. **没找到时，能知道卡在哪。** 比如有的候选首发年份不对，有的符合年份却查不到官方中文，麦麦会分开说明。如果目录一条候选都没返回，也会说明目前无法判断原因。想扩大范围，可以接着说「只放宽时长，其他条件不变」。\r\n4. **查番剧更新，会分清预告和已播。** 问「第二季在这个平台更新到第几集了」时，会核对作品、季数和播放平台。找到第 8 集的播放页，只能确认平台列出了第 8 集。只有平台明确写了「更新至第 8 集」之类的信息，才会据此回答最新进度。\r\n5. **可以问一个系列从哪部开始看。** 插件会顺着 Bangumi 的前传、续集关系整理主线，把番外、剧场版等按查到的关系列出。问「动画看完从漫画哪一话接」时，有出版方明确说明才给具体章节。\r\n6. **群里撞题时少等一轮。** 几个人在同一个群同时发出完全相同的目录问题，可以共用一次查询，让其他作品也有机会马上开始查。后续单独再问价格、档期或集数，会重新查询。\r\n\r\n### 安装与升级\r\n\r\n- 在下方 **Assets** 下载 `maibot_acg_search_v0.1.3.zip`，通过 MaiBot WebUI 的插件管理页安装。\r\n- 已安装旧版的用户，手动覆盖前请备份插件目录，保留自己的 `config.toml`，更新后重载插件。本版没有新增需要填写的 API Key。月幕仍使用原来的两项凭证，留空时其他来源照常工作。\r\n- 适配 MaiBot `1.3.16–1.4.99` 和插件 SDK `2.17.0–2.22.99`。本次已用 MaiBot 1.4.3 验证安装及旧配置升级。\r\n\r\n[安装与配置](https://github.com/naiiyo/maibot-acg-search/blob/v0.1.3/README.md) · [完整更新记录](https://github.com/naiiyo/maibot-acg-search/blob/v0.1.3/CHANGELOG.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "naiiyo.acg-search",
+            "version": "0.1.3",
+            "name": "二次元特化搜索",
+            "description": "分来源查询 Galgame 作品、热度和发行版本，查找番剧放送、漫画与二游资料，并按需调用原生或自定义网页搜索。",
+            "author": {
+              "name": "naiiyo",
+              "url": "https://github.com/naiiyo"
+            },
+            "license": "AGPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/naiiyo/maibot-acg-search",
+              "documentation": "https://github.com/naiiyo/maibot-acg-search#readme",
+              "issues": "https://github.com/naiiyo/maibot-acg-search/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.16",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.17.0",
+              "max_version": "2.22.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              }
+            ],
+            "capabilities": [
+              "web.search",
+              "web.fetch",
+              "send.text",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool"
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "0863fe1623d68af9b53b9afdc94b9b01e03d14aa",
