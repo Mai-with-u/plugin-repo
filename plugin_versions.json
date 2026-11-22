@@ -74627,6 +74627,72 @@
               ]
             }
           }
+        },
+        {
+          "version": "1.3.10",
+          "tag": "v1.3.10",
+          "commit": "8f5d636b25489523378f237f612d889dd1d4e1d3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-17T17:20:33Z",
+          "release_url": "https://github.com/cateyemizuki/maimai-room/releases/tag/v1.3.10",
+          "release_notes": "## 更新\n\n- 将耳饰在可编辑母版中移至实际耳垂，保持红金造型；同步标准和精细模型。耳饰以外的网格数据、权重、表情、动作和贴图保持原样。\n- 修复近距离外部镜头错误剔除睡姿头部的问题。只有麦麦视角隐藏头部，切回自由或跟随时恢复头部和表情显示。\n- 修复第一人称连续上拖经过竖直方向时控制反转和回拉，站姿、睡姿及两档模型均保持连续，达到俯仰限位后稳定停止。\n\n## 兼容与升级\n\nMaiBot 1.3.7–1.4.99，MaiBot SDK 2.12.0–2.99.99，Python 依赖 Pillow >= 10.0.0。配置、存档及公开接口保持原样，升级后刷新房间页以加载本版程序与模型。\n\n中键垂直平移方向、整墙透明、连续草坪地基和隐藏页面默认600秒保活保持原有设置。保留原作者仓库、署名及第三方许可。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cateye.maimai_room",
+            "version": "1.3.10",
+            "name": "麦麦的小屋",
+            "description": "MaiBot SDK 自定义 3D 房间。QQ 与受限 bot 状态工具、第三方行为与日程接管、固定作息、菜园和插件视频接口。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/maimai-room",
+              "homepage": "https://github.com/cateyemizuki/maimai-room"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.7",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "deskpet",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "config.get",
+              "llm.generate",
+              "llm.get_available_models",
+              "component.enable",
+              "component.disable",
+              "chat.open_session",
+              "api.get"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "room-logo.webp",
+                "fallback": "house"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
