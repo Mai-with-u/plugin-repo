@@ -74486,6 +74486,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "ji-or-ji.maibot-reach-out",
+      "manifest_id": "ji-or-ji.maibot-reach-out",
+      "repositoryUrl": "https://github.com/ji-or-ji/maibot-reach-out",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "320cde4502545bd32dbda66303fb58715a72ea62",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T10:24:15Z",
+          "release_url": "https://github.com/ji-or-ji/maibot-reach-out/releases/tag/v1.0.0",
+          "release_notes": "首个版本。\n\n- reach_out：受人所托私聊某人，带缘由与原话\n- share_thought：走神，忽然想到某人就说一句\n- 名字模糊匹配：剥离 emoji、繁简归一、歧义回问\n- 频控：每人每日次数与最小间隔均可配置\n- 三层拦截：触发者白名单、目标黑白名单、时段窗口",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "ji-or-ji.maibot-reach-out",
+            "version": "1.0.0",
+            "name": "麦麦主动私聊 Pro",
+            "description": "让麦麦主动找人说话，并且知道自己为什么来。受人所托时带着由头开口，走神时忽然想起某人就说一句。支持触发者白名单、目标黑白名单、每人每日次数与间隔、时段窗口，生成内容不出现「有人让我」「带话」这类字样。",
+            "author": {
+              "name": "ji-or-ji",
+              "url": "https://github.com/ji-or-ji"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/ji-or-ji/maibot-reach-out",
+              "homepage": "https://github.com/ji-or-ji/maibot-reach-out",
+              "documentation": "https://github.com/ji-or-ji/maibot-reach-out/blob/main/README.md",
+              "issues": "https://github.com/ji-or-ji/maibot-reach-out/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.9.99"
+            },
+            "plugin_type": "chat",
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "chat.get_private_streams",
+              "chat.get_group_streams",
+              "chat.get_stream_by_user_id",
+              "chat.open_session",
+              "api.call",
+              "message.get_recent",
+              "config.get",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "locales_path": "_locales",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
