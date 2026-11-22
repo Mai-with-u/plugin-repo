@@ -20320,7 +20320,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.12.6",
+      "version": "0.12.7",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -23016,8 +23016,8 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.3.1-dev",
-      "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录",
+      "version": "1.3.1",
+      "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录，支持与 麦生活/麦织 联动，仿真引擎不消耗token。",
       "author": {
         "name": "Evil双子",
         "url": "https://github.com/ShuangziG"
@@ -24235,10 +24235,10 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.yunshanluan0714.anime-image-alert",
-      "version": "1.3.1",
+      "version": "1.4.0",
       "plugin_type": "media",
       "name": "二次元/COS图片提醒",
-      "description": "仅观察已配置白名单 QQ 群的普通图片，命中精品二次元女性角色插画、黑白漫画或真人 COS 摄影后，结合以图搜图查明作品、角色、画师与原帖出处，并以原生 @ 和引用提醒指定用户。",
+      "description": "向主脑暴露以图搜图出处工具并联动白名单群美图提醒：群友问出处时先搜图再答，主脑已回复时智能跳过或顺口衔接补出处，并在未覆盖时以原生 @ 和引用提醒指定用户。",
       "author": {
         "name": "yunshanluan0714",
         "url": "https://github.com/yunshanluan0714"
@@ -24620,7 +24620,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.torrent-analyze",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "name": "麦麦验车",
       "description": "把磁力链或种子哈希丢给 whatslink.info，返回种子名称、类型、大小、文件数与截图卡片。支持指令、LLM 工具调用，以及引用/合并转发里的磁链自动识别。",
       "author": {
@@ -24666,10 +24666,14 @@
       "plugin_type": "tool",
       "display": {
         "icon": {
-          "type": "lucide",
-          "value": "magnet"
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "clipboard-check"
         }
       }
+    },
+    "assets": {
+      "icon_64": "icons/com.fsqhn.torrent-analyze.webp"
     }
   },
   {
