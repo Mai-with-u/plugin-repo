@@ -75533,6 +75533,73 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "maiknock.webui_companion",
+      "manifest_id": "maiknock.webui_companion",
+      "repositoryUrl": "https://github.com/NewB2001/maiknock",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "3a20f8706091c7372b4807c639882319016e78a0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T08:05:53Z",
+          "release_url": "https://github.com/NewB2001/maiknock/releases/tag/v0.2.2",
+          "release_notes": "## v0.2.2\n\nWebUI 私聊伴侣插件：主动私聊 / 手动打招呼 / 虚构时间线。\n\n### 本版本要点\n- **R-22**：有隐藏窗口时摘除记忆检索工具（query_memory / query_person_profile），工具输出不再进入 prompt\n- **R-22b**：replyer 透传通道拦截长期记忆检索结果\n- **R-18**：启发式记忆 / 人物画像 / 图片记忆三类一次性注入整段屏蔽\n- **R-19**：扩窗档位收敛（移除 384h 档）\n- **R-20**：版本号三处统一 0.2.2，`/mk diag` 显示版本\n- manifest 对齐市场规范（plugin_type=chat，WebUI 显示\"聊天\"标签）\n\n### 安装\n见 README：可在 WebUI 插件市场安装，或从 Release 源码包手动放置到 `plugins/maiknock/`。\n\n> 环境要求：MaiBot 1.3.11~1.4.x，内置 maibot-plugin-sdk 2.15+。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maiknock.webui_companion",
+            "version": "0.2.2",
+            "name": "麦麦敲门 MaiKnock",
+            "description": "WebUI 私聊伴侣插件。让麦麦主动来找你聊天，让你一键打招呼，还能由你掌管她的“现在是哪一天”——把某段时间从她的记忆里藏起来，或直接推进剧情。",
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image"
+              }
+            },
+            "author": {
+              "name": "国强 & 烧B",
+              "url": "https://github.com/NewB2001/maiknock"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NewB2001/maiknock",
+              "issues": "https://github.com/NewB2001/maiknock/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.11",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "message.get_recent",
+              "send.text",
+              "chat.get_private_streams",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
