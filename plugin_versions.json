@@ -76180,6 +76180,90 @@
               ]
             }
           }
+        },
+        {
+          "version": "3.18.7",
+          "tag": "v3.18.7",
+          "commit": "454cdf3a51cca9d044e88c26731ba310df34c751",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-18T00:45:26Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/releases/tag/v3.18.7",
+          "release_notes": "「属于麦麦的生活」为 MaiBot 添加日程、作息、陪伴和情绪系统，并支持视频观看、QQ 空间互动和 WebUI 生活面板。\n\n3.18.7 修正了硬约定与睡眠恢复、陪伴档案归属、视频额度与空间发布回执，并统一了模块启停和初始化流程。\n\n- 兼容范围为 MaiBot **1.0.0–1.4.6**、SDK **2.8.0–2.23.0**。使用 MaiBot 1.0.0 原版依赖锁时，请先升级 SDK。生活面板需要宿主支持插件自定义页面。\n- 实测 MaiBot 1.0.0 搭配 SDK 2.8.0、MaiBot 1.4.6 搭配 SDK 2.23.0。两端的加载、组件注册、命令、面板数据接口和配置更新均通过。1.4.6 的 WebUI 页面注册通过。\n- 74 项仓库回归与 MaiBot 市场清单校验通过。\n\n[安装与使用](https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/v3.18.7/README.md) · [更新日志](https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/v3.18.7/CHANGELOG.md)",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cateye.life_belonging_to_maimai",
+            "version": "3.18.7",
+            "name": "属于麦麦的生活",
+            "description": "MaiBot 生活与陪伴整合插件：按人设生成稀疏日意图并推进真实活动，维护生活状态、睡眠、约定、好感与情绪；支持目标陪伴互动、QQ空间、视频采样理解与自主分享。日程模块属性与状态计算分开，自动行为遵守开关、注意力、权限、额度及回执；缺少真实理解不伪造观看或强行分享。WebUI展示实际足迹、独立状态和心情历史、视频与动态图文记录。命令共用 /lbm 与 /麦麦生活，管理和诊断入口受管理员及会话范围约束。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+              "homepage": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+              "documentation": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.6"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo-512.webp",
+                "fallback": "calendar-heart"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "config.get",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "message.get_by_time_in_chat",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "frequency.set_adjust",
+              "knowledge.search",
+              "api.call",
+              "database.get",
+              "emoji.get_by_description",
+              "component.list_registered_plugins",
+              "component.reload_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
         }
       ],
       "ignored_tags": [],
