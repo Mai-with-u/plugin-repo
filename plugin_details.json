@@ -2486,7 +2486,7 @@
     "id": "TAIY2020.llm-balance-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.8.0",
+      "version": "1.8.1",
       "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
       "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow、阿里云和最多 3 个自定义源（New API / One API、DeepSeek 风格、JSON 字段映射）余额，支持 HTML 卡片可视化输出和配置页一键查询，仅依赖 Python 标准库。",
       "author": {
@@ -7251,7 +7251,7 @@
     "id": "maibot_plugin.keywords_reply",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.2.7",
+      "version": "1.2.9",
       "name": "关键词回复",
       "description": "支持指令触发与自动监听、多别名、正则匹配、图文/At/表情/语音/本地视频富媒体回复。如无法发送音乐卡片请关注napcat本体issue",
       "author": {
@@ -9729,7 +9729,7 @@
     "id": "haitai-git.chat-style-translator",
     "manifest": {
       "manifest_version": 2,
-      "version": "0.20.0",
+      "version": "1.0.1",
       "name": "聊天风格转译",
       "description": "绑定 QQ 群后自动收集群友对话（也可用 /风格拉取历史 从 NapCat 直接回填历史消息），在后台用 LLM 分析群聊场景、说话对象与每位群友的聊天风格，生成可审核、可融合、可编辑的风格模型；通过黑名单语义过滤剔除不合语境的语句；审核通过后，AI 自身行为风格保持不变，每次生成回复草稿后检索该群风格并做轻度微调（只改几个词，原意严格不变）。内置回复乱码拦截：AI 回复出现乱码、指令残片或内部标识符泄漏时自动要求回复器重新生成。内置微调前黑名单：回复草稿中出现黑名单词（仅支持中文词条）时，先在风格微调前删除（可开启语义换词匹配，基于没删前的整句理解意思、补字保持原意；语义换词匹配生效时直接返回删词补意结果、不再叠加回复后风格微调，仅字面删词命中时仍继续回复后微调）。",
       "author": {
@@ -9744,12 +9744,12 @@
         "issues": "https://github.com/haitai-git/chat-style-translator-plugin/issues"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.4.8",
+        "max_version": "1.4.8"
       },
       "sdk": {
-        "min_version": "2.7.1",
-        "max_version": "2.99.99"
+        "min_version": "2.23.0",
+        "max_version": "2.23.0"
       },
       "dependencies": [],
       "capabilities": [
@@ -11783,7 +11783,7 @@
     "id": "ggsfly.stellasora-plugin",
     "manifest": {
       "manifest_version": 2,
-      "version": "1.5.1",
+      "version": "1.5.2",
       "name": "星塔旅人攻略查询",
       "description": "星塔旅人（Stella Sora）攻略与排行榜插件：QQ 群中文提问返回一图流攻略原图（GameKee wiki / B站猫猫球，均授权转载，可按 [how] source 切换或双源同查，GameKee 附队伍码）；/st_bb・/st_fe 渲染当期联合讨伐/终焉绝响国服 Top100 图片榜单（名次不补零、分数完整对齐）；/st_update 强刷两榜并探查攻略源更新。数据源：GameKee + B站@铃儿的猫猫球 + ssleaderboard。",
       "author": {
@@ -11800,11 +11800,11 @@
       "changelog": "CHANGELOG.md",
       "host_application": {
         "min_version": "1.3.15",
-        "max_version": "1.99.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.16.0",
-        "max_version": "2.99.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [],
       "plugin_type": "tool",
@@ -14005,9 +14005,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.FleetingEternity-qyt.qq-like",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "name": "QQ 名片点赞",
-      "description": "兼容 NapCat 与 SnowLuma 的 QQ 名片点赞插件，支持命令、自然语言和每日定时点赞",
+      "description": "支持 OneBot v11 的 QQ 名片点赞插件，兼容旧版 NapCat、SnowLuma 适配器，支持命令、口语和每日定时点赞",
       "author": {
         "name": "FleetingEternity-qyt",
         "url": "https://github.com/FleetingEternity-qyt"
@@ -18117,9 +18117,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.tantan-yyds.short-term-memory",
-      "version": "1.0.4",
+      "version": "1.2.1",
       "name": "短期记忆",
-      "description": "全局短期记忆：在 Planner 与 Replyer 中注入 QQ 号、QQ 名和事情描述，并提供创建、修改、删除工具。",
+      "description": "全局短期记忆：注入使用规则与有效记忆，遗忘的记忆可按需检索并恢复。",
       "author": {
         "name": "TanTanMao",
         "url": "https://github.com/TanTan-yyds"
@@ -18133,11 +18133,11 @@
       },
       "host_application": {
         "min_version": "1.3.0",
-        "max_version": "1.3.99"
+        "max_version": "1.4.99"
       },
       "sdk": {
         "min_version": "2.16.0",
-        "max_version": "2.19.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [],
       "plugin_type": "data",
@@ -20320,7 +20320,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.12.7",
+      "version": "0.13.0",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -20363,6 +20363,7 @@
         "chat.open_session",
         "person.get_value",
         "chat.get_all_streams",
+        "chat.get_avatar",
         "message.get_by_time_in_chat",
         "person.get_id",
         "llm.get_available_models",
@@ -23016,7 +23017,7 @@
       "manifest_version": 2,
       "id": "maibot-body-emulator",
       "name": "麦麦身体",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录，支持与 麦生活/麦织 联动，仿真引擎不消耗token。",
       "author": {
         "name": "Evil双子",
@@ -24191,7 +24192,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.Saria-Gins.maibot-hyperos4-theme",
-      "version": "6.6.4",
+      "version": "6.6.5",
       "name": "麦麦 HyperOS 4 主题",
       "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
       "author": {
@@ -24554,9 +24555,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "feiyu.voice-cover",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "name": "麦弦",
-      "description": "麦弦（MaiChord）：点歌翻唱、清唱猜歌与本地音色工作室，群里点一首歌，用麦麦的声音唱出来",
+      "description": "让麦麦不止陪你聊天，还能用自己的声音为你唱歌：群聊点歌、58 秒副歌、清唱猜歌，练出专属音色。",
       "author": {
         "name": "Allure-Gui",
         "url": "https://github.com/Allure-Gui"
@@ -24577,6 +24578,11 @@
         "max_version": "2.99.99"
       },
       "dependencies": [
+        {
+          "type": "python_package",
+          "name": "psutil",
+          "version_spec": ">=6.0"
+        },
         {
           "type": "python_package",
           "name": "httpx",
@@ -24745,7 +24751,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "local.wake-call",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "plugin_type": "automation",
       "name": "麦麦电话闹钟",
       "description": "到点给你的手机打一通真的电话：模型按提示词生成一句话，TTS 合成后由 baresip 发起 SIP 呼叫，手机弹出原生来电界面，不依赖 QQ 通道，QQ 掉线也不会错过。只单向播放，不能对话，台词播完自动挂断。五分钟能跑通：注册一个 sip2sip 账号 → 手机装 Linphone → 填两项配置。支持多个定时任务（各自时间与提示词）、四家 TTS（edge / OpenAI 兼容 / MiniMax / 豆包，某家失败自动退回 edge）、台词守门与字数硬限制、内网直呼分层发现（对方换 IP 也能找回，公共网络自动收敛扫描），也可部署到公网云服务器走自建 SIP。",
@@ -24897,6 +24903,243 @@
     },
     "assets": {
       "icon_64": "icons/github.husiya.ai-cover.webp"
+    }
+  },
+  {
+    "id": "feiyu.arknights-wiki",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "feiyu.arknights-wiki",
+      "version": "0.3.0",
+      "name": "明日方舟wiki插件",
+      "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
+      "author": {
+        "name": "Allure-Gui",
+        "url": "https://github.com/Allure-Gui"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+        "homepage": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+        "documentation": "https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/README.md",
+        "issues": "https://github.com/Allure-Gui/maibot-arknights-wiki/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.13.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.27.0"
+        }
+      ],
+      "plugin_type": "data",
+      "capabilities": [
+        "config.get",
+        "chat.get_all_streams",
+        "send.text",
+        "send.image",
+        "render.html2png"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      },
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/icon.png",
+          "fallback": "book-open",
+          "background": "#171B24"
+        }
+      }
+    },
+    "assets": {
+      "icon_64": "icons/feiyu.arknights-wiki.webp"
+    }
+  },
+  {
+    "id": "github.yunshanluan0714.anti-recall",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "github.yunshanluan0714.anti-recall",
+      "version": "1.1.1",
+      "plugin_type": "management",
+      "name": "防撤回通知",
+      "description": "缓存最近群聊与私聊消息，检测到撤回事件后自动将原消息内容（支持配置一并补发图片、表情与语音）私聊转发给管理员；支持配置缓存条数、有效期与监听范围。",
+      "author": {
+        "name": "yunshanluan0714",
+        "url": "https://github.com/yunshanluan0714"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/yunshanluan0714/maibot-anti-recall",
+        "homepage": "https://github.com/yunshanluan0714/maibot-anti-recall",
+        "documentation": "https://github.com/yunshanluan0714/maibot-anti-recall/blob/main/README.md",
+        "issues": "https://github.com/yunshanluan0714/maibot-anti-recall/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.19",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.20.0",
+        "max_version": "2.30.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "chat.open_session",
+        "send.custom",
+        "send.hybrid",
+        "send.text"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    }
+  },
+  {
+    "id": "cateye.life_belonging_to_maimai",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "cateye.life_belonging_to_maimai",
+      "version": "3.18.22",
+      "name": "属于麦麦的生活",
+      "description": "MaiBot 生活与陪伴整合插件：按人设生成稀疏日意图并推进真实活动，维护生活状态、睡眠、约定、好感与情绪；支持目标陪伴互动、QQ空间、视频采样理解与自主分享。日程模块属性与状态计算分开，自动行为遵守开关、注意力、权限、额度及回执；缺少真实理解不伪造观看或强行分享。WebUI展示实际足迹、独立状态和心情历史、视频与动态图文记录。命令共用 /lbm 与 /麦麦生活，管理和诊断入口受管理员及会话范围约束。",
+      "author": {
+        "name": "cateye",
+        "url": "https://github.com/cateyemizuki"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+        "homepage": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+        "documentation": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/main/README.md",
+        "issues": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/issues"
+      },
+      "host_application": {
+        "min_version": "1.0.0",
+        "max_version": "1.4.6"
+      },
+      "sdk": {
+        "min_version": "2.8.0",
+        "max_version": "2.23.0"
+      },
+      "dependencies": [
+        {
+          "type": "python_package",
+          "name": "httpx",
+          "version_spec": ">=0.24.0"
+        },
+        {
+          "type": "python_package",
+          "name": "Pillow",
+          "version_spec": ">=9.0.0"
+        }
+      ],
+      "plugin_type": "integration",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "assets/logo-512.webp",
+          "fallback": "calendar-heart"
+        }
+      },
+      "capabilities": [
+        "send.text",
+        "send.image",
+        "send.forward",
+        "config.get",
+        "llm.generate",
+        "chat.get_all_streams",
+        "chat.get_stream_by_user_id",
+        "chat.get_private_streams",
+        "chat.get_stream_by_group_id",
+        "message.get_by_time_in_chat",
+        "maisaka.proactive.trigger",
+        "maisaka.context.append",
+        "frequency.set_adjust",
+        "knowledge.search",
+        "api.call",
+        "database.get",
+        "emoji.get_by_description",
+        "component.list_registered_plugins",
+        "component.reload_plugin"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN",
+          "en-US"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/cateye.life_belonging_to_maimai.webp"
+    }
+  },
+  {
+    "id": "maiknock.webui_companion",
+    "manifest": {
+      "manifest_version": 2,
+      "id": "maiknock.webui_companion",
+      "version": "0.2.2",
+      "name": "麦麦敲门 MaiKnock",
+      "description": "WebUI 私聊伴侣插件。让麦麦主动来找你聊天，让你一键打招呼，还能由你掌管她的“现在是哪一天”——把某段时间从她的记忆里藏起来，或直接推进剧情。",
+      "plugin_type": "chat",
+      "display": {
+        "icon": {
+          "type": "local",
+          "value": "icon.png",
+          "fallback": "image"
+        }
+      },
+      "author": {
+        "name": "国强 & 烧B",
+        "url": "https://github.com/NewB2001/maiknock"
+      },
+      "license": "MIT",
+      "urls": {
+        "repository": "https://github.com/NewB2001/maiknock",
+        "issues": "https://github.com/NewB2001/maiknock/issues"
+      },
+      "host_application": {
+        "min_version": "1.3.11",
+        "max_version": "1.4.99"
+      },
+      "sdk": {
+        "min_version": "2.15.0",
+        "max_version": "2.99.99"
+      },
+      "dependencies": [],
+      "capabilities": [
+        "maisaka.proactive.trigger",
+        "maisaka.context.append",
+        "message.get_recent",
+        "send.text",
+        "chat.get_private_streams",
+        "config.get_plugin"
+      ],
+      "i18n": {
+        "default_locale": "zh-CN",
+        "supported_locales": [
+          "zh-CN"
+        ]
+      }
+    },
+    "assets": {
+      "icon_64": "icons/maiknock.webui_companion.webp"
     }
   }
 ]
