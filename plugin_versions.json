@@ -37944,6 +37944,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.4",
+          "tag": "v1.0.4",
+          "commit": "d4a32e1548bbf3e909dd27d1d401c0388d0e0152",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T03:16:58Z",
+          "release_url": "https://github.com/FleetingEternity-qyt/maibot-qq-like/releases/tag/v1.0.4",
+          "release_notes": "- 新增通用 OneBot v11 支持，通过 MaiBot OneBot 适配器对接提供 QQ 点赞接口的客户端。\r\n- 自动识别可用接口，保留对旧版 NapCat、SnowLuma 适配器的兼容。\r\n- 口语化点赞、命令点赞和每日定时点赞均可使用通用接口。\r\n- 保留账号核对、每日额度限制和防重复发送处理。\r\n- 更新 README，说明服务地址、端口和访问令牌的填写方式。\r\n\r\n连接信息统一在 MaiBot OneBot 适配器中配置，插件自动识别。服务地址只填 IP 或主机名，端口单独填写；未开启令牌校验时，访问令牌可留空。\r\n\r\n客户端需要支持 OneBot v11 的登录信息查询和 QQ 资料卡点赞接口，实际可用性以客户端实现为准。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.FleetingEternity-qyt.qq-like",
+            "version": "1.0.4",
+            "name": "QQ 名片点赞",
+            "description": "支持 OneBot v11 的 QQ 名片点赞插件，兼容旧版 NapCat、SnowLuma 适配器，支持命令、口语和每日定时点赞",
+            "author": {
+              "name": "FleetingEternity-qyt",
+              "url": "https://github.com/FleetingEternity-qyt"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "homepage": "https://github.com/FleetingEternity-qyt/maibot-qq-like",
+              "documentation": "https://github.com/FleetingEternity-qyt/maibot-qq-like/blob/main/README.md",
+              "issues": "https://github.com/FleetingEternity-qyt/maibot-qq-like/issues"
+            },
+            "host_application": {
+              "min_version": "1.2.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.7.1",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "api.get",
+              "message.get_by_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "changelog": "CHANGELOG.md",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "package",
+                "background": "#f6f1e8"
+              }
+            }
+          }
+        },
+        {
           "version": "1.0.3",
           "tag": "v1.0.3",
           "commit": "215387182b56d6609984f219b41060d1b71caa22",
