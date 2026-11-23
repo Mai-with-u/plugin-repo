@@ -75008,6 +75008,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "30b8f22370a2d6199a786fe7270a5b530b6beef0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T00:50:32Z",
+          "release_url": "https://github.com/Allure-Gui/feiyu-cover-plugin/releases/tag/v0.2.1",
+          "release_notes": "## 麦弦 v0.2.1\n\n配套翻唱 API：[v0.3.1](https://github.com/Allure-Gui/feiyu-cover-api/releases/tag/v0.3.1)\n\n### 新增\n- **试听工坊支持上传音源**：可选择本地音频文件（上限 32 MiB），带上传进度、取消与清除；完整作品可通过原生「另存为」保存。\n- **音色路由新增「删除模型」**：覆盖模型库内全部可发现模型；默认模型、任务占用与 RVC 热驻留模型受保护，共享索引自动保留。\n\n### 修复\n- 侧边栏重新打开时预设列表误显示为「暂无预设」，并新增读取中/失败重试状态。\n- 首次进入页面需手动点「检测」才连接服务，现在会自动连接并在超时后重试。\n\n### 变更\n- 本地翻唱 API 默认随插件启停；升级前遗留的无标记后台服务，会在禁用时按端口与启动参数核验后关闭。\n- 插件市场简介更新为「不止陪你聊天，还能用自己的声音为你唱歌」，在线试听示例换为完整版《雨爱》翻唱。\n\n### 升级说明\n覆盖插件文件后重载插件即可，原有配置、音色预设与猜歌积分保留。插件 ID 仍为 `feiyu.voice-cover`。\n\n**完整更新日志**：见仓库 [CHANGELOG.md](https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.voice-cover",
+            "version": "0.2.1",
+            "name": "麦弦",
+            "description": "让麦麦不止陪你聊天，还能用你的音色开唱：群聊点歌、58 秒副歌、清唱猜歌，练出专属音色。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "homepage": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "documentation": "https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/feiyu-cover-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "psutil",
+                "version_spec": ">=6.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "config.get",
+              "send.hybrid",
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "message.get_recent",
+              "maisaka.context.append",
+              "render.html2png",
+              "desktop_pet.say",
+              "desktop_pet.play_event"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "music",
+                "background": "#DBE7FB"
+              }
+            }
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "232ef3e3f76ae746c6e3250bfa177a2865c7d69d",
