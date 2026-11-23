@@ -75460,6 +75460,61 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.0.2",
+          "tag": "1.0.2",
+          "commit": "75a9eae091a7d96ac2de99b27f772b67fad041f2",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T10:50:38Z",
+          "release_url": "https://github.com/mamaipiye/maibot-wake-call/releases/tag/1.0.2",
+          "release_notes": "1.0.2 是修复发布链路的一版：上一版 tag `1.0.1` 打在 `_manifest.json` 仍写着 `1.0.0` 的提交上，市场校验「manifest 版本 = release 版本」时不一致，1.0.1 没上架成功，插件市场里一直停在 1.0.0，自动更新自然拉不到。这次先把 manifest 改成 `1.0.2` 再打 tag，两者对齐。\n\n### 相对 1.0.0（市场当前可见版本）的实际变更\n\n**修复**\n- 拨出成功后侧边栏状态仍停在历史失败记录上：`last_result` 现在会写「拨出成功」并清掉 `last_error`\n\n**文档**\n- 补 edge-tts 安装说明（按审核建议）\n- 补最短可行路线：sip2sip 账号 → Linphone → 两项配置，五分钟跑通\n- 新增「为什么不用 QQ 电话」一节\n\n**描述**\n- 插件简介重写，把「单向播放、不能对话、播完自动挂断」放到显眼位置，避免误会成语音助手\n\n### 安装\n\n下载 `maibot-wake-call-v1.0.2.zip`，解压到 `MaiBot/bots/<bot_id>/plugins/local_wake_call/`，`_manifest.json` 要直接在这一层，重启 MaiBot 即可。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.wake-call",
+            "version": "1.0.2",
+            "plugin_type": "automation",
+            "name": "麦麦电话闹钟",
+            "description": "到点给你的手机打一通真的电话：模型按提示词生成一句话，TTS 合成后由 baresip 发起 SIP 呼叫，手机弹出原生来电界面，不依赖 QQ 通道，QQ 掉线也不会错过。只单向播放，不能对话，台词播完自动挂断。五分钟能跑通：注册一个 sip2sip 账号 → 手机装 Linphone → 填两项配置。支持多个定时任务（各自时间与提示词）、四家 TTS（edge / OpenAI 兼容 / MiniMax / 豆包，某家失败自动退回 edge）、台词守门与字数硬限制、内网直呼分层发现（对方换 IP 也能找回，公共网络自动收敛扫描），也可部署到公网云服务器走自建 SIP。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "phone-call",
+                "background": "#B2EBF2"
+              }
+            },
+            "author": {
+              "name": "mamaipiye",
+              "url": "https://github.com/mamaipiye"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/mamaipiye/maibot-wake-call",
+              "homepage": "https://github.com/mamaipiye/maibot-wake-call",
+              "documentation": "https://github.com/mamaipiye/maibot-wake-call#readme",
+              "issues": "https://github.com/mamaipiye/maibot-wake-call/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.22.0",
+              "max_version": "2.50.50"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "1.0.0",
           "commit": "87dfea6a914485792c0747e303706c18b5ef04a8",
