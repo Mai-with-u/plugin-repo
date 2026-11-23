@@ -12566,6 +12566,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.8.1",
+          "tag": "v1.8.1",
+          "commit": "0a209d66394db632ef029d326bad47703f8ec766",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T17:12:04Z",
+          "release_url": "https://github.com/TAIY2020/llm_balance_plugin/releases/tag/v1.8.1",
+          "release_notes": "## 主要更新\r\n\r\n修正自定义源的并发预算、基地址剥离、多币种覆盖与错误信息展示（v1.8.1）\r\n\r\n修复\r\n\r\n- **超时预算**：并发上限由 3 提到 6，所有平台在一轮内同时查询；此前启用 4 个以上平台且「请求超时」调得较高时，整轮耗时可能超过命令超时，表现为主程序先报执行失败、稍后结果又照常发出\r\n- **基地址**：newapi 协议填 `.../api/v1` 时不再拼出错误的 `/api/api/user/self`\r\n- **多币种**：deepseek 协议设置了展示币种时，多币种响应不再被全部改成同一个币种，仅单币种响应生效\r\n- **请求头**：`New-Api-User` 只发送一条，移除实际不生效的第二种大小写\r\n- **超长错误消息**：平台返回的业务失败消息统一截断到 200 字；此前消息超过 2000 字时，配置页的查询状态和各平台余额会全部读取失败，`/余额` 的文本结果也会被整段原文刷屏\r\n- **鉴权错误**：401 / 403 在「API Key 无效或权限不足」之后附上平台返回的原始错误信息；此前阿里云的 RAM 未授权、签名不匹配等情况都只显示成 Key 无效，容易排查错方向\r\n- **卡片间距**：修正图片卡片里最后一个平台与页脚之间多出的空白",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.8.1",
+            "name": "LLM 平台余额查询插件 | LLM Balance Plugin",
+            "description": "通过聊天命令 /余额 并行查询 DeepSeek、SiliconFlow、阿里云和最多 3 个自定义源（New API / One API、DeepSeek 风格、JSON 字段映射）余额，支持 HTML 卡片可视化输出和配置页一键查询，仅依赖 Python 标准库。",
+            "author": {
+              "name": "TaiYang",
+              "url": "https://github.com/TAIY2020"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TAIY2020/llm_balance_plugin",
+              "homepage": "https://github.com/TAIY2020/llm_balance_plugin",
+              "documentation": "https://github.com/TAIY2020/llm_balance_plugin",
+              "issues": "https://github.com/TAIY2020/llm_balance_plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.17",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.19.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./icon.svg"
+              }
+            },
+            "id": "TAIY2020.llm-balance-plugin"
+          }
+        },
+        {
           "version": "1.8.0",
           "tag": "v1.8.0",
           "commit": "1a10c452490b49146e1c9d3d299fbc23032d1f2c",
