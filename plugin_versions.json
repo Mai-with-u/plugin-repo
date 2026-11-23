@@ -75313,6 +75313,72 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "feiyu.arknights-wiki",
+      "manifest_id": "feiyu.arknights-wiki",
+      "repositoryUrl": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "a26f196660a14a8ce5edadf4affe5e6971b496c4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T20:51:21Z",
+          "release_url": "https://github.com/Allure-Gui/maibot-arknights-wiki/releases/tag/v0.2.0",
+          "release_notes": "主要更新：\n- 正式更名为「明日方舟wiki插件」（插件 ID 保持 `feiyu.arknights-wiki`）。\n- 新增罗德岛工业风 2x Retina 卡片图渲染（干员总览、专三技能、模组与养成材料卡，内嵌 PRTS 带框材料图标）。\n- 新增 L1 内存热缓存、6 并发图标拉取，发图后默认阻断多余文字回复；立绘默认 1600px（原图 ≤3.5MB 直出无损）。\n- 新增 `/方舟 缓存` 与 `/方舟 清理缓存`（群聊清理增加管理员权限校验）。\n- 修复 SQLite 连接关闭与多线程并发写图片缓存临时文件冲突问题。\n\n纯代码 MIT 开源，不含任何游戏资产或解包文件；PRTS Wiki 内容遵循 CC BY-NC-SA 4.0 协议。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.arknights-wiki",
+            "version": "0.2.0",
+            "name": "明日方舟wiki插件",
+            "description": "《明日方舟》PRTS Wiki 查询与立绘插件：支持方舟黑话语境感知（日常闲聊不误触）、干员技能/模组/材料/档案查询、2x 高清工业风卡片图渲染与精二/皮肤高清立绘直发（纯代码 MIT，按需本地缓存，不污染记忆库）。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "homepage": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "documentation": "https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/maibot-arknights-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "data",
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
