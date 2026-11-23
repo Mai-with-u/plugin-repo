@@ -75379,6 +75379,66 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "github.yunshanluan0714.anti-recall",
+      "manifest_id": "github.yunshanluan0714.anti-recall",
+      "repositoryUrl": "https://github.com/yunshanluan0714/maibot-anti-recall",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "b4c0292ab5fea4dd6b4c52a8a087509c5cb6cedf",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-21T07:18:53Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-anti-recall/releases/tag/v1.1.0",
+          "release_notes": "## 首次公开发布 v1.1.0\n\n- 支持 QQ 群聊与好友私聊消息撤回监听（兼容 `maibot-team.snowluma-adapter` 及旧版 `NapCat` 适配器）\n- 支持文本、`@`、回复引用、文件、卡片、合并转发摘要，以及图片/动画表情/语音补发与失败降级\n- 默认 `notify.admin_user_ids` 为空列表，未配置管理员时自动待命不落盘缓存\n- 支持 WebUI 热更新配置与 SQLite/媒体缓存自动淘汰回收\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.anti-recall",
+            "version": "1.1.0",
+            "plugin_type": "management",
+            "name": "防撤回通知",
+            "description": "缓存最近群聊与私聊消息，检测到撤回事件后自动将原消息内容（支持配置一并补发图片、表情与语音）私聊转发给管理员；支持配置缓存条数、有效期与监听范围。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-anti-recall",
+              "homepage": "https://github.com/yunshanluan0714/maibot-anti-recall",
+              "documentation": "https://github.com/yunshanluan0714/maibot-anti-recall/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-anti-recall/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.open_session",
+              "send.custom",
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
