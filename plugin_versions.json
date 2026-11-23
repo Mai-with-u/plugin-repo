@@ -75439,6 +75439,100 @@
       ],
       "ignored_tags": [],
       "rejected_releases": []
+    },
+    {
+      "id": "cateye.life_belonging_to_maimai",
+      "manifest_id": "cateye.life_belonging_to_maimai",
+      "repositoryUrl": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+      "mode": "releases",
+      "versions": [
+        {
+          "version": "3.18.22",
+          "tag": "v3.18.22",
+          "commit": "831cb3fb50e173013cd634a34d00a8abb4b15d94",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T05:01:57Z",
+          "release_url": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/releases/tag/v3.18.22",
+          "release_notes": "### 3.18.22\n\n- 修复例行问候的决策日志分类。陪伴私聊的中午问好被门禁跳过时，按陪伴目标记录。\n\n### 自上一个正式 Release 以来\n\n- 早、中、晚主动问好依据实际发送回执和目标来信决定是否跳过。分段发送也能确认问候回执。\n- B 站视频默认以复制链接格式分享，提供 QQ 图文卡选项。分享成功后可按上下文附一句话，也可以只发视频。\n- 优化 Planner 和 Replyer 的生活上下文注入，保留宿主历史、目标指令和多模态内容。升级只迁移与旧出厂值一致的相应字段。\n\n[安装与使用](https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/v3.18.22/README.md) · [完整更新日志](https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/v3.18.22/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "cateye.life_belonging_to_maimai",
+            "version": "3.18.22",
+            "name": "属于麦麦的生活",
+            "description": "MaiBot 生活与陪伴整合插件：按人设生成稀疏日意图并推进真实活动，维护生活状态、睡眠、约定、好感与情绪；支持目标陪伴互动、QQ空间、视频采样理解与自主分享。日程模块属性与状态计算分开，自动行为遵守开关、注意力、权限、额度及回执；缺少真实理解不伪造观看或强行分享。WebUI展示实际足迹、独立状态和心情历史、视频与动态图文记录。命令共用 /lbm 与 /麦麦生活，管理和诊断入口受管理员及会话范围约束。",
+            "author": {
+              "name": "cateye",
+              "url": "https://github.com/cateyemizuki"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+              "homepage": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai",
+              "documentation": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/blob/main/README.md",
+              "issues": "https://github.com/cateyemizuki/cateye_life_belonging_to_maimai/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.6"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.24.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "plugin_type": "integration",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/logo-512.webp",
+                "fallback": "calendar-heart"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "config.get",
+              "llm.generate",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_private_streams",
+              "chat.get_stream_by_group_id",
+              "message.get_by_time_in_chat",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "frequency.set_adjust",
+              "knowledge.search",
+              "api.call",
+              "database.get",
+              "emoji.get_by_description",
+              "component.list_registered_plugins",
+              "component.reload_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US"
+              ]
+            }
+          }
+        }
+      ],
+      "ignored_tags": [],
+      "rejected_releases": []
     }
   ]
 }
