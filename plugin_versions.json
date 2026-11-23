@@ -75857,6 +75857,71 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "14c817236d4072a04d0bc1b355621b94abfb0327",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T17:05:53Z",
+          "release_url": "https://github.com/Allure-Gui/maibot-arknights-wiki/releases/tag/v0.3.0",
+          "release_notes": "## 明日方舟wiki插件 v0.3.0\n\n承接 GitHub 上已发布的 `v0.2.0`。0.3.x 开发期间的全部改动合并为这一次正式发布。\n\n### 全新卡片视觉「黑曜石与金箔」\n干员总览/技能、材料、模组与帮助图统一换新：深石墨点阵底、1px 圆角内框加稀有度色四角标、圆形头像、衬线斜体英文名与分区编号、胶囊标签、圆角图标格与数量徽章。样式集中在 `assets/card.css`，模块导入时只读一次。插件图标同步换成官方阿米娅 App 图标裁切的 256×256 圆角方形。\n\n### 稳定性与解析修复\n- **指令与平台**：从宿主命名捕获组读取参数；统一三类入口的群名名单，支持 Telegram 父群与具体话题；按宿主配置回退管理员权限；区分 QQ 官方消息外链策略，ClawBot 允许尝试发图，控制台改走文本。\n- **标题解析**：模糊搜索兜底只接受「精确同名 / 查询词包含完整标题 / 去括号空格后同形」，修复「龙门」被解析成关卡页、「乌萨斯」落到壁纸页并写入 14 天缓存的问题。\n- **Wikitext 清洗**：表格压成「单元格 ｜ 单元格」，剥离 `<references>`、自闭合 `<ref>`、文件链与分类标签，标题压成「· 标题」；只有数据表的页面改为明确提示，不再返回空壳。\n- **材料筛选**：`精一/精二` 只计对应阶段，「技能7/7级」不再混入专精；无法识别会话身份且配置了名单限制时拒绝访问。\n- **立绘**：剧情差分图不再混进 `/立绘 列表`；缓存命中保留图源，清理与写入共用锁。\n- **错误提示**：超时等空消息异常统一兜底文案，不再出现「获取立绘失败：」后面空白；工具失败返回补 `error` 字段，模型能拿到真实原因。\n- **限流**：并发排队与节流等待后重新检查 429/503 冷却；stream 元数据缓存改为无论成败都回写时间戳，同一未知流从「每条消息一次」降到「每 60 秒最多一次」。\n\n### 性能\n同图标在 HTML 中只内嵌一次（CSS class 复用）；图标磁盘缓存单连接批量读取；PRTS 缺失图标 6 小时负缓存；卡片 PNG 缓存 1 小时（最多 24 张），帮助图进程内只截一次，`/方舟 清理缓存` 同步清空。\n\n### 新增能力\n- 黑白名单与生效范围：群聊/私聊开关 + `不限制 / 仅白名单 / 排除黑名单`，覆盖 Hook、Tool 与全部指令。\n- 多平台输出：QQ OneBot、QQ 官方机器人、Telegram（含话题父群）、微信 ClawBot、Discord、内置聊天。\n- `/方舟 别名 [列表|添加|删除]` 管理员热维护自定义黑话。\n- `/方舟帮助` 轻量 2x 帮助卡片图。\n- `/方舟 总计`、`/公招`、`/方舟 活动`、`/方舟 语音` 四项实用工具。\n\n**完整更新日志**：见仓库 [CHANGELOG.md](https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/CHANGELOG.md)\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.arknights-wiki",
+            "version": "0.3.0",
+            "name": "明日方舟wiki插件",
+            "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "homepage": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "documentation": "https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/maibot-arknights-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "data",
+            "capabilities": [
+              "config.get",
+              "chat.get_all_streams",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "book-open",
+                "background": "#171B24"
+              }
+            }
+          }
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "a26f196660a14a8ce5edadf4affe5e6971b496c4",
