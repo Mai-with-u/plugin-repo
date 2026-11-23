@@ -26295,6 +26295,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.2",
+          "tag": "v1.5.2",
+          "commit": "2c49462cf5d72d4164b32720b4f241d11f666559",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T23:35:21Z",
+          "release_url": "https://github.com/ggsfly/stellasora-plugin/releases/tag/v1.5.2",
+          "release_notes": "# 星塔旅人攻略查询 1.5.2\r\n\r\n紧急修复：插件市场 manifest 校验失败。\r\n\r\n## 修复\r\n\r\n市场校验器拒绝 `host_application` / `sdk` 的 `max_version` 第一位和第二位为 99 或 999——1.5.0/1.5.1 写的 `1.99.99`、`2.99.99` 在插件市场页面显示「校验失败」。\r\n\r\n按官方规范改为「已测试最高主.次版本 + `.99`」：\r\n\r\n- `host_application.max_version`: `1.99.99` → **`1.4.99`**\r\n- `sdk.max_version`: `2.99.99` → **`2.23.99`**\r\n\r\n功能与 1.5.1 完全一致，仅元信息合规。手动安装（不解市场校验）的实例无需升级。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.5.2",
+            "name": "星塔旅人攻略查询",
+            "description": "星塔旅人（Stella Sora）攻略与排行榜插件：QQ 群中文提问返回一图流攻略原图（GameKee wiki / B站猫猫球，均授权转载，可按 [how] source 切换或双源同查，GameKee 附队伍码）；/st_bb・/st_fe 渲染当期联合讨伐/终焉绝响国服 Top100 图片榜单（名次不补零、分数完整对齐）；/st_update 强刷两榜并探查攻略源更新。数据源：GameKee + B站@铃儿的猫猫球 + ssleaderboard。",
+            "author": {
+              "name": "ggsfly",
+              "url": "https://github.com/ggsfly"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/ggsfly/stellasora-plugin",
+              "homepage": "https://stelladb.pages.dev/",
+              "documentation": "https://github.com/ggsfly/stellasora-plugin#readme",
+              "issues": "https://github.com/ggsfly/stellasora-plugin/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "compass"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "render.html2png",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "ggsfly.stellasora-plugin"
+          }
+        },
+        {
           "version": "1.4.1",
           "tag": "v1.4.1",
           "commit": "9fe42f3f299b9555232981c096d5df71cd10222f",
