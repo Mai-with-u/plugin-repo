@@ -56040,6 +56040,60 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.1",
+          "tag": "v1.2.1",
+          "commit": "0c5cdd6deb1441b4a407e9dc9dd8af5b2afe6568",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T16:08:49Z",
+          "release_url": "https://github.com/TanTan-yyds/maibot-short-term-memory/releases/tag/v1.2.1",
+          "release_notes": "## 变更（v1.0.4 → v1.2.1）\n\n- 注入改为「常驻规则段 + 动态数据段」：Planner 负责写入与维护，Replyer 只作事实参考；0 条记忆也会注入规则，模型不再“不知道有这个能力”\n- 记忆分区：有效记忆正常展示；过期记忆折叠为一行提示，可按需检索\n- 新增 `search_short_term_memory`（按 QQ/昵称/事件片段检索，标注有效/遗忘）与 `restore_short_term_memory`（恢复为有效）\n- 检索结果附带更新时间（刚刚 / N 小时前 / N 天前）\n- `add` / `modify` / `delete` 三个工具均设为 `core_tool=True`，模型每轮可直接看到\n- 过期记忆仍可 `delete_short_term_memory` 删除\n- SDK 兼容上限提升至 2.23.99，Host 兼容 1.3.0–1.4.99",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.tantan-yyds.short-term-memory",
+            "version": "1.2.1",
+            "name": "短期记忆",
+            "description": "全局短期记忆：注入使用规则与有效记忆，遗忘的记忆可按需检索并恢复。",
+            "author": {
+              "name": "TanTanMao",
+              "url": "https://github.com/TanTan-yyds"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "homepage": "https://github.com/TanTan-yyds/maibot-short-term-memory",
+              "documentation": "https://github.com/TanTan-yyds/maibot-short-term-memory/blob/main/README.md",
+              "issues": "https://github.com/TanTan-yyds/maibot-short-term-memory/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "plugin_type": "data",
+            "display": {
+              "icon": {
+                "type": "lucide",
+                "value": "brain"
+              }
+            },
+            "capabilities": [
+              "person.get_id",
+              "person.get_value"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.4",
           "tag": "v1.0.4",
           "commit": "e0fe2579bd7616c357af1f53a279480bd565d0f4",
