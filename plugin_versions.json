@@ -75745,6 +75745,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "4c53502520e5945f0f6b6ee32c1b556be47fbdf0",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-22T08:44:28Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-anti-recall/releases/tag/v1.1.1",
+          "release_notes": "### 修复\n- 将 `scope.ignore_admin_self` 默认值改为 `true`（`config.py` / `core.py` / `config.example.toml` / `README.md`），默认忽略管理员（`notify.admin_user_ids`）本人触发的撤回操作（含自撤回、私聊撤回与管理员代撤回），避免自己撤回消息仍给自己发私聊提醒；如确需接收仍可在 WebUI 手动关闭。\n- 加固 `parse_recall_notice` 对异常 `operator_id=\"0\"` 的回退处理。\n- 新增 `test_default_ignores_admin_recall_and_can_disable` 与 `test_admin_self_recall_is_ignored_by_default` 单元测试。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.anti-recall",
+            "version": "1.1.1",
+            "plugin_type": "management",
+            "name": "防撤回通知",
+            "description": "缓存最近群聊与私聊消息，检测到撤回事件后自动将原消息内容（支持配置一并补发图片、表情与语音）私聊转发给管理员；支持配置缓存条数、有效期与监听范围。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-anti-recall",
+              "homepage": "https://github.com/yunshanluan0714/maibot-anti-recall",
+              "documentation": "https://github.com/yunshanluan0714/maibot-anti-recall/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-anti-recall/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "chat.open_session",
+              "send.custom",
+              "send.hybrid",
+              "send.text"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "b4c0292ab5fea4dd6b4c52a8a087509c5cb6cedf",
