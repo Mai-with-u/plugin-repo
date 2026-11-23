@@ -22372,7 +22372,58 @@
       "manifest_id": "haitai-git.chat-style-translator",
       "repositoryUrl": "https://github.com/haitai-git/chat-style-translator-plugin",
       "mode": "releases",
-      "versions": [],
+      "versions": [
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "commit": "2efb5505731abb6ab48a0a0685278f8182c7e5fe",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T11:56:47Z",
+          "release_url": "https://github.com/haitai-git/chat-style-translator-plugin/releases/tag/v1.0.1",
+          "release_notes": "",
+          "manifest": {
+            "manifest_version": 2,
+            "version": "1.0.1",
+            "name": "聊天风格转译",
+            "description": "绑定 QQ 群后自动收集群友对话（也可用 /风格拉取历史 从 NapCat 直接回填历史消息），在后台用 LLM 分析群聊场景、说话对象与每位群友的聊天风格，生成可审核、可融合、可编辑的风格模型；通过黑名单语义过滤剔除不合语境的语句；审核通过后，AI 自身行为风格保持不变，每次生成回复草稿后检索该群风格并做轻度微调（只改几个词，原意严格不变）。内置回复乱码拦截：AI 回复出现乱码、指令残片或内部标识符泄漏时自动要求回复器重新生成。内置微调前黑名单：回复草稿中出现黑名单词（仅支持中文词条）时，先在风格微调前删除（可开启语义换词匹配，基于没删前的整句理解意思、补字保持原意；语义换词匹配生效时直接返回删词补意结果、不再叠加回复后风格微调，仅字面删词命中时仍继续回复后微调）。",
+            "author": {
+              "name": "haitai-git",
+              "url": "https://github.com/haitai-git"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/haitai-git/chat-style-translator-plugin",
+              "homepage": "https://github.com/haitai-git/chat-style-translator-plugin",
+              "documentation": "https://github.com/haitai-git/chat-style-translator-plugin/blob/main/README.md",
+              "issues": "https://github.com/haitai-git/chat-style-translator-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.8",
+              "max_version": "1.4.8"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "api.call",
+              "llm.generate",
+              "llm.embed",
+              "chat.get_all_streams"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "id": "haitai-git.chat-style-translator"
+          }
+        }
+      ],
       "ignored_tags": [],
       "rejected_releases": []
     },
