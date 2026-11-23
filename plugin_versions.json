@@ -74176,6 +74176,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "6.6.5",
+          "tag": "v6.6.5",
+          "commit": "4a02e9c50fe21710b8d969f94bbff452d1d733c7",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-23T08:03:24Z",
+          "release_url": "https://github.com/Saria-Gins/maibot-hyperos4-theme/releases/tag/v6.6.5",
+          "release_notes": "# 麦麦 HyperOS 4 主题 6.6.5\r\n\r\n- 侧栏 / 顶栏 / 弹窗 / 底栏的磨砂倍数下调（1.2~1.4 倍 → 0.9~1.0 倍），大面积模糊更省 GPU\r\n- 默认磨砂 18px → 14px，底栏模糊 24px → 18px（仅影响新用户默认值，已有设置不变）\r\n- 支持 `prefers-reduced-motion`：系统开启「减弱动效」时，过渡与动画降到近乎瞬时\r\n\r\n---\r\n\r\n安装：下载 `maibot-hyperos4-theme-v6.6.5.zip`，解压到 `MaiBot/plugins/local_dps_hyperos4_theme/`，重启麦麦。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Saria-Gins.maibot-hyperos4-theme",
+            "version": "6.6.5",
+            "name": "麦麦 HyperOS 4 主题",
+            "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+            "author": {
+              "name": "Saria-Gins",
+              "url": "https://github.com/Saria-Gins"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+              "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "other",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "6.6.4",
           "tag": "v6.6.4",
           "commit": "193224136bb7ff2f34899f2b63e59b9fa0c36cdd",
