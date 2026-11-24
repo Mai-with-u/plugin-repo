@@ -72261,6 +72261,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.22",
+          "tag": "v0.9.22",
+          "commit": "2ec143d861bcf7bdd297082108f6900bb9736e25",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T06:19:19Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.22",
+          "release_notes": "## 0.9.22\n\n**X 翻帖：从「十几条」到「六十条」**\n\n- `/2/profile/<handle>/media?count=100` 一次多要几十条，翻到 60 条或 18 秒预算为止\n- 比指纹先下缩略图（`?name=small`），落在阈值边上的再拿原图复核：12 张图 6 路并发从 10.3 秒降到 4.2 秒\n- 预算用完如实写「更早的还没翻完」；搜索兜底回 503 时，不再把「翻过、没这张」改写成「没翻成」\n- 线索行的 X 账号补上链接，并写明「翻了最近 N 条带图帖（M 张图）」\n\n**反查原作者**\n\n- 候选 URL 里写明的 B 站／微博／TikTok 账号都进线索；B 站投稿封面、微博带图帖能核图的直接核\n- 新增「B 站按名字反查」；微博同名号不再只看第一个，正主排在第二也能翻到\n- 搬运站图床文件名里的 pixiv 作品号回核；`pixiv.re` 反代取原图比指纹\n- 搬运站标题里的名字交给模型抽，规则只当兜底（幻觉靠「必须能在标题里原样找到」挡）\n\n**降级与排除**\n\n- 百度动态／百家号这类内容号落地页、电商商品页、`honkaihaven`／`costuan` 等图集站一律降级\n- pixiv 作品名不当人名；Facebook 视频页／相册页不算主页；Patreon `/cw/` 与 `photo.php` 这类页面不再当账号\n- 画站的 `drawn by`／`illust by` 不当 coser 署名\n\n**其它**\n\n- 花体／全角显示名折回普通字母再比对；书名号里的名字优先\n- 测试 1096 项全过；README／AGENTS 同步（新增第 77~99 条）\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.22",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.hybrid",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.21",
           "tag": "v0.9.21",
           "commit": "e9a6855b7a53aea6babc3f3a1ee80e70de5c66b0",
