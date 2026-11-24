@@ -38930,6 +38930,80 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.0",
+          "tag": "v1.7.0",
+          "commit": "75fca16e1dab700a0dfa18af75a5f31b5cfd1396",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T06:41:24Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/releases/tag/v1.7.0",
+          "release_notes": "> **本次为重发修正**：仅更新 README 与 manifest 文案（版本徽章更正为 1.7.0，补充多天分析、定时周报、多天漫画说明），功能代码与首次发布一致。以下为原始发布说明。\n\n- **新增多天分析与周报功能**：\n  - 支持 `/日报 天数 [主题]`（例如 `/日报 3`、`/日报 7`）和 `/周报 [主题]`，可汇总过去多天的群聊记录并生成独立报告，不覆盖当天日报。\n  - 新增定时周报：可自由配置每周发送的星期与时间，修改后立即生效；周报所在日会自动替代当天的定时日报，若周报生成失败会自动补发当天日报。\n  - 提供三种多天分析策略：**存档优先**（默认，优先复用已有日报存档更省流）、**按天提炼**（更细但消耗更高）、**分层抽样**（单次分析更稳妥），遇到异常或信息不足时自动逐级降级，并在报告中注明实际覆盖天数与策略。\n  - 支持缺天包容与发言均衡采样，自动过滤戳一戳、撤回、禁言、贴表情等通知消息及合并转发，聊天量过大时智能裁剪并提示。\n- **新增多天漫画（`/漫画 天数`）**：支持按多天窗口挑选全周期最热门的话题绘制漫画，格数沿用现有分镜设置，话题不足时自动用金句或日常补足，并优先复用当天的多天/周报分析结果。\n- **新增对话工具总开关与周报检索**：设置中新增「允许麦麦自然语言查报告与触发分析」总开关（默认开启，关闭后立即停用）；麦麦主动查报告时现已支持检索周报与多天汇总报告。\n- **设置页与 WebUI 体验升级**：\n  - 设置页新增「多天与周报」与默认折叠的「多天高级参数」，全部使用通俗中文说明与费用提示。\n  - 报告库与漫画廊支持多天/周报生成、按报告类型筛选、触发前范围与开销预览（高开销自动弹出确认框）；统计页新增多天/周报计数及按报告类型的 Token 与花费分布。\n- **漫画参考图与稳定性优化**：\n  - 改为先读取参考图再生成分镜，启用参考图时自动避免文字描述与参考图外貌冲突，让人物形象更贴合参考图。\n  - 补齐日报重建路径对通知类消息的过滤，并优化统计数据落盘频率，减少磁盘写入压力。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-plugin-qq-group-daily-analysis",
+            "version": "1.7.0",
+            "changelog": "CHANGELOG.md",
+            "name": "群聊每日分析",
+            "description": "每天自动生成群聊日报，并支持多天汇总与定时周报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把单日或多天最热话题画成漫画（需麦麦绘图插件）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis",
+              "issues": "https://github.com/NetaJuutilainen/Maibot_plugin_qq_group_daily_analysis/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.99"
+            },
+            "plugin_type": "data",
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "jinja2",
+                "version_spec": ">=3.1"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.image",
+              "send.text",
+              "llm.generate",
+              "llm.get_available_models",
+              "database.query",
+              "render.html2png",
+              "message.get_by_time_in_chat",
+              "chat.get_avatar",
+              "webui.claim_upload",
+              "api.call",
+              "api.get",
+              "personality.get_current",
+              "component.enable",
+              "component.disable"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "newspaper"
+              }
+            }
+          }
+        },
+        {
           "version": "1.6.7",
           "tag": "v1.6.7",
           "commit": "5c63076c3756a6aa3bcb65f2a4d0f91c842ddad6",
