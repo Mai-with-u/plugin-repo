@@ -70767,6 +70767,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "commit": "c37a33bb8b96d600589d005272a2b4c718eedbad",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T08:43:20Z",
+          "release_url": "https://github.com/Gulzar2000/maibot-fgo-assistant/releases/tag/v1.4.1",
+          "release_notes": "## 主要功能\n\n- 官方公告日报支持手动查询和定时群发，汇总活动、领取与兑换期限、维护及月末提醒。\n- 新增从者图鉴，展示背包和第二保管室中的从者及养成进度。\n- 新增攒石记录，汇总圣晶石、呼符和圣晶片，生成每日趋势图。\n- 种树支持当天预约和每日循环登记，管理员可查询待执行登记。\n- 养成素材规划支持四档目标和快照对比。\n\n## 部署与细节\n\n- 源码自带哔哩与享游的应用协议配置。Windows 上安装并启用插件后，可通过 QQ 发送 `/fgo bind` 选择区服并扫码。相关配置已补齐，见 #1。\n- 本地绑定工具支持哔哩账密登录入口，安全挑战由用户在 WebView2 中手动完成。便携工具需由各部署者使用自己的导入公钥构建。\n- 修复灵衣解锁标记导致的养成快照对比问题，并完善种树 AP 恢复时间与服务器维护提示。\n\n下载 **Source code (zip)**，解压至 MaiBot 的插件目录，再按 [安装说明](https://github.com/Gulzar2000/maibot-fgo-assistant/blob/v1.4.1/README.md#安装) 操作。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-community.fgogacha",
+            "plugin_type": "game",
+            "version": "1.4.1",
+            "name": "FGO小助手",
+            "description": "面向 FGO 国服的 QQ 助手，支持模拟抽卡、卡池与活动查询、素材来源、真实出率统计、羁绊挖矿计算及青铜果实兑换。",
+            "author": {
+              "name": "Gulzar2000（维护；原作 kcn3388）",
+              "url": "https://github.com/Gulzar2000"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Gulzar2000/maibot-fgo-assistant",
+              "homepage": "https://github.com/Gulzar2000/maibot-fgo-assistant",
+              "documentation": "https://github.com/Gulzar2000/maibot-fgo-assistant/blob/main/README.md",
+              "issues": "https://github.com/Gulzar2000/maibot-fgo-assistant/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.12.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.9.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=9.5.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=8.2,<9"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=46"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.forward",
+              "send.hybrid",
+              "config.get",
+              "api.call",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.0",
           "tag": "v1.4.0",
           "commit": "46866e05a25313f4c91bf9dd4735a976c47309bd",
