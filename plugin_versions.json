@@ -25826,6 +25826,78 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "31dafed5325e19bf25aed6a17b0aed74401e3988",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T17:27:19Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_bilicaption/releases/tag/v1.2.0",
+          "release_notes": "### 新增\r\n\r\n- 字幕择优：同一视频有多条字幕时，语言匹配的人工字幕优先于语言匹配的 AI 字幕，其次才是其它语言的字幕；默认偏好中文。\r\n- 配置页扫码登录：WebUI 配置页提供二维码、状态行、“获取登录二维码”与“退出登录”控件；凭据保存在插件数据目录的 `credential.json`。\r\n- 链接识别新增 av 号（`av170001` / 纯数字 / `/video/av…` 链接）、`bili2233.cn` 短链与整段分享文本。\r\n- 链接中的 `?p=N` 自动作为分 P 号。\r\n- 长度保护：超限时保留开头 60% 与结尾 40%，提示总长与省略比例；新增 `offset` 参数从任意位置翻页读取。\r\n- 字幕缓存：默认有效期 1 小时、最多 64 条，过期条目顺带清理，超出容量淘汰最久未使用的条目；配置项 `cache.ttl_seconds`、`cache.max_entries`。\r\n- 失败原因细化：视频不存在、没有字幕、该分 P 没有字幕、登录失效、风控、短链非 B 站域、网络超时分别返回具体提示。\r\n- 新增 `AGENTS.md`。\r\n\r\n### 变更\r\n\r\n- 对 LLM 暴露的工具统一为 `bili_view`（参数 `video`、`page`、`offset`），默认启用，无需开关。\r\n- 配置结构调整为 `plugin` / `view` / `cache` 三组；`view.max_chars` 默认 20000。\r\n- manifest 声明收窄：宿主 `1.4.8~1.4.99`，SDK `2.23.0~2.23.99`；依赖新增 `qrcode`、`pillow`。\r\n- 单元测试覆盖链接解析、SSRF 校验、缓存、长度保护、失败原因映射与扫码状态机。\r\n\r\n### 移除\r\n\r\n- 移除工具 `bilibili_caption` 与 `bilibili_read`。\r\n- 移除配置项 `bilibili_cookie.sessdata`、`bilibili_cookie.bili_jct`、`read_settings.*`。\r\n- 移除 manifest 能力声明 `component.enable`、`component.disable`。\r\n\r\n### Added\r\n\r\n- Subtitle selection: when a video has several subtitle tracks, a manual track in the preferred language comes before an AI track in that language, and tracks in other languages come last; the preferred language defaults to Chinese.\r\n- QR-code login on the config page: the WebUI config page provides a QR code, a status line, and \"Get login QR code\" / \"Log out\" controls; credentials are stored in `credential.json` under the plugin data directory.\r\n- Link recognition now covers av numbers (`av170001`, bare digits, `/video/av…` links), `bili2233.cn` short links, and whole share texts.\r\n- `?p=N` in a link is used as the part number.\r\n- Length protection: over-limit text keeps the first 60% and last 40% and reports the total length and omitted ratio; the new `offset` parameter pages through any position.\r\n- Subtitle cache: default TTL of 1 hour and up to 64 entries; expired entries are purged on access and the least recently used entry is evicted when over capacity; options `cache.ttl_seconds` and `cache.max_entries`.\r\n- Specific failure reasons: video not found, no subtitles, no subtitles for this part, login expired, risk control, short link outside Bilibili domains, and network timeout each return a distinct message.\r\n- Added `AGENTS.md`.\r\n\r\n### Changed\r\n\r\n- The tool exposed to the LLM is unified as `bili_view` (parameters `video`, `page`, `offset`), enabled by default with no switch.\r\n- Config restructured into `plugin` / `view` / `cache` groups; `view.max_chars` defaults to 20000.\r\n- Manifest ranges narrowed: host `1.4.8~1.4.99`, SDK `2.23.0~2.23.99`; dependencies add `qrcode` and `pillow`.\r\n- Unit tests cover link parsing, SSRF validation, cache, length protection, failure-reason mapping, and the QR login state machine.\r\n\r\n### Removed\r\n\r\n- Removed tools `bilibili_caption` and `bilibili_read`.\r\n- Removed config options `bilibili_cookie.sessdata`, `bilibili_cookie.bili_jct`, and `read_settings.*`.\r\n- Removed manifest capabilities `component.enable` and `component.disable`.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.bilicaption",
+            "version": "1.2.0",
+            "name": "B站视频字幕解读",
+            "description": "提供 bili_view 工具：按 BV 号、av 号、视频链接或短链读取 B 站视频字幕，供 bot 理解与总结视频内容；登录凭据通过配置页扫码获得",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_bilicaption"
+            },
+            "host_application": {
+              "min_version": "1.4.8",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "bilibili-api-python",
+                "version_spec": ">=16.0.0,<18.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "qrcode",
+                "version_spec": ">=7.4"
+              },
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "logo.png",
+                "fallback": "package"
+              }
+            },
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN",
+                "en-US",
+                "ja-JP"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "a8992153651f9dc643cce5d1b21bb5493422a2f5",
