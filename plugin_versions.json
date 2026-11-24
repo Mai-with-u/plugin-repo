@@ -75293,6 +75293,91 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "commit": "06812c4f10fbad6cb99c1e2855b131e553b54402",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T11:52:35Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_rsshub/releases/tag/v1.1.0",
+          "release_notes": "### Changed\n\n- LLM 工具更名：`rss_list_subscriptions` → `rss_list_feeds`，`rss_set_subscription_option` → `rss_set_feed_option`，`rss_set_subscription_handlers` → `rss_set_feed_handlers`。\n- LLM tools renamed: `rss_list_subscriptions` → `rss_list_feeds`, `rss_set_subscription_option` → `rss_set_feed_option`, `rss_set_subscription_handlers` → `rss_set_feed_handlers`.\n\n### Fixed\n\n- `rss_list_push_history` 的 `limit` 参数传入字符串时不再抛 `TypeError`。\n- `rss_list_push_history` no longer raises `TypeError` when `limit` is passed as a string.\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.rsshub",
+            "version": "1.1.0",
+            "name": "RSSHub 订阅推送",
+            "description": "RSS/Atom/JSON Feed 订阅、定时轮询与人格化推送，支持四级配置继承、推送历史审计与富媒体渲染",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_rsshub",
+              "homepage": "https://github.com/OMSociety/maibot_plugin_rsshub",
+              "documentation": "https://github.com/OMSociety/maibot_plugin_rsshub/blob/main/README.md",
+              "issues": "https://github.com/OMSociety/maibot_plugin_rsshub/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "feedparser",
+                "version_spec": ">=6.0.11"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=5.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package",
+                "background": "#EA580C"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "send.forward",
+              "files.upload",
+              "files.send",
+              "maisaka.reply.generate",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.0.0",
           "tag": "v1.0.0",
           "commit": "9b2a401c47ea82a3f84a26dabd4dcee6d9ca1ccf",
