@@ -26565,6 +26565,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.1",
+          "tag": "v1.7.1",
+          "commit": "bd8de0378fa57f5ce72dea2b5b20cd04bf3f52c6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T03:31:53Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.7.1",
+          "release_notes": "### 修复\n\n- **修复文字语录自动抓取头像失败**：`essential_services.fetch_avatar_bytes` 原先调用 `resp.content.read(max_bytes + 1)` 在 `aiohttp` 中仅读取首个缓冲分片，导致完整 PNG（如 437 KB 的 QQ 高清头像）被截断后解码失败，降级为首字兜底图；现已改为 `iter_chunked(65536)` 循环读满至 EOF，并开启 `trust_env=True` 与请求头兼容。\n\n### 新功能\n\n- **新增 `/删语录` 命令**（别名 `/删除语录`）：\n  - 回复语录图片（或原消息）发送 `/删语录`，或直接发送 `/删语录 最新`（亦可写 `最后` / `-1`）删除最近刚投稿的一条，同步清理索引与磁盘图片文件；\n  - 新增 `[quotes].delete_admin_users` 配置项（管理员 QQ 列表，留空＝群内均可删；填了则仅列表内管理员或该条语录的记录者本人可删除）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.7.1",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 支持图片投稿与回复纯文字自动生成名言图 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_avatar",
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.6.6",
           "tag": "v1.6.6",
           "commit": "d8edcda411e55acd270cd7a0fa9898485162fd06",
