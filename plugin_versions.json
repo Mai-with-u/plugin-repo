@@ -77279,6 +77279,63 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "commit": "020c2ce26ca2bd22a74a07e0e5652f3d2cf7254d",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T09:07:08Z",
+          "release_url": "https://github.com/NewB2001/maiknock/releases/tag/v0.4.0",
+          "release_notes": "## v0.4.0 — 2026-11-24\n\nWebUI 私聊体验增强：①让麦麦主动来找你聊天；②用旁白掌控剧情时间线（像时光机）；③用小说体说话（比人格配置更稳定）；④回复篇幅可控、段落之间自动空行。\n\n### 本版本要点\n- **功能 A · 回复字数配置**：配置页新增「回复篇幅」下拉——简短（60-200字）/ 适中（100-400字）/ 详细（150-600字）/ 自由。**软约束**：请求发出前注入一条中文「篇幅契约」，让模型第一遍就写在范围内，**不做硬截断**（硬切会把小说体切碎）。字数只算说出口的话，【】内心与（）动作不计入；下限恒为 60；「自由」= 只放开字数，小说体格式与内心/动作开关全都照常遵守\n- **功能 B · 段落间空行**：**插件被动技能**——没有开关、不用配置，所有字数档位都生效（含「自由」）。回复发出前统一整理成「段间空一行」；段起点按内心/动作开关组合自动切换（`【` 开头 / `（` 开头 / 句末标点），只看字面、不猜语义，幂等（已是整齐空行的不会被重复加）\n- **新纯逻辑模块 `reply_length.py`**：无 IO、无宿主依赖、可离线单测；`style_guard.normalize_paragraph_breaks` 同为纯函数\n- **收编 0.3.1~0.3.4 的开发期改动**：配置页瘦身（21→13 项）、冷场阈值改随机区间（60~90 分钟）、抽签偶数分钟网格、免打扰多时段双联下拉、F4 开关中文化并扁平化、F4 改为对所有聊天全量生效（删除 scope 与受管清单）\n- **版本号收口**：F5 是面向用户的新功能（新配置项 + 新行为），按项目「体量/性质超补丁号 ⇒ 涨号」的既有判据（0.3.0 定版时同一判据）升 minor；0.3.1~0.3.4 是从未作为发布号出现过的开发期迭代号，其内容一并收进本版本\n- **CHANGELOG 清理**：补齐 0.4.0 条目，修复尾部重复粘贴的旧版本段落\n\n### 安装\n见 README：可在 WebUI 插件市场安装，或从 Release 源码包手动放置到 `plugins/maiknock/`。从 0.3.0 升级无需改配置——新增的「回复篇幅」有默认值，段落空行自动生效。\n\n> 已知边界：本版新增的 F5 两条行为暂未纳入离线单测（`tests/` 尚未覆盖 `reply_length.py` 与 `normalize_paragraph_breaks`），下一版补齐。\n\n> 环境要求：MaiBot 1.3.11~1.4.x，内置 maibot-plugin-sdk 2.15+。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maiknock.webui_companion",
+            "version": "0.4.0",
+            "name": "麦麦敲门 MaiKnock",
+            "description": "WebUI私聊体验增强！1、让麦麦主动来找你聊天；2、用旁白的方式掌控聊天剧情的时间线（就像时光机一样）；3、让麦麦用小说体的方式说话（比人格配置更稳定）；",
+            "plugin_type": "chat",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "image"
+              }
+            },
+            "author": {
+              "name": "国强 & 烧B",
+              "url": "https://github.com/NewB2001/maiknock"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NewB2001/maiknock",
+              "issues": "https://github.com/NewB2001/maiknock/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.11",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.15.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "message.get_recent",
+              "send.text",
+              "chat.get_private_streams",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.2",
           "tag": "v0.2.2",
           "commit": "3a20f8706091c7372b4807c639882319016e78a0",
