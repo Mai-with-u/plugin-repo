@@ -76792,6 +76792,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.1",
+          "tag": "v0.3.1",
+          "commit": "95f8eab7c2f7059fbbdeb1d5901cf2e6a57e7a83",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T12:59:53Z",
+          "release_url": "https://github.com/Allure-Gui/maibot-arknights-wiki/releases/tag/v0.3.1",
+          "release_notes": "## v0.3.1 更新内容\n\n- **公开招募半身像卡片图 & 截图识图**：`/公招` 与 `/方舟 公招` 升级为「黑曜石与金箔」风格 2x 半身像保底组合卡片（按 `6★ → 5★ → 4★ → 1★` 严格降序排列，跨星级自动左右分栏、独立星级角标与招募时长提示），支持手打词条及**带图 / 回复公招截图识图**（定向调用宿主 `vlm` 仅提取词条并走 28 词条白名单校验，平时群聊图片零触发、零 Token 消耗）；新增 `ak_recruit_calc` 可见工具。\n- **BOSS / 敌人数值与机制速查 + 356 条干员与敌人黑话词典**：新增 `/方舟 敌人 <名称> [级别]`（别名 `boss`、`领袖`，及 `ak_wiki_query(section=\"enemy\")` 自动附发卡片），输出赤红黑曜石档案卡片图；全面扩充黑话词典至 **356 条**（覆盖 2026 最新干员昵称与 99 条经 PRTS 实名核验的 BOSS/敌人外号，如 `大爹 / 红刀哥 / 黑蛇 / 内卫 / 蒸汽骑士 / 大特 / 大蒂 / 高速公鹿 / 老登 / 大锁`）。\n- **当期寻访卡池 & 活动独立海报卡片 + 到期定时提醒**：新增 `/方舟 卡池` 与升级 `/方舟 活动` 为独立的黑曜石官方横幅海报卡片（含精确剩余倒计时、即将结束赤红高亮与进度条）；配置页新增可选「活动到期提醒」开关（默认关闭），开启后于每日 09:00（可配）向符合群聊黑/白名单的群推送即将关闭的限时活动与卡池提醒，本地持久化防重。\n- **干员卡片全家桶补齐 & 全系列 UI 精修**：新增**养成材料总账卡**（`/方舟 总计`）、**干员语音记录卡**（`/方舟 语音`，标注仅文字无语音）与**干员机密档案卡**（`/方舟 <干员> 档案`）；统一升级全套卡片视觉细节；重构 `/方舟帮助` 卡片为三层罗德岛终端手册布局，清理冗余 `/` 符号。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.arknights-wiki",
+            "version": "0.3.1",
+            "name": "明日方舟wiki插件",
+            "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "homepage": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "documentation": "https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/maibot-arknights-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "data",
+            "capabilities": [
+              "config.get",
+              "chat.get_all_streams",
+              "message.get_recent",
+              "message.get_by_id",
+              "llm.generate",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "book-open",
+                "background": "#171B24"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.0",
           "tag": "v0.3.0",
           "commit": "14c817236d4072a04d0bc1b355621b94abfb0327",
