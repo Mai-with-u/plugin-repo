@@ -65483,6 +65483,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.1",
+          "tag": "v2.1.1",
+          "commit": "1e632bb4077a624bde710b510d0dc4fa6ab007b6",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T01:03:03Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v2.1.1",
+          "release_notes": "## 更新内容\n\n- **WebUI 投喂风格管理**：商店列表商品名下方展示注入风格摘要 / 清除标记；「完整编辑」弹窗与「新建道具」卡片均支持统一配置效果类型（无 / 注入临时说话风格 / 清除全部投喂风格）、持续时长（0 为永久）与提示词文案；补齐 `webui.json` 参数声明。\n- **WebUI 交互与六套主题全适配**：接入宿主 `maibot-page` / `maibot-card` / `maibot-button` / `maibot-input` / `maibot-select` 与 `--maibot-radius` 派生圆角，完整适配现代 / 千禧 / 未来复古 × 明暗 6 套外观；修复弹窗透明透底与缺失栅格布局；修复弹窗内点「选词」误关编辑框并补充「✓ 确认选择」按钮；优化商店表格列宽分配与操作按钮垂直居中单行排列。\n- **文案引号统一**：新增 `strip_outer_quotes` 自动剥除命令与 WebUI 录入时的首尾成对引号（保留正文内引用），并在数据库初始化迁移中自动清洗存量记录。\n- **README 文档美化**：亮暗双色自适应 SVG 头图、统一徽章排版与 QQ 交流测试群（`556461602`）指引。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "2.1.1",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get",
+              "api.call",
+              "custom_pages"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "2.1.0",
           "tag": "v2.1.0",
           "commit": "b5f239f1b0a732e0773d4c1e0d95eafcf5f07edc",
