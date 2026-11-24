@@ -71723,6 +71723,64 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.3.2",
+          "tag": "v1.3.2",
+          "commit": "4f1a6945a53e781b9bc034965fed99a407ad2cc8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T05:15:09Z",
+          "release_url": "https://github.com/ShuangziG/maibot-body-emulator/releases/tag/v1.3.2",
+          "release_notes": "> ⚠️ **本版已于 2026-11-24 重新发布。**\n>\n> 原 v1.3.2 的 `plugin.py` 里，`_migrate_link_provider()` 的文档字符串结尾被误写成了一个表达式语句\n> （`\"\"\".split(\"§\").join(String.fromCharCode(96))`）。该方法在 `on_load()` 与 `on_config_update()`\n> 中被无保护地调用，运行即抛 `AttributeError: 'list' object has no attribute 'join'`，\n> 插件加载直接失败 —— 仿真后台任务、WebUI 接口、`body_state` / `body_eat` 工具、`/body` 命令全部不可用。\n>\n> 现已在 `6b0d222` 修正该行（只动文档字符串，逻辑零改动），并重建了 tag 与 Release。\n> 除该行之外，代码内容与原 v1.3.2 完全一致。**此前下载过 v1.3.2 的请重新下载。**\n\n---\n\n## v1.3.2（2026-11-23）\n\n> 本版修两件事：身体连续跑满十来小时后体征曲线整块消失；曲线本身也终于可读了\n> （刻度看得见、鼠标能读出单点数值、体温不再画成锯齿）。顺带把日程联动的引擎选择\n> 从「手填 life / weave」改成自动识别。\n\n### 这一版你能看到的变化\n\n- 「身体此刻」页的体征曲线不会再在长时间运行后整块空白。\n- 时间线页的 48 小时档也不会再报「JSON 超过 20000 个元素」。\n- 曲线两侧的刻度数字看得见了，水平参考线从 4 条增加到 5 条。\n- 鼠标停在任一条曲线上，会弹出那一刻的全部读数（心率、血压、血糖、体温等）。\n- 体温曲线不再是一排锯齿，改为像体温计那样按固定刻度显示，发烧时会明显顶向顶端。\n- 夜间分期图的颜色终于与图例一致了：浅睡是橙色、REM 是绿色、深睡是蓝色、清醒是灰色。\n- 月经周期关闭时，睡眠卡片会占满整行，不再在右侧留一块空白。\n- 日程联动不必再手填 life / weave，装哪个都能自动认出来；顶部状态栏显示的是实际连上的那个。\n- 曲线卡片标题由「近 12 小时体征」改为「近 24 小时体征」——页面请求的一直是 24 小时，标题写小了。\n\n### 背景：本次改动\n\n**曲线为什么整块消失。** 宿主给插件 WebUI 接口留的返回额度是 20000 个 JSON 元素。体征曲线每个采样点要带\n18 条序列，再加时间、天数、睡眠分期三列，合计 21 个元素；24 小时窗口是 1440 个点，约 3.0 万个元素 ——\n超了三成，接口被判失败，前端只能整块空着。它不是「有时会错」，是「跑到约 16 小时必然出错」。\n\n**为什么看起来像偶发。** 存档只保留最近 600 个采样点，重启后从 600 点恢复，要再攒够 951 点才重新越线\n（约 5.8 小时）。所以症状是「重启后正常一阵，跑够了就报错」，像随机故障。\n\n**刻度为什么看不见。** 刻度数字与坐标轴共用同一个颜色变量，浅色主题下那颜色和背景几乎同色 ——\n数值一直在画，只是被藏住了。\n\n**分期图为什么找不到浅睡。** 画布取色函数从页面根节点读 CSS 变量，而那些颜色定义在更内层，\n读不到就全部退回写死的兜底色，与图例（能读到真变量）对不上。图上浅睡呈青色，图例却是橙色。\n\n### 改动\n\n1. **体征曲线载荷按宿主额度自适应**：新增 `body/history.py`，按宿主的元素计数口径反推能装多少个采样点，\n   在预算内等间隔取点。首尾必保留，夜间分期不塌成单色，曲线走势看不出差别。额度每次现算，\n   将来再加序列会自动少装点，接口不会再越界。24 小时档约 1.6 分钟/点，48 小时档约 2.4 分钟/点。\n2. **接口只增字段**：`webui_history` 新增 `sampled` / `stride` / `source_count` / `point_limit`\n   四个字段，原有字段名与顺序一律未动，前端不改也能渲染。\n3. **刻度可读性**：新增独立颜色变量 `--chart-label`（浅 `#6e6d68` / 暗 `#9a9890`），\n   刻度文字与坐标轴轴线分开取色；水平参考线 4 条 → 5 条。\n4. **悬停读数**：`drawChart` 结束时把本次绘制的几何与数据挂在画布上，指针移动时据此定位最近的采样点，\n   用浮层列出该点全部序列的原值。\n5. **体温轴固定 36.0~38.0**：原先右轴按数据自身范围自适应，而体温十小时只跨 0.10℃，\n   被撑开后铺满画布高度，0.01℃ 的量化台阶就是 8px 跳动。固定刻度后同样的变化只占 0.5px。\n6. **分期图取色修正**：`cssColor()` 改为从 `.lb-root` 取变量，并识别嵌套 `var()`（遇到就退回兜底值）；\n   `renderHypnogram` 的兜底色与图例统一。\n7. **月经关闭时的栅格**：`renderCycle` 隐藏卡片的同时把外层栅格收成单列，避免右侧留白。\n8. **日程引擎自动识别**：`provider` 新增 `auto` 并设为默认，启动后依次探测麦生活与麦织，\n   谁响应就用谁；两个都装时优先麦生活；探测失败每 5 分钟重试，插件晚启动也能接上。\n   面板显示改为「实际生效的引擎」，不再照抄配置值。\n9. **配置界面说明重写**：字段标签改为「日程引擎（默认自动，一般不用改）」，说明分三段讲清\n   auto / life / weave 的区别、优先级与填错时的表现。\n\n### 兼容性\n\n- `webui_history` 只加字段、不改字段语义，旧版页面照常渲染。\n- `provider` 默认值改为 `auto`；老配置文件里显式写着 `life` 或 `weave` 的仍严格按原值执行。\n- `host_plugin_id` 键残留不会报错，仍然有效，且优先于自动探测。\n\n---\n\n### 升级提示（v1.3.1 → v1.3.2）\n\n- 日程引擎的旧默认值 `life` 会被**当作出厂默认**：配置版本低于 1.3.2 且 `provider = \"life\"` 时，\n  运行期按 `auto` 处理，**不会改写你的 config.toml**。显式选过 `weave` 的保持原样。\n- 想固定只连某一个：把 `provider` 改回 `life` 或 `weave` 即可，该值优先于自动识别。\n- 存档与其它配置项无需改动。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-body-emulator",
+            "name": "麦麦身体",
+            "version": "1.3.2",
+            "description": "让麦麦有一副真实运转的身体：心血管、呼吸、代谢、肾脏、内分泌、体温与消化道连续仿真，可在 WebUI 里查看体征曲线、内脏细则与进食记录，支持与 麦生活/麦织 联动，仿真引擎不消耗token。",
+            "author": {
+              "name": "Evil双子",
+              "url": "https://github.com/ShuangziG"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "plugin_type": "extension",
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "render.html2png",
+              "api.call",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "maibody.png",
+                "fallback": "heart-pulse",
+                "background": "#F9D5E5"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/ShuangziG/maibot-body-emulator",
+              "homepage": "https://github.com/ShuangziG/maibot-body-emulator",
+              "documentation": "https://github.com/ShuangziG/maibot-body-emulator/blob/main/README.md"
+            }
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "5ce56f48423a77b9b3dc51f96b311da22559ee44",
