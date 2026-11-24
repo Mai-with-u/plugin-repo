@@ -74978,6 +74978,54 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "6.6.8",
+          "tag": "v6.6.8",
+          "commit": "82f8a8eafddba6a120a649ebaa0102f846505b34",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-24T16:16:46Z",
+          "release_url": "https://github.com/Saria-Gins/maibot-hyperos4-theme/releases/tag/v6.6.8",
+          "release_notes": "# 麦麦 HyperOS 4 主题 6.6.8\r\n\r\n### 优化\r\n\r\n- 字号统一改为「读写分离」：先只读收集待改元素，再统一写入，避免写一次读一次造成的强制重排\r\n- 字号统一与主色标记共用节点预算（3000）：市场页这类两万节点的页面直接跳过，不再阻塞切换\r\n- 41 处 `[class*=\"…\"]` 属性子串选择器收窄为 `[class~=\"…\"]`，减少大页面的样式匹配成本；子串选择器从 64 个降到 23 个\r\n\r\n### 实测\r\n\r\n从学习页切到市场页（1000 张插件卡片）：\r\n\r\n| 指标 | 优化前 | 优化后 | 主题关闭（基线） |\r\n|---|---|---|---|\r\n| 最长单帧阻塞 | 1383 ms | 341 ms | 317–350 ms |\r\n| 最长长任务 | 1363 ms | 183 ms | 190 ms |\r\n\r\n主题额外开销已落到噪声范围，剩余开销来自 dashboard 渲染 1000 张卡片本身。\r\n\r\n---\r\n\r\n安装：下载 `maibot-hyperos4-theme-v6.6.8.zip`，解压到 `MaiBot/plugins/local_dps_hyperos4_theme/`，重启麦麦。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.Saria-Gins.maibot-hyperos4-theme",
+            "version": "6.6.8",
+            "name": "麦麦 HyperOS 4 主题",
+            "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
+            "author": {
+              "name": "Saria-Gins",
+              "url": "https://github.com/Saria-Gins"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Saria-Gins/maibot-hyperos4-theme",
+              "homepage": "https://github.com/Saria-Gins/maibot-hyperos4-theme"
+            },
+            "host_application": {
+              "min_version": "1.4.4",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "other",
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "capabilities": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "6.6.5",
           "tag": "v6.6.5",
           "commit": "4a02e9c50fe21710b8d969f94bbff452d1d733c7",
