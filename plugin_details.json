@@ -8870,7 +8870,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.nero-umu.nitter-to-maibot",
-      "version": "1.8.3",
+      "version": "1.9.2",
       "name": "Nitter 推文转发",
       "description": "定期读取 Nitter 订阅账号的新推文，支持按 QQ 群独立订阅，并转发正文、图片和视频附件。",
       "author": {
@@ -10234,9 +10234,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.cateye.set-msg-emoji-like",
-      "version": "0.3.4",
+      "version": "0.4.1",
       "name": "表情回应",
-      "description": "对聊天消息贴 QQ 表情回应（reaction）：注册 LLM 工具让模型自然决定贴表情表达情绪或与群友交互（可替代 send_emoji），默认/兜底表情与「群友是🐷」自动贴表情的 ID 均可配置；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
+      "description": "对聊天消息贴 QQ 表情回应（reaction）：提供 emoji_like 工具，支持按中文关键词查找表情、推荐精选表情、按数字 ID 贴表情；「群友是🐷」自动贴表情的 ID 可配置；同时把收到的表情回应通知翻译为可读文本注入框架。依赖官方合并版 SnowLuma 适配器（maibot-team.snowluma-adapter 1.0+，已内置 NapCat 完整 API 面）提供 adapter.napcat.action.call 通用入口；未安装时插件不会加载（Host 依赖流水线阻止，并保证适配器先于本插件启动）。",
       "author": {
         "name": "cateye",
         "url": "https://github.com/cateyemizuki"
@@ -11108,9 +11108,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.bilicaption",
-      "version": "1.1.0",
-      "name": "B站字幕提取解读",
-      "description": "提供获取B站视频字幕文本、解读视频内容的 LLM 工具，自动识别消息中的 B 站链接/BV 号/b23 短链",
+      "version": "1.2.0",
+      "name": "B站视频字幕解读",
+      "description": "提供 bili_view 工具：按 BV 号、av 号、视频链接或短链读取 B 站视频字幕，供 bot 理解与总结视频内容；登录凭据通过配置页扫码获得",
       "author": {
         "name": "OMSociety",
         "url": "https://github.com/OMSociety"
@@ -11120,23 +11120,33 @@
         "repository": "https://github.com/OMSociety/maibot_plugin_bilicaption"
       },
       "host_application": {
-        "min_version": "1.0.0",
-        "max_version": "1.99.99"
+        "min_version": "1.4.8",
+        "max_version": "1.4.99"
       },
       "sdk": {
-        "min_version": "1.0.0",
-        "max_version": "2.99.99"
+        "min_version": "2.23.0",
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {
           "type": "python_package",
           "name": "bilibili-api-python",
-          "version_spec": ">=16.0.0,<17.0.0"
+          "version_spec": ">=16.0.0,<18.0.0"
         },
         {
           "type": "python_package",
           "name": "aiohttp",
           "version_spec": ">=3.8.0"
+        },
+        {
+          "type": "python_package",
+          "name": "qrcode",
+          "version_spec": ">=7.4"
+        },
+        {
+          "type": "python_package",
+          "name": "pillow",
+          "version_spec": ">=10.0.0"
         }
       ],
       "plugin_type": "tool",
@@ -11147,10 +11157,7 @@
           "fallback": "package"
         }
       },
-      "capabilities": [
-        "component.enable",
-        "component.disable"
-      ],
+      "capabilities": [],
       "i18n": {
         "default_locale": "zh-CN",
         "supported_locales": [
@@ -11834,9 +11841,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.fun-pack",
-      "version": "1.6.6",
+      "version": "1.7.1",
       "name": "麦麦小工具合集",
-      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+      "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 支持图片投稿与回复纯文字自动生成名言图 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -11851,7 +11858,7 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.22.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [
         {
@@ -11872,6 +11879,7 @@
         "maisaka.context.append",
         "chat.get_stream_by_group_id",
         "chat.get_stream_by_user_id",
+        "chat.get_avatar",
         "message.get_by_id"
       ],
       "display": {
@@ -13523,7 +13531,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.netajuutilainen.immersive-control",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "name": "麦麦我真得控制你了",
       "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。可选与麦麦身体（body 1.3.0+）联动：体征文案、压力写回与顶点/余韵情绪。",
       "author": {
@@ -14116,10 +14124,10 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot-plugin-qq-group-daily-analysis",
-      "version": "1.6.7",
+      "version": "1.7.0",
       "changelog": "CHANGELOG.md",
       "name": "群聊每日分析",
-      "description": "每天自动生成群聊日报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把日报画成四格漫画（需麦麦绘图插件）。",
+      "description": "每天自动生成群聊日报，并支持多天汇总与定时周报：高光话题、神人称号、金句宝藏瓶、聊天质量锐评，12 套主题可选，支持上传 QQ 群相册；还能把单日或多天最热话题画成漫画（需麦麦绘图插件）。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -14162,7 +14170,9 @@
         "webui.claim_upload",
         "api.call",
         "api.get",
-        "personality.get_current"
+        "personality.get_current",
+        "component.enable",
+        "component.disable"
       ],
       "i18n": {
         "default_locale": "zh-CN"
@@ -15914,7 +15924,7 @@
       "manifest_version": 2,
       "id": "local.bilibili-autopilot",
       "name": "B站自主浏览与评论",
-      "version": "0.8.11",
+      "version": "0.8.13",
       "description": "自主决定何时浏览 B 站和发表评论，检查别人对麦麦评论的回复并决定是否接话，支持预览、管理页、限额和持久化去重。",
       "author": {
         "name": "sakura桜花",
@@ -15929,7 +15939,7 @@
       "license": "MIT",
       "host_application": {
         "min_version": "1.3.10",
-        "max_version": "1.4.7"
+        "max_version": "1.4.8"
       },
       "sdk": {
         "min_version": "2.12.0",
@@ -17750,9 +17760,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "NetaJuutilainen.mai-mouth-filter",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "name": "麦麦不要说辣个啦",
-      "description": "麦麦不要说辣个啦——Neuro-sama 式嘴替打码：麦麦回复发出之前检查正文，命中的脏话/过分词句替换为随机占位符（*已过滤* / *Filtered*，每个消音位独立随机），并有一定概率触发「整句吞噬」——整条回复直接换成一个单独的占位符，模拟整句消音。词表驱动、零 token 成本；精确词（不分英文大小写）+ 正则两类规则，词表在 WebUI 与 data 目录均可增删，热重载即时生效；正文被全部过滤时改发兜底替代语；命中记录进日志（不落原文），便于回看误杀。",
+      "description": "麦麦不要说辣个啦——Neuro-sama 式嘴替打码：麦麦回复发出之前检查正文，命中的脏话/过分词句替换为随机占位符（*已过滤* / *Filtered*，每个消音位独立随机），并有一定概率触发「整句吞噬」——整条回复直接换成一个单独的占位符，模拟整句消音。词表驱动、零 token 成本；精确词（不分英文大小写）+ 上下文豁免词（白名单）+ 正则三类规则全部在 WebUI 单一配置可见可改，热重载即时生效；正文被全部过滤时改发兜底替代语；命中记录进日志（不落原文），便于回看误杀。",
       "author": {
         "name": "NetaJuutilainen",
         "url": "https://github.com/NetaJuutilainen"
@@ -17767,7 +17777,7 @@
       },
       "sdk": {
         "min_version": "2.5.0",
-        "max_version": "2.22.99"
+        "max_version": "2.23.99"
       },
       "dependencies": [],
       "capabilities": [],
@@ -20320,7 +20330,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.13.0",
+      "version": "0.13.1",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -20614,7 +20624,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maibot.maimai-feed-bot",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "name": "麦麦要吃那个！",
       "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
       "author": {
@@ -23070,7 +23080,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "com.fsqhn.image-searcher",
-      "version": "0.9.21",
+      "version": "0.9.22",
       "name": "麦麦寻人",
       "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
       "author": {
@@ -24192,7 +24202,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.Saria-Gins.maibot-hyperos4-theme",
-      "version": "6.6.5",
+      "version": "6.6.8",
       "name": "麦麦 HyperOS 4 主题",
       "description": "MaiBot WebUI 的 HyperOS 4 风格：内置 MiSans 字体、28px 圆角、胶囊控件、浅蓝选中态与底部悬浮底栏。",
       "author": {
@@ -24323,7 +24333,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "omsociety.rsshub",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "name": "RSSHub 订阅推送",
       "description": "RSS/Atom/JSON Feed 订阅、定时轮询与人格化推送，支持四级配置继承、推送历史审计与富媒体渲染",
       "author": {
@@ -24910,7 +24920,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "feiyu.arknights-wiki",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "name": "明日方舟wiki插件",
       "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
       "author": {
@@ -24943,6 +24953,9 @@
       "capabilities": [
         "config.get",
         "chat.get_all_streams",
+        "message.get_recent",
+        "message.get_by_id",
+        "llm.generate",
         "send.text",
         "send.image",
         "render.html2png"
@@ -25094,9 +25107,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "maiknock.webui_companion",
-      "version": "0.2.2",
+      "version": "0.4.0",
       "name": "麦麦敲门 MaiKnock",
-      "description": "WebUI 私聊伴侣插件。让麦麦主动来找你聊天，让你一键打招呼，还能由你掌管她的“现在是哪一天”——把某段时间从她的记忆里藏起来，或直接推进剧情。",
+      "description": "WebUI私聊体验增强！1、让麦麦主动来找你聊天；2、用旁白的方式掌控聊天剧情的时间线（就像时光机一样）；3、让麦麦用小说体的方式说话（比人格配置更稳定）；",
       "plugin_type": "chat",
       "display": {
         "icon": {
