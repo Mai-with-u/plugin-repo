@@ -67969,6 +67969,69 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "commit": "08c5181afb7c46f06a2cb7ac5925dc4eb2d452a6",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-25T02:15:45Z",
+          "release_url": "https://github.com/idonotl/maibot-whale-affect/releases/tag/v0.3.0",
+          "release_notes": "# 0.3.0 临时反应改为时间与轮次双约束\r\n\r\n- 临时反应的消退从「只看时间」改为「时间与回复轮次先到为准」：赌气 8 小时／10 轮、吃醋 12 小时／10 轮、受伤 8 小时／8 轮、缓和 10 分钟／1 轮。同一条消息被拆成多条气泡只消耗一轮，不会一次扣掉好几次。\r\n- 新增升级赌气 `sulk`：赌气或吃醋期间再次被触发（`sulk_repeat_threshold`，默认 2 次）升级为 45 分钟／4 轮；第一条回复照常放行，之后相邻回复至少间隔 `sulk_min_reply_interval_seconds`（默认 600 秒），最多暂时略过 `sulk_max_ignored`（默认 3）条，到数后主动给台阶。\r\n- 受伤同样支持降频：最多略过 `hurt_max_ignored`（默认 1）条、相邻回复至少间隔 `hurt_min_reply_interval_seconds`（默认 900 秒）。两者的总开关是 `reactions.hold_upset_replies`，本次公开导出默认关闭。\r\n- 降频只拦「能确定对象的追加回复」：群聊必须有明确引用才拦，点名、提问、来哄一律放行；影子模式或开关关闭时不生效。\r\n- 升级赌气被问或来哄时优先回应；受伤期间保持认真安静，不撒娇、不玩梗、不用专属称呼。\r\n- 被安慰后进入缓和，按受伤／升级赌气／吃醋／赌气给出不同收尾；新的逗弄不会覆盖刚被哄好的状态。\r\n- 配置结构版本升到 0.3.0，并新增校验：相邻回复间隔不得大于时长、略过数必须小于回复轮次、`sulk_repeat_threshold` 至少为 2（否则首次不满就直接进入 sulk）。\r\n- 数据库结构不变，历史好感、心情与反应记录保留，无新增模型调用。`[reactions]` 里新增字段在旧配置中缺省时按上述默认值生效，无需手动补写。\r\n\r\n四个插件的总开关 `enabled` 默认为 false；导出时清理了真实账号与机器路径，授权名单为空，未携带原数据库、聊天记录或 Git 历史。插件 ID 保留以维持数据与跨插件调用兼容。可用范围请结合 docs/VALIDATION.md 判断，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.whale-affect",
+            "version": "0.3.0",
+            "name": "小鲸鱼心情与好感度",
+            "description": "为麦麦提供每日心情、每用户长期好感与短期情绪反应的本地状态系统，并按状态注入自然语气提示。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "GPL-3.0-or-later",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-whale-affect",
+              "homepage": "https://github.com/idonotl/maibot-whale-affect",
+              "documentation": "https://github.com/idonotl/maibot-whale-affect/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-whale-affect/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "chat",
+            "dependencies": [],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "heart",
+                "background": "#123B4A"
+              }
+            },
+            "capabilities": [
+              "message.get_by_id",
+              "message.get_recent",
+              "message.get_by_time_in_chat",
+              "chat.get_all_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_stream_by_group_id",
+              "llm.generate",
+              "llm.get_available_models",
+              "config.get_plugin"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.2.8",
           "tag": "v0.2.8",
           "commit": "5e6bd09bf801dd1d8f66758566599f43ee9c9d51",
