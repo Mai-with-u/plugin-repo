@@ -26684,6 +26684,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.7.2",
+          "tag": "v1.7.2",
+          "commit": "1bc42730c428752e1eb06a8488e9dd6f003332ee",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-25T16:27:16Z",
+          "release_url": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin/releases/tag/v1.7.2",
+          "release_notes": "### 修复\n\n- **修复文字语录正文与昵称中的 Emoji 渲染为豆腐块（`☒`）问题**：\n  - `assets/` 新增打包 Google **Noto Color Emoji（Emoji 18，`NotoColorEmoji.ttf`，SIL OFL 1.1）**；\n  - `essential_render_quote.py` 新增混合字体排版管线：主字体 `NotoSansSC.ttf` 缺字或带 `VS16`（`\\ufe0f`）的 Emoji 簇自动切换为彩色 Emoji 渲染，内建纯 Python `cmap` + `GSUB` 连字映射至 PUA 码点解析，在无 `libraqm` 的 Windows / Linux 环境下均可正确渲染单码点 Emoji（如 `🥺`、`🥭`、`🫠`、`🫶`）及复合序列（如 `❤️`、`👍🏻`、`🇨🇳`、`😮‍💨`、`1️⃣`、`👨‍👩‍👧‍👦`），并保持自适应缩号、居中对齐与投影。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.fun-pack",
+            "version": "1.7.2",
+            "name": "麦麦小工具合集",
+            "description": "麦爹的娱乐功能合集：喜报/悲报图片生成、锦旗图片生成、一言（不计入消息）、答案之书（<问题> 翻看答案）、今天吃什么（命令 + 被动触发）、群早晚安作息记录、今日宜忌（每日黄历，同一天全群同结果）、群友语录（/投稿语录 支持图片投稿与回复纯文字自动生成名言图 + /群友语录，玩法参考 pan-ice plugins-uumessage）；每个功能都有独立开关；同时注册为麦麦可自主调用的 LLM 工具。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/Maibot_fun_pack_plugin"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "send.hybrid",
+              "maisaka.context.append",
+              "chat.get_stream_by_group_id",
+              "chat.get_stream_by_user_id",
+              "chat.get_avatar",
+              "message.get_by_id"
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "background": "#A91C13"
+              }
+            },
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "changelog": "CHANGELOG.md"
+          }
+        },
+        {
           "version": "1.7.1",
           "tag": "v1.7.1",
           "commit": "bd8de0378fa57f5ce72dea2b5b20cd04bf3f52c6",
