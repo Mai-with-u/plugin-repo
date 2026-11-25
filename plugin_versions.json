@@ -68231,6 +68231,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.7.2",
+          "tag": "v0.7.2",
+          "commit": "4d223ef65d207121f3ff67b14be4c63651ade87b",
+          "prerelease": true,
+          "yanked": false,
+          "published_at": "2026-11-25T02:15:15Z",
+          "release_url": "https://github.com/idonotl/maibot-bili-topics/releases/tag/v0.7.2",
+          "release_notes": "# 0.7.2 隔一段时间的追问仍认回那条视频\r\n\r\n- 修复「问片中某一处的话却答不上来」：追问绑定原先只认 `share_watch_followup_seconds`（默认 600 秒）内的分享，用户半小时后问「最后弹出的是什么选项」什么都绑不上，只能凭聊天上下文猜，于是出现「我问几句，她就说她只看了标题」。现在命中细节追问句式（`wants_detail`）且正常窗口里一条都没绑上时，按 `DETAIL_FOLLOW_UP_SECONDS`（3600 秒）再认一次，并把历史查询窗口同步放宽到同样宽度——只改绑定规则不改查询等于没改。\r\n- 放宽只针对含具体内容的追问：「那条视频怎么样」这类不指向细节的问题照旧不绑；同一时间窗内有两条视频时也照旧不猜。绑定成功后随本轮提供分段画面观察，答得出片中的具体选项。\r\n- 声画资料按 BV 号加分 P 复用 7 天，重新绑定不会重新下载音轨或抽帧。\r\n- 人设代入那一档不再整块替换理解文本：改为同时给出「只属于这个角色的事实」和标注为片外复述的连贯理解，靠标签而不是靠 withheld 信息来防止归属误认；非代入档的键名不变。\r\n- 相对 v0.7.1 没有新增网络接口、模型调用或能力声明；`share_watch_enabled` 等开关在公开导出中仍默认关闭。\r\n\r\n四个插件的总开关 `enabled` 默认为 false；导出时清理了真实账号与机器路径，授权名单为空，未携带原数据库、聊天记录或 Git 历史。插件 ID 保留以维持数据与跨插件调用兼容。可用范围请结合 docs/VALIDATION.md 判断，不代表已通过插件商店审核或全平台实测。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "local.bili-topics",
+            "version": "0.7.2",
+            "name": "B站话题 · 麦麦适配版",
+            "description": "处理用户分享的 B站视频：先联合理解完整音轨和分段画面，再按人设回应；保留公开搜索、主动浏览与表达学习素材功能。",
+            "author": {
+              "name": "idonotl",
+              "url": "https://github.com/idonotl"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/idonotl/maibot-bili-topics",
+              "homepage": "https://github.com/idonotl/maibot-bili-topics",
+              "documentation": "https://github.com/idonotl/maibot-bili-topics/blob/main/README.md",
+              "issues": "https://github.com/idonotl/maibot-bili-topics/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.15",
+              "max_version": "1.3.19"
+            },
+            "sdk": {
+              "min_version": "2.16.0",
+              "max_version": "2.99.99"
+            },
+            "plugin_type": "integration",
+            "dependencies": [],
+            "capabilities": [
+              "llm.generate",
+              "api.call",
+              "message.get_by_id",
+              "message.get_by_time_in_chat"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.7.1",
           "tag": "v0.7.1",
           "commit": "3de8c289baad409f344fd6c2a47be3a21702c4a8",
