@@ -19320,7 +19320,7 @@
       "manifest_version": 2,
       "id": "hohoko-chan.phone-play",
       "plugin_type": "game",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "name": "刷会儿手机",
       "description": "让 Bot 用安卓手机、模拟器或 iPhone 自己刷视频、逛帖子、听歌、看小说，按人设和兴趣挑内容；支持 WebUI 实时观看和 /手机截图 命令。",
       "author": {
@@ -20330,7 +20330,7 @@
       "plugin_type": "chat",
       "id": "ilworkcn.maiweave",
       "name": "MaiWeave · 麦织｜角色生活引擎",
-      "version": "0.13.2",
+      "version": "0.13.3",
       "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
       "author": {
         "name": "ilworkcn",
@@ -23835,7 +23835,7 @@
       "plugin_type": "provider",
       "id": "ilworkcn.openai-oauth",
       "name": "OpenAI OAuth · 麦麦账号连接",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "description": "在 WebUI 授权 ChatGPT 账号，让麦麦使用账号中的聊天模型；支持 Docker、图片理解与工具调用。",
       "author": {
         "name": "ilworkcn",
@@ -23890,7 +23890,7 @@
           "client_type": "openai_oauth_maimbot",
           "name": "ChatGPT 账号授权",
           "description": "使用已授权的 ChatGPT 账号调用模型",
-          "version": "0.1.2"
+          "version": "0.1.3"
         }
       ],
       "display": {
@@ -24246,7 +24246,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.yunshanluan0714.anime-image-alert",
-      "version": "1.4.0",
+      "version": "1.4.2",
       "plugin_type": "media",
       "name": "二次元/COS图片提醒",
       "description": "向主脑暴露以图搜图出处工具并联动白名单群美图提醒：群友问出处时先搜图再答，主脑已回复时智能跳过或顺口衔接补出处，并在未覆盖时以原生 @ 和引用提醒指定用户。",
@@ -24267,7 +24267,7 @@
       },
       "sdk": {
         "min_version": "2.20.0",
-        "max_version": "2.30.99"
+        "max_version": "2.99.99"
       },
       "dependencies": [],
       "capabilities": [
@@ -24289,7 +24289,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "github.yunshanluan0714.zzz-wiki",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "plugin_type": "tool",
       "name": "绝区零维基",
       "description": "查询绝区零（Zenless Zone Zero）中文维基（B站维基）的角色属性、天赋、配装推荐、阵容搭配，以及驱动盘、音擎、怪物等词条，支持可选本地离线语料加速。",
@@ -24565,9 +24565,9 @@
     "manifest": {
       "manifest_version": 2,
       "id": "feiyu.voice-cover",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "name": "麦弦",
-      "description": "让麦麦不止陪你聊天，还能用自己的声音为你唱歌：群聊点歌、58 秒副歌、清唱猜歌，练出专属音色。",
+      "description": "让麦麦不止陪你聊天，还能用自己的声音为你唱歌：群聊点歌、58 秒副歌 / 整首完整语音 / MP3 直发、清唱猜歌，练出专属音色。",
       "author": {
         "name": "Allure-Gui",
         "url": "https://github.com/Allure-Gui"
@@ -24920,7 +24920,7 @@
     "manifest": {
       "manifest_version": 2,
       "id": "feiyu.arknights-wiki",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "name": "明日方舟wiki插件",
       "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
       "author": {
