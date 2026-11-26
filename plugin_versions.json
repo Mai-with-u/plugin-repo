@@ -74964,6 +74964,86 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.3",
+          "tag": "v0.1.3",
+          "commit": "e08fdb66fff877b7a5a20e4f762b5aa912ff267e",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T07:51:07Z",
+          "release_url": "https://github.com/ilworkcn/OpenAI-OAuth-MaiMbot/releases/tag/v0.1.3",
+          "release_notes": "偶尔没接上，就再牵一下手。🌿\n\n- 🔄 自动添加模型时，新建 OAuth 服务商的默认重试次数由 0 改为 2，间隔保持 4 秒，沿用 MaiBot 原生重试流程。\n- 📝 手动配置片段同步调整，使用文档补充重试设置说明。\n- ⚙️ 已有服务商继续使用当前配置。升级后如需调整，请到「模型管理 → 对应服务商」修改重试次数。\n\n📦 下载下方 ZIP，在 MaiBot 插件扩展页面导入更新。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "provider",
+            "id": "ilworkcn.openai-oauth",
+            "name": "OpenAI OAuth · 麦麦账号连接",
+            "version": "0.1.3",
+            "description": "在 WebUI 授权 ChatGPT 账号，让麦麦使用账号中的聊天模型；支持 Docker、图片理解与工具调用。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.4.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27,<1"
+              },
+              {
+                "type": "python_package",
+                "name": "PyJWT",
+                "version_spec": ">=2.13,<3"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=46"
+              },
+              {
+                "type": "python_package",
+                "name": "jsonschema",
+                "version_spec": ">=4.26,<5"
+              }
+            ],
+            "capabilities": [
+              "custom_pages",
+              "structured_arguments"
+            ],
+            "urls": {
+              "repository": "https://github.com/ilworkcn/OpenAI-OAuth-MaiMbot"
+            },
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "llm_providers": [
+              {
+                "client_type": "openai_oauth_maimbot",
+                "name": "ChatGPT 账号授权",
+                "description": "使用已授权的 ChatGPT 账号调用模型",
+                "version": "0.1.3"
+              }
+            ],
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.1.2",
           "tag": "v0.1.2",
           "commit": "9352129d513f7ed5cb21b3c831c4fc1c6520c2d3",
