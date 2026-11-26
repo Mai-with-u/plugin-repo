@@ -77630,6 +77630,74 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.3.2",
+          "tag": "v0.3.2",
+          "commit": "d0ecd4a70d719252c1729e561f9445a6cd3bff30",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T12:48:19Z",
+          "release_url": "https://github.com/Allure-Gui/maibot-arknights-wiki/releases/tag/v0.3.2",
+          "release_notes": "- 将 README 展示图（顶部图标与终端指令手册预览图）统一切换为国内免代理秒开的 jsDelivr Fastly CDN 绝对地址，并将相对文档链接替换为 GitHub 绝对链接，彻底修复 MaiBot 插件市场页裂图问题。\n- 同步升级顶部徽章与 `v0.3.2` 版本元信息。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.arknights-wiki",
+            "version": "0.3.2",
+            "name": "明日方舟wiki插件",
+            "description": "《明日方舟》PRTS Wiki 查询与工具插件：支持方舟黑话语境感知与自定义外号、干员技能/模组/材料/总账/语音/当期活动/公招保底计算、2x 黑曜石金箔风格卡片与帮助图渲染、高清立绘直发，支持多平台与黑白名单（纯代码 MIT，按需本地缓存）。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "homepage": "https://github.com/Allure-Gui/maibot-arknights-wiki",
+              "documentation": "https://github.com/Allure-Gui/maibot-arknights-wiki/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/maibot-arknights-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "data",
+            "capabilities": [
+              "config.get",
+              "chat.get_all_streams",
+              "message.get_recent",
+              "message.get_by_id",
+              "llm.generate",
+              "send.text",
+              "send.image",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "book-open",
+                "background": "#171B24"
+              }
+            }
+          }
+        },
+        {
           "version": "0.3.1",
           "tag": "v0.3.1",
           "commit": "95f8eab7c2f7059fbbdeb1d5901cf2e6a57e7a83",
