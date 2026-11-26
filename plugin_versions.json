@@ -75913,6 +75913,57 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "eeaa69c240b0d7a4cad45020896fa5e9530ae975",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T07:26:12Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-zzz-wiki/releases/tag/v0.1.1",
+          "release_notes": "### 修复内容\n- **精确剧情优先**：本地语料检索时优先精确匹配剧情词条标题，避免精确剧情查询被角色面板提前截胡。\n- **截断预算保护**：超出返回字数上限时预留出处链接预算，确保末尾来源地址始终完整保留且总长不超限（10/10 测试通过）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.zzz-wiki",
+            "version": "0.1.1",
+            "plugin_type": "tool",
+            "name": "绝区零维基",
+            "description": "查询绝区零（Zenless Zone Zero）中文维基（B站维基）的角色属性、天赋、配装推荐、阵容搭配，以及驱动盘、音擎、怪物等词条，支持可选本地离线语料加速。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+              "homepage": "https://github.com/yunshanluan0714/maibot-zzz-wiki",
+              "documentation": "https://github.com/yunshanluan0714/maibot-zzz-wiki/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-zzz-wiki/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.30.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "aiohttp",
+                "version_spec": ">=3.8.0"
+              }
+            ],
+            "capabilities": [],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.1.0",
           "tag": "v0.1.0",
           "commit": "9cf99f508c9ca22d23d0b81c2863dfd03450bc35",
