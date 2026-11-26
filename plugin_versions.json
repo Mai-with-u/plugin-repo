@@ -75965,6 +75965,56 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.4.2",
+          "tag": "v1.4.2",
+          "commit": "e4bf1a4d10eb2c606319e13e6d932261f8907914",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T07:25:17Z",
+          "release_url": "https://github.com/yunshanluan0714/maibot-anime-image-alert/releases/tag/v1.4.2",
+          "release_notes": "### 修复内容\n- **图片会话归属校验**：`InteractionTracker`、`lookup_image_source` 工具、Planner 提示以及数据库回退查询均严格按 `session_id` 隔离，防止跨会话搜图。\n- **文案去重与长度兜底**：补齐已核实出处后对完整最终正文执行 80 字长度检查与合法性校验，并对模型重复返回自动切换同会话未重复备用文案。\n- **公开版隐私保持**：继续保持默认空提醒目标及 `allow_temp_image_upload` 隐私开关与动态路径解析（108/108 测试通过）。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.yunshanluan0714.anime-image-alert",
+            "version": "1.4.2",
+            "plugin_type": "media",
+            "name": "二次元/COS图片提醒",
+            "description": "向主脑暴露以图搜图出处工具并联动白名单群美图提醒：群友问出处时先搜图再答，主脑已回复时智能跳过或顺口衔接补出处，并在未覆盖时以原生 @ 和引用提醒指定用户。",
+            "author": {
+              "name": "yunshanluan0714",
+              "url": "https://github.com/yunshanluan0714"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "homepage": "https://github.com/yunshanluan0714/maibot-anime-image-alert",
+              "documentation": "https://github.com/yunshanluan0714/maibot-anime-image-alert/blob/main/README.md",
+              "issues": "https://github.com/yunshanluan0714/maibot-anime-image-alert/issues"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.20.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.hybrid",
+              "llm.generate",
+              "database.get",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.3.1",
           "tag": "v1.3.1",
           "commit": "06e5f547af745cede5c73369ea9fd669db3a1e31",
