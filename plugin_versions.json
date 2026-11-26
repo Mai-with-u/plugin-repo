@@ -76781,6 +76781,81 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "f26c448e0392d5912b62d3f79880be47bc530c93",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T12:48:22Z",
+          "release_url": "https://github.com/Allure-Gui/feiyu-cover-plugin/releases/tag/v0.2.2",
+          "release_notes": "- **新增四档发歌模式**：在原有「副歌高潮直出（58秒）」「从头分段发送（前2段×60秒）」基础上，新增「**整首完整分段发送（每段60秒·连续发完）**」与「**直接发送完整 MP3 音频文件**」，完整兼容旧配置。\n- **防刷屏与稳定性护栏**：新增 `整首语音最大段数`（默认 8 段，范围 2~15）与 `分段发送间隔`（默认 1.8 秒），并内置单段瞬时重试与 Telegram 自动回退保护；黑胶单曲卡动态显示当前模式与预计段数。\n- **试听工坊按次选模式**：侧边栏「推送翻唱到会话」弹窗新增发送方式选择。\n- **修复插件市场 README 裂图**：所有展示图切换为国内免代理秒开的 jsDelivr Fastly CDN 绝对地址并清理易裂装饰分割线。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "feiyu.voice-cover",
+            "version": "0.2.2",
+            "name": "麦弦",
+            "description": "让麦麦不止陪你聊天，还能用自己的声音为你唱歌：群聊点歌、58 秒副歌 / 整首完整语音 / MP3 直发、清唱猜歌，练出专属音色。",
+            "author": {
+              "name": "Allure-Gui",
+              "url": "https://github.com/Allure-Gui"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "homepage": "https://github.com/Allure-Gui/feiyu-cover-plugin",
+              "documentation": "https://github.com/Allure-Gui/feiyu-cover-plugin/blob/main/README.md",
+              "issues": "https://github.com/Allure-Gui/feiyu-cover-plugin/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.13.0",
+              "max_version": "2.99.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "psutil",
+                "version_spec": ">=6.0"
+              },
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              }
+            ],
+            "plugin_type": "media",
+            "capabilities": [
+              "config.get",
+              "send.hybrid",
+              "send.text",
+              "send.image",
+              "chat.get_all_streams",
+              "message.get_recent",
+              "maisaka.context.append",
+              "render.html2png",
+              "desktop_pet.say",
+              "desktop_pet.play_event"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "music",
+                "background": "#DBE7FB"
+              }
+            }
+          }
+        },
+        {
           "version": "0.2.1",
           "tag": "v0.2.1",
           "commit": "30b8f22370a2d6199a786fe7270a5b530b6beef0",
