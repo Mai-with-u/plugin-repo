@@ -75204,6 +75204,77 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.5.0",
+          "tag": "v1.5.0",
+          "commit": "ea7107a40eb75ea7146fbfc95188019cba342ca8",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T20:16:05Z",
+          "release_url": "https://github.com/met-tk/maibot-cmd-sandbox/releases/tag/v1.5.0",
+          "release_notes": "## maibot-cmd-sandbox v1.5.0\n\n### 更新内容\n\n1. **智能锁屏检测与多粒度桌面截图（`core/win32_desktop.py`）**\n   - 新增 Windows 会话锁定、安全桌面与锁屏进程遮罩探测，锁屏状态下自动拦截截图与桌面操控。\n   - 新增窗口级穿透抓取（`PrintWindow` + `PW_RENDERFULLCONTENT`）与局部矩形区域裁剪（`rect x,y,width,height`），支持 `/截图 list` 及大模型工具 `list_desktop_windows`。\n\n2. **窗口状态控制与受控 GUI 键鼠交互**\n   - 新增 `control_window` 工具，支持窗口恢复、最小化、最大化、激活置前、置顶切换、移动缩放及温和关闭（`WM_CLOSE`），内置宿主与系统核心进程保护。\n   - 新增受控 Win32 `SendInput` 键鼠工具 `gui_input`（默认关闭 `allow_gui_input = false`），支持操作前二次确认、锁屏隔离及管理员窗口屏蔽。\n\n3. **异步后台长任务池（`core/job_manager.py`）**\n   - 新增 `/job`（`/后台任务`）指令与 `manage_job` 工具，支持启动后台长耗时命令、查询状态、读取尾部日志、强杀子进程树以及任务完成主动通知，插件卸载时自动清理全部托管进程。\n\n4. **沙盒文件检索防逃逸与本地图片直发（`core/file_ops.py`）**\n   - `manage_file` 新增 `read_lines`（支持负数查末尾行）、`search`（关键字/正则）与 `find`（文件名通配符），并通过逐级 `realpath` 与 Junction 校验强化沙盒边界。\n   - 新增 `send_local_image` 工具，支持校验格式并直发沙盒工作区内的本地图片。\n\n5. **硬件监控扩展与轻量后台看门狗（`core/system_monitor.py`）**\n   - `get_system_status` 新增 CPU、电池、NVIDIA GPU、局域网 IP 及端口占用排查（`port_query`）。\n   - 新增 `/watchdog`（`/监控`）与 `manage_watchdog`，支持磁盘剩余空间、关键进程退出与锁屏状态变更告警，内置防刷屏冷却机制。\n\n6. **二次确认门禁与脱敏审计日志（`core/security_audit.py`）**\n   - 建立绑定原发起人与会话 ID 的 60 秒二次确认票据（`/确认执行`、`/确认写入`），覆盖高危终端命令、后台任务、关键进程强杀、沙盒外写入与 GUI 输入。\n   - 新增按天轮转并自动脱敏凭据的 JSONL 本地审计日志，支持 `/audit`（`/审计`）快捷回溯。\n\n7. **配置与元数据同步**\n   - 升级 `_manifest.json` 版本号与 `config_version` 至 `1.5.0`，更新 `config.example.toml` 与 `README.md` 文档说明。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot-cmd-sandbox",
+            "version": "1.5.0",
+            "name": "沙盒终端与全能系统控制 | Sandbox Terminal & Full System Control",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.svg",
+                "fallback": "terminal"
+              }
+            },
+            "description": "为麦麦提供多显示器桌面截图、文件安全读写与沙盒约束、终端命令执行、进程管理、应用启动及系统电源控制，支持私聊与指定授权群聊自然语言及前缀指令。",
+            "author": {
+              "name": "met-tk",
+              "url": "https://github.com/met-tk"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "homepage": "https://github.com/met-tk/maibot-cmd-sandbox",
+              "documentation": "https://github.com/met-tk/maibot-cmd-sandbox#readme",
+              "issues": "https://github.com/met-tk/maibot-cmd-sandbox/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.99"
+            },
+            "sdk": {
+              "min_version": "1.0.0",
+              "max_version": "2.9.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "pillow",
+                "version_spec": ">=9.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "mss",
+                "version_spec": ">=9.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "config.get",
+              "chat.get_private_streams",
+              "chat.get_stream_by_user_id",
+              "chat.get_group_streams",
+              "chat.get_stream_by_group_id",
+              "message.get_recent"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.4.1",
           "tag": "v1.4.1",
           "commit": "926f10835cbcc674a774fff847d83d5ea6d32ef0",
