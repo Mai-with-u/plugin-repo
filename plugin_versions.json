@@ -71191,6 +71191,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.2",
+          "tag": "v0.4.2",
+          "commit": "d1b7ac2156b6a4db52d165c3ff88f1ae1f706e46",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-27T12:30:16Z",
+          "release_url": "https://github.com/NethielChou/maibot-fx-sim/releases/tag/v0.4.2",
+          "release_notes": "﻿## 麦麦外汇战士 v0.4.2\n\nMaiBot 插件：让麦麦在群聊里按自己的判断，交易一个**本地虚拟外汇账户**（真实公开行情、虚拟人民币、纯模拟盘，不接任何真实交易账户）。\n\n![麦麦外汇战士](https://raw.githubusercontent.com/NethielChou/maibot-fx-sim/v0.4.2/docs/cover-fx-wide.png)\n\n### 本版重点\n\n**改名与封面**\n- 显示名改为「麦麦外汇战士」，新封面/图标（`icon.png`、`docs/cover-fx-square-1024.png`、`docs/cover-fx-wide.png`）\n- 只改显示 metadata：插件 id、仓库、author、许可证（AGPL-3.0）均不变\n\n**Codex 评审 P0 全部修复（回归 3/3）**\n- 成交/持仓/订单终态/事件/账户计数同一账本事务；重启不重复成交；强平同入口并取消保护单\n- 隔夜利息幂等键改为「交易日 + 持仓 ID」，周三 ×3、周末不重复、停机补算水位正确\n- 挂单触发与逐笔成交前重验保证金/持仓数/单位上限/日笔数/事件窗（`max_positions=1` 不再双开）\n- 全品种 + USDCNY/USDJPY 锚校验价格/源时间/接收时间/顺序；旧行情不成交不强平，缺数据挂起并播报\n- LLM 止损引入 2% 风险预算重算；父单成交后按真实持仓 ID 建保护单（OCO）\n- LLM 决策移出主 tick 锁；暂停/重置/过期决策丢弃；平空仓按目标持仓逐笔拆单\n- 合计保证金口径统一；恰好 50% 不强平；v1→v2 迁移改为一致性备份 + 完整性校验\n\n**让麦麦知道自己会炒外汇**\n- 通过 `maisaka.planner.before_request` / `replyer.before_model_request` / `replyer.before_request`（`extra_prompt`）三通道注入「外汇插件事实」，修复她回答\"暂时没有外汇功能\"\n- 播报与决策里的自称跟随宿主 `bot.nickname`（不再写死「麦麦」）\n\n**稳定性**\n- 告警按「问题集合 + 时间窗口」节流（默认 300 秒），修复行情抖动导致的日志/群播报刷屏\n- `stale_quote_seconds` 默认 180 秒（匹配新浪交叉盘更新频率）\n- 播报聊天流未就绪时自动重试（默认 60 秒），不再静默丢弃播报\n- preflight 增加换行卫生检查（防双 CR 导致宿主 TOML 解析失败）\n\n### 兼容\n- MaiBot / MaiCore **1.3.13 – 1.4.99**（实测 1.4.8）\n- Plugin SDK **2.21.0 – 2.23.99**（实测 2.23.0）\n\n### 测试\n- 单测 **614 全绿**；Codex 账本回归 **3/3**；真实行情链路冒烟通过\n\n### 安装\n复制插件目录到 `<MaiBot>/plugins/github_nethielchou_mai-fx-sim/`，参考 `config.example.toml` 配置群号与管理员；首次加载自动建虚拟账户（默认 10 万元 / 10 倍杠杆 / 自动交易关闭）。\n\n> 纯本地虚拟游戏：不连接任何真实经纪商、不接受真实资金、不构成投资建议。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.nethielchou.mai-fx-sim",
+            "version": "0.4.2",
+            "plugin_type": "game",
+            "name": "麦麦外汇战士",
+            "description": "让麦麦在群聊里按自己的判断交易一个本地虚拟外汇账户：虚拟人民币计价、默认 10 倍杠杆、1 万单位、强制平仓、隔夜利息、点差/滑点；8 个可交易货币对 + 8 个人民币参考汇率（仅参考）、真实公开行情、卡片式中文播报；纯娱乐模拟盘，不接真实交易通道、不构成投资建议。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "coins",
+                "background": "#1F3A5F"
+              }
+            },
+            "author": {
+              "name": "NethielChou",
+              "url": "https://github.com/NethielChou"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/NethielChou/maibot-fx-sim",
+              "homepage": "https://github.com/NethielChou/maibot-fx-sim",
+              "documentation": "https://github.com/NethielChou/maibot-fx-sim/blob/main/README.md",
+              "issues": "https://github.com/NethielChou/maibot-fx-sim/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "chat.get_stream_by_group_id",
+              "message.get_recent",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.3.4",
           "tag": "v0.3.4",
           "commit": "743495b6042bdf4b4788f71ebac739e4d8f83a07",
