@@ -65967,6 +65967,65 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.1.2",
+          "tag": "v2.1.2",
+          "commit": "2b8fb49b48fed5e8f95ed44d6e8a1b733dafe6a4",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-26T22:12:07Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/releases/tag/v2.1.2",
+          "release_notes": "## 更新内容\n\n- **身体联动饱腹度显示方向统一**：麦麦身体原生 `hunger` 语义为「0 = 不饿、100 = 极饿」，与投喂插件自身的 `饱食度`（0–100 高 = 饱）方向相反。本次跟进身体插件 WebUI「饱腹」口径，在 `body_link.py`（`/投喂` 结算短句、`/饱食度` 身体摘要、LLM 提示词）与 WebUI 状态栏统一换算并展示正向 **`饱腹 {100 - hunger}/100（分档词）`**，保留 `BodyLinkClient.hunger_word` 兼容旧调用。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "maibot.maimai-feed-bot",
+            "version": "2.1.2",
+            "name": "麦麦要吃那个！",
+            "description": "签到积分+商店道具+投喂Bot+定时求投喂，支持群内商店、投喂后临时说话风格、按群白名单隔离（config 唯一白名单，未列入的群不启用）。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            },
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "homepage": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot",
+              "documentation": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/blob/main/README.md",
+              "issues": "https://github.com/NetaJuutilainen/maibot-maimai-feed-bot/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.0.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.image",
+              "llm.generate",
+              "chat.get_group_streams",
+              "config.get",
+              "api.call",
+              "custom_pages"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "2.1.1",
           "tag": "v2.1.1",
           "commit": "1e632bb4077a624bde710b510d0dc4fa6ab007b6",
