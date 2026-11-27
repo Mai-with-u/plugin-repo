@@ -73149,6 +73149,73 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.9.23",
+          "tag": "v0.9.23",
+          "commit": "4a8e72795491d5ab6ef511c1b27f88b3af7dbd24",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-27T11:49:59Z",
+          "release_url": "https://github.com/fsqhn2/com.fsqhn.image-searcher/releases/tag/v0.9.23",
+          "release_notes": "## 0.9.23\n\n这批改的是「认出来的人算不算数」和「结果发不出去怎么办」。\n\n**反查**\n- 求助站（whos.tv 这类）正文里的出处会读了：回复里写着「原图在这儿 x.com/…」时就抓那篇帖的图比指纹，对上算结论，对不上只当线索\n- 水印上的名字并进「按名字找号」；贴吧板块名（`@cosplay吧` 这种）不再被当成账号\n- 名字只从距离够近的候选里读，别人的名字（同角色、同款服装页面的作者）不再拿去三个平台搜\n- 镜像站作品页地址里的 pixiv 作品号会回核（`kurocore.com/illust/<id>` 这类）\n\n**水印**\n- 图上没明写 `@` 或网址的裸词，先看那个号像不像图上的人：私人号、粉丝不到 100 的撞名号只写「读不准」，不给主页链接，也不拿这个名字去搜\n- 定位裁剪那一步多送一张背景差分增强图，白字压浅底时多一次机会\n\n**工程与指令**\n- 域名判定收进 `core/hosts.py`：六处重复的 host 后缀判断归一，输出行为不变\n- 新指令「直发」：合并转发没显示出来时，把同一份结果改发成一条普通图文；带任务编号可以指定哪一单\n- 新指令「帮助」：纯文字用法，例子里写的是真指令\n- 测试 1178 项\n\n**装法**：解压到 `MaiBot/plugins/` 下，重启或重载插件即可；配置文件不用动，老配置照常能读。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "com.fsqhn.image-searcher",
+            "version": "0.9.23",
+            "name": "麦麦寻人",
+            "description": "把群里的图片反查原始出处与社交账号：Google Lens / Yandex / 百度 / SauceNAO 多引擎搜索，用图片指纹验证是否同一张图；指纹全灭时并行走视觉复核与 Grok 核对候选。也可以叫「麦麦找鸡」——本质一样，都是搜图，都是按图找出处、找人。输出平台、匹配方式、名字与账号，并附 AI 生成概率参考。",
+            "author": {
+              "name": "fsqhn2",
+              "url": "https://github.com/fsqhn2"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "homepage": "https://github.com/fsqhn2/com.fsqhn.image-searcher",
+              "documentation": "https://github.com/fsqhn2/com.fsqhn.image-searcher/blob/main/README.md",
+              "issues": "https://github.com/fsqhn2/com.fsqhn.image-searcher/issues"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.9.999"
+            },
+            "sdk": {
+              "min_version": "2.6.0",
+              "max_version": "999.999.999"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "requests",
+                "version_spec": ">=2.31.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "send.hybrid",
+              "message.get_by_id",
+              "message.get_recent",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "scan-search"
+              }
+            }
+          }
+        },
+        {
           "version": "0.9.22",
           "tag": "v0.9.22",
           "commit": "2ec143d861bcf7bdd297082108f6900bb9736e25",
