@@ -35770,6 +35770,59 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.2.3",
+          "tag": "v1.2.3",
+          "commit": "e33c8b0dd0898adc105dab7989c7a0732d47b86c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-27T15:48:48Z",
+          "release_url": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin/releases/tag/v1.2.3",
+          "release_notes": "功能扩展更新，兼容 Host 1.3.0~1.4.99 / SDK 2.5.0~2.23.99；配置自动合并升级（`config_version` 自动升到 1.2.3），原有配置与用户词条不受影响。\n\n## 新增：无斜杠加减档与六档直达关键词（支持 Unicode Emoji）\n\n- **加减档关键词**（可在插件设置页与 WebUI「麦麦遥控器」配置）：\n  - `tier_up_keywords`（升档，有效敏感度 `+20`）：**留空时，激活状态下自动复用「进入关键词」**（即再发一次 `控制` 自动升一档）；若填写了独立升档词，则激活状态下不再触发进入关键词；\n  - `tier_down_keywords`（降档，有效敏感度 `-20`）：默认留空，可按需配置。\n- **六档直达关键词**（默认均留空）：\n  - `tier_jump_1_keywords` ～ `tier_jump_6_keywords` 分别直达 **`10 / 30 / 50 / 70 / 90 / 110`**（`120` 满档仍保留给 `/强度 max` 或连续升档）。\n- **状态门禁与联动行为**：\n  - 仅在**已激活状态**生效，未激活（含冷却期/待退出瞬间）全部放行，不误拦截普通聊天；已激活时进入关键词不再刷新持续时长或清零顶点次数；\n  - 全部手动升/降/直达操作均自动关闭 `/强度 自动` 模式；上述关键词与进入/退出共用 `admin_only_mode` 开关。\n- **Unicode Emoji 支持**：\n  - 触发词归一化统一做 `NFC` 并剥离变体选择符（`\\ufe0e`/`\\ufe0f`），兼容不同客户端的 `❤️`/`❤`、`⬆️`/`⬆` 及 `@麦麦🔥` 无空格写法（不支持 QQ 原生小黄脸 `face` 段）。\n\n## 新增：调档主动回复开关与隐蔽短句池扩展\n\n- 新增 `react_on_tier_change`（默认关闭）：\n  - **关闭时**：沿用原有反馈机制（`stealth_mode=false` 发数值与档位明文回执，`stealth_mode=true` 从随机日常短句池抽一句确认生效）；\n  - **开启时**：当手动调档或 `/强度` 实际改变了敏感度数值时，**不再发固定短句回执**，直接调用宿主 `proactive.trigger` 发起一次 LLM 主动回复（边界未变动时不触发 LLM）；\n- 默认 `stealth_phrases` 随机短句池由 7 句扩充至 **25 句**（仅作用于新装或重置默认配置，已有 `config.toml` 的用户保留原词表）。\n\n## 其他\n\n- `tests/verify.py` 离线回归 **257 项全绿**（新增状态门禁、留空复用、六档直达、Unicode Emoji 变体、25 句随机池与主动回复开关回归断言）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.netajuutilainen.immersive-control",
+            "version": "1.2.3",
+            "name": "麦麦我真得控制你了",
+            "description": "移植自 AstrBot astrbot_plugin_immersive_control：关键词触发后进入\"被遥控\"状态，麦麦在后续回复中自然融入害羞、结巴的沉浸式反应，持续可配置时长后自动结束；支持冷却、并发上限、管理员命令、六档敏感度、自动变化节奏、阈值主动表达、顶点效果与状态持久化。可选与麦麦身体（body 1.3.0+）联动：体征文案、压力写回与顶点/余韵情绪。",
+            "author": {
+              "name": "NetaJuutilainen",
+              "url": "https://github.com/NetaJuutilainen"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/NetaJuutilainen/maibot_immersive_control_plugin"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "maisaka.proactive.trigger",
+              "maisaka.context.append",
+              "api.call",
+              "custom_pages"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "game",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "./assets/icon.svg",
+                "fallback": "remote"
+              }
+            }
+          }
+        },
+        {
           "version": "1.2.1",
           "tag": "v1.2.1",
           "commit": "4f03764fa911071326a6f6e74500b870154da8d5",
