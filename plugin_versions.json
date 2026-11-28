@@ -41144,6 +41144,51 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.12.0",
+          "tag": "v1.12.0",
+          "commit": "e8d43aa429ad4c7eabf79b3f5f22a4f41d919bcb",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-28T12:13:42Z",
+          "release_url": "https://github.com/orge-8/self-identity/releases/tag/v1.12.0",
+          "release_notes": "**方角主题跟随**：三个管理页面（设定库 / 人设图库 / 诊断）在方角主题下跟着变方角；**未装主题时逐像素不变**。后端逻辑、检索、增强、命令、配置一行未动，只改 `webui/*.html` 与前端门禁用例。\n\n## 新能力：方角主题跟随层（条件生效）\n\n- 宿主把 custom 页放进 `<iframe sandbox>` 且不给 `allow-same-origin`，父页主题样式穿不进来，只能靠宿主采样的 `--maibot-*` 令牌判断。\n- **能力探测**：圆角令牌归零 **且** 字体族含宽体拉丁（Saira / Bahnschrift），两条都中才启用；命中的页面挂 `data-ef-page=\"on\"`，门控 CSS 把写死圆角压成直角。判不中则整层不生效。\n- **判据实测**：24 组主题组合（4 强调色 × 3 纸色 × 2 模式）漏判 0；官方 modern / millennium / future-retro 三套误判 0（复古风字体含 Bahnschrift，靠「圆角非 0」正确排除）。\n- 三页内联副本逐字节一致，由 `test_probe_and_gate_identical_across_pages` 钉住——以后改判据漏改一页会被门禁抓住。\n\n## 健壮性修复\n\n10 处 `calc(var(--si-radius) - 2px|4px)` 统一加 `max(0px, ...)` 钳制。性质是隐患不是现症：回退值 `12px` 下减完仍为正，令牌为小正值时才算出非法值，导致层级差静默消失。\n\n## 验证\n\n- 新增 5 个前端门禁用例（圆角非负 / 形状层完整门控 / 不新增宿主组件类 / 跨页副本一致 / 探测按能力不按品牌）。\n- 「没装主题时外观不变」的机器证明：剥掉门控规则后，两版全部 `(选择器, 属性, 值)` 三元组做集合差 ⇒ 三页净新增 0 / 净删除 0。\n- 门禁 PASS 3 / SKIP 0 / FAIL 0，pytest **242 passed / 2 skipped / 0 failed**。\n\n## 升级\n\n`config_version` → `1.12.0`，组件数与 capabilities 均不变（26 / 5）。只改前端，设定数据与配置一条不动。`manifest.version` 变更需完整重启 MaiBot（热重载不重新注册组件）。\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.self-identity",
+            "version": "1.12.0",
+            "name": "自我设定库",
+            "description": "给 bot 一个按需检索的自我设定库：条目存 lorebook.json，支持关键词、常驻条目、备查层与 token 预算裁剪，[profile] 自动生成身份条目。检索与批量导入零 LLM（本地语义检索 + 同义词搭桥；导入纯规则切分，草稿过目后入库）。配套人设图库（按标签选图）、QQ 头像与 verify_self_claim 声明校验防人设漂移；三页管理 WebUI（条目/图库/诊断）。零 hook：条目仅在 planner 主动调 search_self_information 时进上下文，建议在宿主 behavior_style 写明「答自己相关问题先查设定库」。全部命令管理员鉴权（fail-closed）。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/self-identity"
+            },
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.5"
+            },
+            "sdk": {
+              "min_version": "2.8.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "config.get",
+              "send.text",
+              "webui.claim_upload",
+              "personality.get_current",
+              "llm.generate"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "extension"
+          }
+        },
+        {
           "version": "1.3.3",
           "tag": "v1.3.3",
           "commit": "2f15c0b60fa15ba7ad8b91ebbd8a9939fc0cb73f",
