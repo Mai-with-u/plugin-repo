@@ -63924,6 +63924,88 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.13.4",
+          "tag": "v0.13.4",
+          "commit": "6b1297e262b339aa93bdf7baa4aad667b284f7b9",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-27T11:49:45Z",
+          "release_url": "https://github.com/ilworkcn/MaiWeave/releases/tag/v0.13.4",
+          "release_notes": "📷 **「想看看现在的你」和「把上次那张再发一次」，麦麦能分清了。** 前一句拍新照，后一句从这段聊天里找原图。群里有人插话，也能接着处理刚才的要图请求。开启 MaiBot 的「超长工具结果整理」后，选好的照片也能接着发出去。\n\n🗺️ **看地图、翻日程更快了。** 首页只加载当下用得上的地图画稿。日程、地点、人物和书架可以直接切换，来回对照方便多了。\n\n🌨️ 实况天气更新慢了，地图会继续参考覆盖今天的三日预报：大庆连续零下，河岸还是光枝；三亚暖和，街边仍是绿树。首次打开地图时，雨雪和冰雹的画稿也能正常加载。\n\n🎨 **用豆包方舟或通义兼容服务配图**，在「插件配置 → 模型设置 → 图片接口格式」选「参考图随生成请求发送（豆包方舟、通义兼容）」。已经选过通义兼容的配置可以直接沿用。\n\n🍚 冰箱空了，麦麦会考虑出门吃一顿，或者先买菜回来做。重新安排时也会看家里还有什么。\n\n💬 上班时答应「下班再跟你讲」，麦麦会记住你问的事，下班回来接着聊。\n\n⏰ **约好的事，到点就办。** 一起散步会提前提醒，结束后问一次进展。约好每天 23:15「用 MCP 查健康并催睡」，麦麦会在约定时间调用工具，把结果发回原聊天。普通分享的冷却和次数单独计算；每日主动发送上限设为 0 时，提醒和定时工具任务一起暂停。\n\n[更新记录](https://github.com/ilworkcn/MaiWeave/blob/v0.13.4/CHANGELOG.md) · [安装与实机演示](https://github.com/ilworkcn/MaiWeave/blob/v0.13.4/README.md)\n\n**安装包** `MaiWeave-0.13.4.zip`  \n**对应提交** `6b1297e262b339aa93bdf7baa4aad667b284f7b9`  \n**SHA-256** `9b2797b284b913402e9696cd379481243013ce2df70cf3b4c20324fce97a1b39`",
+          "manifest": {
+            "manifest_version": 2,
+            "plugin_type": "chat",
+            "id": "ilworkcn.maiweave",
+            "name": "MaiWeave · 麦织｜角色生活引擎",
+            "version": "0.13.4",
+            "description": "让麦麦有自己的生活，你的对话也能影响它的生活；随着相处积累熟悉、信任与亲近，记住你的近况、生日和彼此的约定，主动问候、关心后续；读你上传的书，记下进度、感想与疑问，下次继续读，也能和你聊聊书里的故事；参考真实天气和城市地点安排活动，上网寻找新见闻，把一天的经历写进日记，整理成随笔发到 QQ 空间。",
+            "author": {
+              "name": "ilworkcn",
+              "url": "https://github.com/ilworkcn"
+            },
+            "license": "GPL-3.0-only",
+            "host_application": {
+              "min_version": "1.3.19",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "lunar_python",
+                "version_spec": ">=1.4.8"
+              },
+              {
+                "type": "python_package",
+                "name": "tzdata",
+                "version_spec": ">=2024.1"
+              },
+              {
+                "type": "python_package",
+                "name": "Pillow",
+                "version_spec": ">=10.0"
+              }
+            ],
+            "capabilities": [
+              "llm.generate",
+              "database.get",
+              "config.get",
+              "send.text",
+              "maisaka.proactive.trigger",
+              "web.search",
+              "web.fetch",
+              "chat.open_session",
+              "person.get_value",
+              "chat.get_all_streams",
+              "chat.get_avatar",
+              "message.get_by_time_in_chat",
+              "person.get_id",
+              "llm.get_available_models",
+              "maisaka.reply.generate",
+              "api.call",
+              "send.image"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            },
+            "urls": {
+              "repository": "https://github.com/ilworkcn/MaiWeave"
+            },
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png"
+              }
+            }
+          }
+        },
+        {
           "version": "0.13.3",
           "tag": "v0.13.3",
           "commit": "917f3615b3ea1b47e7a407c8b2a7c45a9dd5a408",
