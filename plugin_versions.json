@@ -71496,6 +71496,67 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "0.4.3",
+          "tag": "v0.4.3",
+          "commit": "2a689dde2980bec99a520f8b06f6fbe8a98f9e4c",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-28T05:30:48Z",
+          "release_url": "https://github.com/NethielChou/maibot-fx-sim/releases/tag/v0.4.3",
+          "release_notes": "﻿## 麦麦外汇战士 v0.4.3\n\n### 修复：休市期间不再往群里刷行情/汇率告警\n\n外汇市场**周末休市**（纽约时间周五 17:00 收盘，周日 17:00 开盘），行情源在休市期间停止更新，\n所有价格时间戳都会\"过期\"。旧版本仍按开市规则播报，导致周末每 5 分钟往群里发两条卡片：\n\n- 「⚠️ 行情校验未通过」（全部品种 QUOTE_STALE）\n- 「⚠️ 汇率不可用 · 缺少 USDJPY、USDCNY 行情」\n\n这两类告警在开市时是有意义的（防止用旧价成交/强平），**休市时纯属噪音**。\n\n### 本版改动\n\n- **休市时不播报**「行情校验未通过」「汇率不可用」（只按窗口记 debug 日志）\n- **休市时不做日切**：周末不计息，等开市后按结算日历跳过周末补算\n- **开市行为完全不变**：行情过期该报就报（有回归测试防止误伤）\n\n### 测试\n\n- 单测 **619 全绿**，新增 `tests/test_closed_market.py`（5 条）：\n  休市静默、缺锚静默、**开市仍播报**、休市不推进日切水位、`_market_open` 判定\n- preflight 通过；测试实例（MaiCore 1.4.8 / SDK 2.23.0）加载验证通过\n\n### 升级方式\n\n替换插件目录后重启 MaiBot 即可；配置无需改动（`config.toml` 保持原样）。\n\n> 纯本地虚拟游戏：不连接任何真实经纪商、不接受真实资金、不构成投资建议。\r\n",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.nethielchou.mai-fx-sim",
+            "version": "0.4.3",
+            "plugin_type": "game",
+            "name": "麦麦外汇战士",
+            "description": "让麦麦在群聊里按自己的判断交易一个本地虚拟外汇账户：虚拟人民币计价、默认 10 倍杠杆、1 万单位、强制平仓、隔夜利息、点差/滑点；8 个可交易货币对 + 8 个人民币参考汇率（仅参考）、真实公开行情、卡片式中文播报；纯娱乐模拟盘，不接真实交易通道、不构成投资建议。",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "icon.png",
+                "fallback": "coins",
+                "background": "#1F3A5F"
+              }
+            },
+            "author": {
+              "name": "NethielChou",
+              "url": "https://github.com/NethielChou"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/NethielChou/maibot-fx-sim",
+              "homepage": "https://github.com/NethielChou/maibot-fx-sim",
+              "documentation": "https://github.com/NethielChou/maibot-fx-sim/blob/main/README.md",
+              "issues": "https://github.com/NethielChou/maibot-fx-sim/issues"
+            },
+            "changelog": "CHANGELOG.md",
+            "host_application": {
+              "min_version": "1.3.13",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.21.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [],
+            "capabilities": [
+              "send.text",
+              "send.forward",
+              "llm.generate",
+              "chat.get_stream_by_group_id",
+              "message.get_recent",
+              "config.get"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "0.4.2",
           "tag": "v0.4.2",
           "commit": "d1b7ac2156b6a4db52d165c3ff88f1ae1f706e46",
