@@ -53066,6 +53066,62 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.8.1",
+          "tag": "v1.8.1",
+          "commit": "a1ff5338971049a219d0d3a0a6508dbb1b758da3",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-28T08:37:25Z",
+          "release_url": "https://github.com/orge-8/music-request/releases/tag/v1.8.1",
+          "release_notes": "### 修复：LLM 点歌永久空转\n\nMaiSaka 1.4.x 的 Planner 只把 `visibility=visible` 的工具序列化进请求的 `tools` 数组。\n插件工具默认 `deferred`，只经 `tool_search` 以上下文文本形式出现，请求里没有对应\nfunction，模型无法发起合法 `tool_call`，于是反复搜索却始终不调用，最后由 `reply`\n编造「已发出」。\n\n- `search_and_play_music` 声明 `visibility=\"visible\"`（`play_local_music` 保持 deferred）\n- `host_application.max_version` `1.4.5` → `1.4.99`\n\n真机验证（host 1.4.8）：修复前同一会话连续 11 轮 `tool_search`、0 次实际调用；\n修复后第一轮直接调用工具，7.6s 发出音频文件，0 次 `tool_search`。\n\n详见 CHANGELOG。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "github.orge-8.music-request",
+            "version": "1.8.1",
+            "name": "点歌插件",
+            "description": "搜索点歌、解析音乐链接与分享卡片，发送语音或音乐卡片。支持网易云、QQ 音乐，B 站视频提取音频作兜底平台；可启用本地歌曲库直接播放磁盘音频。搜索按相关度排序并校验歌手，避免版权不可播时改播无关歌曲；可选联动 cv_lyric_context 曲库按 VCPedia 原曲标识精确取流，避开翻唱误匹配。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "license": "MIT",
+            "urls": {
+              "repository": "https://github.com/orge-8/music-request"
+            },
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.5.0",
+              "max_version": "2.23.0"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "httpx",
+                "version_spec": ">=0.27.0"
+              },
+              {
+                "type": "python_package",
+                "name": "cryptography",
+                "version_spec": ">=42.0.0"
+              }
+            ],
+            "capabilities": [
+              "send.text",
+              "send.custom",
+              "chat.get_all_streams",
+              "api.call",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            },
+            "plugin_type": "integration"
+          }
+        },
+        {
           "version": "1.8.0",
           "tag": "v1.8.0",
           "commit": "6ee36bc69b58de20fd834339506696b1bd7ea1b4",
