@@ -76975,6 +76975,91 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "1.1.1",
+          "tag": "v1.1.1",
+          "commit": "ebf285dde206dc9edcfd21e6f40de02b95c276fa",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-28T08:20:00Z",
+          "release_url": "https://github.com/OMSociety/maibot_plugin_rsshub/releases/tag/v1.1.1",
+          "release_notes": "### Changed\n\n- `push.default_mode` 默认值改为 `silent`：新订阅与 `inherit` 订阅把条目注入聊天上下文，由麦麦决定是否开口。\n- `push.default_mode` now defaults to `silent`: new and inheriting subscriptions inject entries into the chat context and let the bot decide whether to speak.\n\n### Fixed\n\n- `ETag` 与 `Last-Modified` 按响应头原样取值并落库，下一轮请求携带 `If-None-Match` 与 `If-Modified-Since`。\n- `ETag` and `Last-Modified` are read and stored from the response, and the next poll sends `If-None-Match` / `If-Modified-Since`.",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "omsociety.rsshub",
+            "version": "1.1.1",
+            "name": "RSSHub 订阅推送",
+            "description": "RSS/Atom/JSON Feed 订阅、定时轮询与人格化推送，支持四级配置继承、推送历史审计与富媒体渲染",
+            "author": {
+              "name": "OMSociety",
+              "url": "https://github.com/OMSociety"
+            },
+            "license": "AGPL-3.0",
+            "urls": {
+              "repository": "https://github.com/OMSociety/maibot_plugin_rsshub",
+              "homepage": "https://github.com/OMSociety/maibot_plugin_rsshub",
+              "documentation": "https://github.com/OMSociety/maibot_plugin_rsshub/blob/main/README.md",
+              "issues": "https://github.com/OMSociety/maibot_plugin_rsshub/issues"
+            },
+            "host_application": {
+              "min_version": "1.4.5",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.23.0",
+              "max_version": "2.23.99"
+            },
+            "dependencies": [
+              {
+                "type": "python_package",
+                "name": "feedparser",
+                "version_spec": ">=6.0.11"
+              },
+              {
+                "type": "python_package",
+                "name": "beautifulsoup4",
+                "version_spec": ">=4.12.0"
+              },
+              {
+                "type": "python_package",
+                "name": "lxml",
+                "version_spec": ">=5.0.0"
+              },
+              {
+                "type": "python_package",
+                "name": "socksio",
+                "version_spec": ">=1.0.0"
+              }
+            ],
+            "plugin_type": "tool",
+            "display": {
+              "icon": {
+                "type": "local",
+                "value": "assets/icon.png",
+                "fallback": "package",
+                "background": "#EA580C"
+              }
+            },
+            "capabilities": [
+              "send.text",
+              "send.hybrid",
+              "send.forward",
+              "files.upload",
+              "files.send",
+              "maisaka.reply.generate",
+              "maisaka.context.append",
+              "maisaka.proactive.trigger",
+              "llm.generate",
+              "render.html2png"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN",
+              "supported_locales": [
+                "zh-CN"
+              ]
+            }
+          }
+        },
+        {
           "version": "1.1.0",
           "tag": "v1.1.0",
           "commit": "06812c4f10fbad6cb99c1e2855b131e553b54402",
