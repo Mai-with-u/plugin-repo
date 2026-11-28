@@ -27524,6 +27524,50 @@
       "mode": "releases",
       "versions": [
         {
+          "version": "2.23.1",
+          "tag": "v2.23.1",
+          "commit": "b1e4d520d150cd8508f262040f3d8cae74d96b95",
+          "prerelease": false,
+          "yanked": false,
+          "published_at": "2026-11-28T08:37:28Z",
+          "release_url": "https://github.com/orge-8/cv_lyric_context/releases/tag/v2.23.1",
+          "release_notes": "### 修复：点歌工具「不在线」恒误报\n\n`_probe_play_tool` 用 `ctx.api.list` 判定工具可用性，但它枚举的是插件组件，不是本轮\n发给模型的工具表，对 music-request 恒为空 → 每 5 分钟误报一次「不在线」，注入文案被\n降级为「不指定工具名」。\n\n- 主信号改为 `maisaka.planner.before_request` 载荷里的 `tool_definitions`（即本轮真实\n  `tools` 数组，Host 只序列化 `visibility=visible` 的工具），零额外 RPC、无 TTL 滞后\n- `api.list` 降为载荷缺失时的兜底，日志标注「兜底探测」\n- 新增 11 项测试；全套 287 passed / 7 skipped\n\n详见 CHANGELOG。",
+          "manifest": {
+            "manifest_version": 2,
+            "id": "org.mai-mai.cv-lyric-context",
+            "version": "2.23.1",
+            "name": "中V歌词识别 · 歌曲库",
+            "description": "入站消息命中中文 VOCALOID 歌词时，向规划器与回复器两条 LLM 链路注入歌曲名/歌手/P主，让 bot 接住歌词话题。内置 3412 首中V词库，可投喂 .txt/.lrc 扩充或从 VCPedia 同步 4000+ 首；「/歌词」命令或聊天直接查询，LLM 可按对话氛围推荐歌曲。可选点歌联动：提示规划器调用 music-request 把识别出的歌发到当前会话。同步/补歌词等重任务默认关闭，需先配 crawler.sync_admin_ids。",
+            "author": {
+              "name": "orge-8",
+              "url": "https://github.com/orge-8"
+            },
+            "urls": {
+              "repository": "https://github.com/orge-8/cv_lyric_context",
+              "homepage": "https://github.com/orge-8/cv_lyric_context",
+              "issues": "https://github.com/orge-8/cv_lyric_context/issues"
+            },
+            "license": "MIT",
+            "host_application": {
+              "min_version": "1.0.0",
+              "max_version": "1.4.99"
+            },
+            "sdk": {
+              "min_version": "2.1.0",
+              "max_version": "2.23.99"
+            },
+            "capabilities": [
+              "send.text",
+              "llm.generate",
+              "custom_pages",
+              "api.list"
+            ],
+            "i18n": {
+              "default_locale": "zh-CN"
+            }
+          }
+        },
+        {
           "version": "2.22.0",
           "tag": "v2.22.0",
           "commit": "cea71dcbb5a7181738d0cef5e5c83e8e6d5c2be7",
